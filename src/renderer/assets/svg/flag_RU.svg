@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="90px" height="90px" viewbox="0 0 90 90" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M45 90C20.1472 90 0 69.8528 0 45C0 20.1472 20.1472 0 45 0C69.8528 0 90 20.1472 90 45C90 69.8528 69.8528 90 45 90Z" id="path_1" />
+    <clipPath id="mask_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+  </defs>
+  <g id="Rectangle-Copy-+-Rectangle-Copy-2-Mask">
+    <path d="M45 90C20.1472 90 0 69.8528 0 45C0 20.1472 20.1472 0 45 0C69.8528 0 90 20.1472 90 45C90 69.8528 69.8528 90 45 90Z" id="Mask" fill="#FFFFFF" fill-rule="evenodd" stroke="none" />
+    <g clip-path="url(#mask_1)">
+      <path d="M0 0L98 0L98 29L0 29L0 0Z" transform="translate(-3 31)" id="Rectangle-Copy" fill="#4766B4" fill-rule="evenodd" stroke="none" />
+      <path d="M0 0L98 0L98 30L0 30L0 0Z" transform="translate(-3 60)" id="Rectangle-Copy-2" fill="#D63131" fill-rule="evenodd" stroke="none" />
+    </g>
+  </g>
+</svg>

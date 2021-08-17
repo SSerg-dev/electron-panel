@@ -1,0 +1,298 @@
+<template>
+  <div class="page-title">
+    <!-- <h3>Cash Bill</h3> -->
+
+    <button
+      style="border: none; background: #121212;"
+      @click="payUp('payBonus')"
+    >
+      <!-- <router-link to="/bonus" class="btn black pay-end-bonus"> -->
+      <div class="btn black pay-end-bonus">
+        <img src="/imgs/pay/pay-end-bonus.png" />
+        <div class="button-title-long noselect">
+          {{ 'ВЕРНУТЬ БОНУСАМИ ДО 30%' }}
+        </div>
+      </div>
+    </button>
+
+    <button
+      v-if="this.IsWetBalance === false"
+      style="border: none; background: #121212;"
+      @click="payUp('payEnd')"
+    >
+      <router-link to="/cash" class="btn black pay-end-no-bonus">
+        <img src="/imgs/pay/pay-end.png" />
+        <div class="button-title-long noselect">{{ 'ВНЕСИТЕ ОПЛАТУ' }}</div>
+      </router-link>
+    </button>
+
+    <!-- v-if="this.isDown.payEnd === true" -->
+    <button
+      v-if="this.IsWetBalance === true"
+      style="border: none; background: #121212;"
+      @click="payUp('payEnd')"
+    >
+      <!-- v-if="this.IsWetBalance"  -->
+      <div class="btn black pay-end-no-bonus">
+        <img src="/imgs/pay/pay-end-no-bonus.png" />
+        <div class="button-title-long noselect">{{ 'ЗАВЕРШИТЬ ОПЛАТУ' }}</div>
+      </div>
+    </button>
+  </div>
+</template>
+
+<script>
+import Vue from 'vue'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
+
+import { Database } from '@/storage/database.js'
+import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
+import { Storage } from '@/storage/index.js'
+import { ipcRenderer } from 'electron'
+
+export default {
+  name: 'cash-bill',
+  data: () => ({
+    title: '',
+    body: '',
+    cash: 0,
+    cash_enabler: false,
+    isDown: {
+      payEnd: false,
+      payBonus: false
+    },
+
+    client: 'fetch',
+    url: 'https://192.168.1.3/',
+    storage: null,
+    options: {}
+    //IsWetBalance: false
+  }),
+  mounted() {
+    this.storage = new Storage(this.client, this.url)
+  },
+  computed: {
+    ...mapGetters({
+      getWetBalance: 'getWetBalance'
+    }),
+    IsWetBalance: {
+      get: function() {
+        let flag
+        this.getWetBalance > 0 ? (flag = true) : (flag = false)
+        // console.log('flag-->', flag)
+        if (!flag) this.$message('Внесите минимальную сумму (10 руб.)')
+        return flag
+      }
+    }
+  },
+  methods: {
+    ...mapGetters({
+      getCashEnabler: 'getCashEnabler',
+      getStoreMoneyOptions: 'getStoreMoneyOptions',
+      getAppendBonus: 'getAppendBonus',
+      /* dev */
+      getCreateReceiptOptions: 'getCreateReceiptOptions',
+      getReadReceiptOptions: 'getReadReceiptOptions',
+      getPrintReceiptOptions: 'getPrintReceiptOptions'
+    }),
+    ...mapMutations({
+      //createCash: 'cash/createCash',
+      setCashEnabler: 'setCashEnabler',
+      setIsPayBonusMoney: 'setIsPayBonusMoney',
+      setIsAppendBonusMoney: 'setIsAppendBonusMoney'
+    }),
+    ...mapActions({
+      updateWetMoney: 'updateWetMoney'
+    }),
+
+    payUp(program) {
+      this.setDown(program)
+      /* dev */
+      this.doReceipt()
+
+      if (program === 'payEnd') {
+        this.payCashMoney()
+        this.setCashEnabler(true)
+        this.setIsAppendBonusMoney(false)
+        this.setIsPayBonusMoney(true)
+      } else if (program === 'payBonus') {
+        this.setIsAppendBonusMoney(true)
+        this.setIsPayBonusMoney(false)
+        this.$router.push('/bonus')
+      }
+    },
+    /* dev */
+    // 01 readReceipt
+    async readReceipt() {
+      const method = methods[6]
+      const type = types[4]
+
+      this.options = this.getReadReceiptOptions()
+      const response = (
+        await this.storage.getClient(method, this.options, type)
+      )(+response.result === 0)
+        ? this.$message(`Выполняется панелью при формировании чека`)
+        : this.$message(`НЕ выполняется панелью при формировании чека`)
+    },
+
+    // 02 createReceipt
+    async createReceipt() {
+      const method = methods[5]
+      const type = types[4]
+
+      this.options = this.getCreateReceiptOptions()
+      const response = (
+        await this.storage.getClient(method, this.options, type)
+      )(+response.result === 0)
+        ? this.$message(`Выполняется при запросе чека панелью`)
+        : this.$message(`НЕ выполняется при запросе чека панелью`)
+    },
+
+    // 03 printReceipt
+    async printReceipt() {
+      const method = methods[7]
+      const type = types[4]
+
+      this.options = this.getPrintReceiptOptions()
+      const response = (
+        await this.storage.getClient(method, this.options, type)
+      )(+response.result === 0)
+        ? this.$message(`Выполняется панелью  на запрос печати чека`)
+        : this.$message(`НЕ выполняется панелью  на запрос печати чека`)
+    },
+
+    doReceipt() {
+      console.log('!!!doReceipt()')
+      const storage = new Storage(this.client, this.url)
+
+      /* dev */
+      //this.readReceipt()
+      //this.createReceipt()
+      //this.printReceipt()
+    },
+
+    async payCashMoney() {
+      const method = methods[0]
+      const type = types[0]
+
+      const storage = new Storage(this.client, this.url)
+      this.options = this.getStoreMoneyOptions()
+      const response = await this.storage.getClient(method, this.options, type)
+
+      if (+response.result === 0 && +this.getWetBalance > 0) {
+        this.$router.push('/program')
+        this.$message(
+          `Оплата наличными прошла успешно, внесенная сумма:  ${+this
+            .getWetBalance} ₽`
+        )
+      }
+    },
+    async appendBonusMoney() {
+      console.log('!!!CashBill-->appendBonusMoney-->', methods[10])
+      const method = methods[10]
+      const type = types[4]
+
+      this.options = this.getAppendBonus()
+
+      const response = await this.storage.getClient(method, this.options, type)
+      if (+response.result === 0) {
+        this.$message(`Бонусы зачислены успешно`)
+      }
+
+      /* let response
+      if (this.phone.length === this.phoneParseLength) {
+        if (this.IsWetBalance) {
+          response = await this.storage.getClient(method, this.options, type)
+          if (+response.result === 0) {
+            this.$message(
+              `Вам насчислены бонусы в сумме:  ${+this.getWetBalance}
+               ₽ , они зачислены на Ваш бонусный счет`
+            )
+            this.$router.push('/program')
+          } else this.$message(`Ошибка оплаты Вашего бонусного счета`)
+        } else {
+          this.$message('Внесите минимальную сумму (10 руб.)')
+          this.$router.push('/bonus')
+        }
+      } else {
+        this.$message(`Введите правильно номер мобильного телефона`)
+      } */
+      //----
+    },
+    //----------
+
+    //----------
+
+    setEnabler() {
+      this.getCashEnabler === true
+        ? (this.cash_enabler = false)
+        : (this.cash_enabler = true)
+      this.setCashEnabler(this.cash_enabler)
+      try {
+        //ipcRenderer.send('cash_enabler', this.cash_enabler)
+        ipcRenderer.send('cash_enabler', 'false')
+      } catch (e) {
+        console.warn('Error:', e.message)
+      }
+    },
+    setDown(program) {
+      //console.log('setDown-program-->', program)
+      this.clearDown()
+      switch (program) {
+        case 'payEnd':
+          this.isDown.payEnd = true
+          //console.log('this.isDown.payEnd-->', this.isDown.payEnd)
+          break
+        case 'payBonus':
+          this.isDown.payBonus = true
+          //console.log('this.isDown.payEnd-->', this.isDown.payEnd)
+          break
+        default:
+          break
+      }
+    },
+    clearDown() {
+      this.isDown = Object.fromEntries(
+        Object.entries(this.isDown).map(([key, value]) => [key, false])
+      )
+      //console.log('this.isDown.payEnd-clearDown-->', this.isDown.payEnd)
+    }
+  }
+  /* components: {
+
+  } */
+}
+</script>
+
+<style scoped>
+/* .btn {
+  background-color: black;
+  margin-left: -10rem;
+  margin-top: -20rem;
+  margin-bottom: 10rem;
+} */
+.pay-end-bonus {
+  background-color: black;
+  margin-left: -10rem;
+  margin-top: -50rem;
+  margin-bottom: 10rem;
+}
+.pay-end-no-bonus {
+  background-color: black;
+  margin-left: -10rem;
+  margin-top: -20rem;
+  margin-bottom: 10rem;
+}
+.button-title-long {
+  position: relative;
+  top: -11rem;
+  left: 0rem; /* 12.5rem; */
+  color: black;
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center; /* left; */
+  z-index: 1;
+
+  font-family: 'Plumb-Medium';
+}
+</style>

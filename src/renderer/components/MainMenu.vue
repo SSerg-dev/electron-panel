@@ -1,0 +1,221 @@
+<template>
+  <div>
+    <section>
+      <ul class="collection">
+        <!-- 1 -->
+        <li class="collection-item cost">
+          <router-link
+            to="/cost"
+            style="background-image:url('/imgs/menu/prog-price.png'); width: 945px; height: 192px; left: -10%; "
+            class="btn"
+          >
+            <div class="button-title-main">
+              {{ 'PROGRAMS_COST' | localize }}
+            </div>
+          </router-link>
+        </li>
+
+        <!-- 2 -->
+        <li class="collection-item title-pay">
+          <h2 align="center">{{ 'Choose_your_payment_method' | localize }}</h2>
+        </li>
+
+        <!-- 3 -->
+        <li class="collection-item">
+          <button
+            style="border: none; background: #121212;"
+            @click="setEnabler()"
+          >
+            <router-link
+              to="/cash"
+              style="background-image:url('/imgs/menu/pay-cash.png'); width: 945px; height: 192px"
+              class="btn #121212"
+            >
+              <div class="button-title-main">{{ 'CASH' | localize }}</div>
+            </router-link>
+          </button>
+        </li>
+
+        <!-- 4 -->
+        <!-- @click="payUp('card')" -->
+        <li class="collection-item" @click="payUp('card')">
+          <router-link
+            to="/card"
+            style="background-image:url('/imgs/menu/pay-card.png'); width: 945px; height: 192px; position: relative; left: 0.5%;"
+            class="btn"
+          >
+            <div
+              style="position: relative; left: -3rem;"
+              class="button-title-main"
+            >
+              {{ 'BANK_CARD' | localize }}
+            </div>
+          </router-link>
+        </li>
+
+        <!-- 5 -->
+        <li class="collection-item" @click="payUp('bonus')">
+          <router-link
+            to="/bonus"
+            style="background-image:url('/imgs/menu/pay-bonus.png'); width: 945px; height: 192px"
+            class="btn"
+          >
+            <div class="button-title-main">{{ 'BONUSES' | localize }}</div>
+          </router-link>
+        </li>
+
+        <!--  -->
+        <!-- <li class="collection-item">
+          <router-link
+            to="/service"
+            class="btn white-text"
+            style="font-size: 22px;"
+            >SERVICE
+          </router-link>
+        </li> -->
+
+        <!-- <li class="collection-item" align="left">
+          <router-link
+            to="/posts"
+            class="btn white-text"
+            style="font-size: 22px"
+            >Posts Vuex
+          </router-link>
+        </li> -->
+
+        <!-- <li class="collection-item" align="center">
+          <button
+            class="btn white-text" @click="setConfig()"
+            style="font-size: 22px; border: solid; padding: 2rem auto 2rem auto; text-align: center; "
+            >Кнопка для отладки
+          </button>
+        </li> -->
+      </ul>
+    </section>
+  </div>
+</template>
+<script>
+import Vue from 'vue'
+import { mapGetters, mapMutations } from 'vuex'
+
+import { ipcRenderer } from 'electron'
+
+export default Vue.extend({
+  data() {
+    return {
+      cash_enabler: false
+    }
+  },
+
+  methods: {
+    ...mapGetters({
+      getCashEnabler: 'getCashEnabler',
+      getIsConfig: 'getIsConfig',
+      getConfig: 'getConfig',
+      getIsPayCardMoney: 'getIsPayCardMoney'
+    }),
+    ...mapMutations({
+      setCashEnabler: 'setCashEnabler',
+      setIsConfig: 'setIsConfig',
+      setIsPayBonusMoney: 'setIsPayBonusMoney',
+      setIsAppendBonusMoney: 'setIsAppendBonusMoney',
+      setIsPayCardMoney: 'setIsPayCardMoney'
+    }),
+
+    payUp(program) {
+      if (program === 'bonus') {
+        this.setIsAppendBonusMoney(false)
+        this.setIsPayBonusMoney(true)
+        this.setIsPayCardMoney(true)
+      } else if (program === 'card') {
+        this.setIsPayCardMoney(false)
+        //console.log('MainMenu-->getIsPayCardMoney-->', this.getIsPayCardMoney())
+        //this.setIsPayCardMoney(true)
+        //console.log('MainMenu-->getIsPayCardMoney-->', this.getIsPayCardMoney())
+      }
+    },
+
+    setEnabler() {
+      //console.log('setEnabler')
+      this.getCashEnabler() === false
+        ? (this.cash_enabler = true)
+        : (this.cash_enabler = false)
+      this.setCashEnabler(this.cash_enabler)
+
+      ipcRenderer.send('cash_enabler', 'true')
+    }
+  },
+  
+})
+</script>
+
+<style scoped>
+.btn {
+  padding-left: 16em;
+  background-color: #121212;
+}
+.collection {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0rem;
+  border-color: #121212;
+  padding-top: 8rem;
+}
+.collection-item {
+  margin-bottom: 2em;
+  /* background-color: black; */
+  background-color: #121212;
+  border-color: #121212;
+}
+img {
+  margin-left: -18em;
+  z-index: 1;
+}
+h1 {
+  padding-left: 1.2em;
+}
+h2 {
+  color: white;
+  margin-top: 0em;
+  margin-left: 2em;
+  padding-left: 0em;
+}
+.background-top {
+  margin-left: 16em;
+  margin-top: -6em; /* -6 */
+}
+
+.operator-down {
+  margin-left: 62.5em;
+  margin-top: -8em;
+}
+.title-pay {
+  /* margin-top: 15em; */
+  margin-top: 4em;
+  margin-bottom: 5em;
+  margin-left: -8em;
+}
+
+section {
+  margin-top: 18em;
+  margin-left: 2em;
+}
+
+/* *********************************** */
+.button-title-main {
+  position: relative;
+  top: 32%;
+  left: -10%;
+  color: black;
+  font-size: 4rem;
+  font-weight: bold;
+
+  font-family: 'Plumb-Medium';
+}
+/* Plumb-Medium */
+.description {
+  font-family: 'Plumb-Medium';
+  font-size: 3rem;
+  font-weight: bold;
+}
+</style>
