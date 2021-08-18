@@ -76,7 +76,7 @@ export default Vue.extend({
       else if (typeId === 2) this.setPanelType('vaccum')
       else if (typeId === 3) this.setPanelType('payment')
 
-      console.log('panelType watch-->', this.getPanelType)
+      //console.log('panelType watch-->', this.getPanelType)
     }
   },
 

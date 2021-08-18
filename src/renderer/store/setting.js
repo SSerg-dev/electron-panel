@@ -27,7 +27,9 @@ export default {
       return state.config.type
     },
     getDefaultCurrency(state) {
-      return state.config.currency
+      /* dev */
+      // return state.config.currency
+      return { id: 1, title: 'Российский рубль' }
     },
     getDefaultPanelNumber(state) {
       return state.config.index
@@ -39,7 +41,9 @@ export default {
       return state.payment
     },
     getDefaultBiils(state) {
-      return state.config.validator.enable_bills
+      /* dev */
+      //return state.config.validator.enable_bills
+      return state.config.bill_validator.enable_bills
     },
     getDefaultTerminalType(state) {
       return state.config.bank_terminal.hardware
@@ -50,8 +54,10 @@ export default {
     getTerminalInstalled(state) {
       return state.config.bank_terminal.installed
     },
-    getAcceptorInstalled(state) {
-      return state.config.validator.installed
+    getAcceptorInstalled(state) {  
+      /* dev */
+      //return state.config.validator.installed
+      return state.config.bill_validator.installed
     },
     getDirectCash(state) {
       return state.config.ui.direct_cash

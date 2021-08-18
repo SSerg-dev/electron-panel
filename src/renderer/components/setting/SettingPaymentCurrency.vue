@@ -59,11 +59,14 @@ export default Vue.extend({
   },
   created() {
     const defaultCurrency = this.getDefaultCurrency()
-    //console.log('defaultCurrency-->', defaultCurrency)
-
-    const { id, title } = this.currencies[defaultCurrency]
+    /* dev */
+    if(defaultCurrency.title === 'Российский рубль') {
+      this.current = 1
+      this.select = 'Российский рубль'  
+    }
+    /* const { id, title } = this.currencies[defaultCurrency]
     this.current = id
-    this.select = title
+    this.select = title */
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {

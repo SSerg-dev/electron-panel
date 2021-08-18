@@ -168,7 +168,7 @@ export default {
           state.country = all[keyAll]
         }
       })
-      // console.log('state.country-->', JSON.stringify(state.country))
+      //console.log('state.country-->', JSON.stringify(state.country))
     }
   }, // end mutation
 

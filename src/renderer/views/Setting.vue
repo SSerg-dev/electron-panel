@@ -11,25 +11,25 @@
         style="background: white; width: 98%"
       >
         <li class="tab col s3">
-          <a class="active black-text" href="#swipe-1" style="font-size: 32px;"
+          <a class="black-text" href="#swipe-1" style="font-size: 32px;"
             >Обзор</a
           >
         </li>
 
-        <!-- <li class="tab col s3">
-          <a class="black-text" href="#swipe-2" style="font-size: 32px;"
-            >Экран</a
-          >
-        </li> -->
-
         <li class="tab col s3">
-          <a class="black-text" href="#swipe-2" style="font-size: 32px;"
-            >Настройки</a
+          <a class="active black-text" href="#swipe-2" style="font-size: 32px;"
+            >Экран</a
           >
         </li>
 
         <li class="tab col s3">
           <a class="black-text" href="#swipe-3" style="font-size: 32px;"
+            >Настройки</a
+          >
+        </li>
+
+        <li class="tab col s3">
+          <a class="black-text" href="#swipe-4" style="font-size: 32px;"
             >Финансы</a
           >
         </li>
@@ -55,7 +55,62 @@
       </div>
       <!--  -->
 
+      <!--  -->
       <div id="swipe-2" class="col s8 black">
+        <!-- Экран -->
+        <div>
+
+          <h2 class="white-text">Экран</h2>
+          <br />
+          <div class="row screen">
+            <!-- <div class="page-title white-text">
+              <h4>Общие</h4>
+            </div>
+
+            <SettingOverviewService />
+            <SettingOverviewCommon /> -->
+            <!-- dev -->
+            <div class="col s6">
+              <div
+                class="card grey lighten-3"
+                style="border: solid 3px #00B9E3; width: 517px; height: 150px; margin-left: 10px; border-radius: 2rem;"
+              >
+                <div class="card-content black-text">
+                  <div class="switch">
+                    <label>
+                      <!-- <input type="checkbox" v-model="IsCoinInstalled" /> -->
+                      <input type="checkbox" v-model="IsTooltipInstalled" />
+                      
+                      <span class="lever"></span>
+                    </label>
+                  </div>
+                  <span class="card-title"
+                    >Показывать всплывающие подсказки при переключении программ</span
+                  >
+                  <div class="input-field"></div>
+                </div>
+              </div>
+            </div>
+            <!--  -->
+            
+              <SettingScreenTooltip />  
+            
+            <!--  -->
+            <!-- SettingPanelType -->
+
+
+
+
+          </div>
+
+        </div>
+        <hr />
+        <!-- end Экран -->
+      </div>
+      <!--  -->
+
+
+      <div id="swipe-3" class="col s8 black">
         <!-- Настройки -->
         <div>
           <h2 class="white-text">Настройки</h2>
@@ -114,6 +169,7 @@
                 </div>
               </div>
             </div>
+
             <div class="col s6">
               <!-- style="border: solid 3px #00B9E3;" -->
               <div
@@ -171,7 +227,7 @@
         <!-- end Настройки -->
       </div>
 
-      <div id="swipe-3" class="col s8 black">
+      <div id="swipe-4" class="col s8 black">
         <!-- Финансы -->
         <div>
           <h2 class="white-text">Финансы</h2>
@@ -254,11 +310,14 @@ import SettingOverviewCommon from '@/components/setting/SettingOverviewCommon'
 import SettingOverviewService from '@/components/setting/SettingOverviewService'
 import SettingFinanceCoin from '@/components/setting/SettingFinanceCoin'
 import SettingFinanceBanknote from '@/components/setting/SettingFinanceBanknote'
+import SettingScreenTooltip from '@/components/setting/SettingScreenTooltip'
+
 import cost from '../store/cost'
 
 export default Vue.extend({
   name: 'setting',
   data: () => ({
+    IsTooltipInstalled: false,
     IsCoinInstalled: false,
     IsTerminalInstalled: false,
     IsDirectCash: false,
@@ -279,7 +338,8 @@ export default Vue.extend({
     SettingOverviewCommon,
     SettingOverviewService,
     SettingFinanceCoin,
-    SettingFinanceBanknote
+    SettingFinanceBanknote,
+    SettingScreenTooltip
   },
   mounted() {
     this.setRouter('/setting')
@@ -322,6 +382,9 @@ export default Vue.extend({
     })
   },
   created() {
+    /* dev */
+    this.IsTooltipInstalled = false
+
     this.IsCoinInstalled = this.getCoinInstalled()
     this.IsTerminalInstalled = this.getTerminalInstalled()
     this.IsDirectCash = this.getDirectCash()
