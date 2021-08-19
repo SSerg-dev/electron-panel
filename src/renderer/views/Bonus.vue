@@ -45,6 +45,7 @@ export default Vue.extend({
     ...mapMutations({
       setRouter: 'setRouter'
     }),
+    /* dev */
     gotoMainMenu(seconds) {
       this.intervalMainMenu = setInterval(() => {
         if (
@@ -52,7 +53,7 @@ export default Vue.extend({
           this.getWetBusyPanel === 'false' &&
           this.$route.name !== 'home'
         ) {
-          //console.log('seconds-->', seconds)
+          // console.log('seconds-->', seconds)
           this.$router.push('/')
         }
       }, 1000)

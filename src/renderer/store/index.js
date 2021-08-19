@@ -26,7 +26,7 @@ export default new Vuex.Store({
     info: { name: '', locale: 'ru-RU' },
     cash_enabler: false,
     busyPanel: false,
-    secondsGotoMainMenu: 100000000, // 30
+    secondsGotoMainMenu: 10000000000, // 30
     secondsGotoPopupMenu: 2,
     secondsGotoProgramMenu: 10, // 6
     secondsStatusTimer: 0,

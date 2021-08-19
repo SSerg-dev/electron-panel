@@ -9,7 +9,8 @@ export default {
     increment: 0,
     // panel type
     vaccum: 1,
-    payment: 1
+    payment: 1,
+    isTooltipInstalled: true
   }, // end state
 
   // getters
@@ -55,9 +56,10 @@ export default {
       return state.config.bank_terminal.installed
     },
     getAcceptorInstalled(state) {  
-      /* dev */
-      //return state.config.validator.installed
       return state.config.bill_validator.installed
+    },
+    getTooltipInstalled(state) {
+      return state.isTooltipInstalled
     },
     getDirectCash(state) {
       return state.config.ui.direct_cash
@@ -118,8 +120,10 @@ export default {
     setConfig(state, config) {
       state.config = config
       //console.log('!!++state.config-->', state.config.languages.default)
-    }
-    // ---
+    },
+    /* setTooltipInstalled(state, isTooltipInstalled) {
+      state.isTooltipInstalled = isTooltipInstalled
+    }, */
   }, // end mutations
 
   //actions

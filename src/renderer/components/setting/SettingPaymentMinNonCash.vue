@@ -83,7 +83,7 @@ export default {
 .btn {
   font-size: 15px;
   border: solid 1px black;
-  background-color: #1E6F68;
+  background-color: #26A69A;
 }
 td {
   width: 128px;

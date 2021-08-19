@@ -139,6 +139,6 @@ button {
   border-radius: 2rem;
 }
 .btn {
-  background-color: #1E6F68; 
+  background-color: #26A69A; 
 }
 </style>

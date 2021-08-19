@@ -59,17 +59,11 @@
       <div id="swipe-2" class="col s8 black">
         <!-- Экран -->
         <div>
-
           <h2 class="white-text">Экран</h2>
           <br />
-          <div class="row screen">
-            <!-- <div class="page-title white-text">
-              <h4>Общие</h4>
-            </div>
 
-            <SettingOverviewService />
-            <SettingOverviewCommon /> -->
-            <!-- dev -->
+          <!-- row tooltip -->
+          <div class="row tooltip">
             <div class="col s6">
               <div
                 class="card grey lighten-3"
@@ -78,37 +72,66 @@
                 <div class="card-content black-text">
                   <div class="switch">
                     <label>
-                      <!-- <input type="checkbox" v-model="IsCoinInstalled" /> -->
-                      <input type="checkbox" v-model="IsTooltipInstalled" />
-                      
+                      <input type="checkbox" v-model="isTooltipInstalled" />
+
                       <span class="lever"></span>
                     </label>
                   </div>
                   <span class="card-title"
-                    >Показывать всплывающие подсказки при переключении программ</span
+                    >Показывать всплывающие подсказки при переключении
+                    программ</span
                   >
                   <div class="input-field"></div>
                 </div>
               </div>
             </div>
-            <!--  -->
-            
-              <SettingScreenTooltip />  
-            
-            <!--  -->
-            <!-- SettingPanelType -->
-
-
-
-
+            <div v-if="isTooltipInstalled">
+              <SettingScreenTooltip />
+            </div>
           </div>
+          <!-- row tooltip -->
+
+          <!-- row pay-screen -->
+          <div class="row pay-screen">
+            <div class="col s6">
+              <div
+                class="card grey lighten-3"
+                style="border: solid 3px #00B9E3; width: 1070px; height: 80px; margin-left: 10px; border-radius: 2rem;"
+              >
+                <div class="card-content black-text">
+                  <div class="switch">
+                    <label>
+                      <input type="checkbox" v-model="isPayScreenMain" />
+
+                      <span class="lever"></span>
+                    </label>
+                  </div>
+
+                  <div class="pay-screen-title">
+                    <span class="card-title">Сделать окно оплаты основным</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--  -->
+          </div>
+          <!-- row pay-screen -->
+
+          <!-- row screen-delay -->
+          <div class="row screen-delay">
+            
+            <div>
+              <SettingScreenTooltip />
+            </div>
+          </div>
+          <!-- row screen-delay -->
+
 
         </div>
         <hr />
         <!-- end Экран -->
       </div>
       <!--  -->
-
 
       <div id="swipe-3" class="col s8 black">
         <!-- Настройки -->
@@ -157,7 +180,7 @@
                   <!--  -->
                   <div class="switch">
                     <label>
-                      <input type="checkbox" v-model="IsCoinInstalled" />
+                      <input type="checkbox" v-model="isCoinInstalled" />
                       <span class="lever"></span>
                     </label>
                   </div>
@@ -180,7 +203,7 @@
                   <!--  -->
                   <div class="switch">
                     <label>
-                      <input type="checkbox" v-model="IsTerminalInstalled" />
+                      <input type="checkbox" v-model="isTerminalInstalled" />
                       <span class="lever"></span>
                     </label>
                   </div>
@@ -210,7 +233,7 @@
                   <!--  -->
                   <div class="switch">
                     <label>
-                      <input type="checkbox" v-model="IsDirectCash" />
+                      <input type="checkbox" v-model="isDirectCash" />
                       <span class="lever"></span>
                     </label>
                   </div>
@@ -241,7 +264,7 @@
                     type="submit"
                     @click="updateOk"
                   >
-                    {{ 'Статистика' }}
+                    {{ "Статистика" }}
                   </button>
                 </router-link>
               </div>
@@ -261,7 +284,7 @@
             type="submit"
             @click="updateOk"
           >
-            {{ 'ОК' }}
+            {{ "ОК" }}
             <!-- <i class="material-icons right"></i> -->
           </button>
           <!-- </router-link> -->
@@ -272,7 +295,7 @@
             type="submit"
             @click="updateCancel"
           >
-            {{ 'Отмена' }}
+            {{ "Отмена" }}
             <!-- <i class="material-icons right"></i> -->
           </button>
         </div>
@@ -283,7 +306,7 @@
             type="submit"
             @click="updateApply"
           >
-            {{ 'Применить' }}
+            {{ "Применить" }}
             <!-- <i class="material-icons right"></i> -->
           </button>
         </div>
@@ -294,35 +317,36 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import { mapGetters, mapMutations } from 'vuex'
-import SettingPanelType from '@/components/setting/SettingPanelType'
-import SettingPanelNumber from '@/components/setting/SettingPanelNumber'
-import SettingPanelVaccum from '@/components/setting/SettingPanelVaccum'
-import SettingPanelPayment from '@/components/setting/SettingPanelPayment'
-import SettingPaymentLanguage from '@/components/setting/SettingPaymentLanguage'
-import SettingPaymentCurrency from '@/components/setting/SettingPaymentCurrency'
-import SettingPaymentAcceptor from '@/components/setting/SettingPaymentAcceptor'
-import SettingPaymentBill from '@/components/setting/SettingPaymentBill'
-import SettingPaymentTerminalType from '@/components/setting/SettingPaymentTerminalType'
-import SettingPaymentMinNonCash from '@/components/setting/SettingPaymentMinNonCash'
-import SettingOverviewCommon from '@/components/setting/SettingOverviewCommon'
-import SettingOverviewService from '@/components/setting/SettingOverviewService'
-import SettingFinanceCoin from '@/components/setting/SettingFinanceCoin'
-import SettingFinanceBanknote from '@/components/setting/SettingFinanceBanknote'
-import SettingScreenTooltip from '@/components/setting/SettingScreenTooltip'
+import Vue from "vue";
+import { mapGetters, mapMutations } from "vuex";
+import SettingPanelType from "@/components/setting/SettingPanelType";
+import SettingPanelNumber from "@/components/setting/SettingPanelNumber";
+import SettingPanelVaccum from "@/components/setting/SettingPanelVaccum";
+import SettingPanelPayment from "@/components/setting/SettingPanelPayment";
+import SettingPaymentLanguage from "@/components/setting/SettingPaymentLanguage";
+import SettingPaymentCurrency from "@/components/setting/SettingPaymentCurrency";
+import SettingPaymentAcceptor from "@/components/setting/SettingPaymentAcceptor";
+import SettingPaymentBill from "@/components/setting/SettingPaymentBill";
+import SettingPaymentTerminalType from "@/components/setting/SettingPaymentTerminalType";
+import SettingPaymentMinNonCash from "@/components/setting/SettingPaymentMinNonCash";
+import SettingOverviewCommon from "@/components/setting/SettingOverviewCommon";
+import SettingOverviewService from "@/components/setting/SettingOverviewService";
+import SettingFinanceCoin from "@/components/setting/SettingFinanceCoin";
+import SettingFinanceBanknote from "@/components/setting/SettingFinanceBanknote";
+import SettingScreenTooltip from "@/components/setting/SettingScreenTooltip";
 
-import cost from '../store/cost'
+import cost from "../store/cost";
 
 export default Vue.extend({
-  name: 'setting',
+  name: "setting",
   data: () => ({
-    IsTooltipInstalled: false,
-    IsCoinInstalled: false,
-    IsTerminalInstalled: false,
-    IsDirectCash: false,
+    isPayScreenMain: false,
+    isTooltipInstalled: false,
+    isCoinInstalled: false,
+    isTerminalInstalled: false,
+    isDirectCash: false,
     isDown: false,
-    tabs: null
+    tabs: null,
   }),
   components: {
     SettingPanelType,
@@ -339,22 +363,22 @@ export default Vue.extend({
     SettingOverviewService,
     SettingFinanceCoin,
     SettingFinanceBanknote,
-    SettingScreenTooltip
+    SettingScreenTooltip,
   },
   mounted() {
-    this.setRouter('/setting')
-    this.tabs = M.Tabs.init(this.$refs.tabs, {})
+    this.setRouter("/setting");
+    this.tabs = M.Tabs.init(this.$refs.tabs, {});
   },
   methods: {
     ...mapMutations({
-      setRouter: 'setRouter'
+      setRouter: "setRouter",
     }),
     setDown() {
-      this.isDown = !this.isDown
+      this.isDown = !this.isDown;
     },
     updateOk() {
       /* dev */
-      this.$router.push('/')
+      this.$router.push("/");
 
       //const panelType = this.getPanelType
       //if (panelType === 'wash') this.$router.push('/')
@@ -362,7 +386,7 @@ export default Vue.extend({
       //if (panelType === 'payment') this.$router.push('/')
     },
     updateCancel() {
-      window.location.reload()
+      window.location.reload();
       //console.log('!!!updateCancel')
       //this.$router.push('/')
     },
@@ -371,31 +395,32 @@ export default Vue.extend({
       // this.$router.push('/setting')
     },
     ...mapGetters({
-      getCoinInstalled: 'getCoinInstalled',
-      getTerminalInstalled: 'getTerminalInstalled',
-      getDirectCash: 'getDirectCash'
-    })
+      getTooltipInstalled: "getTooltipInstalled",
+      getCoinInstalled: "getCoinInstalled",
+      getTerminalInstalled: "getTerminalInstalled",
+      getDirectCash: "getDirectCash",
+    }),
   },
   computed: {
     ...mapGetters({
-      getPanelType: 'getPanelType'
-    })
+      getPanelType: "getPanelType",
+    }),
   },
   created() {
     /* dev */
-    this.IsTooltipInstalled = false
-
-    this.IsCoinInstalled = this.getCoinInstalled()
-    this.IsTerminalInstalled = this.getTerminalInstalled()
-    this.IsDirectCash = this.getDirectCash()
-    //console.log('this.IsDirectCash-->', this.IsDirectCash)
+    this.isPayScreenMain = true
+    this.isTooltipInstalled = this.getTooltipInstalled();
+    this.isCoinInstalled = this.getCoinInstalled();
+    this.isTerminalInstalled = this.getTerminalInstalled();
+    this.isDirectCash = this.getDirectCash();
+    //console.log('this.isDirectCash-->', this.isDirectCash)
   },
   beforeDestroy() {
     if (this.tabs && this.tabs.destroy) {
-      this.tabs.destroy()
+      this.tabs.destroy();
     }
-  }
-})
+  },
+});
 </script>
 
 <style scoped>
@@ -413,7 +438,7 @@ export default Vue.extend({
     text-decoration: none;
     color: #fff;
     background-color: #27a599;
-    background-color: #1E6F68;
+    background-color: #26A69A;
     text-align: center;
     letter-spacing: .5px;
     transition: background-color .2s ease-out;
@@ -426,7 +451,7 @@ export default Vue.extend({
   border: solid;
   border-width: 1px;
   border-color: white;
-  background-color: #1e6f68;
+  background-color: #26a69a;
 }
 .right {
   padding-right: 0rem;
@@ -465,5 +490,10 @@ export default Vue.extend({
 }
 h2 {
   margin-top: 0.5em;
+}
+.pay-screen-title {
+  margin-top: -3.2em;
+  margin-left: 6em;
+  /* background: red; */
 }
 </style>
