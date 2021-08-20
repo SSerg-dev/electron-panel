@@ -26,7 +26,7 @@ export default new Vuex.Store({
     info: { name: '', locale: 'ru-RU' },
     cash_enabler: false,
     busyPanel: false,
-    secondsGotoMainMenu: 10000000000, // 30
+    secondsGotoMainMenu: 600, // 30
     secondsGotoPopupMenu: 2,
     secondsGotoProgramMenu: 10, // 6
     secondsStatusTimer: 0,
@@ -494,8 +494,12 @@ export default new Vuex.Store({
     setActiveProgramNumber(state, activeProgramNumber) {
       state.activeProgramNumber = activeProgramNumber
       //console.log('state.activeProgramNumber-->', state.activeProgramNumber)
-    }
-  },
+    },
+    setSecondsGotoMainMenu(state, seconds) {
+      state.secondsGotoMainMenu = seconds
+      //console.log('++state.secondsGotoMainMenu-->', state.secondsGotoMainMenu)
+    },
+  }, /* end mutations */
 
   modules: {
     posts,

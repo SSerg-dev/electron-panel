@@ -119,14 +119,57 @@
 
           <!-- row screen-delay -->
           <div class="row screen-delay">
-            
             <div>
-              <SettingScreenTooltip />
+              <SettingScreenGotoMainMenu />
             </div>
           </div>
           <!-- row screen-delay -->
 
+          <!-- row change-item -->
+          <!--  на "Цветную пену" -->
+          <!--  style="float: left;" -->
 
+          <div class="row">
+            <div class="col s2">
+              <div
+                class="card grey lighten-3"
+                style="border: solid 3px #00B9E3; width: 260px; height: 120px; margin-left: 10px; border-radius: 2rem;"
+              >
+                <div class="card-content black-text">
+                  <div class="switch">
+                    <label>
+                      <input type="checkbox" v-model="isTooltipInstalled" />
+
+                      <span class="lever"></span>
+                    </label>
+                  </div>
+                  <!-- Заменить пункт / программу-->
+                  <div class="change-item-title">
+                    <span class="card-title">Заменить программу</span>
+                  </div>
+
+                  <div class="input-field"></div>
+                </div>
+              </div>
+            </div>
+
+            <!--  -->
+
+
+            <div class="col s5" style="width:415px; margin-left: 0em;">
+              <div v-if="isTooltipInstalled">
+                <SettingScreenChangeItem />
+              </div>
+            </div>
+
+            <div class="col s5" style="width:415px; padding-left: 0em;">
+              <div v-if="isTooltipInstalled">
+                <SettingScreenChangeItem />
+              </div>
+            </div>
+
+          </div>
+          <!-- row change-item -->
         </div>
         <hr />
         <!-- end Экран -->
@@ -334,6 +377,8 @@ import SettingOverviewService from "@/components/setting/SettingOverviewService"
 import SettingFinanceCoin from "@/components/setting/SettingFinanceCoin";
 import SettingFinanceBanknote from "@/components/setting/SettingFinanceBanknote";
 import SettingScreenTooltip from "@/components/setting/SettingScreenTooltip";
+import SettingScreenGotoMainMenu from "@/components/setting/SettingScreenGotoMainMenu";
+import SettingScreenChangeItem from "@/components/setting/SettingScreenChangeItem";
 
 import cost from "../store/cost";
 
@@ -364,6 +409,8 @@ export default Vue.extend({
     SettingFinanceCoin,
     SettingFinanceBanknote,
     SettingScreenTooltip,
+    SettingScreenGotoMainMenu,
+    SettingScreenChangeItem,
   },
   mounted() {
     this.setRouter("/setting");
@@ -408,7 +455,7 @@ export default Vue.extend({
   },
   created() {
     /* dev */
-    this.isPayScreenMain = true
+    this.isPayScreenMain = true;
     this.isTooltipInstalled = this.getTooltipInstalled();
     this.isCoinInstalled = this.getCoinInstalled();
     this.isTerminalInstalled = this.getTerminalInstalled();
@@ -495,5 +542,9 @@ h2 {
   margin-top: -3.2em;
   margin-left: 6em;
   /* background: red; */
+}
+.change-item-title {
+  margin-left: 5em;
+  margin-top: -3em;
 }
 </style>
