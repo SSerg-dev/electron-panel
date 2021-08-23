@@ -25,24 +25,20 @@ import { mapGetters, mapMutations } from "vuex";
 
 export default Vue.extend({
   name: "setting-panel-item",
-  props: ["changeItemIds"],
   data: () => ({
     select: null,
     current: null,
     title: "",
 
     items: [
-      { id: 1, title: "ДИСКИ" },
-      { id: 2, title: "АНТИМОСКИТ" },
-      { id: 3, title: "ШАМПУНЬ" },
+      { id: 1, title: "Цветную пену" },
+      { id: 2, title: "ОБЕЗЖИРИВАНИЕ" },
+      { id: 3, title: "ПОРОГИ" },
       
     ],
 
   }),
   mounted() {
-    console.log('++changeItemIds-->', this.changeItemIds)
-    
-
     this.select = M.FormSelect.init(this.$refs.select, {
       constrainWidth: true,
     });

@@ -123,53 +123,155 @@
               <SettingScreenGotoMainMenu />
             </div>
           </div>
-          <!-- row screen-delay -->
 
-          <!-- row change-item -->
-          <!--  на "Цветную пену" -->
-          <!--  style="float: left;" -->
 
-          <div class="row">
-            <div class="col s2">
-              <div
-                class="card grey lighten-3"
-                style="border: solid 3px #00B9E3; width: 260px; height: 120px; margin-left: 10px; border-radius: 2rem;"
-              >
-                <div class="card-content black-text">
-                  <div class="switch">
-                    <label>
-                      <input type="checkbox" v-model="isTooltipInstalled" />
 
-                      <span class="lever"></span>
-                    </label>
+          <!-- table -->
+          <!-- style="border: solid white;" -->
+          <!-- float: left;  -->
+          <!-- change assign -->
+          <table style="margin-left: 0.8em;">
+            <tbody>
+              <!-- row 01 -->
+              <tr>
+                <td style="border: none; width: 360px; height: 80px;">
+                  <div
+                    class="card grey lighten-3"
+                    style="border: solid 3px #00B9E3; width: 360px; height: 80px; border-radius: 2rem;"
+                  >
+                    <div class="card-content black-text">
+                      <div class="switch">
+                        <label>
+                          <input type="checkbox" v-model="isChangeItem" />
+
+                          <span class="lever"></span>
+                        </label>
+                      </div>
+                      <!-- Заменить пункт / программу -->
+                      <div class="change-item-title">
+                        <span class="card-title">Заменить пункт</span>
+                      </div>
+                    </div>
                   </div>
-                  <!-- Заменить пункт / программу-->
-                  <div class="change-item-title">
-                    <span class="card-title">Заменить программу</span>
+                </td>
+
+                <td style="border: none; width: 360px;">
+                  <div
+                    style="width:450px; height: 0px; margin-left: -6.8em; margin-bottom: 6.5em; padding-rigth: 0em"
+                  >
+                    <div v-if="isChangeItem">
+                      <SettingScreenChangeItem 
+                      :changeItemIds = "changeItemIds"
+                      />
+                    </div>
                   </div>
+                </td>
 
-                  <div class="input-field"></div>
-                </div>
-              </div>
-            </div>
+                <td style="border: none; width: 360px;">
+                  <div
+                    style="width:450px; height: 0px; margin-left: -7.4em; margin-bottom: 6.5em; padding-rigth: 0em"
+                  >
+                    <div v-if="isChangeItem">
+                      <SettingScreenAssignItem />
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- row 03 -->
+              <tr>
+                <td style="border: none; width: 360px; height: 80px;">
+                  <div
+                    class="card grey lighten-3"
+                    style="border: solid 3px #00B9E3; width: 360px; height: 80px; border-radius: 2rem;"
+                  >
+                    <div class="card-content black-text">
+                      <div class="switch">
+                        <label>
+                          <input type="checkbox" v-model="isChangeItem" />
 
-            <!--  -->
+                          <span class="lever"></span>
+                        </label>
+                      </div>
+                      <!-- Заменить пункт / программу -->
+                      <div class="change-item-title">
+                        <span class="card-title">Заменить программу</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
 
+                <td style="border: none; width: 360px;">
+                  <div
+                    style="width:450px; height: 0px; margin-left: -6.8em; margin-bottom: 6.5em; padding-rigth: 0em"
+                  >
+                    <div v-if="isChangeItem">
+                      <SettingScreenChangeItem />
+                    </div>
+                  </div>
+                </td>
 
-            <div class="col s5" style="width:415px; margin-left: 0em;">
-              <div v-if="isTooltipInstalled">
-                <SettingScreenChangeItem />
-              </div>
-            </div>
+                <td style="border: none; width: 360px;">
+                  <div
+                    style="width:450px; height: 0px; margin-left: -7.4em; margin-bottom: 6.5em; padding-rigth: 0em"
+                  >
+                    <div v-if="isChangeItem">
+                      <SettingScreenAssignItem />
+                    </div>
+                  </div>
+                </td>
+              </tr>
+                            <!-- row 01 -->
+              <tr>
+                <td style="border: none; width: 360px; height: 80px;">
+                  <div
+                    class="card grey lighten-3"
+                    style="border: solid 3px #00B9E3; width: 360px; height: 80px; border-radius: 2rem;"
+                  >
+                    <div class="card-content black-text">
+                      <div class="switch">
+                        <label>
+                          <input type="checkbox" v-model="isChangeItem" />
 
-            <div class="col s5" style="width:415px; padding-left: 0em;">
-              <div v-if="isTooltipInstalled">
-                <SettingScreenChangeItem />
-              </div>
-            </div>
+                          <span class="lever"></span>
+                        </label>
+                      </div>
+                      <!-- Заменить пункт / программу -->
+                      <div class="change-item-title">
+                        <span class="card-title">Заменить программу</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
 
-          </div>
-          <!-- row change-item -->
+                <td style="border: none; width: 360px;">
+                  <div
+                    style="width:450px; height: 0px; margin-left: -6.8em; margin-bottom: 6.5em; padding-rigth: 0em"
+                  >
+                    <div v-if="isChangeItem">
+                      <SettingScreenChangeItem />
+                    </div>
+                  </div>
+                </td>
+
+                <td style="border: none; width: 360px;">
+                  <div
+                    style="width:450px; height: 0px; margin-left: -7.4em; margin-bottom: 6.5em; padding-rigth: 0em"
+                  >
+                    <div v-if="isChangeItem">
+                      <SettingScreenAssignItem />
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr> -->
+            </tbody>
+          </table>
+          <!-- end table -->
         </div>
         <hr />
         <!-- end Экран -->
@@ -379,14 +481,26 @@ import SettingFinanceBanknote from "@/components/setting/SettingFinanceBanknote"
 import SettingScreenTooltip from "@/components/setting/SettingScreenTooltip";
 import SettingScreenGotoMainMenu from "@/components/setting/SettingScreenGotoMainMenu";
 import SettingScreenChangeItem from "@/components/setting/SettingScreenChangeItem";
+import SettingScreenAssignItem from "@/components/setting/SettingScreenAssignItem";
 
 import cost from "../store/cost";
 
 export default Vue.extend({
-  name: "setting",
+  name: "setting",  
   data: () => ({
+    /* dev */
+
     isPayScreenMain: false,
     isTooltipInstalled: false,
+    isChangeItem: true,
+
+    changeItemIds: [1,2],
+    assignItemIndex: [1,2,3],
+
+    changeProgramIndex: [1,2,3],
+    assignProgramIndex: [1,2,3],
+ 
+
     isCoinInstalled: false,
     isTerminalInstalled: false,
     isDirectCash: false,
@@ -411,6 +525,7 @@ export default Vue.extend({
     SettingScreenTooltip,
     SettingScreenGotoMainMenu,
     SettingScreenChangeItem,
+    SettingScreenAssignItem
   },
   mounted() {
     this.setRouter("/setting");
@@ -457,6 +572,8 @@ export default Vue.extend({
     /* dev */
     this.isPayScreenMain = true;
     this.isTooltipInstalled = this.getTooltipInstalled();
+
+    /*  */
     this.isCoinInstalled = this.getCoinInstalled();
     this.isTerminalInstalled = this.getTerminalInstalled();
     this.isDirectCash = this.getDirectCash();
@@ -545,6 +662,30 @@ h2 {
 }
 .change-item-title {
   margin-left: 5em;
-  margin-top: -3em;
+  margin-top: -3.2em;
+}
+.change-foam-title {
+  margin-left: 1em;
+  margin-top: 0em;
+}
+/* div */
+tr {
+  text-align: center;
+  height: 115px;
+
+  float: left;
+}
+td {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+
+  height: 105px;
+  width: 474px;
+
+  border-style: solid;
+  border-color: white;
+  /* float: left; */
 }
 </style>
