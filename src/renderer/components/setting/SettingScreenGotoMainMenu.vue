@@ -96,7 +96,6 @@ export default Vue.extend({
     ...mapGetters({
       getSecondsGotoMainMenu: "getSecondsGotoMainMenu",
     }),
-    
 
   },
   watch: {
@@ -108,9 +107,7 @@ export default Vue.extend({
       this.display = this.amountString;
       this.current = this.amount;
 
-      
       this.setSecondsGotoMainMenu(this.amount)
-     
     },
   },
   created() {

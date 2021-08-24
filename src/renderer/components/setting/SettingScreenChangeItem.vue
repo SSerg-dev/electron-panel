@@ -20,12 +20,20 @@
 </template>
 
 <script>
+import { stringify } from "querystring";
 import Vue from "vue";
 import { mapGetters, mapMutations } from "vuex";
 
 export default Vue.extend({
   name: "setting-panel-item",
-  props: ["changeItemIds"],
+  
+  props: {
+    changeItemIds: {
+      type: Array,
+      required: false
+    },
+  }, 
+
   data: () => ({
     select: null,
     current: null,
@@ -40,8 +48,14 @@ export default Vue.extend({
 
   }),
   mounted() {
-    console.log('++changeItemIds-->', this.changeItemIds)
-    
+
+   console.log('changeItemIds-->',JSON.stringify(changeItemIds) )
+
+    /* const changeItems = this.changeItemIds.map((id) => {
+      const result = this.items.filter( item => item.id === id ) 
+      return result  
+    })
+    console.log('changeItems-->', changeItems) */
 
     this.select = M.FormSelect.init(this.$refs.select, {
       constrainWidth: true,
@@ -70,8 +84,26 @@ export default Vue.extend({
     },
   },
   created() {
-    //const defaultPanelNumber = this.getDefaultPanelNumber();
-    //const { id, title } = this.items[defaultPanelNumber - 1];
+    /* dev */
+   //console.log('++this.chanmessagesgeItemIds-->', JSON.stringify(this.changeItemIds) )  
+   //const arr = JSON.stringify(this.changeItemIds).split(',')
+   //console.log('arr 0-->', arr[0])
+   //console.log('arr 1-->', arr[1])
+   //let str = JSON.stringify(this.changeItemIds)
+   //str = str.slice(1)
+   //str = str.slice(str.length)
+   // console.log('str-->', str)  
+
+
+   
+
+
+    /* const changeItems = this.changeItemIds.map((id) => {
+      const result = this.items.filter( item => item.id === id ) 
+      return rJesult  
+    })
+    console.log('changeItems-->', changeItems) */
+    /*     */
 
     const { id, title } = this.items[0];
     this.current = id;

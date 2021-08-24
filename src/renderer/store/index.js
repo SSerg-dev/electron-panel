@@ -26,9 +26,10 @@ export default new Vuex.Store({
     info: { name: '', locale: 'ru-RU' },
     cash_enabler: false,
     busyPanel: false,
-    secondsGotoMainMenu: 600, // 30
+    secondsGotoMainMenu: 600,
     secondsGotoPopupMenu: 2,
-    secondsGotoProgramMenu: 10, // 6
+    //secondsGotoProgramMenu: 6,
+
     secondsStatusTimer: 0,
 
     isConfig: false,
@@ -388,9 +389,9 @@ export default new Vuex.Store({
     getSecondsGotoPopupMenu(state) {
       return state.secondsGotoPopupMenu
     },
-    getSecondsGotoProgramMenu(state) {
+    /* getSecondsGotoProgramMenu(state) {
       return state.secondsGotoProgramMenu
-    },
+    }, */
     // secondsStatusTimer
     /* getSecondsStatusTimer(state) {
       return state.secondsStatusTimer
@@ -499,6 +500,11 @@ export default new Vuex.Store({
       state.secondsGotoMainMenu = seconds
       //console.log('++state.secondsGotoMainMenu-->', state.secondsGotoMainMenu)
     },
+    setSecondsGotoPopupMenu(state, seconds) {
+      state.secondsGotoPopupMenu = seconds
+      //console.log('state.secondsGotoPopupMenu-->', state.secondsGotoPopupMenu)
+    }
+
   }, /* end mutations */
 
   modules: {

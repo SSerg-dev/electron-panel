@@ -177,7 +177,7 @@
                   </div>
                 </td>
               </tr>
-              <!-- row 03 -->
+              <!-- row 02 -->
               <tr>
                 <td style="border: none; width: 360px; height: 80px;">
                   <div
@@ -220,7 +220,7 @@
                   </div>
                 </td>
               </tr>
-                            <!-- row 01 -->
+              <!-- row 03 -->
               <tr>
                 <td style="border: none; width: 360px; height: 80px;">
                   <div

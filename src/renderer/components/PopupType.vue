@@ -133,6 +133,7 @@ export default Vue.extend({
     gotoPopupMenu(seconds) {
       this.intervalPopupMenu = setInterval(() => {
         if (--seconds < 0 && this.$route.name !== 'program') {
+          console.log('--seconds-->', seconds)
           this.$router.push('/program')
         }
       }, 1000)

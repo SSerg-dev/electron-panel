@@ -2,7 +2,7 @@
   <div class="col s6">
     <div
       class="card grey lighten-3"
-      style="height: 150px; border: solid 3px #00B9E3; border-radius: 2rem;"
+      style="height: 150px; border: solid 3px #00b9e3; border-radius: 2rem"
     >
       <div class="card-content black-text">
         <div class="row">
@@ -12,7 +12,13 @@
 
           <div class="col s2">
             <button
-              class="btn waves-effect waves-light lighten-3 white-text button-setting"
+              class="
+                btn
+                waves-effect waves-light
+                lighten-3
+                white-text
+                button-setting
+              "
               type="submit"
               @click="setNumber('-1')"
             >
@@ -28,7 +34,13 @@
 
           <div class="col s2">
             <button
-              class="btn waves-effect waves-light lighten-3 white-text button-setting"
+              class="
+                btn
+                waves-effect waves-light
+                lighten-3
+                white-text
+                button-setting
+              "
               type="submit"
               @click="setNumber('+1')"
             >
@@ -85,7 +97,17 @@ export default Vue.extend({
       this.amountString = this.amount.toString();
       this.display = this.amountString;
       this.current = this.amount;
+
     },
+    ...mapMutations({
+      setSecondsGotoPopupMenu: "setSecondsGotoPopupMenu",
+    }),
+  },
+
+  computed: {
+    ...mapGetters({
+      getSecondsGotoPopupMenu: "getSecondsGotoPopupMenu",
+    }),
   },
   watch: {
     current(num) {
@@ -95,7 +117,15 @@ export default Vue.extend({
       this.amountString = this.amount.toString();
       this.display = this.amountString;
       this.current = this.amount;
+
+      this.setSecondsGotoPopupMenu(this.amount)
+      //console.log('++this.getSecondsGotoPopupMenu-->', this.getSecondsGotoPopupMenu)
     },
+  },
+  created() {
+    const secondsGotoPopupMenu = this.getSecondsGotoPopupMenu;
+    this.amount = secondsGotoPopupMenu;
+    // console.log('this.amount-->', this.amount)
   },
 });
 </script>
@@ -115,7 +145,7 @@ export default Vue.extend({
   font-size: 24px;
   border-radius: 2rem;
 }
-.material-icons { 
+.material-icons {
   z-index: 1000;
 }
 </style>
