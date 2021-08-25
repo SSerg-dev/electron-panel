@@ -29,10 +29,10 @@ export default Vue.extend({
     CostItem,
   },
   mounted() {
-    //console.log('!!!items this.costs mounted!!!-->', this.costs)
+    console.log('++this.costs mounted!!!-->',this.costs[4])
   },
   created() {
-    // console.log('this.costs created!!!-->', this.costs)
+    console.log('++this.costs created!!!-->', this.costs[4])
   }
 
 })

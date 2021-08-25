@@ -6,7 +6,7 @@
     >
       <div class="card-content black-text">
         <div class="input-field" style="margin-top: -0.5em;">
-            <select class="page-title white-text" ref="select" v-model="current">    
+          <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(n, index) in items" :key="index" :value="n.id">
               <div class="dropdown-setting">
                 {{ n.title }}
@@ -26,13 +26,8 @@ import { mapGetters, mapMutations } from "vuex";
 
 export default Vue.extend({
   name: "setting-panel-item",
-  
-  props: {
-    changeItemIds: {
-      type: Array,
-      required: false
-    },
-  }, 
+
+  props: ["changeItemIds"],
 
   data: () => ({
     select: null,
@@ -43,20 +38,9 @@ export default Vue.extend({
       { id: 1, title: "ДИСКИ" },
       { id: 2, title: "АНТИМОСКИТ" },
       { id: 3, title: "ШАМПУНЬ" },
-      
     ],
-
   }),
   mounted() {
-
-   console.log('changeItemIds-->',JSON.stringify(changeItemIds) )
-
-    /* const changeItems = this.changeItemIds.map((id) => {
-      const result = this.items.filter( item => item.id === id ) 
-      return result  
-    })
-    console.log('changeItems-->', changeItems) */
-
     this.select = M.FormSelect.init(this.$refs.select, {
       constrainWidth: true,
     });
@@ -85,29 +69,41 @@ export default Vue.extend({
   },
   created() {
     /* dev */
-   //console.log('++this.chanmessagesgeItemIds-->', JSON.stringify(this.changeItemIds) )  
-   //const arr = JSON.stringify(this.changeItemIds).split(',')
-   //console.log('arr 0-->', arr[0])
-   //console.log('arr 1-->', arr[1])
-   //let str = JSON.stringify(this.changeItemIds)
-   //str = str.slice(1)
-   //str = str.slice(str.length)
-   // console.log('str-->', str)  
 
+    /* 
+    const changeItems = this.changeItemIds.map((id) => {
+      return this.items.filter((item) => item.id === id);
+    }); 
+    */
 
-   
+    let selected = [];
+    /* if (this.changeItemIds !== undefined) {
+      Object.keys(this.changeItemIds).forEach((keySel, index) => {
+        Object.keys(this.items).forEach((keyAll) => {
+          if (keySel === keyAll) {
+            selected.push({
+              id: keySel,
+              title: this.items[keyAll].title,
+            });
+          }
+        });
+      });
+    } */
 
+    if (this.changeItemIds !== undefined) {
+      selected = this.changeItemIds.map((id) => {
+        const result = this.items.filter((item) => item.id === id);
+        return result[0];
+      });
+    }
 
-    /* const changeItems = this.changeItemIds.map((id) => {
-      const result = this.items.filter( item => item.id === id ) 
-      return rJesult  
-    })
-    console.log('changeItems-->', changeItems) */
-    /*     */
+    this.items = selected;
 
-    const { id, title } = this.items[0];
-    this.current = id;
-    this.select = title; 
+    if (this.items[0]) {
+      const { id, title } = this.items[0];
+      this.current = id;
+      this.select = title;
+    }
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {
@@ -118,10 +114,8 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-
 .input-field {
   margin-left: 0em;
   margin-top: 0em;
 }
-
 </style>

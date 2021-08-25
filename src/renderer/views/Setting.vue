@@ -124,8 +124,6 @@
             </div>
           </div>
 
-
-
           <!-- table -->
           <!-- style="border: solid white;" -->
           <!-- float: left;  -->
@@ -161,7 +159,7 @@
                   >
                     <div v-if="isChangeItem">
                       <SettingScreenChangeItem 
-                      :changeItemIds = "changeItemIds"
+                      :changeItemIds="changeItemIds" 
                       />
                     </div>
                   </div>
@@ -172,7 +170,9 @@
                     style="width:450px; height: 0px; margin-left: -7.4em; margin-bottom: 6.5em; padding-rigth: 0em"
                   >
                     <div v-if="isChangeItem">
-                      <SettingScreenAssignItem />
+                      <SettingScreenAssignItem
+                      :assignItemIds="assignItemIds"
+                      />
                     </div>
                   </div>
                 </td>
@@ -187,12 +187,11 @@
                     <div class="card-content black-text">
                       <div class="switch">
                         <label>
-                          <input type="checkbox" v-model="isChangeItem" />
+                          <input type="checkbox" v-model="isChangeProgramFirst" />
 
                           <span class="lever"></span>
                         </label>
                       </div>
-                      <!-- Заменить пункт / программу -->
                       <div class="change-item-title">
                         <span class="card-title">Заменить программу</span>
                       </div>
@@ -204,8 +203,10 @@
                   <div
                     style="width:450px; height: 0px; margin-left: -6.8em; margin-bottom: 6.5em; padding-rigth: 0em"
                   >
-                    <div v-if="isChangeItem">
-                      <SettingScreenChangeItem />
+                    <div v-if="isChangeProgramFirst">
+                      <SettingScreenChangeItem
+                      :changeItemIds="changeProgramIds"
+                       />
                     </div>
                   </div>
                 </td>
@@ -214,8 +215,10 @@
                   <div
                     style="width:450px; height: 0px; margin-left: -7.4em; margin-bottom: 6.5em; padding-rigth: 0em"
                   >
-                    <div v-if="isChangeItem">
-                      <SettingScreenAssignItem />
+                    <div v-if="isChangeProgramFirst">
+                      <SettingScreenAssignItem
+                      :assignItemIds="assignProgramIds"
+                      />
                     </div>
                   </div>
                 </td>
@@ -230,12 +233,11 @@
                     <div class="card-content black-text">
                       <div class="switch">
                         <label>
-                          <input type="checkbox" v-model="isChangeItem" />
+                          <input type="checkbox" v-model="isChangeProgramSecond" />
 
                           <span class="lever"></span>
                         </label>
                       </div>
-                      <!-- Заменить пункт / программу -->
                       <div class="change-item-title">
                         <span class="card-title">Заменить программу</span>
                       </div>
@@ -247,8 +249,10 @@
                   <div
                     style="width:450px; height: 0px; margin-left: -6.8em; margin-bottom: 6.5em; padding-rigth: 0em"
                   >
-                    <div v-if="isChangeItem">
-                      <SettingScreenChangeItem />
+                    <div v-if="isChangeProgramSecond">
+                      <SettingScreenChangeItem
+                      :changeItemIds="changeProgramIds"
+                       />
                     </div>
                   </div>
                 </td>
@@ -257,13 +261,58 @@
                   <div
                     style="width:450px; height: 0px; margin-left: -7.4em; margin-bottom: 6.5em; padding-rigth: 0em"
                   >
-                    <div v-if="isChangeItem">
-                      <SettingScreenAssignItem />
+                    <div v-if="isChangeProgramSecond">
+                      <SettingScreenAssignItem
+                      :assignItemIds="assignProgramIds"
+                      />
                     </div>
                   </div>
                 </td>
               </tr>
+             <!-- row 04 -->
+              <tr>
+                <td style="border: none; width: 1064px; height: 80px;">
+                  <div
+                    class="card grey lighten-3"
+                    style="border: solid 3px #00B9E3; width: 1064px; height: 80px; border-radius: 2rem;"
+                  >
+                    <div class="card-content black-text">
+                      <div class="switch">
+                        <label>
+                          <input type="checkbox" v-model="isCnw" />
 
+                          <span class="lever"></span>
+                        </label>
+                      </div>
+                      <div class="change-item-title">
+                        <span class="card-title">C.N.W.</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- row 05 -->
+              <tr>
+                <td style="border: none; width: 1064px; height: 80px;">
+                  <div
+                    class="card grey lighten-3"
+                    style="border: solid 3px #00BhangeItem9E3; width: 1064px; height: 80px; border-radius: 2rem;"
+                  >
+                    <div class="card-content black-text">
+                      <div class="switch">
+                        <label>
+                          <input type="checkbox" v-model="isCursor" />
+
+                          <span class="lever"></span>
+                        </label>
+                      </div>
+                      <div class="change-item-title">
+                        <span class="card-title">Показывать курсор в основном окне</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
               <!-- <tr>
                 <td></td>
                 <td></td>
@@ -486,20 +535,23 @@ import SettingScreenAssignItem from "@/components/setting/SettingScreenAssignIte
 import cost from "../store/cost";
 
 export default Vue.extend({
-  name: "setting",  
+  name: "setting",
   data: () => ({
-    /* dev */
+    /* dev */  
 
     isPayScreenMain: false,
     isTooltipInstalled: false,
     isChangeItem: true,
+    isChangeProgramFirst: true,
+    isChangeProgramSecond: true,
+    isCnw: true,
+    isCursor: true,
 
-    changeItemIds: [1,2],
-    assignItemIndex: [1,2,3],
+    changeItemIds: [1, 2],
+    assignItemIds: [1],
 
-    changeProgramIndex: [1,2,3],
-    assignProgramIndex: [1,2,3],
- 
+    changeProgramIds: [1, 2, 3] ,
+    assignProgramIds: [1, 2, 3],
 
     isCoinInstalled: false,
     isTerminalInstalled: false,
@@ -525,9 +577,10 @@ export default Vue.extend({
     SettingScreenTooltip,
     SettingScreenGotoMainMenu,
     SettingScreenChangeItem,
-    SettingScreenAssignItem
+    SettingScreenAssignItem,
   },
   mounted() {
+    /* dev */
     this.setRouter("/setting");
     this.tabs = M.Tabs.init(this.$refs.tabs, {});
   },
@@ -573,7 +626,6 @@ export default Vue.extend({
     this.isPayScreenMain = true;
     this.isTooltipInstalled = this.getTooltipInstalled();
 
-    /*  */
     this.isCoinInstalled = this.getCoinInstalled();
     this.isTerminalInstalled = this.getTerminalInstalled();
     this.isDirectCash = this.getDirectCash();

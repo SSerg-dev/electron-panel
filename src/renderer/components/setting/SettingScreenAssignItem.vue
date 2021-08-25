@@ -6,7 +6,7 @@
     >
       <div class="card-content black-text">
         <div class="input-field" style="margin-top: -0.5em;">
-            <select class="page-title white-text" ref="select" v-model="current">    
+          <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(n, index) in items" :key="index" :value="n.id">
               <div class="dropdown-setting">
                 {{ n.title }}
@@ -25,23 +25,25 @@ import { mapGetters, mapMutations } from "vuex";
 
 export default Vue.extend({
   name: "setting-panel-item",
+
+  props: ["assignItemIds"],
+
   data: () => ({
     select: null,
     current: null,
     title: "",
 
     items: [
-      { id: 1, title: "Цветную пену" },
+      { id: 1, title: "ЦВЕТНУЮ ПЕНУ" },
       { id: 2, title: "ОБЕЗЖИРИВАНИЕ" },
       { id: 3, title: "ПОРОГИ" },
-      
     ],
-
   }),
   mounted() {
-    this.select = M.FormSelect.init(this.$refs.select, {
-      constrainWidth: true,
-    });
+    1,
+      (this.select = M.FormSelect.init(this.$refs.select, {
+        constrainWidth: true,
+      }));
     M.updateTextFields();
   },
   methods: {
@@ -66,12 +68,27 @@ export default Vue.extend({
     },
   },
   created() {
-    //const defaultPanelNumber = this.getDefaultPanelNumber();
-    //const { id, title } = this.items[defaultPanelNumber - 1];
+    const selected = [];
+    if (this.assignItemIds !== undefined) {
+      Object.keys(this.assignItemIds).forEach((keySel, index) => {
+        Object.keys(this.items).forEach((keyAll) => {
+          if (keySel === keyAll) {
+            selected.push({
+              id: index + 1,
+              //id: keySel,
+              title: this.items[keyAll].title,
+            });
+          }
+        });
+      });
+    }
+    this.items = selected;
 
-    const { id, title } = this.items[0];
-    this.current = id;
-    this.select = title; 
+    if (this.items[0]) {
+      const { id, title } = this.items[0];
+      this.current = id;
+      this.select = title;
+    }
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {
@@ -82,10 +99,8 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-
 .input-field {
   margin-left: 0em;
   margin-top: 0em;
 }
-
 </style>
