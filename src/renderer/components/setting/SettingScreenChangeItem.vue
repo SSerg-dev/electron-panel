@@ -2,7 +2,11 @@
   <div class="col s12">
     <div
       class="card grey lighten-3"
-      style="height: 80px; border: solid 3px #00B9E3; border-radius: 2rem; margin-left:7.5em;"
+      style="
+      height: 80px; 
+      border: solid 3px #00B9E3; 
+      border-radius: 0em; 
+      margin-left:7.5em;"
     >
       <div class="card-content black-text">
         <div class="input-field" style="margin-top: -0.5em;">
@@ -68,27 +72,7 @@ export default Vue.extend({
     },
   },
   created() {
-    /* dev */
-
-    /* 
-    const changeItems = this.changeItemIds.map((id) => {
-      return this.items.filter((item) => item.id === id);
-    }); 
-    */
-
     let selected = [];
-    /* if (this.changeItemIds !== undefined) {
-      Object.keys(this.changeItemIds).forEach((keySel, index) => {
-        Object.keys(this.items).forEach((keyAll) => {
-          if (keySel === keyAll) {
-            selected.push({
-              id: keySel,
-              title: this.items[keyAll].title,
-            });
-          }
-        });
-      });
-    } */
 
     if (this.changeItemIds !== undefined) {
       selected = this.changeItemIds.map((id) => {

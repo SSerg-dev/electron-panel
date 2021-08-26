@@ -11,25 +11,25 @@
         style="background: white; width: 98%"
       >
         <li class="tab col s3">
-          <a class="black-text" href="#swipe-1" style="font-size: 32px;"
+          <a class="black-text" href="#swipe-1" style="font-size: 32px"
             >Обзор</a
           >
         </li>
 
         <li class="tab col s3">
-          <a class="active black-text" href="#swipe-2" style="font-size: 32px;"
+          <a class="active black-text" href="#swipe-2" style="font-size: 32px"
             >Экран</a
           >
         </li>
 
         <li class="tab col s3">
-          <a class="black-text" href="#swipe-3" style="font-size: 32px;"
+          <a class="black-text" href="#swipe-3" style="font-size: 32px"
             >Настройки</a
           >
         </li>
 
         <li class="tab col s3">
-          <a class="black-text" href="#swipe-4" style="font-size: 32px;"
+          <a class="black-text" href="#swipe-4" style="font-size: 32px"
             >Финансы</a
           >
         </li>
@@ -56,86 +56,82 @@
       <!--  -->
 
       <!--  -->
+      <!-- box-shadow: 10px 10px; -->
+
       <div id="swipe-2" class="col s8 black">
         <!-- Экран -->
         <div>
           <h2 class="white-text">Экран</h2>
           <br />
 
-          <!-- row tooltip -->
-          <div class="row tooltip">
-            <div class="col s6">
-              <div
-                class="card grey lighten-3"
-                style="border: solid 3px #00B9E3; width: 517px; height: 150px; margin-left: 10px; border-radius: 2rem;"
-              >
-                <div class="card-content black-text">
-                  <div class="switch">
-                    <label>
-                      <input type="checkbox" v-model="isTooltipInstalled" />
-
-                      <span class="lever"></span>
-                    </label>
-                  </div>
-                  <span class="card-title"
-                    >Показывать всплывающие подсказки при переключении
-                    программ</span
-                  >
-                  <div class="input-field"></div>
-                </div>
-              </div>
-            </div>
-            <div v-if="isTooltipInstalled">
-              <SettingScreenTooltip />
-            </div>
-          </div>
-          <!-- row tooltip -->
-
-          <!-- row pay-screen -->
-          <div class="row pay-screen">
-            <div class="col s6">
-              <div
-                class="card grey lighten-3"
-                style="border: solid 3px #00B9E3; width: 1070px; height: 80px; margin-left: 10px; border-radius: 2rem;"
-              >
-                <div class="card-content black-text">
-                  <div class="switch">
-                    <label>
-                      <input type="checkbox" v-model="isPayScreenMain" />
-
-                      <span class="lever"></span>
-                    </label>
-                  </div>
-
-                  <div class="pay-screen-title">
-                    <span class="card-title">Сделать окно оплаты основным</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--  -->
-          </div>
-          <!-- row pay-screen -->
-
-          <!-- row screen-delay -->
-          <div class="row screen-delay">
-            <div>
-              <SettingScreenGotoMainMenu />
-            </div>
-          </div>
-
           <!-- table -->
-          <!-- style="border: solid white;" -->
-          <!-- float: left;  -->
-          <!-- change assign -->
-          <table style="margin-left: 0.8em;">
+          <table style="margin-left: 1em">
             <tbody>
               <!-- row 01 -->
-              <tr>
-                <td style="border: none; width: 360px; height: 80px;">
+              <tr style="
+              margin-top: 8em;
+               
+              ">
+                <td>
                   <div
                     class="card grey lighten-3"
-                    style="border: solid 3px #00B9E3; width: 360px; height: 80px; border-radius: 2rem;"
+                    style="
+                      border: solid 3px #00b9e3;
+                      border-right-style: hidden;
+                      width: 517px;
+                      height: 150px;
+                      margin-left: 10px;
+                      margin-top: -11.5em;
+
+                      border-top-left-radius: 2em;
+                      border-bottom-left-radius: 2em;
+                    "
+                  >
+                    <div class="card-content black-text">
+                      <div class="switch">
+                        <label>
+                          <input type="checkbox" v-model="isTooltipInstalled" />
+
+                          <span class="lever"></span>
+                        </label>
+                      </div>
+                      <span class="card-title"
+                        >Показывать всплывающие подсказки при переключении
+                        программ</span
+                      >
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    v-if="isTooltipInstalled"
+                    style="margin-right: 0em; margin-top: -12em"
+                  >
+                    <SettingScreenTooltip />
+                  </div>
+                </td>
+              </tr>
+              <!-- row 02 -->
+              <tr>
+                <td>
+                  <div>
+                    <SettingScreenGotoMainMenu />
+                  </div>
+                </td>
+              </tr>
+              <!-- row 03 -->
+              <tr>
+                <td style="border: none; width: 360px; height: 80px">
+                  <div
+                    class="card grey lighten-3"
+                    style="
+                      border: solid 3px #00b9e3;
+                      width: 360px;
+                      height: 80px;
+                      border-top-left-radius: 2em;
+                      border-bottom-left-radius: 2em;
+                      border-right-style: hidden;
+                    "
                   >
                     <div class="card-content black-text">
                       <div class="switch">
@@ -146,48 +142,67 @@
                         </label>
                       </div>
                       <!-- Заменить пункт / программу -->
-                      <div class="change-item-title">
+                      <div class="change-item-title"> 
                         <span class="card-title">Заменить пункт</span>
                       </div>
                     </div>
                   </div>
                 </td>
 
-                <td style="border: none; width: 360px;">
+                <td style="border: none; width: 360px">
                   <div
-                    style="width:450px; height: 0px; margin-left: -6.8em; margin-bottom: 6.5em; padding-rigth: 0em"
+                    style="
+                      width: 450px;
+                      height: 0px;
+                      margin-left: -6.8em;
+                      margin-bottom: 6.5em;
+                      padding-rigth: 0em;
+                      
+                    "
                   >
                     <div v-if="isChangeItem">
-                      <SettingScreenChangeItem 
-                      :changeItemIds="changeItemIds" 
-                      />
+                      <SettingScreenChangeItem :changeItemIds="changeItemIds" />
                     </div>
                   </div>
                 </td>
 
-                <td style="border: none; width: 360px;">
+                <td style="border: none; width: 360px">
                   <div
-                    style="width:450px; height: 0px; margin-left: -7.4em; margin-bottom: 6.5em; padding-rigth: 0em"
+                    style="
+                      width: 450px;
+                      height: 0px;
+                      margin-left: -7.4em;
+                      margin-bottom: 6.5em;
+                      padding-rigth: 0em;
+                    "
                   >
                     <div v-if="isChangeItem">
-                      <SettingScreenAssignItem
-                      :assignItemIds="assignItemIds"
-                      />
+                      <SettingScreenAssignItem :assignItemIds="assignItemIds" />
                     </div>
                   </div>
                 </td>
               </tr>
-              <!-- row 02 -->
+              <!-- row 04 -->
               <tr>
-                <td style="border: none; width: 360px; height: 80px;">
+                <td style="border: none; width: 360px; height: 80px">
                   <div
                     class="card grey lighten-3"
-                    style="border: solid 3px #00B9E3; width: 360px; height: 80px; border-radius: 2rem;"
+                    style="
+                      border: solid 3px #00b9e3;
+                      width: 360px;
+                      height: 80px;
+                      border-top-left-radius: 2em;
+                      border-bottom-left-radius: 2em;
+                      border-right-style: hidden;
+                    "
                   >
                     <div class="card-content black-text">
                       <div class="switch">
                         <label>
-                          <input type="checkbox" v-model="isChangeProgramFirst" />
+                          <input
+                            type="checkbox"
+                            v-model="isChangeProgramFirst"
+                          />
 
                           <span class="lever"></span>
                         </label>
@@ -199,41 +214,63 @@
                   </div>
                 </td>
 
-                <td style="border: none; width: 360px;">
+                <td style="border: none; width: 360px">
                   <div
-                    style="width:450px; height: 0px; margin-left: -6.8em; margin-bottom: 6.5em; padding-rigth: 0em"
+                    style="
+                      width: 450px;
+                      height: 0px;
+                      margin-left: -6.8em;
+                      margin-bottom: 6.5em;
+                      padding-rigth: 0em;
+                    "
                   >
                     <div v-if="isChangeProgramFirst">
                       <SettingScreenChangeItem
-                      :changeItemIds="changeProgramIds"
-                       />
+                        :changeItemIds="changeProgramIds"
+                      />
                     </div>
                   </div>
                 </td>
 
-                <td style="border: none; width: 360px;">
+                <td style="border: none; width: 360px">
                   <div
-                    style="width:450px; height: 0px; margin-left: -7.4em; margin-bottom: 6.5em; padding-rigth: 0em"
+                    style="
+                      width: 450px;
+                      height: 0px;
+                      margin-left: -7.4em;
+                      margin-bottom: 6.5em;
+                      padding-rigth: 0em;
+                    "
                   >
                     <div v-if="isChangeProgramFirst">
                       <SettingScreenAssignItem
-                      :assignItemIds="assignProgramIds"
+                        :assignItemIds="assignProgramIds"
                       />
                     </div>
                   </div>
                 </td>
               </tr>
-              <!-- row 03 -->
+              <!-- row 05 -->
               <tr>
-                <td style="border: none; width: 360px; height: 80px;">
+                <td style="border: none; width: 360px; height: 80px">
                   <div
                     class="card grey lighten-3"
-                    style="border: solid 3px #00B9E3; width: 360px; height: 80px; border-radius: 2rem;"
+                    style="
+                      border: solid 3px #00b9e3;
+                      width: 360px;
+                      height: 80px;
+                      border-top-left-radius: 2em;
+                      border-bottom-left-radius: 2em;
+                      border-right-style: hidden;
+                    "
                   >
                     <div class="card-content black-text">
                       <div class="switch">
                         <label>
-                          <input type="checkbox" v-model="isChangeProgramSecond" />
+                          <input
+                            type="checkbox"
+                            v-model="isChangeProgramSecond"
+                          />
 
                           <span class="lever"></span>
                         </label>
@@ -245,36 +282,81 @@
                   </div>
                 </td>
 
-                <td style="border: none; width: 360px;">
+                <td style="border: none; width: 360px">
                   <div
-                    style="width:450px; height: 0px; margin-left: -6.8em; margin-bottom: 6.5em; padding-rigth: 0em"
+                    style="
+                      width: 450px;
+                      height: 0px;
+                      margin-left: -6.8em;
+                      margin-bottom: 6.5em;
+                      padding-rigth: 0em;
+                    "
                   >
                     <div v-if="isChangeProgramSecond">
                       <SettingScreenChangeItem
-                      :changeItemIds="changeProgramIds"
-                       />
+                        :changeItemIds="changeProgramIds"
+                      />
                     </div>
                   </div>
                 </td>
 
-                <td style="border: none; width: 360px;">
+                <td style="border: none; width: 360px">
                   <div
-                    style="width:450px; height: 0px; margin-left: -7.4em; margin-bottom: 6.5em; padding-rigth: 0em"
+                    style="
+                      width: 450px;
+                      height: 0px;
+                      margin-left: -7.4em;
+                      margin-bottom: 6.5em;
+                      padding-rigth: 0em;
+                    "
                   >
                     <div v-if="isChangeProgramSecond">
                       <SettingScreenAssignItem
-                      :assignItemIds="assignProgramIds"
+                        :assignItemIds="assignProgramIds"
                       />
                     </div>
                   </div>
                 </td>
               </tr>
-             <!-- row 04 -->
+              <!-- row 06 -->
               <tr>
-                <td style="border: none; width: 1064px; height: 80px;">
+                <td style="width: 430px">
                   <div
                     class="card grey lighten-3"
-                    style="border: solid 3px #00B9E3; width: 1064px; height: 80px; border-radius: 2rem;"
+                    style="
+                      border: solid 3px #00b9e3;
+                      width: 420px;
+                      height: 80px;
+                      margin-left: 0px;
+                      margin-top: 0em;
+                      border-radius: 2rem;
+                    "
+                  >
+                    <div class="card-content black-text">
+                      <div class="switch">
+                        <label>
+                          <input type="checkbox" v-model="isPayScreenMain" />
+
+                          <span class="lever"></span>
+                        </label>
+                      </div>
+
+                      <div class="pay-screen-title">
+                        <span class="card-title">Сделать окно оплаты осн.</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+
+                <td style="width: 210px">
+                  <div
+                    class="card grey lighten-3"
+                    style="
+                      border: solid 3px #00b9e3;
+                      width: 200px;
+                      height: 80px;
+                      border-radius: 2rem;
+                    "
                   >
                     <div class="card-content black-text">
                       <div class="switch">
@@ -284,19 +366,22 @@
                           <span class="lever"></span>
                         </label>
                       </div>
-                      <div class="change-item-title">
+                      <div class="change-cnw-title">
                         <span class="card-title">C.N.W.</span>
                       </div>
                     </div>
                   </div>
                 </td>
-              </tr>
-              <!-- row 05 -->
-              <tr>
-                <td style="border: none; width: 1064px; height: 80px;">
+
+                <td style="width: 400px">
                   <div
                     class="card grey lighten-3"
-                    style="border: solid 3px #00BhangeItem9E3; width: 1064px; height: 80px; border-radius: 2rem;"
+                    style="
+                      border: solid 3px #00b9e3;
+                      width: 380pxchange-cnw-title;
+                      height: 80px;
+                      border-radius: 2rem;
+                    "
                   >
                     <div class="card-content black-text">
                       <div class="switch">
@@ -306,8 +391,10 @@
                           <span class="lever"></span>
                         </label>
                       </div>
-                      <div class="change-item-title">
-                        <span class="card-title">Показывать курсор в основном окне</span>
+                      <div class="change-cursor-title">
+                        <span class="card-title"
+                          >Показ. курсор в осн. окне</span
+                        >
                       </div>
                     </div>
                   </div>
@@ -368,7 +455,13 @@
             <div class="col s6">
               <div
                 class="card grey lighten-3"
-                style="border: solid 3px #00B9E3; width: 517px; height: 160px; margin-left: 10px; border-radius: 2rem;"
+                style="
+                  border: solid 3px #00b9e3;
+                  width: 517px;
+                  height: 160px;
+                  margin-left: 10px;
+                  border-radius: 2rem;
+                "
               >
                 <div class="card-content black-text">
                   <!--  -->
@@ -391,7 +484,12 @@
               <!-- style="border: solid 3px #00B9E3;" -->
               <div
                 class="card grey lighten-3"
-                style="height: 160px; width: 517px; border: solid 3px #00B9E3; border-radius: 2rem;"
+                style="
+                  height: 160px;
+                  width: 517px;
+                  border: solid 3px #00b9e3;
+                  border-radius: 2rem;
+                "
               >
                 <div class="card-content black-text">
                   <!--  -->
@@ -418,10 +516,10 @@
           </div>
           <!-- end row -->
           <div class="row direct-cash">
-            <div class="col s6" style="width: 540px; margin-left:10px;">
+            <div class="col s6" style="width: 540px; margin-left: 10px">
               <div
                 class="card grey lighten-3"
-                style="border: solid 3px #00B9E3; border-radius: 2rem;"
+                style="border: solid 3px #00b9e3; border-radius: 2rem"
               >
                 <div class="card-content black-text">
                   <!--  -->
@@ -451,14 +549,20 @@
           <br />
           <div class="row panel">
             <div class="row left">
-              <div class="col ">
+              <div class="col">
                 <router-link to="/finance">
                   <button
-                    class="btn waves-effect waves-light lighten-3 white-text button-setting"
+                    class="
+                      btn
+                      waves-effect waves-light
+                      lighten-3
+                      white-text
+                      button-setting
+                    "
                     type="submit"
                     @click="updateOk"
                   >
-                    {{ "Статистика" }}
+                    {{ 'Статистика' }}
                   </button>
                 </router-link>
               </div>
@@ -471,36 +575,42 @@
 
       <!-- valign="center" -->
       <div class="row right">
-        <div class="col ">
+        <div class="col">
           <!-- <router-link to="/"> -->
           <button
-            class="btn waves-effect waves-light lighten-3 white-text button-setting"
+            class="
+              btn
+              waves-effect waves-light
+              lighten-3
+              white-text
+              button-setting
+            "
             type="submit"
             @click="updateOk"
           >
-            {{ "ОК" }}
+            {{ 'ОК' }}
             <!-- <i class="material-icons right"></i> -->
           </button>
           <!-- </router-link> -->
         </div>
-        <div class="col ">
+        <div class="col">
           <button
             class="btn waves-effect waves-light white-text button-setting"
             type="submit"
             @click="updateCancel"
           >
-            {{ "Отмена" }}
+            {{ 'Отмена' }}
             <!-- <i class="material-icons right"></i> -->
           </button>
         </div>
 
-        <div class="col ">
+        <div class="col">
           <button
             class="btn waves-effect waves-light white-text button-setting"
             type="submit"
             @click="updateApply"
           >
-            {{ "Применить" }}
+            {{ 'Применить' }}
             <!-- <i class="material-icons right"></i> -->
           </button>
         </div>
@@ -511,33 +621,33 @@
 </template>
 
 <script>
-import Vue from "vue";
-import { mapGetters, mapMutations } from "vuex";
-import SettingPanelType from "@/components/setting/SettingPanelType";
-import SettingPanelNumber from "@/components/setting/SettingPanelNumber";
-import SettingPanelVaccum from "@/components/setting/SettingPanelVaccum";
-import SettingPanelPayment from "@/components/setting/SettingPanelPayment";
-import SettingPaymentLanguage from "@/components/setting/SettingPaymentLanguage";
-import SettingPaymentCurrency from "@/components/setting/SettingPaymentCurrency";
-import SettingPaymentAcceptor from "@/components/setting/SettingPaymentAcceptor";
-import SettingPaymentBill from "@/components/setting/SettingPaymentBill";
-import SettingPaymentTerminalType from "@/components/setting/SettingPaymentTerminalType";
-import SettingPaymentMinNonCash from "@/components/setting/SettingPaymentMinNonCash";
-import SettingOverviewCommon from "@/components/setting/SettingOverviewCommon";
-import SettingOverviewService from "@/components/setting/SettingOverviewService";
-import SettingFinanceCoin from "@/components/setting/SettingFinanceCoin";
-import SettingFinanceBanknote from "@/components/setting/SettingFinanceBanknote";
-import SettingScreenTooltip from "@/components/setting/SettingScreenTooltip";
-import SettingScreenGotoMainMenu from "@/components/setting/SettingScreenGotoMainMenu";
-import SettingScreenChangeItem from "@/components/setting/SettingScreenChangeItem";
-import SettingScreenAssignItem from "@/components/setting/SettingScreenAssignItem";
+import Vue from 'vue'
+import { mapGetters, mapMutations } from 'vuex'
+import SettingPanelType from '@/components/setting/SettingPanelType'
+import SettingPanelNumber from '@/components/setting/SettingPanelNumber'
+import SettingPanelVaccum from '@/components/setting/SettingPanelVaccum'
+import SettingPanelPayment from '@/components/setting/SettingPanelPayment'
+import SettingPaymentLanguage from '@/components/setting/SettingPaymentLanguage'
+import SettingPaymentCurrency from '@/components/setting/SettingPaymentCurrency'
+import SettingPaymentAcceptor from '@/components/setting/SettingPaymentAcceptor'
+import SettingPaymentBill from '@/components/setting/SettingPaymentBill'
+import SettingPaymentTerminalType from '@/components/setting/SettingPaymentTerminalType'
+import SettingPaymentMinNonCash from '@/components/setting/SettingPaymentMinNonCash'
+import SettingOverviewCommon from '@/components/setting/SettingOverviewCommon'
+import SettingOverviewService from '@/components/setting/SettingOverviewService'
+import SettingFinanceCoin from '@/components/setting/SettingFinanceCoin'
+import SettingFinanceBanknote from '@/components/setting/SettingFinanceBanknote'
+import SettingScreenTooltip from '@/components/setting/SettingScreenTooltip'
+import SettingScreenGotoMainMenu from '@/components/setting/SettingScreenGotoMainMenu'
+import SettingScreenChangeItem from '@/components/setting/SettingScreenChangeItem'
+import SettingScreenAssignItem from '@/components/setting/SettingScreenAssignItem'
 
-import cost from "../store/cost";
+import cost from '../store/cost'
 
 export default Vue.extend({
-  name: "setting",
+  name: 'setting',
   data: () => ({
-    /* dev */  
+    /* dev */
 
     isPayScreenMain: false,
     isTooltipInstalled: false,
@@ -550,7 +660,7 @@ export default Vue.extend({
     changeItemIds: [1, 2],
     assignItemIds: [1],
 
-    changeProgramIds: [1, 2, 3] ,
+    changeProgramIds: [1, 2, 3],
     assignProgramIds: [1, 2, 3],
 
     isCoinInstalled: false,
@@ -581,19 +691,19 @@ export default Vue.extend({
   },
   mounted() {
     /* dev */
-    this.setRouter("/setting");
-    this.tabs = M.Tabs.init(this.$refs.tabs, {});
+    this.setRouter('/setting')
+    this.tabs = M.Tabs.init(this.$refs.tabs, {})
   },
   methods: {
     ...mapMutations({
-      setRouter: "setRouter",
+      setRouter: 'setRouter',
     }),
     setDown() {
-      this.isDown = !this.isDown;
+      this.isDown = !this.isDown
     },
     updateOk() {
       /* dev */
-      this.$router.push("/");
+      this.$router.push('/')
 
       //const panelType = this.getPanelType
       //if (panelType === 'wash') this.$router.push('/')
@@ -601,7 +711,7 @@ export default Vue.extend({
       //if (panelType === 'payment') this.$router.push('/')
     },
     updateCancel() {
-      window.location.reload();
+      window.location.reload()
       //console.log('!!!updateCancel')
       //this.$router.push('/')
     },
@@ -610,33 +720,33 @@ export default Vue.extend({
       // this.$router.push('/setting')
     },
     ...mapGetters({
-      getTooltipInstalled: "getTooltipInstalled",
-      getCoinInstalled: "getCoinInstalled",
-      getTerminalInstalled: "getTerminalInstalled",
-      getDirectCash: "getDirectCash",
+      getTooltipInstalled: 'getTooltipInstalled',
+      getCoinInstalled: 'getCoinInstalled',
+      getTerminalInstalled: 'getTerminalInstalled',
+      getDirectCash: 'getDirectCash',
     }),
   },
   computed: {
     ...mapGetters({
-      getPanelType: "getPanelType",
+      getPanelType: 'getPanelType',
     }),
   },
   created() {
     /* dev */
-    this.isPayScreenMain = true;
-    this.isTooltipInstalled = this.getTooltipInstalled();
+    this.isPayScreenMain = true
+    this.isTooltipInstalled = this.getTooltipInstalled()
 
-    this.isCoinInstalled = this.getCoinInstalled();
-    this.isTerminalInstalled = this.getTerminalInstalled();
-    this.isDirectCash = this.getDirectCash();
+    this.isCoinInstalled = this.getCoinInstalled()
+    this.isTerminalInstalled = this.getTerminalInstalled()
+    this.isDirectCash = this.getDirectCash()
     //console.log('this.isDirectCash-->', this.isDirectCash)
   },
   beforeDestroy() {
     if (this.tabs && this.tabs.destroy) {
-      this.tabs.destroy();
+      this.tabs.destroy()
     }
   },
-});
+})
 </script>
 
 <style scoped>
@@ -663,7 +773,8 @@ export default Vue.extend({
 */
 .btn {
   /* width: 13rem; */
-  width: 235px;
+  height: 2em;
+  width: 9em;
   border: solid;
   border-width: 1px;
   border-color: white;
@@ -682,7 +793,7 @@ export default Vue.extend({
 /* dev */
 .button-setting {
   border: solid 3px #00b9e3;
-  font-size: 24px;
+  font-size: 2em;
   border-radius: 2rem;
 }
 /*  */
@@ -709,16 +820,26 @@ h2 {
 }
 .pay-screen-title {
   margin-top: -3.2em;
-  margin-left: 6em;
+  margin-left: 5em;
   /* background: red; */
 }
 .change-item-title {
   margin-left: 5em;
   margin-top: -3.2em;
+    
+
 }
 .change-foam-title {
   margin-left: 1em;
   margin-top: 0em;
+}
+.change-cnw-title {
+  margin-left: 5em;
+  margin-top: -3.2em;
+}
+.change-cursor-title {
+  margin-left: 4em;
+  margin-top: -3.2em;
 }
 /* div */
 tr {

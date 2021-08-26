@@ -1,9 +1,17 @@
 <template>
   <div class="col s6">
+    <!-- style="height: 150px; border: solid 3px #00b9e3; border-radius: 2rem" -->
     <div
       class="card grey lighten-3"
-      style="height: 150px; border: solid 3px #00b9e3; border-radius: 2rem"
+      style="
+      height: 150px; 
+      border: solid 3px #00b9e3; 
+      border-left-style: hidden;
+      border-top-right-radius: 2em;
+      border-bottom-right-radius: 2em;
+      "
     >
+      
       <div class="card-content black-text">
         <div class="row">
           <div class="col s4">
@@ -26,8 +34,8 @@
             </button>
           </div>
 
-          <div class="col s3">
-            <div style="margin-left: 10px" class="display">
+          <div class="col s4">
+            <div style="margin-left: 2px" class="display">
               {{ display + ` сек.` }}
             </div>
           </div>
@@ -41,6 +49,7 @@
                 white-text
                 button-setting
               "
+              style="margin-left: -1.2em"
               type="submit"
               @click="setNumber('+1')"
             >
@@ -48,92 +57,99 @@
             </button>
           </div>
         </div>
-        <p class="range-field">
-          <input
-            id="slider"
-            name="slider"
-            type="range"
-            min="0"
-            max="10"
-            step="1"
-            ref="slider"
-            v-model="current"
-          />
-        </p>
+
+        <div class="row" style="margin-left:1em;">
+          <div class="col s1" style="font-size: 2em; " >{{min}}</div>
+          <div class="col s9">
+            <p class="range-field">
+              <input
+                id="slider"
+                name="slider"
+                type="range"
+                min="0"
+                max="10"
+                step="1"
+                ref="slider"
+                v-model="current"
+              />
+            </p>
+          </div>
+
+          <div class="col s1" style="font-size: 2em">{{max}}</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-import { mapGetters, mapMutations } from "vuex";
+import Vue from 'vue'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default Vue.extend({
-  name: "setting-screen-tooltip",
+  name: 'setting-screen-tooltip',
   data: () => ({
     slider: null,
     current: 0,
 
     amount: 0,
-    amountString: "",
+    amountString: '',
     display: 0,
     min: 0,
     max: 10,
-    step: 1,
+    step: 1
   }),
   mounted() {
-    this.setNumber(this.min.toString());
+    this.setNumber(this.min.toString())
   },
   methods: {
     setNumber(num) {
       if (num >= 0 || num == -1) {
         if (this.amount + parseInt(num) <= this.max)
-          this.amount += parseInt(num) * parseInt(this.step);
+          this.amount += parseInt(num) * parseInt(this.step)
       }
 
-      if (this.amount < this.min) this.amount = this.min;
-      if (this.amount > this.max) this.amount = this.max;
-      this.amountString = this.amount.toString();
-      this.display = this.amountString;
-      this.current = this.amount;
-
+      if (this.amount < this.min) this.amount = this.min
+      if (this.amount > this.max) this.amount = this.max
+      this.amountString = this.amount.toString()
+      this.display = this.amountString
+      this.current = this.amount
     },
     ...mapMutations({
-      setSecondsGotoPopupMenu: "setSecondsGotoPopupMenu",
-    }),
+      setSecondsGotoPopupMenu: 'setSecondsGotoPopupMenu'
+    })
   },
 
   computed: {
     ...mapGetters({
-      getSecondsGotoPopupMenu: "getSecondsGotoPopupMenu",
-    }),
+      getSecondsGotoPopupMenu: 'getSecondsGotoPopupMenu'
+    })
   },
   watch: {
     current(num) {
-      this.amount = parseInt(num);
-      if (this.amount < this.min) this.amount = this.min;
-      if (this.amount > this.max) this.amount = this.max;
-      this.amountString = this.amount.toString();
-      this.display = this.amountString;
-      this.current = this.amount;
+      this.amount = parseInt(num)
+      if (this.amount < this.min) this.amount = this.min
+      if (this.amount > this.max) this.amount = this.max
+      this.amountString = this.amount.toString()
+      this.display = this.amountString
+      this.current = this.amount
 
       this.setSecondsGotoPopupMenu(this.amount)
       //console.log('++this.getSecondsGotoPopupMenu-->', this.getSecondsGotoPopupMenu)
-    },
+    }
   },
   created() {
-    const secondsGotoPopupMenu = this.getSecondsGotoPopupMenu;
-    this.amount = secondsGotoPopupMenu;
+    const secondsGotoPopupMenu = this.getSecondsGotoPopupMenu
+    this.amount = secondsGotoPopupMenu
     // console.log('this.amount-->', this.amount)
-  },
-});
+  }
+})
 </script>
 
 <style scoped>
 .display {
-  font-size: 1.5em; /* 24px; */
-  padding-left: 0.5em;
+  font-size: 2em; /* 24px; */
+  padding-left: 0.8em;
 }
 .btn {
   font-size: 15px;
@@ -142,8 +158,10 @@ export default Vue.extend({
 }
 .button-setting {
   border: solid 3px #00b9e3;
-  font-size: 24px;
+  font-size: 1.5em;
   border-radius: 2rem;
+  height: 2em;
+  width: 4em;
 }
 .material-icons {
   z-index: 1000;

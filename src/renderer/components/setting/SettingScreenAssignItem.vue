@@ -2,7 +2,12 @@
   <div class="col s12">
     <div
       class="card grey lighten-3"
-      style="height: 80px; border: solid 3px #00B9E3; border-radius: 2rem; margin-left:7.5em;"
+      style="
+      height: 80px; 
+      border: solid 3px #00B9E3; 
+      border-top-right-radius: 2em;
+      border-bottom-right-radius: 2em; 
+      margin-left:7.5em;"
     >
       <div class="card-content black-text">
         <div class="input-field" style="margin-top: -0.5em;">
@@ -20,31 +25,31 @@
 </template>
 
 <script>
-import Vue from "vue";
-import { mapGetters, mapMutations } from "vuex";
+import Vue from 'vue'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default Vue.extend({
-  name: "setting-panel-item",
+  name: 'setting-panel-item',
 
-  props: ["assignItemIds"],
+  props: ['assignItemIds'],
 
   data: () => ({
     select: null,
     current: null,
-    title: "",
+    title: '',
 
     items: [
-      { id: 1, title: "ЦВЕТНУЮ ПЕНУ" },
-      { id: 2, title: "ОБЕЗЖИРИВАНИЕ" },
-      { id: 3, title: "ПОРОГИ" },
-    ],
+      { id: 1, title: 'ЦВЕТНУЮ ПЕНУ' },
+      { id: 2, title: 'ОБЕЗЖИРИВАНИЕ' },
+      { id: 3, title: 'ПОРОГИ' }
+    ]
   }),
   mounted() {
     1,
       (this.select = M.FormSelect.init(this.$refs.select, {
-        constrainWidth: true,
-      }));
-    M.updateTextFields();
+        constrainWidth: true
+      }))
+    M.updateTextFields()
   },
   methods: {
     ...mapGetters({
@@ -52,50 +57,45 @@ export default Vue.extend({
     }),
     ...mapMutations({
       //setDefaultPanelNumber: "setDefaultPanelNumber",
-    }),
+    })
   },
   computed: {
     ...mapGetters({
       //getPanelType: "getPanelType",
-    }),
+    })
   },
   watch: {
     current(itemId) {
       //console.log('itemId-->', itemId)
-      const { id, title } = this.items.find((n) => n.id === itemId);
-      this.select = title;
+      const { id, title } = this.items.find(n => n.id === itemId)
+      this.select = title
       //this.setDefaultPanelNumber(id);
-    },
+    }
   },
   created() {
-    const selected = [];
+    let selected = []
+
     if (this.assignItemIds !== undefined) {
-      Object.keys(this.assignItemIds).forEach((keySel, index) => {
-        Object.keys(this.items).forEach((keyAll) => {
-          if (keySel === keyAll) {
-            selected.push({
-              id: index + 1,
-              //id: keySel,
-              title: this.items[keyAll].title,
-            });
-          }
-        });
-      });
+      selected = this.assignItemIds.map(id => {
+        const result = this.items.filter(item => item.id === id)
+        return result[0]
+      })
     }
-    this.items = selected;
+
+    this.items = selected
 
     if (this.items[0]) {
-      const { id, title } = this.items[0];
-      this.current = id;
-      this.select = title;
+      const { id, title } = this.items[0]
+      this.current = id
+      this.select = title
     }
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {
-      this.select.destroy();
+      this.select.destroy()
     }
-  },
-});
+  }
+})
 </script>
 
 <style scoped>
