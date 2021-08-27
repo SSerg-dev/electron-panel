@@ -1,19 +1,11 @@
 <template>
   <div class="col s6">
-    <!-- acceptor -->
+    <!-- coin acceptor -->
     <div
       class="card grey lighten-3"
       style="height: 150px; border: solid 3px #00B9E3; border-radius: 2rem;"
     >
       <div class="card-content black-text">
-        <!-- <div class="switch">
-          <label>
-            <input type="checkbox" v-model="isAcceptorInstalled" />
-            <span class="lever"></span>
-          </label>
-        </div> -->
-        <!-- dev -->
-
         <span class="card-title" style="margin-top: 0.5em;">Тип:</span>
 
         <div class="input-field" style="margin-top: 0em">
@@ -37,33 +29,34 @@ import Vue from 'vue'
 import { mapGetters } from 'vuex'
 
 export default Vue.extend({
-  name: 'setting-payment-acceptor',
+  name: 'setting-coin-acceptor',
   data: () => ({
     select: null,
     current: null,
     title: '',
-    isAcceptorInstalled: false,
+    //isAcceptorInstalled: false,
+    isCoinAcceptorInstalled: false,
 
     acceptors: [
-      { id: 1, title: 'DEFAULT' },
-      { id: 2, title: 'ICT XBA' }
+      { id: 1, title: 'CCTALK1' },
+      { id: 2, title: 'NRI G-13 USB' }
     ]
   }),
   mounted() {
+    /* dev */
+    //const type = this.getCoinAcceptorType //.toUpperCase()
+    //console.log('++type-->', this.type)
+
     this.select = M.FormSelect.init(this.$refs.select, {
       constrainWidth: true
     })
     M.updateTextFields()
   },
-  /* methods: {
-    ...mapGetters({
-      getAcceptorInstalled: 'getAcceptorInstalled'
-    })
-  }, */
   computed: {
     ...mapGetters({
-      getAcceptorInstalled: 'getAcceptorInstalled',
-      getAcceptorType: 'getAcceptorType'
+      // getAcceptorInstalled: 'getAcceptorInstalled',
+      getCoinAcceptorInstalled: 'getCoinAcceptorInstalled',
+      getCoinAcceptorType: 'getCoinAcceptorType'
     })
   },
   watch: {
@@ -74,12 +67,14 @@ export default Vue.extend({
     }
   },
   created() {
-    this.isAcceptorInstalled = this.getAcceptorInstalled
-    const type = this.getAcceptorType.toUpperCase()
-    //console.log('type-->', type)
+    this.isCoinAcceptorInstalled = this.getCoinAcceptorInstalled
+
+    const type = this.getCoinAcceptorType.toUpperCase()
+    // console.log('++type-->', type)
+
     if (type) {
       let index
-      type === 'DEFAULT' 
+      type === 'CCTALK1' 
         ? index = 0 
         : index = 1
 

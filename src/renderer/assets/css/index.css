@@ -285,3 +285,16 @@ body {
   -khtml-user-select: none;
   
 }
+.switch label .lever {
+  content: "";
+  display: inline-block;
+  position: relative;
+  width: 36px;
+  height: 14px;
+  background-color: rgba(181,181,170,1.38);
+  border-radius: 15px;
+  margin-right: 10px;
+  transition: background 0.3s ease;
+  vertical-align: middle;
+  margin: 0 16px;
+}

@@ -15,7 +15,7 @@
             ref="select"
             v-model="current"
           >
-            <option v-for="(b, index) in bills" :key="index" :value="b.id">
+            <option v-for="(b, index) in coins" :key="index" :value="b.id">
               <div class="dropdown-setting">
                 {{ b.title }}
               </div>
@@ -32,18 +32,18 @@ import Vue from "vue";
 import { mapGetters } from "vuex";
 
 export default Vue.extend({
-  name: "setting-payment-bill",
+  name: "setting-payment-coin",
   data: () => ({
     select: null,
     current: [],
     title: [],
 
-    bills: [
-      { id: 1, title: "10 руб", value: 10, selected: false },
-      { id: 2, title: "50 руб", value: 50, selected: false },
-      { id: 3, title: "100 руб", value: 100, selected: false },
-      { id: 4, title: "200 руб", value: 200, selected: false },
-      { id: 5, title: "500 руб", value: 500, selected: false },
+    coins: [
+      { id: 1, title: "10 coin", value: 10, selected: false },
+      { id: 2, title: "50 coin", value: 50, selected: false },
+      { id: 3, title: "100 coin", value: 100, selected: false },
+      { id: 4, title: "200 coin", value: 200, selected: false },
+      { id: 5, title: "500 coin", value: 500, selected: false },
     ],
   }),
   mounted() {
@@ -58,8 +58,8 @@ export default Vue.extend({
     }),
   },
   watch: {
-    current(billIds) {
-      billIds.forEach((b) => {
+    current(coinIds) {
+      coinIds.forEach((b) => {
         this.select = b.title;
       });
     },
@@ -70,13 +70,13 @@ export default Vue.extend({
 
     for (let i = 0; i < defaultBiils.length; i++) {
       const value = defaultBiils[i];
-      const index = this.bills.findIndex((c) => c.value === value);
-      this.bills[index].selected = true;
+      const index = this.coins.findIndex((c) => c.value === value);
+      this.coins[index].selected = true;
     }
-    for (let i = 0; i < this.bills.length; i++) {
-      if (this.bills[i].selected === true) {
-        this.current[i] = this.bills[i].id;
-        this.select = this.bills[i].title;
+    for (let i = 0; i < this.coins.length; i++) {
+      if (this.coins[i].selected === true) {
+        this.current[i] = this.coins[i].id;
+        this.select = this.coins[i].title;
       }
     }
   },
@@ -93,3 +93,4 @@ export default Vue.extend({
   color: red;
 } */
 </style>
+  

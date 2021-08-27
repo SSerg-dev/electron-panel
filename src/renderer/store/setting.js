@@ -55,9 +55,23 @@ export default {
     getTerminalInstalled(state) {
       return state.config.bank_terminal.installed
     },
+    /* dev */
     getAcceptorInstalled(state) {  
       return state.config.bill_validator.installed
     },
+    getCoinAcceptorInstalled(state) {  
+      return state.config.coin_acceptor.installed
+    },
+
+    /* dev */
+    getAcceptorType(state) {  
+      return state.config.bill_validator.type
+    },
+    getCoinAcceptorType(state) {
+      // console.log('state.config.coin_acceptor.type-->', state.config.coin_acceptor.type)  
+      return state.config.coin_acceptor.type
+    },
+
     getTooltipInstalled(state) {
       return state.isTooltipInstalled
     },
