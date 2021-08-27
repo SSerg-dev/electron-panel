@@ -6,7 +6,11 @@
       height: 80px; 
       border: solid 3px #00B9E3; 
       border-radius: 0em; 
-      margin-left:7.5em;"
+      margin-left:7.5em;
+      border-left-style: hidden;
+      border-right-style: hidden;
+      "
+      
     >
       <div class="card-content black-text">
         <div class="input-field" style="margin-top: -0.5em;">

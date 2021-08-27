@@ -123,15 +123,19 @@ export default Vue.extend({
 table {
   border-spacing: 2px;
 }
+tr {
+  /* margin-left: 1em; */
+}
 td {
   width: 236px;
   border: solid 1px #eee;
   align-content: justify;
   /* justify; */
   padding-bottom: 10px;
+  padding-left: 6px;
 }
 button {
-  width: 234px;
+  width: 220px;
 }
 .button-setting {
   border: solid 3px #00b9e3;

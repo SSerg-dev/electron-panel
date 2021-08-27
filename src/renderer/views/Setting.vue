@@ -3,12 +3,15 @@
     <a name="top"></a>
 
     <form @submit.prevent="" class="form">
-      <!-- dev -->
       <ul
         id="tabs-swipe"
         class="tabs"
         ref="tabs"
-        style="background: white; width: 98%"
+        style="background: white; 
+        width: 92%;
+        border-radius: 5px;
+        box-shadow: 4px 4px 10px #00b9e3;
+        "
       >
         <li class="tab col s3">
           <a class="black-text" href="#swipe-1" style="font-size: 32px"
@@ -17,13 +20,13 @@
         </li>
 
         <li class="tab col s3">
-          <a class="active black-text" href="#swipe-2" style="font-size: 32px"
+          <a class="black-text" href="#swipe-2" style="font-size: 32px;"
             >Экран</a
           >
         </li>
 
         <li class="tab col s3">
-          <a class="black-text" href="#swipe-3" style="font-size: 32px"
+          <a class="active black-text" href="#swipe-3" style="font-size: 32px"
             >Настройки</a
           >
         </li>
@@ -37,7 +40,11 @@
       <!-- end dev -->
 
       <!--  -->
-      <div id="swipe-1" class="col s8 black">
+      <div
+        id="swipe-1"
+        class="col s8 black"
+        style="box-shadow: 5px 5px 10px #00b9e3;"
+      >
         <!-- Обзор -->
         <div>
           <h2 class="white-text">Обзор</h2>
@@ -56,57 +63,24 @@
       <!--  -->
 
       <!--  -->
-      <!-- box-shadow: 10px 10px; -->
 
-      <div id="swipe-2" class="col s8 black">
+      <div
+        id="swipe-2"
+        class="col s8 black"
+        style="box-shadow: 5px 5px 10px #00b9e3;"
+      >
         <!-- Экран -->
         <div>
           <h2 class="white-text">Экран</h2>
           <br />
 
           <!-- table -->
-          <table style="margin-left: 1em">
+          <table style="margin-left: 1em; margin-top: 2em;">
             <tbody>
               <!-- row 01 -->
-              <tr style="
-              margin-top: 8em;
-               
-              ">
-                <td>
-                  <div
-                    class="card grey lighten-3"
-                    style="
-                      border: solid 3px #00b9e3;
-                      border-right-style: hidden;
-                      width: 517px;
-                      height: 150px;
-                      margin-left: 10px;
-                      margin-top: -11.5em;
-
-                      border-top-left-radius: 2em;
-                      border-bottom-left-radius: 2em;
-                    "
-                  >
-                    <div class="card-content black-text">
-                      <div class="switch">
-                        <label>
-                          <input type="checkbox" v-model="isTooltipInstalled" />
-
-                          <span class="lever"></span>
-                        </label>
-                      </div>
-                      <span class="card-title"
-                        >Показывать всплывающие подсказки при переключении
-                        программ</span
-                      >
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    v-if="isTooltipInstalled"
-                    style="margin-right: 0em; margin-top: -12em"
-                  >
+              <tr style="margin-top: 8em;">
+                <td style="border: none; width: 1040px; height: 80px">
+                  <div style="margin-right: 0em; margin-top: -12em;">
                     <SettingScreenTooltip />
                   </div>
                 </td>
@@ -121,7 +95,7 @@
               </tr>
               <!-- row 03 -->
               <tr>
-                <td style="border: none; width: 360px; height: 80px">
+                <td style="border: none; width: 360px; height: 80px;">
                   <div
                     class="card grey lighten-3"
                     style="
@@ -131,6 +105,7 @@
                       border-top-left-radius: 2em;
                       border-bottom-left-radius: 2em;
                       border-right-style: hidden;
+                      
                     "
                   >
                     <div class="card-content black-text">
@@ -142,7 +117,7 @@
                         </label>
                       </div>
                       <!-- Заменить пункт / программу -->
-                      <div class="change-item-title"> 
+                      <div class="change-item-title">
                         <span class="card-title">Заменить пункт</span>
                       </div>
                     </div>
@@ -154,10 +129,10 @@
                     style="
                       width: 450px;
                       height: 0px;
-                      margin-left: -6.8em;
+                      margin-left: -7.5em;
                       margin-bottom: 6.5em;
-                      padding-rigth: 0em;
-                      
+                      padding-rigth: 0em; 
+                                           
                     "
                   >
                     <div v-if="isChangeItem">
@@ -171,7 +146,7 @@
                     style="
                       width: 450px;
                       height: 0px;
-                      margin-left: -7.4em;
+                      margin-left: -8.8em;
                       margin-bottom: 6.5em;
                       padding-rigth: 0em;
                     "
@@ -219,7 +194,7 @@
                     style="
                       width: 450px;
                       height: 0px;
-                      margin-left: -6.8em;
+                      margin-left: -7.5em;
                       margin-bottom: 6.5em;
                       padding-rigth: 0em;
                     "
@@ -237,7 +212,7 @@
                     style="
                       width: 450px;
                       height: 0px;
-                      margin-left: -7.4em;
+                      margin-left: -8.8em;
                       margin-bottom: 6.5em;
                       padding-rigth: 0em;
                     "
@@ -287,7 +262,7 @@
                     style="
                       width: 450px;
                       height: 0px;
-                      margin-left: -6.8em;
+                      margin-left: -7.5em;
                       margin-bottom: 6.5em;
                       padding-rigth: 0em;
                     "
@@ -305,7 +280,7 @@
                     style="
                       width: 450px;
                       height: 0px;
-                      margin-left: -7.4em;
+                      margin-left: -8.8em;
                       margin-bottom: 6.5em;
                       padding-rigth: 0em;
                     "
@@ -391,7 +366,10 @@
                           <span class="lever"></span>
                         </label>
                       </div>
-                      <div class="change-cursor-title">
+                      <div
+                        class="change-cursor-title"
+                        style="padding-left: 0.3em;"
+                      >
                         <span class="card-title"
                           >Показ. курсор в осн. окне</span
                         >
@@ -414,7 +392,11 @@
       </div>
       <!--  -->
 
-      <div id="swipe-3" class="col s8 black">
+      <div
+        id="swipe-3"
+        class="col s8 black"
+        style="box-shadow: 5px 5px 10px #00b9e3;"
+      >
         <!-- Настройки -->
         <div>
           <h2 class="white-text">Настройки</h2>
@@ -426,7 +408,7 @@
             </div>
             <SettingPanelType />
 
-            <div v-if="this.getPanelType === 'wash'">
+            <div v-if="this.getPanelType === 'wash'"> 
               <SettingPanelNumber />
             </div>
             <div v-if="this.getPanelType === 'vaccum'">
@@ -437,7 +419,7 @@
             </div>
           </div>
 
-          <div class="row payment">
+          <!-- <div class="row payment">
             <div class="page-title white-text">
               <h4>Платежи</h4>
             </div>
@@ -448,9 +430,8 @@
             <SettingPaymentAcceptor />
 
             <SettingPaymentBill />
-          </div>
-          <!-- end row -->
-          <!-- style="background: red; width: 517px;" -->
+          </div> -->
+
           <div class="row terminal-type">
             <div class="col s6">
               <div
@@ -464,14 +445,12 @@
                 "
               >
                 <div class="card-content black-text">
-                  <!--  -->
                   <div class="switch">
                     <label>
                       <input type="checkbox" v-model="isCoinInstalled" />
                       <span class="lever"></span>
                     </label>
                   </div>
-                  <!--  -->
                   <span class="card-title"
                     >NRI G-13 USB монетоприемник установлен</span
                   >
@@ -481,7 +460,6 @@
             </div>
 
             <div class="col s6">
-              <!-- style="border: solid 3px #00B9E3;" -->
               <div
                 class="card grey lighten-3"
                 style="
@@ -492,14 +470,12 @@
                 "
               >
                 <div class="card-content black-text">
-                  <!--  -->
                   <div class="switch">
                     <label>
                       <input type="checkbox" v-model="isTerminalInstalled" />
                       <span class="lever"></span>
                     </label>
                   </div>
-                  <!--  -->
                   <span class="card-title">
                     Банковский терминал установлен</span
                   >
@@ -508,13 +484,11 @@
               </div>
             </div>
           </div>
-          <!-- end row -->
           <div class="row panel" style="margin-top: -20px">
             <SettingPaymentTerminalType />
 
             <SettingPaymentMinNonCash />
           </div>
-          <!-- end row -->
           <div class="row direct-cash">
             <div class="col s6" style="width: 540px; margin-left: 10px">
               <div
@@ -522,14 +496,12 @@
                 style="border: solid 3px #00b9e3; border-radius: 2rem"
               >
                 <div class="card-content black-text">
-                  <!--  -->
                   <div class="switch">
                     <label>
                       <input type="checkbox" v-model="isDirectCash" />
                       <span class="lever"></span>
                     </label>
                   </div>
-                  <!--  -->
                   <span class="card-title">Прямая оплата наличными</span>
                   <div class="input-field"></div>
                 </div>
@@ -538,11 +510,135 @@
           </div>
         </div>
 
+        <!-- new Настройки -->
+        <h2 class="white-text">Настройки</h2>
+        <br />
+
+        <table style="margin-left: 1em; margin-top: -2em;">
+          <tbody>
+            <!-- row 01 -->
+            <tr style="height: 80px;">
+              <td>
+                <div class="panel">
+                  <div class="page-title white-text">
+                    <h4>СИСТЕМА</h4>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <!-- row 02 -->
+            <tr style="margin-top: 0em;">
+              <td>
+                <div>
+                  <SettingPaymentLanguage />
+                </div>
+              </td>
+              <td>
+                <div>
+                  <SettingPaymentCurrency />
+                </div>
+              </td>
+            </tr>
+            <!-- row 03 -->
+            <tr style="margin-top: 4em;">
+              <td style="width: 940px">
+                  <div
+                    class="card grey lighten-3"
+                    style="
+                      border: solid 3px #00b9e3;
+                      width: 940px;
+                      height: 80px;
+                      margin-left: 0px;
+                      margin-top: 0em;
+                      border-radius: 2rem;
+                    "
+                  >
+                    <div class="card-content black-text">
+                      <div class="switch">
+                        <label>
+                          <input type="checkbox" v-model="isPayScreenMain" />
+
+                          <span class="lever"></span>
+                        </label>
+                      </div>
+
+                      <div class="pay-screen-title">
+                        <span class="card-title">Показать курсор в основном окне</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+            </tr>
+            <!-- row 04 -->
+            <!-- <tr>
+              <td>
+                <div class="panel">
+                  <div class="page-title white-text">
+                    <h4>ПАНЕЛЬ</h4>
+                  </div>
+                </div>
+              </td>
+            </tr> -->
+            <!-- row 05 -->
+            <!-- <tr style="margin-top: 0em;">
+              <td>
+                <div>
+                  <SettingPanelType />
+                </div>
+              </td>
+              <td>
+                <div>
+                  <div v-if="this.getPanelType === 'wash'">
+                    <SettingPanelNumber />
+                  </div>
+                  <div v-if="this.getPanelType === 'vaccum'">
+                    <SettingPanelVaccum />
+                  </div>
+                  <div v-if="this.getPanelType === 'payment'">
+                    <SettingPanelPayment />
+                  </div>
+                </div>
+              </td>
+            </tr> -->
+
+            <!-- row 06 -->
+            <!-- <tr style="margin-top: 0em;">
+              <td>
+                <div style="width: 960px; height: 100px; margin-left: 10px">
+                  <div
+                    class="card grey lighten-3"
+                    style="border: solid 3px #00b9e3; border-radius: 2rem"
+                  >
+                    <div class="row card-content black-text">
+                      <div class="col switch">
+                        <label>
+                          <input type="checkbox" v-model="isDirectCash" />
+                          <span class="lever"></span>
+                        </label>
+                      </div>
+
+                      <span class="col card-title"
+                        >Прямая оплата наличными</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr> -->
+            <!-- row 07 -->
+          </tbody>
+        </table>
+
         <hr />
         <!-- end Настройки -->
       </div>
 
-      <div id="swipe-4" class="col s8 black">
+      <div
+        id="swipe-4"
+        class="col s8 black"
+        style="box-shadow: 5px 5px 10px #00b9e3;"
+      >
         <!-- Финансы -->
         <div>
           <h2 class="white-text">Финансы</h2>
@@ -650,7 +746,7 @@ export default Vue.extend({
     /* dev */
 
     isPayScreenMain: false,
-    isTooltipInstalled: false,
+    //isTooltipInstalled: false,
     isChangeItem: true,
     isChangeProgramFirst: true,
     isChangeProgramSecond: true,
@@ -667,7 +763,7 @@ export default Vue.extend({
     isTerminalInstalled: false,
     isDirectCash: false,
     isDown: false,
-    tabs: null,
+    tabs: null
   }),
   components: {
     SettingPanelType,
@@ -687,7 +783,7 @@ export default Vue.extend({
     SettingScreenTooltip,
     SettingScreenGotoMainMenu,
     SettingScreenChangeItem,
-    SettingScreenAssignItem,
+    SettingScreenAssignItem
   },
   mounted() {
     /* dev */
@@ -696,7 +792,7 @@ export default Vue.extend({
   },
   methods: {
     ...mapMutations({
-      setRouter: 'setRouter',
+      setRouter: 'setRouter'
     }),
     setDown() {
       this.isDown = !this.isDown
@@ -720,21 +816,21 @@ export default Vue.extend({
       // this.$router.push('/setting')
     },
     ...mapGetters({
-      getTooltipInstalled: 'getTooltipInstalled',
+      //getTooltipInstalled: 'getTooltipInstalled',
       getCoinInstalled: 'getCoinInstalled',
       getTerminalInstalled: 'getTerminalInstalled',
-      getDirectCash: 'getDirectCash',
-    }),
+      getDirectCash: 'getDirectCash'
+    })
   },
   computed: {
     ...mapGetters({
-      getPanelType: 'getPanelType',
-    }),
+      getPanelType: 'getPanelType'
+    })
   },
   created() {
     /* dev */
     this.isPayScreenMain = true
-    this.isTooltipInstalled = this.getTooltipInstalled()
+    //this.isTooltipInstalled = this.getTooltipInstalled()
 
     this.isCoinInstalled = this.getCoinInstalled()
     this.isTerminalInstalled = this.getTerminalInstalled()
@@ -745,13 +841,14 @@ export default Vue.extend({
     if (this.tabs && this.tabs.destroy) {
       this.tabs.destroy()
     }
-  },
+  }
 })
 </script>
 
 <style scoped>
 .form {
   margin-top: 4rem;
+  /* box-shadow: 5px 5px 10px #00b9e3; */
 }
 .panel {
   margin: 0 auto;
@@ -795,6 +892,8 @@ export default Vue.extend({
   border: solid 3px #00b9e3;
   font-size: 2em;
   border-radius: 2rem;
+  /* dev */
+  box-shadow: 5px 5px 10px #00b9e3;
 }
 /*  */
 #head {
@@ -826,8 +925,6 @@ h2 {
 .change-item-title {
   margin-left: 5em;
   margin-top: -3.2em;
-    
-
 }
 .change-foam-title {
   margin-left: 1em;

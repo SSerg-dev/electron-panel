@@ -1,11 +1,11 @@
 <template>
-  <div class="col s6">
+  <div>
     <!-- style="height: 150px; border: solid 3px #00B9E3; border-radius: 2rem;" -->
     <div
       class="card grey lighten-3"
       style="
       border: solid 3px #00B9E3; 
-      width: 1060px; height: 140px; 
+      width: 1040px; height: 130px; 
       margin-left: 0px;
       margin-top: -3.5em; 
       border-radius: 2rem;"
@@ -42,7 +42,7 @@
             </button>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: -0.8em;">
           <div class="col s1" style="font-size: 2em; padding-left: 2.0em">{{ min }}</div>
 
           <div class="col s10">

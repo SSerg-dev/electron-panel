@@ -1,24 +1,44 @@
 <template>
-  <div class="col s6">
+  <div>
     <!-- style="height: 150px; border: solid 3px #00b9e3; border-radius: 2rem" -->
     <div
       class="card grey lighten-3"
       style="
-      height: 150px; 
+      height: 168px; 
       border: solid 3px #00b9e3; 
-      border-left-style: hidden;
-      border-top-right-radius: 2em;
-      border-bottom-right-radius: 2em;
+      border-radius: 2em;
       "
     >
-      
       <div class="card-content black-text">
-        <div class="row">
-          <div class="col s4">
-            <span class="card-title">В течение:</span>
+        <!-- row 01 -->
+        <div class="row" style="height: 1em; ">
+          <!-- dev -->
+          <div class="col s1">
+            <div class="switch" style="padding-top: 6px;">
+              <label>
+                <input type="checkbox" v-model="isTooltipInstalled" />
+                <span class="lever"></span>
+              </label>
+            </div>
+          </div>
+          <!--     -->
+          <div class="col s11">
+            <span class="card-title"
+              >Показывать всплывающие подсказки при переключении программ</span
+            >
+          </div>
+        </div>
+        <!-- end row 01 -->
+
+        <!-- row 02 -->
+        <div v-if="isTooltipInstalled" class="row">
+          
+
+          <div class="col s5">
+            <span class="card-title" style="padding-top: 6px; padding-left: 11.3em;">в течение:</span>
           </div>
 
-          <div class="col s2">
+          <div class="col s1">
             <button
               class="
                 btn
@@ -34,13 +54,13 @@
             </button>
           </div>
 
-          <div class="col s4">
-            <div style="margin-left: 2px" class="display">
+          <div class="col s3">
+            <div style="margin-left: 2.5em" class="display">
               {{ display + ` сек.` }}
             </div>
           </div>
 
-          <div class="col s2">
+          <div class="col s1">
             <button
               class="
                 btn
@@ -49,7 +69,7 @@
                 white-text
                 button-setting
               "
-              style="margin-left: -1.2em"
+              style="margin-left: 0em"
               type="submit"
               @click="setNumber('+1')"
             >
@@ -57,10 +77,16 @@
             </button>
           </div>
         </div>
+        
+        <!-- end row 02 -->
+        
+        <!-- row 03 -->
 
-        <div class="row" style="margin-left:1em;">
-          <div class="col s1" style="font-size: 2em; " >{{min}}</div>
-          <div class="col s9">
+
+        <div v-if="isTooltipInstalled" class="row" style="margin-top: -1em;">
+          <div class="col s1" style="font-size: 2em; padding-left: 2.0em; " >{{ min }}</div>
+
+          <div class="col s10">
             <p class="range-field">
               <input
                 id="slider"
@@ -75,8 +101,10 @@
             </p>
           </div>
 
-          <div class="col s1" style="font-size: 2em">{{max}}</div>
+          <div class="col s1" style="font-size: 2em; padding-left: 0.5em">{{max}}</div>
+
         </div>
+        <!-- end row 03 -->
       </div>
     </div>
   </div>
@@ -89,6 +117,7 @@ import { mapGetters, mapMutations } from 'vuex'
 export default Vue.extend({
   name: 'setting-screen-tooltip',
   data: () => ({
+    isTooltipInstalled: false,
     slider: null,
     current: 0,
 
@@ -117,6 +146,9 @@ export default Vue.extend({
     },
     ...mapMutations({
       setSecondsGotoPopupMenu: 'setSecondsGotoPopupMenu'
+    }),
+    ...mapGetters({
+      getTooltipInstalled: 'getTooltipInstalled',
     })
   },
 
@@ -139,9 +171,12 @@ export default Vue.extend({
     }
   },
   created() {
+    this.isTooltipInstalled = this.getTooltipInstalled()
+
     const secondsGotoPopupMenu = this.getSecondsGotoPopupMenu
     this.amount = secondsGotoPopupMenu
     // console.log('this.amount-->', this.amount)
+
   }
 })
 </script>
