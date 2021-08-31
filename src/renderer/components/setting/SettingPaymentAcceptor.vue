@@ -3,7 +3,13 @@
     <!-- acceptor -->
     <div
       class="card grey lighten-3"
-      style="height: 150px; border: solid 3px #00B9E3; border-radius: 2rem;"
+      style="
+      height: 150px; 
+      border: solid 3px #00B9E3; 
+      border-top-left-radius: 2rem;
+      border-bottom-left-radius: 2rem;
+      border-right-style: hidden;      
+      "
     >
       <div class="card-content black-text">
         <!-- <div class="switch">

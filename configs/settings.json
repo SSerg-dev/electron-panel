@@ -17,7 +17,8 @@
     "coin_acceptor": {
         "denominations": {},
         "enable_coins": [
-            10
+          5,  
+          10
         ],
         "installed": true,
         "tokens": [

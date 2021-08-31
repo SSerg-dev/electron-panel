@@ -4,7 +4,13 @@
     <!-- style="height: 190px; border: solid 3px #00B9E3;" -->
     <div
       class="card grey lighten-3"
-      style="height: 150px; border: solid 3px #00B9E3; border-radius: 2rem;"
+      style="
+      height: 150px; 
+      border: solid 3px #00B9E3; 
+      border-top-right-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      border-left-style: hidden;      
+      "
     >
       <div class="card-content black-text">
         <span class="card-title">Принимать:</span>
@@ -39,11 +45,16 @@ export default Vue.extend({
     title: [],
 
     coins: [
-      { id: 1, title: "10 coin", value: 10, selected: false },
-      { id: 2, title: "50 coin", value: 50, selected: false },
-      { id: 3, title: "100 coin", value: 100, selected: false },
-      { id: 4, title: "200 coin", value: 200, selected: false },
-      { id: 5, title: "500 coin", value: 500, selected: false },
+      /* ₽ */
+      { id: 1, title: "1 ₽ ", value: 1, selected: false }, 
+      { id: 2, title: "2 ₽ ", value: 2, selected: false },
+      { id: 3, title: "5 ₽ ", value: 5, selected: false },
+      { id: 4, title: "10 ₽ ", value: 10, selected: false },
+      /* € */ /* ¢ */  
+      /* { id: 5, title: "20", value: 20, selected: false },
+      { id: 6, title: "50", value: 50, selected: false },
+      { id: 7, title: "1", value: 100, selected: false }, 
+      { id: 8, title: "2", value: 200, selected: false }, */
     ],
   }),
   mounted() {
@@ -54,7 +65,7 @@ export default Vue.extend({
   },
   methods: {
     ...mapGetters({
-      getDefaultBiils: "getDefaultBiils",
+      getDefaultCoinBiils: "getDefaultCoinBiils",
     }),
   },
   watch: {
@@ -65,8 +76,8 @@ export default Vue.extend({
     },
   },
   created() {
-    const defaultBiils = this.getDefaultBiils();
-    // console.log("++defaultBiils-->", JSON.stringify(defaultBiils));
+    const defaultBiils = this.getDefaultCoinBiils();
+    console.log("++defaultBiils-->", JSON.stringify(defaultBiils));
 
     for (let i = 0; i < defaultBiils.length; i++) {
       const value = defaultBiils[i];

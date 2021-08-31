@@ -10,7 +10,7 @@
         style="background: white; 
         width: 92%;
         border-radius: 5px;
-        box-shadow: 4px 4px 10px #00b9e3;
+        box-shadow: 6px 6px 10px #00b9e3;
         "
       >
         <li class="tab col s3">
@@ -108,6 +108,7 @@
                       
                     "
                   >
+                  
                     <div class="card-content black-text">
                       <div class="switch">
                         <label>
@@ -395,7 +396,7 @@
       <div
         id="swipe-3"
         class="col s8 black"
-        style="box-shadow: 5px 5px 10px #00b9e3;"
+        style="box-shadow: 10px 10px 10px #00b9e3;"
       >
         <!-- old Настройки -->
         <div>
@@ -488,7 +489,7 @@
           <!-- <div class="row panel" style="margin-top: -20px">
             <SettingPaymentTerminalType />
 
-            <SettingPaymentMinNonCash />
+            <SettingPaymentLimit />
           </div> -->
 
           <!-- <div class="row direct-cash">
@@ -513,10 +514,10 @@
         </div>
 
         <!-- new Настройки -->
-        <h2 class="white-text">Настройки</h2>
-        <br />
+        <!-- <h2 class="white-text">Настройки</h2>
+        <br /> -->
 
-        <table style="margin-left: 1em; margin-top: -2em;">
+        <table style="margin-left: 1em; margin-top: 0em;">
           <tbody>
             <!-- row 01 -->
             <tr style="height: 80px; margin-left: 6.5em;">
@@ -530,8 +531,20 @@
             </tr>
 
             <!-- row 02 -->
+            <!-- 
+              border-top-left-radius: 2em;
+                      border-bottom-left-radius: 2em;
+                      border-right-style: hidden;
+             -->
             <tr style="margin-top: -1em;">
-              <td style="width: 520px">
+              <td
+                style="
+              width: 520px;  
+              <!-- border-top-left-radius: 2em;
+              border-bottom-left-radius: 2em;
+              border-right-style: hidden; -->
+              "
+              >
                 <div>
                   <SettingPaymentLanguage />
                 </div>
@@ -554,6 +567,8 @@
                       margin-left: 0px;
                       margin-top: 0em;
                       border-radius: 2rem;
+
+                      
                     "
                 >
                   <div class="card-content white-text">
@@ -701,7 +716,10 @@
                   <div class="card-content white-text">
                     <div class="switch">
                       <label>
-                        <input type="checkbox" v-model="isCoinAcceptorInstalled" />
+                        <input
+                          type="checkbox"
+                          v-model="isCoinAcceptorInstalled"
+                        />
                         <span class="lever"></span>
                       </label>
                     </div>
@@ -728,23 +746,70 @@
                 </div>
               </td>
             </tr>
+            
             <!-- row 11 -->
+            <tr style="margin-top: 3.5em;">
+              <td style="width: 1040px">
+                <div
+                  class="card black lighten-3"
+                  style="
+                      border: solid 3px #00b9e3;
+                      width: 1040px;
+                      height: 80px;
+                      margin-left: 0px;
+                      margin-top: 0em;
+                      border-radius: 2rem;
+                    "
+                >
+                  <div class="card-content white-text">
+                    <div class="switch">
+                      <label>
+                        <input type="checkbox" v-model="isTerminalInstalled" />
+
+                        <span class="lever"></span>
+                      </label>
+                    </div>
+
+                    <div class="pay-screen-title">
+                      <span class="card-title">Банковский терминал</span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
             <!-- row 12 -->
+            <tr v-if="isCoinAcceptorInstalled" style="margin-top: -2em; margin-left: 10px;">
+              <td style="width: 1020px;">
+                <div>
+                  <SettingPaymentTerminalType />
+                </div>
+              </td>
+            </tr>
             <!-- row 13 -->
+            <tr style="margin-top: 3em; margin-left: 0px;">
+              <td >
+                <div>
+                  <SettingPaymentLimit />
+                </div>
+              </td>
+            </tr>
             <!-- row 14 -->
 
             <!--  -->
           </tbody>
         </table>
-
+        <div style="margin-top: 6em;">
         <hr />
+        </div>
+        
         <!-- end Настройки -->
       </div>
 
       <div
         id="swipe-4"
         class="col s8 black"
-        style="box-shadow: 5px 5px 10px #00b9e3;"
+        style="box-shadow: 10px 10px 10px #00b9e3;"
       >
         <!-- Финансы -->
         <div>
@@ -839,7 +904,10 @@ import SettingPaymentBill from '@/components/setting/SettingPaymentBill'
 import SettingCoinBill from '@/components/setting/SettingCoinBill'
 
 import SettingPaymentTerminalType from '@/components/setting/SettingPaymentTerminalType'
-import SettingPaymentMinNonCash from '@/components/setting/SettingPaymentMinNonCash'
+import SettingPaymentLimit from '@/components/setting/SettingPaymentLimit'
+import SettingPaymentLimitMin from '@/components/setting/SettingPaymentLimitMin' 
+import SettingPaymentLimitMax from '@/components/setting/SettingPaymentLimitMax'
+
 import SettingOverviewCommon from '@/components/setting/SettingOverviewCommon'
 import SettingOverviewService from '@/components/setting/SettingOverviewService'
 import SettingFinanceCoin from '@/components/setting/SettingFinanceCoin'
@@ -870,14 +938,12 @@ export default Vue.extend({
     changeProgramIds: [1, 2, 3],
     assignProgramIds: [1, 2, 3],
 
-     
     isTerminalInstalled: false,
     isDirectCash: false,
     /* dev */
     isAcceptorInstalled: false,
-    // isCoinInstalled: false, 
+    // isCoinInstalled: false,
     isCoinAcceptorInstalled: false,
-    
 
     isDown: false,
     tabs: null
@@ -896,7 +962,10 @@ export default Vue.extend({
     SettingCoinBill,
 
     SettingPaymentTerminalType,
-    SettingPaymentMinNonCash,
+    SettingPaymentLimit,
+    SettingPaymentLimitMin,
+    SettingPaymentLimitMax,
+
     SettingOverviewCommon,
     SettingOverviewService,
     SettingFinanceCoin,
@@ -948,7 +1017,7 @@ export default Vue.extend({
     ...mapGetters({
       getPanelType: 'getPanelType',
       getAcceptorInstalled: 'getAcceptorInstalled',
-      getCoinAcceptorInstalled: 'getCoinAcceptorInstalled',
+      getCoinAcceptorInstalled: 'getCoinAcceptorInstalled'
     })
   },
   created() {
@@ -1023,7 +1092,7 @@ export default Vue.extend({
   font-size: 2em;
   border-radius: 2rem;
   /* dev */
-  box-shadow: 5px 5px 10px #00b9e3;
+  box-shadow: 6px 6px 10px #00b9e3;
 }
 /*  */
 #head {

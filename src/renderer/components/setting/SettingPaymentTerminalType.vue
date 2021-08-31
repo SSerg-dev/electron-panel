@@ -1,8 +1,8 @@
 <template>
-  <div class="col s6">
+<!--   <div class="col s6">
     <div class="card grey lighten-3" style="height: 160px; border: solid 3px #00B9E3; border-radius: 2rem;">
       <div class="card-content black-text">
-        <span class="card-title">Тип терминала:</span>
+        <span class="card-title">Модель:</span>
         <div class="input-field">
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(t, index) in types" :key="index" :value="t.id">
@@ -12,6 +12,42 @@
             </option>
           </select>
         </div>
+      </div>
+    </div>
+  </div> -->
+    <div class="row">
+    <div class="card grey lighten-3" style="height: 80px; border: solid 3px #00B9E3; border-radius: 2rem;">
+      <div class="card-content black-text">
+        
+        
+          <span class="card-title col s2" style="margin-top: -0em;">Модель:</span>
+        
+        
+        
+        <div class="input-field col s6" style="margin-top: -0.5em;">
+          <select class="page-title white-text" ref="select" v-model="current">
+            <option v-for="(t, index) in types" :key="index" :value="t.id">
+              <div class="dropdown-setting">
+              {{ t.title }}
+              </div>
+            </option>
+          </select>
+        </div>
+
+        <div v-if="this.current === 1" class="col s4">
+          <button
+                  
+                  class="btn waves-effect waves-light  white-text button-setting"
+                  type="submit"
+                  @click="setService('menu')"
+                  style="margin-left: 1.5em; margin-top: -0.2em"
+                >
+                  {{ `Открыть меню Ярус К2100` }}
+                  <i class="material-icons right"></i>
+                </button>
+          
+        </div>
+
       </div>
     </div>
   </div>
@@ -44,13 +80,23 @@ export default Vue.extend({
   methods: {
     ...mapGetters({
       getDefaultTerminalType: 'getDefaultTerminalType',
-    })
+    }),
+    setService(service) {
+      switch (service) {
+        case 'menu':
+          // console.log('Открыть меню Ярус К2100')
+          break
+        default:
+          break
+      }
+    }
 
   },
   watch: {
     current(typeId) {
       const { id, title } = this.types.find(t => t.id === typeId)
       this.select = title
+      // console.log('++current-->', this.current)
     }
   },
 
@@ -69,3 +115,14 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style scoped>
+.button-setting {
+  border: solid 3px #00b9e3;
+  font-size: 16px;
+  border-radius: 2rem;
+}
+.btn {
+  background-color: #26A69A; 
+}
+</style>

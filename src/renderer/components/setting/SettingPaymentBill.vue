@@ -4,7 +4,14 @@
     <!-- style="height: 190px; border: solid 3px #00B9E3;" -->
     <div
       class="card grey lighten-3"
-      style="height: 150px; border: solid 3px #00B9E3; border-radius: 2rem;"
+      style="
+      height: 150px; 
+      border: solid 3px #00B9E3; 
+      border-top-right-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      border-left-style: hidden;
+
+      "
     >
       <div class="card-content black-text">
         <span class="card-title">Принимать:</span>
@@ -39,11 +46,11 @@ export default Vue.extend({
     title: [],
 
     bills: [
-      { id: 1, title: "10 руб", value: 10, selected: false },
-      { id: 2, title: "50 руб", value: 50, selected: false },
-      { id: 3, title: "100 руб", value: 100, selected: false },
-      { id: 4, title: "200 руб", value: 200, selected: false },
-      { id: 5, title: "500 руб", value: 500, selected: false },
+      { id: 1, title: "10 ₽", value: 10, selected: false },
+      { id: 2, title: "50 ₽", value: 50, selected: false },
+      { id: 3, title: "100 ₽", value: 100, selected: false },
+      { id: 4, title: "200 ₽", value: 200, selected: false },
+      { id: 5, title: "500 ₽", value: 500, selected: false },
     ],
   }),
   mounted() {

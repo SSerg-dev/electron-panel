@@ -15,6 +15,14 @@ export default {
 
   // getters
   getters: {
+    /* dev */
+    getPaymentLimitMin(state) {
+      return  state.config.bank_terminal.min_sum
+    },
+    getPaymentLimitMax(state) {
+      return state.config.bank_terminal.max_sum
+    },
+
     getDefaultLanguage(state) {
       //console.log('state.config.languages.default--> RUUUUUUU')
       return state.config.languages.default
@@ -29,7 +37,7 @@ export default {
     },
     getDefaultCurrency(state) {
       /* dev */
-      // return state.config.currency
+      //return state.config.currency
       return { id: 1, title: 'Российский рубль' }
     },
     getDefaultPanelNumber(state) {
@@ -42,9 +50,10 @@ export default {
       return state.payment
     },
     getDefaultBiils(state) {
-      /* dev */
-      //return state.config.validator.enable_bills
       return state.config.bill_validator.enable_bills
+    },
+    getDefaultCoinBiils(state) {
+      return state.config.coin_acceptor.enable_coins
     },
     getDefaultTerminalType(state) {
       return state.config.bank_terminal.hardware
@@ -55,23 +64,18 @@ export default {
     getTerminalInstalled(state) {
       return state.config.bank_terminal.installed
     },
-    /* dev */
-    getAcceptorInstalled(state) {  
+    getAcceptorInstalled(state) {
       return state.config.bill_validator.installed
     },
-    getCoinAcceptorInstalled(state) {  
+    getCoinAcceptorInstalled(state) {
       return state.config.coin_acceptor.installed
     },
-
-    /* dev */
-    getAcceptorType(state) {  
+    getAcceptorType(state) {
       return state.config.bill_validator.type
     },
     getCoinAcceptorType(state) {
-      // console.log('state.config.coin_acceptor.type-->', state.config.coin_acceptor.type)  
       return state.config.coin_acceptor.type
     },
-
     getTooltipInstalled(state) {
       return state.isTooltipInstalled
     },
@@ -81,26 +85,33 @@ export default {
     getConfig(state) {
       return state.config
     },
-    // service setting ???
     getTemperature(state) {
       return state.temperature
     },
-    // dev
     getHumidity(state) {
       return state.humidity
-      //return 4242
     },
     getServiceBalance(state) {
       return state.serviceBalance
       //return state.parameters.PanelMoney
     },
     getIncrement(state) {
-      return state.increment
+      return state.increment 
     }
   }, // end getters
 
   // mutations
   mutations: {
+    /* dev */
+    setPaymentLimitMin(state, min) {
+      state.config.bank_terminal.min_sum = min
+      console.log('state.config.bank_terminal.min_sum-->', state.config.bank_terminal.min_sum)
+    },
+    setPaymentLimitMax(state, max) {
+      state.config.bank_terminal.max_sum = max
+      console.log('state.config.bank_terminal.max_sum-->', state.config.bank_terminal.max_sum)
+    },
+
     setDefaultPanelNumber(state, index) {
       state.config.index = index
     },
@@ -134,7 +145,7 @@ export default {
     setConfig(state, config) {
       state.config = config
       //console.log('!!++state.config-->', state.config.languages.default)
-    },
+    }
     /* setTooltipInstalled(state, isTooltipInstalled) {
       state.isTooltipInstalled = isTooltipInstalled
     }, */
