@@ -3,6 +3,8 @@
     <a name="top"></a>
 
     <form @submit.prevent="" class="form">
+
+     <!-- ul navigation --> 
       <ul
         id="tabs-swipe"
         class="tabs"
@@ -37,7 +39,7 @@
           >
         </li>
       </ul>
-      <!-- end dev -->
+      <!-- end ul -->
 
       <!--  -->
       <div
@@ -60,7 +62,6 @@
         <hr />
         <!-- end Обзор -->
       </div>
-      <!--  -->
 
       <!--  -->
 
@@ -86,7 +87,7 @@
                 </td>
               </tr>
               <!-- row 02 -->
-              <tr>
+              <tr style="margin-top: 0.5em;">
                 <td>
                   <div>
                     <SettingScreenGotoMainMenu />
@@ -94,7 +95,7 @@
                 </td>
               </tr>
               <!-- row 03 -->
-              <tr>
+              <tr style="margin-top: 0.5em;">
                 <td style="border: none; width: 360px; height: 80px;">
                   <div
                     class="card grey lighten-3"
@@ -159,7 +160,7 @@
                 </td>
               </tr>
               <!-- row 04 -->
-              <tr>
+              <tr style="margin-top: 0.8em;">
                 <td style="border: none; width: 360px; height: 80px">
                   <div
                     class="card grey lighten-3"
@@ -227,7 +228,7 @@
                 </td>
               </tr>
               <!-- row 05 -->
-              <tr>
+              <tr style="margin-top: 0.8em;">
                 <td style="border: none; width: 360px; height: 80px">
                   <div
                     class="card grey lighten-3"
@@ -295,7 +296,8 @@
                 </td>
               </tr>
               <!-- row 06 -->
-              <tr>
+              <!-- old row -->
+              <!-- <tr>
                 <td style="width: 430px">
                   <div
                     class="card grey lighten-3"
@@ -378,7 +380,124 @@
                     </div>
                   </div>
                 </td>
-              </tr>
+              </tr> -->
+
+              <!-- dev -->
+            <!-- new row 01 -->
+            <tr style="margin-top: 0.5em;">
+              
+              <!-- td 01 -->
+              <td style="width: 1040px">
+                <div
+                  class="card black lighten-3"
+                  style="
+                      border: solid 3px #00b9e3;
+                      width: 1040px;
+                      height: 60px;
+                      margin-left: 0px;
+                      margin-top: 0em;
+                      border-radius: 2rem;
+                    "
+                >
+                  <div class="card-content white-text">
+
+                    <div class="switch" style="margin-top: -0.8em;">
+                      <label>
+                        <input type="checkbox" v-model="isPayScreenMain" />
+
+                        <span class="lever"></span>
+                      </label>
+                    </div>
+
+                    <div class="pay-screen-title">
+                      <span class="card-title"
+                        >Сделать окно оплаты основным</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <!-- end row -->
+
+            <!-- new row 02 -->
+            <tr style="margin-top: -0.5em;">
+              
+              <!-- td 01 -->
+              <td style="width: 1040px">
+                <div
+                  class="card black lighten-3"
+                  style="
+                      border: solid 3px #00b9e3;
+                      width: 1040px;
+                      height: 60px;
+                      margin-left: 0px;
+                      margin-top: 0em;
+                      border-radius: 2rem;
+                    "
+                >
+                  <div class="card-content white-text">
+
+                    <div class="switch" style="margin-top: -0.8em;">
+                      <label>
+                        <input type="checkbox" v-model="isCnw" />
+
+                        <span class="lever"></span>
+                      </label>
+                    </div>
+
+                    <div class="pay-screen-title">
+                      <span class="card-title"
+                        >C.N.W.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <!-- end row -->
+            <!-- new row 03 -->
+            <tr style="margin-top: -0.5em;">
+              
+              <!-- td 01 -->
+              <td style="width: 1040px">
+                <div
+                  class="card black lighten-3"
+                  style="
+                      border: solid 3px #00b9e3;
+                      width: 1040px;
+                      height: 60px;
+                      margin-left: 0px;
+                      margin-top: 0em;
+                      border-radius: 2rem;
+                    "
+                >
+                  <div class="card-content white-text">
+
+                    <div class="switch" style="margin-top: -0.8em;">
+                      <label>
+                        <input type="checkbox" v-model="isCursor" />
+
+                        <span class="lever"></span>
+                      </label>
+                    </div>
+
+                    <div class="pay-screen-title">
+                      <span class="card-title"
+                        >Показать курсор в основном окне</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <!-- end row -->
+
+              <!--     -->
+
               <!-- <tr>
                 <td></td>
                 <td></td>
@@ -398,121 +517,7 @@
         class="col s8 black"
         style="box-shadow: 10px 10px 10px #00b9e3;"
       >
-        <!-- old Настройки -->
-        <div>
-          <!-- <h2 class="white-text">Настройки</h2> -->
-          <!-- <br /> -->
-
-          <!-- <div class="row panel">
-            <div class="page-title white-text">
-              <h4>Панель</h4>
-            </div>
-            <SettingPanelType />
-
-            <div v-if="this.getPanelType === 'wash'"> 
-              <SettingPanelNumber />
-            </div>
-            <div v-if="this.getPanelType === 'vaccum'">
-              <SettingPanelVaccum />
-            </div>
-            <div v-if="this.getPanelType === 'payment'">
-              <SettingPanelPayment />
-            </div>
-          </div> -->
-
-          <!-- <div class="row payment">
-            <div class="page-title white-text">
-              <h4>Платежи</h4>
-            </div>
-            <SettingPaymentLanguage />
-
-            <SettingPaymentCurrency />
-
-            <SettingPaymentAcceptor />
-
-            <SettingPaymentBill />
-          </div> -->
-
-          <!-- <div class="row terminal-type">
-            <div class="col s6">
-              <div
-                class="card grey lighten-3"
-                style="
-                  border: solid 3px #00b9e3;
-                  width: 517px;
-                  height: 160px;
-                  margin-left: 10px;
-                  border-radius: 2rem;
-                "
-              >
-                <div class="card-content black-text">
-                  <div class="switch">
-                    <label>
-                      <input type="checkbox" v-model="isAcceptorInstalled" />
-                      <span class="lever"></span>
-                    </label>
-                  </div>
-                  <span class="card-title"
-                    >NRI G-13 USB монетоприемник установлен</span
-                  >
-                  <div class="input-field"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col s6">
-              <div
-                class="card grey lighten-3"
-                style="
-                  height: 160px;
-                  width: 517px;
-                  border: solid 3px #00b9e3;
-                  border-radius: 2rem;
-                "
-              >
-                <div class="card-content black-text">
-                  <div class="switch">
-                    <label>
-                      <input type="checkbox" v-model="isTerminalInstalled" />
-                      <span class="lever"></span>
-                    </label>
-                  </div>
-                  <span class="card-title">
-                    Банковский терминал установлен</span
-                  >
-                  <div class="input-field"></div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- <div class="row panel" style="margin-top: -20px">
-            <SettingPaymentTerminalType />
-
-            <SettingPaymentLimit />
-          </div> -->
-
-          <!-- <div class="row direct-cash">
-            <div class="col s6" style="width: 540px; margin-left: 10px">
-              <div
-                class="card grey lighten-3"
-                style="border: solid 3px #00b9e3; border-radius: 2rem"
-              >
-                <div class="card-content black-text">
-                  <div class="switch">
-                    <label>
-                      <input type="checkbox" v-model="isDirectCash" />
-                      <span class="lever"></span>
-                    </label>
-                  </div>
-                  <span class="card-title">Прямая оплата наличными</span>
-                  <div class="input-field"></div>
-                </div>рк
-              </div>
-            </div>
-          </div> -->
-        </div>
-
+        
         <!-- new Настройки -->
         <!-- <h2 class="white-text">Настройки</h2>
         <br /> -->
@@ -531,11 +536,6 @@
             </tr>
 
             <!-- row 02 -->
-            <!-- 
-              border-top-left-radius: 2em;
-                      border-bottom-left-radius: 2em;
-                      border-right-style: hidden;
-             -->
             <tr style="margin-top: -1em;">
               <td
                 style="
@@ -567,7 +567,6 @@
                       margin-left: 0px;
                       margin-top: 0em;
                       border-radius: 2rem;
-
                       
                     "
                 >
@@ -575,7 +574,7 @@
 
                     <div class="switch" style="margin-top: -0.8em;">
                       <label>
-                        <input type="checkbox" v-model="isPayScreenMain" />
+                        <input type="checkbox" v-model="isCursor" />
 
                         <span class="lever"></span>
                       </label>

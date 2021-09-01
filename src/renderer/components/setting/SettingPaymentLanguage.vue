@@ -12,7 +12,7 @@
       
     >
       <div class="card-content black-text">
-        <span class="card-title">Язык сервисной панели:</span>
+        <span class="card-title">Язык:</span>
         <div class="input-field">
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(l, index) in languages" :key="index" :value="l.id">
@@ -68,6 +68,8 @@ export default Vue.extend({
   },
   created() {
     this.languages = this.getLanguageNatives()
+    console.log('this.languages-->', JSON.stringify(this.languages) )
+
     let index
     if (this.getDefaultLanguage().toUpperCase() === 'RU') index = 0
 

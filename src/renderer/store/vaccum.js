@@ -5,7 +5,7 @@ export default {
     getters: {},
     mutations: {},
     modules: {}
-*/
+  */
   state: {
     // number: 1, 
     activesVaccum: [

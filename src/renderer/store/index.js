@@ -10,7 +10,9 @@ import finance from './finance'
 import options from './options'
 //import connect from './connect'
 import status from './status'
-import languages from './countries'
+import countries from './countries'
+import languages from './languages'
+
 
 import { ipcRenderer } from 'electron'
 
@@ -518,6 +520,7 @@ export default new Vuex.Store({
     options,
     //connect,
     status,
+    countries,
     languages 
   }
 })

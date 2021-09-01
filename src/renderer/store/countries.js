@@ -138,25 +138,35 @@ export default {
   } /* end state */,
   actions: {},
   getters: {
-    getLanguageNatives(state) {
+    getLanguageNatives(state, getters) {
       const selected = state.countries
       const all = state.allCountries
       const natives = []
 
+      /* dev */
+      let language = null
+
       selected.forEach((keySel, index) => {
         Object.keys(all).forEach(keyAll => {
           if (keySel === keyAll) {
+            /* dev */
+            language = getters.getLanguageItem(keySel.toLowerCase())
+
             natives.push({
               id: index + 1,
               title: all[keyAll].native,
-              key: keyAll
+              key: keyAll,
+              language: language 
+              
             })
           }
         })
       })
+
+      
       return natives
-    },
-    getLanguageItem(state) {}
+    }
+    // getLanguageItem(state, getters) {}
   }, // end getters
 
   mutations: {
