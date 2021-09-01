@@ -77,7 +77,7 @@ export default Vue.extend({
   },
   created() {
     const defaultBiils = this.getDefaultCoinBiils();
-    console.log("++defaultBiils-->", JSON.stringify(defaultBiils));
+    //console.log("++defaultBiils-->", JSON.stringify(defaultBiils));
 
     for (let i = 0; i < defaultBiils.length; i++) {
       const value = defaultBiils[i];

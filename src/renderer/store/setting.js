@@ -17,6 +17,7 @@ export default {
   getters: {
     /* dev */
     getPaymentLimitMin(state) {
+      // console.log('min_sum-->', state.config.bank_terminal.min_sum)
       return  state.config.bank_terminal.min_sum
     },
     getPaymentLimitMax(state) {
@@ -55,6 +56,11 @@ export default {
     getDefaultCoinBiils(state) {
       return state.config.coin_acceptor.enable_coins
     },
+    /* dev */
+    getCoinTokens(state) {
+      return state.config.coin_acceptor.tokens
+    },
+
     getDefaultTerminalType(state) {
       return state.config.bank_terminal.hardware
     },
@@ -102,14 +108,16 @@ export default {
 
   // mutations
   mutations: {
-    /* dev */
+
     setPaymentLimitMin(state, min) {
       state.config.bank_terminal.min_sum = min
-      console.log('state.config.bank_terminal.min_sum-->', state.config.bank_terminal.min_sum)
     },
     setPaymentLimitMax(state, max) {
       state.config.bank_terminal.max_sum = max
-      console.log('state.config.bank_terminal.max_sum-->', state.config.bank_terminal.max_sum)
+    },
+    /* dev */
+    setCoinTokens(state, payload) {
+      state.config.coin_acceptor.tokens[payload.index - 1] = payload.value
     },
 
     setDefaultPanelNumber(state, index) {

@@ -13,7 +13,7 @@
       <div class="card-content black-text">
         <div class="row">
           <div class="col s5">
-            <div style="margin-left: -0.8em" class="display">
+            <div style="margin-left: -1em" class="display">
               {{ `Минимальный` }}
             </div>
           </div>
@@ -68,12 +68,6 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 
-import SettingPaymentLimitMin from '@/components/setting/SettingPaymentLimitMin' 
-import SettingPaymentLimitMax from '@/components/setting/SettingPaymentLimitMax'
-
-
-
-/* dev */
 export default Vue.extend({
   name: 'setting-screen-tooltip',
   data: () => ({
@@ -83,12 +77,13 @@ export default Vue.extend({
     amount: 0,
     amountString: '',
     display: 0,
-    min: 20,
-    max: 500,
+    min: 42,
+    max: 542,
     step: 10
   }),
   mounted() {
-    this.setNumber(this.min.toString())
+    //console.log('this.amount-->', this.amount)
+    //this.setNumber(this.amount.toString())
   },
   methods: {
     setNumber(num) {
@@ -124,29 +119,25 @@ export default Vue.extend({
       this.current = this.amount
 
       this.setPaymentLimitMin(this.amount)
-      //this.setPaymentLimitpaymentLimitMinMax(this.max)
     }
   },
   created() {
-    // 
-    //const secondsGotoMainMenu = this.getSecondsGotoMainMenu
-    //this.amount = secondsGotoMainMenu
 
-    //this.min = this.getPaymentLimitMin
-    //this.max = this.getPaymentLimitMax
     const paymentLimitMin = this.getPaymentLimitMin
-    console.log('++paymentLimitMin-->', paymentLimitMin)
-    this.min = paymentLimitMin 
+    this.min = paymentLimitMin
+    //console.log('paymentLimitMin-->', paymentLimitMin)
+
+    const paymentLimitMax = this.getPaymentLimitMax
+    this.max = paymentLimitMax 
+    
     this.amount = paymentLimitMin
+    this.display = this.amount.toString()
 
 
   },
-  /* components: {
-    SettingPaymentLimitMin, 
-    SettingPaymentLimitMax
-  } */
+
 })
-/*     */
+
 </script>
 
 

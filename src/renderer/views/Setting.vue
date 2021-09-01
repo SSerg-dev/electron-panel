@@ -136,7 +136,7 @@
                                            
                     "
                   >
-                    <div v-if="isChangeItem">
+                    <div>
                       <SettingScreenChangeItem :changeItemIds="changeItemIds" />
                     </div>
                   </div>
@@ -152,7 +152,7 @@
                       padding-rigth: 0em;
                     "
                   >
-                    <div v-if="isChangeItem">
+                    <div>
                       <SettingScreenAssignItem :assignItemIds="assignItemIds" />
                     </div>
                   </div>
@@ -200,7 +200,7 @@
                       padding-rigth: 0em;
                     "
                   >
-                    <div v-if="isChangeProgramFirst">
+                    <div>
                       <SettingScreenChangeItem
                         :changeItemIds="changeProgramIds"
                       />
@@ -218,7 +218,7 @@
                       padding-rigth: 0em;
                     "
                   >
-                    <div v-if="isChangeProgramFirst">
+                    <div>
                       <SettingScreenAssignItem
                         :assignItemIds="assignProgramIds"
                       />
@@ -268,7 +268,7 @@
                       padding-rigth: 0em;
                     "
                   >
-                    <div v-if="isChangeProgramSecond">
+                    <div>
                       <SettingScreenChangeItem
                         :changeItemIds="changeProgramIds"
                       />
@@ -286,7 +286,7 @@
                       padding-rigth: 0em;
                     "
                   >
-                    <div v-if="isChangeProgramSecond">
+                    <div>
                       <SettingScreenAssignItem
                         :assignItemIds="assignProgramIds"
                       />
@@ -517,7 +517,7 @@
         <!-- <h2 class="white-text">Настройки</h2>
         <br /> -->
 
-        <table style="margin-left: 1em; margin-top: 0em;">
+        <table style="margin-left: 1em; margin-top: -1em;">
           <tbody>
             <!-- row 01 -->
             <tr style="height: 80px; margin-left: 6.5em;">
@@ -556,14 +556,14 @@
               </td>
             </tr>
             <!-- row 03 -->
-            <tr style="margin-top: 3.5em;">
+            <tr style="margin-top: 3em;">
               <td style="width: 1040px">
                 <div
                   class="card black lighten-3"
                   style="
                       border: solid 3px #00b9e3;
                       width: 1040px;
-                      height: 80px;
+                      height: 60px;
                       margin-left: 0px;
                       margin-top: 0em;
                       border-radius: 2rem;
@@ -572,7 +572,8 @@
                     "
                 >
                   <div class="card-content white-text">
-                    <div class="switch">
+
+                    <div class="switch" style="margin-top: -0.8em;">
                       <label>
                         <input type="checkbox" v-model="isPayScreenMain" />
 
@@ -590,7 +591,7 @@
               </td>
             </tr>
             <!-- row 04 -->
-            <tr style="margin-top: -3em; margin-left: 6.5em;">
+            <tr style="margin-top: -4em; margin-left: 6.5em;">
               <td>
                 <div class="panel">
                   <div class="page-title white-text">
@@ -629,14 +630,14 @@
                   style="
                       border: solid 3px #00b9e3;
                       width: 1040px;
-                      height: 80px;
+                      height: 60px;
                       margin-left: 0px;
                       margin-top: 0em;
                       border-radius: 2rem;
                     "
                 >
                   <div class="card-content white-text">
-                    <div class="switch">
+                    <div class="switch" style="margin-top: -0.8em;">
                       <label>
                         <input type="checkbox" v-model="isDirectCash" />
 
@@ -653,7 +654,7 @@
             </tr>
 
             <!-- row 07 -->
-            <tr style="margin-top: -2em;">
+            <tr style="margin-top: -3em;">
               <td style="width: 1040px">
                 <div
                   class="card black lighten-3"
@@ -748,21 +749,21 @@
             </tr>
             
             <!-- row 11 -->
-            <tr style="margin-top: 3.5em;">
+            <tr style="margin-top: 3em;">
               <td style="width: 1040px">
                 <div
                   class="card black lighten-3"
                   style="
                       border: solid 3px #00b9e3;
                       width: 1040px;
-                      height: 80px;
+                      height: 60px;
                       margin-left: 0px;
                       margin-top: 0em;
                       border-radius: 2rem;
                     "
                 >
                   <div class="card-content white-text">
-                    <div class="switch">
+                    <div class="switch" style="margin-top: -0.8em;">
                       <label>
                         <input type="checkbox" v-model="isTerminalInstalled" />
 
@@ -786,20 +787,32 @@
                 </div>
               </td>
             </tr>
+
+            <!-- SettingPaymentToken -->
             <!-- row 13 -->
-            <tr style="margin-top: 3em; margin-left: 0px;">
+            <tr style="margin-top: 2.5em; margin-left: 0px;">
+              <td >
+                <div>
+                  <SettingPaymentToken />
+                </div>
+              </td>
+            </tr>
+
+
+            <!-- row 14 -->
+            <tr style="margin-top: 2.5em; margin-left: 0px;">
               <td >
                 <div>
                   <SettingPaymentLimit />
                 </div>
               </td>
             </tr>
-            <!-- row 14 -->
+            <!-- row 15 -->
 
             <!--  -->
           </tbody>
         </table>
-        <div style="margin-top: 6em;">
+        <div style="margin-top: 2em;">
         <hr />
         </div>
         
@@ -908,6 +921,10 @@ import SettingPaymentLimit from '@/components/setting/SettingPaymentLimit'
 import SettingPaymentLimitMin from '@/components/setting/SettingPaymentLimitMin' 
 import SettingPaymentLimitMax from '@/components/setting/SettingPaymentLimitMax'
 
+/* SettingPaymentToken */
+import SettingPaymentToken from '@/components/setting/SettingPaymentToken'
+
+
 import SettingOverviewCommon from '@/components/setting/SettingOverviewCommon'
 import SettingOverviewService from '@/components/setting/SettingOverviewService'
 import SettingFinanceCoin from '@/components/setting/SettingFinanceCoin'
@@ -965,6 +982,8 @@ export default Vue.extend({
     SettingPaymentLimit,
     SettingPaymentLimitMin,
     SettingPaymentLimitMax,
+
+    SettingPaymentToken,
 
     SettingOverviewCommon,
     SettingOverviewService,
@@ -1078,7 +1097,7 @@ export default Vue.extend({
 }
 .right {
   padding-right: 0rem;
-  padding-top: 2rem;
+  padding-top: 0rem;
 }
 .terminal-type {
   padding-bottom: 0rem;
@@ -1088,6 +1107,7 @@ export default Vue.extend({
 }
 /* dev */
 .button-setting {
+  margin-top: 0.5em;
   border: solid 3px #00b9e3;
   font-size: 2em;
   border-radius: 2rem;

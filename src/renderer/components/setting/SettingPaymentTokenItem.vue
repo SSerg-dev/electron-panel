@@ -4,7 +4,7 @@
       class="card grey lighten-3"
       style="
       border: none; 
-      width: 420px; height: 120px; 
+      width: 280px; height: 80px; 
       margin-left: 0em;
       margin-top: -0.4em;
       padding-left: 1em; 
@@ -12,13 +12,13 @@
     >
       <div class="card-content black-text">
         <div class="row">
-          <div class="col s5">
+          <div class="col s1">
             <div style="margin-left: -1em" class="display">
-              {{ `Максимальный` }}
+              {{ tokenLabel }}
             </div>
           </div>
 
-          <div class="col s2">
+          <div class="col s3">
             <button
               class="btn waves-effect waves-light lighten-3 white-text button-setting"
               type="submit"
@@ -28,8 +28,8 @@
             </button>
           </div>
 
-          <div class="col s2">
-            <div style="margin-left: 0.4em" class="display">
+          <div class="col s3">
+            <div style="margin-left: 0.85em" class="display">
               {{ display }}
             </div>
           </div>
@@ -45,20 +45,7 @@
           </div>
         </div>
 
-        <div class="col s12" style="margin-left: -0.5em;">
-          <p class="range-field">
-            <input
-              id="slider"
-              name="slider"
-              type="range"
-              min="20"
-              max="500"
-              step="5"
-              ref="slider"
-              v-model="current"
-            />
-          </p>
-        </div>
+        
       </div>
     </div>
   </div>
@@ -70,19 +57,20 @@ import { mapGetters, mapMutations } from 'vuex'
 
 export default Vue.extend({
   name: 'setting-screen-tooltip',
+  props: ['token'],
   data: () => ({
-    slider: null,
-    current: 0,
-
+    tokens: [ 'I' , 'II', 'III'],
+    tokenLabel: '',
+    
     amount: 0,
     amountString: '',
     display: 0,
-    min: 42,
-    max: 542,
-    step: 10
+    min: 0,
+    max: 10,
+    step: 1
   }),
   mounted() {
-    this.setNumber(this.amount.toString())
+
   },
   methods: {
     setNumber(num) {
@@ -95,41 +83,48 @@ export default Vue.extend({
       if (this.amount > this.max) this.amount = this.max
       this.amountString = this.amount.toString()
       this.display = this.amountString
-      this.current = this.amount
+
+      const payload = { index: this.token, value: this.amount}
+      this.setCoinTokens(payload)
+
+      //const coinTokens = this.getCoinTokens
+      //console.log('???????coinTokens-->', coinTokens[0], coinTokens[1], coinTokens[2])
+      
     },
     ...mapMutations({
-      setPaymentLimitMin: 'setPaymentLimitMin',
-      setPaymentLimitMax: 'setPaymentLimitMax'
+      setCoinTokens: 'setCoinTokens'
     })
   },
   computed: {
     ...mapGetters({
-      getPaymentLimitMin: 'getPaymentLimitMin',
-      getPaymentLimitMax: 'getPaymentLimitMax'
+      getCoinTokens: 'getCoinTokens'
     })
   },
-  watch: {
-    current(num) {
-      this.amount = parseInt(num)
-      if (this.amount < this.min) this.amount = this.min
-      if (this.amount > this.max) this.amount = this.max
-      this.amountString = this.amount.toString()
-      this.display = this.amountString
-      this.current = this.amount
-
-      this.setPaymentLimitMax(this.amount)
-    }
-  },
   created() {
+    const coinTokens = this.getCoinTokens
+    //console.log('coinTokens-->', coinTokens)
+    /* dev */
+    /* switch (this.token) {
+        case 1:
+          this.tokenLabel = this.tokens[0]
+          this.amount = coinTokens[0]
+          break
+        case 2:
+          this.tokenLabel = this.tokens[1]
+          this.amount = coinTokens[1]
+          break
+        case 3:
+          this.tokenLabel = this.tokens[2]
+          this.amount = coinTokens[2]
+          break  
+        default:
+          break
+      } */
+      this.tokenLabel = this.tokens[this.token - 1]
+      this.amount = coinTokens[this.token - 1]
+      this.display = this.amount.toString()
 
-    const paymentLimitMin = this.getPaymentLimitMin
-    this.min = paymentLimitMin
-
-    const paymentLimitMax = this.getPaymentLimitMax
-    this.max = paymentLimitMax 
-    
-    this.amount = paymentLimitMax
-    this.display = this.amount.toString()
+    /*     */
 
 
   },

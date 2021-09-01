@@ -1,22 +1,18 @@
 <template>
   <div>
-        <div class="row item">
-          <div class="col s8 programm">Программа</div>
-          <div class="col s3">цена за 1 мин</div>
-          <div class="col s1">₽</div>
-        </div>
+    <div class="row item">
+      <div class="col s8 programm">Программа</div>
+      <div class="col s3">цена за 1 мин</div>
+      <div class="col s1">₽</div>
+    </div>
 
-        <ul>
-        <CostItem
-          v-for="(cost, index) in costs"
-          :cost="cost"
-          :key="index"
-        />
-        </ul>
+    <ul>
+      <CostItem v-for="(cost, index) in costs" :cost="cost" :key="index" />
+    </ul>
   </div>
 </template>
 
-<script  >
+<script>
 import Vue from 'vue'
 /* import paginationMixin from '@/mixins/pagination.mixin' */
 import CostItem from '@/components/CostItem'
@@ -24,22 +20,20 @@ import CostItem from '@/components/CostItem'
 export default Vue.extend({
   name: 'costlist',
   //mixins: [paginationMixin],
-  props: ["costs"],
+  props: ['costs'],
   components: {
-    CostItem,
+    CostItem
   },
   mounted() {
-    console.log('++this.costs mounted!!!-->',this.costs[4])
+    console.log('++this.costs mounted!!!-->', this.costs[4])
   },
   created() {
     console.log('++this.costs created!!!-->', this.costs[4])
   }
-
 })
-
 </script>
 
-<style  scoped>
+<style scoped>
 .row {
   font-size: 2rem;
   color: white;
@@ -52,19 +46,17 @@ export default Vue.extend({
   width: 92%;
 }
 
-
-
 ul {
   padding-top: 0rem;
 }
-ul li{
-    list-style:none;
-    padding: 30px;/* 13px; */
-    background: #121212;
+ul li {
+  list-style: none;
+  padding: 30px; /* 13px; */
+  background: #121212;
 }
-ul li:nth-child(even){
-    color: #00b9e3; /* #fff; */
-    background:#212121;
+ul li:nth-child(even) {
+  color: #00b9e3; /* #fff; */
+  background: #212121;
 }
 /*  */
 .footer-panel {
@@ -79,6 +71,4 @@ ul li:nth-child(even){
   background: #121212;
 }
 /*  */
-
 </style>
-
