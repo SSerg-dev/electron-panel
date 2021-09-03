@@ -1,6 +1,5 @@
 <template>
   <div class="col s6">
-    <!-- currency currencies -->
     <div
       class="card grey lighten-3"
       style="
@@ -15,9 +14,13 @@
         <span class="card-title">Валюта:</span>
         <div class="input-field">
           <select class="page-title white-text" ref="select" v-model="current">
-            <option v-for="(с, index) in currencies" :key="index" :value="с.id">
+            <option v-for="(c, index) in currencies" :key="index" :value="c.id">
+              <!-- Countries country -->
+              <!-- Languages language -->
               <div class="dropdown-setting">
-                {{ с.title }}
+                {{ c.emoji }}
+                {{ c.currency }}
+                {{ c.symbol }}
               </div>
             </option>
           </select>
@@ -37,13 +40,11 @@ export default Vue.extend({
     select: null,
     current: null,
     title: '',
+    emoji: '',
+    currency: '',
+    symbol: '',
 
-    currencies: [
-      { id: 1, title: 'Российский рубль' },
-      { id: 2, title: 'Английский фунт' },
-      { id: 3, title: 'Белорусский рубль' },
-      { id: 4, title: 'Евро' }
-    ]
+    currencies: []
   }),
   mounted() {
     this.select = M.FormSelect.init(this.$refs.select, {
@@ -53,26 +54,45 @@ export default Vue.extend({
   },
   methods: {
     ...mapGetters({
-      getDefaultCurrency: 'getDefaultCurrency'
+      getDefaultCurrency: 'getDefaultCurrency',
+      getLanguageNatives: 'getLanguageNatives'
     })
   },
   watch: {
     current(currencyId) {
-      //console.log('currencyId-->', currencyId)
-      const { id, title } = this.currencies.find(c => c.id === currencyId)
+      const { id, title, key, emoji, currency, symbol } = this.currencies.find(
+        c => c.id === currencyId
+      )
       this.select = title
     }
   },
   created() {
+    // 'RUB'
+    //this.currencies = this.getLanguageNatives()
+
+    this.currencies = this.getLanguageNatives().filter(
+      c => c.currency !== 'EUR'
+    )
+
+    if (this.getLanguageNatives().filter(c => c.currency === 'EUR').length > 0)
+      this.currencies.push({
+        id: 999,
+        title: 'EUR',
+        key: 'EUR',
+        emoji: '🇪🇺',
+        currency: 'EUR',
+        symbol: '€'
+      })
+
+    let index
     const defaultCurrency = this.getDefaultCurrency()
-    /* dev */
-    if(defaultCurrency.title === 'Российский рубль') {
-      this.current = 1
-      this.select = 'Российский рубль'  
-    }
-    /* const { id, title } = this.currencies[defaultCurrency]
+    if (defaultCurrency.title.toUpperCase() === 'RUB') index = 0
+
+    const { id, title, key, emoji, currency, symbol } = this.currencies[index]
     this.current = id
-    this.select = title */
+    this.select = title
+    // this.emoji = emoji
+    ;(this.currency = currency), (this.symbol = symbol)
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {

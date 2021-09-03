@@ -9,7 +9,6 @@
       border-bottom-left-radius: 2rem;
       border-right-style: hidden;
       "
-      
     >
       <div class="card-content black-text">
         <span class="card-title">Язык:</span>
@@ -19,7 +18,9 @@
               <!-- Countries country -->
               <!-- Languages language -->
               <div class="dropdown-setting">
+                {{ l.emoji }}
                 {{ l.title }}
+                <!-- {{ l.currency}} -->
               </div>
             </option>
           </select>
@@ -39,6 +40,9 @@ export default Vue.extend({
     select: null,
     current: null,
     title: '',
+    emoji: '',
+    currency: '',
+    symbol: '',
 
     languages: []
   }),
@@ -60,7 +64,9 @@ export default Vue.extend({
   },
   watch: {
     current(languageId) {
-      const { id, title, key } = this.languages.find(l => l.id === languageId)
+      const { id, title, key, emoji, currency, symbol } = this.languages.find(
+        l => l.id === languageId
+      )
       this.select = title
 
       this.setLanguageItem(key)
@@ -68,14 +74,17 @@ export default Vue.extend({
   },
   created() {
     this.languages = this.getLanguageNatives()
-    console.log('this.languages-->', JSON.stringify(this.languages) )
 
     let index
     if (this.getDefaultLanguage().toUpperCase() === 'RU') index = 0
-
-    const { id, title, key } = this.languages[index]
+    const { id, title, key, emoji, currency, symbol } = this.languages[index]
     this.current = id
     this.select = title
+    this.emoji = emoji
+    this.currency = currency
+    this.symbol = symbol
+
+    //console.log('!!++currency-->', this.current, this.select, this.emoji, this.currency)
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {

@@ -39,7 +39,7 @@ export default {
     getDefaultCurrency(state) {
       /* dev */
       //return state.config.currency
-      return { id: 1, title: 'Российский рубль' }
+      return { id: 1, title: 'RUB' }
     },
     getDefaultPanelNumber(state) {
       return state.config.index
