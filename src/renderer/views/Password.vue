@@ -1,136 +1,173 @@
 <template>
   <div>
-    <section>
-      <form @submit.prevent="">
+    <!-- style="background: yellow;" -->
+    <!-- 
+      border-radius: 5px;
+      box-shadow: 6px 6px 10px #00b9e3;
+      background: yellow;  
+     -->
+     <!-- 
+      style="
+      height: 150px; 
+      border: solid 3px #00B9E3; 
+      border-top-left-radius: 2rem;
+      border-bottom-left-radius: 2rem;
+      border-right-style: hidden;      
+      "
+      -->
+
+    <section>  
+      <form @submit.prevent="" >
         <div
-          class="location"
-          style="padding-top: 40em; padding-right: 0em;margin-left: 0.em;"
+          style="
+          width: 42em; 
+          height: 82em; 
+          margin-left: 16em; 
+          margin-top: 27em;
+          padding-left: 4.5em;
+          padding-botton: 0em;
+          border: solid 3px #00B9E3; 
+          border-radius: 2em;
+          box-shadow: 10px 10px 15px #00b9e3;
+          "
         >
-          <div class="info-title">
-            <p v-if="this.getIsLoginSettingPassword()" align="center">
-              Введите пароль для входа в меню настроек
-            </p>
-            <p v-else align="center">
-              Введите пароль от аккаунта Alles Bonus
-            </p>
-          </div>
+          <table >
+            <tbody>
+              <tr>
+                <td>
+                  <div class="info-title">
+                    <div v-if="this.getIsLoginSettingPassword()">
+                      <p align="center">
+                        Введите пароль <br />
+                        для входа в меню настроек
+                      </p>
+                    </div>
+                    <div v-if="!this.getIsLoginSettingPassword()">
+                      <p align="center">
+                        Введите пароль <br />
+                        от аккаунта Alles Bonus
+                      </p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="display">
+                    <input
+                      type="password"
+                      class="password"
+                      v-model="password"
+                      autocomplete="tel"
+                      required
+                      style="font-size: 7.2rem; width: 3.4em;border-bottom: 8px solid #fff; padding-left: 0.36em; padding-top: 0.2em;"
+                    />
+                  </div>
+                </td>
+              </tr>
 
-          <div class="display" style="padding-left: 4em"> 
-            <input
-              type="password"
-              class="password"
-              v-model="password"
-              autocomplete="tel"
-              required
-              style="font-size: 7.2rem; height: 8rem; border-bottom: 6px solid #fff; padding-left: 0.4em"
-              
-            />
-          </div>
+              <tr>
+                <!-- row 01 -->
+                <td>
+                  <button class="btn" @click="setNumber('1')">
+                    <!-- <img src="@/assets/svg/k1-up.svg" /> -->
+                    <img src="imgs/key/k1-up.png" />
+                  </button>
+                </td>
+                <td>
+                  <button class="btn" @click="setNumber('2')">
+                    <!-- <img src="@/assets/svg/k2-up.svg" /> -->
+                    <img src="imgs/key/k2-up.png" />
+                  </button>
+                </td>
+                <td>
+                  <button class="btn" @click="setNumber('3')">
+                    <!-- <img src="@/assets/svg/k3-up.svg" /> -->
+                    <img src="imgs/key/k3-up.png" />
+                  </button>
+                </td>
+              </tr>
 
-          <div class="row" style="padding-top: 10em;">
-            <div class="col s6 num">
-              <table>
-                <tbody>
-                  <tr>
-                    <td>
-                      <button class="btn" @click="setNumber('1')">
-                        <!-- <img src="@/assets/svg/k1-up.svg" /> -->
-                        <img src="imgs/key/k1-up.png" />
-                      </button>
-                    </td>
-                    <td>
-                      <button class="btn" @click="setNumber('2')">
-                        <!-- <img src="@/assets/svg/k2-up.svg" /> -->
-                        <img src="imgs/key/k2-up.png" />
-                      </button>
-                    </td>
-                    <td>
-                      <button class="btn" @click="setNumber('3')">
-                        <!-- <img src="@/assets/svg/k3-up.svg" /> -->
-                        <img src="imgs/key/k3-up.png" />
-                      </button>
-                    </td>
-                  </tr>
+              <tr>
+                <td>
+                  <button class="btn" @click="setNumber('4')">
+                    <!-- <img src="@/assets/svg/k4-up.svg" /> -->
+                    <img src="imgs/key/k4-up.png" />
+                  </button>
+                </td>
+                <td>
+                  <button class="btn" @click="setNumber('5')">
+                    <!-- <img src="@/assets/svg/k5-up.svg" /> -->
+                    <img src="imgs/key/k5-up.png" />
+                  </button>
+                </td>
+                <td>
+                  <button class="btn" @click="setNumber('6')">
+                    <!-- <img src="@/assets/svg/k6-up.svg" /> -->
+                    <img src="imgs/key/k6-up.png" />
+                  </button>
+                </td>
+                <td></td>
+              </tr>
 
-                  <tr>
-                    <td>
-                      <button class="btn" @click="setNumber('4')">
-                        <!-- <img src="@/assets/svg/k4-up.svg" /> -->
-                        <img src="imgs/key/k4-up.png" />
-                      </button>
-                    </td>
-                    <td>
-                      <button class="btn" @click="setNumber('5')">
-                        <!-- <img src="@/assets/svg/k5-up.svg" /> -->
-                        <img src="imgs/key/k5-up.png" />
-                      </button>
-                    </td>
-                    <td>
-                      <button class="btn" @click="setNumber('6')">
-                        <!-- <img src="@/assets/svg/k6-up.svg" /> -->
-                        <img src="imgs/key/k6-up.png" />
-                      </button>
-                    </td>
-                    <td></td>
-                  </tr>
+              <tr>
+                <td>
+                  <button class="btn" @click="setNumber('7')">
+                    <!-- <img src="@/assets/svg/k7-up.svg" /> -->
+                    <img src="imgs/key/k7-up.png" />
+                  </button>
+                </td>
+                <td>
+                  <button class="btn" @click="setNumber('8')">
+                    <!-- <img src="@/assets/svg/k8-up.svg" /> -->
+                    <img src="imgs/key/k8-up.png" />
+                  </button>
+                </td>
+                <td>
+                  <button class="btn" @click="setNumber('9')">
+                    <!-- <img src="@/assets/svg/k9-up.svg" /> -->
+                    <img src="imgs/key/k9-up.png" />
+                  </button>
+                </td>
+              </tr>
 
-                  <tr>
-                    <td>
-                      <button class="btn" @click="setNumber('7')">
-                        <!-- <img src="@/assets/svg/k7-up.svg" /> -->
-                        <img src="imgs/key/k7-up.png" />
-                      </button>
-                    </td>
-                    <td>
-                      <button class="btn" @click="setNumber('8')">
-                        <!-- <img src="@/assets/svg/k8-up.svg" /> -->
-                        <img src="imgs/key/k8-up.png" />
-                      </button>
-                    </td>
-                    <td>
-                      <button class="btn" @click="setNumber('9')">
-                        <!-- <img src="@/assets/svg/k9-up.svg" /> -->
-                        <img src="imgs/key/k9-up.png" />
-                      </button>
-                    </td>
-                  </tr>
+              <tr>
+                <td>
+                  <button class="btn" @click="setNumber('0')">
+                    <!-- <img src="@/assets/svg/k0-up.svg" /> -->
+                    <img src="imgs/key/k0-up.png" />
+                  </button>
+                </td>
+                <td>
+                  <button class="btn" @click="backspace">
+                    <!-- <img src="@/assets/svg/kdel-up.svg" /> -->
+                    <img src="imgs/key/kdel-up.png" />
+                  </button>
+                </td>
+              </tr>
+              <!-- row button -->
+              <tr>
+                <td>
+                  <div class="pay-up-title">
+                    <div>
+                      <button
+                        style="border: none; background: #121212;"
+                        @click="payUp('password')"
+                      >
+                        <div class="btn pay-up">
+                          <img src="/imgs/pay/pay-up.png" />
 
-                  <tr>
-                    <td>
-                      <button class="btn" @click="setNumber('0')">
-                        <!-- <img src="@/assets/svg/k0-up.svg" /> -->
-                        <img src="imgs/key/k0-up.png" />
+                          <div class="button-title-long">
+                            {{ 'ПОДТВЕРДИТЬ' }}
+                          </div>
+                        </div>
                       </button>
-                    </td>
-                    <td>
-                      <button class="btn" @click="backspace">
-                        <!-- <img src="@/assets/svg/kdel-up.svg" /> -->
-                        <img src="imgs/key/kdel-up.png" /> 
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="col s2"></div>
-          </div>
-        </div>
-
-        <div class="pay-up-title">
-          <div>
-            <button
-              style="margin-left: -4.0em; border: none; background: #121212; width: 0px"
-              @click="payUp('password')"
-            >
-              <div class="btn pay-up">
-                <img src="/imgs/pay/pay-up.png" />
-
-                <div style="padding-right: 3.2em;" class="button-title-long">
-                  {{ 'ПОДТВЕРДИТЬ' }}
-                </div>
-              </div>
-            </button>
-          </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </form>
     </section>
@@ -145,7 +182,7 @@ export default {
   name: 'bonus-bill',
   data: () => ({
     password: '',
-    passwordLength: 8,
+    passwordLength: 6,
     totString: '',
     settingPassword: ''
   }),
@@ -180,8 +217,7 @@ export default {
       ) {
         this.$router.push('/setting')
         this.setIsLoginSettingPassword(false)
-      } 
-      else if (!this.getIsLoginSettingPassword()) {
+      } else if (!this.getIsLoginSettingPassword()) {
         this.setLoginBonusPassword(this.password)
         //this.setIsPayBonusMoney(true)
         this.$router.push('/card')
@@ -210,11 +246,11 @@ export default {
   width: 100%;
   padding-top: 0em;
   padding-left: 0em;
-  padding-right: 2em;
+  padding-right: 0em;
   padding-bottom: 0em;
 
-  margin-top: -4em;
-  margin-left: -3.5em;
+  margin-top: 0em;
+  margin-left: -7em;
   font-size: 3em;
 
   color: #ffffff;
@@ -246,9 +282,9 @@ export default {
 /* dev */
 .pay-up-title {
   position: absolute;
-  padding-left: 14em;
-  margin-top: 0em;
-  margin-left: 0em;
+  /* padding-left: 3em; */
+  margin-top: -3em;
+  margin-left: 3.2em;
   z-index: 1;
 }
 .num {
@@ -265,17 +301,21 @@ td {
 
   border-color: #121212;
 }
+tr {
+  padding-left: 0em;
+}
 .btn {
   background-color: #121212;
+  
 }
 .pay-up {
-  margin-top: 4rem;
-  margin-left: 11rem;
+  margin-top: 4em;
+  margin-left: 0em;
 }
 .button-title-long {
   position: relative;
   top: -8rem;
-  left: 5rem;
+  left: 3rem;
   color: black;
   font-size: 3rem;
   font-weight: bold;

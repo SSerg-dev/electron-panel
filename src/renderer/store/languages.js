@@ -19,7 +19,21 @@ export default {
       en: ['English', 'English'],
       kk: ['Kazakh', 'Қазақша'],
       de: ['German', 'Deutsch'],
-      fr: ['French', 'Français']
+      fr: ['French', 'Français'],
+      tr: ['Turkish', 'Türkçe'],
+      ja: ['Japanese', '日本語'],
+      nl: ['Dutch', 'Nederlands'],
+      fi: ['Finnish', 'Suomi'],
+      sl: ['Slovene', 'Slovenščina'],
+      sk: ['Slovak', 'Slovenčina'],
+      sr: ['Serbian', 'Српски'],
+      no: ['Norwegian', 'Norsk'],
+      bg: ['Bulgarian', 'Български'],
+      el: ['Greek', 'Ελληνικά'],
+      da: ['Danish', 'Dansk'],
+      ro: ['Romanian', 'Română'],
+      sv: ['Swedish', 'Svenska'],
+      pt: ['Portuguese', 'Português']
     }
   } /* end state */,
   getters: {

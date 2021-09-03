@@ -391,9 +391,9 @@ export default new Vuex.Store({
     getSecondsGotoPopupMenu(state) {
       return state.secondsGotoPopupMenu
     },
-    /* getSecondsGotoProgramMenu(state) {
+    getSecondsGotoProgramMenu(state) {
       return state.secondsGotoProgramMenu
-    }, */
+    },
     // secondsStatusTimer
     /* getSecondsStatusTimer(state) {
       return state.secondsStatusTimer

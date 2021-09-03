@@ -52,7 +52,7 @@ export default Vue.extend({
       //getWetBusyPanel: 'getWetBusyPanel'
     })
   },
-  
+
   methods: {
     ...mapGetters({
       // dev
@@ -96,10 +96,10 @@ export default Vue.extend({
       const response = await this.storage.getClient(method, this.options, type)
       if (+response.status === 200) {
         this.setIsPing(true)
-         //this.$message(`ping ${this.url} выполнен успешно`)
+        //this.$message(`ping ${this.url} выполнен успешно`)
       } else {
         this.setIsPing(false)
-         //this.$message(`ping ${this.url} недоступен`)
+        //this.$message(`ping ${this.url} недоступен`)
       }
       this.$message(`ping ${this.getIsPing()}`)
     },

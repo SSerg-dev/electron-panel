@@ -12,22 +12,22 @@ export default {
       'KZ', // +
       'DE', // +
       'FR', // +
-      'TR',
-      'JP',
-      'BY',
-      'BE',
-      'FI',
-      'SI',
-      'SK',
-      'RS',
-      'NO',
-      'BG',
-      'GR',
-      'DK',
-      'RO',
-      'SE',
-      'PT',
-      'NL',
+      'TR', // +
+      'JP', // +
+      'BY', // +
+      'BE', // + ??
+      'FI', // +
+      'SI', // +
+      'SK', // +
+      'RS', // +
+      'NO', // +
+      'BG', // +
+      'GR', // +
+      'DK', // +
+      'RO', // +
+      'SE', // +
+      'PT', // +
+      'NL', // + ??
       'MD',
       'IT',
       'HU',
@@ -61,7 +61,22 @@ export default {
       'US',
       'KZ',
       'DE',
-      'FR'
+      'FR',
+      'TR',
+      'JP',
+      'BE',
+      'FI',
+      'SI',
+      'SK',
+      'RS',
+      'NO',
+      'BG',
+      'GR',
+      'DK',
+      'RO',
+      'SE',
+      'PT',
+      'NL'
     ],
     country: {},
 
@@ -282,6 +297,269 @@ export default {
         languages: ['fr', 'frp', 'br', 'co', 'ca', 'eu', 'oc'],
         emoji: '🇫🇷',
         emojiU: 'U+1F1EB U+1F1F7'
+      },
+      TR: {
+        name: 'Turkey',
+        native: 'Türkiye',
+        phone: '90',
+        continent: 'AS',
+        capital: 'Ankara',
+        currency: {
+          alphabetic_code: 'TRY',
+          symbol: '₺',
+          numeric_code: '949',
+          name: 'Turkish Lira',
+          minor_unit: '2'
+        },
+        // languages: ['tr-TR', 'ku', 'diq', 'az', 'av'],
+        languages: ['tr', 'ku', 'diq', 'az', 'av'],
+        emoji: '🇹🇷',
+        emojiU: 'U+1F1F9 U+1F1F7'
+      },
+      JP: {
+        name: 'Japan',
+        native: '日本',
+        phone: '81',
+        continent: 'AS',
+        capital: 'Tokyo',
+        currency: {
+          alphabetic_code: 'JPY',
+          symbol: '¥',
+          numeric_code: '392',
+          name: 'Yen',
+          minor_unit: '0'
+        },
+        languages: ['ja'],
+        emoji: '🇯🇵',
+        emojiU: 'U+1F1EF U+1F1F5'
+      },
+      BE: {
+        name: 'Belgium',
+        native: 'België',
+        phone: '32',
+        continent: 'EU',
+        capital: 'Brussels',
+        currency: {
+          alphabetic_code: 'EUR',
+          symbol: '€',
+          numeric_code: '978',
+          name: 'Euro',
+          minor_unit: '2'
+        },
+        // languages: ['nl-BE', 'fr-BE', 'de-BE'],
+        languages: ['nl', 'fr-BE', 'de-BE'],
+        emoji: '🇧🇪',
+        emojiU: 'U+1F1E7 U+1F1EA'
+      },
+      FI: {
+        name: 'Finland',
+        native: 'Suomi',
+        phone: '358',
+        continent: 'EU',
+        capital: 'Helsinki',
+        currency: {
+          alphabetic_code: 'EUR',
+          symbol: '€',
+          numeric_code: '978',
+          name: 'Euro',
+          minor_unit: '2'
+        },
+        //languages: ['fi-FI', 'sv-FI', 'smn'],
+        languages: ['fi', 'sv-FI', 'smn'],
+        emoji: '🇫🇮',
+        emojiU: 'U+1F1EB U+1F1EE'
+      },
+      SI: {
+        name: 'Slovenia',
+        native: 'Slovenija',
+        phone: '386',
+        continent: 'EU',
+        capital: 'Ljubljana',
+        currency: {
+          alphabetic_code: 'EUR',
+          symbol: '€',
+          numeric_code: '978',
+          name: 'Euro',
+          minor_unit: '2'
+        },
+        languages: ['sl', 'sh'],
+        emoji: '🇸🇮',
+        emojiU: 'U+1F1F8 U+1F1EE'
+      },
+      SK: {
+        name: 'Slovakia',
+        native: 'Slovensko',
+        phone: '421',
+        continent: 'EU',
+        capital: 'Bratislava',
+        currency: {
+          alphabetic_code: 'EUR',
+          symbol: '€',
+          numeric_code: '978',
+          name: 'Euro',
+          minor_unit: '2'
+        },
+        languages: ['sk', 'hu'],
+        emoji: '🇸🇰',
+        emojiU: 'U+1F1F8 U+1F1F0'
+      },
+      RS: {
+        name: 'Serbia',
+        native: 'Србија',
+        phone: '381',
+        continent: 'EU',
+        capital: 'Belgrade',
+        currency: {
+          alphabetic_code: 'RSD',
+          symbol: 'Дин.',
+          numeric_code: '941',
+          name: 'Serbian Dinar',
+          minor_unit: '2'
+        },
+        languages: ['sr', 'hu', 'bs', 'rom'],
+        emoji: '🇷🇸',
+        emojiU: 'U+1F1F7 U+1F1F8'
+      },
+      NO: {
+        name: 'Norway',
+        native: 'Norge',
+        phone: '47',
+        continent: 'EU',
+        capital: 'Oslo',
+        currency: {
+          alphabetic_code: 'NOK',
+          symbol: 'kr',
+          numeric_code: '578',
+          name: 'Norwegian Krone',
+          minor_unit: '2'
+        },
+        languages: ['no', 'nb', 'nn', 'se', 'fi'],
+        emoji: '🇳🇴',
+        emojiU: 'U+1F1F3 U+1F1F4'
+      },
+      BG: {
+        name: 'Bulgaria',
+        native: 'България',
+        phone: '359',
+        continent: 'EU',
+        capital: 'Sofia',
+        currency: {
+          alphabetic_code: 'BGN',
+          symbol: 'лв',
+          numeric_code: '975',
+          name: 'Bulgarian Lev',
+          minor_unit: '2'
+        },
+        languages: ['bg', 'tr-BG', 'rom'],
+        emoji: '🇧🇬',
+        emojiU: 'U+1F1E7 U+1F1EC'
+      },
+      GR: {
+        name: 'Greece',
+        native: 'Ελλάδα',
+        phone: '30',
+        continent: 'EU',
+        capital: 'Athens',
+        currency: {
+          alphabetic_code: 'EUR',
+          symbol: '€',
+          numeric_code: '978',
+          name: 'Euro',
+          minor_unit: '2'
+        },
+        // languages: ['el-GR', 'en', 'fr'],
+        languages: ['el', 'en', 'fr'],
+        emoji: '🇬🇷',
+        emojiU: 'U+1F1EC U+1F1F7'
+      },
+      DK: {
+        name: 'Denmark',
+        native: 'Danmark',
+        phone: '45',
+        continent: 'EU',
+        capital: 'Copenhagen',
+        currency: {
+          alphabetic_code: 'DKK',
+          symbol: 'kr',
+          numeric_code: '208',
+          name: 'Danish Krone',
+          minor_unit: '2'
+        },
+        //languages: ['da-DK', 'en', 'fo', 'de-DK'],
+        languages: ['da', 'en', 'fo', 'de-DK'],
+        emoji: '🇩🇰',
+        emojiU: 'U+1F1E9 U+1F1F0'
+      },
+      RO: {
+        name: 'Romania',
+        native: 'România',
+        phone: '40',
+        continent: 'EU',
+        capital: 'Bucharest',
+        currency: {
+          alphabetic_code: 'RON',
+          symbol: 'lei',
+          numeric_code: '946',
+          name: 'Romanian Leu',
+          minor_unit: '2'
+        },
+        languages: ['ro', 'hu', 'rom'],
+        emoji: '🇷🇴',
+        emojiU: 'U+1F1F7 U+1F1F4'
+      },
+      SE: {
+        name: 'Sweden',
+        native: 'Sverige',
+        phone: '46',
+        continent: 'EU',
+        capital: 'Stockholm',
+        currency: {
+          alphabetic_code: 'SEK',
+          symbol: 'kr',
+          numeric_code: '752',
+          name: 'Swedish Krona',
+          minor_unit: '2'
+        },
+        // languages: ['sv-SE', 'se', 'sma', 'fi-SE'],
+        languages: ['sv', 'se', 'sma', 'fi-SE'],
+        emoji: '🇸🇪',
+        emojiU: 'U+1F1F8 U+1F1EA'
+      },
+      PT: {
+        name: 'Portugal',
+        native: 'Portugal',
+        phone: '351',
+        continent: 'EU',
+        capital: 'Lisbon',
+        currency: {
+          alphabetic_code: 'EUR',
+          symbol: '€',
+          numeric_code: '978',
+          name: 'Euro',
+          minor_unit: '2'
+        },
+        // languages: ['pt-PT', 'mwl'],
+        languages: ['pt', 'mwl'],
+        emoji: '🇵🇹',
+        emojiU: 'U+1F1F5 U+1F1F9'
+      },
+      NL: {
+        name: 'Netherlands',
+        native: 'Nederland',
+        phone: '31',
+        continent: 'EU',
+        capital: 'Amsterdam',
+        currency: {
+          alphabetic_code: 'EUR',
+          symbol: '€',
+          numeric_code: '978',
+          name: 'Euro',
+          minor_unit: '2'
+        },
+        // languages: ['nl-NL', 'fy-NL'],
+        languages: ['nl', 'fy-NL'],
+        emoji: '🇳🇱',
+        emojiU: 'U+1F1F3 U+1F1F1'
       }
 
       /*     */
