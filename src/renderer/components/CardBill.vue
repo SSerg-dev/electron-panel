@@ -1,10 +1,7 @@
 <template>
   <div>
-    <section>
+    <section style="margin-top: 4em; margin-left: -5em;">
       <form @submit.prevent="">
-        <!-- ////////////////////// -->
-        <!-- {{ `${response.profile.firstname} ${response.profile.lastname}` }} -->
-        
         <div v-if="getIsPayCardMoney()" align="center" class="page-title">
           <!-- v-if="this.messageIndex > -1" -->
           <div
@@ -16,23 +13,14 @@
               {{ `${this.messages[0]}` }}
               {{ `${this.firstname}` }}
             </p>
-            
+
             <p align="center" style="font-size: 140px;">
               {{ this.amountString }}
             </p>
-            <!-- <p align="center">
-              {{ `${this.messages[1]}` }}
-            </p> -->
-            
           </div>
-
-
-          
         </div>
 
-        <!-- ////////////////////// -->
-
-        <table>
+        <!-- <table>
           <tbody>
             <tr>
               <td>
@@ -43,7 +31,6 @@
 
               <td>
                 <button class="btn" @click="setNumber('-10')">
-                  <!-- <img src="@/assets/svg/tdtd.svg" /> -->
                   <img src="imgs/key/tdtd.png" />
                 </button>
               </td>
@@ -52,7 +39,6 @@
               </td>
               <td>
                 <button class="btn" @click="setNumber('10')">
-                  <!-- <img src="@/assets/svg/kinc10-up.svg" /> -->
                   <img src="imgs/key/kinc10-up.png" />
                 </button>
               </td>
@@ -65,7 +51,6 @@
             <tr>
               <td>
                 <button class="btn" @click="setNumber('50')">
-                  <!-- <img src="@/assets/svg/sum50-up.svg" /> -->
                   <img src="imgs/key/sum50-up.png" />
                 </button>
               </td>
@@ -73,26 +58,22 @@
             <tr>
               <td>
                 <button class="btn" @click="setNumber('100')">
-                  <!-- <img src="@/assets/svg/sum100-up.svg" /> -->
                   <img src="imgs/key/sum100-up.png" />
                 </button>
               </td>
               <td></td>
               <td>
                 <button class="btn" @click="setNumber('1')">
-                  <!-- <img src="@/assets/svg/k1-up.svg" /> -->
                   <img src="imgs/key/k1-up.png" />
                 </button>
               </td>
               <td>
                 <button class="btn" @click="setNumber('2')">
-                  <!-- <img src="@/assets/svg/k2-up.svg" /> -->
                   <img src="imgs/key/k2-up.png" />
                 </button>
               </td>
               <td>
                 <button class="btn" @click="setNumber('3')">
-                  <!-- <img src="@/assets/svg/k3-up.svg" /> -->
                   <img src="imgs/key/k3-up.png" />
                 </button>
               </td>
@@ -101,26 +82,22 @@
             <tr>
               <td>
                 <button class="btn" @click="setNumber('150')">
-                  <!-- <img src="@/assets/svg/sum150-up.svg" /> -->
                   <img src="imgs/key/sum150-up.png" />
                 </button>
               </td>
               <td></td>
               <td>
                 <button class="btn" @click="setNumber('4')">
-                  <!-- <img src="@/assets/svg/k4-up.svg" /> -->
                   <img src="imgs/key/k4-up.png" />
                 </button>
               </td>
               <td>
                 <button class="btn" @click="setNumber('5')">
-                  <!-- <img src="@/assets/svg/k5-up.svg" /> -->
                   <img src="imgs/key/k5-up.png" />
                 </button>
               </td>
               <td>
                 <button class="btn" @click="setNumber('6')">
-                  <!-- <img src="@/assets/svg/k6-up.svg" /> -->
                   <img src="imgs/key/k6-up.png" />
                 </button>
               </td>
@@ -130,26 +107,22 @@
             <tr>
               <td>
                 <button class="btn" @click="setNumber('200')">
-                  <!-- <img src="@/assets/svg/sum200-up.svg" /> -->
                   <img src="imgs/key/sum200-up.png" />
                 </button>
               </td>
               <td></td>
               <td>
                 <button class="btn" @click="setNumber('7')">
-                  <!-- <img src="@/assets/svg/k7-up.svg" /> -->
                   <img src="imgs/key/k7-up.png" />
                 </button>
               </td>
               <td>
                 <button class="btn" @click="setNumber('8')">
-                  <!-- <img src="@/assets/svg/k8-up.svg" /> -->
                   <img src="imgs/key/k8-up.png" />
                 </button>
               </td>
               <td>
                 <button class="btn" @click="setNumber('9')">
-                  <!-- <img src="@/assets/svg/k9-up.svg" /> -->
                   <img src="imgs/key/k9-up.png" />
                 </button>
               </td>
@@ -159,7 +132,6 @@
             <tr>
               <td>
                 <button class="btn" @click="setNumber('250')">
-                  <!-- <img src="@/assets/svg/sum250-up.svg" /> -->
                   <img src="imgs/key/sum250-up.png" />
                 </button>
               </td>
@@ -167,13 +139,11 @@
               <td></td>
               <td>
                 <button class="btn" @click="setNumber('0')">
-                  <!-- <img src="@/assets/svg/k0-up.svg" /> -->
                   <img src="imgs/key/k0-up.png" />
                 </button>
               </td>
               <td>
                 <button class="btn" @click="backspace">
-                  <!-- <img src="@/assets/svg/kdel-up.svg" /> -->
                   <img src="imgs/key/kdel-up.png" />
                 </button>
               </td>
@@ -181,32 +151,170 @@
             <tr>
               <td>
                 <button class="btn" @click="setNumber('500')">
-                  <!-- <img src="@/assets/svg/sum500-up.svg" /> -->
                   <img src="imgs/key/sum500-up.png" />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table> -->
+
+        <!-- <button
+          style="border: none; background: #121212; width: 0px; margin-left: -4em;"
+          @click="payUp"
+        >
+          <router-link v-if="this.amount" to="/status" class="btn black pay-up">
+            <img src="/imgs/pay/pay-up.png" /><td>AAA</td>
+            <div class="button-title-long">{{ 'ЗАЧИСЛИТЬ' }}</div>
+          </router-link>
+
+        </button> -->
+
+        <!-- new component -->
+        <table style="background: yellow">
+          <tbody>
+            
+            <!-- row 01 -->
+            <!-- <tr>
+              <td>
+                <div class="display">{{ display }}</div>
+              </td>
+            </tr> -->
+            <!-- row 02 -->
+            <tr>
+              <td>
+                <button class="btn" @click="setNumber('-10')">
+                  <img src="imgs/key/tdtd.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('1')">
+                  <img src="imgs/key/k1-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('2')">
+                  <img src="imgs/key/k2-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('3')">
+                  <img src="imgs/key/k3-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('10')">
+                  <img src="imgs/key/kinc10-up.png" />
+                </button>
+              </td>
+            </tr>
+            <!-- row 03 -->
+            <tr>
+              <td>
+                <button class="btn" @click="setNumber('25')">
+                  <img src="imgs/key/sum25-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('4')">
+                  <img src="imgs/key/k4-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('5')">
+                  <img src="imgs/key/k5-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('6')">
+                  <img src="imgs/key/k6-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('200')">
+                  <img src="imgs/key/sum200-up.png" />
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button class="btn" @click="setNumber('50')">
+                  <img src="imgs/key/sum50-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('7')">
+                  <img src="imgs/key/k7-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('8')">
+                  <img src="imgs/key/k8-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('9')">
+                  <img src="imgs/key/k9-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('250')">
+                  <img src="imgs/key/sum250-up.png" />
+                </button>
+              </td>
+            </tr>
+            <!-- row 04 -->
+            <tr>
+              <td>
+                <button class="btn" @click="setNumber('100')">
+                  <img src="imgs/key/sum100-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('0')">
+                  <img src="imgs/key/k0-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('0')">
+                  <img src="imgs/key/k0-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="backspace">
+                  <img src="imgs/key/kdel-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('500')">
+                  <img src="imgs/key/sum500-up.png" />
+                </button>
+              </td>
+            </tr>
+            <!-- row 05 -->
+            <tr>
+              <td>
+                <button class="btn" @click="setNumber('150')">
+                  <img src="imgs/key/sum150-up.png" />
+                </button>
+              </td>
+              <td>
+                <button class="btn" @click="setNumber('999')">
+                  <img src="imgs/key/sum150-up.png" />
+                  <!-- <img src="/imgs/pay/pay-up.png" /> -->
                 </button>
               </td>
               <td></td>
               <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                <button class="btn" @click="setNumber('500')">
+                  <img src="imgs/key/sum500-up.png" />
+                </button>
+              </td>
+              
             </tr>
           </tbody>
-        </table>  
-    
-        <button
-          style="border: none; background: #121212; width: 0px"
-          @click="payUp"
-        >
-          <router-link v-if="this.amount" to="/status" class="btn black pay-up">
-            <img src="/imgs/pay/pay-up.png" />
-            <div class="button-title-long">{{ 'ЗАЧИСЛИТЬ' }}</div>
-          </router-link>
-
-          <!-- <router-link v-else to="/card" class="btn black pay-up">
-            <img src="/imgs/pay/pay-up.png" />
-            <div class="button-title-long">{{ 'ЗАЧИСЛИТЬ' }}</div>
-          </router-link> -->
-        </button>  
+        </table>
+        <!-- end new component -->
       </form>
     </section>
   </div>
@@ -228,7 +336,7 @@ export default {
     length: 0,
     title: '',
     body: '',
-  
+
     // dev
     client: 'fetch',
     url: 'https://192.168.1.3/',
@@ -246,7 +354,6 @@ export default {
     this.storage = new Storage(this.client, this.url)
     // console.log('this.firstname-->', this.firstname)
     this.payBonusMoney()
-    
   },
 
   methods: {
@@ -330,7 +437,6 @@ export default {
       if (this.amount < 0) this.amount = 0
       this.amountString = this.amount.toString()
       this.display = this.amountString
-      
     },
 
     /* deposit() {}, */
@@ -375,18 +481,20 @@ export default {
 table,
 th,
 td {
-  /* border: solid; */
+  
   border: none;
   margin: 0em;
-  /* margin-bottom: 1em; */
-  /* padding-bottom: 6em; */
   padding: 0rem;
   height: 150px;
-  width: 150px;
+  /* width: 150px; */
+  width: 200px;
 
   border-color: #121212;
 }
 .btn {
+  height: 150px;
+  width: 150px;
+  
   background-color: #121212;
   z-index: 1;
 }
@@ -403,7 +511,7 @@ td {
 .button-title-long {
   position: relative;
   top: -8rem;
-  left: 5rem;
+  left: 3rem;
   color: black;
   font-size: 3rem;
   font-weight: bold;

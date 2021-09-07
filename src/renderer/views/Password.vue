@@ -1,37 +1,26 @@
 <template>
-  <div>
-    <!-- style="background: yellow;" -->
-    <!-- 
-      border-radius: 5px;
-      box-shadow: 6px 6px 10px #00b9e3;
-      background: yellow;  
-     -->
-     <!-- 
-      style="
-      height: 150px; 
-      border: solid 3px #00B9E3; 
-      border-top-left-radius: 2rem;
-      border-bottom-left-radius: 2rem;
-      border-right-style: hidden;      
-      "
-      -->
-
-    <section>  
-      <form @submit.prevent="" >
+  <div  class="overlay" id="overlay" style="background: none; height: 112em; padding-top: 14em;">
+    <!-- dev -->
+    <!-- <input style="margin-left: 0em;" class="info-title" onmousemove="this.value = event.clientX+':'+event.clientY"> -->
+    <!-- <input style="margin-left: 0em;" class="info-title" onclick="this.value = event.clientX+':'+event.clientY"> -->
+    <!--     -->
+    <section>
+      <form @submit.prevent="">
         <div
           style="
           width: 42em; 
           height: 82em; 
           margin-left: 16em; 
-          margin-top: 27em;
+          margin-top: 0em;
           padding-left: 4.5em;
           padding-botton: 0em;
           border: solid 3px #00B9E3; 
           border-radius: 2em;
-          box-shadow: 10px 10px 15px #00b9e3;
+          box-shadow: 0px 0px 20px 15px #00b9e3;
+          
           "
         >
-          <table >
+          <table>
             <tbody>
               <tr>
                 <td>
@@ -171,6 +160,7 @@
         </div>
       </form>
     </section>
+    <!-- <input style="margin-left: 0em;" class="info-title" onmousemove="this.value = event.clientX+':'+event.clientY"> -->
   </div>
 </template>
 
@@ -184,17 +174,48 @@ export default {
     password: '',
     passwordLength: 6,
     totString: '',
-    settingPassword: ''
+    settingPassword: '',
+    
+    minX: 190,
+    minY: 370,
+    maxX: 880,
+    maxY: 1600
+
   }),
   mounted() {
+    this.setup()
+
     this.setRouter('/password')
     this.settingPassword = this.getLoginSettingPassword()
   },
   components: {},
   computed: {
-    ...mapGetters({})
+    ...mapGetters({
+      getRouter: 'getRouter'
+    })
   },
   methods: {
+    /* dev */
+    setup() {
+      const overlay = document.getElementById('overlay')
+    overlay.onclick = evt => {
+      if (
+        evt.clientX > this.minX &&
+        evt.clientY > this.minY &&
+        evt.clientX < this.maxX && 
+        evt.clientY < this.maxY
+      ) {
+        // console.log('++overlay inside', evt.clientX, evt.clientY)
+      } 
+      else {
+          this.$router.push('/')
+      }
+    }
+    },
+    pushRouter() {
+      // console.log('+++getRouter-->', this.getRouter)
+      this.$router.push(this.getRouter)
+    },
     ...mapGetters({
       getLoginBonusPassword: 'getLoginBonusPassword',
       getLoginBonusPhone: 'getLoginBonusPhone',
@@ -306,7 +327,6 @@ tr {
 }
 .btn {
   background-color: #121212;
-  
 }
 .pay-up {
   margin-top: 4em;

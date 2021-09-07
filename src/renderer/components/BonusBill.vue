@@ -47,7 +47,6 @@
                   <tr>
                     <td>
                       <button class="btn" @click="setNumber('1')">
-                        <!-- <img src="@/assets/svg/k1-up.svg" /> -->
                         <img src="imgs/key/k1-up.png" />
                       </button>
                     </td>
@@ -157,7 +156,7 @@
 
           <div v-else>
             <button
-              style="margin-left: -4.0em; border: none; background: #121212; width: 0px"
+              style="margin-left: -5.0em; border: none; background: #121212; width: 0px"
               @click="payUp('confirm')"
             >
               <div class="btn pay-up">
@@ -216,10 +215,12 @@ export default {
     */
   }),
   mounted() {
-    // dev
     this.storage = new Storage(this.client, this.url)
-    //if (this.getIsPayBonusMoney())
-    //  this.payBonusMoney()
+    /* dev */
+    // getIsLoginSettingPassword
+    this.setIsLoginSettingPassword(false) 
+    this.setRouter('/bonus')
+
   },
   components: {
     BonusBillQr
@@ -254,7 +255,9 @@ export default {
       setIsAppendBonusMoney: 'setIsAppendBonusMoney',
       setLoginBonusPhone: 'setLoginBonusPhone',
       setLoginBonusPassword: 'setLoginBonusPassword',
-      setAppendBonus: 'setAppendBonus'
+      setAppendBonus: 'setAppendBonus',
+      setIsLoginSettingPassword: 'setIsLoginSettingPassword',
+      setRouter: 'setRouter'
     }),
     ...mapActions({
       updateWetBonusMoney: 'updateWetBonusMoney'
