@@ -1,5 +1,12 @@
 <template>
-  <div  class="overlay" id="overlay" style="background: none; height: 112em; padding-top: 14em;">
+  <!-- id="overlay" -->
+  <div
+    class="overlay"
+    ref="overlay"
+    style="background: none; 
+  height: 112em; 
+  padding-top: 14em;"
+  >
     <!-- dev -->
     <!-- <input style="margin-left: 0em;" class="info-title" onmousemove="this.value = event.clientX+':'+event.clientY"> -->
     <!-- <input style="margin-left: 0em;" class="info-title" onclick="this.value = event.clientX+':'+event.clientY"> -->
@@ -13,7 +20,7 @@
           margin-left: 16em; 
           margin-top: 0em;
           padding-left: 4.5em;
-          padding-botton: 0em;
+          padding-bottom: 0em;
           border: solid 3px #00B9E3; 
           border-radius: 2em;
           box-shadow: 0px 0px 20px 15px #00b9e3;
@@ -175,12 +182,11 @@ export default {
     passwordLength: 6,
     totString: '',
     settingPassword: '',
-    
+
     minX: 190,
     minY: 370,
     maxX: 880,
     maxY: 1600
-
   }),
   mounted() {
     this.setup()
@@ -197,20 +203,19 @@ export default {
   methods: {
     /* dev */
     setup() {
-      const overlay = document.getElementById('overlay')
-    overlay.onclick = evt => {
-      if (
-        evt.clientX > this.minX &&
-        evt.clientY > this.minY &&
-        evt.clientX < this.maxX && 
-        evt.clientY < this.maxY
-      ) {
-        // console.log('++overlay inside', evt.clientX, evt.clientY)
-      } 
-      else {
+      const overlay = this.$refs.overlay
+      overlay.onclick = evt => {
+        if (
+          evt.clientX > this.minX &&
+          evt.clientY > this.minY &&
+          evt.clientX < this.maxX &&
+          evt.clientY < this.maxY
+        ) {
+          return
+        } else {
           this.$router.push('/')
+        }
       }
-    }
     },
     pushRouter() {
       // console.log('+++getRouter-->', this.getRouter)

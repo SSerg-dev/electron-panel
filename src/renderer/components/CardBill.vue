@@ -1,6 +1,32 @@
 <template>
-  <div>
-    <section style="margin-top: 4em; margin-left: -5em;">
+  <div
+    class="overlay"
+    ref="overlay"
+    style="background: none;
+  width: 80em;   
+  height: 90em; 
+  padding-top: 14em;
+  padding-left: 4em;
+  margin-top: -2em;
+  margin-left: -4em;
+  z-index: 999;
+  "
+  >
+    <!-- <input style="margin-left: 0em;" class="info-title" onclick="this.value = event.clientX+':'+event.clientY"> -->
+    <section
+      style="
+          width: 66em; 
+          height: 72em; 
+          margin-left: 0.2em; 
+          margin-top: -6em;
+          padding-left: 1.8em;
+          padding-top: 8em;
+          border: solid 3px #00B9E3; 
+          border-radius: 2em;
+          box-shadow: 0px 0px 20px 15px #00b9e3;  
+          
+    "
+    >
       <form @submit.prevent="">
         <div v-if="getIsPayCardMoney()" align="center" class="page-title">
           <!-- v-if="this.messageIndex > -1" -->
@@ -20,303 +46,638 @@
           </div>
         </div>
 
-        <!-- <table>
-          <tbody>
-            <tr>
-              <td>
-                <button class="btn" @click="setNumber('25')">
-                  <img src="imgs/key/sum25-up.png" /> 
-                </button>
-              </td>
-
-              <td>
-                <button class="btn" @click="setNumber('-10')">
-                  <img src="imgs/key/tdtd.png" />
-                </button>
-              </td>
-              <td>
-                <div class="display">{{ display }}</div>
-              </td>
-              <td>
-                <button class="btn" @click="setNumber('10')">
-                  <img src="imgs/key/kinc10-up.png" />
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
+        <!-- new component -->
+        <!-- style="background: yellow" -->
         <table>
           <tbody>
-            <tr>
-              <td>
-                <button class="btn" @click="setNumber('50')">
-                  <img src="imgs/key/sum50-up.png" />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <button class="btn" @click="setNumber('100')">
-                  <img src="imgs/key/sum100-up.png" />
-                </button>
-              </td>
-              <td></td>
-              <td>
-                <button class="btn" @click="setNumber('1')">
-                  <img src="imgs/key/k1-up.png" />
-                </button>
-              </td>
-              <td>
-                <button class="btn" @click="setNumber('2')">
-                  <img src="imgs/key/k2-up.png" />
-                </button>
-              </td>
-              <td>
-                <button class="btn" @click="setNumber('3')">
-                  <img src="imgs/key/k3-up.png" />
-                </button>
-              </td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>
-                <button class="btn" @click="setNumber('150')">
-                  <img src="imgs/key/sum150-up.png" />
-                </button>
-              </td>
-              <td></td>
-              <td>
-                <button class="btn" @click="setNumber('4')">
-                  <img src="imgs/key/k4-up.png" />
-                </button>
-              </td>
-              <td>
-                <button class="btn" @click="setNumber('5')">
-                  <img src="imgs/key/k5-up.png" />
-                </button>
-              </td>
-              <td>
-                <button class="btn" @click="setNumber('6')">
-                  <img src="imgs/key/k6-up.png" />
-                </button>
-              </td>
-              <td></td>
-            </tr>
-
-            <tr>
-              <td>
-                <button class="btn" @click="setNumber('200')">
-                  <img src="imgs/key/sum200-up.png" />
-                </button>
-              </td>
-              <td></td>
-              <td>
-                <button class="btn" @click="setNumber('7')">
-                  <img src="imgs/key/k7-up.png" />
-                </button>
-              </td>
-              <td>
-                <button class="btn" @click="setNumber('8')">
-                  <img src="imgs/key/k8-up.png" />
-                </button>
-              </td>
-              <td>
-                <button class="btn" @click="setNumber('9')">
-                  <img src="imgs/key/k9-up.png" />
-                </button>
-              </td>
-              <td></td>
-            </tr>
-
-            <tr>
-              <td>
-                <button class="btn" @click="setNumber('250')">
-                  <img src="imgs/key/sum250-up.png" />
-                </button>
-              </td>
-              <td></td>
-              <td></td>
-              <td>
-                <button class="btn" @click="setNumber('0')">
-                  <img src="imgs/key/k0-up.png" />
-                </button>
-              </td>
-              <td>
-                <button class="btn" @click="backspace">
-                  <img src="imgs/key/kdel-up.png" />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <button class="btn" @click="setNumber('500')">
-                  <img src="imgs/key/sum500-up.png" />
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table> -->
-
-        <!-- <button
-          style="border: none; background: #121212; width: 0px; margin-left: -4em;"
-          @click="payUp"
-        >
-          <router-link v-if="this.amount" to="/status" class="btn black pay-up">
-            <img src="/imgs/pay/pay-up.png" /><td>AAA</td>
-            <div class="button-title-long">{{ 'ЗАЧИСЛИТЬ' }}</div>
-          </router-link>
-
-        </button> -->
-
-        <!-- new component -->
-        <table style="background: yellow">
-          <tbody>
-            
             <!-- row 01 -->
-            <!-- <tr>
-              <td>
+            <!--  class="info-title" align="center" -->
+            <tr>
+              <td colspan="5">
                 <div class="display">{{ display }}</div>
               </td>
-            </tr> -->
+            </tr>
             <!-- row 02 -->
             <tr>
               <td>
-                <button class="btn" @click="setNumber('-10')">
-                  <img src="imgs/key/tdtd.png" />
-                </button>
+                <div
+                  @click="setNumber('-10')"
+                  class="card white"
+                  style="
+                  width: 220px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    -10
+                  </div>
+                </div>
               </td>
               <td>
-                <button class="btn" @click="setNumber('1')">
-                  <img src="imgs/key/k1-up.png" />
-                </button>
+                <!-- dev -->
+                <div
+                  @click="setNumber('1')"
+                  class="card white"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    1
+                  </div>
+                </div>
+                <!--     -->
               </td>
               <td>
-                <button class="btn" @click="setNumber('2')">
-                  <img src="imgs/key/k2-up.png" />
-                </button>
+                <!-- dev -->
+                <div
+                  @click="setNumber('2')"
+                  class="card white"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    2
+                  </div>
+                </div>
+                <!--     -->
               </td>
               <td>
-                <button class="btn" @click="setNumber('3')">
-                  <img src="imgs/key/k3-up.png" />
-                </button>
+                <!-- dev -->
+                <div
+                  @click="setNumber('3')"
+                  class="card white"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    3
+                  </div>
+                </div>
+                <!--     -->
               </td>
               <td>
-                <button class="btn" @click="setNumber('10')">
+                <!-- <button class="btn" @click="setNumber('10')">
                   <img src="imgs/key/kinc10-up.png" />
-                </button>
+                </button> -->
+                <div
+                  @click="setNumber('10')"
+                  class="card white"
+                  style="
+                  width: 220px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    +10
+                  </div>
+                </div>
               </td>
             </tr>
             <!-- row 03 -->
             <tr>
               <td>
-                <button class="btn" @click="setNumber('25')">
-                  <img src="imgs/key/sum25-up.png" />
-                </button>
+                <div
+                  @click="setNumber('25')"
+                  class="card white"
+                  style="
+                  width: 220px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    25
+                  </div>
+                </div>
               </td>
               <td>
-                <button class="btn" @click="setNumber('4')">
-                  <img src="imgs/key/k4-up.png" />
-                </button>
+                <!-- dev -->
+                <div
+                  @click="setNumber('4')"
+                  class="card white"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    4
+                  </div>
+                </div>
+                <!--     -->
               </td>
               <td>
-                <button class="btn" @click="setNumber('5')">
-                  <img src="imgs/key/k5-up.png" />
-                </button>
+                <!-- dev -->
+                <div
+                  @click="setNumber('5')"
+                  class="card white"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    5
+                  </div>
+                </div>
+                <!--     -->
               </td>
               <td>
-                <button class="btn" @click="setNumber('6')">
-                  <img src="imgs/key/k6-up.png" />
-                </button>
+                <!-- dev -->
+                <div
+                  @click="setNumber('6')"
+                  class="card white"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    6
+                  </div>
+                </div>
+                <!--     -->
               </td>
               <td>
-                <button class="btn" @click="setNumber('200')">
-                  <img src="imgs/key/sum200-up.png" />
-                </button>
+                <div
+                  @click="setNumber('200')"
+                  class="card white"
+                  style="
+                  width: 220px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    200
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>
               <td>
-                <button class="btn" @click="setNumber('50')">
-                  <img src="imgs/key/sum50-up.png" />
-                </button>
+                <div
+                  @click="setNumber('50')"
+                  class="card white"
+                  style="
+                  width: 220px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    50
+                  </div>
+                </div>
               </td>
               <td>
-                <button class="btn" @click="setNumber('7')">
-                  <img src="imgs/key/k7-up.png" />
-                </button>
+                <!-- dev -->
+                <div
+                  @click="setNumber('7')"
+                  class="card white"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    7
+                  </div>
+                </div>
+                <!--     -->
               </td>
               <td>
-                <button class="btn" @click="setNumber('8')">
-                  <img src="imgs/key/k8-up.png" />
-                </button>
+                <!-- dev -->
+                <div
+                  @click="setNumber('8')"
+                  class="card white"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    8
+                  </div>
+                </div>
+                <!--     -->
               </td>
               <td>
-                <button class="btn" @click="setNumber('9')">
-                  <img src="imgs/key/k9-up.png" />
-                </button>
+                <!-- dev -->
+                <div
+                  @click="setNumber('9')"
+                  class="card white"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    9
+                  </div>
+                </div>
+                <!--     -->
               </td>
               <td>
-                <button class="btn" @click="setNumber('250')">
-                  <img src="imgs/key/sum250-up.png" />
-                </button>
+                <div
+                  @click="setNumber('250')"
+                  class="card white"
+                  style="
+                  width: 220px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    250
+                  </div>
+                </div>
               </td>
             </tr>
             <!-- row 04 -->
             <tr>
               <td>
-                <button class="btn" @click="setNumber('100')">
-                  <img src="imgs/key/sum100-up.png" />
-                </button>
+                <div
+                  @click="setNumber('100')"
+                  class="card white"
+                  style="
+                  width: 220px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    100
+                  </div>
+                </div>
               </td>
               <td>
-                <button class="btn" @click="setNumber('0')">
-                  <img src="imgs/key/k0-up.png" />
-                </button>
+                <!-- dev -->
+                <div
+                  @click="setNumber('.')"
+                  class="card white"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 3rem;
+                  padding-top: 0rem;
+                  padding-bottom: 0rem;
+                  "
+                  >
+                    .
+                  </div>
+                </div>
+                <!--     -->
               </td>
               <td>
-                <button class="btn" @click="setNumber('0')">
-                  <img src="imgs/key/k0-up.png" />
-                </button>
+                <!-- dev -->
+                <div
+                  @click="setNumber('0')"
+                  class="card white"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    0
+                  </div>
+                </div>
+                <!--     -->
               </td>
               <td>
-                <button class="btn" @click="backspace">
+                <!-- <button class="btn" @click="backspace">
                   <img src="imgs/key/kdel-up.png" />
-                </button>
+                </button> -->
+                <div
+                  @click="backspace"
+                  class="card white"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px red; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px red;
+                  
+                  "
+                >
+                  <div
+                    class="card-content red-text"
+                    style="
+                  font-size: 4.2rem;
+                  padding-left: 1rem;
+                  padding-top: 1rem;
+                  "
+                  >
+                    del
+                  </div>
+                </div>
               </td>
               <td>
-                <button class="btn" @click="setNumber('500')">
-                  <img src="imgs/key/sum500-up.png" />
-                </button>
+                <div
+                  @click="setNumber('500')"
+                  class="card white"
+                  style="
+                  width: 220px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    500
+                  </div>
+                </div>
               </td>
             </tr>
             <!-- row 05 -->
             <tr>
               <td>
-                <button class="btn" @click="setNumber('150')">
-                  <img src="imgs/key/sum150-up.png" />
-                </button>
+                <div
+                  @click="setNumber('150')"
+                  class="card white"
+                  style="
+                  width: 220px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    150
+                  </div>
+                </div>
               </td>
-              <td>
-                <button class="btn" @click="setNumber('999')">
-                  <img src="imgs/key/sum150-up.png" />
-                  <!-- <img src="/imgs/pay/pay-up.png" /> -->
-                </button>
-              </td>
-              <td></td>
-              <td></td>
-              <td>
-                <button class="btn" @click="setNumber('500')">
-                  <img src="imgs/key/sum500-up.png" />
-                </button>
+              <td colspan="3">
+                <div
+                  @click="payUp('append')" 
+                  class="card white"
+                  style="
+                  width: 420px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  ">
+                  <div class="card-content black-text" 
+                  style="
+                  font-size: 4em;
+                  padding-left: 2.8rem;
+                  padding-top: 0.2em;
+                  ">
+                  ЗАЧИСЛИТЬ</div>
+                </div>
               </td>
               
+              <td>
+                <div
+                  @click="setNumber('1000')"
+                  class="card white"
+                  style="
+                  width: 220px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 1.2rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    1000
+                  </div>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
         <!-- end new component -->
       </form>
     </section>
+    <!-- <input style="margin-left: 0em;" class="info-title" onclick="this.value = event.clientX+':'+event.clientY"> -->
   </div>
 </template>
 
@@ -338,6 +699,11 @@ export default {
     body: '',
 
     // dev
+    minX: 55,
+    minY: 560,
+    maxX: 1030,
+    maxY: 1620,
+
     client: 'fetch',
     url: 'https://192.168.1.3/',
     storage: null,
@@ -351,12 +717,40 @@ export default {
     messageIndex: -1
   }),
   mounted() {
+    this.setup()
+
     this.storage = new Storage(this.client, this.url)
     // console.log('this.firstname-->', this.firstname)
     this.payBonusMoney()
   },
 
   methods: {
+    /* dev */
+    setup() {
+      const overlay = this.$refs.overlay
+
+      overlay.onclick = evt => {
+        if (
+          evt.clientX > this.minX &&
+          evt.clientY > this.minY &&
+          evt.clientX < this.maxX &&
+          evt.clientY < this.maxY
+        ) {
+          //console.log('inside overlay-->', evt.clientX, evt.clientY)
+          return
+        } else {
+          //console.log('outside overlay-->', evt.clientX, evt.clientY)
+          this.$router.push('/')
+        }
+      }
+    },
+    payUp(program) {
+      if (program === 'append') {
+        this.$router.push('/status')
+      }
+      
+    },
+
     ...mapGetters({
       getLoginBonusOptions: 'getLoginBonusOptions',
       getLoginBonusPhone: 'getLoginBonusPhone',
@@ -457,15 +851,26 @@ export default {
 
 <style scoped>
 .display {
-  padding-top: 0.5em;
+  /* padding-top: 0em;
+  padding-bottom: 0em;;
   width: 253px;
-  height: 125px;
+  position: absolute;
+
   color: #ffffff;
-  font-size: 140px;
-  font-weight: 400;
-  line-height: 70px;
+  font-size: 10em;
+  line-height: 1em;
   text-align: center;
+  text-decoration: underline; */
+
+  width: 0em;
+  position: absolute;
+  margin-top: -0.8em;
+  margin-left: 0em;/* 2.3em; */
   text-decoration: underline;
+  color: #ffffff;
+  font-size: 10em;
+  line-height: 1em;
+  z-index: 1;
 
   font-weight: bold;
   font-family: 'Plumb-Medium';
@@ -478,23 +883,29 @@ export default {
   margin-right: auto;
   width: 20em;
 }
+/* table { 
+  width: 840px;
+} */
+
+/* table,
+tr {
+  width: 840px;
+} */
+
 table,
 th,
 td {
-  
   border: none;
-  margin: 0em;
-  padding: 0rem;
   height: 150px;
-  /* width: 150px; */
-  width: 200px;
-
-  border-color: #121212;
+  width: 150px;
+  padding-right: 1.5em;
+  /* border-color: #121212; */
 }
+
 .btn {
   height: 150px;
   width: 150px;
-  
+
   background-color: #121212;
   z-index: 1;
 }
@@ -539,12 +950,29 @@ td {
   font-weight: bold;
   z-index: 1;
 }
-.info-title {
+/* .info-title {
   width: 800px;
   padding-top: 0.5em;
   margin-top: 0em;
   margin-left: 0em;
   font-size: 3em;
+} */
+.info-title {
+  position: absolute;
+
+  width: 800px;
+  padding-top: 0em;
+  padding-left: 0em;
+  padding-right: 0em;
+  padding-bottom: 0em;
+
+  margin-top: 0em;
+  margin-left: 0em;
+  font-size: 3em;
+
+  color: #ffffff;
+  text-align: center;
+  font-family: 'Plumb-Medium';
 }
 /* ************************* */
 </style>

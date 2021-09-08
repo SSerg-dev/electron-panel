@@ -3,8 +3,7 @@
     <a name="top"></a>
 
     <form @submit.prevent="" class="form">
-
-     <!-- ul navigation --> 
+      <!-- ul navigation -->
       <ul
         id="tabs-swipe"
         class="tabs"
@@ -28,13 +27,17 @@
         </li>
 
         <li class="tab col s3">
-          <a class="active black-text" href="#swipe-3" style="font-size: 32px"
+          <a class=" black-text" href="#swipe-3" style="font-size: 32px"
             >Настройки</a
           >
         </li>
-
         <li class="tab col s3">
-          <a class="black-text" href="#swipe-4" style="font-size: 32px"
+          <a class="active black-text" href="#swipe-4" style="font-size: 32px"
+            >Языки</a
+          >
+        </li>
+        <li class="tab col s3">
+          <a class="black-text" href="#swipe-5" style="font-size: 32px"
             >Финансы</a
           >
         </li>
@@ -109,7 +112,6 @@
                       
                     "
                   >
-                  
                     <div class="card-content black-text">
                       <div class="switch">
                         <label>
@@ -296,22 +298,22 @@
                 </td>
               </tr>
               <!-- row 06 -->
-              <!-- old row -->
-              <!-- <tr>
-                <td style="width: 430px">
+              <tr style="margin-top: 0.5em;">
+                <!-- td 01 -->
+                <td style="width: 1040px">
                   <div
-                    class="card grey lighten-3"
+                    class="card black lighten-3"
                     style="
                       border: solid 3px #00b9e3;
-                      width: 420px;
-                      height: 80px;
+                      width: 1040px;
+                      height: 60px;
                       margin-left: 0px;
                       margin-top: 0em;
                       border-radius: 2rem;
                     "
                   >
-                    <div class="card-content black-text">
-                      <div class="switch">
+                    <div class="card-content white-text">
+                      <div class="switch" style="margin-top: -0.8em;">
                         <label>
                           <input type="checkbox" v-model="isPayScreenMain" />
 
@@ -320,181 +322,82 @@
                       </div>
 
                       <div class="pay-screen-title">
-                        <span class="card-title">Сделать окно оплаты осн.</span>
+                        <span class="card-title"
+                          >Сделать окно оплаты основным</span
+                        >
                       </div>
                     </div>
                   </div>
                 </td>
+              </tr>
+              <!-- end row -->
 
-                <td style="width: 210px">
+              <!-- new row 02 -->
+              <tr style="margin-top: -0.5em;">
+                <!-- td 01 -->
+                <td style="width: 1040px">
                   <div
-                    class="card grey lighten-3"
+                    class="card black lighten-3"
                     style="
                       border: solid 3px #00b9e3;
-                      width: 200px;
-                      height: 80px;
+                      width: 1040px;
+                      height: 60px;
+                      margin-left: 0px;
+                      margin-top: 0em;
                       border-radius: 2rem;
                     "
                   >
-                    <div class="card-content black-text">
-                      <div class="switch">
+                    <div class="card-content white-text">
+                      <div class="switch" style="margin-top: -0.8em;">
                         <label>
                           <input type="checkbox" v-model="isCnw" />
 
                           <span class="lever"></span>
                         </label>
                       </div>
-                      <div class="change-cnw-title">
+
+                      <div class="pay-screen-title">
                         <span class="card-title">C.N.W.</span>
                       </div>
                     </div>
                   </div>
                 </td>
-
-                <td style="width: 400px">
+              </tr>
+              <!-- end row -->
+              <!-- new row 03 -->
+              <tr style="margin-top: -0.5em;">
+                <!-- td 01 -->
+                <td style="width: 1040px">
                   <div
-                    class="card grey lighten-3"
+                    class="card black lighten-3"
                     style="
                       border: solid 3px #00b9e3;
-                      width: 380pxchange-cnw-title;
-                      height: 80px;
+                      width: 1040px;
+                      height: 60px;
+                      margin-left: 0px;
+                      margin-top: 0em;
                       border-radius: 2rem;
                     "
                   >
-                    <div class="card-content black-text">
-                      <div class="switch">
+                    <div class="card-content white-text">
+                      <div class="switch" style="margin-top: -0.8em;">
                         <label>
                           <input type="checkbox" v-model="isCursor" />
 
                           <span class="lever"></span>
                         </label>
                       </div>
-                      <div
-                        class="change-cursor-title"
-                        style="padding-left: 0.3em;"
-                      >
+
+                      <div class="pay-screen-title">
                         <span class="card-title"
-                          >Показ. курсор в осн. окне</span
+                          >Показать курсор в основном окне</span
                         >
                       </div>
                     </div>
                   </div>
                 </td>
-              </tr> -->
-
-              <!-- dev -->
-            <!-- new row 01 -->
-            <tr style="margin-top: 0.5em;">
-              
-              <!-- td 01 -->
-              <td style="width: 1040px">
-                <div
-                  class="card black lighten-3"
-                  style="
-                      border: solid 3px #00b9e3;
-                      width: 1040px;
-                      height: 60px;
-                      margin-left: 0px;
-                      margin-top: 0em;
-                      border-radius: 2rem;
-                    "
-                >
-                  <div class="card-content white-text">
-
-                    <div class="switch" style="margin-top: -0.8em;">
-                      <label>
-                        <input type="checkbox" v-model="isPayScreenMain" />
-
-                        <span class="lever"></span>
-                      </label>
-                    </div>
-
-                    <div class="pay-screen-title">
-                      <span class="card-title"
-                        >Сделать окно оплаты основным</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </td>
-
-            </tr>
-            <!-- end row -->
-
-            <!-- new row 02 -->
-            <tr style="margin-top: -0.5em;">
-              
-              <!-- td 01 -->
-              <td style="width: 1040px">
-                <div
-                  class="card black lighten-3"
-                  style="
-                      border: solid 3px #00b9e3;
-                      width: 1040px;
-                      height: 60px;
-                      margin-left: 0px;
-                      margin-top: 0em;
-                      border-radius: 2rem;
-                    "
-                >
-                  <div class="card-content white-text">
-
-                    <div class="switch" style="margin-top: -0.8em;">
-                      <label>
-                        <input type="checkbox" v-model="isCnw" />
-
-                        <span class="lever"></span>
-                      </label>
-                    </div>
-
-                    <div class="pay-screen-title">
-                      <span class="card-title"
-                        >C.N.W.</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </td>
-
-            </tr>
-            <!-- end row -->
-            <!-- new row 03 -->
-            <tr style="margin-top: -0.5em;">
-              
-              <!-- td 01 -->
-              <td style="width: 1040px">
-                <div
-                  class="card black lighten-3"
-                  style="
-                      border: solid 3px #00b9e3;
-                      width: 1040px;
-                      height: 60px;
-                      margin-left: 0px;
-                      margin-top: 0em;
-                      border-radius: 2rem;
-                    "
-                >
-                  <div class="card-content white-text">
-
-                    <div class="switch" style="margin-top: -0.8em;">
-                      <label>
-                        <input type="checkbox" v-model="isCursor" />
-
-                        <span class="lever"></span>
-                      </label>
-                    </div>
-
-                    <div class="pay-screen-title">
-                      <span class="card-title"
-                        >Показать курсор в основном окне</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </td>
-
-            </tr>
-            <!-- end row -->
+              </tr>
+              <!-- end row -->
 
               <!--     -->
 
@@ -517,7 +420,6 @@
         class="col s8 black"
         style="box-shadow: 10px 10px 10px #00b9e3;"
       >
-        
         <!-- new Настройки -->
         <!-- <h2 class="white-text">Настройки</h2>
         <br /> -->
@@ -571,7 +473,6 @@
                     "
                 >
                   <div class="card-content white-text">
-
                     <div class="switch" style="margin-top: -0.8em;">
                       <label>
                         <input type="checkbox" v-model="isCursor" />
@@ -746,7 +647,7 @@
                 </div>
               </td>
             </tr>
-            
+
             <!-- row 11 -->
             <tr style="margin-top: 3em;">
               <td style="width: 1040px">
@@ -779,7 +680,10 @@
             </tr>
 
             <!-- row 12 -->
-            <tr v-if="isCoinAcceptorInstalled" style="margin-top: -2em; margin-left: 10px;">
+            <tr
+              v-if="isCoinAcceptorInstalled"
+              style="margin-top: -2em; margin-left: 10px;"
+            >
               <td style="width: 1020px;">
                 <div>
                   <SettingPaymentTerminalType />
@@ -790,17 +694,16 @@
             <!-- SettingPaymentToken -->
             <!-- row 13 -->
             <tr style="margin-top: 2.5em; margin-left: 0px;">
-              <td >
+              <td>
                 <div>
                   <SettingPaymentToken />
                 </div>
               </td>
             </tr>
 
-
             <!-- row 14 -->
             <tr style="margin-top: 2.5em; margin-left: 0px;">
-              <td >
+              <td>
                 <div>
                   <SettingPaymentLimit />
                 </div>
@@ -812,14 +715,54 @@
           </tbody>
         </table>
         <div style="margin-top: 2em;">
-        <hr />
+          <hr />
         </div>
-        
+
         <!-- end Настройки -->
       </div>
 
       <div
         id="swipe-4"
+        class="col s8 black"
+        style="box-shadow: 10px 10px 10px #00b9e3;"
+      >
+        <!-- Языки -->
+        <!-- dev -->
+
+        <h2 class="white-text">Языки</h2>
+        <br />
+
+        <table style="margin-left: 2em; margin-top: -1em;">
+          <tbody>
+            <!-- row 01 -->
+            <tr style="margin-top: 2em;">
+              
+              <td style="width: 520px;">
+                <div>
+                  <SettingLanguagePanel />
+                </div>
+              </td>
+
+              <td style="width: 520px;">
+                <div>
+                  <SettingLanguageSelect />
+                </div>
+              </td>
+
+            </tr>Payment
+          </tbody>
+        </table>
+
+        <div></div>
+
+        
+        <!--     -->
+      </div>
+
+      <!-- end Языки -->
+
+      <div
+        id="swipe-5"
         class="col s8 black"
         style="box-shadow: 10px 10px 10px #00b9e3;"
       >
@@ -910,19 +853,23 @@ import SettingPanelPayment from '@/components/setting/SettingPanelPayment'
 import SettingPaymentLanguage from '@/components/setting/SettingPaymentLanguage'
 import SettingPaymentCurrency from '@/components/setting/SettingPaymentCurrency'
 import SettingPaymentAcceptor from '@/components/setting/SettingPaymentAcceptor'
-/* dev */
+
 import SettingCoinAcceptor from '@/components/setting/SettingCoinAcceptor'
 import SettingPaymentBill from '@/components/setting/SettingPaymentBill'
 import SettingCoinBill from '@/components/setting/SettingCoinBill'
+/* dev */
+import SettingLanguagePanel from '@/components/setting/SettingLanguagePanel'
+import SettingLanguageSelect from '@/components/setting/SettingLanguageSelect'
+
+
 
 import SettingPaymentTerminalType from '@/components/setting/SettingPaymentTerminalType'
 import SettingPaymentLimit from '@/components/setting/SettingPaymentLimit'
-import SettingPaymentLimitMin from '@/components/setting/SettingPaymentLimitMin' 
+import SettingPaymentLimitMin from '@/components/setting/SettingPaymentLimitMin'
 import SettingPaymentLimitMax from '@/components/setting/SettingPaymentLimitMax'
 
 /* SettingPaymentToken */
 import SettingPaymentToken from '@/components/setting/SettingPaymentToken'
-
 
 import SettingOverviewCommon from '@/components/setting/SettingOverviewCommon'
 import SettingOverviewService from '@/components/setting/SettingOverviewService'
@@ -972,10 +919,14 @@ export default Vue.extend({
     SettingPaymentLanguage,
     SettingPaymentCurrency,
     SettingPaymentAcceptor,
-    /* dev */
+    
     SettingCoinAcceptor,
     SettingPaymentBill,
     SettingCoinBill,
+    /* dev */
+    SettingLanguagePanel,
+    SettingLanguageSelect,
+    
 
     SettingPaymentTerminalType,
     SettingPaymentLimit,

@@ -13,16 +13,18 @@
       <div class="card-content black-text">
         <span class="card-title">Язык:</span>
         <div class="input-field">
-          <select class="page-title white-text" ref="select" v-model="current">
+          <select 
+          class="page-title white-text" 
+          ref="select" 
+          v-model="current"
+          >
             <option v-for="(l, index) in languages" :key="index" :value="l.id">
-              <!-- Countries country -->
-              <!-- Languages language -->
               <div class="dropdown-setting">
                 {{ l.emoji }}
                 {{ l.title }}
-                <!-- {{ l.currency}} -->
               </div>
             </option>
+
           </select>
         </div>
       </div>
@@ -84,7 +86,6 @@ export default Vue.extend({
     this.currency = currency
     this.symbol = symbol
 
-    //console.log('!!++currency-->', this.current, this.select, this.emoji, this.currency)
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {

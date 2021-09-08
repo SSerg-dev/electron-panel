@@ -597,7 +597,10 @@ export default {
               key: keyAll,
               emoji: emoji,
               currency: currency,
-              symbol: symbol
+              symbol: symbol,
+              /* dev */
+              selected: false
+
             })
           }
         })

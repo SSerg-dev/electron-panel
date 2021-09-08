@@ -129,7 +129,8 @@
           this.$route.name !== 'language' &&
           this.$route.name !== 'program' &&
           this.$route.name !== 'setting' &&
-          this.$route.name !== 'password'
+          this.$route.name !== 'password' 
+          
       "
     >
       <div class="background-top">
@@ -229,12 +230,12 @@ img {
   height: 138px; /* 119 */
   z-index: 2;
 }
-.head-panel-label {
+/* .head-panel-label {
   font-size: 5rem;
   position: absolute;
-  top: 230%;
-  left: 40%;
-}
+  top: 0%;
+  left: 0%;
+} */
 .circle {
   width: 6rem;
   height: 6rem;
@@ -267,12 +268,12 @@ img {
 .ru {
   font-size: 2.4rem;
   position: absolute;
-  top: 36%;
+  top: 42%;
   left: 84%;
 }
 .flag {
   position: absolute;
-  top: 28%;
+  top: 34%;
   left: 90%;
   width: 5rem;
 }
