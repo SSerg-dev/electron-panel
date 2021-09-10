@@ -1,7 +1,5 @@
 <template>
   <div class="col s6">
-    <!-- acceptor -->
-    <!-- style="height: 190px; border: solid 3px #00B9E3;" -->
     <div
       class="card grey lighten-3"
       style="
@@ -22,9 +20,15 @@
             ref="select"
             v-model="current"
           >
-            <option v-for="(b, index) in languages" :key="index" :value="b.id">
+            <option value="" disabled selected>Выбрать языки:</option>
+            <option
+              v-for="(l, index) in allLanguages"
+              :key="index"
+              :value="l.id"
+            >
               <div class="dropdown-setting">
-                {{ b.title }}
+                {{ l.emoji }}
+                {{ l.title }}
               </div>
             </option>
           </select>
@@ -48,17 +52,9 @@ export default Vue.extend({
     emoji: '',
     currency: '',
     symbol: '',
-    // languages: [],
-    
-    
-    //bills: [
-    languages: [  
-      { id: 1, title: '10 ₽', value: 10, selected: false },
-      { id: 2, title: '50 ₽', value: 50, selected: false },
-      { id: 3, title: '100 ₽', value: 100, selected: false },
-      { id: 4, title: '200 ₽', value: 200, selected: false },
-      { id: 5, title: '500 ₽', value: 500, selected: false }
-    ]
+
+    languages: [],
+    allLanguages: []
   }),
   mounted() {
     this.select = M.FormSelect.init(this.$refs.select, {
@@ -68,43 +64,45 @@ export default Vue.extend({
   },
   methods: {
     ...mapGetters({
-      getDefaultBiils: 'getDefaultBiils',
-
       getDefaultLanguage: 'getDefaultLanguage',
-      getLanguageNatives: 'getLanguageNatives'
-    })
+      getLanguageNatives: 'getLanguageNatives',
+      getAllLanguageNatives: 'getAllLanguageNatives'
+    }),
+    ...mapMutations({
+      setLanguageNatives: 'setLanguageNatives'
+    }),
   },
   watch: {
-    current(billIds) {
-      billIds.forEach(b => {
-        this.select = b.title
+    current(languageIds) {
+      const selected = languageIds.map(i => {
+        this.allLanguages.find(l => l.id === i).key
+        return this.allLanguages.find(l => l.id === i).key
       })
+      this.setLanguageNatives(selected)
+      console.log('--this.current-->', this.current)
     }
   },
   created() {
-    const defaultBiils = this.getDefaultBiils()
-    //console.log('++defaultBiils-->', defaultBiils)
-    //console.log('++getDefaultLanguage-->', this.getDefaultLanguage())
-    const countries = ['RU', 'UA', 'BY', 'LT', 'LV', 'EE', ]
-    
-    
+    /* dev */
     //this.languages = this.getLanguageNatives()
-    console.log('++this.languages-->', JSON.stringify(this.languages) )
+    this.allLanguages = this.getAllLanguageNatives()
 
-     for (let i = 0; i < defaultBiils.length; i++) {
-      const value = defaultBiils[i]
-      const index = this.languages.findIndex(c => c.value === value)
-      this.languages[index].selected = true
-    }
-    
-    for (let i = 0; i < this.languages.length; i++) {
-      if (this.languages[i].selected === true) {
-        this.current[i] = this.languages[i].id
-        this.select = this.languages[i].title
+    /* for (let i = 0; i < this.languages.length; i++) {
+      const title = this.allLanguages[i].title
+      const index = this.allLanguages.findIndex(l => l.title === title)
+      this.allLanguages[index].selected = true
+
+      if (this.allLanguages[index].selected) {
+        //console.log('this.allLanguages[index].selected-->', this.allLanguages[index].title)
       }
     }
 
-
+    for (let i = 0; i < this.allLanguages.length; i++) {
+      if (this.allLanguages[i].selected === true) {
+        this.current[i] = this.allLanguages[i].id
+        this.select = this.allLanguages[i].title
+      }
+    } */
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {
@@ -116,6 +114,6 @@ export default Vue.extend({
 
 <style scoped>
 /* span {
-  color: red;
+  color:darkcyan;
 } */
 </style>

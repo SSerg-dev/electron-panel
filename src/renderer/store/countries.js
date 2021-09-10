@@ -49,8 +49,8 @@ export default {
       'KR'
     ],
 
-    //countries: ['RU', 'UA', 'BY', 'LT', 'LV', 'EE', ],
-    countries: [
+    countries: ['RU', 'UA', 'BY', 'LT', 'LV', 'EE', ],
+    /* countries: [
       'RU',
       'UA',
       'BY',
@@ -77,7 +77,7 @@ export default {
       'SE',
       'PT',
       'NL'
-    ],
+    ], */
     country: {},
 
     allCountries: {
@@ -567,6 +567,7 @@ export default {
   } /* end state */,
   actions: {},
   getters: {
+
     getLanguageNatives(state, getters) {
       const selected = state.countries
       const all = state.allCountries
@@ -578,27 +579,18 @@ export default {
       selected.forEach((keySel, index) => {
         Object.keys(all).forEach(keyAll => {
           if (keySel === keyAll) {
-            /* dev */
             const keyLang = all[keyAll].languages[0]
             language = getters.getLanguageItem(keyLang.toLowerCase())
-
             const emoji = all[keyAll].emoji
-            //console.log('++emoji-->', emoji)
-
             const currency = all[keyAll].currency.alphabetic_code
-            //console.log('++currency-->', currency)
-
             const symbol = all[keyAll].currency.symbol
-
             natives.push({
               id: index + 1,
-              //title: all[keyAll].native,
               title: language,
               key: keyAll,
               emoji: emoji,
               currency: currency,
               symbol: symbol,
-              /* dev */
               selected: false
 
             })
@@ -607,8 +599,37 @@ export default {
       })
 
       return natives
+    },
+    /* dev */
+    getAllLanguageNatives(state, getters) {
+      const all = state.allCountries
+      const natives = []
+      let language = null
+
+        Object.keys(all).forEach((keyAll, index) => {
+          
+            const keyLang = all[keyAll].languages[0]
+            language = getters.getLanguageItem(keyLang.toLowerCase())
+            const emoji = all[keyAll].emoji
+            const currency = all[keyAll].currency.alphabetic_code
+            const symbol = all[keyAll].currency.symbol
+            natives.push({
+              id: index + 1,
+              title: language,
+              key: keyAll,
+              emoji: emoji,
+              currency: currency,
+              symbol: symbol,
+              selected: false
+
+            })
+          
+        })
+
+      return natives
     }
-    // getLanguageItem(state, getters) {}
+    /*     */
+    
   }, // end getters
 
   mutations: {
@@ -621,7 +642,13 @@ export default {
         }
       })
       //console.log('state.country-->', JSON.stringify(state.country))
+    },
+    setLanguageNatives(state, selected) {
+      state.countries = selected 
+      //console.log('state.countries-->', state.countries)
+
     }
+
   }, // end mutation
 
   modules: {}

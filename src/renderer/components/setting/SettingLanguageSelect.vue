@@ -1,7 +1,5 @@
 <template>
   <div class="col s6">
-    <!-- acceptor -->
-    <!-- style="height: 190px; border: solid 3px #00B9E3;" -->
     <div
       class="card grey lighten-3"
       style="
@@ -22,9 +20,10 @@
             ref="select"
             v-model="current"
           >
-            <option v-for="(b, index) in bills" :key="index" :value="b.id">
+            <option v-for="(l, index) in languages" :key="index" :value="l.id">
               <div class="dropdown-setting">
-                {{ b.title }}
+                {{ l.emoji }}
+                {{ l.title }}
               </div>
             </option>
           </select>
@@ -35,68 +34,98 @@
 </template>
 
 <script>
-import Vue from "vue";
-import { mapGetters } from "vuex";
+import Vue from 'vue'
+import { mapGetters, mapMutations } from 'vuex'
+import store from '../../store'
 
 export default Vue.extend({
-  name: "setting-payment-bill",
+  name: 'setting-payment-bill',
   data: () => ({
     select: null,
     current: [],
     title: [],
 
-    bills: [
-      { id: 1, title: "10 ₽", value: 10, selected: false },
-      { id: 2, title: "50 ₽", value: 50, selected: false },
-      { id: 3, title: "100 ₽", value: 100, selected: false },
-      { id: 4, title: "200 ₽", value: 200, selected: false },
-      { id: 5, title: "500 ₽", value: 500, selected: false },
-    ],
+    emoji: '',
+    currency: '',
+    symbol: '',
+
+    languages: [],
+    allLanguages: []
   }),
   mounted() {
+
     this.select = M.FormSelect.init(this.$refs.select, {
-      constrainWidth: true,
-    });
-    M.updateTextFields();
+      constrainWidth: true
+    })
+    M.updateTextFields()
+  },
+  computed: {
+    ...mapGetters({
+      getLanguageNatives: 'getLanguageNatives',
+      getAllLanguageNatives: 'getAllLanguageNatives'
+    }),
+
+    selected() {
+      return store.state.countries.countries
+    }
   },
   methods: {
-    ...mapGetters({
-      getDefaultBiils: "getDefaultBiils",
-    }),
+
+    setup() {
+      /* dev */
+      this.languages = this.getLanguageNatives
+      this.allLanguages = this.getAllLanguageNatives
+
+      for (let i = 0; i < this.languages.length; i++) {
+        const title = this.allLanguages[i].title
+        const index = this.allLanguages.findIndex(l => l.title === title)
+        this.allLanguages[index].selected = true
+      }
+
+      for (let i = 0; i < this.allLanguages.length; i++) {
+        if (this.allLanguages[i].selected === true) {
+          this.current[i] = this.allLanguages[i].id
+          this.select = this.allLanguages[i].title
+        }
+      }
+    },
+    onchange() {
+      this.current = []
+      this.select = []
+
+      this.current = [2, 3, 4, 5]
+      this.select['UA', 'BY', 'LT', 'LV' ]
+
+    }
+
   },
   watch: {
-    current(billIds) {
-      billIds.forEach((b) => {
-        this.select = b.title;
-      });
-    },
+    /* current(languageIds) {
+      languageIds.forEach(l => {
+        this.select = l
+      })
+    }, */
+    selected(value) {
+      console.log('!!!!++value-->', value)
+      
+      
+      //console.log('++this.current-->', this.current) 
+      this.onchange()  
+    }
   },
   created() {
-    const defaultBiils = this.getDefaultBiils();
-    // console.log("++defaultBiils-->", JSON.stringify(defaultBiils));
-
-    for (let i = 0; i < defaultBiils.length; i++) {
-      const value = defaultBiils[i];
-      const index = this.bills.findIndex((c) => c.value === value);
-      this.bills[index].selected = true;
-    }
-    for (let i = 0; i < this.bills.length; i++) {
-      if (this.bills[i].selected === true) {
-        this.current[i] = this.bills[i].id;
-        this.select = this.bills[i].title;
-      }
-    }
+    this.setup()
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {
-      this.select.destroy();
+      this.select.destroy()
     }
-  },
-});
+  }
+})
 </script>
 
 <style scoped>
 /* span {
-  color: red;
+  color:darkcyan;
 } */
 </style>
