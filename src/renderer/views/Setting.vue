@@ -737,13 +737,13 @@
             <!-- row 01 -->
             <tr style="margin-top: 2em;">
               
-              <td style="width: 520px;">
+              <!-- <td style="width: 520px;">
                 <div>
                   <SettingLanguagePanel />
                 </div>
-              </td>
+              </td> -->
 
-              <td style="width: 520px;">
+              <td style="width: 1040px;">
                 <div>
                   <SettingLanguageSelect />
                 </div>
@@ -752,6 +752,9 @@
             </tr>Payment
           </tbody>
         </table>
+        <div style="margin-top: 4em;">
+          <hr />
+        </div>
 
         <div></div>
 

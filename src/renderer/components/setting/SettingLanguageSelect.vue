@@ -7,13 +7,16 @@
       border: solid 3px #00B9E3; 
       border-top-right-radius: 2rem;
       border-bottom-right-radius: 2rem;
-      border-left-style: hidden;
+      border-top-left-radius: 2rem;
+      border-bottom-left-radius: 2rem;
+      <!-- border-left-style: hidden; -->
 
       "
     >
       <div class="card-content black-text">
         <span class="card-title">Язык:</span>
-        <div class="input-field">
+
+        <!-- <div class="input-field">
           <select
             multiple
             class="page-title white-text"
@@ -27,7 +30,25 @@
               </div>
             </option>
           </select>
+        </div> -->
+
+        <div class="input-field">
+          <select
+            multiple
+            class="page-title white-text"
+            ref="select"
+            v-model="current"
+          >
+            <option value="" disabled selected>Выбрать языки:</option>
+            <option v-for="(l, index) in allLanguages" :key="index" :value="l.id">
+              <div class="dropdown-setting">
+                {{ l.emoji }}
+                {{ l.title }}
+              </div>
+            </option>
+          </select>
         </div>
+
       </div>
     </div>
   </div>
@@ -53,64 +74,87 @@ export default Vue.extend({
     allLanguages: []
   }),
   mounted() {
-
     this.select = M.FormSelect.init(this.$refs.select, {
       constrainWidth: true
     })
     M.updateTextFields()
+    /* dev */
   },
   computed: {
     ...mapGetters({
       getLanguageNatives: 'getLanguageNatives',
-      getAllLanguageNatives: 'getAllLanguageNatives'
+      getAllLanguageNatives: 'getAllLanguageNatives',
+      getLanguageIds: 'getLanguageIds'
     }),
-
     selected() {
       return store.state.countries.countries
     }
   },
   methods: {
-
+    /* ...mapGetters({
+      getLanguageNatives: 'getLanguageNatives',
+      getAllLanguageNatives: 'getAllLanguageNatives',
+      getLanguageIds: 'getLanguageIds'
+    }), */
+    ...mapMutations({
+      setLanguageNatives: 'setLanguageNatives',
+      setLanguageIds: 'setLanguageIds'
+    }),
     setup() {
       /* dev */
       this.languages = this.getLanguageNatives
       this.allLanguages = this.getAllLanguageNatives
 
       for (let i = 0; i < this.languages.length; i++) {
-        const title = this.allLanguages[i].title
-        const index = this.allLanguages.findIndex(l => l.title === title)
+        const key = this.languages[i].key
+        const index = this.allLanguages.findIndex(l => l.key === key)
         this.allLanguages[index].selected = true
       }
+      //console.log('++this.languages-->', JSON.stringify(this.languages))
 
       for (let i = 0; i < this.allLanguages.length; i++) {
         if (this.allLanguages[i].selected === true) {
           this.current[i] = this.allLanguages[i].id
           this.select = this.allLanguages[i].title
+          //console.log('++this.allLanguages-->', JSON.stringify(this.allLanguages[i]))
         }
       }
-    },
-    onchange() {
+
+    }
+    /* onchange() {
       this.current = []
       this.select = []
 
-      this.current = [2, 3, 4, 5]
-      this.select['UA', 'BY', 'LT', 'LV' ]
-
-    }
-
-  },
+      this.current = this.getLanguageIds()
+      this.select['UA', 'BY', 'LT', 'LV']
+    } */
+  }, 
   watch: {
-    /* current(languageIds) {
-      languageIds.forEach(l => {
+    current(languageIds) {
+      /* languageIds.forEach(l => {
         this.select = l
+      }) */
+      const selected = languageIds.map(i => {
+        this.allLanguages.find(l => l.id === i).key
+        return this.allLanguages.find(l => l.id === i).key
       })
-    }, */
+      //this.setLanguageNatives(selected)
+      console.log('++selected-->', selected)
+      //this.setLanguageIds(this.current)
+      console.log('++this.current-->', this.current)
+      //this.getLanguageIds()
+
+
+    },
     selected(value) {
-      console.log('!!!!++value-->', value)
-      
-      
-      //console.log('++this.current-->', this.current) 
-      this.onchange()  
+      this.current = []
+      this.select = []
+
+      this.current = this.getLanguageIds
+      this.select = value
+
+      console.log('++this.current-->', this.current)
+      console.log('++this.select-->', this.select)
     }
   },
   created() {

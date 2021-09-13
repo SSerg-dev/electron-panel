@@ -11,10 +11,12 @@
 
       "
     >
+      <!-- class="browser-default" disabled -->
       <div class="card-content black-text">
         <span class="card-title">Панель:</span>
         <div class="input-field">
           <select
+
             multiple
             class="page-title white-text"
             ref="select"
@@ -66,10 +68,12 @@ export default Vue.extend({
     ...mapGetters({
       getDefaultLanguage: 'getDefaultLanguage',
       getLanguageNatives: 'getLanguageNatives',
-      getAllLanguageNatives: 'getAllLanguageNatives'
+      getAllLanguageNatives: 'getAllLanguageNatives',
+      getLanguageIds: 'getLanguageIds'
     }),
     ...mapMutations({
-      setLanguageNatives: 'setLanguageNatives'
+      setLanguageNatives: 'setLanguageNatives',
+      setLanguageIds: 'setLanguageIds'
     }),
   },
   watch: {
@@ -79,7 +83,10 @@ export default Vue.extend({
         return this.allLanguages.find(l => l.id === i).key
       })
       this.setLanguageNatives(selected)
-      console.log('--this.current-->', this.current)
+      //console.log('--this.current-->', this.current)
+      this.setLanguageIds(this.current)
+      //this.getLanguageIds()
+
     }
   },
   created() {

@@ -50,6 +50,8 @@ export default {
     ],
 
     countries: ['RU', 'UA', 'BY', 'LT', 'LV', 'EE', ],
+    //countries: ['RU', 'BY', 'LT', 'LV', 'EE', ],
+
     /* countries: [
       'RU',
       'UA',
@@ -79,6 +81,8 @@ export default {
       'NL'
     ], */
     country: {},
+    languageIds: [],
+
 
     allCountries: {
       /* dev */
@@ -627,7 +631,10 @@ export default {
         })
 
       return natives
-    }
+    },
+    getLanguageIds(state) {
+      return state.languageIds
+    },
     /*     */
     
   }, // end getters
@@ -647,7 +654,11 @@ export default {
       state.countries = selected 
       //console.log('state.countries-->', state.countries)
 
-    }
+    },
+    setLanguageIds(state, languageIds) {
+      state.languageIds = languageIds
+      //console.log('!!++state.languageIds-->', state.languageIds)
+    },
 
   }, // end mutation
 
