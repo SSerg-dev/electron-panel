@@ -50,7 +50,7 @@ export default {
     ],
 
     countries: ['RU', 'UA', 'BY', 'LT', 'LV', 'EE', ],
-    //countries: ['RU', 'BY', 'LT', 'LV', 'EE', ],
+    //countries: [],
 
     /* countries: [
       'RU',

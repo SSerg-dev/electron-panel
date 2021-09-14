@@ -28,6 +28,7 @@
         ],
         "type": "CCTALK1"
     },
+    "countries" : ["RU", "UA", "BY"],
     "country" : "RU",
     "index": 5,
     "languages": {

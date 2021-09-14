@@ -23,10 +23,10 @@ export default Vue.extend({
   computed: {
     layout() {
       return (this.$route.meta.layout || 'empty') + '-layout'
-    }
-    /* ...mapGetters({
+    },
+    ...mapGetters({
       getConfig: 'getConfig'
-    }), */
+    }),
   },
   components: {
     EmptyLayout,
@@ -34,7 +34,8 @@ export default Vue.extend({
   },
   methods: {
     ...mapMutations({
-      setConfig: 'setConfig'
+      setConfig: 'setConfig',
+      setLanguageNatives: 'setLanguageNatives',
     }),
 
     setup() {
@@ -50,6 +51,11 @@ export default Vue.extend({
           console.warn('Error? while parse settings -', err)
         }
       })
+      /* dev */
+      /* const countries = this.getConfig.countries 
+      if(countries.length > 0)
+        this.setLanguageNatives(countries)
+      console.log('store.state.countries.countries-->', countries.length, countries) */
 
       ipcRenderer.on('OPCUA', (evt, payload) => {
         try {
@@ -98,9 +104,11 @@ export default Vue.extend({
 
   mounted() {
     //this.setup()
+    
   },
   created() {
     this.setup()
+    // this.setLanguageNatives(this.getConfig.countries)
   }
 })
 </script>

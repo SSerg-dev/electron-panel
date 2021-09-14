@@ -198,7 +198,7 @@
             <tr>
               <td>
                 <div
-                  @click="setNumber('25')"
+                  @click="setNumber('25', fixed = true)"
                   class="card white"
                   style="
                   width: 220px;
@@ -304,7 +304,7 @@
               </td>
               <td>
                 <div
-                  @click="setNumber('200')"
+                  @click="setNumber('200', fixed = true)"
                   class="card white"
                   style="
                   width: 220px;
@@ -331,7 +331,7 @@
             <tr>
               <td>
                 <div
-                  @click="setNumber('50')"
+                  @click="setNumber('50', fixed = true)"
                   class="card white"
                   style="
                   width: 220px;
@@ -437,7 +437,7 @@
               </td>
               <td>
                 <div
-                  @click="setNumber('250')"
+                  @click="setNumber('250', fixed = true)"
                   class="card white"
                   style="
                   width: 220px;
@@ -465,7 +465,7 @@
             <tr>
               <td>
                 <div
-                  @click="setNumber('100')"
+                  @click="setNumber('100', fixed = true)"
                   class="card white"
                   style="
                   width: 220px;
@@ -573,7 +573,7 @@
               </td>
               <td>
                 <div
-                  @click="setNumber('500')"
+                  @click="setNumber('500', fixed = true)"
                   class="card white"
                   style="
                   width: 220px;
@@ -601,7 +601,7 @@
             <tr>
               <td>
                 <div
-                  @click="setNumber('150')"
+                  @click="setNumber('150', fixed = true)"
                   class="card white"
                   style="
                   width: 220px;
@@ -648,7 +648,7 @@
               
               <td>
                 <div
-                  @click="setNumber('1000')"
+                  @click="setNumber('1000', fixed = true)"
                   class="card white"
                   style="
                   width: 220px;
@@ -817,9 +817,11 @@ export default {
     }, // payBonusMoney
     /* ////////////////////////////// */
 
-    setNumber(num) {
+    setNumber(num, fixed) {
+      //console.log('fixed-->', fixed)
+
       if (num >= 10 || num == -10) {
-        if (this.amount + parseInt(num) < 1000) this.amount += parseInt(num)
+        if (this.amount + parseInt(num) <= 1000) this.amount += parseInt(num)
       }
 
       if (num < 10 && num != -10 && this.amount < 100) {
@@ -827,6 +829,11 @@ export default {
         this.amountString = this.amount.toString() + num.toString()
         this.amount = parseInt(this.amountString)
       }
+      if(fixed) {
+        this.amount = 0
+        if (this.amount + parseInt(num) <= 1000) this.amount = parseInt(num)
+      }
+        
 
       if (this.amount < 0) this.amount = 0
       this.amountString = this.amount.toString()

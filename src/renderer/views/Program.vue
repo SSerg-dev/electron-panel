@@ -61,11 +61,15 @@ export default Vue.extend({
     },
     setActiveProg() {
       let activeProgNames = []
-
+      
+      
       this.activeProg = [...this.getActiveProgBit()]
         .reverse()
         .join('')
         .slice(1)
+      console.log('++this.activeProg-->', this.activeProg)
+
+
       for (let i = 0; i <= this.activeProg.length; i++) {
         if (this.activeProg.toString().slice(i, i + 1) === '0') {
           this.actives[i].display = 'none'
@@ -74,8 +78,6 @@ export default Vue.extend({
           activeProgNames.push(this.actives[i].name)
         }
       }
-      //console.log('this.actives[20].display-->', this.actives[20].display)
-      //console.log('this.actives[23].display-->', this.actives[23].display)
       this.setActiveProgNames(activeProgNames)
       //console.log('setActiveProgNames-->')
 
@@ -88,7 +90,10 @@ export default Vue.extend({
       /* this.getWetProgStatus === '133955583' 
         ? this.actives[18].display = 'none'
         : this.actives[18].display = 'block' */
-      this.actives[18].display = 'block'
+
+
+      //this.actives[18].display = 'block'
+      //this.actives[26].display = 'none'
 
       return this.actives
     },

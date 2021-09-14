@@ -12,9 +12,10 @@
       <div class="col s7">
         <div class="page-title">
           <!-- СТОИМОСТЬ ПРОГРАММ -->
-          <!-- <h4>{{getWetProgShow}}</h4> -->
+          <h4>{{getWetProgShow}}</h4>
           <!-- <h4>{{ getWetProgStatus }}</h4> -->
           <!-- <h4 align="left">{{ getWetProgPrice }}</h4> -->
+
           <!-- <h4>{{ getWetBusyPanel }}</h4> -->
           <!-- <h4 align="left">{{ getParamsChange }}</h4> -->
 

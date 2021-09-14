@@ -18,7 +18,7 @@ import Vue from 'vue'
 import CostItem from '@/components/CostItem'
 
 export default Vue.extend({
-  name: 'costlist',
+  name: 'cost-list',
   //mixins: [paginationMixin],
   props: ['costs'],
   components: {

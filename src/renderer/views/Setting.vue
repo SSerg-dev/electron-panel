@@ -953,14 +953,15 @@ export default Vue.extend({
     this.tabs = M.Tabs.init(this.$refs.tabs, {})
   },
   methods: {
+    
     ...mapMutations({
-      setRouter: 'setRouter'
+      setRouter: 'setRouter',
+      /* dev */
     }),
     setDown() {
       this.isDown = !this.isDown
     },
     updateOk() {
-      /* dev */
       this.$router.push('/')
 
       //const panelType = this.getPanelType

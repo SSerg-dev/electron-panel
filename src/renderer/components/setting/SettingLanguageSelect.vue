@@ -91,11 +91,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    /* ...mapGetters({
-      getLanguageNatives: 'getLanguageNatives',
-      getAllLanguageNatives: 'getAllLanguageNatives',
-      getLanguageIds: 'getLanguageIds'
-    }), */
     ...mapMutations({
       setLanguageNatives: 'setLanguageNatives',
       setLanguageIds: 'setLanguageIds'
@@ -135,26 +130,27 @@ export default Vue.extend({
         this.select = l
       }) */
       const selected = languageIds.map(i => {
-        this.allLanguages.find(l => l.id === i).key
-        return this.allLanguages.find(l => l.id === i).key
+        //store.state.countries.countries
+        const result = this.allLanguages.find(l => l.id === i).key 
+        // js state
+        //if (result)
+        //  store.state.countries.countries.push(result)
+        return result
       })
+
       //this.setLanguageNatives(selected)
-      console.log('++selected-->', selected)
+      //console.log('++store.state.countries.countries-->', store.state.countries.countries)
       //this.setLanguageIds(this.current)
-      console.log('++this.current-->', this.current)
-      //this.getLanguageIds()
-
-
+      //console.log('++store.state.countries.languageIds-->', store.state.countries.languageIds )
+     
     },
+
     selected(value) {
       this.current = []
       this.select = []
 
       this.current = this.getLanguageIds
       this.select = value
-
-      console.log('++this.current-->', this.current)
-      console.log('++this.select-->', this.select)
     }
   },
   created() {

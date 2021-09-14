@@ -58,6 +58,7 @@
             </router-link>
           </button> -->
           <!-- dev -->
+          
           <div
             class="card white"
             style="
@@ -78,7 +79,6 @@
             >
               💰  {{ 'CASH' | localize }}
             </div>
-            <!-- <i class="large material-icons" style="margin-left: 0.8em; margin-top: -1em;">attach_money</i> -->
           </div>
           <!--     -->
         </li>
@@ -238,7 +238,7 @@ export default Vue.extend({
           break
         case 'cash':
           //console.log('++cash')
-          this.setCashEnabler()
+          this.setEnabler()
           this.$router.push('/cash')
           break
 
@@ -249,6 +249,7 @@ export default Vue.extend({
 
     setEnabler() {
       //console.log('setEnabler')
+
       this.getCashEnabler() === false
         ? (this.cash_enabler = true)
         : (this.cash_enabler = false)

@@ -306,10 +306,10 @@ export default {
 }
 
 /* dev */
-.pay-up-title {
+.pay-up-title {  
   position: absolute;
   /* padding-left: 3em; */
-  margin-top: -3em;
+  margin-top: -2.0em;
   margin-left: 3.2em;
   z-index: 1;
 }

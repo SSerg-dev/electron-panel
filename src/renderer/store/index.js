@@ -198,77 +198,59 @@ export default new Vuex.Store({
     getWetBalance(state) {
       // PanelMoney
       //return state.params.find((p) => p.title === "TAG_WET_BALANCE")?.value;
-
       return state.parameters.PanelMoney
       //return 1001
     },
-    // (наличные или карта)
-    getWetMoney(state) {
-      return state.params.find(p => p.title === 'TAG_WET_MONEY')?.value
-    },
-    // сервисные деньги
-    getWetServMoney(state) {
-      return state.params.find(p => p.title === 'TAG_WET_SERV_MONEY')?.value
-    },
-    // бонусы
-    getWetBonusMoney(state) {
-      return state.params.find(p => p.title === 'TAG_WET_BONUS_MONEY')?.value
-    },
+    
     // end Платежи ------------------------------------------------------------
 
-    // Список всех Wet программ
-    getWetProg(state) {
+    getWetBusyPanel(state) {
+      return state.parameters.busy
+    },
+    // Статус программ (маска по которой отображают работающие)
+    // progStatusMask
+    getWetProgStatus(state) {
+      return state.parameters.progStatusMask
+    },
+    // Прайс программ (маска по которой отображают доступные)
+    getWetProgShow(state) {
+    // progShowMask
+      return state.parameters.progShowMask
+    },
+    // Прайс программ (список цен)
+    // progPrice
+    getWetProgPrice(state, getters) {
+      return state.parameters.progPrice
+    },
+    // --------------------------------
+
+    /* getWetProg(state) {
       return state.params.filter(p => p.title.slice(4, 7) === 'WET')
     },
     getWetStopTime(state) {
       return state.params.find(p => p.title === 'TAG_WET_STOP_TIME')?.value
     },
-    // Занята ли панель
-    getWetBusyPanel(state) {
-      // busy
-      //return state.params.find(p => p.title === 'TAG_WET_IS_BUSY')?.value
-      return state.parameters.busy
-    },
     getWetEnabled(state) {
-      // active
       return state.params.find(p => p.title === 'TAG_WET_ENABLED')?.value
     },
-
     getWetProgram(state) {
       return state.params.find(p => p.title === 'TAG_WET_PROGRAM')?.value
     },
-    // Статус программ (маска по которой отображают работающие)
-    getWetProgStatus(state) {
-      // progStatusMask
-      /* let arr = state.params
-        .filter(p => p.title === 'TAG_WET_PROG_STATUS')
-        .sort((a, b) => a - b)
-        .reverse()
-      return arr[0]?.value */
-      return state.parameters.progStatusMask
+    getWetMoney(state) {
+      return state.params.find(p => p.title === 'TAG_WET_MONEY')?.value
     },
-    // Прайс программ (маска по которой отображают доступные)
-    getWetProgShow(state) {
-      // progShowMask
-      //console.log('state.parameters.progShowMask-->', state.parameters.progShowMask)
-      return state.parameters.progShowMask
+    getWetServMoney(state) {
+      return state.params.find(p => p.title === 'TAG_WET_SERV_MONEY')?.value
     },
+    getWetBonusMoney(state) {
+      return state.params.find(p => p.title === 'TAG_WET_BONUS_MONEY')?.value
+    },
+
     getWetAddMoney(state) {
       return state.params.find(p => p.title === 'TAG_WET_ADD_MONEY')?.value
     },
     getWetAddMoney2(state) {
       return state.params.find(p => p.title === 'TAG_WET_ADD_MONEY2')?.value
-    },
-    // Прайс программ (список цен)
-    getWetProgPrice(state, getters) {
-      // progPrice
-      //return state.params.find(p => p.title === 'TAG_WET_PROG_PRICE')?.value
-      /* return state.params.find(
-        p =>
-          p.title ===
-          `::AsGlobalPV:PostN[${getters.getDefaultPanelNumber - 1}].progPrice`
-      )?.value */
-      return state.parameters.progPrice
     },
     getWetOrder(state) {
       return state.params.find(p => p.title === 'TAG_WET_ORDER')?.value
@@ -283,7 +265,6 @@ export default new Vuex.Store({
       return state.params.find(p => p.title === 'TAG_WET_COLLECT')?.value
     },
     getWetShowOperatorCall(state) {
-      // operatorCall
       return state.params.find(p => p.title === 'TAG_WET_SHOW_OPERATOR_CALL')
         ?.value
     },
@@ -299,12 +280,12 @@ export default new Vuex.Store({
     },
     getWetTime(state) {
       return state.params.find(p => p.title === 'TAG_WET_TIME')?.value
-    },
+    }, */
     // END WET !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     // DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Список всех Dry программ
-    getDryProg(state) {
+/*     getDryProg(state) {
       return state.params.filter(p => p.title.slice(4, 7) === 'DRY')
     },
     getDryBalance(state) {
@@ -371,7 +352,7 @@ export default new Vuex.Store({
     getDryTime(state) {
       return state.params.find(p => p.title === 'TAG_DRY_TIME')?.value
     },
-
+ */
     // END DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     info: s => s.info,
@@ -394,11 +375,6 @@ export default new Vuex.Store({
     getSecondsGotoProgramMenu(state) {
       return state.secondsGotoProgramMenu
     },
-    // secondsStatusTimer
-    /* getSecondsStatusTimer(state) {
-      return state.secondsStatusTimer
-    }, */
-
     getIsConfig(state) {
       return state.isConfig
     },
