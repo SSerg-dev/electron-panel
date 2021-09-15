@@ -50,7 +50,8 @@ export default {
     ],
 
     countries: ['RU', 'UA', 'BY', 'LT', 'LV', 'EE', ],
-    //countries: [],
+    // countries: [],
+    selectCountries: [],
 
     /* countries: [
       'RU',
@@ -631,9 +632,81 @@ export default {
         })
 
       return natives
+    },getLanguageNatives(state, getters) {
+      const selected = state.countries
+      const all = state.allCountries
+      const natives = []
+
+      /* dev */
+      let language = null
+
+      selected.forEach((keySel, index) => {
+        Object.keys(all).forEach(keyAll => {
+          if (keySel === keyAll) {
+            const keyLang = all[keyAll].languages[0]
+            language = getters.getLanguageItem(keyLang.toLowerCase())
+            const emoji = all[keyAll].emoji
+            const currency = all[keyAll].currency.alphabetic_code
+            const symbol = all[keyAll].currency.symbol
+            natives.push({
+              id: index + 1,
+              title: language,
+              key: keyAll,
+              emoji: emoji,
+              currency: currency,
+              symbol: symbol,
+              selected: false
+
+            })
+          }
+        })
+      })
+
+      return natives
     },
+    /* dev */
+    getSelectLanguageNatives(state, getters) {
+      //const selected = state.countries
+      const selected = state.selectCountries
+
+      const all = state.allCountries
+      const natives = []
+
+      /* dev */
+      let language = null
+
+      selected.forEach((keySel, index) => {
+        Object.keys(all).forEach(keyAll => {
+          if (keySel === keyAll) {
+            const keyLang = all[keyAll].languages[0]
+            language = getters.getLanguageItem(keyLang.toLowerCase())
+            const emoji = all[keyAll].emoji
+            const currency = all[keyAll].currency.alphabetic_code
+            const symbol = all[keyAll].currency.symbol
+            natives.push({
+              id: index + 1,
+              title: language,
+              key: keyAll,
+              emoji: emoji,
+              currency: currency,
+              symbol: symbol,
+              selected: false
+
+            })
+          }
+        })
+      })
+
+      return natives
+    },
+
     getLanguageIds(state) {
       return state.languageIds
+    },
+    getSelectCountries(state) {
+      //console.log('!!state.selectCountries-->', state.selectCountries)
+      return state.selectCountries
+      
     },
     /*     */
     
@@ -651,15 +724,20 @@ export default {
       //console.log('state.country-->', JSON.stringify(state.country))
     },
     setLanguageNatives(state, selected) {
-      state.countries = selected 
-      //console.log('state.countries-->', state.countries)
+      state.countries = selected
+      //state.countries = ['LT', 'LV', 'EE', ] 
+      //console.log('++state.countries-->', state.countries)
 
     },
     setLanguageIds(state, languageIds) {
       state.languageIds = languageIds
       //console.log('!!++state.languageIds-->', state.languageIds)
     },
-
+    // selectCountries
+    setSelectCountries(state, selected) {
+      state.selectCountries = selected
+      //console.log('++state.selectCountries-->', state.selectCountries)
+    },
   }, // end mutation
 
   modules: {}

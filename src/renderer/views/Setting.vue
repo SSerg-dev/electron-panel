@@ -884,6 +884,8 @@ import SettingScreenChangeItem from '@/components/setting/SettingScreenChangeIte
 import SettingScreenAssignItem from '@/components/setting/SettingScreenAssignItem'
 
 import cost from '../store/cost'
+import EventBus from '@/bus/EventBus'
+
 
 export default Vue.extend({
   name: 'setting',
@@ -949,19 +951,55 @@ export default Vue.extend({
   },
   mounted() {
     /* dev */
+    EventBus.$on('submitSelect', this.submitHandler)
+
     this.setRouter('/setting')
     this.tabs = M.Tabs.init(this.$refs.tabs, {})
   },
   methods: {
-    
+    /* dev */
+    submitHandler(options) {  
+      const selected = JSON.stringify(options.selected)
+      const current = JSON.stringify(options.current)
+      //this.setLanguage(selected, current)
+      
+    },
+    /* dev */
+      //setLanguage(selected, current) {
+        setLanguage() {
+
+        const countries = this.getSelectCountries() 
+        //this.$store.state.countries.countries = countries
+        
+        /* if(countries.length > 0) {
+          this.setLanguageNatives(countries)
+          this.setSelectCountries(countries)
+        } */
+        
+        //console.log('getLangthis()-->$store.state.countries.countries-->', this.$store.state.countries.countries)   
+        //console.log('getLangthis()-->this.getSelectCountries', this.getSelectCountries(),)
+
+        /* if(selected.length > 0)
+          this.setLanguageNatives(selected)
+        if(current.length > 0)    
+          this.setLanguageIds(current) */ 
+      },
+    ...mapGetters ({
+      //getLanguageNatives: 'getLanguageNatives'
+    }),  
     ...mapMutations({
       setRouter: 'setRouter',
-      /* dev */
+      setLanguageNatives: 'setLanguageNatives',
+      setLanguageIds: 'setLanguageIds',
+      setSelectCountries: 'setSelectCountries'
+      
     }),
     setDown() {
       this.isDown = !this.isDown
     },
     updateOk() {
+      this.setLanguage()
+
       this.$router.push('/')
 
       //const panelType = this.getPanelType
@@ -975,6 +1013,8 @@ export default Vue.extend({
       //this.$router.push('/')
     },
     updateApply() {
+      this.setLanguage()
+
       //console.log('!!!updateApply')
       // this.$router.push('/setting')
     },
@@ -982,8 +1022,9 @@ export default Vue.extend({
       //getTooltipInstalled: 'getTooltipInstalled',
       getCoinInstalled: 'getCoinInstalled',
       getTerminalInstalled: 'getTerminalInstalled',
-      getDirectCash: 'getDirectCash'
-      //getAcceptorInstalled: 'getAcceptorInstalled'
+      getDirectCash: 'getDirectCash',
+      //getAcceptorInstalled: 'getAcceptorInstalled',
+      getSelectCountries: 'getSelectCountries'
     })
   },
   computed: {

@@ -35,7 +35,6 @@ export default Vue.extend({
   methods: {
     ...mapMutations({
       setConfig: 'setConfig',
-      setLanguageNatives: 'setLanguageNatives',
     }),
 
     setup() {
@@ -51,12 +50,7 @@ export default Vue.extend({
           console.warn('Error? while parse settings -', err)
         }
       })
-      /* dev */
-      /* const countries = this.getConfig.countries 
-      if(countries.length > 0)
-        this.setLanguageNatives(countries)
-      console.log('store.state.countries.countries-->', countries.length, countries) */
-
+    
       ipcRenderer.on('OPCUA', (evt, payload) => {
         try {
           const tag = JSON.parse(payload)

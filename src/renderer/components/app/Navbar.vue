@@ -17,12 +17,13 @@
       >
         <!-- getIsPayCardMoney -->
 
-        <div
+        <!-- <div
           v-if="getWetBusyPanel === 'false' && !getIsPayCardMoney"
           class="head-panel-label"
         >
           <span class="white-text">{{ 'BOX' | localize }}</span>
-        </div>
+        </div> -->
+
       </div>
 
       <div class="row">

@@ -39,6 +39,8 @@ export default Vue.extend({
       delay: 1000,
 
       activeProg: [],
+      /* dev */
+      showProg: [],
       interval: null
       //status: ''
     }
@@ -46,7 +48,8 @@ export default Vue.extend({
 
   computed: {
     ...mapGetters({
-      getWetProgStatus: 'getWetProgStatus'
+      getWetProgStatus: 'getWetProgStatus',
+      getWetProgShow: 'getWetProgShow',
     })
   },
   /* dev */
@@ -59,16 +62,33 @@ export default Vue.extend({
     getActiveProgBit() {
       return (this.getWetProgStatus >>> 0).toString(2)
     },
+    /* dev */
+    getShowProgBit() {
+      return (this.getWetProgShow >>> 0).toString(2)
+    },
+
     setActiveProg() {
       let activeProgNames = []
-      
       
       this.activeProg = [...this.getActiveProgBit()]
         .reverse()
         .join('')
         .slice(1)
-      console.log('++this.activeProg-->', this.activeProg)
 
+      // progShowMask  
+      /* dev */ 
+      //console.log('++this.getWetProgStatus-->', this.getWetProgStatus)  
+      //console.log('++this.activeProg-->', this.activeProg)
+
+      /* this.showProg = [...this.getShowProgBit()]
+        .reverse()
+        .join('')
+        .slice(1) 
+
+      console.log('++this.getWetProgShow-->', this.getWetProgShow)
+      console.log('++this.showProg-->', this.showProg)
+      */
+      /*     */
 
       for (let i = 0; i <= this.activeProg.length; i++) {
         if (this.activeProg.toString().slice(i, i + 1) === '0') {
