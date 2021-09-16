@@ -70,24 +70,23 @@ export default Vue.extend({
     setActiveProg() {
       let activeProgNames = []
       
+      /* dev */
       this.activeProg = [...this.getActiveProgBit()]
         .reverse()
         .join('')
         .slice(1)
 
-      // progShowMask  
-      /* dev */ 
-      //console.log('++this.getWetProgStatus-->', this.getWetProgStatus)  
-      //console.log('++this.activeProg-->', this.activeProg)
-
-      /* this.showProg = [...this.getShowProgBit()]
+      this.showProg = [...this.getShowProgBit()]
         .reverse()
         .join('')
         .slice(1) 
 
-      console.log('++this.getWetProgShow-->', this.getWetProgShow)
-      console.log('++this.showProg-->', this.showProg)
-      */
+      console.log('this.getWetProgStatus-->', this.getWetProgStatus)
+      console.log('++this.activeProg-->', this.activeProg)
+      console.log('--------------------------')
+      console.log('this.getWetProgShow-->', this.getWetProgShow)
+      console.log('++this.showProg---->',this.showProg)
+      console.log('==========================')
       /*     */
 
       for (let i = 0; i <= this.activeProg.length; i++) {

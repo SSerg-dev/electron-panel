@@ -1548,7 +1548,7 @@ td {
 }
 .price {
   position: absolute;
-  margin-top: 0em;
-  margin-left: -1em;
+  margin-top: 4em;
+  margin-left: 0em;
 }
 </style>
