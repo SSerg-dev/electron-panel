@@ -1,26 +1,22 @@
 <template>
   <div>
     <section>
-      <!--       <div class="page-title white-text">
-        <h3>Bonus Bill</h3>
-      </div>
-       -->
-
-      <!-- style="width: 800px; padding-top: 2em; margin-top: 0em; margin-left: 4em; font-size: 2.5em;" -->
 
       <div class="info-title">
-        <p align="center">
-          Для зачисления бонусов
+        <h3>
+       <p align="center">
+          {{ `${this.messages[0]}` }}
         </p>
         <p align="center">
-          введите номер телефона
+          {{ `${this.messages[1]}` }}
         </p>
+        </h3>
+        
       </div>
 
       <form @submit.prevent="" novalidate>
         <div class="imgs" style="padding-top: 2em">
           <div class="display" style="padding-left: 4em">
-            <!-- style="font-size: 10rem; height: 8rem; border-bottom: 4px solid #fff;" -->
             <input
               type="tel"
               class="phone"
@@ -30,15 +26,6 @@
               style="font-size: 7.2rem; height: 8rem; border-bottom: 6px solid #fff; padding-left: 0em"
             />
           </div>
-
-          <!-- 
-            <button
-                v-if="this.isDown.dryShine === false"
-                style="background-image:url('./imgs/blue/blue_long.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('dryShine')"
-              >
-           -->
 
           <div class="row" style="padding-top: 10em;">
             <div class="col s6 num">
@@ -138,7 +125,6 @@
         </div>
 
         <div class="pay-up-title">
-          <!-- //////////////////////////// -->
           <div v-if="this.getIsAppendBonusMoney()">
             <button
               style="margin-left: -2.0em; border: none; background: #121212; width: 0px"
@@ -168,7 +154,6 @@
               </div>
             </button>
           </div>
-          <!-- //////////////////////////// -->
         </div>
       </form>
     </section>
@@ -179,8 +164,6 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import BonusBillQr from '@/components/BonusBillQr'
-// VuePassword
-// import Password from '@/views/Password'
 
 import { Database } from '@/storage/database.js'
 import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
@@ -207,7 +190,12 @@ export default {
     options: {},
 
     password: '',
-    clickCount: 0
+    clickCount: 0,
+
+    messages: [
+    `Для зачисления бонусов,`, 
+    `введите номер телефона`],
+    messageIndex: -1
 
     /*
     this.payBonusMoney()
@@ -262,13 +250,7 @@ export default {
     ...mapActions({
       updateWetBonusMoney: 'updateWetBonusMoney'
     }),
-    /* dev */
-    /* emitGlobalClickEvent() {
-      this.clickCount++
-      console.log('this.clickCount-->', this.clickCount)
-      EventBus.$emit('clicked', this.clickCount)
-    }, */
-
+    
     emitClick(program) {
       //console.log('emitClick!!!')
       EventBus.$emit('submitBonusBill', program)
@@ -414,7 +396,7 @@ export default {
 </script>
 
 <style scoped>
-.info-title {
+.info-title { 
   width: 800px;
   padding-top: 0.5em;
   margin-top: 0em;

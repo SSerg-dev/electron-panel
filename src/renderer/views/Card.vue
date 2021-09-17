@@ -7,29 +7,24 @@
         </div>
       </router-link>
 
-      <!-- <button
-        class="btn #121212 back"
-        @click="back"
-        style="border: none; background: #121212;"      >
-        <img src="imgs/key/back.png" />
-        </button> -->
-
-      <div class="page-title">
+      <!-- <div style="width: 800px; margin-top: 9em; margin-left: 8em;" class="message"> -->
+      <div class="message">    
         <h3>
-          <p>
-            Введите сумму пополнеия<br />
-            Минимальная сумма 10 руб
+          <p align="center">
+            {{ `${this.messages[0]}` }}
+          </p>
+          <p align="center">
+            {{ `${this.messages[1]}` }}
           </p>
         </h3>
       </div>
-
-      <section>
-        <div class="row">
-          <!-- <div><Calculator /></div> -->
-          <div><CardBill /></div>
-        </div>
-      </section>
     </div>
+
+    <section>
+      <div class="row">
+        <div><CardBill /></div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -40,9 +35,16 @@ import { mapGetters, mapMutations } from 'vuex'
 import CardBill from '@/components/CardBill'
 
 export default Vue.extend({
+  /* new component */
+  name: 'card',
   data: () => ({
-    intervalMainMenu: null
+    intervalMainMenu: null,
+    messages: [
+    `Введите сумму пополнеия`, 
+    `Минимальная сумма 10 руб`],
+    messageIndex: -1
   }),
+
   computed: {
     ...mapGetters({
       getWetBusyPanel: 'getWetBusyPanel',
@@ -88,12 +90,21 @@ export default Vue.extend({
 .back {
   position: absolute;
   margin-top: 8em;
-  margin-left: 2em;
+  margin-left: 3.5em;
+  z-index: 1;
+}
+.message {
+  width: 800px;
+  position: absolute;  
+  margin-top: 3.5em;
+  margin-left: 3.5em;
+  color: white;
+  font-size: 2.5em;
   z-index: 1;
 }
 .row {
-  padding-top: 15rem;
-  padding-left: 4rem;
+  padding-top: 25em;
+  padding-left: 4em;
 }
 .page-title {
   padding-top: 30px;
@@ -102,10 +113,18 @@ export default Vue.extend({
   margin-right: auto;
   width: 50em;
   align-items: center;
+  z-index: 1;
 }
 .page-subtitle {
   margin-left: auto;
   margin-right: auto;
   width: 30em;
+}
+.info-title {
+  width: 800px;
+  padding-top: 2em;
+  margin-top: 0em;
+  margin-left: 0em;
+  font-size: 2.5em;
 }
 </style>

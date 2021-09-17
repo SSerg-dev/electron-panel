@@ -53,6 +53,33 @@ export default Vue.extend({
     M.updateTextFields()
   },
   methods: {
+    setup() {
+      this.currencies = this.getLanguageNatives().filter(
+        c => c.currency !== 'EUR'
+      )
+      if (
+        this.getLanguageNatives().filter(c => c.currency === 'EUR').length > 0
+      )
+        this.currencies.push({
+          id: 999,
+          title: 'EUR',
+          key: 'EUR',
+          emoji: '🇪🇺',
+          currency: 'EUR',
+          symbol: '€'
+        })
+
+      let index
+      const defaultCurrency = this.getDefaultCurrency()
+      if (defaultCurrency.title.toUpperCase() === 'RUB') index = 0
+
+      const { id, title, key, emoji, currency, symbol } = this.currencies[index]
+      this.current = id
+      this.select = title
+      // this.emoji = emoji
+      this.currency = currency
+      this.symbol = symbol
+    },
     ...mapGetters({
       getDefaultCurrency: 'getDefaultCurrency',
       getLanguageNatives: 'getLanguageNatives'
@@ -67,32 +94,7 @@ export default Vue.extend({
     }
   },
   created() {
-    // 'RUB'
-    //this.currencies = this.getLanguageNatives()
-
-    this.currencies = this.getLanguageNatives().filter(
-      c => c.currency !== 'EUR'
-    )
-
-    if (this.getLanguageNatives().filter(c => c.currency === 'EUR').length > 0)
-      this.currencies.push({
-        id: 999,
-        title: 'EUR',
-        key: 'EUR',
-        emoji: '🇪🇺',
-        currency: 'EUR',
-        symbol: '€'
-      })
-
-    let index
-    const defaultCurrency = this.getDefaultCurrency()
-    if (defaultCurrency.title.toUpperCase() === 'RUB') index = 0
-
-    const { id, title, key, emoji, currency, symbol } = this.currencies[index]
-    this.current = id
-    this.select = title
-    // this.emoji = emoji
-    ;(this.currency = currency), (this.symbol = symbol)
+    this.setup()
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {

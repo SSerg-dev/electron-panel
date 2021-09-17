@@ -9,17 +9,16 @@
   padding-left: 4em;
   margin-top: -2em;
   margin-left: -4em;
-  z-index: 999;
+  z-index: 1;
   "
   >
-    <!-- <input style="margin-left: 0em;" class="info-title" onclick="this.value = event.clientX+':'+event.clientY"> -->
     <section
       style="
           width: 66em; 
           height: 72em; 
           margin-left: 0.2em; 
           margin-top: -6em;
-          padding-left: 1.8em;
+          padding-left: 1.8em; 
           padding-top: 8em;
           border: solid 3px #00B9E3; 
           border-radius: 2em;
@@ -29,7 +28,6 @@
     >
       <form @submit.prevent="">
         <div v-if="getIsPayCardMoney()" align="center" class="page-title">
-          <!-- v-if="this.messageIndex > -1" -->
           <div
             v-if="this.messageIndex > -1"
             class="info-title noselect"
@@ -41,20 +39,31 @@
             </p>
 
             <p align="center" style="font-size: 140px;">
-              {{ this.amountString }}
+              <!-- {{ this.amountString }} -->
+              {{ this.balance }}
             </p>
+            <p align="center">
+              {{ `${this.messages[1]}` }}
+            </p>
+
           </div>
         </div>
 
-        <!-- new component -->
-        <!-- style="background: yellow" -->
         <table>
           <tbody>
             <!-- row 01 -->
-            <!--  class="info-title" align="center" -->
             <tr>
-              <td colspan="5">
-                <div class="display">{{ display }}</div>
+              <td colspan="3">
+                <div class="display">{{display }}</div>
+              </td>
+              <td colspan="2">
+                <h1>
+                <div class="white-text">
+                {{ this.emoji }}
+                {{ this.currency }}
+                {{ this.symbol }}
+                </div>
+                </h1>
               </td>
             </tr>
             <!-- row 02 -->
@@ -85,7 +94,6 @@
                 </div>
               </td>
               <td>
-                <!-- dev -->
                 <div
                   @click="setNumber('1')"
                   class="card white"
@@ -109,10 +117,8 @@
                     1
                   </div>
                 </div>
-                <!--     -->
               </td>
               <td>
-                <!-- dev -->
                 <div
                   @click="setNumber('2')"
                   class="card white"
@@ -136,10 +142,8 @@
                     2
                   </div>
                 </div>
-                <!--     -->
               </td>
               <td>
-                <!-- dev -->
                 <div
                   @click="setNumber('3')"
                   class="card white"
@@ -163,12 +167,8 @@
                     3
                   </div>
                 </div>
-                <!--     -->
               </td>
               <td>
-                <!-- <button class="btn" @click="setNumber('10')">
-                  <img src="imgs/key/kinc10-up.png" />
-                </button> -->
                 <div
                   @click="setNumber('10')"
                   class="card white"
@@ -222,7 +222,6 @@
                 </div>
               </td>
               <td>
-                <!-- dev -->
                 <div
                   @click="setNumber('4')"
                   class="card white"
@@ -246,10 +245,8 @@
                     4
                   </div>
                 </div>
-                <!--     -->
               </td>
               <td>
-                <!-- dev -->
                 <div
                   @click="setNumber('5')"
                   class="card white"
@@ -273,10 +270,8 @@
                     5
                   </div>
                 </div>
-                <!--     -->
               </td>
               <td>
-                <!-- dev -->
                 <div
                   @click="setNumber('6')"
                   class="card white"
@@ -300,7 +295,6 @@
                     6
                   </div>
                 </div>
-                <!--     -->
               </td>
               <td>
                 <div
@@ -355,7 +349,6 @@
                 </div>
               </td>
               <td>
-                <!-- dev -->
                 <div
                   @click="setNumber('7')"
                   class="card white"
@@ -379,10 +372,8 @@
                     7
                   </div>
                 </div>
-                <!--     -->
               </td>
               <td>
-                <!-- dev -->
                 <div
                   @click="setNumber('8')"
                   class="card white"
@@ -406,10 +397,8 @@
                     8
                   </div>
                 </div>
-                <!--     -->
               </td>
               <td>
-                <!-- dev -->
                 <div
                   @click="setNumber('9')"
                   class="card white"
@@ -433,7 +422,6 @@
                     9
                   </div>
                 </div>
-                <!--     -->
               </td>
               <td>
                 <div
@@ -489,7 +477,6 @@
                 </div>
               </td>
               <td>
-                <!-- dev -->
                 <div
                   @click="setNumber('.')"
                   class="card white"
@@ -514,10 +501,8 @@
                     .
                   </div>
                 </div>
-                <!--     -->
               </td>
               <td>
-                <!-- dev -->
                 <div
                   @click="setNumber('0')"
                   class="card white"
@@ -541,12 +526,8 @@
                     0
                   </div>
                 </div>
-                <!--     -->
               </td>
               <td>
-                <!-- <button class="btn" @click="backspace">
-                  <img src="imgs/key/kdel-up.png" />
-                </button> -->
                 <div
                   @click="backspace"
                   class="card white"
@@ -674,10 +655,8 @@
             </tr>
           </tbody>
         </table>
-        <!-- end new component -->
       </form>
     </section>
-    <!-- <input style="margin-left: 0em;" class="info-title" onclick="this.value = event.clientX+':'+event.clientY"> -->
   </div>
 </template>
 
@@ -714,8 +693,23 @@ export default {
     lastname: '',
 
     messages: [`Ваш баланс,`, `Выберите сумму списания`],
-    messageIndex: -1
+    messageIndex: -1,
+ 
+    /* dev */
+    currency: '',
+    currencies: [],
+
+
+
+
   }),
+  computed: {
+    ...mapGetters({
+      getDefaultCurrency: 'getDefaultCurrency',
+      getLanguageNatives: 'getLanguageNatives'
+
+    })
+  },
   mounted() {
     this.setup()
 
@@ -723,11 +717,44 @@ export default {
     // console.log('this.firstname-->', this.firstname)
     this.payBonusMoney()
   },
+  created() {
+    //this.setup()
+    this.initCurrency() 
+  },
 
   methods: {
-    /* dev */
-    setup() {
-      const overlay = this.$refs.overlay
+    /* dev */ 
+    initCurrency() {
+      this.currencies = this.getLanguageNatives.filter(
+        c => c.currency !== 'EUR'
+      )
+      if (
+        this.getLanguageNatives.filter(c => c.currency === 'EUR').length > 0
+      )
+        this.currencies.push({
+          id: 999,
+          title: 'EUR',
+          key: 'EUR',
+          emoji: '🇪🇺',
+          currency: 'EUR',
+          symbol: '€'
+        })
+
+      let index
+      const defaultCurrency = this.getDefaultCurrency
+      if (defaultCurrency.title.toUpperCase() === 'RUB') index = 0
+
+      const { id, title, key, emoji, currency, symbol } = this.currencies[index]
+      this.current = id
+      this.select = title
+      this.emoji = emoji
+      this.currency = currency
+      this.symbol = symbol
+      console.log('this.currency-->', this.emoji, this.currency, this.symbol)
+    },
+
+    overlay() {
+    const overlay = this.$refs.overlay
 
       overlay.onclick = evt => {
         if (
@@ -743,18 +770,26 @@ export default {
           this.$router.push('/')
         }
       }
+    }, 
+    setup() {
+      this.overlay()
+      //this.initCurrency()
     },
+
     payUp(program) {
       if (program === 'append') {
         this.$router.push('/status')
       }
       
     },
-
     ...mapGetters({
       getLoginBonusOptions: 'getLoginBonusOptions',
       getLoginBonusPhone: 'getLoginBonusPhone',
-      getIsPayCardMoney: 'getIsPayCardMoney'
+      getIsPayCardMoney: 'getIsPayCardMoney',
+
+      //getDefaultCurrency: 'getDefaultCurrency',
+      //getLanguageNatives: 'getLanguageNatives'
+
     }),
     ...mapMutations({
       setLoginBonusPhone: 'setLoginBonusPhone',
@@ -772,23 +807,16 @@ export default {
         this.display = this.title = this.body = '0'
       }
     },
-    /* ////////////////////////////// */
     // ПОДТВЕРДИТЬ
     async payBonusMoney() {
-      // console.log('ПОДТВЕРДИТЬ CardBill-->payBonusMoney!!!')
       this.phoneNotParse = this.getLoginBonusPhone()
 
       const method = methods[8]
       const type = types[2]
 
       let response
-      // dev
       this.options = this.getLoginBonusOptions()
 
-      /* console.log(
-        'CardBill-->this.options.params',
-        JSON.stringify(this.options.params)
-      ) */
       if (this.options.params.pin.length > 0) {
         let response = await this.storage.getClient(method, this.options, type)
         if (+response.result === 0) {
@@ -799,8 +827,9 @@ export default {
           this.firstname = response.profile.firstname
           this.lastname = response.profile.lastname
           this.messageIndex = 0
+          /* dev */
+          //this.setNumber(this.balance)
 
-          this.setNumber(this.balance)
           // clear
           this.setLoginBonusPhone('')
           this.setLoginBonusPassword('')
@@ -808,14 +837,9 @@ export default {
           this.$message(`Ошибка:  ${response.error}`)
           this.$router.push('/password')
         }
-        //---
-        //console.log('CardBill-->response', JSON.stringify(response))
-        //---
       }
 
-      //---
-    }, // payBonusMoney
-    /* ////////////////////////////// */
+    },
 
     setNumber(num, fixed) {
       //console.log('fixed-->', fixed)
@@ -833,9 +857,12 @@ export default {
         this.amount = 0
         if (this.amount + parseInt(num) <= 1000) this.amount = parseInt(num)
       }
-        
+      /* dev */
+      if( (this.balance > 0) && (this.amount > this.balance))
+        this.amount = this.balance
 
       if (this.amount < 0) this.amount = 0
+      
       this.amountString = this.amount.toString()
       this.display = this.amountString
     },
@@ -858,21 +885,11 @@ export default {
 
 <style scoped>
 .display {
-  /* padding-top: 0em;
-  padding-bottom: 0em;;
-  width: 253px;
-  position: absolute;
-
-  color: #ffffff;
-  font-size: 10em;
-  line-height: 1em;
-  text-align: center;
-  text-decoration: underline; */
-
+  
   width: 0em;
   position: absolute;
   margin-top: -0.8em;
-  margin-left: 0em;/* 2.3em; */
+  margin-left: 0.15em;/* 2.3em; */
   text-decoration: underline;
   color: #ffffff;
   font-size: 10em;
@@ -957,13 +974,7 @@ td {
   font-weight: bold;
   z-index: 1;
 }
-/* .info-title {
-  width: 800px;
-  padding-top: 0.5em;
-  margin-top: 0em;
-  margin-left: 0em;
-  font-size: 3em;
-} */
+
 .info-title {
   position: absolute;
 
@@ -981,5 +992,4 @@ td {
   text-align: center;
   font-family: 'Plumb-Medium';
 }
-/* ************************* */
 </style>

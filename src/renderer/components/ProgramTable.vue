@@ -5,22 +5,16 @@
         <div class="message">
           <div><Message /></div>
         </div>
-        <div class="price">
+        <div  v-if="getWetBalance > 0" class="price">
           <img src="imgs/price/price-up.png" />
         </div>
       </section>
 
       <table border="0" width="100%" cellpadding="0" cellspacing="0">
         <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
-          <!-- 0 -->
-          <!-- <tr>
-            <ProgramTableDisk />
-          </tr> -->
-          <!-- <h3 class="white-text">{{isVisible}}</h3> -->
           <!-- 1 -->
           <!-- ДИСКИ -->
           <tr align="center" v-if="this.actives[14].display !== 'none'">
-            <!-- //////////////////////////////////////////////// -->
             <td
               v-if="this.actives[24].display !== 'none'"
               colspan="1"
@@ -74,9 +68,7 @@
                 </div>
               </button>
             </td>
-            <!-- /////////////////////////////////////////////// -->
 
-            <!-- <td colspan="1" v-if="this.actives[24].x2 === true"> -->
             <td
               colspan="1"
               v-if="
@@ -109,7 +101,6 @@
           <!-- 2 -->
           <!-- АНТИМОСКИТ -->
           <tr align="center" v-if="this.actives[15].display !== 'none'">
-            <!-- /////////////////////////////////////////////// -->
             <td
               v-if="this.actives[25].display !== 'none'"
               colspan="1"
@@ -166,9 +157,6 @@
               </button>
             </td>
 
-            <!-- ////////////////////////////////////////////////// -->
-
-            <!-- <td colspan="1" v-if="this.actives[25].x2 === true"> -->
             <td
               colspan="1"
               v-if="
@@ -199,10 +187,6 @@
 
           <!-- 3 -->
           <!-- ЩЕТКА + ПЕНА -->
-          <!-- .......................................... -->
-          <!-- green_long_x2_color.png -->
-          <!-- dev -->
-          <!-- <tr align="center" v-if="this.actives[13].display !== 'none'"> -->
           <tr align="center" v-if="this.actives[13].display !== 'none'">
             <!-- 1 -->
             <td
@@ -236,7 +220,6 @@
               </button>
             </td>
             <!-- 2 -->
-            <!-- <td v-else-if="(this.actives[20].display === 'block') && (this.actives[23].display === 'none')" colspan="1" align="center" width="832px" heigth="105px"> -->
             <td
               v-else-if="
                 this.actives[20].display === 'block' &&
@@ -331,8 +314,6 @@
               </button>
             </td>
 
-            <!-- ///////////////////////////////////////////// -->
-            <!-- <td colspan="1" v-if="this.actives[25].x2 === true"> -->
             <td
               colspan="1"
               v-if="
@@ -358,11 +339,6 @@
               </button>
             </td>
 
-            <!-- <td
-              style="padding-right: 8.4em;"
-              colspan="1"
-              v-if="this.actives[23].x2 === true"
-            > -->
             <td
               style="padding-right: 8.4em;"
               colspan="1"
@@ -390,8 +366,6 @@
           <!-- 4 -->
           <!-- ПЕНА -->
           <tr align="center" v-if="this.actives[5].display !== 'none'">
-            <!-- ////////////////////////////////////////////////// -->
-            <!-- 1 red_long_x2_color.png -->
             <td
               v-if="
                 this.actives[19].display === 'none' &&
@@ -493,7 +467,6 @@
               >
                 <div class="button-title-long">{{ `${actives[5].title}` }}</div>
               </button>
-              <!-- red_long_x2_color.png -->
               <button
                 v-if="this.isDown.foam === true"
                 style="background-image:url('./imgs/red/red_long_down_x2_color.png'); width: 704px; height: 105px;"
@@ -504,9 +477,6 @@
               </button>
             </td>
 
-            <!-- //////////////////////////////////////////////// -->
-
-            <!-- <td colspan="1" v-if="this.actives[19].color === true"> -->
             <td
               colspan="1"
               v-if="
@@ -532,17 +502,11 @@
               </button>
             </td>
 
-            <!-- <td
-              style="padding-right: 8.4em;"
-              colspan="1"
-              v-if="this.actives[22].x2 === true"
-            > -->
             <td
               style="padding-right: 8.4em;"
               colspan="1"
               v-if="this.actives[22].display !== 'none'"
             >
-              <!--  -->
               <button
                 v-if="this.isDown.foam_x2 === false"
                 style="padding-right: 96px; height: 105px"
@@ -566,8 +530,6 @@
           <!-- ШАМПУНЬ shampoo -->
 
           <tr align="left" v-if="this.actives[0].display !== 'none'">
-            <!-- v-if="this.actives[21].display !== 'none'" -->
-            <!-- ////////////////////////////////////////// -->
             <td
               v-if="this.actives[21].display !== 'none'"
               colspan="1"
@@ -616,9 +578,6 @@
               </button>
             </td>
 
-            <!-- ///////////////////////////////////////// -->
-
-            <!-- <td colspan="1" v-if="this.actives[21].x2 === true"> -->
             <td
               colspan="1"
               v-if="
@@ -650,7 +609,6 @@
           <!-- 6 -->
           <!-- ВОДА + ШАМПУНЬ -->
           <tr align="left" v-if="this.actives[1].display !== 'none'">
-            <!-- ///////////////////////////////////////////// -->
             <td
               v-if="this.actives[7].display !== 'none'"
               colspan="1"
@@ -707,10 +665,6 @@
               </button>
             </td>
 
-            <!-- v-else-if="this.actives[24].display === 'none'" -->
-            <!-- ///////////////////////////////////////////// -->
-
-            <!-- <td colspan="1" v-if="this.actives[7].turbo === true"> -->
             <td
               colspan="1"
               v-if="
@@ -741,7 +695,6 @@
           <!-- 7 -->
           <!-- ТЕПЛАЯ ВОДА warmWater -->
           <tr align="left" v-if="this.actives[11].display !== 'none'">
-            <!-- ////////////////////////////////////// -->
             <td
               v-if="this.actives[12].display !== 'none'"
               colspan="1"
@@ -798,9 +751,6 @@
               </button>
             </td>
 
-            <!-- ///////////////////////////////////////////////////// -->
-
-            <!-- <td colspan="1" v-if="this.actives[12].turbo === true"> -->
             <td
               colspan="1"
               v-if="
@@ -832,8 +782,6 @@
           <!-- ХОЛОДНАЯ ВОДА coldWater -->
 
           <tr align="left" v-if="this.actives[2].display !== 'none'">
-            <!-- /////////////////////////////////////////////////// -->
-            <!-- v-else-if="this.actives[12].display === 'none'" -->
             <td
               v-if="this.actives[8].display !== 'none'"
               colspan="1"
@@ -881,9 +829,6 @@
                 <div class="button-title-long">{{ `${actives[2].title}` }}</div>
               </button>
             </td>
-            <!-- /////////////////////////////////////////////////////////// -->
-
-            <!-- <td colspan="1" v-if="this.actives[8].turbo === true"> -->
             <td
               colspan="1"
               v-if="
@@ -914,8 +859,6 @@
           <!-- 9 -->
           <!-- ВОСК И ЗАЩИТА waxProtection -->
           <tr align="left" v-if="this.actives[3].display !== 'none'">
-            <!-- ///////////////////////////////////// -->
-            <!-- v-else-if="this.actives[8].display === 'none'" -->
             <td
               v-if="this.actives[9].display !== 'none'"
               colspan="1"
@@ -964,9 +907,6 @@
               </button>
             </td>
 
-            <!-- ///////////////////////////////////// -->
-
-            <!-- <td colspan="1" v-if="this.actives[9].turbo === true"> -->
             <td
               colspan="1"
               v-if="
@@ -998,7 +938,6 @@
           <!-- СУШКА И БЛЕСК dryShine-->
 
           <tr align="left" v-if="this.actives[4].display !== 'none'">
-            <!-- /////////////////////////////////////////////// -->
             <td
               v-if="this.actives[10].display !== 'none'"
               colspan="1"
@@ -1047,9 +986,6 @@
               </button>
             </td>
 
-            <!-- /////////////////////////////////////////////// -->
-
-            <!-- <td colspan="1" v-if="this.actives[10].turbo === true"> -->
             <td
               colspan="1"
               v-if="
@@ -1076,8 +1012,6 @@
             </td>
             <td colspan="1"></td>
           </tr>
-
-          <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 
           <!-- ПЫЛЕСОС vacuum -->
           <tr align="left">
@@ -1138,6 +1072,7 @@
           </tr>
 
           <!-- ОМЫВАТЕЛЬ washer -->
+          
 
           <tr align="left">
             <td
@@ -1167,6 +1102,7 @@
                 </div>
               </button>
             </td>
+          
             <!-- ТУРБОСУШКА TURBO DRYER turboDryer-->
             <td
               colspan="1"
@@ -1196,6 +1132,7 @@
               </button>
             </td>
           </tr>
+
         </tbody>
       </table>
     </div>
@@ -1403,12 +1340,14 @@ export default {
       )
     },
     setup() {
-    /* dev */
-    this.actives[20].display = 'block'
-    this.actives[23].display = 'block'
+      /* dev */
+      this.actives[20].display = 'block'
+      this.actives[23].display = 'block'
 
-    this.actives[19].display = 'block'
-    this.actives[22].display = 'block'
+      this.actives[19].display = 'block'
+      this.actives[22].display = 'block'
+      
+      //this.actives[18].display = 'block'
 
     }
   },
@@ -1470,9 +1409,6 @@ td {
   height: 105px;
   width: 474px;
 
-  /* border-style: solid;
-  border-color: white; */
-  /* float: left; */
 }
 .right-col {
   padding-right: 0rem;
@@ -1486,20 +1422,12 @@ td {
   width: 0rem;
   height: 0rem;
 
-  /* position: absolute;
-  top: 27.2%;
-  left: 77.3%;
-  opacity: 1; */
 }
 .x2 {
   background-color: #121212;
   width: 0rem;
   height: 0rem;
 
-  /* position: absolute;
-  top: 18.8%;
-  left: 89.0%;
-  opacity: 1; */
 }
 .color {
   border-color: white;
@@ -1507,12 +1435,7 @@ td {
   width: 0rem;
   height: 0rem;
 
-  /* position: absolute; */
-  /* top: 18.8%; */
-  /* left: 50.0%; */
-  /* opacity: 1; */
 }
-/* *********************************** */
 .button-title-long {
   position: relative;
   top: 0%;
@@ -1535,7 +1458,6 @@ td {
   width: 704px;
   height: 105px;
 }
-/* dev */
 .page-title {
   margin-top: -5em;
   margin-left: 0em;

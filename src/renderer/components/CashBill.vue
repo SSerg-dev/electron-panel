@@ -1,43 +1,100 @@
 <template>
   <div class="page-title">
-    <!-- <h3>Cash Bill</h3> -->
+    <ul style="margin-top: 20em;">
 
-    <button
-      style="border: none; background: #121212;"
-      @click="payUp('payBonus')"
-    >
-      <!-- <router-link to="/bonus" class="btn black pay-end-bonus"> -->
-      <div class="btn black pay-end-bonus">
-        <img src="/imgs/pay/pay-end-bonus.png" />
-        <div class="button-title-long noselect">
-          {{ 'ВЕРНУТЬ БОНУСАМИ ДО 30%' }}
+      <li @click="payUp('payBonus')">
+        <div
+          class="card white pay-end-bonus"
+          style="
+                  
+                  width: 945px;
+                  height: 320px;
+                  margin-left: -8.0em;
+                  margin-bottom: 20em;
+
+                  border: solid 6px #7FE409; 
+                  border-radius: 4em;
+                  box-shadow: 0px 10px 20px #7FE409;
+                  "
+        >
+          <div
+            class="card-content black-text  noselect"
+            style="
+                  font-size: 4em;
+                  padding-right: 1.2em;
+                  padding-top: 2em;
+                  "
+          >
+            {{ 'ВЕРНУТЬ БОНУСАМИ ДО 30%' }}
+          </div>
         </div>
-      </div>
-    </button>
-
-    <button
+      </li>
+      
+      <li 
       v-if="this.IsWetBalance === false"
-      style="border: none; background: #121212;"
       @click="payUp('payEnd')"
-    >
-      <router-link to="/cash" class="btn black pay-end-no-bonus">
-        <img src="/imgs/pay/pay-end.png" />
-        <div class="button-title-long noselect">{{ 'ВНЕСИТЕ ОПЛАТУ' }}</div>
-      </router-link>
-    </button>
+      >
+        <div
+          class="card white pay-end-bonus"
+          style="
+                  
+                  width: 945px;
+                  height: 220px;
+                  margin-left: -8.0em;
+                  margin-top: -17em;
 
-    <!-- v-if="this.isDown.payEnd === true" -->
-    <button
+                  border: solid 6px #00B9E3; 
+                  border-radius: 4em;
+                  box-shadow: 0px 10px 20px #00b9e3;
+                  "
+        >
+          <div
+            class="card-content black-text  noselect"
+            style="
+                  font-size: 4em;
+                  padding-right: 4em;
+                  padding-top: 1em;
+                  "
+          >
+            {{ 'ВНЕСИТЕ ОПЛАТУ' }}
+          </div>
+        </div>
+
+        
+      </li>
+      <li
       v-if="this.IsWetBalance === true"
-      style="border: none; background: #121212;"
       @click="payUp('payEnd')"
-    >
-      <!-- v-if="this.IsWetBalance"  -->
-      <div class="btn black pay-end-no-bonus">
-        <img src="/imgs/pay/pay-end-no-bonus.png" />
-        <div class="button-title-long noselect">{{ 'ЗАВЕРШИТЬ ОПЛАТУ' }}</div>
-      </div>
-    </button>
+      >
+        <div
+          class="card white pay-end-bonus"
+          style="
+                  
+                  width: 945px;
+                  height: 220px;
+                  margin-left: -8.0em;
+                  margin-top: -17em;
+
+                  border: solid 6px red; 
+                  border-radius: 4em;
+                  box-shadow: 0px 13px 20px red;
+                  "
+        >
+          <div
+            class="card-content black-text  noselect"
+            style="
+                  font-size: 4em;
+                  padding-right: 3em;
+                  padding-top: 1em;
+                  "
+          >
+            {{ 'ЗАВЕРШИТЬ ОПЛАТУ' }}
+          </div>
+        </div>
+      </li>
+
+
+    </ul>
   </div>
 </template>
 
@@ -175,16 +232,22 @@ export default {
       const method = methods[0]
       const type = types[0]
 
+      //console.log('payCashMoney')
+      
       const storage = new Storage(this.client, this.url)
       this.options = this.getStoreMoneyOptions()
       const response = await this.storage.getClient(method, this.options, type)
-
+    
       if (+response.result === 0 && +this.getWetBalance > 0) {
         this.$router.push('/program')
         this.$message(
           `Оплата наличными прошла успешно, внесенная сумма:  ${+this
             .getWetBalance} ₽`
         )
+      }
+      else {
+        this.$error('payCashMoney $error')
+        //this.$message(`Оплата наличными не прошла`)   
       }
     },
     async appendBonusMoney() {

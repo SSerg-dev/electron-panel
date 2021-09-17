@@ -13,25 +13,33 @@
         </div>
 
         <div align="center" class="page-title">
-          <!-- <h3> -->
-          <p>
-            <img src="@/assets/images/pay-cash-image.png" />
-          </p>
+
+          <!-- dev -->
+
+          <div align="center" class="cash-show">
+            <CashShow />
+           </div>
+
+          <!--     -->
 
           <div style="width: 800px; margin-top: 40px;" class="info-title">
-            <p align="center">
-              Внесите купюры или монеты,
-            </p>
-            <p align="center">
-              по завершению нажмите кнопку ниже
-            </p>
+            <h3>
+              <p align="center">
+                {{ `${this.messages[0]}` }}
+              </p>
+              <p align="center">
+                {{ `${this.messages[1]}` }}
+              </p>
+            </h3>
           </div>
-          <!-- </h3> -->
+          
         </div>
 
+        
         <div align="center" class="cash">
           <CashBill />
         </div>
+
       </section>
     </div>
   </div>
@@ -42,11 +50,22 @@ import Vue from 'vue'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 import CashBill from '@/components/CashBill'
 import Message from '@/components/app/Message'
+import CashShow from '@/components/CashShow'
+
 
 export default Vue.extend({
-  date: () => ({
-    intervalMainMenu: null
-  }),
+  
+  name: 'cash',
+  data: () => ({
+    intervalMainMenu: null,
+    messages: [
+      `Внесите купюры или монеты,`,
+      `по завершению нажмите кнопку ниже`
+    ],
+    messageIndex: -1
+    
+  }), 
+
   computed: {
     ...mapGetters({
       getWetBusyPanel: 'getWetBusyPanel',
@@ -80,6 +99,8 @@ export default Vue.extend({
   mounted() {
     this.setRouter('/cash')
 
+    // console.log('this.messages[0]-->',this.messages[0])
+
     if (this.$store.state.params.length === 0)
       this.$error('$store.state.params no data $error')
 
@@ -91,12 +112,15 @@ export default Vue.extend({
 
   components: {
     CashBill,
-    Message
+    Message,
+    CashShow
   }
 })
 </script>
 
 <style scoped>
+
+
 .info-title {
   width: 800px;
   padding-top: 0.5em;
@@ -162,5 +186,8 @@ export default Vue.extend({
   font-family: 'Plumb-Medium';
   font-size: 20px;
   font-weight: bold;
+}
+.cash-show {
+  color:white;
 }
 </style>

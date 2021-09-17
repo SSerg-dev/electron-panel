@@ -154,7 +154,6 @@
             >
               🎁 {{ 'BONUSES' | localize }}
             </div>
-            <!-- <i class="large material-icons" style="margin-left: 0.8em; margin-top: -1em;">shopping_basket</i> -->
           </div>
           <!--     -->
         </li>

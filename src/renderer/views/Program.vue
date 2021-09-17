@@ -1,27 +1,10 @@
 <template>
   <div>
-    <!--  -->
-    <br /><br />
-
-    <div class="row">
-      <div class="col s2"></div>
-      <div class="col s10">
-        <!-- <h4>
-          <pre class="white-text">{{ getWetProgStatus }}</pre>
-        </h4> -->
-      </div>
-    </div>
-
+    
     <section>
-      <div class="row">
-        <ProgramTable 
-        :actives="actives" 
-        :delay="delay"
-        />
+      <div>
+        <ProgramTable :actives="actives" :delay="delay" />
       </div>
-      <!-- 
-        <VaccumTable :actives="actives" :number="first" />
-       -->
     </section>
   </div>
 </template>
@@ -39,7 +22,6 @@ export default Vue.extend({
       delay: 1000,
 
       activeProg: [],
-      /* dev */
       showProg: [],
       interval: null
       //status: ''
@@ -49,7 +31,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getWetProgStatus: 'getWetProgStatus',
-      getWetProgShow: 'getWetProgShow',
+      getWetProgShow: 'getWetProgShow'
     })
   },
   /* dev */
@@ -62,15 +44,11 @@ export default Vue.extend({
     getActiveProgBit() {
       return (this.getWetProgStatus >>> 0).toString(2)
     },
-    /* dev */
     getShowProgBit() {
       return (this.getWetProgShow >>> 0).toString(2)
     },
-
     setActiveProg() {
       let activeProgNames = []
-      
-      /* dev */
       this.activeProg = [...this.getActiveProgBit()]
         .reverse()
         .join('')
@@ -79,14 +57,16 @@ export default Vue.extend({
       this.showProg = [...this.getShowProgBit()]
         .reverse()
         .join('')
-        .slice(1) 
+        .slice(1)
 
-      console.log('this.getWetProgStatus-->', this.getWetProgStatus)
-      console.log('++this.activeProg-->', this.activeProg)
-      console.log('--------------------------')
-      console.log('this.getWetProgShow-->', this.getWetProgShow)
-      console.log('++this.showProg---->',this.showProg)
-      console.log('==========================')
+      //console.log('this.getWetProgStatus-->', this.getWetProgStatus)
+      console.log('--this.activeProg-->', this.activeProg)
+      //console.log('++this.activeProg.length---->', this.activeProg.length)
+      //console.log('--------------------------')
+      //console.log('this.getWetProgShow-->', this.getWetProgShow)
+      //console.log('--this.showProg-->', this.showProg)
+      //console.log('++this.showProg.length---->', this.showProg.length)
+      //console.log('==========================')
       /*     */
 
       for (let i = 0; i <= this.activeProg.length; i++) {
@@ -98,21 +78,29 @@ export default Vue.extend({
         }
       }
       this.setActiveProgNames(activeProgNames)
-      //console.log('setActiveProgNames-->')
 
-      //  turboDryer
-      /* this.getWetProgStatus === '133693438' 
-        ? this.actives[26].display = 'none'
-        : this.actives[26].display = 'block' */
+      // crutch :(
+
+      // turboDryer
+     if ((this.showProg.length !== 25))
+        this.actives[26].display = 'block'
+        else this.actives[26].display = 'none'
 
       // washer
-      /* this.getWetProgStatus === '133955583' 
-        ? this.actives[18].display = 'none'
-        : this.actives[18].display = 'block' */
+      let displayBit
+      this.showProg.length === 25 
+        ? displayBit = this.showProg.slice(-8, -7)
+        : displayBit = this.showProg.slice(-9, -8)
 
+      displayBit === '1'
+        ? this.actives[18].display = 'block'
+        : this.actives[18].display = 'none'
 
-      //this.actives[18].display = 'block'
-      //this.actives[26].display = 'none'
+      if(this.showProg.length === 0)
+        this.actives[18].display = 'block'   
+  
+      // end crutch :(
+
 
       return this.actives
     },
@@ -123,20 +111,15 @@ export default Vue.extend({
 
   created() {
     this.actives = this.getPrograms()
-    // console.log('Program-->',  JSON.stringify(this.actives) )
-    /* dev */
-    //this.updateCount++
-    //this.updateCount-- 
   },
   mounted() {
+    
     this.setRouter('/program')
     this.$store.state.params.length > 0
       ? //? this.setActiveProg()
         (this.interval = setInterval(() => this.setActiveProg(), 2000))
       : this.$error('$store.state.params no data $error')
-     
-
-
+  
   },
   beforeDestroy() {
     clearInterval(this.interval)
@@ -151,8 +134,8 @@ export default Vue.extend({
 <style scoped>
 section {
   background-color: #121212;
-  margin-top: -1rem;
-  margin-left: 1.5rem;
+  margin-top: 2.6em;
+  margin-left: 1.5em;
 }
 .page-title {
   color: #ffffff;
@@ -166,8 +149,5 @@ section {
 h5 {
   color: white;
 }
-.row {
-  margin-top: -0.8rem;
-  margin-left: 1.5rem;
-}
+
 </style>
