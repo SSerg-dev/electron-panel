@@ -7,8 +7,8 @@
         </div>
       </router-link>
 
-      <!-- <div style="width: 800px; margin-top: 9em; margin-left: 8em;" class="message"> -->
-      <div class="message">    
+      <!-- dev -->
+      <!-- <div class="message">
         <h3>
           <p align="center">
             {{ `${this.messages[0]}` }}
@@ -17,7 +17,8 @@
             {{ `${this.messages[1]}` }}
           </p>
         </h3>
-      </div>
+      </div> -->
+
     </div>
 
     <section>
@@ -39,16 +40,16 @@ export default Vue.extend({
   name: 'card',
   data: () => ({
     intervalMainMenu: null,
-    messages: [
-    `Введите сумму пополнеия`, 
-    `Минимальная сумма 10 руб`],
+    messages: [`Введите сумму пополнеия`, `Минимальная сумма 10 руб`],
     messageIndex: -1
   }),
-
   computed: {
     ...mapGetters({
       getWetBusyPanel: 'getWetBusyPanel',
-      getSecondsGotoMainMenu: 'getSecondsGotoMainMenu'
+      getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
+      /* dev */
+      //getIsLoginSettingPassword: 'getIsLoginSettingPassword' 
+
     })
   },
   methods: {
@@ -95,7 +96,7 @@ export default Vue.extend({
 }
 .message {
   width: 800px;
-  position: absolute;  
+  position: absolute;
   margin-top: 3.5em;
   margin-left: 3.5em;
   color: white;

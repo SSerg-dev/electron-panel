@@ -1,17 +1,15 @@
 <template>
   <div>
     <section>
-
       <div class="info-title">
         <h3>
-       <p align="center">
-          {{ `${this.messages[0]}` }}
-        </p>
-        <p align="center">
-          {{ `${this.messages[1]}` }}
-        </p>
+          <p align="center">
+            {{ `${this.messages[0]}` }}
+          </p>
+          <p align="center">
+            {{ `${this.messages[1]}` }}
+          </p>
         </h3>
-        
       </div>
 
       <form @submit.prevent="" novalidate>
@@ -33,128 +31,360 @@
                 <tbody>
                   <tr>
                     <td>
-                      <button class="btn" @click="setNumber('1')">
-                        <img src="imgs/key/k1-up.png" />
-                      </button>
+                      <div
+                        @click="setNumber('1')"
+                        class="card white"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          1
+                        </div>
+                      </div>
                     </td>
                     <td>
-                      <button class="btn" @click="setNumber('2')">
-                        <!-- <img src="@/assets/svg/k2-up.svg" /> -->
-                        <img src="imgs/key/k2-up.png" />
-                      </button>
+                      <div
+                        @click="setNumber('2')"
+                        class="card white"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          2
+                        </div>
+                      </div>
                     </td>
                     <td>
-                      <button class="btn" @click="setNumber('3')">
-                        <!-- <img src="@/assets/svg/k3-up.svg" /> -->
-                        <img src="imgs/key/k3-up.png" />
-                      </button>
+                      <div
+                        @click="setNumber('3')"
+                        class="card white"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          3
+                        </div>
+                      </div>
                     </td>
                   </tr>
 
                   <tr>
                     <td>
-                      <button class="btn" @click="setNumber('4')">
-                        <!-- <img src="@/assets/svg/k4-up.svg" /> -->
-                        <img src="imgs/key/k4-up.png" />
-                      </button>
+                      <div
+                        @click="setNumber('4')"
+                        class="card white"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          4
+                        </div>
+                      </div>
                     </td>
                     <td>
-                      <button class="btn" @click="setNumber('5')">
-                        <!-- <img src="@/assets/svg/k5-up.svg" /> -->
-                        <img src="imgs/key/k5-up.png" />
-                      </button>
+                      <div
+                        @click="setNumber('5')"
+                        class="card white"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          5
+                        </div>
+                      </div>
                     </td>
                     <td>
-                      <button class="btn" @click="setNumber('6')">
-                        <!-- <img src="@/assets/svg/k6-up.svg" /> -->
-                        <img src="imgs/key/k6-up.png" />
-                      </button>
+                      <div
+                        @click="setNumber('6')"
+                        class="card white"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          6
+                        </div>
+                      </div>
                     </td>
-                    <td></td>
                   </tr>
 
                   <tr>
                     <td>
-                      <button class="btn" @click="setNumber('7')">
-                        <!-- <img src="@/assets/svg/k7-up.svg" /> -->
-                        <img src="imgs/key/k7-up.png" />
-                      </button>
+                      <div
+                        @click="setNumber('7')"
+                        class="card white"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          7
+                        </div>
+                      </div>
                     </td>
                     <td>
-                      <button class="btn" @click="setNumber('8')">
-                        <!-- <img src="@/assets/svg/k8-up.svg" /> -->
-                        <img src="imgs/key/k8-up.png" />
-                      </button>
+                      <div
+                        @click="setNumber('8')"
+                        class="card white"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          8
+                        </div>
+                      </div>
                     </td>
                     <td>
-                      <button class="btn" @click="setNumber('9')">
-                        <!-- <img src="@/assets/svg/k9-up.svg" /> -->
-                        <img src="imgs/key/k9-up.png" />
-                      </button>
+                      <div
+                        @click="setNumber('9')"
+                        class="card white"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          9
+                        </div>
+                      </div>
                     </td>
                   </tr>
 
                   <tr>
                     <td>
-                      <button class="btn" @click="setNumber('0')">
-                        <!-- <img src="@/assets/svg/k0-up.svg" /> -->
-                        <img src="imgs/key/k0-up.png" />
-                      </button>
+                      <div
+                        @click="setNumber('0')"
+                        class="card white"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          0
+                        </div>
+                      </div>
                     </td>
                     <td>
-                      <button class="btn" @click="backspace">
-                        <!-- <img src="@/assets/svg/kdel-up.svg" /> -->
-                        <img src="imgs/key/kdel-up.png" />
-                      </button>
+                      <div
+                        @click="backspace"
+                        class="card white"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px red; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px red;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 4.2rem;
+                  padding-left: 1.8rem;
+                  padding-top: 1rem;
+                  "
+                        >
+                          <!-- del -->
+                          <i class="medium material-icons">backspace</i>
+                        </div>
+                      </div>
                     </td>
                   </tr>
+
+                  <!-- dev -->
+                  <tr v-if="this.getIsAppendBonusMoney()">
+                    <td colspan="3">
+                      <div
+                        @click="payUp('append')"
+                        class="card white"
+                        style="
+                  width: 420px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 3.5em;
+                  padding-left: 4rem;
+                  padding-top: 0.3em;
+                  "
+                        >
+                          {{`ЗАЧИСЛИТЬ`}} 
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <!--     -->
+                  <tr v-else>
+                    <td colspan="3">
+                      <div
+                        @click="payUp('confirm')"
+                        class="card white"
+                        style="
+                  width: 420px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 3.5em;
+                  padding-left: 1.8rem;
+                  padding-top: 0.3em;
+                  "
+                        >
+                        {{`ПОДТВЕРДИТЬ`}}  
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <!--     -->
                 </tbody>
               </table>
             </div>
             <div class="col s2"></div>
 
-            <!-- <div v-if="!this.getIsAppendBonusMoney()"> -->
             <div>
               <BonusBillQr />
             </div>
-
-            <!-- <div>
-              <Password />
-            </div> -->
           </div>
         </div>
 
-        <div class="pay-up-title">
-          <div v-if="this.getIsAppendBonusMoney()">
-            <button
-              style="margin-left: -2.0em; border: none; background: #121212; width: 0px"
-              @click="payUp('append')"
-            >
-              <div class="btn black pay-up">
-                <img src="/imgs/pay/pay-up.png" />
-
-                <div class="button-title-long">
-                  {{ 'ЗАЧИСЛИТЬ' }}
-                </div>
-              </div>
-            </button>
-          </div>
-
-          <div v-else>
-            <button
-              style="margin-left: -5.0em; border: none; background: #121212; width: 0px"
-              @click="payUp('confirm')"
-            >
-              <div class="btn pay-up">
-                <img src="/imgs/pay/pay-up.png" />
-
-                <div style="padding-right: 3.2em;" class="button-title-long">
-                  {{ 'ПОДТВЕРДИТЬ' }}
-                </div>
-              </div>
-            </button>
-          </div>
-        </div>
       </form>
     </section>
   </div>
@@ -192,9 +422,7 @@ export default {
     password: '',
     clickCount: 0,
 
-    messages: [
-    `Для зачисления бонусов,`, 
-    `введите номер телефона`],
+    messages: [`Для зачисления бонусов,`, `введите номер телефона`],
     messageIndex: -1
 
     /*
@@ -206,9 +434,8 @@ export default {
     this.storage = new Storage(this.client, this.url)
     /* dev */
     // getIsLoginSettingPassword
-    this.setIsLoginSettingPassword(false) 
+    this.setIsLoginSettingPassword(false)
     this.setRouter('/bonus')
-
   },
   components: {
     BonusBillQr
@@ -250,13 +477,14 @@ export default {
     ...mapActions({
       updateWetBonusMoney: 'updateWetBonusMoney'
     }),
-    
+
     emitClick(program) {
       //console.log('emitClick!!!')
       EventBus.$emit('submitBonusBill', program)
     },
 
     payUp(program) {
+      //console.log('++program-->', program)
       if (this.getIsAppendBonusMoney() && program === 'append') {
         this.appendBonusMoney()
       }
@@ -396,7 +624,7 @@ export default {
 </script>
 
 <style scoped>
-.info-title { 
+.info-title {
   width: 800px;
   padding-top: 0.5em;
   margin-top: 0em;
@@ -473,14 +701,13 @@ export default {
 table,
 th,
 td {
-  /* border: solid; */
   border: none;
-
   height: 150px;
   width: 150px;
-
-  border-color: #121212;
+  padding-right: 1.5em;
+  /* border-color: #121212; */
 }
+
 .btn {
   background-color: #121212;
 }

@@ -222,8 +222,8 @@ export default Vue.extend({
         case 'bonus':
           this.setIsAppendBonusMoney(false)
           this.setIsPayBonusMoney(true)
+          
           this.setIsPayCardMoney(true)
-          //console.log('++bonus')
           this.$router.push('/bonus')
           break
         case 'card':

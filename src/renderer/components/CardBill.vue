@@ -541,14 +541,15 @@
                   "
                 >
                   <div
-                    class="card-content red-text"
+                    class="card-content black-text"
                     style="
                   font-size: 4.2rem;
-                  padding-left: 1rem;
+                  padding-left: 1.8rem;
                   padding-top: 1rem;
                   "
                   >
-                    del
+                    <!-- del -->
+                    <i class="medium material-icons">backspace</i>
                   </div>
                 </div>
               </td>
@@ -979,14 +980,14 @@ td {
   position: absolute;
 
   width: 800px;
-  padding-top: 0em;
+  padding-top: 3em;
   padding-left: 0em;
   padding-right: 0em;
   padding-bottom: 0em;
 
   margin-top: 0em;
   margin-left: 0em;
-  font-size: 3em;
+  font-size: 3.5em;
 
   color: #ffffff;
   text-align: center;

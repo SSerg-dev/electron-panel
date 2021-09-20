@@ -21,9 +21,9 @@
             ref="select"
             v-model="current"
           >
-            <option v-for="(b, index) in coins" :key="index" :value="b.id">
+            <option v-for="(c, index) in coins" :key="index" :value="c.id">
               <div class="dropdown-setting">
-                {{ b.title }}
+                {{ c.title }}
               </div>
             </option>
           </select>
@@ -45,16 +45,10 @@ export default Vue.extend({
     title: [],
 
     coins: [
-      /* ₽ */
       { id: 1, title: "1 ₽ ", value: 1, selected: false }, 
       { id: 2, title: "2 ₽ ", value: 2, selected: false },
       { id: 3, title: "5 ₽ ", value: 5, selected: false },
       { id: 4, title: "10 ₽ ", value: 10, selected: false },
-      /* € */ /* ¢ */  
-      /* { id: 5, title: "20", value: 20, selected: false },
-      { id: 6, title: "50", value: 50, selected: false },
-      { id: 7, title: "1", value: 100, selected: false }, 
-      { id: 8, title: "2", value: 200, selected: false }, */
     ],
   }),
   mounted() {

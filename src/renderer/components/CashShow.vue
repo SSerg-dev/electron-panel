@@ -2,10 +2,21 @@
   <div>
       
       <div class="cash-show">
-          <p>
-            <img src="@/assets/images/pay-cash-image.png" />
-          </p>
+        <div class="row">
+          <!-- <CashBill /> -->
+          <h2>
+           <div class="col"> 
+             <CashShowBanknoteList />
+           </div>
+           
+           <div class="col" style="padding-left: 3em;">
+             <CashShowCoinList />
+           </div>
+          </h2>
+
+        </div>
       </div>
+      
 
     </div>
   
@@ -14,6 +25,9 @@
 <script>
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
+/* dev */
+import CashShowBanknoteList from '@/components/CashShowBanknoteList'
+import CashShowCoinList from '@/components/CashShowCoinList'
 
 export default Vue.extend({
   data: () => ({
@@ -24,7 +38,8 @@ export default Vue.extend({
   mounted() {
   },
   components: {
-    //CardBill
+    CashShowBanknoteList,
+    CashShowCoinList
   }
 })
 </script>
@@ -33,6 +48,8 @@ export default Vue.extend({
 
 .cash-show {
   color:white;
+  margin-bottom: -32em;
+  margin-left: 6em;
 }
 
 </style>

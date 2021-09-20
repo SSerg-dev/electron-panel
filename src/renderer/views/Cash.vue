@@ -1,46 +1,41 @@
 <template>
   <div>
     <div class="locate">
+
       <router-link to="/">
         <div class="back">
           <img src="imgs/key/back.png" />
         </div>
       </router-link>
 
-      <section>
-        <div align="center" class="message">
-          <div><Message /></div>
-        </div>
+      <div align="center" class="message">
+        <div><Message /></div>
+      </div>
 
-        <div align="center" class="page-title">
 
+      <div style="width: 800px;" class="info-title">
+        <h3>
+          <p align="center">
+            {{ `${this.messages[0]}` }}
+          </p>
+          <p align="center">
+            {{ `${this.messages[1]}` }}
+          </p>
+        </h3>
+      </div>
+
+      
+        <div align="center" class="money-title">
           <!-- dev -->
-
           <div align="center" class="cash-show">
             <CashShow />
-           </div>
-
-          <!--     -->
-
-          <div style="width: 800px; margin-top: 40px;" class="info-title">
-            <h3>
-              <p align="center">
-                {{ `${this.messages[0]}` }}
-              </p>
-              <p align="center">
-                {{ `${this.messages[1]}` }}
-              </p>
-            </h3>
           </div>
-          
         </div>
 
-        
         <div align="center" class="cash">
           <CashBill />
         </div>
-
-      </section>
+      
     </div>
   </div>
 </template>
@@ -52,9 +47,7 @@ import CashBill from '@/components/CashBill'
 import Message from '@/components/app/Message'
 import CashShow from '@/components/CashShow'
 
-
 export default Vue.extend({
-  
   name: 'cash',
   data: () => ({
     intervalMainMenu: null,
@@ -63,8 +56,7 @@ export default Vue.extend({
       `по завершению нажмите кнопку ниже`
     ],
     messageIndex: -1
-    
-  }), 
+  }),
 
   computed: {
     ...mapGetters({
@@ -119,35 +111,37 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-
-
-.info-title {
-  width: 800px;
-  padding-top: 0.5em;
-  margin-top: 0em;
-  margin-left: 0em;
-  font-size: 2.5em;
-}
 .locate {
   position: relative;
 }
-
+.back {
+  position: absolute;
+  margin-top: 8em;
+  margin-left: 4em;
+  z-index: 1;
+}
 .message {
   position: absolute;
   margin-top: -6em;
-  margin-left: 9em; /* 19em; */
-
+  margin-left: 5em; /* 19em; */
   font-family: 'Plumb-Medium';
   font-weight: normal;
   z-index: 1;
 }
-.page-title {
+.info-title {
   position: absolute;
-  margin-top: 40em;
-  margin-left: 10em;
+  color: white;
+  margin-top: 22em;
+  margin-left: 4em;
+  z-index: 2;
+  font-size: 2.5em;
+}
 
-  top: 0%;
-  left: 0%;
+.money-title {
+  position: absolute;
+  margin-top: 26em;
+  margin-left: 4em;
+
   color: white;
   text-align: right;
 
@@ -157,8 +151,9 @@ export default Vue.extend({
 }
 .cash {
   position: absolute;
-  margin-top: 60em;
-  margin-left: 3em;
+
+  margin-top: 98em;
+  margin-left: 13em;
 }
 .col {
   margin-left: 0em;
@@ -174,12 +169,8 @@ export default Vue.extend({
 .pay-finish {
   margin-left: -2.5em;
 }
-.back {
-  position: absolute;
-  margin-top: 8em;
-  margin-left: 2em;
-  z-index: 1;
-}
+
+
 
 /* Plumb-Medium */
 .description {
@@ -188,6 +179,6 @@ export default Vue.extend({
   font-weight: bold;
 }
 .cash-show {
-  color:white;
+  color: white;
 }
 </style>
