@@ -27,8 +27,8 @@
           
           "
         >
-          <table>
-            <tbody>
+          <table style="margin-left: 1.5em;">
+            <tbody >
               <tr>
                 <td>
                   <div class="info-title">
@@ -56,113 +56,338 @@
                       v-model="password"
                       autocomplete="tel"
                       required
-                      style="font-size: 7.2rem; width: 3.4em;border-bottom: 8px solid #fff; padding-left: 0.36em; padding-top: 0.2em;"
+                      style="font-size: 7.2rem; width: 3.4em;border-bottom: 4px solid #fff; padding-left: 0.36em; padding-top: 0.2em;"
                     />
                   </div>
                 </td>
               </tr>
-
+              <!-- <img src="@/assets/svg/k1-up.svg" /> -->
+              
               <tr>
                 <!-- row 01 -->
-                <td>
-                  <button class="btn" @click="setNumber('1')">
-                    <!-- <img src="@/assets/svg/k1-up.svg" /> -->
-                    <img src="imgs/key/k1-up.png" />
-                  </button>
-                </td>
-                <td>
-                  <button class="btn" @click="setNumber('2')">
-                    <!-- <img src="@/assets/svg/k2-up.svg" /> -->
-                    <img src="imgs/key/k2-up.png" />
-                  </button>
-                </td>
-                <td>
-                  <button class="btn" @click="setNumber('3')">
-                    <!-- <img src="@/assets/svg/k3-up.svg" /> -->
-                    <img src="imgs/key/k3-up.png" />
-                  </button>
-                </td>
+                <!--   waves-effect waves-light -->
+               <td>
+                      <div
+                        @click="setNumber('1')"
+                        class="card white waves-effect"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          1
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        @click="setNumber('2')"
+                        class="card white waves-effect"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          2
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        @click="setNumber('3')"
+                        class="card white waves-effect"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          3
+                        </div>
+                      </div>
+                    </td>
+
               </tr>
 
               <tr>
+                <!-- row 02 -->
                 <td>
-                  <button class="btn" @click="setNumber('4')">
-                    <!-- <img src="@/assets/svg/k4-up.svg" /> -->
-                    <img src="imgs/key/k4-up.png" />
-                  </button>
-                </td>
-                <td>
-                  <button class="btn" @click="setNumber('5')">
-                    <!-- <img src="@/assets/svg/k5-up.svg" /> -->
-                    <img src="imgs/key/k5-up.png" />
-                  </button>
-                </td>
-                <td>
-                  <button class="btn" @click="setNumber('6')">
-                    <!-- <img src="@/assets/svg/k6-up.svg" /> -->
-                    <img src="imgs/key/k6-up.png" />
-                  </button>
-                </td>
-                <td></td>
+                      <div
+                        @click="setNumber('4')"
+                        class="card white waves-effect"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          4
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        @click="setNumber('5')"
+                        class="card white waves-effect"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          5
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        @click="setNumber('6')"
+                        class="card white waves-effect"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          6
+                        </div>
+                      </div>
+                    </td>
+
               </tr>
 
               <tr>
-                <td>
-                  <button class="btn" @click="setNumber('7')">
-                    <!-- <img src="@/assets/svg/k7-up.svg" /> -->
-                    <img src="imgs/key/k7-up.png" />
-                  </button>
-                </td>
-                <td>
-                  <button class="btn" @click="setNumber('8')">
-                    <!-- <img src="@/assets/svg/k8-up.svg" /> -->
-                    <img src="imgs/key/k8-up.png" />
-                  </button>
-                </td>
-                <td>
-                  <button class="btn" @click="setNumber('9')">
-                    <!-- <img src="@/assets/svg/k9-up.svg" /> -->
-                    <img src="imgs/key/k9-up.png" />
-                  </button>
-                </td>
+                <!-- row 03 -->
+               <td>
+                      <div
+                        @click="setNumber('7')"
+                        class="card white waves-effect"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          7
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        @click="setNumber('8')"
+                        class="card white waves-effect"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          8
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        @click="setNumber('9')"
+                        class="card white waves-effect"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          9
+                        </div>
+                      </div>
+                    </td>
               </tr>
 
               <tr>
+                <!-- row 04 -->
                 <td>
-                  <button class="btn" @click="setNumber('0')">
-                    <!-- <img src="@/assets/svg/k0-up.svg" /> -->
-                    <img src="imgs/key/k0-up.png" />
-                  </button>
-                </td>
-                <td>
-                  <button class="btn" @click="backspace">
-                    <!-- <img src="@/assets/svg/kdel-up.svg" /> -->
-                    <img src="imgs/key/kdel-up.png" />
-                  </button>
-                </td>
+                      <div
+                        @click="setNumber('0')"
+                        class="card white waves-effect"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                        >
+                          0
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        @click="backspace"
+                        class="card white waves-effect"
+                        style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px red; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px red;
+                  
+                  "
+                      >
+                        <div
+                          class="card-content black-text"
+                          style="
+                  font-size: 4.2rem;
+                  padding-left: 1.8rem;
+                  padding-top: 1rem;
+                  "
+                        >
+                          <!-- del -->
+                          <i class="medium material-icons">backspace</i>
+                        </div>
+                      </div>
+                    </td>
+
+
               </tr>
               <!-- row button -->
               <tr>
-                <td>
-                  <div class="pay-up-title">
-                    <div>
-                      <button
-                        style="border: none; background: #121212;"
+                <td colspan="3">
+                      <div
                         @click="payUp('password')"
+                        class="card white waves-effect"
+                        style="
+                        width: 420px;
+                        height: 120px; 
+                        border: solid 6px #00B9E3; 
+                        border-radius: 2.5em;
+                        box-shadow: 0px 6px 10px #00b9e3;
+                        "
                       >
-                        <div class="btn pay-up">
-                          <img src="/imgs/pay/pay-up.png" />
-
-                          <div class="button-title-long">
-                            {{ 'ПОДТВЕРДИТЬ' }}
-                          </div>
+                        <div
+                          class="card-content black-text"
+                          style="
+                        font-size: 3.5em;
+                        padding-left: 2rem;
+                        padding-top: 0.3em;
+                        "
+                        >
+                          {{ `ПОДТВЕРДИТЬ` }}
                         </div>
-                      </button>
-                    </div>
-                  </div>
-                </td>
+                      </div>
+                    </td>
+
               </tr>
-              
+
             </tbody>
           </table>
 
@@ -278,7 +503,7 @@ export default {
   padding-bottom: 0em;
 
   margin-top: 0em;
-  margin-left: -7em;
+  margin-left: -7.5em;
   font-size: 3em;
 
   color: #ffffff;
@@ -293,8 +518,8 @@ export default {
 .display {
   width: 430px; /* 520px; */
   position: absolute;
-  margin-top: 0em;
-  margin-left: 2.8em;
+  margin-top: -1.5em;
+  margin-left: 0.8em;
   z-index: 1;
 }
 .password {
@@ -316,22 +541,18 @@ export default {
   z-index: 1;
 }
 .num {
-  padding-left: 5rem;
+  padding-left: 0em;
 }
 table,
 th,
 td {
-  /* border: solid; */
   border: none;
-
   height: 150px;
   width: 150px;
+  padding-right: 1.5em;
+  /* border-color: #121212; */
+}
 
-  border-color: #121212;
-}
-tr {
-  padding-left: 0em;
-}
 .btn {
   background-color: #121212;
 }

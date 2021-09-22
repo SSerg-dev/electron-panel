@@ -57,10 +57,10 @@ export default Vue.extend({
       this.showProg = [...this.getShowProgBit()]
         .reverse()
         .join('')
-        .slice(1)
+        .slice(1) 
 
       //console.log('this.getWetProgStatus-->', this.getWetProgStatus)
-      console.log('--this.activeProg-->', this.activeProg)
+      //console.log('--this.activeProg-->', this.activeProg)
       //console.log('++this.activeProg.length---->', this.activeProg.length)
       //console.log('--------------------------')
       //console.log('this.getWetProgShow-->', this.getWetProgShow)

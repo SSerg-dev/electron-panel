@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="locate">
-
       <router-link to="/">
         <div class="back">
           <img src="imgs/key/back.png" />
@@ -11,7 +10,6 @@
       <div align="center" class="message">
         <div><Message /></div>
       </div>
-
 
       <div style="width: 800px;" class="info-title">
         <h3>
@@ -24,17 +22,16 @@
         </h3>
       </div>
 
-      
-        <div align="center" class="money-title">
-          <!-- dev -->
-          <div align="center" class="cash-show">
-            <CashShow />
-          </div>
+      <div align="center" class="money-title">
+        <!-- dev -->
+        <div align="center" class="cash-show">
+          <CashShow />
         </div>
+      </div>
 
-        <div align="center" class="cash">
-          <CashBill />
-        </div>
+      <div align="center" class="cash"> 
+        <CashBill />
+      </div>
       
     </div>
   </div>
@@ -152,7 +149,7 @@ export default Vue.extend({
 .cash {
   position: absolute;
 
-  margin-top: 98em;
+  margin-top: 90em;
   margin-left: 13em;
 }
 .col {
@@ -169,8 +166,6 @@ export default Vue.extend({
 .pay-finish {
   margin-left: -2.5em;
 }
-
-
 
 /* Plumb-Medium */
 .description {

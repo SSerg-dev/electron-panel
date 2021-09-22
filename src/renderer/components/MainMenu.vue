@@ -15,7 +15,7 @@
           </router-link> -->
           <!-- dev -->
           <div
-            class="card white"
+            class="card white waves-effect"
             style="
                   width: 945px;
                   height: 160px; 
@@ -60,7 +60,7 @@
           <!-- dev -->
           
           <div
-            class="card white"
+            class="card white waves-effect"
             style="
                   width: 945px;
                   height: 160px; 
@@ -100,7 +100,7 @@
           </router-link> -->
           <!-- dev -->
           <div
-            class="card white"
+            class="card white waves-effect"
             style="
                   width: 945px;
                   height: 160px; 
@@ -135,7 +135,7 @@
           </router-link> -->
           <!-- dev -->
           <div
-            class="card white"
+            class="card white waves-effect"
             style="
                   width: 945px;
                   height: 160px; 
@@ -309,7 +309,7 @@ h2 {
 
 section {
   margin-top: 18em;
-  margin-left: 2em;
+  margin-left: 3em;
 }
 
 /* *********************************** */

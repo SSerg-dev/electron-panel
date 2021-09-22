@@ -14,7 +14,7 @@
       "
     >
       <div class="card-content black-text">
-        <span class="card-title">Принимать:</span>
+        <span class="card-title">Принимать купюры:</span>
         <div class="input-field">
           <select
             multiple
@@ -46,11 +46,11 @@ export default Vue.extend({
     title: [],
 
     bills: [
-      { id: 1, title: "10 ₽", value: 10, selected: false },
-      { id: 2, title: "50 ₽", value: 50, selected: false },
-      { id: 3, title: "100 ₽", value: 100, selected: false },
-      { id: 4, title: "200 ₽", value: 200, selected: false },
-      { id: 5, title: "500 ₽", value: 500, selected: false },
+      { id: 1, title: "10", value: 10, selected: false },
+      { id: 2, title: "50", value: 50, selected: false },
+      { id: 3, title: "100", value: 100, selected: false },
+      { id: 4, title: "200", value: 200, selected: false },
+      { id: 5, title: "500", value: 500, selected: false },
     ],
   }),
   mounted() {

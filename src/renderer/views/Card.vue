@@ -8,7 +8,7 @@
       </router-link>
 
       <!-- dev -->
-      <!-- <div class="message">
+      <div v-if="this.balance < 1" class="message">
         <h3>
           <p align="center">
             {{ `${this.messages[0]}` }}
@@ -17,7 +17,7 @@
             {{ `${this.messages[1]}` }}
           </p>
         </h3>
-      </div> -->
+      </div>
 
     </div>
 
@@ -34,25 +34,29 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 import CardBill from '@/components/CardBill'
+import EventBus from '@/bus/EventBus'
 
-export default Vue.extend({
+ export default Vue.extend({
   /* new component */
   name: 'card',
   data: () => ({
     intervalMainMenu: null,
     messages: [`Введите сумму пополнеия`, `Минимальная сумма 10 руб`],
-    messageIndex: -1
+    messageIndex: -1,
+    balance: 0
   }),
   computed: {
     ...mapGetters({
       getWetBusyPanel: 'getWetBusyPanel',
       getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
-      /* dev */
-      //getIsLoginSettingPassword: 'getIsLoginSettingPassword' 
 
     })
   },
   methods: {
+    submitHandler(balance) {
+      this.balance = balance 
+    },
+
     ...mapMutations({
       setRouter: 'setRouter'
     }),
@@ -72,6 +76,7 @@ export default Vue.extend({
   },
   mounted() {
     this.setRouter('/card')
+    EventBus.$on('submitBonusMoney', this.submitHandler)
 
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },

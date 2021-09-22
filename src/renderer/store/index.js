@@ -147,6 +147,7 @@ export default new Vuex.Store({
             value: cash
           })
         )
+        
       } catch (e) {
         console.warn('Error:', e.message)
       }

@@ -21,7 +21,7 @@
               v-model="phone"
               autocomplete="tel"
               required
-              style="font-size: 7.2rem; height: 8rem; border-bottom: 6px solid #fff; padding-left: 0em"
+              style="font-size: 7.2rem; height: 8rem; border-bottom: 4px solid #fff; padding-left: 0em"
             />
           </div>
 
@@ -33,7 +33,7 @@
                     <td>
                       <div
                         @click="setNumber('1')"
-                        class="card white"
+                        class="card white waves-effect"
                         style="
                   width: 125px;
                   height: 120px; 
@@ -58,7 +58,7 @@
                     <td>
                       <div
                         @click="setNumber('2')"
-                        class="card white"
+                        class="card white waves-effect"
                         style="
                   width: 125px;
                   height: 120px; 
@@ -83,7 +83,7 @@
                     <td>
                       <div
                         @click="setNumber('3')"
-                        class="card white"
+                        class="card white waves-effect"
                         style="
                   width: 125px;
                   height: 120px; 
@@ -111,7 +111,7 @@
                     <td>
                       <div
                         @click="setNumber('4')"
-                        class="card white"
+                        class="card white waves-effect"
                         style="
                   width: 125px;
                   height: 120px; 
@@ -136,7 +136,7 @@
                     <td>
                       <div
                         @click="setNumber('5')"
-                        class="card white"
+                        class="card white waves-effect"
                         style="
                   width: 125px;
                   height: 120px; 
@@ -161,7 +161,7 @@
                     <td>
                       <div
                         @click="setNumber('6')"
-                        class="card white"
+                        class="card white waves-effect"
                         style="
                   width: 125px;
                   height: 120px; 
@@ -189,7 +189,7 @@
                     <td>
                       <div
                         @click="setNumber('7')"
-                        class="card white"
+                        class="card white waves-effect"
                         style="
                   width: 125px;
                   height: 120px; 
@@ -214,7 +214,7 @@
                     <td>
                       <div
                         @click="setNumber('8')"
-                        class="card white"
+                        class="card white waves-effect"
                         style="
                   width: 125px;
                   height: 120px; 
@@ -239,7 +239,7 @@
                     <td>
                       <div
                         @click="setNumber('9')"
-                        class="card white"
+                        class="card white waves-effect"
                         style="
                   width: 125px;
                   height: 120px; 
@@ -267,7 +267,7 @@
                     <td>
                       <div
                         @click="setNumber('0')"
-                        class="card white"
+                        class="card white waves-effect"
                         style="
                   width: 125px;
                   height: 120px; 
@@ -292,7 +292,7 @@
                     <td>
                       <div
                         @click="backspace"
-                        class="card white"
+                        class="card white waves-effect"
                         style="
                   width: 125px;
                   height: 120px; 
@@ -322,25 +322,24 @@
                     <td colspan="3">
                       <div
                         @click="payUp('append')"
-                        class="card white"
+                        class="card white waves-effect"
                         style="
-                  width: 420px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
-                  "
+                        width: 420px;
+                        height: 120px; 
+                        border: solid 6px #00B9E3; 
+                        border-radius: 2.5em;
+                        box-shadow: 0px 6px 10px #00b9e3;
+                        "
                       >
                         <div
                           class="card-content black-text"
                           style="
-                  font-size: 3.5em;
-                  padding-left: 4rem;
-                  padding-top: 0.3em;
-                  "
+                        font-size: 3.5em;
+                        padding-left: 4rem;
+                        padding-top: 0.3em;
+                        "
                         >
-                          {{`ЗАЧИСЛИТЬ`}} 
+                          {{ `ЗАЧИСЛИТЬ` }}
                         </div>
                       </div>
                     </td>
@@ -350,7 +349,7 @@
                     <td colspan="3">
                       <div
                         @click="payUp('confirm')"
-                        class="card white"
+                        class="card white waves-effect"
                         style="
                   width: 420px;
                   height: 120px; 
@@ -368,7 +367,7 @@
                   padding-top: 0.3em;
                   "
                         >
-                        {{`ПОДТВЕРДИТЬ`}}  
+                          {{ `ПОДТВЕРДИТЬ` }}
                         </div>
                       </div>
                     </td>
@@ -377,14 +376,14 @@
                 </tbody>
               </table>
             </div>
-            <div class="col s2"></div>
+            <!-- <div class="col s2"></div> -->
 
-            <div>
+            <div class="qr-code">
               <BonusBillQr />
             </div>
+
           </div>
         </div>
-
       </form>
     </section>
   </div>
@@ -482,6 +481,7 @@ export default {
       //console.log('emitClick!!!')
       EventBus.$emit('submitBonusBill', program)
     },
+    
 
     payUp(program) {
       //console.log('++program-->', program)
@@ -512,12 +512,11 @@ export default {
       let response
       if (this.phone.length === this.phoneParseLength) {
         response = await this.storage.getClient(method, this.options, type)
-        // dev
         if (+response.result === 0) {
           this.$message(`Вам насчислены бонусы`)
           this.setIsAppendBonusMoney(false)
-          //this.$router.push('/program')
-          this.$router.push('/')
+          this.$router.push('/program')
+          //this.$router.push('/')
         } else {
           this.$message(`Ошибка:  ${response.error}`)
         }
@@ -676,7 +675,8 @@ export default {
 }
 
 .qr-code {
-  position: absolute;
+
+  /* position: absolute;
   background-color: white;
 
   width: 320px;
@@ -685,7 +685,8 @@ export default {
   margin-left: 45em;
   padding-top: 0.5em;
   padding-left: 0.5em;
-  z-index: 1;
+  z-index: 1; */
+  
 }
 /* dev */
 .pay-up-title {
@@ -696,7 +697,7 @@ export default {
   z-index: 1;
 }
 .num {
-  padding-left: 5rem;
+  padding-left: 8em;
 }
 table,
 th,

@@ -71,7 +71,7 @@
               <td>
                 <div
                   @click="setNumber('-10')"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 220px;
                   height: 120px; 
@@ -96,7 +96,7 @@
               <td>
                 <div
                   @click="setNumber('1')"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 125px;
                   height: 120px; 
@@ -121,7 +121,7 @@
               <td>
                 <div
                   @click="setNumber('2')"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 125px;
                   height: 120px; 
@@ -146,7 +146,7 @@
               <td>
                 <div
                   @click="setNumber('3')"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 125px;
                   height: 120px; 
@@ -171,7 +171,7 @@
               <td>
                 <div
                   @click="setNumber('10')"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 220px;
                   height: 120px; 
@@ -199,7 +199,7 @@
               <td>
                 <div
                   @click="setNumber('25', fixed = true)"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 220px;
                   height: 120px; 
@@ -224,7 +224,7 @@
               <td>
                 <div
                   @click="setNumber('4')"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 125px;
                   height: 120px; 
@@ -249,7 +249,7 @@
               <td>
                 <div
                   @click="setNumber('5')"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 125px;
                   height: 120px; 
@@ -274,7 +274,7 @@
               <td>
                 <div
                   @click="setNumber('6')"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 125px;
                   height: 120px; 
@@ -299,7 +299,7 @@
               <td>
                 <div
                   @click="setNumber('200', fixed = true)"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 220px;
                   height: 120px; 
@@ -326,7 +326,7 @@
               <td>
                 <div
                   @click="setNumber('50', fixed = true)"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 220px;
                   height: 120px; 
@@ -351,7 +351,7 @@
               <td>
                 <div
                   @click="setNumber('7')"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 125px;
                   height: 120px; 
@@ -376,7 +376,7 @@
               <td>
                 <div
                   @click="setNumber('8')"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 125px;
                   height: 120px; 
@@ -401,7 +401,7 @@
               <td>
                 <div
                   @click="setNumber('9')"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 125px;
                   height: 120px; 
@@ -426,7 +426,7 @@
               <td>
                 <div
                   @click="setNumber('250', fixed = true)"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 220px;
                   height: 120px; 
@@ -454,7 +454,7 @@
               <td>
                 <div
                   @click="setNumber('100', fixed = true)"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 220px;
                   height: 120px; 
@@ -479,7 +479,7 @@
               <td>
                 <div
                   @click="setNumber('.')"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 125px;
                   height: 120px; 
@@ -505,7 +505,7 @@
               <td>
                 <div
                   @click="setNumber('0')"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 125px;
                   height: 120px; 
@@ -530,7 +530,7 @@
               <td>
                 <div
                   @click="backspace"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 125px;
                   height: 120px; 
@@ -556,7 +556,7 @@
               <td>
                 <div
                   @click="setNumber('500', fixed = true)"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 220px;
                   height: 120px; 
@@ -584,7 +584,7 @@
               <td>
                 <div
                   @click="setNumber('150', fixed = true)"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 220px;
                   height: 120px; 
@@ -609,7 +609,7 @@
               <td colspan="3">
                 <div
                   @click="payUp('append')" 
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 420px;
                   height: 120px; 
@@ -631,7 +631,7 @@
               <td>
                 <div
                   @click="setNumber('1000', fixed = true)"
-                  class="card white"
+                  class="card white waves-effect"
                   style="
                   width: 220px;
                   height: 120px; 
@@ -668,6 +668,8 @@ import { mapMutations, mapActions, mapGetters } from 'vuex'
 import { Database } from '@/storage/database.js'
 import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
 import { Storage } from '@/storage/index.js'
+import EventBus from '@/bus/EventBus'
+
 
 export default {
   data: () => ({
@@ -724,7 +726,9 @@ export default {
   },
 
   methods: {
-    /* dev */ 
+    emitBonusMoney(balance) {
+      EventBus.$emit('submitBonusMoney', balance)
+    },
     initCurrency() {
       this.currencies = this.getLanguageNatives.filter(
         c => c.currency !== 'EUR'
@@ -802,8 +806,10 @@ export default {
 
     payUp() {
       const card = this.amount
-      if (this.amount > 0) {
+      if (this.amount >= 10) {
         this.updateWetMoney(card)
+        this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
+
         // clear
         this.display = this.title = this.body = '0'
       }
@@ -828,7 +834,9 @@ export default {
           this.firstname = response.profile.firstname
           this.lastname = response.profile.lastname
           this.messageIndex = 0
+
           /* dev */
+          this.emitBonusMoney(this.balance)
           //this.setNumber(this.balance)
 
           // clear

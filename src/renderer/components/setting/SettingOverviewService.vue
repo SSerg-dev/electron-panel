@@ -138,6 +138,7 @@ button {
   width: 220px;
 }
 .button-setting {
+  /* height: 2em; */
   border: solid 3px #00b9e3;
   font-size: 24px;
   border-radius: 2rem;

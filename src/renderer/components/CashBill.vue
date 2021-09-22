@@ -1,16 +1,16 @@
 <template>
   <div class="page-title">
-    <ul style="margin-top: 20em;">
+    <ul style="margin-top: 18em;">
 
-      <li @click="payUp('payBonus')">
+      <li v-if="this.IsWetBalance === true" @click="payUp('payBonus')">
         <div
-          class="card white pay-end-bonus"
+          class="card white waves-effect pay-end-bonus"
           style="
                   
                   width: 945px;
                   height: 320px;
                   margin-left: -8.0em;
-                  margin-bottom: 20em;
+                  margin-bottom: 16em;
 
                   border: solid 6px #7FE409; 
                   border-radius: 4em;
@@ -21,11 +21,12 @@
             class="card-content black-text  noselect"
             style="
                   font-size: 4em;
-                  padding-right: 1.2em;
-                  padding-top: 2em;
+                  padding-right: 1.1em;
+                  padding-left: 1.1em;
+                  padding-top: 1.4em;
                   "
           >
-            {{ 'ВЕРНУТЬ БОНУСАМИ ДО 30%' }}
+            {{ 'ВЕРНУТЬ БОНУСАМИ ДО 30% И ЗАВЕРШИТЬ ОПЛАТУ' }}
           </div>
         </div>
       </li>
@@ -35,7 +36,7 @@
       @click="payUp('payEnd')"
       >
         <div
-          class="card white pay-end-bonus"
+          class="card white waves-effect pay-end-bonus"
           style="
                   
                   width: 945px;
@@ -52,7 +53,7 @@
             class="card-content black-text  noselect"
             style="
                   font-size: 4em;
-                  padding-right: 4em;
+                  padding-right: 1.5em;
                   padding-top: 1em;
                   "
           >
@@ -67,7 +68,7 @@
       @click="payUp('payEnd')"
       >
         <div
-          class="card white pay-end-bonus"
+          class="card white waves-effect pay-end-bonus"
           style="
                   
                   width: 945px;
@@ -84,7 +85,7 @@
             class="card-content black-text  noselect"
             style="
                   font-size: 4em;
-                  padding-right: 3em;
+                  padding-right: 1.5em;
                   padding-top: 1em;
                   "
           >

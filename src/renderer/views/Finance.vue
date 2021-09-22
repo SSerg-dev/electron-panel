@@ -182,8 +182,15 @@ export default Vue.extend({
   padding-right: 4em;
 }
 /* dev */
-.button-setting {
+/* .button-setting {
   border: solid 3px #00b9e3;
   font-size: 24px;
+} */
+.button-setting {
+  height: 2em;
+  width: 10em;
+  border: solid 3px #00b9e3;
+  font-size: 24px;
+  border-radius: 2rem;
 }
 </style>

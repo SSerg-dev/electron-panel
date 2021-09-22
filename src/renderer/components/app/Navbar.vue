@@ -227,8 +227,8 @@ img {
   color: #121212;
   /* font-family: arial white; */
   /* font-size: 80%; */
-  width: 1080px;
-  height: 138px; /* 119 */
+  width: 100%;/* 74em; *//* 1080px; */
+  height: 10em;/* 138px; */ /* 119 */
   z-index: 2;
 }
 /* .head-panel-label {

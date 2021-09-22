@@ -15,7 +15,7 @@
         "
       >
         <li class="tab col s3">
-          <a class="black-text" href="#swipe-1" style="font-size: 32px"
+          <a active class="black-text" href="#swipe-1" style="font-size: 32px"
             >Обзор</a
           >
         </li>
@@ -32,7 +32,7 @@
           >
         </li>
         <li class="tab col s3">
-          <a class="active black-text" href="#swipe-4" style="font-size: 32px"
+          <a class="black-text" href="#swipe-4" style="font-size: 32px"
             >Языки</a
           >
         </li>
