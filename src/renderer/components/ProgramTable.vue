@@ -1372,10 +1372,14 @@ export default {
 .message {
   position: absolute;
   margin-top: -10em;
-  margin-left: 4em; /* 16em; */
+  margin-left: 17em;
+  
+  /* dev */
+  /* display: inline-block; */
 
   font-family: 'Plumb-Medium';
   font-weight: normal; /* bold; */
+  text-align: justify;
   z-index: 1;
 }
 

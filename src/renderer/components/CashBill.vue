@@ -2,7 +2,8 @@
   <div class="page-title">
     <ul style="margin-top: 18em;">
 
-      <li v-if="this.IsWetBalance === true" @click="payUp('payBonus')">
+      <li v-if="this.IsWetBalance === true  &&  this.getIsPing" 
+        @click="payUp('payBonus')">
         <div
           class="card white waves-effect pay-end-bonus"
           style="
@@ -31,6 +32,7 @@
         </div>
       </li>
       
+      <!--  & getIsPing -->
       <li 
       v-if="this.IsWetBalance === false"
       @click="payUp('payEnd')"
@@ -131,7 +133,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getWetBalance: 'getWetBalance'
+      getWetBalance: 'getWetBalance',
+      getIsPing: 'getIsPing'
     }),
     IsWetBalance: {
       get: function() {
@@ -238,6 +241,18 @@ export default {
       const storage = new Storage(this.client, this.url)
       this.options = this.getStoreMoneyOptions()
       const response = await this.storage.getClient(method, this.options, type)
+
+      /* dev */
+      console.log('++storeMoney-->', typeof response)
+      if (response === undefined ) {
+        this.$router.push('/program')
+        this.$message(
+          `Оплата наличными прошла успешно, внесенная сумма:  ${+this
+            .getWetBalance} ₽. Связь с connect недоступна!!!`
+        )
+        return
+      }
+        
     
       if (+response.result === 0 && +this.getWetBalance > 0) {
         this.$router.push('/program')

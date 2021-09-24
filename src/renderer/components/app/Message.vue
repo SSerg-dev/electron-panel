@@ -1,19 +1,9 @@
 <template>
   <div>
     <div class="page-title">
-
-      <p style="width: 540px; text-align: center;">
-        {{ `${ getWetBalance }` }}
-      </p>
-      <!-- <p style="width: 800px; text-align: justify;">
-        {{ `999` }}
-      </p> -->
-      <!-- <p v-if-else="getWetBusyPanel === 'false'" style="font-size: 3.5rem; width: 800px; margin-top: 10rem;"  >  
-        {{ `ПОСТ № ${getDefaultPanelNumber} баланс 0 ` }}
-      </p> -->
-      
+      {{ `${ getWetBalance }` }}
+      <!-- {{ `999` }} -->
     </div>
-    
   </div>
 </template>
 
@@ -54,21 +44,22 @@ export default Vue.extend({
     })
   },
 
-  mounted() {
-  }
+  mounted() {}
 })
 </script>
 
 <style scoped>
 .page-title {
-  padding-top: 1rem;
-  padding-left: 12rem;
+  padding-top: 0.02em;
+  width: 530px;
+
   color: white;
-  margin-left: 0rem;
-  margin-right: 0rem;
-  padding-right: 8rem;
-  width: 100%; /* 42rem; */ /* 32rem; */
-  font-size: 22rem; /* 24rem; */
-  /* text-align: left; */
+  font-size: 23em;
+  font-weight: normal;
+
+  /* dev */
+  display: flex;
+	align-items: center;
+	justify-content: center;
 }
 </style>

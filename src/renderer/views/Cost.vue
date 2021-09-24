@@ -12,29 +12,18 @@
       <div class="col s7">
         <div class="page-title">
           <!-- СТОИМОСТЬ ПРОГРАММ -->
-          <h4>{{getWetProgShow}}</h4>
-          <h4>{{ getWetProgStatus }}</h4>
+          <!-- <h4>{{getWetProgShow}}</h4> -->
+          <!-- <h4>{{ getWetProgStatus }}</h4> -->
           <!-- <h4 align="left">{{ getWetProgPrice }}</h4> -->
 
           <!-- <h4>{{ getWetBusyPanel }}</h4> -->
           <!-- <h4 align="left">{{ getParamsChange }}</h4> -->
+          <!-- <h4 align="left">{{ this.$store.state.isParamsChange }}</h4> -->
 
           <!-- <h4 align="left"><pre class="white-text"> {{status}} </pre></h4> -->
         </div>
       </div>
 
-      <!-- <div class="col s2" @click="setDown()">
-        <a v-if="this.isDown === false" href="#">
-          <div id="head">
-            <img src="imgs/key/down.png" />
-          </div>
-        </a>
-        <a v-if="this.isDown === true" href="#bottom">
-          <div id="head" style="opacity: 0.4; ">
-            <img src="imgs/key/up.png" />
-          </div>
-        </a>
-      </div> -->
     </div>
 
     <section id="content">
@@ -45,20 +34,24 @@
       <a name="bottom"></a>
     </section>
 
-    <!-- div -->
     <div class="paginate">
-      <!-- :page-class="'waves-effect'" -->
-      <Paginate
+      <!-- <Paginate
         v-model="page"
         :page-count="pageCount"
         :click-handler="pageChangeHandler"
         :prev-text="'Назад'"
         :next-text="'Вперед'"
         :container-class="'pagination'"
+      /> -->
+      <Paginate
+        v-model="page"
+        :page-count="pageCount"
+        :click-handler="pageChangeHandler"
+        :prev-text="''"
+        :next-text="''"
+        :container-class="'pagination'"
       />
     </div>
-
-    <!--  -->
   </div>
 </template>
 
@@ -90,7 +83,7 @@ export default Vue.extend({
   }), // End Data
   computed: {
     ...mapGetters({
-      getWetProgShow: 'getWetProgShow', // '116321902'
+      getWetProgShow: 'getWetProgShow',
       getWetProgStatus: 'getWetProgStatus',
       getWetProgPrice: 'getWetProgPrice',
       getWetBusyPanel: 'getWetBusyPanel',
@@ -101,11 +94,9 @@ export default Vue.extend({
   },
   watch: {
     getParamsChange(flag) {
-      console.log(' watch flag-->', flag)
+      // console.log(' watch flag-->', flag)
+      this.setActiveProg()
     }
-    /* getWetProgPrice(flag) {
-      console.log('!!! watch flag-->', flag)
-    }, */
   },
   methods: {
     ...mapMutations({
@@ -186,6 +177,7 @@ export default Vue.extend({
     })
   },
   mounted() {
+
     this.setRouter('/cost')
     //created() {
     this.costs = this.getCosts()
@@ -196,18 +188,19 @@ export default Vue.extend({
 
     this.setupPagination(displayCosts)
 
-    if (this.$store.state.params.length > 0) {
-      // ? this.setActiveProg()
-      /* (this.interval = setInterval(() => this.setActiveProg(), 2000)) */
+    /* dev */
+    this.setActiveProg()
+
+    /* if (this.$store.state.params.length > 0) {
       this.interval = setInterval(() => {
         this.setActiveProg()
       }, 2000)
-    } else this.$error('$store.state.params no data $error')
+    } */
 
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },
   beforeDestroy() {
-    clearInterval(this.interval)
+    //clearInterval(this.interval)
     clearInterval(this.intervalMainMenu)
   },
 

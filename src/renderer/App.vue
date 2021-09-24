@@ -59,6 +59,7 @@ export default Vue.extend({
             title: tag.param,
             value: tag.value
           }
+          
           if (parameter.title !== `::AsGlobalPV:DateTime.Time`)
             this.setParameters(parameter)
         } catch (err) {

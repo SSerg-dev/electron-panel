@@ -31,10 +31,17 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getWetProgStatus: 'getWetProgStatus',
-      getWetProgShow: 'getWetProgShow'
+      getWetProgShow: 'getWetProgShow',
+      getParamsChange: 'getParamsChange'
     })
   },
   /* dev */
+  watch: {
+    getParamsChange(flag) {
+      // console.log('++watch flag-->', flag)
+      this.setActiveProg()
+    }
+  },
   methods: {
     ...mapMutations({
       setActiveProgNames: 'setActiveProgNames',
@@ -115,11 +122,8 @@ export default Vue.extend({
   mounted() {
     
     this.setRouter('/program')
-    this.$store.state.params.length > 0
-      ? //? this.setActiveProg()
-        (this.interval = setInterval(() => this.setActiveProg(), 2000))
-      : this.$error('$store.state.params no data $error')
-  
+    /* dev */
+    this.setActiveProg()
   },
   beforeDestroy() {
     clearInterval(this.interval)

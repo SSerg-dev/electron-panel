@@ -28,7 +28,7 @@ export default new Vuex.Store({
     info: { name: '', locale: 'ru-RU' },
     cash_enabler: false,
     busyPanel: false,
-    secondsGotoMainMenu: 600,
+    secondsGotoMainMenu: 442,
     secondsGotoPopupMenu: 2,
     //secondsGotoProgramMenu: 6,
 
@@ -390,7 +390,7 @@ export default new Vuex.Store({
       return state.message
     },
     getParamsChange(state) {
-      //console.log('!!getParamsChange-->', state.isParamsChange)
+      //console.log('--getParamsChange-->', state.isParamsChange)
       return state.isParamsChange
     }
   },
@@ -398,14 +398,12 @@ export default new Vuex.Store({
   mutations: {
     // set one parameter
     setParameters(state, parameter) {
-      // console.log('index-->displayName-->', displayName)
-
-      this.isParamsChange = !this.isParamsChange
+      /* dev */
+      state.isParamsChange = !state.isParamsChange 
 
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
       )
-      /* dev */
       //console.log('----------------------------------------------------------')
       //console.log('++displayName-->', displayName)
       //console.log('++parameter.value-->', parameter.value)
@@ -443,7 +441,7 @@ export default new Vuex.Store({
     },
 
     // dev
-    // getParamsChange
+    // setParamsChange
     setParamsChange(state, isParamsChange) {
       state.isParamsChange = isParamsChange
     },

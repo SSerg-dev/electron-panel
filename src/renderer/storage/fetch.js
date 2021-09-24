@@ -20,8 +20,8 @@ const types = ['cash', 'card', 'bonus', 'service', 'common', 'ping']
 
 class Fetch {
   async request(url, options, type) {
-    //console.log('request-->type-->', type)
-    //return await this.axiosRequest(url, options)
+    /* dev */
+    //console.log('request-->type-->options-->', type, options)
     let response
     switch (type) {
       case 'cash':
@@ -56,8 +56,9 @@ class Fetch {
 
   async cashRequest(url, body) {
     let res
+
     console.log('method-->', JSON.stringify(body.method))
-    // console.log('Axios request:', JSON.stringify(body))
+    
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
     })
@@ -76,7 +77,9 @@ class Fetch {
   
   async bonusRequest(url, body) {
     let res
+
     console.log('method-->', JSON.stringify(body.method))
+    
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
     })
@@ -95,7 +98,9 @@ class Fetch {
 
   async commonRequest(url, body) {
     let res
-    console.log('method-->', JSON.stringify(body.method))
+    /* dev */
+    //console.log('method-->', JSON.stringify(body.method))
+    
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
     })
@@ -103,7 +108,8 @@ class Fetch {
       .post(url, body, { httpsAgent }, { timeout: 2000 })
       .then(res => {
         this.res = res.data
-        console.log('Returned data:', JSON.stringify(res.data))
+        /* dev */
+        //console.log('Returned data:', JSON.stringify(res.data))
       })
       .catch(e => {
         console.log('Axios request failed:', JSON.stringify(e))

@@ -262,10 +262,9 @@
                 </router-link>
               </td>
               <td>
-                <!-- <img src="imgs/language/lang_RU.png" /> -->
-                  <button class="btn-large" @click="getCountry()">
+                  <!-- <button class="btn-large" @click="getCountry()">
                     getCountry
-                  </button>
+                  </button> -->
               </td>
             </tr>
           </table>
@@ -276,8 +275,8 @@
             <Paginate
               :page-count="4"
               :click-handler="pageChangeHandler"
-              :prev-text="'Назад'"
-              :next-text="'Вперед'"
+              :prev-text="''"
+              :next-text="''"
               :container-class="'pagination'"
             />
           </div>

@@ -1,13 +1,15 @@
 <template>
   <div>
     <div class="locate">
+
       <router-link to="/">
         <div class="back">
           <img src="imgs/key/back.png" />
         </div>
       </router-link>
+      
 
-      <div align="center" class="message">
+      <div align="justify" class="message">
         <div><Message /></div>
       </div>
 
@@ -110,6 +112,12 @@ export default Vue.extend({
 <style scoped>
 .locate {
   position: relative;
+  text-align: center;
+
+	/* display: flex;
+	align-items: center;
+	justify-content: center; */
+
 }
 .back {
   position: absolute;
@@ -119,10 +127,12 @@ export default Vue.extend({
 }
 .message {
   position: absolute;
-  margin-top: -6em;
-  margin-left: 5em; /* 19em; */
+  margin-top: -7em;
+  margin-left: 19em; 
+  
   font-family: 'Plumb-Medium';
   font-weight: normal;
+  text-align: justify;
   z-index: 1;
 }
 .info-title {

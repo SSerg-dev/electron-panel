@@ -76,16 +76,21 @@ export default Vue.extend({
       const type = types[4]
 
       this.options = this.getPingOptions()
+      // console.log('!!this.options-->', this.options)
 
       const response = await this.storage.getClient(method, this.options, type)
+      
+      // console.log('+response.result-->', typeof response)
+      if (response === undefined ){
+        this.setIsPing(false)
+          // this.$message(`ping ${this.url} недоступен`)
+          return
+      }
       if (+response.result === 0) {
         this.setIsPing(true)
-        // this.$message(`ping ${this.url} выполнен успешно`)
-      } else {
-        this.setIsPing(false)
-        // this.$message(`ping ${this.url} недоступен`)
-      }
-      this.$message(`ping ${this.getIsPing()}`)
+          // this.$message(`ping ${this.url} выполнен успешно`)
+      } 
+      //this.$message(`ping ${this.getIsPing()}`)
     },
     async pingUrl() {
       const method = methods[12]
@@ -96,10 +101,10 @@ export default Vue.extend({
       const response = await this.storage.getClient(method, this.options, type)
       if (+response.status === 200) {
         this.setIsPing(true)
-        //this.$message(`ping ${this.url} выполнен успешно`)
+        this.$message(`ping ${this.url} выполнен успешно`)
       } else {
         this.setIsPing(false)
-        //this.$message(`ping ${this.url} недоступен`)
+        this.$message(`ping ${this.url} недоступен`)
       }
       this.$message(`ping ${this.getIsPing()}`)
     },
@@ -131,7 +136,7 @@ export default Vue.extend({
     this.storage = new Storage(this.client, this.url)
 
     this.intervalPing = setInterval(() => {
-      //this.ping()
+      this.ping()
       //this.pingUrl()
       // this.completeWash()
       //console.log('this.getDefaultPanelNumber-->', this.getDefaultPanelNumber())

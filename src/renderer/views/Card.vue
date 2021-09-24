@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="locate">
+      
       <router-link to="/">
         <div class="back">
           <img src="imgs/key/back.png" />
@@ -39,7 +40,7 @@ import EventBus from '@/bus/EventBus'
  export default Vue.extend({
   /* new component */
   name: 'card',
-  data: () => ({
+  data: () => ({ 
     intervalMainMenu: null,
     messages: [`Введите сумму пополнеия`, `Минимальная сумма 10 руб`],
     messageIndex: -1,
@@ -75,7 +76,7 @@ import EventBus from '@/bus/EventBus'
     }
   },
   mounted() {
-    this.setRouter('/card')
+    this.setRouter('/card') 
     EventBus.$on('submitBonusMoney', this.submitHandler)
 
     this.gotoMainMenu(this.getSecondsGotoMainMenu)

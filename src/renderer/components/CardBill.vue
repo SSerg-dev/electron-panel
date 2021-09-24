@@ -45,7 +45,6 @@
             <p align="center">
               {{ `${this.messages[1]}` }}
             </p>
-
           </div>
         </div>
 
@@ -54,20 +53,20 @@
             <!-- row 01 -->
             <tr>
               <td colspan="3">
-                <div class="display">{{display }}</div>
+                <div class="display">{{ display }}</div>
               </td>
               <td colspan="2">
                 <h1>
-                <div class="white-text">
-                {{ this.emoji }}
-                {{ this.currency }}
-                {{ this.symbol }}
-                </div>
+                  <div class="white-text">
+                    {{ this.emoji }}
+                    {{ this.currency }}
+                    {{ this.symbol }}
+                  </div>
                 </h1>
               </td>
             </tr>
             <!-- row 02 -->
-            <tr>
+            <tr v-if="this.isBonusRow">
               <td>
                 <div
                   @click="setNumber('-10')"
@@ -89,7 +88,7 @@
                   padding-top: 0em;
                   "
                   >
-                    -10
+                    {{ `-10` }}
                   </div>
                 </div>
               </td>
@@ -194,11 +193,141 @@
                 </div>
               </td>
             </tr>
+            <!-- dev -->
+            <!-- row 02++ -->  
+            <tr v-else>
+              <td>
+                <div
+                  @click="setNumber('-10')"
+                  class="card white waves-effect"
+                  style="
+                  width: 220px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    {{ `Min` }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div
+                  @click="setNumber('1')"
+                  class="card white waves-effect"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    1
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div
+                  @click="setNumber('2')"
+                  class="card white waves-effect"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    2
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div
+                  @click="setNumber('3')"
+                  class="card white waves-effect"
+                  style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    3
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div
+                  @click="setNumber('10')"
+                  class="card white waves-effect"
+                  style="
+                  width: 220px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    {{ `Max` }}
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <!--     -->
             <!-- row 03 -->
             <tr>
               <td>
                 <div
-                  @click="setNumber('25', fixed = true)"
+                  @click="setNumber('25', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -298,7 +427,7 @@
               </td>
               <td>
                 <div
-                  @click="setNumber('200', fixed = true)"
+                  @click="setNumber('200', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -325,7 +454,7 @@
             <tr>
               <td>
                 <div
-                  @click="setNumber('50', fixed = true)"
+                  @click="setNumber('50', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -425,7 +554,7 @@
               </td>
               <td>
                 <div
-                  @click="setNumber('250', fixed = true)"
+                  @click="setNumber('250', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -453,7 +582,7 @@
             <tr>
               <td>
                 <div
-                  @click="setNumber('100', fixed = true)"
+                  @click="setNumber('100', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -555,7 +684,7 @@
               </td>
               <td>
                 <div
-                  @click="setNumber('500', fixed = true)"
+                  @click="setNumber('500', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -583,7 +712,7 @@
             <tr>
               <td>
                 <div
-                  @click="setNumber('150', fixed = true)"
+                  @click="setNumber('150', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -608,7 +737,7 @@
               </td>
               <td colspan="3">
                 <div
-                  @click="payUp('append')" 
+                  @click="payUp('append')"
                   class="card white waves-effect"
                   style="
                   width: 420px;
@@ -617,20 +746,24 @@
                   border-radius: 2.5em;
                   box-shadow: 0px 6px 10px #00b9e3;
                   
-                  ">
-                  <div class="card-content black-text" 
-                  style="
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
                   font-size: 4em;
                   padding-left: 2.8rem;
                   padding-top: 0.2em;
-                  ">
-                  ЗАЧИСЛИТЬ</div>
+                  "
+                  >
+                    ЗАЧИСЛИТЬ
+                  </div>
                 </div>
               </td>
-              
+
               <td>
                 <div
-                  @click="setNumber('1000', fixed = true)"
+                  @click="setNumber('1000', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -670,7 +803,6 @@ import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
 import { Storage } from '@/storage/index.js'
 import EventBus from '@/bus/EventBus'
 
-
 export default {
   data: () => ({
     amount: 0,
@@ -680,7 +812,10 @@ export default {
     title: '',
     body: '',
 
-    // dev
+    /* dev */
+    isCardRow: false,
+    isBonusRow: false,
+
     minX: 55,
     minY: 560,
     maxX: 1030,
@@ -697,20 +832,15 @@ export default {
 
     messages: [`Ваш баланс,`, `Выберите сумму списания`],
     messageIndex: -1,
- 
+
     /* dev */
     currency: '',
-    currencies: [],
-
-
-
-
+    currencies: []
   }),
   computed: {
     ...mapGetters({
       getDefaultCurrency: 'getDefaultCurrency',
       getLanguageNatives: 'getLanguageNatives'
-
     })
   },
   mounted() {
@@ -722,20 +852,29 @@ export default {
   },
   created() {
     //this.setup()
-    this.initCurrency() 
+    this.initCurrency()
   },
 
   methods: {
     emitBonusMoney(balance) {
       EventBus.$emit('submitBonusMoney', balance)
     },
+    /* dev */
+    changeRowOfTable(balance) {
+      if (balance < 1) {
+        this.isCardRow = true
+        this.isBonusRow = false
+      } 
+      else {
+        this.isCardRow = false
+        this.isBonusRow = true
+      }
+    },
     initCurrency() {
       this.currencies = this.getLanguageNatives.filter(
         c => c.currency !== 'EUR'
       )
-      if (
-        this.getLanguageNatives.filter(c => c.currency === 'EUR').length > 0
-      )
+      if (this.getLanguageNatives.filter(c => c.currency === 'EUR').length > 0)
         this.currencies.push({
           id: 999,
           title: 'EUR',
@@ -759,7 +898,7 @@ export default {
     },
 
     overlay() {
-    const overlay = this.$refs.overlay
+      const overlay = this.$refs.overlay
 
       overlay.onclick = evt => {
         if (
@@ -775,7 +914,7 @@ export default {
           this.$router.push('/')
         }
       }
-    }, 
+    },
     setup() {
       this.overlay()
       //this.initCurrency()
@@ -785,16 +924,14 @@ export default {
       if (program === 'append') {
         this.$router.push('/status')
       }
-      
     },
     ...mapGetters({
       getLoginBonusOptions: 'getLoginBonusOptions',
       getLoginBonusPhone: 'getLoginBonusPhone',
-      getIsPayCardMoney: 'getIsPayCardMoney',
+      getIsPayCardMoney: 'getIsPayCardMoney'
 
       //getDefaultCurrency: 'getDefaultCurrency',
       //getLanguageNatives: 'getLanguageNatives'
-
     }),
     ...mapMutations({
       setLoginBonusPhone: 'setLoginBonusPhone',
@@ -809,6 +946,7 @@ export default {
       if (this.amount >= 10) {
         this.updateWetMoney(card)
         this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
+        this.$router.push('/program')
 
         // clear
         this.display = this.title = this.body = '0'
@@ -835,8 +973,9 @@ export default {
           this.lastname = response.profile.lastname
           this.messageIndex = 0
 
-          /* dev */
           this.emitBonusMoney(this.balance)
+          /* dev */
+          this.changeRowOfTable(this.balance)
           //this.setNumber(this.balance)
 
           // clear
@@ -847,7 +986,6 @@ export default {
           this.$router.push('/password')
         }
       }
-
     },
 
     setNumber(num, fixed) {
@@ -862,16 +1000,16 @@ export default {
         this.amountString = this.amount.toString() + num.toString()
         this.amount = parseInt(this.amountString)
       }
-      if(fixed) {
+      if (fixed) {
         this.amount = 0
         if (this.amount + parseInt(num) <= 1000) this.amount = parseInt(num)
       }
       /* dev */
-      if( (this.balance > 0) && (this.amount > this.balance))
+      if (this.balance > 0 && this.amount > this.balance)
         this.amount = this.balance
 
       if (this.amount < 0) this.amount = 0
-      
+
       this.amountString = this.amount.toString()
       this.display = this.amountString
     },
@@ -894,11 +1032,10 @@ export default {
 
 <style scoped>
 .display {
-  
   width: 0em;
   position: absolute;
   margin-top: -0.8em;
-  margin-left: 0.15em;/* 2.3em; */
+  margin-left: 0.15em; /* 2.3em; */
   text-decoration: underline;
   color: #ffffff;
   font-size: 10em;

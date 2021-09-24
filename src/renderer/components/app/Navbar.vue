@@ -225,10 +225,10 @@ img {
   position: relative;
   text-align: center;
   color: #121212;
-  /* font-family: arial white; */
+  /* font-family: arial white; */ 
   /* font-size: 80%; */
   width: 100%;/* 74em; *//* 1080px; */
-  height: 10em;/* 138px; */ /* 119 */
+  height: 9.6em;/* 138px; */ /* 119 */
   z-index: 2;
 }
 /* .head-panel-label {

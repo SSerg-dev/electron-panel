@@ -18,7 +18,7 @@ export default Vue.extend({
 li {
   font-size: 1em;
   font-weight: bold; 
-  color: white; /*  #00B9E3; */
+  color:  #00B9E3;
   margin-bottom: 0em;
 }
 </style>

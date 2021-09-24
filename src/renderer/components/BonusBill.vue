@@ -411,7 +411,7 @@ export default {
 
     sum: 42,
     cash: true,
-    order: '42',
+    order: '13',
 
     client: 'fetch',
     url: 'https://192.168.1.3/',
@@ -501,6 +501,7 @@ export default {
       this.options = this.getAppendBonus()
       this.options.params.phone = this.phone
 
+      // 
       this.options.params.sum = this.sum
       this.options.params.cash = this.cash
       this.options.params.order = this.order
@@ -513,6 +514,9 @@ export default {
       if (this.phone.length === this.phoneParseLength) {
         response = await this.storage.getClient(method, this.options, type)
         if (+response.result === 0) {
+          /* dev */
+          console.log('BonusBill-row-517-->type-->options-->', type, this.options)
+          /* ??? how match */
           this.$message(`Вам насчислены бонусы`)
           this.setIsAppendBonusMoney(false)
           this.$router.push('/program')

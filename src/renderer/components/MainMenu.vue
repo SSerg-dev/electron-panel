@@ -2,18 +2,8 @@
   <div>
     <section>
       <ul class="collection">
-        <!-- 1 -->
+        <!-- 1 cost -->
         <li class="collection-item cost" @click="payUp('cost')">
-          <!--           <router-link
-            to="/cost"
-            style="background-image:url('/imgs/menu/prog-price.png'); width: 945px; height: 192px; left: -10%; "
-            class="btn"
-          >
-            <div class="button-title-main">
-              {{ 'PROGRAMS_COST' | localize }}
-            </div>
-          </router-link> -->
-          <!-- dev -->
           <div
             class="card white waves-effect"
             style="
@@ -28,14 +18,18 @@
               class="card-content black-text"
               style="
                   font-size: 4em;
-                  padding-left: 2.4em;
                   padding-top: 1.1em;
+
+                  display: flex;
+	                align-items: center;
+	                justify-content: center;
+
+                  
                   "
             >
               {{ 'PROGRAMS_COST' | localize }}
             </div>
           </div>
-          <!--     -->
         </li>
 
         <!-- 2 -->
@@ -44,24 +38,11 @@
         </li>
 
         <!-- 3 -->
-        <li class="collection-item" @click="payUp('cash')">
-          <!-- <button
-            style="border: none; background: #121212;"
-            @click="setEnabler()"
-          >
-            <router-link
-              to="/cash"
-              style="background-image:url('/imgs/menu/pay-cash.png'); width: 945px; height: 192px"
-              class="btn #121212"
-            >
-              <div class="button-title-main">{{ 'CASH' | localize }}</div>
-            </router-link>
-          </button> -->
-          <!-- dev -->
-          
+        <li class="collection-item cash" @click="payUp('cash')">
           <div
             class="card white waves-effect"
             style="
+                  padding-left: 4em;
                   width: 945px;
                   height: 160px; 
                   border: solid 6px #00B9E3; 
@@ -73,35 +54,25 @@
               class="card-content black-text"
               style="
                   font-size: 4em;
-                  padding-left: 4.0em;
                   padding-top: 1.1em;
+
+                  display: flex;
+	                align-items: left;
+	                justify-content: left;
                   "
             >
-              💰  {{ 'CASH' | localize }}
+              💰 {{ 'CASH' | localize }}
             </div>
           </div>
-          <!--     -->
         </li>
 
         <!-- 4 -->
-        <!-- @click="payUp('card')" -->
-        <li class="collection-item" @click="payUp('card')">
-          <!-- <router-link
-            to="/card"
-            style="background-image:url('/imgs/menu/pay-card.png'); width: 945px; height: 192px; position: relative; left: 0.5%;"
-            class="btn"
-          >
-            <div
-              style="position: relative; left: -3rem;"
-              class="button-title-main"
-            >
-              {{ 'BANK_CARD' | localize }}
-            </div>
-          </router-link> -->
-          <!-- dev -->
+        <li v-if="getIsPing" class="collection-item" @click="payUp('card')">
           <div
             class="card white waves-effect"
             style="
+                  padding-left: 4em;
+
                   width: 945px;
                   height: 160px; 
                   border: solid 6px #00B9E3; 
@@ -113,30 +84,25 @@
               class="card-content black-text"
               style="
                   font-size: 4em;
-                  padding-left: 2em;
                   padding-top: 1.1em;
+
+                  display: flex;
+	                align-items: left;
+	                justify-content: left;
                   "
             >
               💳 {{ 'BANK_CARD' | localize }}
             </div>
-            <!-- <i class="large material-icons" style="margin-left: 0.8em; margin-top: -1em;">credit_card</i> -->
           </div>
-          <!--     -->
         </li>
 
         <!-- 5 -->
-        <li class="collection-item" @click="payUp('bonus')">
-          <!-- <router-link
-            to="/bonus"
-            style="background-image:url('/imgs/menu/pay-bonus.png'); width: 945px; height: 192px"
-            class="btn"
-          >
-            <div class="button-title-main">{{ 'BONUSES' | localize }}</div>
-          </router-link> -->
-          <!-- dev -->
+        <li v-if="getIsPing" class="collection-item" @click="payUp('bonus')">
           <div
             class="card white waves-effect"
             style="
+                  padding-left: 4em;
+
                   width: 945px;
                   height: 160px; 
                   border: solid 6px #7FE409; 
@@ -148,16 +114,16 @@
               class="card-content black-text"
               style="
                   font-size: 4em;
-                  padding-left: 4.5em;
                   padding-top: 1.1em;
+                  display: flex;
+	                align-items: left;
+	                justify-content: left;
                   "
             >
               🎁 {{ 'BONUSES' | localize }}
             </div>
           </div>
-          <!--     -->
         </li>
-
 
         <!--  -->
         <!-- <li class="collection-item">
@@ -198,16 +164,50 @@ import { ipcRenderer } from 'electron'
 export default Vue.extend({
   data() {
     return {
-      cash_enabler: false
+      cash_enabler: false,
+      isDirectCash: false,
+      delay: 10000,
+      timeoutDelay: null
     }
   },
+  computed: {
+    ...mapGetters({
+      getWetBalance: 'getWetBalance',
+      getIsPing: 'getIsPing'
+    }),
+    
+  },
+  watch: {
+    getWetBalance(value) {
+      // console.log('++ getDirectCash-->watch value-->', value, this.isDirectCash)
+      //if (this.isDirectCash === 1)
+      this.$router.push('/cash')
+    }
+  },
+
+  mounted() {
+    /* dev */
+    this.isDirectCash = this.getDirectCash()
+
+    if (this.isDirectCash === 1) {
+      this.timeoutDelay = setTimeout(() => {
+        this.setEnabler()
+        //console.log('++this.setEnabler()--> one')
+      }, this.delay)
+    }
+  },
+  beforeDestroy() {
+    clearTimeout(this.timeoutDelay)
+  },
+  created() {},
 
   methods: {
     ...mapGetters({
       getCashEnabler: 'getCashEnabler',
       getIsConfig: 'getIsConfig',
       getConfig: 'getConfig',
-      getIsPayCardMoney: 'getIsPayCardMoney'
+      getIsPayCardMoney: 'getIsPayCardMoney',
+      getDirectCash: 'getDirectCash'
     }),
     ...mapMutations({
       setCashEnabler: 'setCashEnabler',
@@ -222,7 +222,7 @@ export default Vue.extend({
         case 'bonus':
           this.setIsAppendBonusMoney(false)
           this.setIsPayBonusMoney(true)
-          
+
           this.setIsPayCardMoney(true)
           this.$router.push('/bonus')
           break
