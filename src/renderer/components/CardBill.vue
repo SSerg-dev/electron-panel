@@ -56,13 +56,13 @@
                 <div class="display">{{ display }}</div>
               </td>
               <td colspan="2">
-                <h1>
-                  <div class="white-text">
+                <h2>
+                  <div class="white-text" style="margin-left: 1.8em;">
                     {{ this.emoji }}
                     {{ this.currency }}
                     {{ this.symbol }}
                   </div>
-                </h1>
+                </h2>
               </td>
             </tr>
             <!-- row 02 -->
@@ -194,12 +194,12 @@
               </td>
             </tr>
             <!-- dev -->
-            <!-- row 02++ -->  
+            <!-- row 02++ -->
             <tr v-else>
               <td>
                 <div
-                  @click="setNumber('-10')"
-                  class="card white waves-effect"
+                  @click="setNumber('')"
+                  class="card black waves-effect"
                   style="
                   width: 220px;
                   height: 120px; 
@@ -209,15 +209,31 @@
                   
                   "
                 >
+                  <!-- v-if="this.amount < getPaymentLimitMin && isMinBlinking" -->
                   <div
-                    class="card-content black-text"
+                    v-if="isMinBlinking"
+                    id="blink"
+                    class="card-content "
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
+                  font-size: 3rem;
+                  padding-left: 2.4rem;
+                  padding-top: 1.4rem;
                   "
                   >
-                    {{ `Min` }}
+                    {{ `Min ${getPaymentLimitMin}` }}
+                    <!-- {{  `${this.isMinBlinking}`  }} -->
+                  </div>
+
+                  <div
+                    v-else
+                    class="card-content white-text"
+                    style="
+                  font-size: 3rem;
+                  padding-left: 2.4rem;
+                  padding-top: 1.4rem;
+                  "
+                  >
+                    {{ `Min ${getPaymentLimitMin}` }}
                   </div>
                 </div>
               </td>
@@ -298,8 +314,8 @@
               </td>
               <td>
                 <div
-                  @click="setNumber('10')"
-                  class="card white waves-effect"
+                  @click="setNumber('')"
+                  class="card black waves-effect"
                   style="
                   width: 220px;
                   height: 120px; 
@@ -309,15 +325,30 @@
                   
                   "
                 >
+                  <!-- v-if="this.amount > getPaymentLimitMax" -->
                   <div
-                    class="card-content black-text"
+                    v-if="this.isMaxBlinking"
+                    id="blink"
+                    class="card-content"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
+                  font-size: 3rem;
+                  padding-left: 1.5rem;
+                  padding-top: 1.4rem;
                   "
                   >
-                    {{ `Max` }}
+                    {{ `Max ${getPaymentLimitMax}` }}
+                  </div>
+
+                  <div
+                    v-else
+                    class="card-content white-text"
+                    style="
+                  font-size: 3rem;
+                  padding-left: 1.5rem;
+                  padding-top: 1.4rem;
+                  "
+                  >
+                    {{ `Max ${getPaymentLimitMax}` }}
                   </div>
                 </div>
               </td>
@@ -816,6 +847,14 @@ export default {
     isCardRow: false,
     isBonusRow: false,
 
+    isMin: false,
+    //isMaxBlinking: false,
+    delay: 6000,
+    timeoutDelay: null,
+
+    //limitMin: 0,
+    //limitMax: 42,
+
     minX: 55,
     minY: 560,
     maxX: 1030,
@@ -840,8 +879,55 @@ export default {
   computed: {
     ...mapGetters({
       getDefaultCurrency: 'getDefaultCurrency',
-      getLanguageNatives: 'getLanguageNatives'
-    })
+      getLanguageNatives: 'getLanguageNatives',
+      /* dev */
+      getPaymentLimitMin: 'getPaymentLimitMin',
+      getPaymentLimitMax: 'getPaymentLimitMax'
+    }),
+
+    /* isMinBlinking: {
+      get: function() {
+        let flag
+        this.amount < this.getPaymentLimitMin ? (flag = true) : (flag = false)
+        if (flag) this.$message('Сумма меньше минимальной')
+        
+        return flag
+      }
+    }, */
+
+    /* isMinBlinking: {
+      get: function() {
+         
+         let blick = {
+          flag: true,
+          setBlick() {
+            
+            return false
+          }
+        }
+
+        const amount = this.amount
+        const limitMin = this.getPaymentLimitMin
+        amount < limitMin 
+          ? (blick.flag = true) 
+          : (blick.flag = false)
+
+        this.timeoutDelay = setTimeout(() => {
+          blick.setBlick.bind()
+        }, this.delay)
+
+        return blick.flag
+      }
+    }, */
+    
+    isMaxBlinking: {
+      get: function() {
+        let flag
+        this.amount > this.getPaymentLimitMax ? (flag = true) : (flag = false)
+        if (flag) this.$message('Сумма больше максимальной')
+        return flag
+      }
+    }
   },
   mounted() {
     this.setup()
@@ -855,6 +941,10 @@ export default {
     this.initCurrency()
   },
 
+  beforeDestroy() {
+    clearTimeout(this.timeoutDelay)
+  },
+
   methods: {
     emitBonusMoney(balance) {
       EventBus.$emit('submitBonusMoney', balance)
@@ -864,8 +954,7 @@ export default {
       if (balance < 1) {
         this.isCardRow = true
         this.isBonusRow = false
-      } 
-      else {
+      } else {
         this.isCardRow = false
         this.isBonusRow = true
       }
@@ -1035,7 +1124,7 @@ export default {
   width: 0em;
   position: absolute;
   margin-top: -0.8em;
-  margin-left: 0.15em; /* 2.3em; */
+  margin-left: 0.15em; /* 0.15em; */
   text-decoration: underline;
   color: #ffffff;
   font-size: 10em;
@@ -1137,5 +1226,26 @@ td {
   color: #ffffff;
   text-align: center;
   font-family: 'Plumb-Medium';
+}
+
+@-webkit-keyframes pulsate {
+  50% {
+    color: #fff;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.3), 0 0 5px #ffd, 0 0 8px #fff;
+  }
+}
+@keyframes pulsate {
+  50% {
+    color: #fff;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.3), 0 0 5px #ffd, 0 0 8px #fff;
+  }
+}
+#blink {
+  /* color: rgb(245,245,245); */
+  color: red;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.1);
+  background: black;
+  -webkit-animation: pulsate 1.2s linear infinite;
+  animation: pulsate 1.2s linear infinite;
 }
 </style>

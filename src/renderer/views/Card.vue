@@ -14,9 +14,9 @@
           <p align="center">
             {{ `${this.messages[0]}` }}
           </p>
-          <p align="center">
+          <!-- <p align="center">
             {{ `${this.messages[1]}` }}
-          </p>
+          </p> -->
         </h3>
       </div>
 
@@ -103,7 +103,7 @@ import EventBus from '@/bus/EventBus'
 .message {
   width: 800px;
   position: absolute;
-  margin-top: 3.5em;
+  margin-top: 8.5em;
   margin-left: 3.5em;
   color: white;
   font-size: 2.5em;
