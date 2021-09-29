@@ -88,10 +88,12 @@ export default Vue.extend({
       const method = methods[2]
       const type = types[4] // ['cash', 'card', 'bonus', 'service', 'common']
       this.options = this.getReadCashOptions()
+      /* dev */
+      // console.log('this.options-->', JSON.stringify(this.options)) 
 
       const response = await this.storage.getClient(method, this.options, type)
       if (+response.result === 0)
-        //console.log('Finance collect response OK!-->', JSON.stringify(response.result) )
+        console.log('Finance collect response OK!-->', JSON.stringify(response.result) )
         this.$message(
           `Запрос наличных средств панели № ${this.getDefaultPanelNumber} выполнен успешно`
         )

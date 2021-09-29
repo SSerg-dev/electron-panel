@@ -211,7 +211,7 @@
                 >
                   <!-- v-if="this.amount < getPaymentLimitMin && isMinBlinking" -->
                   <div
-                    v-if="isMinBlinking"
+                    v-if="isMinBlinking && isMin"
                     id="blink"
                     class="card-content "
                     style="
@@ -327,7 +327,7 @@
                 >
                   <!-- v-if="this.amount > getPaymentLimitMax" -->
                   <div
-                    v-if="this.isMaxBlinking"
+                    v-if="isMaxBlinking && isMax"
                     id="blink"
                     class="card-content"
                     style="
@@ -848,12 +848,11 @@ export default {
     isBonusRow: false,
 
     isMin: false,
-    //isMaxBlinking: false,
-    delay: 6000,
-    timeoutDelay: null,
+    isMax: false,
 
-    //limitMin: 0,
-    //limitMax: 42,
+    delay: 2000,
+    timeoutMinDelay: null,
+    timeoutMaxDelay: null,
 
     minX: 55,
     minY: 560,
@@ -885,47 +884,51 @@ export default {
       getPaymentLimitMax: 'getPaymentLimitMax'
     }),
 
-    /* isMinBlinking: {
+    isMinBlinking: {
       get: function() {
-        let flag
-        this.amount < this.getPaymentLimitMin ? (flag = true) : (flag = false)
-        if (flag) this.$message('Сумма меньше минимальной')
-        
-        return flag
-      }
-    }, */
-
-    /* isMinBlinking: {
-      get: function() {
-         
-         let blick = {
-          flag: true,
-          setBlick() {
-            
-            return false
-          }
+        const flags = [true, false]
+        let index
+        if (this.amount < this.getPaymentLimitMin) {
+          index = 0
+          this.isMin = true
+        } else {
+          index = 1
+          this.isMin = false
         }
-
-        const amount = this.amount
-        const limitMin = this.getPaymentLimitMin
-        amount < limitMin 
-          ? (blick.flag = true) 
-          : (blick.flag = false)
-
-        this.timeoutDelay = setTimeout(() => {
-          blick.setBlick.bind()
+        //if (index === 0) this.$message('Сумма меньше минимальной')
+        flags.modeBlink = function(index) {
+          return flags[index]
+        }
+        this.timeoutMinDelay = setTimeout(() => {
+          this.isMin = false
+          // flags.modeBlink(1)
         }, this.delay)
 
-        return blick.flag
+        return flags.modeBlink(index)
       }
-    }, */
-    
+    },
+
     isMaxBlinking: {
       get: function() {
-        let flag
-        this.amount > this.getPaymentLimitMax ? (flag = true) : (flag = false)
-        if (flag) this.$message('Сумма больше максимальной')
-        return flag
+        const flags = [true, false]
+        let index
+        if (this.amount > this.getPaymentLimitMax) {
+          index = 0
+          this.isMax = true
+        } else {
+          index = 1
+          this.isMax = false
+        }
+        if (index === 0) this.$message('Сумма больше максимальной')
+        flags.modeBlink = function(index) {
+          return flags[index]
+        }
+        this.timeoutMaxDelay = setTimeout(() => {
+          this.isMax = false
+          // flags.modeBlink(1)
+        }, this.delay)
+
+        return flags.modeBlink(index)
       }
     }
   },
@@ -937,12 +940,13 @@ export default {
     this.payBonusMoney()
   },
   created() {
-    //this.setup()
+    //this.setup()    
     this.initCurrency()
   },
 
   beforeDestroy() {
-    clearTimeout(this.timeoutDelay)
+    clearTimeout(this.timeoutMinDelay)
+    clearTimeout(this.timeoutMaxDelay)
   },
 
   methods: {
@@ -983,7 +987,7 @@ export default {
       this.emoji = emoji
       this.currency = currency
       this.symbol = symbol
-      console.log('this.currency-->', this.emoji, this.currency, this.symbol)
+      //console.log('this.currency-->', this.emoji, this.currency, this.symbol)
     },
 
     overlay() {
@@ -1005,22 +1009,21 @@ export default {
       }
     },
     setup() {
+      this.display = this.amount = this.getPaymentLimitMin
       this.overlay()
-      //this.initCurrency()
+      
     },
-
-    payUp(program) {
+    /* dev */
+    /* payUp(program) {
       if (program === 'append') {
         this.$router.push('/status')
       }
-    },
+    }, */
     ...mapGetters({
       getLoginBonusOptions: 'getLoginBonusOptions',
       getLoginBonusPhone: 'getLoginBonusPhone',
       getIsPayCardMoney: 'getIsPayCardMoney'
 
-      //getDefaultCurrency: 'getDefaultCurrency',
-      //getLanguageNatives: 'getLanguageNatives'
     }),
     ...mapMutations({
       setLoginBonusPhone: 'setLoginBonusPhone',
@@ -1032,14 +1035,15 @@ export default {
 
     payUp() {
       const card = this.amount
-      if (this.amount >= 10) {
+      if ( this.amount >= this.getPaymentLimitMin && this.amount <= this.getPaymentLimitMax) {
         this.updateWetMoney(card)
         this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
         this.$router.push('/program')
-
         // clear
         this.display = this.title = this.body = '0'
-      }
+      } else 
+         this.$message(`Введите правильную сумму`)
+
     },
     // ПОДТВЕРДИТЬ
     async payBonusMoney() {

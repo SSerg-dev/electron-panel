@@ -99,7 +99,7 @@ class Fetch {
   async commonRequest(url, body) {
     let res
     /* dev */
-    //console.log('method-->', JSON.stringify(body.method))
+    // console.log('method-->', JSON.stringify(body.method))
     
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
