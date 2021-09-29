@@ -25,6 +25,13 @@ export default Vue.extend({
   name: 'cost-list',
   //mixins: [paginationMixin],
   props: ['costs'],
+  data: () => ({
+    emoji: '',
+    currency: '',
+    symbol: '',
+    currencies: []
+  }),    
+
   components: {
     CostItem
   },

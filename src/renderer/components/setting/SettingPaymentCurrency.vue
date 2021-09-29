@@ -40,6 +40,7 @@ export default Vue.extend({
     select: null,
     current: null,
     title: '',
+    
     emoji: '',
     currency: '',
     symbol: '',
@@ -53,7 +54,7 @@ export default Vue.extend({
     M.updateTextFields()
   },
   methods: {
-    setup() {
+    initCurrency() {
       this.currencies = this.getLanguageNatives().filter(
         c => c.currency !== 'EUR'
       )
@@ -94,7 +95,7 @@ export default Vue.extend({
     }
   },
   created() {
-    this.setup()
+    this.initCurrency()
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {

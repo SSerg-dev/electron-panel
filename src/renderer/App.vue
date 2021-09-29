@@ -45,6 +45,8 @@ export default Vue.extend({
       ipcRenderer.on('settings', (evt, data) => {
         try {
           data = JSON.parse(data)
+          /* dev */
+          // console.log('++data-->', JSON.stringify(data))
           this.setConfig(data)
         } catch (err) {
           console.warn('Error? while parse settings -', err)

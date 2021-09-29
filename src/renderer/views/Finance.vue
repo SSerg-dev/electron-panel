@@ -17,13 +17,14 @@
       </div> -->
 
     <section>
-      <div class="row">
+      <div style="padding-top: 10em;">
         <div>
-          <FinanceTable />
+          <FinanceTable :cash="cash" />
         </div>
       </div>
       <!-- dev -->
-      <div class="row right">
+      <!-- @click="readCash" -->
+      <div class="row right" style="background: yellow; ">
         <div class="col collect">
           <router-link to="/finance">
             <button
@@ -44,7 +45,7 @@
               @click="doCollect"
             >
             
-              {{ 'Инкассация' }}
+              {{ 'Инкассация' }} 
             </button>
           </router-link>
         </div>
@@ -71,7 +72,8 @@ export default Vue.extend({
     client: 'fetch',
     url: 'https://192.168.1.3/',
     storage: null,
-    options: {}
+    options: {},
+    cash: {}
   }),
   computed: {
     ...mapGetters({
@@ -79,6 +81,15 @@ export default Vue.extend({
     })
   },
   methods: {
+    /* dev */
+    ...mapGetters({
+      getAllCash: 'getAllCash'         
+    }),
+    ...mapMutations({
+      setAllCash: 'setAllCash' 
+    }),
+    /*     */
+
     doCollect() {
       //if(confirm('Подтвердите инкассацию'))
       this.collect()
@@ -86,22 +97,30 @@ export default Vue.extend({
     async readCash() {
       // cash
       const method = methods[2]
-      const type = types[4] // ['cash', 'card', 'bonus', 'service', 'common']
+      const type = types[6] /* types[4] */ // ['cash', 'card', 'bonus', 'service', 'common', 'ping', 'finance']
+      
       this.options = this.getReadCashOptions()
-      /* dev */
-      // console.log('this.options-->', JSON.stringify(this.options)) 
-
       const response = await this.storage.getClient(method, this.options, type)
-      if (+response.result === 0)
-        console.log('Finance collect response OK!-->', JSON.stringify(response.result) )
+     
+      if (+response.result === 0) {
+        // console.log('Finance readCash response OK!-->', JSON.stringify(response.result) )
+        // console.log('readCash Returned data:', JSON.stringify(response))
         this.$message(
           `Запрос наличных средств панели № ${this.getDefaultPanelNumber} выполнен успешно`
         )
+      }
+      /* dev */   
+      //this.setAllCash(response.cash)
+      
+      this.cash = this.getAllCash()
+      console.log('++cash-->', this.cash)  
+      
+        
     },
 
     async collect() {
       const method = methods[1]
-      const type = types[4] // ['cash', 'card', 'bonus', 'service', 'common']
+      const type = types[4] // ['cash', 'card', 'bonus', 'service', 'common', 'ping', 'finance']
 
       this.options = this.getCollectOptions()
       const response = await this.storage.getClient(method, this.options, type)
@@ -140,6 +159,7 @@ export default Vue.extend({
     })
   },
   async mounted() {
+    //this.readCash()
 
     this.setRouter('/finance')
     this.storage = new Storage(this.client, this.url)
@@ -148,6 +168,10 @@ export default Vue.extend({
     console.log(dbf.getData('rand'))
     const url = 'https://jsonplaceholder.typicode.com/posts?_limit=2'
     const url = 'https://jsonplaceholder.typicode.com/users?_limit=2' */
+  },
+  created() {
+    // this.readCash()
+    //this.cash = {aaa: 42, bbb: 84 }
   },
   components: {
     FinanceTable
