@@ -4,7 +4,7 @@
     <div class="col s6">
       <div
         class="card grey lighten-3"
-        style="height: 200px; border: solid 3px #00B9E3; border-radius: 2rem;"
+        style="height: 220px; border: solid 3px #00B9E3; border-radius: 2rem;"
       >
         <div class="card-content black-text">
           <span class="card-title">Сервисы: </span>
@@ -121,14 +121,15 @@ export default Vue.extend({
 
 <style scoped>
 table {
-  border-spacing: 2px;
+  /* border-spacing: 2px; */
+  border: none;
 }
 tr {
-  /* margin-left: 1em; */
+  margin-left: 0em;
 }
 td {
   width: 236px;
-  border: solid 1px #eee;
+  border: none;
   align-content: justify;
   /* justify; */
   padding-bottom: 10px;
@@ -138,12 +139,11 @@ button {
   width: 220px;
 }
 .button-setting {
-  /* height: 2em; */
+  height: 2em;
   border: solid 3px #00b9e3;
-  font-size: 24px;
-  border-radius: 2rem;
+  font-size: 1.5em;
+  border-radius: 2em;
+  background-color: #26A69A;
 }
-.btn {
-  background-color: #26A69A; 
-}
+
 </style>

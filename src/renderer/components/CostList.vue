@@ -77,7 +77,7 @@ export default Vue.extend({
       this.emoji = emoji
       this.currency = currency
       this.symbol = symbol
-      console.log('this.currency-->', this.emoji, this.currency, this.symbol)
+      //console.log('this.currency-->', this.emoji, this.currency, this.symbol)
     },
   }
 })

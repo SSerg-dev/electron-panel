@@ -6,19 +6,19 @@ export default {
     mutations: {},
     modules: {}
   */
-  
+
   state: {
     // cash: {},
-     
-    cash: { 
+
+    cash: {
       bills_10: 10,
-      bills_100: 100,
-      bills_1000: 1000,
-      bills_200: 200,
-      bills_2000: 2000,
-      bills_50: 50,
-      bills_500: 500,
-      bills_5000: 5000,
+      bills_100: 110,
+      bills_1000: 1100,
+      bills_200: 220,
+      bills_2000: 2200,
+      bills_50: 55,
+      bills_500: 550,
+      bills_5000: 5500,
       bills_count: 142,
 
       coins_0: 0,
@@ -30,26 +30,38 @@ export default {
       sum_bills: 342,
       sum_cash: 884,
       sum_coins: 542
-    }  // end cash
+    }, // end cash
+
+    cashTitle: [
+      { id: 1, title: 'Сумма общая', key: 'sum_cash' },
+
+      { id: 2, title: 'Сумма в купюрах', key: 'sum_bills' },
+      { id: 3, title: 'Количество купюр', key: 'bills_count' },
+
+      { id: 4, title: 'Сумма в монетах', key: 'sum_coins' },
+      { id: 5, title: 'Количество монет', key: 'coins_coins' }
+    ] // end cashTitle
 
   }, // end state
 
   // mutations
   mutations: {
-    setAllCash(state, cash) {  
+    setAllCash(state, cash) {
       state.cash = cash
       //console.log('state.cash-->', state.cash)
-    },
-
+    }
   },
-  
+
   // getters
   getters: {
-    // getAllCash 
-    getAllCash(state) {  
+    getCashTitle(state) {
+      return state.cashTitle
+    },
+    // getAllCash
+    getAllCash(state) {
       return state.cash
     },
-    // getBills 
+    // getBills
     getBills10(state) {
       return state.cash.bills_10
     },
@@ -102,22 +114,7 @@ export default {
     },
     getSumCoins(state) {
       return state.cash.sum_coins
-    },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
     /* getFinanceSelectBanknotes(state) {
       return state.finance.selectBanknotes

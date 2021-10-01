@@ -131,20 +131,20 @@ export default Vue.extend({
 
 <style scoped>
 .display {
-  font-size: 2em; /* 24px; */
-  padding-left: 1.5em;
+  font-size: 2em; /* 24px; */ 
+  padding-left: 1.8em;
 }
 .btn {
-  font-size: 15px;
+  font-size: 1em;
   border: solid 1px black;
   background-color: #26a69a;
 }
 .button-setting {
   border: solid 3px #00b9e3;
   font-size: 1.5em;
-  border-radius: 2rem;
+  border-radius: 2em;
   height: 2em;
-  width: 4em;
+  width: 6em;
 }
 .material-icons {
   z-index: 1000;

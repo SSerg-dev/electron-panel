@@ -632,7 +632,8 @@ export default {
         })
 
       return natives
-    },getLanguageNatives(state, getters) {
+    },
+    getLanguageNatives(state, getters) {
       const selected = state.countries
       const all = state.allCountries
       const natives = []

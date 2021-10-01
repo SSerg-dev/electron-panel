@@ -3,11 +3,8 @@
     <div class="page-title">
       <h1>
         <p>Статистика поста №{{ getDefaultPanelNumber }}</p>
-
-        <!-- {{ getBills10 }}
-        {{ getBills100 }}
-        {{ getBills1000 }} -->
       </h1>
+
     </div>
 
     <table style="border: solid 3px #00B9E3;">
@@ -89,13 +86,15 @@
           <td>{{ 42 }}</td>
           <td>{{ getBills2000 + 42 }}</td>
         </tr>
-        <tr>
+
+        <!-- <tr>
           <td style="text-align: left; padding-left: 1em;">{{ `5000` }}</td>
           <td>{{ getBills5000 }}</td>
           <td>{{ 42 }}</td>
           <td>{{ getBills5000 + 42 }}</td>
         </tr>
-        <tr>
+        <tr> -->
+
           <td
             style="text-align: left; padding-left: 1em; border-top: solid 3px #00B9E3;"
           >
@@ -111,18 +110,20 @@
         </tr>
         <tr>
           <td style="text-align: left; padding-left: 1em; ">
-            {{ ` Количество монет` }}
+            {{ `Количество монет` }}
           </td>
           <td>{{ getCoinsCount }}</td>
           <td>{{ 42 }}</td>
           <td>{{ getCoinsCount + 42 }}</td>
         </tr>
-        <tr>
+
+        <!-- <tr>
           <td style="text-align: left; padding-left: 1em;">{{ `0` }}</td>
           <td>{{ getCoins0 }}</td>
           <td>{{ 42 }}</td>
           <td>{{ getCoins0 + 42 }}</td>
-        </tr>
+        </tr> -->
+
         <tr>
           <td style="text-align: left; padding-left: 1em;">{{ `1` }}</td>
           <td>{{ getCoins1 }}</td>
@@ -153,12 +154,11 @@ import { mapGetters } from 'vuex'
 export default Vue.extend({
   name: 'finance-table',
   props: ['cash'],
-  data: () => ({
-    
+
+  data: () => ({        
     emoji: '',
     currency: '',
     symbol: '',
-
     currencies: []
   }), // end data
 
@@ -186,10 +186,12 @@ export default Vue.extend({
       const { id, title, key, emoji, currency, symbol } = this.currencies[index]
       this.current = id
       this.select = title
+
       this.emoji = emoji
       this.currency = currency
       this.symbol = symbol
-      console.log('this.currency-->', this.emoji, this.currency, this.symbol)
+
+      //console.log('this.currency-->', this.emoji, this.currency, this.symbol)
     },
   },
 
@@ -239,18 +241,12 @@ export default Vue.extend({
 }
 table {
   margin-top: 0em; /* 20em; */
-  margin-left: 3.5em;
+  margin-left: 3.8em;
   color: white;
   border: 1px solid;
   border-color: white;
   width: 90%;
 }
-/* table,
-th,
-td {
-  border: 1px solid;
-  border-color: white;
-} */
 th {
   border: 1px solid;
   border-color: white;

@@ -18,14 +18,18 @@
 
     <section>
       <div style="padding-top: 10em;">
-        <div>
+        <!-- <div>
           <FinanceTable :cash="cash" />
+        </div> -->
+        <div>
+          <FinanceChart :cash="cash" :cashTitle="cashTitle" />
         </div>
+
       </div>
       <!-- dev -->
       <!-- @click="readCash" -->
-      <div class="row right" style="background: yellow; ">
-        <div class="col collect">
+      <div class="row right">
+        <div class="col ">
           <router-link to="/finance">
             <button
               class="btn waves-effect waves-light lighten-3 white-text button-setting"
@@ -37,20 +41,33 @@
           </router-link>
         </div>
 
-        <div class="col collect">
+        <div class="col ">
           <router-link to="/finance">
             <button
               class="btn waves-effect waves-light lighten-3 white-text button-setting"
               type="submit"
               @click="doCollect"
             >
-            
-              {{ 'Инкассация' }} 
+              {{ 'Инкассация' }}
             </button>
           </router-link>
         </div>
+        <!-- dev -->
+        <div class="col ">
+          <router-link to="/finance">
+            <button
+              class="btn waves-effect waves-light lighten-3 white-text button-setting"
+              type="submit"
+              @click="doChart"
+            >
+              {{ 'Диаграмма' }}
+            </button>
+          </router-link>
+        </div>
+        <!--     -->
+
       </div>
-      <!--     -->
+      
     </section>
   </div>
 </template>
@@ -60,6 +77,7 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 import FinanceTable from '@/components/FinanceTable'
+import FinanceChart from '@/components/FinanceChart'
 
 // dev methods
 import { Database } from '@/storage/database.js'
@@ -73,35 +91,43 @@ export default Vue.extend({
     url: 'https://192.168.1.3/',
     storage: null,
     options: {},
-    cash: {}
+    cash: {},
+    cashTitle: []
   }),
   computed: {
     ...mapGetters({
-      getDefaultPanelNumber: 'getDefaultPanelNumber'
+      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getAllCash: 'getAllCash',
+      getCashTitle: 'getCashTitle',
     })
   },
   methods: {
     /* dev */
     ...mapGetters({
-      getAllCash: 'getAllCash'         
+      //getAllCash: 'getAllCash'
+      //getCashTitle: 'getCashTitle' 
     }),
     ...mapMutations({
-      setAllCash: 'setAllCash' 
+      setAllCash: 'setAllCash'
     }),
     /*     */
+    doChart() {
+      console.log('++doChart')
+    },
 
     doCollect() {
       //if(confirm('Подтвердите инкассацию'))
       this.collect()
     },
     async readCash() {
+      console.log('++++readCash')
       // cash
       const method = methods[2]
       const type = types[6] /* types[4] */ // ['cash', 'card', 'bonus', 'service', 'common', 'ping', 'finance']
-      
+
       this.options = this.getReadCashOptions()
       const response = await this.storage.getClient(method, this.options, type)
-     
+
       if (+response.result === 0) {
         // console.log('Finance readCash response OK!-->', JSON.stringify(response.result) )
         // console.log('readCash Returned data:', JSON.stringify(response))
@@ -109,13 +135,15 @@ export default Vue.extend({
           `Запрос наличных средств панели № ${this.getDefaultPanelNumber} выполнен успешно`
         )
       }
-      /* dev */   
+      /* dev */ 
+      // !!! uncomment in relase
       //this.setAllCash(response.cash)
-      
-      this.cash = this.getAllCash()
-      console.log('++cash-->', this.cash)  
-      
-        
+
+      this.cash = this.getAllCash
+      this.cashTitle = this.getCashTitle 
+
+      //console.log('++cash-->', this.cash)
+      //console.log('++this.cashTitle-->', this.cashTitle)
     },
 
     async collect() {
@@ -159,8 +187,9 @@ export default Vue.extend({
     })
   },
   async mounted() {
-    //this.readCash()
-
+    //this.cash = this.getAllCash
+    //this.cashTitle = this.getCashTitle
+    
     this.setRouter('/finance')
     this.storage = new Storage(this.client, this.url)
 
@@ -170,11 +199,13 @@ export default Vue.extend({
     const url = 'https://jsonplaceholder.typicode.com/users?_limit=2' */
   },
   created() {
-    // this.readCash()
-    //this.cash = {aaa: 42, bbb: 84 }
+    this.cash = this.getAllCash
+    this.cashTitle = this.getCashTitle
+    
   },
   components: {
-    FinanceTable
+    FinanceTable,
+    FinanceChart
   }
 })
 </script>
@@ -190,8 +221,14 @@ export default Vue.extend({
   z-index: 1;
 }
 .row {
-  padding-top: 10em;
+  padding-top: 0em;
   padding-left: 0em;
+  margin-top: 2em;
+  margin-right: 2em;
+}
+.col {
+  padding-top: 0em; /* 17.5em; */
+  padding-right: 2em;
 }
 .page-title {
   margin-top: 30em;
@@ -203,20 +240,20 @@ export default Vue.extend({
   margin-right: auto;
   width: 30em;
 }
-.collect {
-  padding-top: 0em; /* 17.5em; */
-  padding-right: 4em;
-}
-/* dev */
-/* .button-setting {
-  border: solid 3px #00b9e3;
-  font-size: 24px;
-} */
+
 .button-setting {
-  height: 2em;
-  width: 10em;
+  margin-top: 0em;
   border: solid 3px #00b9e3;
-  font-size: 24px;
+  font-size: 2em;
   border-radius: 2rem;
+  box-shadow: 6px 6px 10px #00b9e3;
+}
+.btn {
+  height: 2em;
+  width: 9em;
+  border: solid;
+  /* border-width: 1px; */
+  border-color: #00b9e3;
+  background-color: #26a69a;
 }
 </style>

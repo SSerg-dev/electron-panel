@@ -24,7 +24,7 @@
         
         
         
-        <div class="input-field col s6" style="margin-top: -0.5em;">
+        <div class="input-field col s5" style="margin-top: -0.5em;">
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(t, index) in types" :key="index" :value="t.id">
               <div class="dropdown-setting">
@@ -37,13 +37,15 @@
         <div v-if="this.current === 1" class="col s4">
           <button
                   
-                  class="btn waves-effect waves-light  white-text button-setting"
+                  class="btn waves-effect waves-light  white-text button-setting "
                   type="submit"
                   @click="setService('menu')"
-                  style="margin-left: 1.5em; margin-top: -0.2em"
+                  style="margin-left: 1em; margin-top: -0.2em;"
                 >
-                  {{ `Открыть меню Ярус К2100` }}
-                  <i class="material-icons right"></i>
+                  <div style="margin-top: -0.1em;">
+                   {{ `Открыть меню Ярус К2100` }}
+                  </div>
+
                 </button>
           
         </div>
@@ -119,8 +121,10 @@ export default Vue.extend({
 <style scoped>
 .button-setting {
   border: solid 3px #00b9e3;
-  font-size: 16px;
-  border-radius: 2rem;
+  font-size: 1.4em;
+  border-radius: 2em;
+
+  width: 380px;
 }
 .btn {
   background-color: #26A69A; 

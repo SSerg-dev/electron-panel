@@ -42,9 +42,11 @@ export default Vue.extend({
     select: null,
     current: null,
     title: '',
+
     emoji: '',
     currency: '',
     symbol: '',
+    currencies: [],
 
     languages: []
   }),

@@ -11,8 +11,9 @@
       "
     >
       <div class="card-content black-text">
-        <div class="row">
-          <div class="col s5">
+        <div class="row" style="margin-top: -0.8em;">
+
+          <div class="col s5" style="padding-top: 0.5em;">
             <div style="margin-left: -1em" class="display">
               {{ `Минимальный` }}
             </div>
@@ -28,7 +29,7 @@
             </button>
           </div>
 
-          <div class="col s2">
+          <div class="col s2" style="padding-top: 0.5em;">
             <div style="margin-left: 0.4em" class="display">
               {{ display }}
             </div>
@@ -36,7 +37,7 @@
 
           <div class="col s2">
             <button
-              class="btn waves-effect waves-light lighten-3 white-text button-setting"
+              class="btn waves-effect waves-light lighten-3 white-text button-setting" 
               type="submit"
               @click="setNumber('+1')"
             >
@@ -45,7 +46,7 @@
           </div>
         </div>
 
-        <div class="col s12" style="margin-left: -0.5em;">
+        <div class="col s12" style="margin-left: -0.5em; margin-top: -0.5em;">
           <p class="range-field">
             <input
               id="slider"
@@ -143,20 +144,23 @@ export default Vue.extend({
 
 <style scoped>
 .display {
-  font-size: 24px;
+  font-size: 1.6em;
 }
 .btn {
-  font-size: 15px;
+  font-size: 1em;
   border: solid 1px black;
   background-color: #26a69a;
 }
 td {
   width: 128px;
-  /* border: solid 1px black; */
 }
 .button-setting {
   border: solid 3px #00b9e3;
-  font-size: 24px;
-  border-radius: 2rem;
+  font-size: 1.5em;
+  border-radius: 2.5em;
+  /* dev */
+  height: 2.5em;
+  width: 2.5em;
+  padding-bottom: 0em;
 }
 </style>

@@ -54,6 +54,7 @@ export default Vue.extend({
     emoji: '',
     currency: '',
     symbol: '',
+    currencies: [],
 
     languages: [],
     allLanguages: []

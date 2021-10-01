@@ -11,7 +11,7 @@
   },
   "keywords": [],
   "author": {
-    "name": "SShabailo, LeoDiMark",
+    "name": "SShabailov, LeoDiMark",
     "email": "info@alles-good.ru"
   },
   "eslintConfig": {
@@ -23,6 +23,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "cashcode-bv": "^0.0.2",
+    "chart.js": "2",
     "country-data-list": "^1.2.1",
     "date-fns": "^2.23.0",
     "electron-log": "^4.4.0",
@@ -33,6 +34,7 @@
     "register-service-worker": "^1.7.2",
     "serialport": "^9.0.3",
     "vue": "^2.6.14",
+    "vue-chartjs": "^3.5.1",
     "vue-qrcode": "^0.4.0",
     "vue-router": "^3.2.0",
     "vuejs-paginate": "^2.1.0",

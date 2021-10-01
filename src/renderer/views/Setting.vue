@@ -1106,7 +1106,6 @@ export default Vue.extend({
   border: solid 3px #00b9e3;
   font-size: 2em;
   border-radius: 2rem;
-  /* dev */
   box-shadow: 6px 6px 10px #00b9e3;
 }
 /*  */

@@ -24,7 +24,7 @@
           <!--     -->
           <div class="col s11">
             <span class="card-title"
-              >Показывать всплывающие подсказки при переключении программ</span
+              >Показывать всплывающие подсказки при переключении программ</span 
             >
           </div>
         </div>
@@ -184,19 +184,19 @@ export default Vue.extend({
 <style scoped>
 .display {
   font-size: 2em; /* 24px; */
-  padding-left: 0.8em;
+  padding-left: 1.2em;
 }
 .btn {
-  font-size: 15px;
+  font-size: 1em;
   border: solid 1px black;
   background-color: #26a69a;
 }
 .button-setting {
   border: solid 3px #00b9e3;
   font-size: 1.5em;
-  border-radius: 2rem;
+  border-radius: 2em;
   height: 2em;
-  width: 4em;
+  width: 6em;
 }
 .material-icons {
   z-index: 1000;

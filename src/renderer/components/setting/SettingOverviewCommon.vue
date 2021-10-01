@@ -1,7 +1,7 @@
 <template>
   <div class="col s6">
     <!-- style="border: solid 3px #00B9E3;" -->
-    <div class="card grey lighten-3" style="height: 200px; border: solid 3px #00B9E3; border-radius: 2rem;">
+    <div class="card grey lighten-3" style="height: 220px; border: solid 3px #00B9E3; border-radius: 2rem;">
       <div class="card-content black-text">
 
         <span class="card-title">Версия ПО: {{ `${this.software}` }}</span> 
