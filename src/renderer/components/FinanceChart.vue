@@ -57,48 +57,16 @@ export default Vue.extend({
   },
   methods: {
     initData() {
-            const all = this.cash         // {}
-            const titles = this.cashTitle // []
+      const all = this.cash // {}
+      const titles = this.cashTitle // []
 
-            titles.map(t => {
-             Object.keys(all).forEach(keyAll => {
-               if (t.key === keyAll) {
-                 this.chartData.push(all[keyAll])
-               }
-             })
-            })
-
-
-            /* 
-            getters: {
-            getLanguageItem: state => keySel => {
-            const all = state.languages
-            const selected = Object.keys(all).map(key => ({
-            key: key,
-            intl: all[key][0],
-            native: all[key][1]
-            }))
-            let result = selected.find(language => language.key === keySel)
-
-            return result.native
-            }
-            }
-            */
-           /* const selected =  titles.map(t => {
-             // ??
-             let tt = Object.keys(all).map(key => ({
-               key: key,
-               
-             })
-             ) // end map
-
-             let result = 42
-             return 42
-            
-            })
-            console.log('++selected-->', selected)
- */
-
+      titles.map(t => {
+        Object.keys(all).forEach(keyAll => {
+          if (t.key === keyAll) {
+            this.chartData.push(all[keyAll])
+          }
+        })
+      })
     },
     initChart() {
       this.renderChart(
@@ -108,7 +76,7 @@ export default Vue.extend({
             {
               label: 'diagramm label',
               data: this.chartData,
-              
+
               backgroundColor: [
                 'rgba(255, 99, 132, 0.6)',
                 'rgba(54, 162, 235, 0.6)',
@@ -129,14 +97,15 @@ export default Vue.extend({
             }
           ]
         },
-        { // options
-            legend: {
-              display: true,
-              labels: {
-                fontColor: '#fff',
-                fontSize: 16
-              }
+        {
+          // options
+          legend: {
+            display: true,
+            labels: {
+              fontColor: '#fff',
+              fontSize: 16
             }
+          }
         } // end options
       )
     },

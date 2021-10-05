@@ -46,7 +46,7 @@ export default Vue.extend({
         try {
           data = JSON.parse(data)
           /* dev */
-          // console.log('++data-->', JSON.stringify(data))
+          //console.log('++data-->', JSON.stringify(data))
           this.setConfig(data)
         } catch (err) {
           console.warn('Error? while parse settings -', err)

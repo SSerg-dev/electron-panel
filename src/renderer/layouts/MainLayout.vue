@@ -7,14 +7,16 @@
         <router-view />
       </div>
     </main>
+    
+    
     <div
       v-if="
         this.$route.name !== 'cost' &&
-          this.$route.name != 'language' &&
-          this.$route.name != 'setting'
+        this.$route.name != 'language' &&
+        this.$route.name != 'setting'
       "
       class="footer"
-    >
+    > 
       <Footer />
     </div>
   </div>
@@ -49,7 +51,8 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       //getDefaultPanelNumber: 'getDefaultPanelNumber',
-      //getWetBusyPanel: 'getWetBusyPanel'
+      //getWetBusyPanel: 'getWetBusyPanel',
+      getPanelType: 'getPanelType'
     })
   },
 
@@ -131,8 +134,13 @@ export default Vue.extend({
       setIsPing: 'setIsPing'
     })
   },
-
+  created() {
+    //console.log('!!++this.getPanelType-->', this.getPanelType)
+  },
+  
   async mounted() {
+    
+
     this.storage = new Storage(this.client, this.url)
 
     this.intervalPing = setInterval(() => {

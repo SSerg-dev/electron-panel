@@ -3,7 +3,7 @@
     <div class="head-panel">
       <!-- 
         <div class="box">
-        <span class="white-text">{{ 'BOX' | localize }}</span>
+        <span class="white-text">{{ 'BOX' | localize }}</span> 
       </div>
        -->
       <div

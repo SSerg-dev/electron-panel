@@ -6,6 +6,7 @@
       </div>
        <div v-if="this.getPanelType === 'vaccum'">
          <Vaccum />
+         <!-- <VaccumMenu /> -->  
        </div>
 
     </div>
@@ -17,7 +18,9 @@ import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 
 import MainMenu from '@/components/MainMenu'
-import Vaccum from '@/components/vaccum/Vaccum' 
+import Vaccum from '@/components/vaccum/Vaccum'
+import VaccumMenu from '@/components/vaccum/VaccumMenu'
+
 //import Loader from '@/components/app/Loader'
 
 //import messages from '@/utils/messages'
@@ -30,7 +33,8 @@ export default Vue.extend({
 
   components: {
     MainMenu,
-    Vaccum
+    Vaccum,
+    VaccumMenu
 
   },
   methods: {

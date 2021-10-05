@@ -1,121 +1,149 @@
 <template>
   <div>
     <section>
-      
-      <div>
-        <div class="first-vaccum">
-          <VaccumTable :actives="actives" :number="first" />
-        </div>
-
-        <div class="second-vaccum">
+      <ul class="collection">
+        <!-- 1 first -->
+        <li class="collection-item cost" @click="payUp('first')">  
+          <div
+            class="card white waves-effect"
+            style="
+                  width: 945px;
+                  height: 160px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 4em;
+                  box-shadow: 0px 10px 20px #00b9e3;
+                  "
           >
-          <VaccumTable :actives="actives" :number="second" />
-        </div>
-      </div>
- 
-      <!-- <div class="price">
-          <img src="imgs/price/price-up.png" />
-        </div> -->
+            <div
+              class="card-content black-text"
+              style="
+                  font-size: 4em;
+                  padding-top: 1.1em;
+
+                  display: flex;
+	                align-items: center;
+	                justify-content: center;
+                  "
+            >
+              {{ `ОПЛАТИТЬ ПОСТ №1` }}
+            </div>
+          </div>
+        </li>
+
+        <!-- 2 operator -->
+        <li class="collection-item cost" @click="payUp('operator')">
+          <div
+            class="card black waves-effect"
+            style="
+                  width: 945px;
+                  height: 160px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 4em;
+                  box-shadow: 0px 10px 20px #00b9e3;
+                  "
+          >
+            <div
+              class="card-content white-text"
+              style="
+                  font-size: 4em;
+                  padding-top: 1.1em;
+
+                  display: flex;
+	                align-items: center;
+	                justify-content: center;
+                  "
+            >
+              {{ `КОНСУЛЬТАНТ` }}
+            </div>
+          </div>
+        </li>
+
+        <!-- 3 second -->
+        <li class="collection-item cost" @click="payUp('second')">
+          <div
+            class="card white waves-effect"
+            style="
+                  width: 945px;
+                  height: 160px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 4em;
+                  box-shadow: 0px 10px 20px #00b9e3;
+                  "
+          >
+            <div
+              class="card-content black-text"
+              style="
+                  font-size: 4em;
+                  padding-top: 1.1em;
+
+                  display: flex;
+	                align-items: center;
+	                justify-content: center;
+                  "
+            >
+              {{ `ОПЛАТИТЬ ПОСТ №2` }}
+            </div>
+          </div>
+        </li>
+      </ul>
     </section>
   </div>
 </template>
-
 <script>
 import Vue from 'vue'
-import { mapGetters, mapActions } from 'vuex'
-import VaccumTable from '@/components/vaccum/VaccumTable'
+import { mapGetters, mapMutations } from 'vuex'
+
+import { ipcRenderer } from 'electron'
 
 export default Vue.extend({
-  name: 'vaccum',
-  data() {
-    return {
-      actives: [],
-      first: 'first',
-      second: 'second',
-      activeProg: [],
-      interval: null
-    }
-  },
-
-  computed: {
-    ...mapGetters({
-      //getWetProgStatus: 'getWetProgStatus'
-    })
-  },
-
+  
+  
   methods: {
-    /* getActiveProgBit() {
-      return (this.getWetProgStatus >>> 0).toString(2)
-    }, */
-    /* setActiveProg() {
-      this.activeProg = [...this.getActiveProgBit()]
-        .reverse()
-        .join('')
-        .slice(1)
-      for (let i = 0; i <= this.activeProg.length; i++) {
-        this.activeProg.toString().slice(i, i + 1) === '0'
-          ? (this.actives[i].display = 'none')
-          : (this.actives[i].display = 'block')
+    /* dev */
+      ...mapMutations ({
+      setPanelType: 'setPanelType'
+    }),
+  
+    /*     */
+
+    payUp(program) {
+      switch (program) {
+        case 'first':
+          console.log('first')
+          this.setPanelType('wash')
+
+          // this.$router.push('/bonus')
+          break
+        case 'operator':
+          console.log('operator')
+          break
+        case 'second':
+          console.log('second')
+          break
+
+        default:
+          break
       }
-      this.actives[18].display = 'block'
-
-      return this.actives
-    }, */
-    ...mapGetters({
-      getProgramsVaccum: 'getProgramsVaccum'
-    })
-  },
-  created() {
-    // 01
-    this.actives = this.getProgramsVaccum()
-  },
-  mounted() {
-    // 02
-    //? this.setActiveProg()
-    //this.interval = setInterval(() => this.setActiveProg(), 2000)
-    // 03
-  },
-  beforeDestroy() {
-    clearInterval(this.interval)
-  },
-
-  components: {
-    VaccumTable
+    }
   }
 })
 </script>
 
 <style scoped>
-section {
+.collection {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0rem;
+  border-color: #121212;
+  padding-top: 8rem;
+}
+.collection-item {
+  margin-bottom: 16em;
   background-color: #121212;
-  margin-top: -1rem;
-  margin-left: 1.5rem;
+  border-color: #121212;
 }
-.page-title {
-  color: #ffffff;
-  font-family: 'PlumbSoft-Black';
-  font-size: 140px;
-  font-weight: 400;
-  line-height: 70px;
-  text-align: center;
-  /* text-decoration: underline; */
+section {
+  margin-top: 18em;
+  margin-left: 3em;
 }
-h5 {
-  color: white;
-}
-.first-vaccum {
-  margin-top: 0em;
-  margin-left: 1.5em;
-}
-.second-vaccum { 
-  margin-top: 0em;
-  margin-left: 1.5em;
-  padding-top: 44em;
-}
-/* .price {
-  position: absolute;
-  margin-top: -40em;
-  margin-left: 62em;
-  z-index: 1000;
-} */
 </style>

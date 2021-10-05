@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="getPanelType === 'wash'">
     <div class="footer-panel white-text ">
       <div class="row">
         <div class="col s4"></div>
@@ -68,7 +68,9 @@ export default {
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getWetBalance: 'getWetBalance'
+      getWetBalance: 'getWetBalance',
+      /* dev */
+      getPanelType: 'getPanelType'
     })
   },
 
