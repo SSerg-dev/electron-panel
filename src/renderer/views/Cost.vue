@@ -264,7 +264,7 @@ h4 {
   width: 100%;
   /* height: 0px; */
   position: fixed;
-  left: 16em;
+  left: 20em;
 
   bottom: 16em;
 

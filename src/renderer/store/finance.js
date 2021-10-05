@@ -39,7 +39,7 @@ export default {
       { id: 3, title: 'Количество купюр', key: 'bills_count' },
 
       { id: 4, title: 'Сумма в монетах', key: 'sum_coins' },
-      { id: 5, title: 'Количество монет', key: 'coins_coins' }
+      { id: 5, title: 'Количество монет', key: 'coins_count' }
     ] // end cashTitle
 
   }, // end state

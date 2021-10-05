@@ -17,7 +17,7 @@ import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 
 import MainMenu from '@/components/MainMenu'
-import Vaccum from '@/components/Vaccum' 
+import Vaccum from '@/components/vaccum/Vaccum' 
 //import Loader from '@/components/app/Loader'
 
 //import messages from '@/utils/messages'

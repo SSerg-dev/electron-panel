@@ -8,27 +8,19 @@
       </router-link>
     </div>
 
-    <!-- <div class="page-title">
-        <h3>
-          <p>
-            --Finance--
-          </p>
-        </h3>
-      </div> -->
-
     <section>
       <div style="padding-top: 10em;">
-        <!-- <div>
+        <div v-if="!isChart">
           <FinanceTable :cash="cash" />
-        </div> -->
-        <div>
+        </div>
+        <div v-else>
           <FinanceChart :cash="cash" :cashTitle="cashTitle" />
         </div>
 
       </div>
       <!-- dev -->
       <!-- @click="readCash" -->
-      <div class="row right">
+      <div class="row button-group">
         <div class="col ">
           <router-link to="/finance">
             <button
@@ -60,7 +52,15 @@
               type="submit"
               @click="doChart"
             >
-              {{ 'Диаграмма' }}
+              <div v-if="isChart">
+               {{ 'Таблица' }}
+              </div> 
+              <div v-else>
+               {{ 'Диаграмма' }}
+              </div>
+              
+
+
             </button>
           </router-link>
         </div>
@@ -91,6 +91,8 @@ export default Vue.extend({
     url: 'https://192.168.1.3/',
     storage: null,
     options: {},
+
+    isChart: false,
     cash: {},
     cashTitle: []
   }),
@@ -112,12 +114,12 @@ export default Vue.extend({
     }),
     /*     */
     doChart() {
-      console.log('++doChart')
+      this.isChart = !this.isChart 
     },
 
     doCollect() {
-      //if(confirm('Подтвердите инкассацию'))
-      this.collect()
+      if(confirm('Подтвердите инкассацию'))
+        this.collect()
     },
     async readCash() {
       console.log('++++readCash')
@@ -240,7 +242,9 @@ export default Vue.extend({
   margin-right: auto;
   width: 30em;
 }
-
+.button-group {
+  padding-left: 7em;
+}
 .button-setting {
   margin-top: 0em;
   border: solid 3px #00b9e3;

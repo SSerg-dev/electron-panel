@@ -113,11 +113,6 @@ export default Vue.extend({
 .locate {
   position: relative;
   text-align: center;
-
-	/* display: flex;
-	align-items: center;
-	justify-content: center; */
-
 }
 .back {
   position: absolute;

@@ -52,10 +52,10 @@
       >
         <!-- Обзор -->
         <div>
-          <h2 class="white-text">Обзор</h2>
+          <h2 class="white-text page-subtitle">Обзор</h2>
           <br />
           <div class="row panel">
-            <div class="page-title white-text">
+            <div class="page-title white-text" style="padding-left: 1em;">
               <h4>Общие</h4>
             </div>
             <SettingOverviewService />
@@ -75,7 +75,7 @@
       >
         <!-- Экран -->
         <div>
-          <h2 class="white-text">Экран</h2>
+          <h2 class="white-text page-subtitle">Экран</h2>
           <br />
 
           <!-- table -->
@@ -729,7 +729,7 @@
         <!-- Языки -->
         <!-- dev -->
 
-        <h2 class="white-text">Языки</h2>
+        <h2 class="white-text page-subtitle">Языки</h2>
         <br />
 
         <table style="margin-left: 2em; margin-top: -1em;">
@@ -771,7 +771,7 @@
       >
         <!-- Финансы -->
         <div>
-          <h2 class="white-text">Финансы</h2>
+          <h2 class="white-text page-subtitle">Финансы</h2>
           <br />
           <div class="row panel">
             <div class="row left">
@@ -1069,18 +1069,9 @@ export default Vue.extend({
 .payment {
   margin: 0 auto;
 }
-/* 
-.btn, .btn-large, .btn-small {
-    text-decoration: none;
-    color: #fff;
-    background-color: #27a599;
-    background-color: #26A69A;
-    text-align: center;
-    letter-spacing: .5px;
-    transition: background-color .2s ease-out;
-    cursor: pointer;
+.page-subtitle {
+  padding-left: 0.8em;
 }
-*/
 .btn {
   /* width: 13rem; */
   height: 2em;

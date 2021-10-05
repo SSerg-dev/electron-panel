@@ -43,12 +43,13 @@ export default Vue.extend({
     emoji: '',
     currency: '',
     symbol: '',
-    currencies: []
+    currencies: [],
+
+    chartData: []
   }), // end data
 
   created() {
     this.initCurrency()
-    //console.log('created cashTitle-->', this.cashTitle)
   },
   mounted() {
     this.initData()
@@ -56,63 +57,47 @@ export default Vue.extend({
   },
   methods: {
     initData() {
-      /* 
-      const selected = state.countries
-      const all = state.allCountries
-      const natives = []
+            const all = this.cash         // {}
+            const titles = this.cashTitle // []
 
-      let language = null
-
-      selected.forEach((keySel, index) => {
-        Object.keys(all).forEach(keyAll => {
-          if (keySel === keyAll) {
-            const keyLang = all[keyAll].languages[0]
-            language = getters.getLanguageItem(keyLang.toLowerCase())
-            const emoji = all[keyAll].emoji
-            const currency = all[keyAll].currency.alphabetic_code
-            const symbol = all[keyAll].currency.symbol
-            natives.push({
-              id: index + 1,
-              title: language,
-              key: keyAll,
-              emoji: emoji,
-              currency: currency,
-              symbol: symbol,
-              selected: false
-
-            })
-          }
-        })
-      })
-
-      return natives 
-      */
-    
-
-            //console.log('++initData-->')
-
-            const all = this.cash
-            const titles = this.cashTitle
-            let selected
-
-            /* data: this.cashTitle.map(c => {
-              //this.cash.find(c.key === )
-              const selected = Object.keys(cash).map(key => ({
-
-              }))
-            }), */
-
-            selected = titles.map(t => {
-
-              //const result = Object.keys(all).map( c=> )
-
-              //return t.key
+            titles.map(t => {
+             Object.keys(all).forEach(keyAll => {
+               if (t.key === keyAll) {
+                 this.chartData.push(all[keyAll])
+               }
+             })
             })
 
 
-            console.log('++initData-->', selected)
+            /* 
+            getters: {
+            getLanguageItem: state => keySel => {
+            const all = state.languages
+            const selected = Object.keys(all).map(key => ({
+            key: key,
+            intl: all[key][0],
+            native: all[key][1]
+            }))
+            let result = selected.find(language => language.key === keySel)
 
+            return result.native
+            }
+            }
+            */
+           /* const selected =  titles.map(t => {
+             // ??
+             let tt = Object.keys(all).map(key => ({
+               key: key,
+               
+             })
+             ) // end map
 
+             let result = 42
+             return 42
+            
+            })
+            console.log('++selected-->', selected)
+ */
 
     },
     initChart() {
@@ -121,8 +106,9 @@ export default Vue.extend({
           labels: this.cashTitle.map(t => t.title),
           datasets: [
             {
-              label: 'diagramm !!!',
-              data: [12, 19, 3, 5, 2, 3],
+              label: 'diagramm label',
+              data: this.chartData,
+              
               backgroundColor: [
                 'rgba(255, 99, 132, 0.6)',
                 'rgba(54, 162, 235, 0.6)',
