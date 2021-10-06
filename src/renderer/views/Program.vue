@@ -2,10 +2,19 @@
   <div>
     
     <section>
-      <div>
+      
+      <div v-if="this.getPanelType === 'wash'">
         <ProgramTable :actives="actives" :delay="delay" />
       </div>
+
+      <div v-if="this.getPanelType === 'vaccum'">
+        <VaccumTable :actives="activesVaccum" />
+      </div>
+
     </section>
+
+
+
   </div>
 </template>
 
@@ -13,12 +22,16 @@
 import Vue from 'vue'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 import ProgramTable from '@/components/ProgramTable'
+import VaccumTable from '@/components/vaccum/VaccumTable'
 
 export default Vue.extend({
   name: 'program',
   data() {
     return {
       actives: [],
+      /* dev */
+      activesVaccum: [],
+
       delay: 1000,
 
       activeProg: [],
@@ -32,7 +45,8 @@ export default Vue.extend({
     ...mapGetters({
       getWetProgStatus: 'getWetProgStatus',
       getWetProgShow: 'getWetProgShow',
-      getParamsChange: 'getParamsChange'
+      getParamsChange: 'getParamsChange',
+      getPanelType: 'getPanelType'
     })
   },
   /* dev */
@@ -112,12 +126,15 @@ export default Vue.extend({
       return this.actives
     },
     ...mapGetters({
-      getPrograms: 'getPrograms'
+      getPrograms: 'getPrograms',
+      getProgramsVaccum: 'getProgramsVaccum'
     })
   },
 
   created() {
     this.actives = this.getPrograms()
+    /* dev */
+    this.activesVaccum = this.getProgramsVaccum() 
   },
   mounted() {
     
@@ -130,7 +147,8 @@ export default Vue.extend({
   },
 
   components: {
-    ProgramTable
+    ProgramTable,
+    VaccumTable
   }
 })
 </script>

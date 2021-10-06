@@ -20,7 +20,9 @@
  
       <!-- <div class="price">
           <img src="imgs/price/price-up.png" />
-        </div> -->
+       </div> -->
+
+
     </section>
   </div>
 </template>
@@ -38,7 +40,6 @@ export default Vue.extend({
       first: 'first',
       second: 'second',
       activeProg: [],
-      interval: null
     }
   },
 
@@ -76,14 +77,9 @@ export default Vue.extend({
   },
   mounted() {
     // 02
-    //? this.setActiveProg()
-    //this.interval = setInterval(() => this.setActiveProg(), 2000)
-    // 03
+  
   },
-  beforeDestroy() {
-    clearInterval(this.interval)
-  },
-
+  
   components: {
     VaccumTable
   }

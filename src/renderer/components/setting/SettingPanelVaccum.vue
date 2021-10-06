@@ -54,7 +54,7 @@ export default Vue.extend({
     vaccums: [
       { id: 1, title: 'ПЫЛЕСОС №1' },
       { id: 2, title: 'ПЫЛЕСОС №2' },
-      { id: 3, title: 'ПЫЛЕСОС №3' }
+      //{ id: 3, title: 'ПЫЛЕСОС №3' }
     ]
   }),
   mounted() {

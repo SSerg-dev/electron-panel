@@ -1374,9 +1374,6 @@ export default {
   margin-top: -10em;
   margin-left: 17em;
   
-  /* dev */
-  /* display: inline-block; */
-
   font-family: 'Plumb-Medium';
   font-weight: normal; /* bold; */
   text-align: justify;

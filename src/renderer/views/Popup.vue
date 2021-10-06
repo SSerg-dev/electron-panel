@@ -46,7 +46,7 @@ export default Vue.extend({
   padding-left: 4rem;
 }
 .page-title {
-  padding-top: 30px;
+  padding-top: 4em; /* 30px; */
   color: white;
   margin-left: auto;
   margin-right: auto;

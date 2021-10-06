@@ -68,12 +68,6 @@ const router = new Router({
       component: () => import('../views/Service.vue')
     },
     {
-      path: '/posts',
-      name: 'posts',
-      meta: { layout: 'main' },
-      component: () => import('../views/Posts.vue')
-    },
-    {
       path: '/setting',
       name: 'setting',
       meta: { layout: 'main' },

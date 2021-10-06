@@ -1,25 +1,25 @@
 <template>
 
-    <div>
+    <section>
+      
       <div v-if="this.getPanelType === 'wash'">
-        <MainMenu /> 
+        <Wash />
       </div>
+      
        <div v-if="this.getPanelType === 'vaccum'">
          <Vaccum />
-         <!-- <VaccumMenu /> -->  
        </div>
 
-    </div>
+    </section>
+
 </template>
 
 <script >
-/*   */
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 
-import MainMenu from '@/components/MainMenu'
+import Wash from '@/components/wash/Wash'
 import Vaccum from '@/components/vaccum/Vaccum'
-import VaccumMenu from '@/components/vaccum/VaccumMenu'
 
 //import Loader from '@/components/app/Loader'
 
@@ -32,11 +32,10 @@ export default Vue.extend({
   }),
 
   components: {
-    MainMenu,
-    Vaccum,
-    VaccumMenu
-
+    Wash,
+    Vaccum
   },
+
   methods: {
     ...mapMutations({
       setRouter: 'setRouter'

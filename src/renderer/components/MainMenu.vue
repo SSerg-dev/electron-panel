@@ -124,33 +124,7 @@
             </div>
           </div>
         </li>
-
-        <!--  -->
-        <!-- <li class="collection-item">
-          <router-link
-            to="/service"
-            class="btn white-text"
-            style="font-size: 22px;"
-            >SERVICE
-          </router-link>
-        </li> -->
-
-        <!-- <li class="collection-item" align="left">
-          <router-link
-            to="/posts"
-            class="btn white-text"
-            style="font-size: 22px"
-            >Posts Vuex
-          </router-link>
-        </li> -->
-
-        <!-- <li class="collection-item" align="center">
-          <button
-            class="btn white-text" @click="setConfig()"
-            style="font-size: 22px; border: solid; padding: 2rem auto 2rem auto; text-align: center; "
-            >Кнопка для отладки
-          </button>
-        </li> -->
+        
       </ul>
     </section>
   </div>
@@ -170,6 +144,7 @@ export default Vue.extend({
       timeoutDelay: null
     }
   },
+  props: [ 'type' ],
   computed: {
     ...mapGetters({
       getWetBalance: 'getWetBalance',
@@ -186,8 +161,8 @@ export default Vue.extend({
   },
 
   mounted() {
-    /* dev */
-    this.isDirectCash = this.getDirectCash()
+
+this.isDirectCash = this.getDirectCash()
 
     if (this.isDirectCash === 1) {
       this.timeoutDelay = setTimeout(() => {
@@ -199,7 +174,9 @@ export default Vue.extend({
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
   },
-  created() {},
+  created() {
+    console.log('++created type-->', this.type)
+  },
 
   methods: {
     ...mapGetters({

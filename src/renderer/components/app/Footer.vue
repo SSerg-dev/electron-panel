@@ -1,5 +1,6 @@
 <template>
-  <div v-if="getPanelType === 'wash'">
+  <!-- <div v-if="getPanelType === 'wash'"> -->
+    <div v-if="getIsFooter">
     <div class="footer-panel white-text ">
       <div class="row">
         <div class="col s4"></div>
@@ -70,7 +71,8 @@ export default {
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
       /* dev */
-      getPanelType: 'getPanelType'
+      getPanelType: 'getPanelType',
+      getIsFooter: 'getIsFooter'
     })
   },
 
@@ -99,10 +101,8 @@ export default {
       this.timeoutPopup = setTimeout(() => {
         this.$router.push('/popup')
       }, this.delay)
-      //this.isDown.stop = false
-      //this.isDown.operator = false
+
     },
-    /*  */
     setDown(program) {
       this.clearDown()
       //console.log('program-->', program)

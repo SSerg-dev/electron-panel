@@ -1,9 +1,13 @@
 <template>
   <div>
-    <section>
+    <div v-if="isMainMenu">
+      <MainMenu :type="type" />
+    </div>
+
+    <section v-if="!isMainMenu">
       <ul class="collection">
         <!-- 1 first -->
-        <li class="collection-item cost" @click="payUp('first')">  
+        <li class="collection-item cost" @click="payUp('first')">
           <div
             class="card white waves-effect"
             style="
@@ -25,15 +29,44 @@
 	                justify-content: center;
                   "
             >
-              {{ `ОПЛАТИТЬ ПОСТ №1` }}
+              <div style="color: #00b9e3">{{ `ПОСТ №1 &nbsp &nbsp` }}</div>
+              <div>{{ `ОПЛАТИТЬ` }}</div>
             </div>
           </div>
         </li>
 
         <!-- 2 operator -->
         <li class="collection-item cost" @click="payUp('operator')">
+          
           <div
+            v-if="this.isDown.operator === false"
             class="card black waves-effect"
+            style="
+                  width: 945px;
+                  height: 160px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 4em;
+                  box-shadow: 0px 10px 20px #00b9e3;
+                  "
+          >
+            <div
+              class="card-content white-text" 
+              style="
+                  font-size: 4em;
+                  padding-top: 1.1em;
+
+                  display: flex;
+	                align-items: center;
+	                justify-content: center;
+                  "
+            >
+              {{ `КОНСУЛЬТАНТ` }}
+            </div>
+          </div>
+          <!-- dev -->
+          <div
+            v-if="this.isDown.operator === true"
+            class="card teal lighten-3 waves-effect"
             style="
                   width: 945px;
                   height: 160px; 
@@ -56,6 +89,9 @@
               {{ `КОНСУЛЬТАНТ` }}
             </div>
           </div>
+
+
+
         </li>
 
         <!-- 3 second -->
@@ -81,7 +117,8 @@
 	                justify-content: center;
                   "
             >
-              {{ `ОПЛАТИТЬ ПОСТ №2` }}
+              <div style="color: #00b9e3">{{ `ПОСТ №2 &nbsp &nbsp` }}</div>
+              <div>{{ `ОПЛАТИТЬ` }}</div>
             </div>
           </div>
         </li>
@@ -91,39 +128,131 @@
 </template>
 <script>
 import Vue from 'vue'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
-import { ipcRenderer } from 'electron'
+import MainMenu from '@/components/MainMenu'
+//import { ipcRenderer } from 'electron'
 
 export default Vue.extend({
-  
-  
+  name: 'vaccum',
+
+  data: () => ({
+    active: '',
+    timeoutPopup: null,
+    timeoutDelay: null,
+    delay: 500,
+    isDown: {
+      stop: false,
+      operator: false
+    },
+
+    isMainMenu: false,
+    type: 'vaccum'
+    //number:
+  }),
+  computed: {
+    ...mapGetters({
+      getPanelType: 'getPanelType',
+      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getActiveProgram: 'getActiveProgram',
+      getWetBalance: 'getWetBalance',
+      getIsFooter: 'getIsFooter'
+    })
+  },
+  components: {
+    MainMenu
+  },
+  created() {
+    this.isMainMenu = false
+    /* dev */
+    //console.log('--getIsFooter-->', this.getIsFooter)
+    this.setIsFooter(false)
+    //console.log('++getIsFooter-->', this.getIsFooter)
+
+  },
+  beforeDestroy() {
+    this.isMainMenu = false
+    /* dev */
+    this.setIsFooter(true)
+  },
+
   methods: {
     /* dev */
-      ...mapMutations ({
-      setPanelType: 'setPanelType'
+    ...mapMutations({
+      setPanelType: 'setPanelType',
+      setActiveProgram: 'setActiveProgram',
+      setVaccumNumber: 'setVaccumNumber',
+      setIsFooter: 'setIsFooter'
     }),
-  
+    ...mapActions({
+      updateStartProgram: 'updateStartProgram'
+    }),
+
     /*     */
 
     payUp(program) {
       switch (program) {
         case 'first':
-          console.log('first')
-          this.setPanelType('wash')
-
-          // this.$router.push('/bonus')
+          //console.log('first')
+          this.isMainMenu = true
+          this.setVaccumNumber(1) 
           break
         case 'operator':
-          console.log('operator')
+          this.setProgram(program)
           break
         case 'second':
-          console.log('second')
+          //console.log('second')
+          this.isMainMenu = true
+          this.setVaccumNumber(2)
           break
 
         default:
           break
       }
+    },
+    setProgram(program) {
+      console.log('++setProgram-->', program)
+
+      this.active = program //+
+      this.setActiveProgram(this.active)
+      this.setDown(program)
+
+      this.updateStartProgram([
+        this.getPanelType,
+        this.getDefaultPanelNumber,
+        this.getActiveProgram,
+        this.getWetBalance
+      ])
+
+      this.timeoutPopup = setTimeout(() => {
+        this.$router.push('/popup')
+      }, this.delay)
+    },
+
+    setDown(program) {
+      this.clearDown()
+      switch (program) {
+        case 'stop':
+          this.isDown.stop = true
+          this.timeoutDelay = setTimeout(() => {
+            this.isDown.stop = false
+          }, this.delay)
+          break
+        case 'operator':
+          this.isDown.operator = true
+          this.timeoutDelay = setTimeout(() => {
+            this.isDown.operator = false
+          }, this.delay)
+          break
+
+        default:
+          break
+      }
+    },
+    clearDown() {
+      this.isDown = Object.fromEntries(
+        Object.entries(this.isDown).map(([key, value]) => [key, false])
+      )
     }
   }
 })

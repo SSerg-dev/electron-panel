@@ -256,12 +256,72 @@ export default {
               display: '1'
             }
           ],
+          /* ------------------------------ */
+          dryCosts: [
+            {
+              id: 1,
+              title: 'ПЫЛЕСОС',
+              name: 'vacuum',
+              price: 11,
+              priceTurbo: 0,
+              mode: '',
+              display: '1'
+            },
+            {
+              id: 2,
+              title: 'ВОЗДУХ',
+              name: 'air',
+              price: 22,
+              priceTurbo: 0,
+              mode: '',
+              display: '1'
+            },
+            {
+              id: 3,
+              title: 'ОМЫВАТЕЛЬ',
+              name: 'washer',
+              price: 33,
+              priceTurbo: 0,
+              mode: '',
+              display: '1'
+            },
+            {
+              id: 4,
+              title: 'ТУРБОСУШКА',
+              name: 'turboDryer',
+              price: 44,
+              priceTurbo: 0,
+              mode: '',
+              display: '1'
+            },
+            {
+              id: 5,
+              title: 'ЧЕРНЕНИЕ',
+              name: 'blacking',
+              price: 55,
+              priceTurbo: 0,
+              mode: '',
+              display: '1'
+            },
+            {
+              id: 6,
+              title: 'ДЕЗИНФЕКЦИЯ',
+              name: 'disinfection',
+              price: 66,
+              priceTurbo: 0,
+              mode: '',
+              display: '1'
+            },
+          ]  
     }, // end state
   
     // getters
     getters: {
       getCosts(state) {
         return state.costs
+      },
+      getDryCosts(state) {
+        return state.dryCosts
       }
     }
   }

@@ -23,7 +23,6 @@
           <!-- <h4 align="left"><pre class="white-text"> {{status}} </pre></h4> -->
         </div>
       </div>
-
     </div>
 
     <section id="content">
@@ -89,13 +88,20 @@ export default Vue.extend({
       getWetBusyPanel: 'getWetBusyPanel',
       getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
       getParamsChange: 'getParamsChange',
-      getActiveProgNames: 'getActiveProgNames'
+      getActiveProgNames: 'getActiveProgNames',
+      /* dev */
+      getPanelType: 'getPanelType'
     })
   },
   watch: {
     getParamsChange(flag) {
-      // console.log(' watch flag-->', flag)
-      this.setActiveProg()
+      //console.log(' watch flag-->', flag)
+      //this.setActiveProg()
+
+      if (this.getPanelType === 'wash')
+        this.setActiveProg()
+        /* dev */
+      else;
     }
   },
   methods: {
@@ -112,7 +118,10 @@ export default Vue.extend({
     getActiveProgInt(bin) {
       return parseInt(bin, 2).toString(10)
     },
+
     setActiveProg() {
+      console.log('---setActiveProg')
+
       this.activeProg = [...this.getActiveProgBit()].reverse().join('')
       if (this.getWetProgPrice !== undefined) {
         this.progPrice = this.getWetProgPrice.toString().split(',')
@@ -123,7 +132,7 @@ export default Vue.extend({
           //console.log('++this.selectActiveProg(this.costs[i].name)-->', i, this.selectActiveProg(this.costs[i].name))
           /* dev  ??? */
           //if (!this.selectActiveProg(this.costs[i].name))
-            this.costs[i].display = this.activeProg.toString().slice(i, i + 1)
+          this.costs[i].display = this.activeProg.toString().slice(i, i + 1)
           //else this.costs[i].display = 0
         }
         if (this.progPrice !== undefined)
@@ -134,6 +143,12 @@ export default Vue.extend({
 
       return this.costs
     },
+    /* dev */
+    setDryActiveProg() {
+      console.log('+++setDryActiveProg')
+
+    },
+
     selectActiveProg(name) {
       return this.getActiveProgNames.find(p => p === name)
     },
@@ -173,14 +188,20 @@ export default Vue.extend({
       //console.log("priceTurbo->", this.costs[index].priceTurbo);
     },
     ...mapGetters({
-      getCosts: 'getCosts'
+      getCosts: 'getCosts',
+      getDryCosts: 'getDryCosts'
     })
   },
   mounted() {
-
     this.setRouter('/cost')
-    //created() {
-    this.costs = this.getCosts()
+    
+    /* dev */
+    if (this.getPanelType === 'wash')
+      this.costs = this.getCosts()
+    else if (this.getPanelType === 'vaccum')
+      this.costs = this.getDryCosts()
+    else   
+      this.costs = []
 
     const displayCosts = this.costs
       .filter(cost => cost.display === '1')
@@ -189,13 +210,12 @@ export default Vue.extend({
     this.setupPagination(displayCosts)
 
     /* dev */
-    this.setActiveProg()
+    if (this.getPanelType === 'wash')
+      this.setActiveProg()
+    else if (this.getPanelType === 'vaccum')
+      this.setDryActiveProg()
+    
 
-    /* if (this.$store.state.params.length > 0) {
-      this.interval = setInterval(() => {
-        this.setActiveProg()
-      }, 2000)
-    } */
 
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },

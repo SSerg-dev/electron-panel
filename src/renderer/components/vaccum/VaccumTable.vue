@@ -2,20 +2,15 @@
   <div>
     <div class="locate">
 
-      <!-- <dev v-if="this.number === 'first'">
-        <router-link to="/">
-          <div class="back">
-            <img src="imgs/key/back.png" />
-          </div>
-        </router-link>
-      </dev> -->
-
       <section>
         <div class="message">
           <div><Message /></div>
         </div>
+        <div  v-if="getWetBalance > 0" class="price">
+          <img src="imgs/price/price-up.png" />
+        </div>
 
-        <div
+        <!-- <div
           v-if="this.number === 'first'"
           class="price"
           style="margin-left: 58em"
@@ -29,7 +24,8 @@
           style="margin-left: 1.8em"
         >
           <img src="imgs/price/price-up.png" />
-        </div>
+        </div> -->
+
       </section>
 
       <table border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -154,7 +150,7 @@
               </button>
             </td>
           </tr>
-          <!-- dev -->
+          
           <!-- ЧЕРНЕНИЕ blacking -->
 
           <tr align="left">
@@ -181,7 +177,7 @@
                 @click="setProgram('blacking')"
               >
                 <div class="button-title-long">
-                  {{ `${actives[2].title}` }}
+                  {{ `${actives[4].title}` }}
                 </div>
               </button>
             </td>
@@ -209,11 +205,88 @@
                 @click="setProgram('disinfection')"
               >
                 <div class="button-title-long">
-                  {{ `${actives[3].title}` }}
+                  {{ `${actives[5].title}` }}
                 </div>
               </button>
             </td>
           </tr>
+
+          <!-- dev -->
+
+          <tr align="left">
+            <td
+              colspan="1"
+              align="left"
+              v-if="this.actives[5].display === 'block'"
+              style="width: 474px;"
+              @click="setProgram('disinfection')"
+            >
+              <div
+                v-if="this.isDown.disinfection === false"
+                class="card white waves-effect"
+                style="
+                width: 945px;
+                  height: 105px; 
+                  border: solid 6px #50E3C2; 
+                  border-radius: 4em;
+                  box-shadow: 0px 10px 20px #50E3C2;
+                "
+              >
+                <div 
+                  class="card-content black-text"  
+                  style="
+                  font-size: 3.5em;
+                  padding-top: 0.2em;
+
+                  display: flex;
+	                align-items: center;
+	                justify-content: center;
+                  "
+                >
+                  {{ `${actives[5].title}` }}
+                </div>
+              </div>
+
+              <div
+                v-if="this.isDown.disinfection === true"
+                class="card teal accent-3 waves-effect"
+                style="
+                width: 945px;
+                  height: 105px; 
+                  border: solid 6px #50E3C2; 
+                  border-radius: 4em;
+                  box-shadow: 0px 10px 20px #50E3C2;
+                "
+              >
+                <div 
+                  class="card-content black-text"
+                  style="
+                  font-size: 3.5em;
+                  padding-top: 0.2em;
+
+                  display: flex;
+	                align-items: center;
+	                justify-content: center;
+                  "
+                >
+                  {{ `${actives[5].title}` }}
+                </div>
+              </div>
+              
+              <!-- <button
+                v-if="this.isDown.disinfection === true"
+                style="background-image:url('./imgs/marin/marin_short_down.png'); width: 474px; height: 105px"
+                class="btn black"
+                @click="setProgram('disinfection')"
+              >
+                <div class="button-title-long">
+                  {{ `${actives[5].title}` }}
+                </div>
+              </button> -->
+
+            </td>
+          </tr>
+
           <!--  -->
         </tbody>
       </table>
@@ -260,7 +333,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getVaccumNumber: 'getVaccumNumber'
+      getVaccumNumber: 'getVaccumNumber',
+      getWetBalance: 'getWetBalance'
+
+
       //getPanelType: 'getPanelType',
       //getDefaultPanelNumber: 'getDefaultPanelNumber',
       //getActiveProgram: 'getActiveProgram',
@@ -319,7 +395,12 @@ export default {
       }
     },
     setProgram(program) {
+      /* dev */
       console.log('vaccumProgram-->', program)
+      this.setDown(program)
+      /*    */
+
+
       /* this.active = program
       this.setActiveProgram(this.active)
       this.setDown(program)
@@ -360,26 +441,20 @@ export default {
   position: relative;
   text-align: center;
 }
-.back {
-  position: absolute;
-  margin-top: 9.2em;
-  margin-left: 0em;
-  z-index: 1;
-}
 .message {
   position: absolute;
-  margin-top: -4em;
-  margin-left: 16em; /* 16em; */
+  margin-top: -10em;
+  margin-left: 17em; /* 16em; */
 
   font-family: 'Plumb-Medium';
   font-weight: normal; /* bold; */
+  text-align: justify;
   z-index: 1;
 }
-
 table {
   position: absolute;
-  margin-top: 24em; /* 18em; */
-  margin-left: 1.5em; /* 33em; */
+  margin-top: 16.5em; /* 18em; */
+  margin-left: 2em; /* 33em; */
 
   font-family: 'Plumb-Medium';
   font-weight: bold;
@@ -406,47 +481,8 @@ td {
   height: 105px;
   width: 474px;
 
-  /* border-style: solid;
-  border-color: white; */
-  /* float: left; */
-}
-.right-col {
-  padding-right: 0rem;
-  margin-left: -3rem;
 }
 
-.turbo {
-  background-color: #121212;
-  width: 0rem;
-  height: 0rem;
-
-  /* position: absolute;
-  top: 27.2%;
-  left: 77.3%;
-  opacity: 1; */
-}
-.x2 {
-  background-color: #121212;
-  width: 0rem;
-  height: 0rem;
-
-  /* position: absolute;
-  top: 18.8%;
-  left: 89.0%;
-  opacity: 1; */
-}
-.color {
-  border-color: white;
-  background-color: #121212;
-  width: 0rem;
-  height: 0rem;
-
-  /* position: absolute; */
-  /* top: 18.8%; */
-  /* left: 50.0%; */
-  /* opacity: 1; */
-}
-/* *********************************** */
 .button-title-long {
   position: relative;
   top: 0%;
@@ -458,32 +494,10 @@ td {
 
   font-family: 'Plumb-Medium';
 }
-/* Plumb-Medium */
-.description {
-  font-family: 'Plumb-Medium';
-  font-size: 20px;
-  font-weight: bold;
-}
-/*  */
-.red-size {
-  width: 704px;
-  height: 105px;
-}
-/* dev */
-.page-title {
-  margin-top: -5em;
-  margin-left: 0em;
-  color: white;
-
-  font-size: 3em;
-  font-family: 'Plumb-Medium';
-  font-weight: bold;
-  z-index: 1;
-}
 .price {
   position: absolute;
-  margin-top: 9em;
-  margin-left: 60em;
-  z-index: 1000;
+  margin-top: 4em;
+  margin-left: 1.5em;
+  
 }
 </style>

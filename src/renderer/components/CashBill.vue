@@ -243,17 +243,15 @@ export default {
       const response = await this.storage.getClient(method, this.options, type)
 
       /* dev */
-      console.log('++storeMoney-->', typeof response)
+      //console.log('++storeMoney-->', typeof response)
       if (response === undefined ) {
         this.$router.push('/program')
         this.$message(
-          `Оплата наличными прошла успешно, внесенная сумма:  ${+this
-            .getWetBalance} ₽. Связь с connect недоступна!!!`
+          `Связь с connect недоступна!!!`
         )
         return
       }
-        
-    
+      /* dev vaccum */
       if (+response.result === 0 && +this.getWetBalance > 0) {
         this.$router.push('/program')
         this.$message(

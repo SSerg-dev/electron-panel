@@ -54,7 +54,8 @@ export default Vue.extend({
   }),
   computed: {
     ...mapGetters({
-      getSecondsGotoPopupMenu: 'getSecondsGotoPopupMenu'
+      getSecondsGotoPopupMenu: 'getSecondsGotoPopupMenu',
+      getPanelType: 'getPanelType'
     })
   },
   methods: {
@@ -127,14 +128,15 @@ export default Vue.extend({
         this.isTurbo = true
         this.messageIndex = 2
       }
-
     },
 
     gotoPopupMenu(seconds) {
       this.intervalPopupMenu = setInterval(() => {
         if (--seconds < 0 && this.$route.name !== 'program') {
           console.log('--seconds-->', seconds)
-          this.$router.push('/program')
+          /* dev */
+          if (this.getPanelType === 'vaccum') this.$router.push('/')
+          else this.$router.push('/program')
         }
       }, 1000)
     }

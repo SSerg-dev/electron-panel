@@ -45,6 +45,8 @@ export default new Vuex.Store({
       value: -1
     },
     isParamsChange: false,
+    /* dev */
+    isFooter: true,
 
     programs: [
       'shampoo',
@@ -392,7 +394,11 @@ export default new Vuex.Store({
     getParamsChange(state) {
       //console.log('--getParamsChange-->', state.isParamsChange)
       return state.isParamsChange
+    },
+    getIsFooter(state) {
+      return state.isFooter
     }
+
   },
 
   mutations: {
@@ -444,6 +450,10 @@ export default new Vuex.Store({
     // setParamsChange
     setParamsChange(state, isParamsChange) {
       state.isParamsChange = isParamsChange
+    },
+    // setFooter
+    setIsFooter(state, isFooter) {
+      state.isFooter = isFooter 
     },
 
     // Info
