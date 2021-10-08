@@ -5,27 +5,12 @@
         <!-- 1 cost -->
         <li class="collection-item cost" @click="payUp('cost')">
           <div
-            class="card white waves-effect"
-            style="
-                  width: 945px;
-                  height: 160px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #00b9e3;
-                  "
+            class="card white waves-effect button-style"
+            style="padding-left: 0em;"
           >
             <div
-              class="card-content black-text"
-              style="
-                  font-size: 4em;
-                  padding-top: 1.1em;
-
-                  display: flex;
-	                align-items: center;
-	                justify-content: center;
-
-                  
-                  "
+              class="card-content black-text button-content-style"
+              style="justify-content: center; "
             >
               {{ 'PROGRAMS_COST' | localize }}
             </div>
@@ -39,28 +24,8 @@
 
         <!-- 3 -->
         <li class="collection-item cash" @click="payUp('cash')">
-          <div
-            class="card white waves-effect"
-            style="
-                  padding-left: 4em;
-                  width: 945px;
-                  height: 160px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #00b9e3;
-                  "
-          >
-            <div
-              class="card-content black-text"
-              style="
-                  font-size: 4em;
-                  padding-top: 1.1em;
-
-                  display: flex;
-	                align-items: left;
-	                justify-content: left;
-                  "
-            >
+          <div class="card white waves-effect button-style">
+            <div class="card-content black-text button-content-style">
               💰 {{ 'CASH' | localize }}
             </div>
           </div>
@@ -68,29 +33,8 @@
 
         <!-- 4 -->
         <li v-if="getIsPing" class="collection-item" @click="payUp('card')">
-          <div
-            class="card white waves-effect"
-            style="
-                  padding-left: 4em;
-
-                  width: 945px;
-                  height: 160px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #00b9e3;
-                  "
-          >
-            <div
-              class="card-content black-text"
-              style="
-                  font-size: 4em;
-                  padding-top: 1.1em;
-
-                  display: flex;
-	                align-items: left;
-	                justify-content: left;
-                  "
-            >
+          <div class="card white waves-effect button-style">
+            <div class="card-content black-text button-content-style">
               💳 {{ 'BANK_CARD' | localize }}
             </div>
           </div>
@@ -98,33 +42,12 @@
 
         <!-- 5 -->
         <li v-if="getIsPing" class="collection-item" @click="payUp('bonus')">
-          <div
-            class="card white waves-effect"
-            style="
-                  padding-left: 4em;
-
-                  width: 945px;
-                  height: 160px; 
-                  border: solid 6px #7FE409; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #7FE409;
-                  "
-          >
-            <div
-              class="card-content black-text"
-              style="
-                  font-size: 4em;
-                  padding-top: 1.1em;
-                  display: flex;
-	                align-items: left;
-	                justify-content: left;
-                  "
-            >
+          <div class="card white waves-effect button-style">
+            <div class="card-content black-text button-content-style">
               🎁 {{ 'BONUSES' | localize }}
             </div>
           </div>
         </li>
-        
       </ul>
     </section>
   </div>
@@ -144,16 +67,15 @@ export default Vue.extend({
       timeoutDelay: null
     }
   },
-  props: [ 'type' ],
+  props: ['type'],
   computed: {
     ...mapGetters({
       getWetBalance: 'getWetBalance',
       getIsPing: 'getIsPing'
-    }),
-    
+    })
   },
   watch: {
-    getWetBalance(value) { 
+    getWetBalance(value) {
       // console.log('++ getDirectCash-->watch value-->', value, this.isDirectCash)
       //if (this.isDirectCash === 1)
       this.$router.push('/cash')
@@ -161,8 +83,7 @@ export default Vue.extend({
   },
 
   mounted() {
-
-this.isDirectCash = this.getDirectCash()
+    this.isDirectCash = this.getDirectCash()
 
     if (this.isDirectCash === 1) {
       this.timeoutDelay = setTimeout(() => {
@@ -181,8 +102,6 @@ this.isDirectCash = this.getDirectCash()
   methods: {
     ...mapGetters({
       getCashEnabler: 'getCashEnabler',
-      getIsConfig: 'getIsConfig',
-      getConfig: 'getConfig',
       getIsPayCardMoney: 'getIsPayCardMoney',
       getDirectCash: 'getDirectCash'
     }),
@@ -238,10 +157,6 @@ this.isDirectCash = this.getDirectCash()
 </script>
 
 <style scoped>
-.btn {
-  padding-left: 16em;
-  background-color: #121212;
-}
 .collection {
   margin-left: auto;
   margin-right: auto;
@@ -251,59 +166,33 @@ this.isDirectCash = this.getDirectCash()
 }
 .collection-item {
   margin-bottom: 2em;
-  /* background-color: black; */
   background-color: #121212;
   border-color: #121212;
-}
-img {
-  margin-left: -18em;
-  z-index: 1;
-}
-h1 {
-  padding-left: 1.2em;
 }
 h2 {
   color: white;
   margin-top: 0em;
-  margin-left: 2em;
-  padding-left: 0em;
+  margin-left: -0.6em;
+  justify-content: center;
 }
-.background-top {
-  margin-left: 16em;
-  margin-top: -6em; /* -6 */
-}
-
-.operator-down {
-  margin-left: 62.5em;
-  margin-top: -8em;
-}
-.title-pay {
-  margin-top: 4em;
-  margin-bottom: 5em;
-  margin-left: -11em;
-  /* margin-left: 0em; */
-}
-
 section {
   margin-top: 18em;
   margin-left: 3em;
 }
+.button-style {
+  padding-left: 4em;
 
-/* *********************************** */
-.button-title-main {
-  position: relative;
-  top: 32%;
-  left: -10%;
-  color: black;
-  font-size: 4rem;
-  font-weight: bold;
-
-  font-family: 'Plumb-Medium';
+  width: 945px;
+  height: 160px;
+  border: solid 6px #00b9e3;
+  border-radius: 4em;
+  box-shadow: 0px 10px 20px #00b9e3;
 }
-/* Plumb-Medium */
-.description {
-  font-family: 'Plumb-Medium';
-  font-size: 3rem;
-  font-weight: bold;
+.button-content-style {
+  font-size: 4em;
+  padding-top: 1.1em;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
 </style>

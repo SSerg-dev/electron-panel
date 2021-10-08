@@ -1,20 +1,5 @@
 <template>
-<!--   <div class="col s6">
-    <div class="card grey lighten-3" style="height: 160px; border: solid 3px #00B9E3; border-radius: 2rem;">
-      <div class="card-content black-text">
-        <span class="card-title">Модель:</span>
-        <div class="input-field">
-          <select class="page-title white-text" ref="select" v-model="current">
-            <option v-for="(t, index) in types" :key="index" :value="t.id">
-              <div class="dropdown-setting">
-              {{ t.title }}
-              </div>
-            </option>
-          </select>
-        </div>
-      </div>
-    </div>
-  </div> -->
+
     <div class="row">
     <div class="card grey lighten-3" style="height: 80px; border: solid 3px #00B9E3; border-radius: 2rem;">
       <div class="card-content black-text">
@@ -57,7 +42,7 @@
 
 <script>
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default Vue.extend({
   name: 'setting-terminal-type',
@@ -83,6 +68,9 @@ export default Vue.extend({
     ...mapGetters({
       getDefaultTerminalType: 'getDefaultTerminalType',
     }),
+    ...mapMutations ({
+      setDefaultTerminalType: 'setDefaultTerminalType'
+    }),
     setService(service) {
       switch (service) {
         case 'menu':
@@ -98,7 +86,9 @@ export default Vue.extend({
     current(typeId) {
       const { id, title } = this.types.find(t => t.id === typeId)
       this.select = title
-      // console.log('++current-->', this.current)
+      // console.log('++current-->', this.current, this.select)
+      this.setDefaultTerminalType(this.select) 
+
     }
   },
 

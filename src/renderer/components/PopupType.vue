@@ -7,7 +7,7 @@
         </p>
       </h3>
     </div> -->
-    <div v-if="this.messageIndex > -1" class="popup-message">
+    <div v-if="this.messageIndex > -1" class="message">
       {{ `${this.messages[this.messageIndex]}` }}
     </div>
     <div class="locate">
@@ -166,11 +166,11 @@ h3 {
 .locate {
   position: relative;
 }
-.popup-message {
+.message {
   position: absolute;
   width: 32rem;
   top: 60%;
-  left: 30%;
+  left: 28%;
   color: white;
   text-align: center;
   font-size: 3.5rem;

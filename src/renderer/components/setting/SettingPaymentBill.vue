@@ -35,64 +35,70 @@
 </template>
 
 <script>
-import Vue from "vue";
-import { mapGetters } from "vuex";
+import Vue from 'vue'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default Vue.extend({
-  name: "setting-payment-bill",
+  name: 'setting-payment-bill',
   data: () => ({
     select: null,
     current: [],
     title: [],
 
     bills: [
-      { id: 1, title: "10", value: 10, selected: false },
-      { id: 2, title: "50", value: 50, selected: false },
-      { id: 3, title: "100", value: 100, selected: false },
-      { id: 4, title: "200", value: 200, selected: false },
-      { id: 5, title: "500", value: 500, selected: false },
-    ],
+      { id: 1, title: '10', value: 10, selected: false },
+      { id: 2, title: '50', value: 50, selected: false },
+      { id: 3, title: '100', value: 100, selected: false },
+      { id: 4, title: '200', value: 200, selected: false },
+      { id: 5, title: '500', value: 500, selected: false }
+    ]
   }),
   mounted() {
     this.select = M.FormSelect.init(this.$refs.select, {
-      constrainWidth: true,
-    });
-    M.updateTextFields();
+      constrainWidth: true
+    })
+    M.updateTextFields()
   },
   methods: {
     ...mapGetters({
-      getDefaultBiils: "getDefaultBiils",
+      getDefaultBiils: 'getDefaultBiils'
     }),
+    ...mapMutations({
+      setDefaultBiils: 'setDefaultBiils'
+    })
   },
   watch: {
     current(billIds) {
-      billIds.forEach((b) => {
-        this.select = b.title;
-      });
-    },
+      const selected = billIds.map( id => {
+        const result = this.bills.find(item => item.id === id)
+        return +result.title
+      }) 
+      this.setDefaultBiils(selected)
+      
+    }
   },
   created() {
-    const defaultBiils = this.getDefaultBiils();
-    // console.log("++defaultBiils-->", JSON.stringify(defaultBiils));
+    const defaultBiils = this.getDefaultBiils()
+    //console.log('defaultBiils-->', JSON.stringify(defaultBiils))
 
     for (let i = 0; i < defaultBiils.length; i++) {
-      const value = defaultBiils[i];
-      const index = this.bills.findIndex((c) => c.value === value);
-      this.bills[index].selected = true;
+      const value = defaultBiils[i]
+      const index = this.bills.findIndex(c => c.value === value)
+      this.bills[index].selected = true
     }
     for (let i = 0; i < this.bills.length; i++) {
       if (this.bills[i].selected === true) {
-        this.current[i] = this.bills[i].id;
-        this.select = this.bills[i].title;
+        this.current[i] = this.bills[i].id
+        this.select = this.bills[i].title
       }
     }
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {
-      this.select.destroy();
+      this.select.destroy()
     }
-  },
-});
+  }
+})
 </script>
 
 <style scoped>

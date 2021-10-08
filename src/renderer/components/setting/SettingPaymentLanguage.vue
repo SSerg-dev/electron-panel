@@ -68,19 +68,23 @@ export default Vue.extend({
   },
   watch: {
     current(languageId) {
+
       const { id, title, key, emoji, currency, symbol } = this.languages.find(
         l => l.id === languageId
       )
       this.select = title
 
+      /* dev */
+      console.log('this.select-->', key, this.select)
+      
       this.setLanguageItem(key)
     }
   },
   created() {
+    const defaultLanguage = this.getDefaultLanguage().toUpperCase() 
     this.languages = this.getLanguageNatives()
-
-    let index
-    if (this.getDefaultLanguage().toUpperCase() === 'RU') index = 0
+  
+    const index = this.languages.findIndex(l =>l.key === defaultLanguage) 
     const { id, title, key, emoji, currency, symbol } = this.languages[index]
     this.current = id
     this.select = title

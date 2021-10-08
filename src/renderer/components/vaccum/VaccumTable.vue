@@ -1,292 +1,177 @@
 <template>
   <div>
     <div class="locate">
-
       <section>
         <div class="message">
           <div><Message /></div>
         </div>
-        <div  v-if="getWetBalance > 0" class="price">
+        <div v-if="getWetBalance > 0" class="price">
           <img src="imgs/price/price-up.png" />
         </div>
-
-        <!-- <div
-          v-if="this.number === 'first'"
-          class="price"
-          style="margin-left: 58em"
-        >
-          <img src="imgs/price/price-up.png" />
-        </div>
-
-        <div
-          v-if="this.number === 'second'"
-          class="price"
-          style="margin-left: 1.8em"
-        >
-          <img src="imgs/price/price-up.png" />
-        </div> -->
-
       </section>
 
       <table border="0" width="100%" cellpadding="0" cellspacing="0">
         <tbody>
-          <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+          <!-- dev -->
+          <!-- from #50E3C2 -->
+          <!-- teal accent-3 #1de9b6  -->
 
           <!-- ПЫЛЕСОС vacuum -->
 
-          <tr align="left">
+          <tr>
             <td
-              colspan="1"
-              align="center"
               v-if="this.actives[0].display === 'block'"
+              @click="setProgram('vacuum')"
             >
-              <button
-                v-if="this.isDown.vacuum === false"
-                style="background-image:url('./imgs/marin/marin_short.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('vacuum')"
+              <div
+                class="waves-effect button-style"
+                :class="[
+                  { 'card white': !this.isDown.vacuum },
+                  { 'card teal accent-3': this.isDown.vacuum }
+                ]"
               >
-                <div class="button-title-long">
+                <div
+                  class="button-content-style"
+                  :class="[
+                    { 'card-content black-text': !this.isDown.vacuum },
+                    { 'card-content white-text': this.isDown.vacuum }
+                  ]"
+                >
                   {{ `${actives[0].title}` }}
                 </div>
-              </button>
-              <button
-                v-if="this.isDown.vacuum === true"
-                style="background-image:url('./imgs/marin/marin_short_down.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('vacuum')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[0].title}` }}
-                </div>
-              </button>
+              </div>
             </td>
+          </tr>
 
-            <!-- ВОЗДУХ air -->
+          <!-- ВОЗДУХ air -->
+          <tr>
             <td
-              colspan="1"
-              align="center"
               v-if="this.actives[1].display === 'block'"
+              @click="setProgram('air')"
             >
-              <button
-                v-if="this.isDown.air === false"
-                style="background-image:url('./imgs/marin/marin_short.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('air')"
+              <div
+                class="waves-effect button-style"
+                :class="[
+                  { 'card white': !this.isDown.air },
+                  { 'card teal accent-3': this.isDown.air }
+                ]"
               >
-                <div class="button-title-long">
+                <div
+                  class="button-content-style"
+                  :class="[
+                    { 'card-content black-text': !this.isDown.air },
+                    { 'card-content white-text': this.isDown.air }
+                  ]"
+                >
                   {{ `${actives[1].title}` }}
                 </div>
-              </button>
-              <button
-                v-if="this.isDown.air === true"
-                style="background-image:url('./imgs/marin/marin_short_down.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('air')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[1].title}` }}
-                </div>
-              </button>
+              </div>
             </td>
           </tr>
 
           <!-- ОМЫВАТЕЛЬ washer -->
-
-          <tr align="left">
+          <tr>
             <td
-              colspan="1"
-              align="center"
               v-if="this.actives[2].display === 'block'"
-              style="width: 474px;"
+              @click="setProgram('washer')"
             >
-              <button
-                v-if="this.isDown.washer === false"
-                style="background-image:url('./imgs/marin/marin_short.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('washer')"
+              <div
+                class="waves-effect button-style"
+                :class="[
+                  { 'card white': !this.isDown.washer },
+                  { 'card teal accent-3': this.isDown.washer }
+                ]"
               >
-                <div class="button-title-long">
+                <div
+                  class="button-content-style"
+                  :class="[
+                    { 'card-content black-text': !this.isDown.washer },
+                    { 'card-content white-text': this.isDown.washer }
+                  ]"
+                >
                   {{ `${actives[2].title}` }}
                 </div>
-              </button>
-              <button
-                v-if="this.isDown.washer === true"
-                style="background-image:url('./imgs/marin/marin_short_down.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('washer')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[2].title}` }}
-                </div>
-              </button>
+              </div>
             </td>
-            <!-- ТУРБОСУШКА turboDryer-->
+          </tr>
+
+          <!-- ТУРБОСУШКА turboDryer-->
+          <tr> 
             <td
-              colspan="1"
-              align="left"
               v-if="this.actives[3].display === 'block'"
-              style="width: 474px;"
+              @click="setProgram('turboDryer')"
             >
-              <button
-                v-if="this.isDown.turboDryer === false"
-                style="background-image:url('./imgs/marin/marin_short.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('turboDryer')"
+              <div
+                class="waves-effect button-style"
+                :class="[
+                  { 'card white': !this.isDown.turboDryer },
+                  { 'card teal accent-3': this.isDown.turboDryer }
+                ]"
               >
-                <div class="button-title-long">
+                <div
+                  class="button-content-style"
+                  :class="[
+                    { 'card-content black-text': !this.isDown.turboDryer },
+                    { 'card-content white-text': this.isDown.turboDryer }
+                  ]"
+                >
                   {{ `${actives[3].title}` }}
                 </div>
-              </button>
-              <button
-                v-if="this.isDown.turboDryer === true"
-                style="background-image:url('./imgs/marin/marin_short_down.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('turboDryer')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[3].title}` }}
-                </div>
-              </button>
+              </div>
             </td>
           </tr>
-          
+
           <!-- ЧЕРНЕНИЕ blacking -->
-
-          <tr align="left">
+          <tr>
             <td
-              colspan="1"
-              align="center"
               v-if="this.actives[4].display === 'block'"
-              style="width: 474px;"
+              @click="setProgram('blacking')"
             >
-              <button
-                v-if="this.isDown.blacking === false"
-                style="background-image:url('./imgs/marin/marin_short.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('blacking')"
+              <div
+                class="waves-effect button-style"
+                :class="[
+                  { 'card white': !this.isDown.blacking },
+                  { 'card teal accent-3': this.isDown.blacking }
+                ]"
               >
-                <div class="button-title-long">
+                <div
+                  class="button-content-style"
+                  :class="[
+                    { 'card-content black-text': !this.isDown.blacking },
+                    { 'card-content white-text': this.isDown.blacking }
+                  ]"
+                >
                   {{ `${actives[4].title}` }}
                 </div>
-              </button>
-              <button
-                v-if="this.isDown.blacking === true"
-                style="background-image:url('./imgs/marin/marin_short_down.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('blacking')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[4].title}` }}
-                </div>
-              </button>
-            </td>
-            <!-- ДЕЗИНФЕКЦИЯ disinfection-->
-            <td
-              colspan="1"
-              align="left"
-              v-if="this.actives[5].display === 'block'"
-              style="width: 474px;"
-            >
-              <button
-                v-if="this.isDown.disinfection === false"
-                style="background-image:url('./imgs/marin/marin_short.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('disinfection')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[5].title}` }}
-                </div>
-              </button>
-              <button
-                v-if="this.isDown.disinfection === true"
-                style="background-image:url('./imgs/marin/marin_short_down.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('disinfection')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[5].title}` }}
-                </div>
-              </button>
+              </div>
             </td>
           </tr>
 
-          <!-- dev -->
-
-          <tr align="left">
+          <!-- ДЕЗИНФЕКЦИЯ disinfection-->
+          <tr>
             <td
-              colspan="1"
-              align="left"
               v-if="this.actives[5].display === 'block'"
-              style="width: 474px;"
               @click="setProgram('disinfection')"
             >
               <div
-                v-if="this.isDown.disinfection === false"
-                class="card white waves-effect"
-                style="
-                width: 945px;
-                  height: 105px; 
-                  border: solid 6px #50E3C2; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #50E3C2;
-                "
+                class="waves-effect button-style"
+                :class="[
+                  { 'card white': !this.isDown.disinfection },
+                  { 'card teal accent-3': this.isDown.disinfection }
+                ]"
               >
-                <div 
-                  class="card-content black-text"  
-                  style="
-                  font-size: 3.5em;
-                  padding-top: 0.2em;
-
-                  display: flex;
-	                align-items: center;
-	                justify-content: center;
-                  "
+                <div
+                  class="button-content-style"
+                  :class="[
+                    { 'card-content black-text': !this.isDown.disinfection },
+                    { 'card-content white-text': this.isDown.disinfection }
+                  ]"
                 >
                   {{ `${actives[5].title}` }}
                 </div>
               </div>
-
-              <div
-                v-if="this.isDown.disinfection === true"
-                class="card teal accent-3 waves-effect"
-                style="
-                width: 945px;
-                  height: 105px; 
-                  border: solid 6px #50E3C2; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #50E3C2;
-                "
-              >
-                <div 
-                  class="card-content black-text"
-                  style="
-                  font-size: 3.5em;
-                  padding-top: 0.2em;
-
-                  display: flex;
-	                align-items: center;
-	                justify-content: center;
-                  "
-                >
-                  {{ `${actives[5].title}` }}
-                </div>
-              </div>
-              
-              <!-- <button
-                v-if="this.isDown.disinfection === true"
-                style="background-image:url('./imgs/marin/marin_short_down.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('disinfection')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[5].title}` }}
-                </div>
-              </button> -->
-
             </td>
           </tr>
-
           <!--  -->
         </tbody>
       </table>
@@ -335,7 +220,6 @@ export default {
     ...mapGetters({
       getVaccumNumber: 'getVaccumNumber',
       getWetBalance: 'getWetBalance'
-
 
       //getPanelType: 'getPanelType',
       //getDefaultPanelNumber: 'getDefaultPanelNumber',
@@ -399,7 +283,6 @@ export default {
       console.log('vaccumProgram-->', program)
       this.setDown(program)
       /*    */
-
 
       /* this.active = program
       this.setActiveProgram(this.active)
@@ -467,9 +350,9 @@ table {
 }
 
 tr {
-  text-align: center;
-  height: 115px;
-
+  /* text-align: center; */
+  height: 130px;
+  
   float: left;
 }
 td {
@@ -480,24 +363,25 @@ td {
 
   height: 105px;
   width: 474px;
-
 }
 
-.button-title-long {
-  position: relative;
-  top: 0%;
-  left: 6%;
-  color: black;
-  font-size: 3.5rem;
-  font-weight: bold;
-  text-align: left;
-
-  font-family: 'Plumb-Medium';
-}
 .price {
   position: absolute;
   margin-top: 4em;
   margin-left: 1.5em;
-  
+}
+.button-style {
+  width: 945px;
+  height: 105px;
+  border: solid 6px #1de9b6;
+  border-radius: 4em;
+  box-shadow: 0px 10px 20px #1de9b6;
+}
+.button-content-style {
+  font-size: 3.5em;
+  padding-top: 0.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

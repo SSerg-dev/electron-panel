@@ -7,28 +7,10 @@
     <section v-if="!isMainMenu">
       <ul class="collection">
         <!-- 1 first -->
-        <li class="collection-item cost" @click="payUp('first')">
-          <div
-            class="card white waves-effect"
-            style="
-                  width: 945px;
-                  height: 160px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #00b9e3;
-                  "
-          >
-            <div
-              class="card-content black-text"
-              style="
-                  font-size: 4em;
-                  padding-top: 1.1em;
 
-                  display: flex;
-	                align-items: center;
-	                justify-content: center;
-                  "
-            >
+        <li class="collection-item cost" @click="payUp('first')">
+          <div class="card white waves-effect button-style">
+            <div class="card-content black-text button-content-style">
               <div style="color: #00b9e3">{{ `ПОСТ №1 &nbsp &nbsp` }}</div>
               <div>{{ `ОПЛАТИТЬ` }}</div>
             </div>
@@ -36,87 +18,31 @@
         </li>
 
         <!-- 2 operator -->
+
         <li class="collection-item cost" @click="payUp('operator')">
-          
           <div
-            v-if="this.isDown.operator === false"
-            class="card black waves-effect"
-            style="
-                  width: 945px;
-                  height: 160px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #00b9e3;
-                  "
+            class="waves-effect button-style"
+            :class="[
+              { 'card black ': !this.isDown.operator },
+              { 'card teal accent-3': this.isDown.operator }
+            ]"
           >
             <div
-              class="card-content white-text" 
-              style="
-                  font-size: 4em;
-                  padding-top: 1.1em;
-
-                  display: flex;
-	                align-items: center;
-	                justify-content: center;
-                  "
+              class="button-content-style"
+              :class="[
+                { 'card-content white-text': !this.isDown.operator },
+                { 'card-content grey-text': this.isDown.operator }
+              ]"
             >
               {{ `КОНСУЛЬТАНТ` }}
             </div>
           </div>
-          <!-- dev -->
-          <div
-            v-if="this.isDown.operator === true"
-            class="card teal lighten-3 waves-effect"
-            style="
-                  width: 945px;
-                  height: 160px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #00b9e3;
-                  "
-          >
-            <div
-              class="card-content white-text"
-              style="
-                  font-size: 4em;
-                  padding-top: 1.1em;
-
-                  display: flex;
-	                align-items: center;
-	                justify-content: center;
-                  "
-            >
-              {{ `КОНСУЛЬТАНТ` }}
-            </div>
-          </div>
-
-
-
         </li>
 
         <!-- 3 second -->
         <li class="collection-item cost" @click="payUp('second')">
-          <div
-            class="card white waves-effect"
-            style="
-                  width: 945px;
-                  height: 160px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #00b9e3;
-                  "
-          >
-            <div
-              class="card-content black-text"
-              style="
-                  font-size: 4em;
-                  padding-top: 1.1em;
-
-                  display: flex;
-	                align-items: center;
-	                justify-content: center;
-                  "
-            >
+          <div class="card white waves-effect button-style">
+            <div class="card-content black-text button-content-style">
               <div style="color: #00b9e3">{{ `ПОСТ №2 &nbsp &nbsp` }}</div>
               <div>{{ `ОПЛАТИТЬ` }}</div>
             </div>
@@ -168,7 +94,6 @@ export default Vue.extend({
     //console.log('--getIsFooter-->', this.getIsFooter)
     this.setIsFooter(false)
     //console.log('++getIsFooter-->', this.getIsFooter)
-
   },
   beforeDestroy() {
     this.isMainMenu = false
@@ -195,7 +120,7 @@ export default Vue.extend({
         case 'first':
           //console.log('first')
           this.isMainMenu = true
-          this.setVaccumNumber(1) 
+          this.setVaccumNumber(1)
           break
         case 'operator':
           this.setProgram(program)
@@ -274,5 +199,19 @@ export default Vue.extend({
 section {
   margin-top: 18em;
   margin-left: 3em;
+}
+.button-style {
+  width: 945px;
+  height: 160px;
+  border: solid 6px #00b9e3;
+  border-radius: 4em;
+  box-shadow: 0px 10px 20px #00b9e3;
+}
+.button-content-style {
+  font-size: 4em;
+  padding-top: 1.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

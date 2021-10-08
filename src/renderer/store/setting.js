@@ -56,11 +56,9 @@ export default {
     getDefaultCoinBiils(state) {
       return state.config.coin_acceptor.enable_coins
     },
-    /* dev */
     getCoinTokens(state) {
       return state.config.coin_acceptor.tokens
     },
-
     getDefaultTerminalType(state) {
       return state.config.bank_terminal.hardware
     },
@@ -108,7 +106,33 @@ export default {
 
   // mutations
   mutations: {
-
+    /* dev */
+    setCoinAcceptorType(state, type) {
+      state.config.coin_acceptor.type = type
+    },
+    setCoinAcceptorInstalled(state, flag) {
+      state.config.coin_acceptor.installed = flag
+    },
+    setDefaultCoinBiils(state, coins) {
+      state.config.coin_acceptor.enable_coins = coins
+    },
+    setAcceptorType(state, type) {
+      state.config.bill_validator.type = type
+    },
+    setAcceptorInstalled(state, flag) {
+      state.config.bill_validator.installed = flag
+    },
+    
+    setDefaultBiils(state, bills) {
+      state.config.bill_validator.enable_bills = bills
+    },
+    setDefaultTerminalType(state, hardware) {
+      state.config.bank_terminal.hardware = hardware 
+    },
+    setTerminalInstalled(state, flag) {
+      state.config.bank_terminal.installed = flag
+    },
+    /*     */
     setPaymentLimitMin(state, min) {
       state.config.bank_terminal.min_sum = min
     },

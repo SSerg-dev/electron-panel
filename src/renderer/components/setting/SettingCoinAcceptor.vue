@@ -33,7 +33,7 @@
 
 <script>
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default Vue.extend({
   name: 'setting-coin-acceptor',
@@ -50,18 +50,18 @@ export default Vue.extend({
     ]
   }),
   mounted() {
-    /* dev */
-    //const type = this.getCoinAcceptorType //.toUpperCase()
-    //console.log('++type-->', this.type)
-
     this.select = M.FormSelect.init(this.$refs.select, {
       constrainWidth: true
     })
     M.updateTextFields()
   },
+  methods: {
+    ...mapMutations({
+      setCoinAcceptorType: 'setCoinAcceptorType'
+    })
+  },
   computed: {
     ...mapGetters({
-      // getAcceptorInstalled: 'getAcceptorInstalled',
       getCoinAcceptorInstalled: 'getCoinAcceptorInstalled',
       getCoinAcceptorType: 'getCoinAcceptorType'
     })
@@ -71,6 +71,7 @@ export default Vue.extend({
       //console.log('acceptorId-->', acceptorId)
       const { id, title } = this.acceptors.find(a => a.id === acceptorId)
       this.select = title
+      this.setCoinAcceptorType(this.select)
     }
   },
   created() {

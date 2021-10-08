@@ -13,7 +13,6 @@ import status from './status'
 import countries from './countries'
 import languages from './languages'
 
-
 import { ipcRenderer } from 'electron'
 
 Vue.use(Vuex)
@@ -149,7 +148,6 @@ export default new Vuex.Store({
             value: cash
           })
         )
-        
       } catch (e) {
         console.warn('Error:', e.message)
       }
@@ -186,8 +184,23 @@ export default new Vuex.Store({
       } catch (e) {
         console.warn('Error:', e.message)
       }
-    }
+    },
     // end Платежи ------------------------------------------------------------
+    // update config
+    /* dev */
+
+    updateConfig({ getters }, config) {
+      //console.log('++Config update-->', config.coin_acceptor)
+      //console.log('++Config update-->', config.type)
+      console.log('++Config update-->', config.index)  
+      try {
+        ipcRenderer.send('config', JSON.stringufy(config))
+      } catch (e) {
+        console.warn('Error:', e.message)
+      }
+    }
+
+    /*     */
   },
   getters: {
     // get all params
@@ -204,7 +217,7 @@ export default new Vuex.Store({
       return state.parameters.PanelMoney
       //return 1001
     },
-    
+
     // end Платежи ------------------------------------------------------------
 
     getWetBusyPanel(state) {
@@ -217,7 +230,7 @@ export default new Vuex.Store({
     },
     // Прайс программ (маска по которой отображают доступные)
     getWetProgShow(state) {
-    // progShowMask
+      // progShowMask
       return state.parameters.progShowMask
     },
     // Прайс программ (список цен)
@@ -288,7 +301,7 @@ export default new Vuex.Store({
 
     // DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Список всех Dry программ
-/*     getDryProg(state) {
+    /*     getDryProg(state) {
       return state.params.filter(p => p.title.slice(4, 7) === 'DRY')
     },
     getDryBalance(state) {
@@ -398,19 +411,18 @@ export default new Vuex.Store({
     getIsFooter(state) {
       return state.isFooter
     }
-
   },
 
   mutations: {
     // set one parameter
     setParameters(state, parameter) {
       /* dev */
-      state.isParamsChange = !state.isParamsChange 
+      state.isParamsChange = !state.isParamsChange
 
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
       )
-      //console.log('----------------------------------------------------------')
+      //console.log('----------------------------------------------------------') 
       //console.log('++displayName-->', displayName)
       //console.log('++parameter.value-->', parameter.value)
 
@@ -453,7 +465,7 @@ export default new Vuex.Store({
     },
     // setFooter
     setIsFooter(state, isFooter) {
-      state.isFooter = isFooter 
+      state.isFooter = isFooter
     },
 
     // Info
@@ -491,8 +503,7 @@ export default new Vuex.Store({
       state.secondsGotoPopupMenu = seconds
       //console.log('state.secondsGotoPopupMenu-->', state.secondsGotoPopupMenu)
     }
-
-  }, /* end mutations */
+  } /* end mutations */,
 
   modules: {
     posts,
@@ -506,6 +517,6 @@ export default new Vuex.Store({
     //connect,
     status,
     countries,
-    languages 
+    languages
   }
 })

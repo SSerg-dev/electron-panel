@@ -444,7 +444,7 @@
               width: 520px;  
               <!-- border-top-left-radius: 2em;
               border-bottom-left-radius: 2em;
-              border-right-style: hidden; -->
+              border-right-style: hidden; --> 
               "
               >
                 <div>
@@ -567,7 +567,7 @@
                       border-radius: 2rem;
                     "
                 >
-                  <div class="card-content white-text">
+                  <div class="card-content white-text"> 
                     <div class="switch">
                       <label>
                         <input type="checkbox" v-model="isAcceptorInstalled" />
@@ -785,8 +785,6 @@
                       white-text
                       button-setting
                     "
-                    type="submit"
-                    @click="updateOk"
                   >
                     {{ 'Статистика' }}
                   </button>
@@ -812,7 +810,7 @@
               button-setting
             "
             type="submit"
-            @click="updateOk"
+            @click="okHandler"
           >
             {{ 'ОК' }}
             <!-- <i class="material-icons right"></i> -->
@@ -823,7 +821,7 @@
           <button
             class="btn waves-effect waves-light white-text button-setting"
             type="submit"
-            @click="updateCancel"
+            @click="cancelHandler"
           >
             {{ 'Отмена' }}
             <!-- <i class="material-icons right"></i> -->
@@ -834,7 +832,7 @@
           <button
             class="btn waves-effect waves-light white-text button-setting"
             type="submit"
-            @click="updateApply"
+            @click="applyHandler"
           >
             {{ 'Применить' }}
             <!-- <i class="material-icons right"></i> -->
@@ -848,7 +846,7 @@
 
 <script>
 import Vue from 'vue'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 import SettingPanelType from '@/components/setting/SettingPanelType'
 import SettingPanelNumber from '@/components/setting/SettingPanelNumber'
 import SettingPanelVaccum from '@/components/setting/SettingPanelVaccum'
@@ -958,6 +956,9 @@ export default Vue.extend({
   },
   methods: {
     /* dev */
+    ...mapActions({
+      updateConfig: 'updateConfig'
+    }),
     submitHandler(options) {  
       const selected = JSON.stringify(options.selected)
       const current = JSON.stringify(options.current)
@@ -985,21 +986,31 @@ export default Vue.extend({
           this.setLanguageIds(current) */ 
       },
     ...mapGetters ({
+      getConfig: 'getConfig' 
       //getLanguageNatives: 'getLanguageNatives'
     }),  
     ...mapMutations({
       setRouter: 'setRouter',
       setLanguageNatives: 'setLanguageNatives',
       setLanguageIds: 'setLanguageIds',
-      setSelectCountries: 'setSelectCountries'
+      setSelectCountries: 'setSelectCountries',
+      /* dev */
+      setTerminalInstalled: 'setTerminalInstalled',
+      setDefaultTerminalType: 'setDefaultTerminalType',
+      setAcceptorInstalled: 'setAcceptorInstalled',
+      setCoinAcceptorInstalled: 'setCoinAcceptorInstalled' 
+
+
       
     }),
     setDown() {
       this.isDown = !this.isDown
     },
-    updateOk() {
-      this.setLanguage()
+    okHandler() {
+      /* dev */
+      //this.updateConfig()
 
+      this.setLanguage()
       this.$router.push('/')
 
       //const panelType = this.getPanelType
@@ -1007,23 +1018,27 @@ export default Vue.extend({
       //if (panelType === 'vaccum') this.$router.push('/password')
       //if (panelType === 'payment') this.$router.push('/')
     },
-    updateCancel() {
+    cancelHandler() {
       window.location.reload()
       //console.log('!!!updateCancel')
       //this.$router.push('/')
     },
-    updateApply() {
+    applyHandler() {
+      /* dev */
+      const config = this.getConfig()
+      this.updateConfig(config)
+
       this.setLanguage()
 
       //console.log('!!!updateApply')
       // this.$router.push('/setting')
     },
     ...mapGetters({
-      //getTooltipInstalled: 'getTooltipInstalled',
-      getCoinInstalled: 'getCoinInstalled',
+      
       getTerminalInstalled: 'getTerminalInstalled',
+
+      getCoinInstalled: 'getCoinInstalled',
       getDirectCash: 'getDirectCash',
-      //getAcceptorInstalled: 'getAcceptorInstalled',
       getSelectCountries: 'getSelectCountries'
     })
   },
@@ -1034,18 +1049,31 @@ export default Vue.extend({
       getCoinAcceptorInstalled: 'getCoinAcceptorInstalled'
     })
   },
+  watch: {
+    isTerminalInstalled(flag) {
+      // console.log('isTerminalInstalled-->', flag)
+      this.setTerminalInstalled(flag)
+    },
+    isAcceptorInstalled(flag) {
+      //console.log('isAcceptorInstalled-->', flag)
+      this.setAcceptorInstalled(flag)
+    },
+    isCoinAcceptorInstalled(flag) {
+      //console.log('isCoinAcceptorInstalled-->', flag)
+      this.setCoinAcceptorInstalled(flag)
+    },
+
+  },
   created() {
-    /* dev */
     this.isPayScreenMain = true
-    //this.isTooltipInstalled = this.getTooltipInstalled()
-
+    /* dev */
     this.isTerminalInstalled = this.getTerminalInstalled()
-    this.isDirectCash = this.getDirectCash()
 
+    // isDirectCash
+    this.isDirectCash = this.getDirectCash()
     // bill
     this.isAcceptorInstalled = this.getAcceptorInstalled
     // coin
-    //this.isCoinInstalled = this.getCoinInstalled()
     this.isCoinAcceptorInstalled = this.getCoinAcceptorInstalled
 
     // console.log('this.isCoinAcceptorInstalled-->', this.isCoinAcceptorInstalled)

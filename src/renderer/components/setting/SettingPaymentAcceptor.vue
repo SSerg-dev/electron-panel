@@ -40,7 +40,7 @@
 
 <script>
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default Vue.extend({
   name: 'setting-payment-acceptor',
@@ -61,14 +61,14 @@ export default Vue.extend({
     })
     M.updateTextFields()
   },
-  /* methods: {
-    ...mapGetters({
-      getAcceptorInstalled: 'getAcceptorInstalled'
+  methods: {
+    ...mapMutations({
+      setAcceptorType: 'setAcceptorType'
     })
-  }, */
+  },
   computed: {
     ...mapGetters({
-      getAcceptorInstalled: 'getAcceptorInstalled',
+      getAcceptorInstalled: 'getAcceptorInstalled', 
       getAcceptorType: 'getAcceptorType'
     })
   },
@@ -77,6 +77,7 @@ export default Vue.extend({
       //console.log('acceptorId-->', acceptorId)
       const { id, title } = this.acceptors.find(a => a.id === acceptorId)
       this.select = title
+      this.setAcceptorType(this.select)
     }
   },
   created() {
