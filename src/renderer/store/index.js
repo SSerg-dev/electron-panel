@@ -86,7 +86,7 @@ export default new Vuex.Store({
     isDebug: true
   },
   actions: {
-    // try {} catch (e) {}
+    // try {} catch (e) {} 
 
     updateStartProgram({ commit, dispatch, getters, state }, params) {
       console.log('updateStartProgram-->', JSON.stringify(params))
@@ -192,9 +192,12 @@ export default new Vuex.Store({
     updateConfig({ getters }, config) {
       //console.log('++Config update-->', config.coin_acceptor)
       //console.log('++Config update-->', config.type)
-      console.log('++Config update-->', config.index)  
+      //console.log('++Config update-->', config.index)
+      console.log('++Config update syspanel-->', config.languages.syspanel)
+      console.log('++Config update default-->', config.languages.default)  
+      
       try {
-        ipcRenderer.send('config', JSON.stringufy(config))
+        ipcRenderer.send('config', JSON.stringify(config))
       } catch (e) {
         console.warn('Error:', e.message)
       }

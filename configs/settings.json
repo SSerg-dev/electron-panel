@@ -5,7 +5,7 @@
         "max_sum": 500,
         "min_sum": 20
     },
-    "bill_validator": {
+    "bill_validator": { 
         "denominations": {},
         "enable_bills": [
             50,
@@ -31,11 +31,12 @@
         ],
         "type": "CCTALK1"
     },
-    "countries" : ["RU", "UA", "BY"],
+    "countries" : ["RU", "UA", "BY", "EE"],
     "country" : "RU",
+    "currency": "RU",
     "index": 5,
     "languages": {
-        "default": "LT",
+        "default": "RU",
         "panel": [
             0,
             1,
@@ -82,7 +83,7 @@
             42,
             43
         ],
-        "syspanel": "RU"
+        "syspanel": "UA"
     },
     "log_path": "/var/log",
     "type": "wash",

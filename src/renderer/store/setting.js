@@ -25,7 +25,6 @@ export default {
     },
 
     getDefaultLanguage(state) {
-      //console.log('state.config.languages.default--> RUUUUUUU')
       return state.config.languages.default
       /* if (state.config.languages && state.config.languages.default) {
         return state.config.languages.default
@@ -33,6 +32,14 @@ export default {
         this.$message(`Settings ERROR : languages.default undefined`)
       } */
     },
+    /* dev */
+    getSysPanelLanguage(state) {
+      return state.config.languages.syspanel
+    },
+    getSelectedCountries(state) {
+      return state.config.countries
+    },
+
     getPanelType(state) {
       return state.config.type
     },
@@ -107,6 +114,13 @@ export default {
   // mutations
   mutations: {
     /* dev */
+    setDefaultLanguage(state, language) {
+      state.config.languages.default = language
+    },
+    setSysPanelLanguage(state, language) {
+      state.config.languages.syspanel = language
+    },
+
     setCoinAcceptorType(state, type) {
       state.config.coin_acceptor.type = type
     },

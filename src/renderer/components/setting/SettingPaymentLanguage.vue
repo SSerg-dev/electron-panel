@@ -13,18 +13,13 @@
       <div class="card-content black-text">
         <span class="card-title">Язык:</span>
         <div class="input-field">
-          <select 
-          class="page-title white-text" 
-          ref="select" 
-          v-model="current"
-          >
+          <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(l, index) in languages" :key="index" :value="l.id">
               <div class="dropdown-setting">
                 {{ l.emoji }}
                 {{ l.title }}
               </div>
             </option>
-
           </select>
         </div>
       </div>
@@ -57,41 +52,47 @@ export default Vue.extend({
     M.updateTextFields()
   },
   methods: {
+    initLanguage() {
+      /* dev */
+      //const defaultLanguage = this.getDefaultLanguage().toUpperCase()
+      const defaultLanguage = this.getSysPanelLanguage().toUpperCase()
+      this.languages = this.getLanguageNatives()
+
+      const index = this.languages.findIndex(l => l.key === defaultLanguage)
+      const { id, title, key, emoji, currency, symbol } = this.languages[index]
+      this.current = id
+      this.select = title
+      this.emoji = emoji
+      this.currency = currency
+      this.symbol = symbol
+    },
     ...mapGetters({
       getDefaultLanguage: 'getDefaultLanguage',
+      getSysPanelLanguage: 'getSysPanelLanguage',
+      getSelectedCountries: 'getSelectedCountries',
+
       getLanguageNatives: 'getLanguageNatives'
     }),
     /*  */
     ...mapMutations({
-      setLanguageItem: 'setLanguageItem'
+      setLanguageItem: 'setLanguageItem',
+      setSysPanelLanguage: 'setSysPanelLanguage',
+      setDefaultLanguage: 'setDefaultLanguage'
     })
   },
   watch: {
     current(languageId) {
-
       const { id, title, key, emoji, currency, symbol } = this.languages.find(
         l => l.id === languageId
       )
       this.select = title
-
-      /* dev */
-      console.log('this.select-->', key, this.select)
-      
-      this.setLanguageItem(key)
+      this.setSysPanelLanguage(key)
+      this.setDefaultLanguage(key)
+      //this.setLanguageItem(key)
     }
   },
   created() {
-    const defaultLanguage = this.getDefaultLanguage().toUpperCase() 
-    this.languages = this.getLanguageNatives()
-  
-    const index = this.languages.findIndex(l =>l.key === defaultLanguage) 
-    const { id, title, key, emoji, currency, symbol } = this.languages[index]
-    this.current = id
-    this.select = title
-    this.emoji = emoji
-    this.currency = currency
-    this.symbol = symbol
-
+    this.initLanguage()
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {

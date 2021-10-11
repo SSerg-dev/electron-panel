@@ -1024,7 +1024,8 @@ export default {
     ...mapGetters({
       getLoginBonusOptions: 'getLoginBonusOptions',
       getLoginBonusPhone: 'getLoginBonusPhone',
-      getIsPayCardMoney: 'getIsPayCardMoney'
+      getIsPayCardMoney: 'getIsPayCardMoney',
+      //getLanguageNatives: 'getLanguageNatives'
 
     }),
     ...mapMutations({

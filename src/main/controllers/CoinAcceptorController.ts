@@ -51,7 +51,8 @@ class CoinAcceptorController extends EventEmitter {
 					port_num = i
 					break
 				} catch (err) {
-					log(TAG, "Connected error", err)
+          /* dev */
+					//log(TAG, "Connected error", err)
 					await this.device.disconnect()
 					delete this.device
 					port_num = 10
@@ -60,7 +61,8 @@ class CoinAcceptorController extends EventEmitter {
 		}
 		this.port = port_num
 		if ( port_num === 10 ) {
-			log(TAG, "No any device at ports /dev/ttyUSB[n] detected")
+      /* dev */
+			//log(TAG, "No any device at ports /dev/ttyUSB[n] detected")
 			await wait(500)
 			this.connect()
 		} else {

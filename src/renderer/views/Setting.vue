@@ -966,24 +966,7 @@ export default Vue.extend({
       
     },
     /* dev */
-      //setLanguage(selected, current) {
         setLanguage() {
-
-        const countries = this.getSelectCountries() 
-        //this.$store.state.countries.countries = countries
-        
-        /* if(countries.length > 0) {
-          this.setLanguageNatives(countries)
-          this.setSelectCountries(countries)
-        } */
-        
-        //console.log('getLangthis()-->$store.state.countries.countries-->', this.$store.state.countries.countries)   
-        //console.log('getLangthis()-->this.getSelectCountries', this.getSelectCountries(),)
-
-        /* if(selected.length > 0)
-          this.setLanguageNatives(selected)
-        if(current.length > 0)    
-          this.setLanguageIds(current) */ 
       },
     ...mapGetters ({
       getConfig: 'getConfig' 
@@ -1038,8 +1021,7 @@ export default Vue.extend({
       getTerminalInstalled: 'getTerminalInstalled',
 
       getCoinInstalled: 'getCoinInstalled',
-      getDirectCash: 'getDirectCash',
-      getSelectCountries: 'getSelectCountries'
+      getDirectCash: 'getDirectCash'
     })
   },
   computed: {

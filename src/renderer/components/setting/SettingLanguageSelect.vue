@@ -89,7 +89,7 @@ export default Vue.extend({
       getLanguageNatives: 'getLanguageNatives',
       getAllLanguageNatives: 'getAllLanguageNatives',
       getLanguageIds: 'getLanguageIds',
-      getSelectLanguageNatives: 'getSelectLanguageNatives'
+      // getSelectLanguageNatives: 'getSelectLanguageNatives'
     }),
     selected() {
       return store.state.countries.countries
@@ -102,7 +102,7 @@ export default Vue.extend({
       setSelectCountries: 'setSelectCountries'
     }),
     ...mapGetters({
-      getSelectCountries: 'getSelectCountries'
+      
     }),
     /* dev */
     emitSelect(selected, current) {
@@ -114,25 +114,6 @@ export default Vue.extend({
 
       /* dev */
       
-      
-      /* console.log(
-      'setup this.getSelectCountries().length-->',
-      this.getSelectCountries().length
-      )
-
-      if (this.getSelectCountries().length === 0) {
-        this.languages = this.getLanguageNatives
-        console.log('++if-->')
-      } else if (this.getSelectCountries().length > 0) {
-        
-        this.languages = this.getSelectLanguageNatives
-        console.log('++else if-->')
-
-        for (let i = 0; i < this.allLanguages.length; i++) {
-          this.allLanguages[i].selected = false
-        }
-      } */
-      /*     */
 
       this.languages = this.getLanguageNatives
       this.allLanguages = this.getAllLanguageNatives

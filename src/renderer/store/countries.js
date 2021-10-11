@@ -49,8 +49,7 @@ export default {
       'KR'
     ],
 
-    countries: ['RU', 'UA', 'BY', 'LT', 'LV', 'EE', ],
-    // countries: [],
+    //countries: ['RU', 'UA', 'BY', 'LT', 'LV', 'EE', ],
     selectCountries: [],
 
     /* countries: [
@@ -126,7 +125,7 @@ export default {
           'sah',
           'nog'
         ],
-        emoji: '🇷🇺',
+        emoji: '🇷🇺', 
         emojiU: 'U+1F1F7 U+1F1FA'
       },
 
@@ -572,40 +571,7 @@ export default {
   } /* end state */,
   actions: {},
   getters: {
-
-    getLanguageNatives(state, getters) {
-      const selected = state.countries
-      const all = state.allCountries
-      const natives = []
-
-      /* dev */
-      let language = null
-
-      selected.forEach((keySel, index) => {
-        Object.keys(all).forEach(keyAll => {
-          if (keySel === keyAll) {
-            const keyLang = all[keyAll].languages[0]
-            language = getters.getLanguageItem(keyLang.toLowerCase())
-            const emoji = all[keyAll].emoji
-            const currency = all[keyAll].currency.alphabetic_code
-            const symbol = all[keyAll].currency.symbol
-            natives.push({
-              id: index + 1,
-              title: language,
-              key: keyAll,
-              emoji: emoji,
-              currency: currency,
-              symbol: symbol,
-              selected: false
-
-            })
-          }
-        })
-      })
-
-      return natives
-    },
-    /* dev */
+    
     getAllLanguageNatives(state, getters) {
       const all = state.allCountries
       const natives = []
@@ -634,41 +600,10 @@ export default {
       return natives
     },
     getLanguageNatives(state, getters) {
-      const selected = state.countries
-      const all = state.allCountries
-      const natives = []
-
       /* dev */
-      let language = null
-
-      selected.forEach((keySel, index) => {
-        Object.keys(all).forEach(keyAll => {
-          if (keySel === keyAll) {
-            const keyLang = all[keyAll].languages[0]
-            language = getters.getLanguageItem(keyLang.toLowerCase())
-            const emoji = all[keyAll].emoji
-            const currency = all[keyAll].currency.alphabetic_code
-            const symbol = all[keyAll].currency.symbol
-            natives.push({
-              id: index + 1,
-              title: language,
-              key: keyAll,
-              emoji: emoji,
-              currency: currency,
-              symbol: symbol,
-              selected: false
-
-            })
-          }
-        })
-      })
-
-      return natives
-    },
-    /* dev */
-    getSelectLanguageNatives(state, getters) {
       //const selected = state.countries
-      const selected = state.selectCountries
+      const selected = getters.getSelectedCountries
+      //console.log('++getters.getSelectedCountries-->', getters.getSelectedCountries)
 
       const all = state.allCountries
       const natives = []
@@ -700,16 +635,12 @@ export default {
 
       return natives
     },
+
 
     getLanguageIds(state) {
       return state.languageIds
     },
-    getSelectCountries(state) {
-      //console.log('!!state.selectCountries-->', state.selectCountries)
-      return state.selectCountries
-      
-    },
-    /*     */
+    
     
   }, // end getters
 
