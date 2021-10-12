@@ -32,7 +32,7 @@
 
 <script>
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default Vue.extend({
   name: 'setting-payment-currency',
@@ -40,7 +40,7 @@ export default Vue.extend({
     select: null,
     current: null,
     title: '',
-    
+
     emoji: '',
     currency: '',
     symbol: '',
@@ -52,6 +52,11 @@ export default Vue.extend({
     })
     M.updateTextFields()
   },
+  /* computed: {
+    ...mapGetters({
+      getInitCurrency: 'getInitCurrency'
+    })
+  }, */
   methods: {
     initCurrency() {
       this.currencies = this.getLanguageNatives().filter(
@@ -69,20 +74,25 @@ export default Vue.extend({
           symbol: '€'
         })
 
-      let index
       const defaultCurrency = this.getDefaultCurrency()
-      if (defaultCurrency.title.toUpperCase() === 'RUB') index = 0
+      const index = this.currencies.findIndex(
+        c => c.currency === defaultCurrency
+      )
 
       const { id, title, key, emoji, currency, symbol } = this.currencies[index]
+
       this.current = id
       this.select = title
-      // this.emoji = emoji
+      this.emoji = emoji
       this.currency = currency
       this.symbol = symbol
     },
     ...mapGetters({
       getDefaultCurrency: 'getDefaultCurrency',
       getLanguageNatives: 'getLanguageNatives'
+    }),
+    ...mapMutations({
+      setDefaultCurrency: 'setDefaultCurrency'
     })
   },
   watch: {
@@ -91,6 +101,7 @@ export default Vue.extend({
         c => c.id === currencyId
       )
       this.select = title
+      this.setDefaultCurrency(currency)
     }
   },
   created() {

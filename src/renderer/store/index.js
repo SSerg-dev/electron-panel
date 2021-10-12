@@ -193,8 +193,10 @@ export default new Vuex.Store({
       //console.log('++Config update-->', config.coin_acceptor)
       //console.log('++Config update-->', config.type)
       //console.log('++Config update-->', config.index)
-      console.log('++Config update syspanel-->', config.languages.syspanel)
-      console.log('++Config update default-->', config.languages.default)  
+      //console.log('++Config update syspanel-->', config.languages.syspanel)
+      //console.log('++Config update default-->', config.languages.default)
+      //console.log('++Config update currency-->', config.currency)
+      console.log('++Config update countries-->', JSON.stringify(config.countries))  
       
       try {
         ipcRenderer.send('config', JSON.stringify(config))

@@ -879,6 +879,7 @@ export default {
   }),
   computed: {
     ...mapGetters({
+      getInitCurrency: 'getInitCurrency',
       getDefaultCurrency: 'getDefaultCurrency',
       getLanguageNatives: 'getLanguageNatives',
       /* dev */
@@ -966,31 +967,16 @@ export default {
       }
     },
     initCurrency() {
-      this.currencies = this.getLanguageNatives.filter(
-        c => c.currency !== 'EUR'
-      )
-      if (this.getLanguageNatives.filter(c => c.currency === 'EUR').length > 0)
-        this.currencies.push({
-          id: 999,
-          title: 'EUR',
-          key: 'EUR',
-          emoji: '🇪🇺',
-          currency: 'EUR',
-          symbol: '€'
-        })
-
-      let index
-      const defaultCurrency = this.getDefaultCurrency
-      if (defaultCurrency.title.toUpperCase() === 'RUB') index = 0
-
-      const { id, title, key, emoji, currency, symbol } = this.currencies[index]
+      /* dev */
+      const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
       this.current = id
       this.select = title
+
       this.emoji = emoji
       this.currency = currency
       this.symbol = symbol
-      //console.log('this.currency-->', this.emoji, this.currency, this.symbol)
-    },
+      /*     */
+      },
 
     overlay() {
       const overlay = this.$refs.overlay
@@ -1025,7 +1011,6 @@ export default {
       getLoginBonusOptions: 'getLoginBonusOptions',
       getLoginBonusPhone: 'getLoginBonusPhone',
       getIsPayCardMoney: 'getIsPayCardMoney',
-      //getLanguageNatives: 'getLanguageNatives'
 
     }),
     ...mapMutations({

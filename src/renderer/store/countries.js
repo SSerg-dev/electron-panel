@@ -665,11 +665,7 @@ export default {
       state.languageIds = languageIds
       //console.log('!!++state.languageIds-->', state.languageIds)
     },
-    // selectCountries
-    setSelectCountries(state, selected) {
-      state.selectCountries = selected
-      //console.log('++state.selectCountries-->', state.selectCountries)
-    },
+    
   }, // end mutation
 
   modules: {}

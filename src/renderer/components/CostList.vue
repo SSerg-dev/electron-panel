@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="row item" style="margin-left: 2em;">
-      <div class="col s5 programm">Программа</div>
-      <div class="col s3">цена за 1 мин</div>
-      <div class="col s3">
+    <div class="row item">
+      <div class="col s4">Программа</div>
+      <div class="col ">цена за 1 мин</div>
+      <div class="col ">
       {{ this.emoji }}
       {{ this.currency }}
       {{ this.symbol }}
@@ -38,7 +38,8 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getDefaultCurrency: 'getDefaultCurrency',
-      getLanguageNatives: 'getLanguageNatives'
+      getLanguageNatives: 'getLanguageNatives',
+      getInitCurrency: 'getInitCurrency'
 
     })
   },
@@ -52,33 +53,23 @@ export default Vue.extend({
   },
   methods: {
     initCurrency() {
-      this.currencies = this.getLanguageNatives.filter(
-        c => c.currency !== 'EUR'
-      )
-      if (
-        this.getLanguageNatives.filter(c => c.currency === 'EUR').length > 0
-      )
-        this.currencies.push({
-          id: 999,
-          title: 'EUR',
-          key: 'EUR',
-          emoji: '🇪🇺',
-          currency: 'EUR',
-          symbol: '€'
-        })
 
-      let index
-      const defaultCurrency = this.getDefaultCurrency
-      if (defaultCurrency.title.toUpperCase() === 'RUB') index = 0
-
-      const { id, title, key, emoji, currency, symbol } = this.currencies[index]
+      /* dev */
+      const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
       this.current = id
       this.select = title
+
       this.emoji = emoji
       this.currency = currency
       this.symbol = symbol
-      //console.log('this.currency-->', this.emoji, this.currency, this.symbol)
+      /*     */
     },
+    /* ...mapGetters({
+      getDefaultCurrency: 'getDefaultCurrency',
+      getLanguageNatives: 'getLanguageNatives',
+
+
+    }) */
   }
 })
 </script>
@@ -88,12 +79,14 @@ export default Vue.extend({
   font-size: 2rem;
   color: white;
 }
-.programm {
+/* .programm {
   text-align: left;
-}
+} */
 .item {
   /*  */
   width: 92%;
+  margin-left: 2em;
+  padding-left: 0.8em;
 }
 
 ul {

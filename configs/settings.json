@@ -33,7 +33,7 @@
     },
     "countries" : ["RU", "UA", "BY", "EE"],
     "country" : "RU",
-    "currency": "RU",
+    "currency": "BYR",
     "index": 5,
     "languages": {
         "default": "RU",

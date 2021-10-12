@@ -50,6 +50,8 @@ export default Vue.extend({
 
   created() {
     this.initCurrency()
+    
+     
   },
   mounted() {
     this.initData()
@@ -110,7 +112,17 @@ export default Vue.extend({
       )
     },
     initCurrency() {
-      this.currencies = this.getLanguageNatives.filter(
+      /* dev */
+      const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
+      this.current = id
+      this.select = title
+
+      this.emoji = emoji
+      this.currency = currency
+      this.symbol = symbol
+      /*     */
+
+      /* this.currencies = this.getLanguageNatives.filter(
         c => c.currency !== 'EUR'
       )
       if (this.getLanguageNatives.filter(c => c.currency === 'EUR').length > 0)
@@ -123,9 +135,8 @@ export default Vue.extend({
           symbol: '€'
         })
 
-      let index
       const defaultCurrency = this.getDefaultCurrency
-      if (defaultCurrency.title.toUpperCase() === 'RUB') index = 0
+      const index = this.currencies.findIndex(c => c.currency === defaultCurrency)
 
       const { id, title, key, emoji, currency, symbol } = this.currencies[index]
       this.current = id
@@ -133,14 +144,16 @@ export default Vue.extend({
 
       this.emoji = emoji
       this.currency = currency
-      this.symbol = symbol
+      this.symbol = symbol */
 
-      //console.log('this.currency-->', this.emoji, this.currency, this.symbol)
     }
   },
 
   computed: {
     ...mapGetters({
+      /* dev */
+      getInitCurrency: 'getInitCurrency',
+
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getDefaultCurrency: 'getDefaultCurrency',
       getLanguageNatives: 'getLanguageNatives',

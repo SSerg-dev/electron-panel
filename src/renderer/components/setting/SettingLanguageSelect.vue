@@ -9,28 +9,10 @@
       border-bottom-right-radius: 2rem;
       border-top-left-radius: 2rem;
       border-bottom-left-radius: 2rem;
-      <!-- border-left-style: hidden; -->
-
       "
     >
       <div class="card-content black-text">
-        <span class="card-title">Язык:</span>
-
-        <!-- <div class="input-field">
-          <select
-            multiple
-            class="page-title white-text"
-            ref="select"
-            v-model="current"
-          >
-            <option v-for="(l, index) in languages" :key="index" :value="l.id">
-              <div class="dropdown-setting">
-                {{ l.emoji }}
-                {{ l.title }}
-              </div>
-            </option>
-          </select>
-        </div> -->
+        <span class="card-title">-Язык:</span>
 
         <div class="input-field">
           <select
@@ -66,7 +48,7 @@ import EventBus from '@/bus/EventBus'
 export default Vue.extend({
   name: 'setting-payment-bill',
   data: () => ({
-    select: null,
+    //select: null,
     current: [],
     title: [],
 
@@ -88,7 +70,7 @@ export default Vue.extend({
     ...mapGetters({
       getLanguageNatives: 'getLanguageNatives',
       getAllLanguageNatives: 'getAllLanguageNatives',
-      getLanguageIds: 'getLanguageIds',
+      getLanguageIds: 'getLanguageIds'
       // getSelectLanguageNatives: 'getSelectLanguageNatives'
     }),
     selected() {
@@ -99,78 +81,60 @@ export default Vue.extend({
     ...mapMutations({
       setLanguageNatives: 'setLanguageNatives',
       setLanguageIds: 'setLanguageIds',
-      setSelectCountries: 'setSelectCountries'
+      setSelectedCountries: 'setSelectedCountries'
     }),
-    ...mapGetters({
-      
-    }),
+    ...mapGetters({}),
     /* dev */
     emitSelect(selected, current) {
       const options = { selected: selected, current: current }
       EventBus.$emit('submitSelect', options)
     },
-
-    setup() {
-
-      /* dev */
-      
-
+    selectLanguages() {
       this.languages = this.getLanguageNatives
       this.allLanguages = this.getAllLanguageNatives
-
-      /* dev */
-      /* for (let i = 0; i < this.allLanguages.length; i++) {
-        if(this.allLanguages[i].selected === true)
-          console.log('this.allLanguages[i].selected-->', this.allLanguages[i].selected)  
-      } */
-
+      
+      for (let i = 0; i < this.allLanguages.length; i++) 
+        this.allLanguages[i].selected = false
+      
       for (let i = 0; i < this.languages.length; i++) {
         const key = this.languages[i].key
         const index = this.allLanguages.findIndex(l => l.key === key)
         this.allLanguages[index].selected = true
-        /* console.log(
-            '++this.languages-->',
-            JSON.stringify(this.languages[i])
-          ) */
       }
-      //console.log('--this.languages-->', JSON.stringify(this.languages) )
-
-      /* dev */
-      /* console.log('----------------')
-      for (let i = 0; i < this.allLanguages.length; i++) {
-        if(this.allLanguages[i].selected === true)
-          console.log('this.allLanguages[i].selected-->', this.allLanguages[i].selected)  
-      } */
 
       for (let i = 0; i < this.allLanguages.length; i++) {
         if (this.allLanguages[i].selected === true) {
           this.current[i] = this.allLanguages[i].id
           this.select = this.allLanguages[i].title
-          /* console.log(
-            '++this.allLanguages-->',
-            JSON.stringify(this.allLanguages[i])
-          ) */
         }
       }
+    },
 
+    setup() {
+      this.selectLanguages()
     }
   },
   watch: {
     current(languageIds) {
+      console.log('languageIds-->', languageIds)
+
       const selected = languageIds.map(i => {
         const result = this.allLanguages.find(l => l.id === i).key
         return result
       })
-      console.log('++ current-->selected-->', selected)
-      this.setSelectCountries(selected)
+      this.setSelectedCountries(selected)
       this.emitSelect(selected, this.current)
-      this.select = selected
+      
+      /* dev */
+      //this.selectLanguages()
+
+      //this.select = selected
     },
 
-    selected(value) {
+    /* selected(value) {
       this.current = this.getLanguageIds
       this.select = value
-    }
+    } */
   },
   created() {
     this.setup()

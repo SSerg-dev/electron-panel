@@ -737,12 +737,7 @@
             <!-- row 01 -->
             <tr style="margin-top: 2em;">
               
-              <!-- <td style="width: 520px;">
-                <div>
-                  <SettingLanguagePanel />
-                </div>
-              </td> -->
-
+              
               <td style="width: 1040px;">
                 <div>
                   <SettingLanguageSelect />
@@ -858,8 +853,6 @@ import SettingPaymentAcceptor from '@/components/setting/SettingPaymentAcceptor'
 import SettingCoinAcceptor from '@/components/setting/SettingCoinAcceptor'
 import SettingPaymentBill from '@/components/setting/SettingPaymentBill'
 import SettingCoinBill from '@/components/setting/SettingCoinBill'
-/* dev */
-import SettingLanguagePanel from '@/components/setting/SettingLanguagePanel'
 import SettingLanguageSelect from '@/components/setting/SettingLanguageSelect'
 
 
@@ -927,7 +920,6 @@ export default Vue.extend({
     SettingPaymentBill,
     SettingCoinBill,
     /* dev */
-    SettingLanguagePanel,
     SettingLanguageSelect,
     
 
@@ -970,14 +962,11 @@ export default Vue.extend({
       },
     ...mapGetters ({
       getConfig: 'getConfig' 
-      //getLanguageNatives: 'getLanguageNatives'
     }),  
     ...mapMutations({
       setRouter: 'setRouter',
       setLanguageNatives: 'setLanguageNatives',
       setLanguageIds: 'setLanguageIds',
-      setSelectCountries: 'setSelectCountries',
-      /* dev */
       setTerminalInstalled: 'setTerminalInstalled',
       setDefaultTerminalType: 'setDefaultTerminalType',
       setAcceptorInstalled: 'setAcceptorInstalled',

@@ -33,21 +33,45 @@ export default {
       } */
     },
     /* dev */
+    getInitCurrency(state, getters) {
+
+      //let currencies =[] 
+      const currencies = getters.getLanguageNatives.filter(
+        c => c.currency !== 'EUR'
+      )
+
+      if (getters.getLanguageNatives.filter(c => c.currency === 'EUR').length > 0)
+        currencies.push({
+          id: 999,
+          title: 'EUR',
+          key: 'EUR',
+          emoji: '🇪🇺',
+          currency: 'EUR',
+          symbol: '€'
+        })
+
+      const defaultCurrency = getters.getDefaultCurrency
+      const index = currencies.findIndex(c => c.currency === defaultCurrency)
+
+      const result = currencies[index]
+      //console.log('result-->', JSON.stringify(result))
+      
+      return result
+    },
+    /*     */
     getSysPanelLanguage(state) {
       return state.config.languages.syspanel
     },
     getSelectedCountries(state) {
       return state.config.countries
     },
-
     getPanelType(state) {
       return state.config.type
     },
     getDefaultCurrency(state) {
-      /* dev */
-      //return state.config.currency
-      return { id: 1, title: 'RUB' }
+      return state.config.currency
     },
+
     getDefaultPanelNumber(state) {
       return state.config.index
     },
@@ -114,6 +138,12 @@ export default {
   // mutations
   mutations: {
     /* dev */
+    setSelectedCountries(state, selected) {
+      state.config.countries = selected
+    },
+    setDefaultCurrency(state, currency) {
+      state.config.currency = currency
+    },
     setDefaultLanguage(state, language) {
       state.config.languages.default = language
     },

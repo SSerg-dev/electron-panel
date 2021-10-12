@@ -11,7 +11,7 @@
       "
     >
       <div class="card-content black-text">
-        <span class="card-title">Язык:</span>
+        <span class="card-title">+Язык:</span>
         <div class="input-field">
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(l, index) in languages" :key="index" :value="l.id">
@@ -30,6 +30,7 @@
 <script>
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
+import EventBus from '@/bus/EventBus'
 
 export default Vue.extend({
   name: 'setting-payment-language',
@@ -46,12 +47,47 @@ export default Vue.extend({
     languages: []
   }),
   mounted() {
+    /* dev */
+    EventBus.$on('submitSelect', this.submitHandler)
+
     this.select = M.FormSelect.init(this.$refs.select, {
       constrainWidth: true
     })
     M.updateTextFields()
   },
-  methods: {
+  methods: { 
+    /* dev */
+    /* selectLanguages() {
+      this.languages = this.getLanguageNatives
+      this.allLanguages = this.getAllLanguageNatives
+
+      for (let i = 0; i < this.allLanguages.length; i++)
+        this.allLanguages[i].selected = false
+
+      for (let i = 0; i < this.languages.length; i++) {
+        const key = this.languages[i].key
+        const index = this.allLanguages.findIndex(l => l.key === key)
+        this.allLanguages[index].selected = true
+      }
+
+      for (let i = 0; i < this.allLanguages.length; i++) {
+        if (this.allLanguages[i].selected === true) {
+          this.current[i] = this.allLanguages[i].id
+          this.select = this.allLanguages[i].title
+        }
+      }
+    }, */
+    /*    */
+
+    setup() {
+      this.initLanguage()
+    },
+    submitHandler(options) {
+      // this.balance = balance
+      console.log('++options-->', JSON.stringify(options.selected))
+      //this.initLanguage()
+      //this.selectLanguages() 
+    },
     initLanguage() {
       /* dev */
       //const defaultLanguage = this.getDefaultLanguage().toUpperCase()
@@ -59,6 +95,7 @@ export default Vue.extend({
       this.languages = this.getLanguageNatives()
 
       const index = this.languages.findIndex(l => l.key === defaultLanguage)
+
       const { id, title, key, emoji, currency, symbol } = this.languages[index]
       this.current = id
       this.select = title
@@ -71,7 +108,8 @@ export default Vue.extend({
       getSysPanelLanguage: 'getSysPanelLanguage',
       getSelectedCountries: 'getSelectedCountries',
 
-      getLanguageNatives: 'getLanguageNatives'
+      getLanguageNatives: 'getLanguageNatives',
+      getAllLanguageNatives: 'getAllLanguageNatives'
     }),
     /*  */
     ...mapMutations({
@@ -92,7 +130,7 @@ export default Vue.extend({
     }
   },
   created() {
-    this.initLanguage()
+    this.setup()
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {
