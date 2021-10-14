@@ -3,11 +3,11 @@
     <div
       class="card grey lighten-3"
       style="
-      height: 150px; 
-      border: solid 3px #00B9E3; 
-      border-top-left-radius: 2rem;
-      border-bottom-left-radius: 2rem;
-      border-right-style: hidden;
+        height: 150px;
+        border: solid 3px #00b9e3;
+        border-top-left-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+        border-right-style: hidden;
       "
     >
       <div class="card-content black-text">
@@ -55,7 +55,7 @@ export default Vue.extend({
     })
     M.updateTextFields()
   },
-  methods: { 
+  methods: {
     /* dev */
     /* selectLanguages() {
       this.languages = this.getLanguageNatives
@@ -86,15 +86,18 @@ export default Vue.extend({
       // this.balance = balance
       console.log('++options-->', JSON.stringify(options.selected))
       //this.initLanguage()
-      //this.selectLanguages() 
+      //this.selectLanguages()
     },
     initLanguage() {
       /* dev */
-      //const defaultLanguage = this.getDefaultLanguage().toUpperCase()
-      const defaultLanguage = this.getSysPanelLanguage().toUpperCase()
+      const defaultLanguage = this.getDefaultLanguage().toUpperCase()
+      //const defaultLanguage = this.getSysPanelLanguage().toUpperCase()
       this.languages = this.getLanguageNatives()
 
-      const index = this.languages.findIndex(l => l.key === defaultLanguage)
+      //console.log('this.getDefaultLanguage().toUpperCase()-->', this.getDefaultLanguage().toUpperCase())
+      //console.log('this.getSysPanelLanguage().toUpperCase()-->', this.getSysPanelLanguage().toUpperCase())
+
+      const index = this.languages.findIndex(l => l.key === defaultLanguage) 
 
       const { id, title, key, emoji, currency, symbol } = this.languages[index]
       this.current = id
@@ -124,8 +127,11 @@ export default Vue.extend({
         l => l.id === languageId
       )
       this.select = title
+      /* uncomment */
       this.setSysPanelLanguage(key)
       this.setDefaultLanguage(key)
+      
+      
       //this.setLanguageItem(key)
     }
   },

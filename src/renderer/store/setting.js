@@ -15,31 +15,22 @@ export default {
 
   // getters
   getters: {
-    /* dev */
     getPaymentLimitMin(state) {
-      // console.log('min_sum-->', state.config.bank_terminal.min_sum)
       return  state.config.bank_terminal.min_sum
     },
     getPaymentLimitMax(state) {
       return state.config.bank_terminal.max_sum
     },
-
     getDefaultLanguage(state) {
       return state.config.languages.default
-      /* if (state.config.languages && state.config.languages.default) {
-        return state.config.languages.default
-      } else {
-        this.$message(`Settings ERROR : languages.default undefined`)
-      } */
     },
-    /* dev */
+    getSysPanelLanguage(state) {
+      return state.config.languages.syspanel
+    },
     getInitCurrency(state, getters) {
-
-      //let currencies =[] 
       const currencies = getters.getLanguageNatives.filter(
         c => c.currency !== 'EUR'
       )
-
       if (getters.getLanguageNatives.filter(c => c.currency === 'EUR').length > 0)
         currencies.push({
           id: 999,
@@ -59,9 +50,7 @@ export default {
       return result
     },
     /*     */
-    getSysPanelLanguage(state) {
-      return state.config.languages.syspanel
-    },
+    
     getSelectedCountries(state) {
       return state.config.countries
     },

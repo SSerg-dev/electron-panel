@@ -60,16 +60,14 @@ class BillValidatorController extends EventEmitter {
 				break
 			} catch (err) {
 				this.state = States.DISCONNECTED
-				/* dev */
-        // log(TAG, "Connected error", err)
+        log(TAG, "Connected error", err)
 			}
 		}
 		if ( this.state !== States.CONNECTED ) {
 			this.port = 10
-      /* dev */
-			//throw new Error("No any device at /dev/ttyUSB[0-3] detected")
+			throw new Error("No any device at /dev/ttyUSB[0-3] detected")
 		} else {
-			return true
+			return true 
 		}
 	}
 

@@ -31,12 +31,15 @@
         ],
         "type": "CCTALK1"
     },
+    "__commentCountries": "add available countries",
     "countries" : ["RU", "UA", "BY", "EE"],
+    
     "country" : "RU",
-    "currency": "BYR",
+    "__commentCurrency": "add default currency",
+    "currency": "EUR",
     "index": 5,
     "languages": {
-        "default": "RU",
+        "default": "EE",
         "panel": [
             0,
             1,

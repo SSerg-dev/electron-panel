@@ -320,6 +320,7 @@ export default {
         emoji: '🇹🇷',
         emojiU: 'U+1F1F9 U+1F1F7'
       },
+
       JP: {
         name: 'Japan',
         native: '日本',
@@ -529,7 +530,7 @@ export default {
         emoji: '🇸🇪',
         emojiU: 'U+1F1F8 U+1F1EA'
       },
-      PT: {
+      /* PT: {
         name: 'Portugal',
         native: 'Portugal',
         phone: '351',
@@ -564,7 +565,7 @@ export default {
         languages: ['nl', 'fy-NL'],
         emoji: '🇳🇱',
         emojiU: 'U+1F1F3 U+1F1F1'
-      }
+      } */
 
       /*     */
     } /* end allCountries */
