@@ -49,8 +49,17 @@ export default {
       
       return result
     },
-    /*     */
     
+    /* dev */
+    getCnw(state) {
+      return state.config.ui.CNW
+    },
+    getPayScreenMain(state) {
+      return state.config.ui.main_window
+    },
+    getCursor(state) {
+      return state.config.ui.hide_cursor
+    },
     getSelectedCountries(state) {
       return state.config.countries
     },
@@ -127,6 +136,19 @@ export default {
   // mutations
   mutations: {
     /* dev */
+    setCnw(state, Cnw) {
+      state.config.ui.CNW = Cnw
+    },
+    setPayScreenMain(state, window) {
+      state.config.ui.main_window = window
+    },
+    setCursor(state, cursor) {
+      state.config.ui.hide_cursor = cursor
+    },
+
+    setDirectCash(state, cash) {
+      state.config.ui.direct_cash = cash
+    },
     setSelectedCountries(state, selected) {
       state.config.countries = selected
     },

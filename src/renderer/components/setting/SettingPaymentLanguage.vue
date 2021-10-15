@@ -11,7 +11,7 @@
       "
     >
       <div class="card-content black-text">
-        <span class="card-title">+Язык:</span>
+        <span class="card-title">Язык:</span>
         <div class="input-field">
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(l, index) in languages" :key="index" :value="l.id">

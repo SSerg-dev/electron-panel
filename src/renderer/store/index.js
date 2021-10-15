@@ -190,14 +190,24 @@ export default new Vuex.Store({
     /* dev */
 
     updateConfig({ getters }, config) {
+      
+      //console.group(`config:`)
+      console.log(`Config update config.bank_terminal--> ${ JSON.stringify(config.bank_terminal) }`)
+      //console.log('Config update config.ui.CNW-->', config.ui.CNW)
+      //console.log('++Config update-->', config.ui.main_window)
+      //console.log('++Config update-->', config.ui.hide_cursor)
+      //console.log('++Config update-->', config.bill_validator)
       //console.log('++Config update-->', config.coin_acceptor)
       //console.log('++Config update-->', config.type)
       //console.log('++Config update-->', config.index)
       //console.log('++Config update syspanel-->', config.languages.syspanel)
       //console.log('++Config update default-->', config.languages.default)
       //console.log('++Config update currency-->', config.currency)
-      console.log('++Config update countries-->', JSON.stringify(config.countries))  
-      
+      //console.log('++Config update countries-->', config.countries)
+      //console.log('++Config update-->', config.ui.direct_cash)  
+      //console.groupEnd()
+
+
       try {
         ipcRenderer.send('config', JSON.stringify(config))
       } catch (e) {

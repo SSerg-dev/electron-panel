@@ -12,9 +12,25 @@
     >
       <div class="card-content black-text">
         <!-- row -->
+        <!-- 
+
+          <div align="justify" style="margin-left: 14em; margin-bottom: 4em;">
+        <h4>
+          {{ this.emoji }}
+          {{ this.currency }}
+          {{ this.symbol }}
+        </h4>
+      </div>
+         -->
         <div class="row">
           <div class="col s2">
-            <span class="card-title">Жетоны (RUB):</span>
+            <!-- <span class="card-title">Жетоны (RUB):</span> -->
+            <span class="card-title">Жетоны:</span>
+            <div style="font-size: 1.35em; margin-left: 0em;"> 
+          {{ this.emoji }}
+          {{ this.currency }}
+          {{ this.symbol }}
+          </div>
           </div>
           <div class="col s3" style="margin-left: -4em;">
             <div>
@@ -50,8 +66,35 @@ export default Vue.extend({
   data: () => ({
     firstToken: 1,
     secondToken: 2,
-    thirdToken: 3
+    thirdToken: 3,
+
+    /* dev */
+    emoji: '',
+    currency: '',
+    symbol: '',
+    currencies: []
   }),
+  computed: {
+    ...mapGetters({
+      getInitCurrency: 'getInitCurrency'
+    })
+  },
+  methods: {
+    initCurrency() {
+      /* dev */
+      const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
+      this.current = id
+      this.select = title
+
+      this.emoji = emoji
+      this.currency = currency
+      this.symbol = symbol
+      /*     */
+      },
+  },
+  created() {
+    this.initCurrency()
+  },
 
   components: {
     SettingPaymentTokenItem

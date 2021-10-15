@@ -364,9 +364,9 @@
                 </td>
               </tr>
               <!-- end row -->
-              <!-- new row 03 -->
+              <!-- row 03 -->
               <tr style="margin-top: -0.5em;">
-                <!-- td 01 -->
+                
                 <td style="width: 1040px">
                   <div
                     class="card black lighten-3"
@@ -487,6 +487,7 @@
                       >
                     </div>
                   </div>
+
                 </div>
               </td>
             </tr>
@@ -889,7 +890,7 @@ export default Vue.extend({
     isChangeProgramFirst: true,
     isChangeProgramSecond: true,
     isCnw: true,
-    isCursor: true,
+    isCursor: true,     
 
     changeItemIds: [1, 2],
     assignItemIds: [1],
@@ -970,7 +971,11 @@ export default Vue.extend({
       setTerminalInstalled: 'setTerminalInstalled',
       setDefaultTerminalType: 'setDefaultTerminalType',
       setAcceptorInstalled: 'setAcceptorInstalled',
-      setCoinAcceptorInstalled: 'setCoinAcceptorInstalled' 
+      setCoinAcceptorInstalled: 'setCoinAcceptorInstalled',
+      setDirectCash: 'setDirectCash',
+      setCursor: 'setCursor',
+      setPayScreenMain: 'setPayScreenMain',
+      setCnw: 'setCnw' 
 
 
       
@@ -1010,7 +1015,11 @@ export default Vue.extend({
       getTerminalInstalled: 'getTerminalInstalled',
 
       getCoinInstalled: 'getCoinInstalled',
-      getDirectCash: 'getDirectCash'
+      getDirectCash: 'getDirectCash',
+      getCursor: 'getCursor',
+      getPayScreenMain: 'getPayScreenMain',
+      getCnw: 'getCnw'
+
     })
   },
   computed: {
@@ -1021,25 +1030,49 @@ export default Vue.extend({
     })
   },
   watch: {
+    /* dev */
+    isCnw(flag) {
+      console.log('isCnw-->', flag)
+      this.setCnw(flag)
+    },
+
+    isPayScreenMain(flag) {
+      //console.log('isPayScreenMain-->', flag)
+      this.setPayScreenMain(flag)
+    },
+    isCursor(flag) {
+      //console.log('isCursor-->', flag)
+      this.setCursor(flag)
+    },
+    isDirectCash(flag) {
+      //console.log('isDirectCash-->', flag)
+      this.setDirectCash(flag)
+    }, 
     isTerminalInstalled(flag) {
       // console.log('isTerminalInstalled-->', flag)
       this.setTerminalInstalled(flag)
     },
     isAcceptorInstalled(flag) {
       //console.log('isAcceptorInstalled-->', flag)
+      // ??? is false --> this.onSerialPortClose
       this.setAcceptorInstalled(flag)
     },
     isCoinAcceptorInstalled(flag) {
       //console.log('isCoinAcceptorInstalled-->', flag)
       this.setCoinAcceptorInstalled(flag)
     },
+    
 
   },
   created() {
-    this.isPayScreenMain = true
+    this.isPayScreenMain = this.getPayScreenMain()
     /* dev */
+    // isCnw
+    this.isCnw = this.getCnw()
+    // isCursor
+    this.isCursor = this.getCursor()
+    // isTerminalInstalled
     this.isTerminalInstalled = this.getTerminalInstalled()
-
     // isDirectCash
     this.isDirectCash = this.getDirectCash()
     // bill

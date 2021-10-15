@@ -32,8 +32,7 @@
         "type": "CCTALK1"
     },
     "__commentCountries": "add available countries",
-    "countries" : ["RU", "UA", "BY", "EE"],
-    
+    "countries" : ["RU", "UA", "BY" ,"LV", "LT", "EE"],
     "country" : "RU",
     "__commentCurrency": "add default currency",
     "currency": "EUR",
