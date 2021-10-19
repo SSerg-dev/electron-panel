@@ -83,6 +83,16 @@ export default new Vuex.Store({
       busy: '',
       PanelMoney: '0'
     },
+    
+    dryParameters: {
+      progPrice: '',
+      /* dev */
+      progShowMask: '126',
+      progStatusMask: '',
+      busy: '',
+      PanelMoney: '0'
+    },
+
     isDebug: true
   },
   actions: {
@@ -316,6 +326,13 @@ export default new Vuex.Store({
 
     // DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Список всех Dry программ
+    getDryProgShow(state) {
+      return state.dryParameters.progShowMask
+    },
+    getDryProgPrice(state) {
+      return state.dryParameters.progPrice
+    },
+
     /*     getDryProg(state) {
       return state.params.filter(p => p.title.slice(4, 7) === 'DRY')
     },
@@ -332,22 +349,14 @@ export default new Vuex.Store({
         .reverse()
       return arr[0]?.value
     },
-    getDryProgShow(state) {
-      let arr = state.params
-        .filter(p => p.title === 'TAG_DRY_PROG_SHOW')
-        .sort((a, b) => a - b)
-        .reverse()
-      return arr[0]?.value
-    },
+    
     getDryAddMoney(state) {
       return state.params.find(p => p.title === 'TAG_DRY_ADD_MONEY')?.value
     },
     getDryAddMoney2(state) {
       return state.params.find(p => p.title === 'TAG_DRY_ADD_MONEY2')?.value
     },
-    getDryProgPrice(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_PROG_PRICE')?.value
-    },
+    
     getDryMoney(state) {
       return state.params.find(p => p.title === 'TAG_DRY_MONEY')?.value
     },
@@ -431,25 +440,27 @@ export default new Vuex.Store({
   mutations: {
     // set one parameter
     setParameters(state, parameter) {
-      /* dev */
+      console.log('--setParameters')
+
       state.isParamsChange = !state.isParamsChange
 
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
       )
-      //console.log('----------------------------------------------------------') 
+      //console.log('----------------------------------------------------------')
+      //console.log(parameter.title, displayName, parameter.value)
+
       //console.log('++displayName-->', displayName)
       //console.log('++parameter.value-->', parameter.value)
 
       switch (displayName) {
         case 'progPrice':
           state.parameters.progPrice = parameter.value
-          //console.log( '++progPrice-->', state.parameters.progPrice)
+          //console.log( '++state.parameters.progPrice-->', state.parameters.progPrice)
           break
         case 'progShowMask':
           state.parameters.progShowMask = parameter.value
           // console.log( '++progShowMask', displayName, state.parameters.progShowMask)
-
           break
         case 'progStatusMask':
           state.parameters.progStatusMask = parameter.value
@@ -472,6 +483,47 @@ export default new Vuex.Store({
           break
       }
     },
+    
+    /* dev */
+    setDryParameters(state, parameter) {
+      //console.log('++setDryParameters')
+      state.isParamsChange = !state.isParamsChange
+
+      /* const displayName = parameter.title.slice(
+        parameter.title.indexOf('.') + 1
+      ) */
+      /* dev */
+      const displayName = 'progPrice'
+
+      switch (displayName) {
+        case 'progPrice':
+          /* dev */
+          //state.dryParameters.progPrice = parameter.value
+          state.dryParameters.progPrice = parameter
+          //console.log( 'state.dryParameters.progPrice-->', state.dryParameters.progPrice)
+          //console.log( 'state.dryParameters.progShowMask-->', state.dryParameters.progShowMask)
+          
+          break
+        
+          case 'progShowMask':
+          state.dryParameters.progShowMask = parameter.value
+          break
+        case 'progStatusMask':
+          state.dryParameters.progStatusMask = parameter.value
+          break
+        case 'busy':
+          state.dryParameters.busy = parameter.value
+          break
+        case 'panel_money':
+          state.dryParameters.PanelMoney = parameter.value
+          break 
+
+        default:
+          break
+      }
+    },
+
+    /*     */
 
     // dev
     // setParamsChange

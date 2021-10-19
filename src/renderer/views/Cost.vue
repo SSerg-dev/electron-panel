@@ -74,7 +74,12 @@ export default Vue.extend({
     progPrice: [],
     activeProg: [],
     busyProg: [],
-    interval: null,
+    /* dev */
+    dryProgPrice: [],
+    dryActiveProg: [],
+    dryBusyProg: [],
+
+    //interval: null,
     intervalMainMenu: null,
     date: null
 
@@ -82,8 +87,10 @@ export default Vue.extend({
   }), // End Data
   computed: {
     ...mapGetters({
+      getDryProgShow: 'getDryProgShow',
       getWetProgShow: 'getWetProgShow',
       getWetProgStatus: 'getWetProgStatus',
+      getDryProgPrice: 'getDryProgPrice',
       getWetProgPrice: 'getWetProgPrice',
       getWetBusyPanel: 'getWetBusyPanel',
       getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
@@ -96,12 +103,24 @@ export default Vue.extend({
   watch: {
     getParamsChange(flag) {
       //console.log(' watch flag-->', flag)
-      //this.setActiveProg()
+      
+      /* dev */
+      /* const type = this.getPanelType
+      switch (type) {
+        case 'wash':
+          this.costs = this.getCosts()
+          this.setActiveProg()
+          break
+        case 'vaccum':
+          this.costs = this.getDryCosts()
+          this.setDryActiveProg()
+          break
+        default:
+          this.costs = []
+          console.warn('not getPanelType')
+          break
+      } */
 
-      if (this.getPanelType === 'wash')
-        this.setActiveProg()
-        /* dev */
-      else;
     }
   },
   methods: {
@@ -111,10 +130,28 @@ export default Vue.extend({
     setDown() {
       this.isDown = !this.isDown
     },
+
     getActiveProgBit() {
-      //console.log('this.getWetProgShow-->', this.getWetProgShow)
-      return (this.getWetProgShow >>> 0).toString(2)
+      //return (this.getWetProgShow >>> 0).toString(2)
+
+      const type = this.getPanelType
+      let progShow
+      switch (type) {
+        case 'wash':
+          progShow = (this.getWetProgShow >>> 0).toString(2)
+          break
+        case 'vaccum':
+          progShow = (this.getDryProgShow >>> 0).toString(2)
+          break
+        default:
+          console.warn('no progShow')
+          break
+      }
+      //console.log('++progShow-->', progShow)
+      return progShow
+
     },
+
     getActiveProgInt(bin) {
       return parseInt(bin, 2).toString(10)
     },
@@ -125,7 +162,6 @@ export default Vue.extend({
       this.activeProg = [...this.getActiveProgBit()].reverse().join('')
       if (this.getWetProgPrice !== undefined) {
         this.progPrice = this.getWetProgPrice.toString().split(',')
-        //console.log('--this.progPrice-->', this.progPrice)
       }
       for (let i = 0; i <= this.activeProg.length; i++) {
         if (typeof this.costs[i].display !== undefined) {
@@ -135,7 +171,7 @@ export default Vue.extend({
           this.costs[i].display = this.activeProg.toString().slice(i, i + 1)
           //else this.costs[i].display = 0
         }
-        if (this.progPrice !== undefined)
+        if (typeof this.progPrice !== undefined)
           this.costs[i].price = this.progPrice[i + 1]?.toString()
       }
 
@@ -145,8 +181,24 @@ export default Vue.extend({
     },
     /* dev */
     setDryActiveProg() {
-      console.log('+++setDryActiveProg')
+      this.dryActiveProg = [...this.getActiveProgBit()].reverse().join('')
+      //console.log('this.dryActiveProg-->', this.dryActiveProg)
+      if (this.getDryProgPrice !== undefined) {
+        this.dryProgPrice = this.getDryProgPrice.toString().split(',')
+        //console.log('this.dryProgPrice-->', this.dryProgPrice)
+      }
+      
+      for (let i = 0; i < this.dryActiveProg.length - 1; i++) {
+      //for (let i = 1; i < this.dryActiveProg.length; i++) {  
+        console.log('this.costs-->', JSON.stringify(this.costs[i].display))
+        if (typeof this.costs[i].display !== undefined) {
+          this.costs[i].display = this.dryActiveProg?.toString().slice(i, i + 1)
+        }
+        if (typeof this.dryProgPrice !== undefined)
+          this.costs[i].price = this.dryProgPrice[i + 1]?.toString()
+      }
 
+      return this.costs
     },
 
     selectActiveProg(name) {
@@ -194,29 +246,30 @@ export default Vue.extend({
   },
   mounted() {
     this.setRouter('/cost')
-    
-    /* dev */
-    if (this.getPanelType === 'wash')
-      this.costs = this.getCosts()
-    else if (this.getPanelType === 'vaccum')
-      this.costs = this.getDryCosts()
-    else   
-      this.costs = []
+
+    const type = this.getPanelType
+      switch (type) {
+        case 'wash':
+          this.costs = this.getCosts()
+          this.setActiveProg()
+          break
+        case 'vaccum':
+          this.costs = this.getDryCosts()
+          this.setDryActiveProg()
+          break
+        default:
+          this.costs = []
+          console.warn('not getPanelType')
+          break
+      }
 
     const displayCosts = this.costs
       .filter(cost => cost.display === '1')
       .filter(cost => cost.mode !== 'hide')
-
+  
+   
+    /* common     */
     this.setupPagination(displayCosts)
-
-    /* dev */
-    if (this.getPanelType === 'wash')
-      this.setActiveProg()
-    else if (this.getPanelType === 'vaccum')
-      this.setDryActiveProg()
-    
-
-
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },
   beforeDestroy() {

@@ -1,7 +1,5 @@
 <template>
-  <div id="app"
-  class="noselect"
-  >
+  <div id="app" class="noselect">
     <component :is="layout">
       <router-view />
     </component>
@@ -26,7 +24,7 @@ export default Vue.extend({
     },
     ...mapGetters({
       getConfig: 'getConfig'
-    }),
+    })
   },
   components: {
     EmptyLayout,
@@ -34,7 +32,7 @@ export default Vue.extend({
   },
   methods: {
     ...mapMutations({
-      setConfig: 'setConfig',
+      setConfig: 'setConfig'
     }),
 
     setup() {
@@ -52,7 +50,7 @@ export default Vue.extend({
           console.warn('Error? while parse settings -', err)
         }
       })
-    
+
       ipcRenderer.on('OPCUA', (evt, payload) => {
         try {
           const tag = JSON.parse(payload)
@@ -61,9 +59,25 @@ export default Vue.extend({
             title: tag.param,
             value: tag.value
           }
-          
-          if (parameter.title !== `::AsGlobalPV:DateTime.Time`)
-            this.setParameters(parameter)
+
+          /* dev */
+          //if (parameter.title !== `::AsGlobalPV:DateTime.Time`) {
+          const type = this.getPanelType()
+          switch (type) {
+            case 'wash':
+              this.setParameters(parameter)
+              break
+            case 'vaccum':
+              /* dev */
+              const test_parameter = [0, 23, 130, 140, 0, 0, 0]
+              this.setDryParameters(test_parameter)
+
+              //this.setDryParameters(parameter)
+              break
+            default:
+              break
+          }
+          //}
         } catch (err) {
           console.warn('App.vue setup() error:', err)
         }
@@ -90,9 +104,12 @@ export default Vue.extend({
     ...mapMutations({
       setParameters: 'setParameters',
       setHumidity: 'setHumidity',
-      setTemperature: 'setTemperature'
+      setTemperature: 'setTemperature',
+      setDryParameters: 'setDryParameters'
     }),
-    ...mapGetters({}),
+    ...mapGetters({
+      getPanelType: 'getPanelType'
+    }),
     ...mapActions({
       updateCoinBalance: 'updateCoinBalance',
       updateBanknoteBalance: 'updateBanknoteBalance'
@@ -101,7 +118,6 @@ export default Vue.extend({
 
   mounted() {
     //this.setup()
-    
   },
   created() {
     this.setup()
