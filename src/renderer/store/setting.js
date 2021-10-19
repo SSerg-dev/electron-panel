@@ -126,7 +126,7 @@ export default {
     },
     getServiceBalance(state) {
       return state.serviceBalance
-      //return state.parameters.PanelMoney
+      //return state.parameters.panelMoney
     },
     getIncrement(state) {
       return state.increment 

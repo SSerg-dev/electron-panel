@@ -183,14 +183,19 @@ export default Vue.extend({
     setDryActiveProg() {
       this.dryActiveProg = [...this.getActiveProgBit()].reverse().join('')
       //console.log('this.dryActiveProg-->', this.dryActiveProg)
+      
+
       if (this.getDryProgPrice !== undefined) {
         this.dryProgPrice = this.getDryProgPrice.toString().split(',')
         //console.log('this.dryProgPrice-->', this.dryProgPrice)
       }
       
-      for (let i = 0; i < this.dryActiveProg.length - 1; i++) {
-      //for (let i = 1; i < this.dryActiveProg.length; i++) {  
-        console.log('this.costs-->', JSON.stringify(this.costs[i].display))
+      this.dryActiveProg = this.dryActiveProg.slice(1)
+      //console.log('this.dryActiveProg.length-->',this.dryActiveProg)
+      
+
+      for (let i = 0; i < this.dryActiveProg.length; i++) {
+        //console.log('this.costs-->', JSON.stringify(this.costs[i].display))
         if (typeof this.costs[i].display !== undefined) {
           this.costs[i].display = this.dryActiveProg?.toString().slice(i, i + 1)
         }

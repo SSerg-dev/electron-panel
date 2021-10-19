@@ -60,7 +60,7 @@ export default Vue.extend({
             value: tag.value
           }
 
-          /* dev */
+          /* dev 4prod */
           //if (parameter.title !== `::AsGlobalPV:DateTime.Time`) {
           const type = this.getPanelType()
           switch (type) {
@@ -68,11 +68,7 @@ export default Vue.extend({
               this.setParameters(parameter)
               break
             case 'vaccum':
-              /* dev */
-              const test_parameter = [0, 23, 130, 140, 0, 0, 0]
-              this.setDryParameters(test_parameter)
-
-              //this.setDryParameters(parameter)
+              this.setDryParameters(parameter)
               break
             default:
               break

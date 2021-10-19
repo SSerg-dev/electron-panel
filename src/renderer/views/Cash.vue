@@ -1,13 +1,11 @@
 <template>
   <div>
     <div class="locate">
-
       <router-link to="/">
         <div class="back">
           <img src="imgs/key/back.png" />
         </div>
       </router-link>
-      
 
       <div align="justify" class="message">
         <div><Message /></div>
@@ -25,16 +23,18 @@
       </div>
 
       <div align="center" class="money-title">
-        <!-- dev -->
         <div align="center" class="cash-show">
           <CashShow />
         </div>
       </div>
 
-      <div align="center" class="cash"> 
+      <div v-if="this.getPanelType === 'wash'" align="center" class="cash">
         <CashBill />
       </div>
-      
+
+      <div v-if="this.getPanelType === 'vaccum'" align="center" class="cash">
+        <CashVaccumBill />
+      </div>
     </div>
   </div>
 </template>
@@ -45,6 +45,7 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 import CashBill from '@/components/CashBill'
 import Message from '@/components/app/Message'
 import CashShow from '@/components/CashShow'
+import CashVaccumBill from '@/components/vaccum/CashVaccumBill'
 
 export default Vue.extend({
   name: 'cash',
@@ -60,15 +61,19 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getWetBusyPanel: 'getWetBusyPanel',
-      getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
-      getWetBalance: 'getWetBalance'
+      //getWetBalance: 'getWetBalance',
+      /* dev */
+      getPanelType: 'getPanelType',
+      getDryBusyPanel: 'getDryBusyPanel',
+
+      getSecondsGotoMainMenu: 'getSecondsGotoMainMenu'
     })
   },
   // dev
   watch: {},
   methods: {
     ...mapActions({
-      updateClearBalance: 'updateClearBalance'
+      //updateClearBalance: 'updateClearBalance'
     }),
     ...mapMutations({
       setRouter: 'setRouter'
@@ -76,24 +81,47 @@ export default Vue.extend({
 
     gotoMainMenu(seconds) {
       this.intervalMainMenu = setInterval(() => {
+        /* 
         if (
           --seconds < 0 &&
           this.getWetBusyPanel === 'false' &&
           this.$route.name !== 'home'
         ) {
-          //console.log('seconds-->', seconds)
           this.$router.push('/')
         }
+        */
+        
+       const type = this.getPanelType
+       switch (type) {
+        case 'wash':
+           if (
+          --seconds < 0 &&
+          this.getWetBusyPanel === 'false' &&
+          this.$route.name !== 'home'
+        ) {
+          this.$router.push('/')
+        }
+          break
+        case 'vaccum':
+           if (
+          --seconds < 0 &&
+          this.getDryBusyPanel === 'false' &&
+          this.$route.name !== 'home'
+        ) {
+          this.$router.push('/')
+        }
+          break
+        default:
+          console.warn('no panel type')
+          break
+      }
+       
+
       }, 1000)
     }
   },
   mounted() {
     this.setRouter('/cash')
-
-    // console.log('this.messages[0]-->',this.messages[0])
-
-    if (this.$store.state.params.length === 0)
-      this.$error('$store.state.params no data $error')
 
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },
@@ -104,7 +132,8 @@ export default Vue.extend({
   components: {
     CashBill,
     Message,
-    CashShow
+    CashShow,
+    CashVaccumBill
   }
 })
 </script>
@@ -123,8 +152,8 @@ export default Vue.extend({
 .message {
   position: absolute;
   margin-top: -7em;
-  margin-left: 19em; 
-  
+  margin-left: 19em;
+
   font-family: 'Plumb-Medium';
   font-weight: normal;
   text-align: justify;

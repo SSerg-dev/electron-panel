@@ -262,55 +262,55 @@ export default {
               id: 1,
               title: 'ПЫЛЕСОС',
               name: 'vacuum',
-              price: 11,
+              price: 0,
               priceTurbo: 0,
               mode: '',
-              display: '1'
+              display: '0'
             },
             {
               id: 2,
               title: 'ВОЗДУХ',
               name: 'air',
-              price: 22,
+              price: 0,
               priceTurbo: 0,
               mode: '',
-              display: '1'
+              display: '0'
             },
             {
               id: 3,
               title: 'ОМЫВАТЕЛЬ',
               name: 'washer',
-              price: 33,
+              price: 0,
               priceTurbo: 0,
               mode: '',
-              display: '1'
+              display: '0'
             },
             {
               id: 4,
               title: 'ТУРБОСУШКА',
               name: 'turboDryer',
-              price: 44,
+              price: 0,
               priceTurbo: 0,
               mode: '',
-              display: '1'
+              display: '0'
             },
             {
               id: 5,
               title: 'ЧЕРНЕНИЕ',
               name: 'blacking',
-              price: 55,
+              price: 0,
               priceTurbo: 0,
               mode: '',
-              display: '1'
+              display: '0'
             },
             {
               id: 6,
               title: 'ДЕЗИНФЕКЦИЯ',
               name: 'disinfection',
-              price: 66,
+              price: 0,
               priceTurbo: 0,
               mode: '',
-              display: '1'
+              display: '0'
             },
           ]  
     }, // end state

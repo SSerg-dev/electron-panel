@@ -11,7 +11,7 @@ export default {
   getters: {
     getCoinBalance(state) {
       return state.coinBalance
-      //return state.parameters.PanelMoney
+      //return state.parameters.panelMoney
     },
     getBanknoteBalance(state) {
       return state.banknoteBalance

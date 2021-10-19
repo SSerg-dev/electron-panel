@@ -81,22 +81,22 @@ export default new Vuex.Store({
       progShowMask: '',
       progStatusMask: '',
       busy: '',
-      PanelMoney: '0'
+      panelMoney: '0'
     },
-    
+
     dryParameters: {
       progPrice: '',
       /* dev */
-      progShowMask: '126',
+      progShowMask: '126' /* all 126, 0 */,
       progStatusMask: '',
       busy: '',
-      PanelMoney: '0'
+      panelMoney: '0'
     },
 
     isDebug: true
   },
   actions: {
-    // try {} catch (e) {} 
+    // try {} catch (e) {}
 
     updateStartProgram({ commit, dispatch, getters, state }, params) {
       console.log('updateStartProgram-->', JSON.stringify(params))
@@ -200,9 +200,12 @@ export default new Vuex.Store({
     /* dev */
 
     updateConfig({ getters }, config) {
-      
       //console.group(`config:`)
-      console.log(`Config update config.bank_terminal--> ${ JSON.stringify(config.bank_terminal) }`)
+      console.log(
+        `Config update config.bank_terminal--> ${JSON.stringify(
+          config.bank_terminal
+        )}`
+      )
       //console.log('Config update config.ui.CNW-->', config.ui.CNW)
       //console.log('++Config update-->', config.ui.main_window)
       //console.log('++Config update-->', config.ui.hide_cursor)
@@ -214,9 +217,8 @@ export default new Vuex.Store({
       //console.log('++Config update default-->', config.languages.default)
       //console.log('++Config update currency-->', config.currency)
       //console.log('++Config update countries-->', config.countries)
-      //console.log('++Config update-->', config.ui.direct_cash)  
+      //console.log('++Config update-->', config.ui.direct_cash)
       //console.groupEnd()
-
 
       try {
         ipcRenderer.send('config', JSON.stringify(config))
@@ -237,9 +239,9 @@ export default new Vuex.Store({
 
     // Панель суммы платежей = (наличные или карта) + бонусы + сервисные деньги
     getWetBalance(state) {
-      // PanelMoney
+      // panelMoney
       //return state.params.find((p) => p.title === "TAG_WET_BALANCE")?.value;
-      return state.parameters.PanelMoney
+      return state.parameters.panelMoney
       //return 1001
     },
 
@@ -332,13 +334,17 @@ export default new Vuex.Store({
     getDryProgPrice(state) {
       return state.dryParameters.progPrice
     },
-
-    /*     getDryProg(state) {
+    getDryBalance(state) {
+      return state.dryParameters.panelMoney
+    },
+    getDryBusyPanel(state) {
+      return state.dryParameters.busy
+    },
+    /*
+    getDryProg(state) {
       return state.params.filter(p => p.title.slice(4, 7) === 'DRY')
     },
-    getDryBalance(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_BALANCE')?.value
-    },
+    
     getWetProgram(state) {
       return state.params.find(p => p.title === 'TAG_DRY_PROGRAM')?.value
     },
@@ -440,7 +446,7 @@ export default new Vuex.Store({
   mutations: {
     // set one parameter
     setParameters(state, parameter) {
-      console.log('--setParameters')
+      //console.log('--setParameters')
 
       state.isParamsChange = !state.isParamsChange
 
@@ -471,10 +477,10 @@ export default new Vuex.Store({
           // console.log(displayName, state.parameters.busy)
           state.parameters.busy = parameter.value
           break
-        // PanelMoney
+        // panelMoney
         case 'PanelMoney':
-          state.parameters.PanelMoney = parameter.value
-          //console.log(displayName, state.parameters.PanelMoney)
+          state.parameters.panelMoney = parameter.value
+          //console.log(displayName, state.parameters.panelMoney)
           break
         //------------------------
         //------------------------
@@ -483,29 +489,31 @@ export default new Vuex.Store({
           break
       }
     },
-    
+
     /* dev */
     setDryParameters(state, parameter) {
-      //console.log('++setDryParameters')
+      // console.log('++setDryParameters')
       state.isParamsChange = !state.isParamsChange
 
-      /* const displayName = parameter.title.slice(
+      // progPrice
+      // parameter.title = '::AsGlobalPV:VacuumPost[0].progPrice'
+      // parameter.value = [0, 23, 130, 140, 0, 0, 0]
+
+      // panel_money
+      parameter.title = '::AsGlobalPV:VacuumPost[0].panel_money'
+      parameter.value = 110
+
+      const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
-      ) */
-      /* dev */
-      const displayName = 'progPrice'
+      )
+      //console.log('displayName-->', displayName)
 
       switch (displayName) {
         case 'progPrice':
-          /* dev */
-          //state.dryParameters.progPrice = parameter.value
-          state.dryParameters.progPrice = parameter
-          //console.log( 'state.dryParameters.progPrice-->', state.dryParameters.progPrice)
-          //console.log( 'state.dryParameters.progShowMask-->', state.dryParameters.progShowMask)
-          
+          // +
+          state.dryParameters.progPrice = parameter.value
           break
-        
-          case 'progShowMask':
+        case 'progShowMask':
           state.dryParameters.progShowMask = parameter.value
           break
         case 'progStatusMask':
@@ -515,8 +523,12 @@ export default new Vuex.Store({
           state.dryParameters.busy = parameter.value
           break
         case 'panel_money':
-          state.dryParameters.PanelMoney = parameter.value
-          break 
+          /* dev 4prod */
+          //state.dryParameters.panelMoney = parameter.value
+          state.dryParameters.panelMoney = parameter.value
+          //console.log('state.dryParameters.panelMoney-->', state.dryParameters.panelMoney )
+
+          break
 
         default:
           break

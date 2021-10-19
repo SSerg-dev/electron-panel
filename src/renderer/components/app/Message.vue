@@ -1,8 +1,13 @@
 <template>
   <div>
     <div class="page-title">
-      {{ `${ getWetBalance }` }}
-      <!-- {{ `999` }} -->
+      <div v-if="this.getPanelType === 'wash'">
+        {{ `${ getWetBalance }` }}
+      </div>
+      <div v-if="this.getPanelType === 'vaccum'">
+        {{ `${ getDryBalance }` }}
+      </div>
+      
     </div>
   </div>
 </template>
@@ -29,18 +34,19 @@ export default Vue.extend({
   },
   methods: {
     ...mapActions({
-      updateStartProgram: 'updateStartProgram'
+      //updateStartProgram: 'updateStartProgram'
     })
   },
   computed: {
     ...mapGetters({
       //getCurrentMessage: 'getCurrentMessage',
       getWetBalance: 'getWetBalance',
+      getDryBalance: 'getDryBalance',
       getPanelType: 'getPanelType',
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
-      getActiveProgram: 'getActiveProgram',
-      getActiveProgramNumber: 'getActiveProgramNumber',
-      getWetBusyPanel: 'getWetBusyPanel'
+      //getDefaultPanelNumber: 'getDefaultPanelNumber',
+      //getActiveProgram: 'getActiveProgram',
+      //getActiveProgramNumber: 'getActiveProgramNumber',
+      //getWetBusyPanel: 'getWetBusyPanel'
     })
   },
 
