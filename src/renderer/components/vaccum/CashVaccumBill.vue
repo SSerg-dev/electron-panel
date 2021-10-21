@@ -1,9 +1,14 @@
 <template>
   <div class="page-title">
     <ul style="margin-top: 18em;">
+      <!-- <li>
+          <dev id="button-main"></dev> 
+      </li> -->
 
-      <li v-if="this.IsDryBalance === true  &&  this.getIsPing" 
-        @click="payUp('payBonus')">
+      <li
+        v-if="this.IsDryBalance === true && this.getIsPing"
+        @click="payUp('payBonus')"
+      >
         <div
           class="card white waves-effect pay-end-bonus"
           style="
@@ -31,12 +36,11 @@
           </div>
         </div>
       </li>
-      
+
       <!--  & getIsPing -->
-      <li 
-      v-if="this.IsDryBalance === false"
-      @click="payUp('payEnd')"
-      >
+      
+
+      <li v-if="this.IsDryBalance === false" @click="payUp('payEnd')">
         <div
           class="card white waves-effect pay-end-bonus"
           style="
@@ -62,13 +66,8 @@
             {{ '++ВНЕСИТЕ ОПЛАТУ' }}
           </div>
         </div>
-
-        
       </li>
-      <li
-      v-if="this.IsDryBalance === true"
-      @click="payUp('payEnd')"
-      >
+      <li v-if="this.IsDryBalance === true" @click="payUp('payEnd')">
         <div
           class="card white waves-effect pay-end-bonus"
           style="
@@ -83,6 +82,8 @@
                   box-shadow: 0px 13px 20px red;
                   "
         >
+          
+
           <div
             class="card-content black-text  noselect"
             style="
@@ -91,12 +92,12 @@
                   padding-top: 1em;
                   "
           >
-            {{ 'ЗАВЕРШИТЬ ОПЛАТУ' }}
+            {{ '++ЗАВЕРШИТЬ ОПЛАТУ' }}
           </div>
+          
         </div>
+          
       </li>
-
-
     </ul>
   </div>
 </template>
@@ -108,10 +109,14 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 import { Database } from '@/storage/database.js'
 import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
 import { Storage } from '@/storage/index.js'
+import sleep from '@/utils/sleep'
+// export { Component, Box, Circle, Button }
+//import { Component, Box, Circle, Button } from '@/shapes/component.js'
+
 import { ipcRenderer } from 'electron'
 
 export default {
-  name: 'cash-bill',
+  name: 'cash-vaccum-bill',
   data: () => ({
     title: '',
     body: '',
@@ -129,6 +134,29 @@ export default {
   }),
   mounted() {
     this.storage = new Storage(this.client, this.url)
+    /* dev */
+    // sleep(4000).then(() => {
+    //   console.log('run after 4 sec')
+    // })
+   
+    /* 
+    const button = new Button({
+      selector: '#button-main',
+      width: 10,
+      height: 5,
+
+      color: 'rgb(224, 224, 224)',
+      //borderRadius: 1,
+      borderTopRightRadius: 1,
+      borderTopLeftRadius: 1,
+      borderBottomRightRadius: 1,
+      borderBottomLeftRadius: 1,
+
+      border: 'solid 0.2em #00B9E3',
+
+      boxShadow: '0px 13px 20px #00B9E3'
+    })
+     */
 
     //console.log('++getDryBalance-->', this.getDryBalance)
   },
@@ -146,8 +174,7 @@ export default {
         if (!flag) this.$message('Внесите минимальную сумму (10 руб.)')
         return flag
       }
-    },
-    
+    }
   },
   methods: {
     ...mapGetters({
@@ -240,31 +267,29 @@ export default {
       const type = types[0]
 
       //console.log('payCashMoney')
-      
+
       const storage = new Storage(this.client, this.url)
       this.options = this.getStoreMoneyOptions()
       const response = await this.storage.getClient(method, this.options, type)
 
       /* dev */
       //console.log('++storeMoney-->', typeof response)
-      if (response === undefined ) {
+      if (response === undefined) {
         this.$router.push('/program')
-        this.$message(
-          `Связь с connect недоступна!!!`
-        )
+        this.$message(`Связь с connect недоступна!!!`)
         return
       }
       /* dev vaccum */
+
       if (+response.result === 0 && +this.getDryBalance > 0) {
         this.$router.push('/program')
         this.$message(
           `Оплата наличными прошла успешно, внесенная сумма:  ${+this
             .getDryBalance} ₽`
         )
-      }
-      else {
+      } else {
         this.$error('payCashMoney $error')
-        //this.$message(`Оплата наличными не прошла`)   
+        //this.$message(`Оплата наличными не прошла`)
       }
     },
     async appendBonusMoney() {
@@ -278,10 +303,8 @@ export default {
       if (+response.result === 0) {
         this.$message(`Бонусы зачислены успешно`)
       }
-
-      
     },
-  
+
     setEnabler() {
       this.getCashEnabler === true
         ? (this.cash_enabler = false)
