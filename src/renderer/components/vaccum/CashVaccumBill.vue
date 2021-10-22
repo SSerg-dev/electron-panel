@@ -1,10 +1,11 @@
 <template>
   <div class="page-title">
-    <ul style="margin-top: 18em;">
-      <!-- <li>
-          <dev id="button-main"></dev> 
-      </li> -->
+    <!-- <div
+      id="button-main"
+      style="background: white; margin-left: -8.0em; width: 945px;"
+    ></div> -->
 
+    <ul style="margin-top: 18em;">
       <li
         v-if="this.IsDryBalance === true && this.getIsPing"
         @click="payUp('payBonus')"
@@ -24,7 +25,7 @@
                   "
         >
           <div
-            class="card-content black-text  noselect"
+            class="card-content black-text button-content-style noselect"
             style="
                   font-size: 4em;
                   padding-right: 1.1em;
@@ -38,7 +39,6 @@
       </li>
 
       <!--  & getIsPing -->
-      
 
       <li v-if="this.IsDryBalance === false" @click="payUp('payEnd')">
         <div
@@ -56,14 +56,14 @@
                   "
         >
           <div
-            class="card-content black-text  noselect"
+            class="card-content black-text button-content-style  noselect"
             style="
                   font-size: 4em;
-                  padding-right: 1.5em;
+                  padding-right: 0em;
                   padding-top: 1em;
                   "
           >
-            {{ '++ВНЕСИТЕ ОПЛАТУ' }}
+            {{ 'ВНЕСИТЕ ОПЛАТУ' }}
           </div>
         </div>
       </li>
@@ -82,21 +82,17 @@
                   box-shadow: 0px 13px 20px red;
                   "
         >
-          
-
           <div
-            class="card-content black-text  noselect"
+            class="card-content black-text button-content-style noselect"
             style="
                   font-size: 4em;
-                  padding-right: 1.5em;
+                  padding-right: 0.5em;
                   padding-top: 1em;
                   "
           >
-            {{ '++ЗАВЕРШИТЬ ОПЛАТУ' }}
+            {{ 'ЗАВЕРШИТЬ ОПЛАТУ' }}
           </div>
-          
         </div>
-          
       </li>
     </ul>
   </div>
@@ -110,8 +106,8 @@ import { Database } from '@/storage/database.js'
 import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
 import { Storage } from '@/storage/index.js'
 import sleep from '@/utils/sleep'
-// export { Component, Box, Circle, Button }
-//import { Component, Box, Circle, Button } from '@/shapes/component.js'
+/* dev */
+import { Component, Box, Circle, Button } from '@/shapes/index.js'
 
 import { ipcRenderer } from 'electron'
 
@@ -138,27 +134,29 @@ export default {
     // sleep(4000).then(() => {
     //   console.log('run after 4 sec')
     // })
-   
-    /* 
-    const button = new Button({
+
+    /* const button = new Button({
       selector: '#button-main',
-      width: 10,
+      width: 60,
       height: 5,
 
-      color: 'rgb(224, 224, 224)',
-      //borderRadius: 1,
-      borderTopRightRadius: 1,
-      borderTopLeftRadius: 1,
-      borderBottomRightRadius: 1,
-      borderBottomLeftRadius: 1,
+      color: 'rgb(255, 255, 255)',
+      borderTopRightRadius: 2,
+      borderTopLeftRadius: 2,
+      borderBottomRightRadius: 2,
+      borderBottomLeftRadius: 2,
 
-      border: 'solid 0.2em #00B9E3',
+      border: 'solid 0.4em #00B9E3',
 
       boxShadow: '0px 13px 20px #00B9E3'
     })
-     */
+    button.hide()
+    button.show()
+    button.opacity(0.5) */
 
-    //console.log('++getDryBalance-->', this.getDryBalance)
+    /*     */
+
+    //console.log('getDryBalance-->', this.getDryBalance)
   },
   computed: {
     ...mapGetters({
@@ -180,6 +178,7 @@ export default {
     ...mapGetters({
       getCashEnabler: 'getCashEnabler',
       getStoreMoneyOptions: 'getStoreMoneyOptions',
+      getDryStoreMoneyOptions: 'getDryStoreMoneyOptions',
       getAppendBonus: 'getAppendBonus',
       /* dev */
       getCreateReceiptOptions: 'getCreateReceiptOptions',
@@ -269,11 +268,15 @@ export default {
       //console.log('payCashMoney')
 
       const storage = new Storage(this.client, this.url)
-      this.options = this.getStoreMoneyOptions()
+      /* dev */
+      //this.options = this.getStoreMoneyOptions()
+      this.options = this.getDryStoreMoneyOptions()
+      //console.log('this.options-->', this.options)
+
       const response = await this.storage.getClient(method, this.options, type)
 
       /* dev */
-      //console.log('++storeMoney-->', typeof response)
+      //console.log('storeMoney-->', typeof response)
       if (response === undefined) {
         this.$router.push('/program')
         this.$message(`Связь с connect недоступна!!!`)
@@ -376,5 +379,12 @@ export default {
   z-index: 1;
 
   font-family: 'Plumb-Medium';
+}
+.button-content-style {
+  font-size: 4em;
+  padding-top: 1.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

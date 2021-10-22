@@ -219,38 +219,53 @@ export default {
   computed: {
     ...mapGetters({
       getVaccumNumber: 'getVaccumNumber',
-      getWetBalance: 'getWetBalance'
+      getWetBalance: 'getWetBalance',
 
-      //getPanelType: 'getPanelType',
-      //getDefaultPanelNumber: 'getDefaultPanelNumber',
-      //getActiveProgram: 'getActiveProgram',
-      //getWetBalance: 'getWetBalance',
+      getPanelType: 'getPanelType',
+      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getActiveProgram: 'getActiveProgram',
+      getDryBalance: 'getDryBalance',
     })
   },
   methods: {
     ...mapActions({
-      //updateStartProgram: 'updateStartProgram'
+      updateDryStartProgram: 'updateDryStartProgram'
     }),
     ...mapMutations({
-      //setActiveProgram: 'setActiveProgram'
+      setActiveProgram: 'setActiveProgram'
     }),
     ...mapGetters({}),
-    /* setProgram(program) {
+
+    
+    setProgram(program) {
+      /* dev */
+      console.log('vaccumProgram-->', program)
+      this.setDown(program)
+      /*    */
+
       this.active = program
       this.setActiveProgram(this.active)
-      this.setDown(program)
-
-      this.updateStartProgram([
+      
+      /* this.updateDryStartProgram([
         this.getPanelType,
         this.getDefaultPanelNumber,
         this.getActiveProgram,
         this.getWetBalance
+      ]) */
+
+      this.updateDryStartProgram([
+        this.getPanelType,
+        this.getVaccumNumber,
+        this.getActiveProgram,
+        this.getDryBalance
       ])
 
-      this.timeoutPopup = setTimeout(() => {
-        this.$router.push('/popup')
-      }, 2000)
-    }, */
+
+      // this.timeoutPopup = setTimeout(() => {
+      //   this.$router.push('/popup')
+      // }, 2000)
+
+    },
     setDown(program) {
       this.clearDown()
       switch (program) {
@@ -277,27 +292,6 @@ export default {
         default:
           break
       }
-    },
-    setProgram(program) {
-      /* dev */
-      console.log('vaccumProgram-->', program)
-      this.setDown(program)
-      /*    */
-
-      /* this.active = program
-      this.setActiveProgram(this.active)
-      this.setDown(program)
-
-      this.updateStartProgram([
-        this.getPanelType,
-        this.getDefaultPanelNumber,
-        this.getActiveProgram,
-        this.getWetBalance
-      ])
-
-      this.timeoutPopup = setTimeout(() => {
-        this.$router.push('/popup')
-      }, 2000) */
     },
     clearDown() {
       this.isDown = Object.fromEntries(

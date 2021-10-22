@@ -14,8 +14,7 @@ class Component {
   opacity(opacity) {
     this.$el.style.opacity = opacity
   }
-}  
-
+}
 // box
 class Box extends Component {
 
@@ -41,6 +40,7 @@ class Box extends Component {
     
   }
 }
+
 
 // example box --------------------------
 /* 
@@ -73,6 +73,7 @@ const box02 = new Box({
   
 })
 
+
 */
 
 // circle
@@ -85,7 +86,7 @@ class Circle extends Box {
     this.$el.style.boxShadow = '0px 13px 20px red'
 
   }
-}
+} 
 
 // example circle -----------------------
 /* 
@@ -97,6 +98,7 @@ const circle = new Circle ({
   border: 'solid 0.2em #00B9E3' 
 
 })
+
 */
 
 // button
@@ -112,9 +114,7 @@ class Button extends Box {
 }
 
 // example button -----------------------
-
-
-  const button = new Button ({
+const button = new Button ({
 
   selector: '#button-main',
   width: 10,

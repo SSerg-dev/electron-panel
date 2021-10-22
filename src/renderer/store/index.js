@@ -96,7 +96,35 @@ export default new Vuex.Store({
     isDebug: true
   },
   actions: {
-    // try {} catch (e) {}
+    /* dev */
+    updateDryStartProgram({ commit, dispatch, getters, state }, params) {
+      console.log('++updateDryStartProgram-->', JSON.stringify(params))
+
+      //if (params[2] === 'operator') dispatch('updateCallOperator')
+
+      //const number = state.programs.findIndex(p => p === params[2]) + 1
+      //commit('setActiveProgramNumber', number)
+      
+      if (params[3] > 0 || params[2] === 'stop') {
+        try {
+          // box index 1,2 ...
+          /* ipcRenderer.send(
+            'OPCUA',
+            JSON.stringify({
+              
+              node: `::AsGlobalPV:PostN[${getters.getDefaultPanelNumber -
+                1}].prog`,
+              value: getters.getActiveProgramNumber
+              
+            })
+          ) */
+        } catch (e) {
+          console.warn('Error:', e.message)
+        }
+      }
+    },
+    /*     */
+
 
     updateStartProgram({ commit, dispatch, getters, state }, params) {
       console.log('updateStartProgram-->', JSON.stringify(params))
@@ -501,7 +529,8 @@ export default new Vuex.Store({
 
       // panel_money
       parameter.title = '::AsGlobalPV:VacuumPost[0].panel_money'
-      parameter.value = 110
+      /* dev */
+      parameter.value = 112
 
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1

@@ -50,6 +50,49 @@ export default {
         }
       }
     },
+    /* dev */
+    storeDryMoneyOptions: {
+      method: 'storage::store_money',
+      /* params: {
+        unit_id: 4,
+        type: 'cash',
+        sum: 4242,
+        detail: { coins_10: 1, coins_count: 1, sum_coins: 10 }
+      } */
+      params: {
+        // _unit_id – номер поста (0-7)
+        unit_id: 4,
+        // _money_type – cash, card, service, bonus
+        type: 'cash',
+        // _sum – сумма зачисления
+        sum: 4141,
+        // nl::json – структура доп. данных
+        detail: {
+          // сумма зачисления в монетах
+          sum_coins: 0,
+          // общее количество монет
+          coins_count: 0,
+          // номинал монеты
+          coins_1: 1,  
+          coins_2: 2,
+          coins_5: 5,
+          coins_10: 10,
+          // сумма зачисления в купюрах
+          sum_bills: 300,
+          // количество купюр наминала 10р
+          bills_10: 0,
+          // количество купюр наминала 50
+          bills_50: 0,
+          // количество купюр наминала 100р
+          bills_100: 0,
+          // количество купюр наминала 200
+          bills_200: 0,
+          // количество купюр наминала 500
+          bills_500: 0
+        }
+      }
+    },
+    /*     */
     collectOptions: {
       method: 'storage::collect',
       params: { unit_id: 4, user: 'Sergei' }
@@ -164,6 +207,11 @@ export default {
     getStoreMoneyOptions(state) {
       return state.storeMoneyOptions
     },
+    /* dev */
+    getDryStoreMoneyOptions(state) {
+      return state.storeDryMoneyOptions
+    },
+
     getCollectOptions(state) {
       return state.collectOptions
     },

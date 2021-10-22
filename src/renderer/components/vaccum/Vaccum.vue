@@ -43,8 +43,9 @@
         <li class="collection-item cost" @click="payUp('second')">
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
-              <div style="color: #00b9e3">{{ `ПОСТ №2 &nbsp &nbsp` }}</div>
-              <div>{{ `ОПЛАТИТЬ` }}</div>
+              <div>{{ `ОПЛАТИТЬ &nbsp &nbsp` }}</div>
+              <div style="color: #00b9e3">{{ `ПОСТ №2` }}</div>
+              
             </div>
           </div>
         </li>
