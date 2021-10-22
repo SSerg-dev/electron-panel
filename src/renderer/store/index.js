@@ -5,7 +5,7 @@ import setting from './setting'
 import program from './program'
 import cost from './cost'
 import paid from './paid'
-import vaccum from './vaccum'
+import vacuum from './vacuum'
 import finance from './finance'
 import options from './options'
 //import connect from './connect'
@@ -76,6 +76,15 @@ export default new Vuex.Store({
       'mosquito_x2',
       'turboDryer' // ?
     ],
+    dryPrograms: [
+      'vacuum',
+      'air',
+      'washer',
+      'turboDryer',
+      'blacking',
+      'disinfection'
+    ],
+
     parameters: {
       progPrice: '',
       progShowMask: '',
@@ -97,43 +106,107 @@ export default new Vuex.Store({
   },
   actions: {
     /* dev */
+    // Dry actions ======================
+    // update program
     updateDryStartProgram({ commit, dispatch, getters, state }, params) {
       console.log('++updateDryStartProgram-->', JSON.stringify(params))
+      
+      if (params[2] === 'operator') dispatch('updateDryCallOperator')
+      const number = state.dryPrograms.findIndex(p => p === params[2]) + 1
 
-      //if (params[2] === 'operator') dispatch('updateCallOperator')
-
-      //const number = state.programs.findIndex(p => p === params[2]) + 1
-      //commit('setActiveProgramNumber', number)
+      commit('setActiveProgramNumber', number)
       
       if (params[3] > 0 || params[2] === 'stop') {
         try {
           // box index 1,2 ...
-          /* ipcRenderer.send(
+          ipcRenderer.send(
             'OPCUA',
             JSON.stringify({
               
-              node: `::AsGlobalPV:PostN[${getters.getDefaultPanelNumber -
+              node: `::AsGlobalPV:VacuumPost[${ getters.getVacUumNumber -
                 1}].prog`,
               value: getters.getActiveProgramNumber
-              
             })
-          ) */
+          )
         } catch (e) {
           console.warn('Error:', e.message)
         }
       }
     },
-    /*     */
+    updateDryCallOperator({ getters }) {
+      try {
+        ipcRenderer.send(
+          'OPCUA',
+          JSON.stringify({
+            node: `::AsGlobalPV:Vacuum[${ getters.getVacuumNumber -
+              1}].operatorCall`,
+            value: true
+          })
+        )
 
+      } catch (e) {
+        console.warn('Error:', e.message)
+      }
+    },
+    /* dev */
+    // Платежи --------------------------
+    // (наличные или карта)
+    updateDryMoney({ getters }, cash) {
+      console.log('!!!updateDryMoney-->', cash)
+      try {
+        ipcRenderer.send(
+          'OPCUA',
+          JSON.stringify({
+            node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
+              1}].paidMoney`,
+            value: cash
+          })
+        )
+      } catch (e) {
+        console.warn('Error:', e.message)
+      }
+    },
+    // сервисные деньги
+    updateDryServMoney({ getters }, service) {
+      try {
+        ipcRenderer.send(
+          'OPCUA',
+          JSON.stringify({
+            node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
+              1}].paidService`,
+            value: service
+          })
+        )
+      } catch (e) {
+        console.warn('Error:', e.message)
+      }
+    },
+    // бонусы
+    updateDryBonusMoney({ getters }, bonus) {
+      console.log('Bonus update-->', bonus)
+      try {
+        ipcRenderer.send(
+          'OPCUA',
+          JSON.stringify({
+            node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
+              1}].paidBonus`,
+            value: bonus
+          })
+        )
+      } catch (e) {
+        console.warn('Error:', e.message)
+      }
+    },
+    // end Платежи ----------------------
+    // end Dry actions ==================
 
+    
+    // Wet actions ======================
     updateStartProgram({ commit, dispatch, getters, state }, params) {
       console.log('updateStartProgram-->', JSON.stringify(params))
 
-      // if (params[2] === 'operator') dispatch('sendCallOperator')
       if (params[2] === 'operator') dispatch('updateCallOperator')
-
       const number = state.programs.findIndex(p => p === params[2]) + 1
-      //console.log('number-->', number)
 
       commit('setActiveProgramNumber', number)
       if (params[3] > 0 || params[2] === 'stop') {
@@ -142,12 +215,9 @@ export default new Vuex.Store({
           ipcRenderer.send(
             'OPCUA',
             JSON.stringify({
-              /* dev */
-              /* node: '::AsGlobalPV:PostN[4].prog', */
               node: `::AsGlobalPV:PostN[${getters.getDefaultPanelNumber -
                 1}].prog`,
               value: getters.getActiveProgramNumber
-              //
             })
           )
         } catch (e) {
@@ -156,12 +226,10 @@ export default new Vuex.Store({
       }
     },
     updateCallOperator({ getters }) {
-      //console.log("!!!updateCallOperator")
       try {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            //node: '::AsGlobalPV:PostN[4].operatorCall',
             node: `::AsGlobalPV:PostN[${getters.getDefaultPanelNumber -
               1}].operatorCall`,
             value: true
@@ -171,8 +239,7 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
-    // Платежи ----------------------------------------------------------------
-
+    // Платежи --------------------------
     // (наличные или карта)
     updateWetMoney({ getters }, cash) {
       console.log('!!!updateWetMoney-->', cash)
@@ -180,7 +247,6 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            //node: '::AsGlobalPV:PostBalance[4].paidMoney',
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
               1}].paidMoney`,
             value: cash
@@ -196,7 +262,6 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            //node: '::AsGlobalPV:PostBalance[4].paidService',
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
               1}].paidService`,
             value: service
@@ -213,7 +278,6 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            //node: '::AsGlobalPV:PostBalance[4].paidBonus',
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
               1}].paidBonus`,
             value: bonus
@@ -223,9 +287,12 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
-    // end Платежи ------------------------------------------------------------
+    // end Платежи ----------------------
+
+    // end Wet actions ==================
+
+
     // update config
-    /* dev */
 
     updateConfig({ getters }, config) {
       //console.group(`config:`)
@@ -520,6 +587,20 @@ export default new Vuex.Store({
 
     /* dev */
     setDryParameters(state, parameter) {
+      // need list OPC parameters
+      // ::AsGlobalPV:VacuumPost[0].progPrice	[0, 23, 130, 140, 0, 0, 0]
+      // ::AsGlobalPV:VacuumPost[0].progShowMask	126
+      // ::AsGlobalPV:VacuumPost[0].progStatusMask	126
+      // ::AsGlobalPV:VacuumPost[0].busy	false
+      // ::AsGlobalPV:VacuumPost[0].panel_money	20
+      // ::AsGlobalPV:VacuumBalance[0].paidMoney	0
+      // ::AsGlobalPV:VacuumBalance[0].paidService	30
+      // ::AsGlobalPV:VacuumBalance[0].paidBonus	0
+      // ::AsGlobalPV:Vacuum[0].operatorCall	false
+      
+      // need list connect functions 
+
+
       // console.log('++setDryParameters')
       state.isParamsChange = !state.isParamsChange
 
@@ -531,6 +612,7 @@ export default new Vuex.Store({
       parameter.title = '::AsGlobalPV:VacuumPost[0].panel_money'
       /* dev */
       parameter.value = 112
+      // --------------------------------
 
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
@@ -539,7 +621,6 @@ export default new Vuex.Store({
 
       switch (displayName) {
         case 'progPrice':
-          // +
           state.dryParameters.progPrice = parameter.value
           break
         case 'progShowMask':
@@ -619,7 +700,7 @@ export default new Vuex.Store({
     program,
     cost,
     paid,
-    vaccum,
+    vacuum,
     finance,
     options,
     //connect,

@@ -80,7 +80,7 @@ export default Vue.extend({
       this.select = title
       /* dev */
       if (typeId === 1) this.setPanelType('wash')
-      else if (typeId === 2) this.setPanelType('vaccum')
+      else if (typeId === 2) this.setPanelType('vacuum')
       else if (typeId === 3) this.setPanelType('payment')
 
       //console.log('++panelType watch-->', this.getPanelType)

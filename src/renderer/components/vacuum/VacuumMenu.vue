@@ -1,20 +1,20 @@
 <template>
   <div>
     
-      <!-- <div v-if="this.getPanelType === 'vaccum'">
-        <span class="white-text">{{ getVaccumNumber }}</span>
+      <!-- <div v-if="this.getPanelType === 'vacuum'">
+        <span class="white-text">{{ getVacuumNumber }}</span>
       </div> -->
     
     <section>
       
       <div>
-        <div class="first-vaccum">
-          <VaccumTable :actives="actives" :number="first" />
+        <div class="first-vacuum">
+          <VacuumTable :actives="actives" :number="first" />
         </div>
 
-        <div class="second-vaccum">
+        <div class="second-vacuum">
           >
-          <VaccumTable :actives="actives" :number="second" />
+          <VacuumTable :actives="actives" :number="second" />
         </div>
       </div>
  
@@ -30,10 +30,10 @@
 <script>
 import Vue from 'vue'
 import { mapGetters, mapActions } from 'vuex'
-import VaccumTable from '@/components/vaccum/VaccumTable'
+import VacuumTable from '@/components/vacuum/VacuumTable'
 
 export default Vue.extend({
-  name: 'vaccum',
+  name: 'vacuum',
   data() {
     return {
       actives: [],
@@ -68,12 +68,12 @@ export default Vue.extend({
       return this.actives
     }, */
     ...mapGetters({
-      getProgramsVaccum: 'getProgramsVaccum'
+      getProgramsVacuum: 'getProgramsVacuum'
     })
   },
   created() {
     // 01
-    this.actives = this.getProgramsVaccum()
+    this.actives = this.getProgramsVacuum()
   },
   mounted() {
     // 02
@@ -81,7 +81,7 @@ export default Vue.extend({
   },
   
   components: {
-    VaccumTable
+    VacuumTable
   }
 })
 </script>
@@ -104,11 +104,11 @@ section {
 h5 {
   color: white;
 }
-.first-vaccum {
+.first-vacuum {
   margin-top: 0em;
   margin-left: 1.5em;
 }
-.second-vaccum { 
+.second-vacuum { 
   margin-top: 0em;
   margin-left: 1.5em;
   padding-top: 44em;

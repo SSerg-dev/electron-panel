@@ -112,7 +112,7 @@ import { Component, Box, Circle, Button } from '@/shapes/index.js'
 import { ipcRenderer } from 'electron'
 
 export default {
-  name: 'cash-vaccum-bill',
+  name: 'cash-vacuum-bill',
   data: () => ({
     title: '',
     body: '',
@@ -282,7 +282,7 @@ export default {
         this.$message(`Связь с connect недоступна!!!`)
         return
       }
-      /* dev vaccum */
+      /* dev vacuum */
 
       if (+response.result === 0 && +this.getDryBalance > 0) {
         this.$router.push('/program')

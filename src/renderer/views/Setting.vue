@@ -513,8 +513,8 @@
                   <div v-if="this.getPanelType === 'wash'">
                     <SettingPanelNumber />
                   </div>
-                  <div v-if="this.getPanelType === 'vaccum'">
-                    <SettingPanelVaccum />
+                  <div v-if="this.getPanelType === 'vacuum'">
+                    <SettingPanelVacuum />
                   </div>
                   <div v-if="this.getPanelType === 'payment'">
                     <SettingPanelPayment />
@@ -845,7 +845,7 @@ import Vue from 'vue'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import SettingPanelType from '@/components/setting/SettingPanelType'
 import SettingPanelNumber from '@/components/setting/SettingPanelNumber'
-import SettingPanelVaccum from '@/components/setting/SettingPanelVaccum'
+import SettingPanelVacuum from '@/components/setting/SettingPanelVacuum'
 import SettingPanelPayment from '@/components/setting/SettingPanelPayment'
 import SettingPaymentLanguage from '@/components/setting/SettingPaymentLanguage'
 import SettingPaymentCurrency from '@/components/setting/SettingPaymentCurrency'
@@ -911,7 +911,7 @@ export default Vue.extend({
   components: {
     SettingPanelType,
     SettingPanelNumber,
-    SettingPanelVaccum,
+    SettingPanelVacuum,
     SettingPanelPayment,
     SettingPaymentLanguage,
     SettingPaymentCurrency,
@@ -992,7 +992,7 @@ export default Vue.extend({
 
       //const panelType = this.getPanelType
       //if (panelType === 'wash') this.$router.push('/')
-      //if (panelType === 'vaccum') this.$router.push('/password')
+      //if (panelType === 'vacuum') this.$router.push('/password')
       //if (panelType === 'payment') this.$router.push('/')
     },
     cancelHandler() {

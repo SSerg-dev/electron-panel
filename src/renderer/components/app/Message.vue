@@ -4,7 +4,7 @@
       <div v-if="this.getPanelType === 'wash'">
         {{ `${ getWetBalance }` }}
       </div>
-      <div v-if="this.getPanelType === 'vaccum'">
+      <div v-if="this.getPanelType === 'vacuum'">
         {{ `${ getDryBalance }` }}
       </div>
       
@@ -34,19 +34,13 @@ export default Vue.extend({
   },
   methods: {
     ...mapActions({
-      //updateStartProgram: 'updateStartProgram'
     })
   },
   computed: {
-    ...mapGetters({
-      //getCurrentMessage: 'getCurrentMessage',
+    ...mapGetters({  
       getWetBalance: 'getWetBalance',
       getDryBalance: 'getDryBalance',
       getPanelType: 'getPanelType',
-      //getDefaultPanelNumber: 'getDefaultPanelNumber',
-      //getActiveProgram: 'getActiveProgram',
-      //getActiveProgramNumber: 'getActiveProgramNumber',
-      //getWetBusyPanel: 'getWetBusyPanel'
     })
   },
 

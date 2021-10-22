@@ -8,7 +8,7 @@ export default {
     serviceBalance: 0,
     increment: 0,
     // panel type
-    vaccum: 1,
+    vacuum: 1,
     payment: 1,
     isTooltipInstalled: true
   }, // end state
@@ -73,10 +73,10 @@ export default {
     getDefaultPanelNumber(state) {
       return state.config.index
     },
-    getVaccumNumber(state) {
-      return state.vaccum
+    getVacuumNumber(state) {
+      return state.vacuum
     },
-    getVaccumPayment(state) {
+    getVacuumPayment(state) {
       return state.payment
     },
     getDefaultBiils(state) {
@@ -202,10 +202,10 @@ export default {
     setDefaultPanelNumber(state, index) {
       state.config.index = index
     },
-    setVaccumNumber(state, vaccum) {
-      state.vaccum = vaccum
+    setVacuumNumber(state, vacuum) {
+      state.vacuum = vacuum
     },
-    setVaccumPayment(state, payment) {
+    setVacuumPayment(state, payment) {
       state.payment = payment
     },
     setServiceBalance(state, balance) {

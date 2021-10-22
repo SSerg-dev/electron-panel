@@ -251,7 +251,7 @@ export default {
         )
         return
       }
-      /* dev vaccum */
+      /* dev vacuum */
       if (+response.result === 0 && +this.getWetBalance > 0) {
         this.$router.push('/program')
         this.$message(

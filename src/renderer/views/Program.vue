@@ -7,8 +7,8 @@
         <ProgramTable :actives="actives" :delay="delay" />
       </div>
 
-      <div v-if="this.getPanelType === 'vaccum'">
-        <VaccumTable :actives="activesVaccum" />
+      <div v-if="this.getPanelType === 'vacuum'">
+        <VacuumTable :actives="activesVacuum" />
       </div>
 
     </section>
@@ -22,7 +22,7 @@
 import Vue from 'vue'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 import ProgramTable from '@/components/ProgramTable'
-import VaccumTable from '@/components/vaccum/VaccumTable'
+import VacuumTable from '@/components/vacuum/VacuumTable'
 
 export default Vue.extend({
   name: 'program',
@@ -30,7 +30,7 @@ export default Vue.extend({
     return {
       actives: [],
       /* dev */
-      activesVaccum: [],
+      activesVacuum: [],
 
       delay: 1000,
 
@@ -127,14 +127,14 @@ export default Vue.extend({
     },
     ...mapGetters({
       getPrograms: 'getPrograms',
-      getProgramsVaccum: 'getProgramsVaccum'
+      getProgramsVacuum: 'getProgramsVacuum'
     })
   },
 
   created() {
     this.actives = this.getPrograms()
     /* dev */
-    this.activesVaccum = this.getProgramsVaccum() 
+    this.activesVacuum = this.getProgramsVacuum() 
   },
   mounted() {
     
@@ -148,7 +148,7 @@ export default Vue.extend({
 
   components: {
     ProgramTable,
-    VaccumTable
+    VacuumTable
   }
 })
 </script>

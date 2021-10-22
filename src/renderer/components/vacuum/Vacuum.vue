@@ -61,7 +61,7 @@ import MainMenu from '@/components/MainMenu'
 //import { ipcRenderer } from 'electron'
 
 export default Vue.extend({
-  name: 'vaccum',
+  name: 'vacuum',
 
   data: () => ({
     active: '',
@@ -74,11 +74,14 @@ export default Vue.extend({
     },
 
     isMainMenu: false,
-    type: 'vaccum'
+    type: 'vacuum'
     //number:
   }),
   computed: {
     ...mapGetters({
+      getVacuumNumber: 'getVacuumNumber',
+      getWetBalance: 'getWetBalance',
+
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
@@ -107,11 +110,11 @@ export default Vue.extend({
     ...mapMutations({
       setPanelType: 'setPanelType',
       setActiveProgram: 'setActiveProgram',
-      setVaccumNumber: 'setVaccumNumber',
+      setVacuumNumber: 'setVacuumNumber',
       setIsFooter: 'setIsFooter'
     }),
     ...mapActions({
-      updateStartProgram: 'updateStartProgram'
+      updateDryStartProgram: 'updateDryStartProgram'
     }),
 
     /*     */
@@ -121,7 +124,7 @@ export default Vue.extend({
         case 'first':
           //console.log('first')
           this.isMainMenu = true
-          this.setVaccumNumber(1)
+          this.setVacuumNumber(1)
           break
         case 'operator':
           this.setProgram(program)
@@ -129,7 +132,7 @@ export default Vue.extend({
         case 'second':
           //console.log('second')
           this.isMainMenu = true
-          this.setVaccumNumber(2)
+          this.setVacuumNumber(2)
           break
 
         default:
@@ -138,16 +141,15 @@ export default Vue.extend({
     },
     setProgram(program) {
       console.log('++setProgram-->', program)
-
       this.active = program //+
       this.setActiveProgram(this.active)
       this.setDown(program)
-
-      this.updateStartProgram([
+      /* dev */
+      this.updateDryStartProgram([
         this.getPanelType,
-        this.getDefaultPanelNumber,
+        this.getVacuumNumber,
         this.getActiveProgram,
-        this.getWetBalance
+        this.getDryBalance
       ])
 
       this.timeoutPopup = setTimeout(() => {

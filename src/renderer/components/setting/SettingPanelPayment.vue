@@ -12,7 +12,7 @@
       <div class="card-content black-text">
         <span class="card-title">ПОСТ ОПЛАТЫ:</span>
         <div class="input-field">
-          <!-- v-if="this.getPanelType === 'vaccum'" -->
+          <!-- v-if="this.getPanelType === ''" -->
           <div>
             <!-- <div>{{ `${this.getPanelType}` }}</div> -->
             <select
@@ -64,7 +64,7 @@ export default Vue.extend({
     }),
     ...mapMutations({
       // setDefaultPanelNumber: 'setDefaultPanelNumber'
-      setVaccumPayment: 'setVaccumPayment'
+      setVacuumPayment: 'setVacuumPayment'
     })
   },
   computed: {
@@ -78,7 +78,7 @@ export default Vue.extend({
       const { id, title } = this.payments.find(p => p.id === paymentId)
       this.select = title
 
-      this.setVaccumPayment(id)
+      this.setVacuumPayment(id)
     }
   },
   created() {

@@ -70,11 +70,11 @@
           <div v-if="this.getPanelType === 'wash'">
             <span class="white-text">{{ this.getDefaultPanelNumber }}</span>
           </div>
-          <div v-if="this.getPanelType === 'vaccum'">
-            <span class="white-text">{{ getVaccumNumber }}</span>
+          <div v-if="this.getPanelType === 'vacuum'">
+            <span class="white-text">{{ getVacuumNumber }}</span>
           </div>
           <div v-if="this.getPanelType === 'payment'">
-            <span class="white-text">{{ getVaccumPayment }}</span>
+            <span class="white-text">{{ getVacuumPayment }}</span>
           </div>
         </div>
       </div>
@@ -84,9 +84,9 @@
           <span class="white-text">{{ 'BOX' | localize }}</span>
         </div>
       </div>
-      <div v-if="this.getPanelType === 'vaccum'">
+      <div v-if="this.getPanelType === 'vacuum'">
         <div class="box">
-          <span class="white-text">{{ 'VACCUM' | localize }}</span>
+          <span class="white-text">{{ 'VACUUM' | localize }}</span>
         </div>
       </div>
       <div v-if="this.getPanelType === 'payment'">
@@ -158,8 +158,8 @@ export default {
       getWetBusyPanel: 'getWetBusyPanel',
       getIsPayCardMoney: 'getIsPayCardMoney',
       getPanelType: 'getPanelType',
-      getVaccumNumber: 'getVaccumNumber',
-      getVaccumPayment: 'getVaccumPayment',
+      getVacuumNumber: 'getVacuumNumber',
+      getVacuumPayment: 'getVacuumPayment',
       getCurrentLocale: 'getCurrentLocale',
       info: 'info',
       getRouter: 'getRouter'

@@ -111,7 +111,7 @@ export default Vue.extend({
           this.costs = this.getCosts()
           this.setActiveProg()
           break
-        case 'vaccum':
+        case 'vacuum':
           this.costs = this.getDryCosts()
           this.setDryActiveProg()
           break
@@ -140,7 +140,7 @@ export default Vue.extend({
         case 'wash':
           progShow = (this.getWetProgShow >>> 0).toString(2)
           break
-        case 'vaccum':
+        case 'vacuum':
           progShow = (this.getDryProgShow >>> 0).toString(2)
           break
         default:
@@ -258,7 +258,7 @@ export default Vue.extend({
           this.costs = this.getCosts()
           this.setActiveProg()
           break
-        case 'vaccum':
+        case 'vacuum':
           this.costs = this.getDryCosts()
           this.setDryActiveProg()
           break

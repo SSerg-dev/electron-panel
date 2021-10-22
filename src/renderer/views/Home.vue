@@ -6,8 +6,8 @@
         <Wash />
       </div>
       
-       <div v-if="this.getPanelType === 'vaccum'">
-         <Vaccum />
+       <div v-if="this.getPanelType === 'vacuum'">
+         <Vacuum />
        </div>
 
     </section>
@@ -19,7 +19,7 @@ import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 
 import Wash from '@/components/wash/Wash'
-import Vaccum from '@/components/vaccum/Vaccum'
+import Vacuum from '@/components/vacuum/Vacuum'
 
 //import Loader from '@/components/app/Loader'
 
@@ -33,7 +33,7 @@ export default Vue.extend({
 
   components: {
     Wash,
-    Vaccum
+    Vacuum
   },
 
   methods: {

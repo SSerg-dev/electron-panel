@@ -135,7 +135,7 @@ export default Vue.extend({
         if (--seconds < 0 && this.$route.name !== 'program') {
           console.log('--seconds-->', seconds)
           /* dev */
-          if (this.getPanelType === 'vaccum') this.$router.push('/')
+          if (this.getPanelType === 'vacuum') this.$router.push('/')
           else this.$router.push('/program')
         }
       }, 1000)

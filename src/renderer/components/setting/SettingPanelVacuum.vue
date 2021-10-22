@@ -15,7 +15,7 @@
         <span class="card-title">Номер пылесоса:</span>
         <div class="input-field">
 
-          <!-- v-if="this.getPanelType === 'vaccum'" -->
+          <!-- v-if="this.getPanelType === 'vacuum'" -->
           <div >
             <!-- <div>{{ `${this.getPanelType}` }}</div> -->
             <select
@@ -23,7 +23,7 @@
               ref="select"
               v-model="current"
             >
-              <option v-for="(v, index) in vaccums" :key="index" :value="v.id">
+              <option v-for="(v, index) in vacuums" :key="index" :value="v.id">
                 <div class="dropdown-setting">
                   {{ v.title }}
                 </div>
@@ -46,12 +46,12 @@ import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 
 export default Vue.extend({
-  name: 'setting-panel-vaccum',
+  name: 'setting-panel-vacuum',
   data: () => ({
     select: null,
     current: null,
     title: '',
-    vaccums: [
+    vacuums: [
       { id: 1, title: 'ПЫЛЕСОС №1' },
       { id: 2, title: 'ПЫЛЕСОС №2' },
       //{ id: 3, title: 'ПЫЛЕСОС №3' }
@@ -69,7 +69,7 @@ export default Vue.extend({
     }),
     ...mapMutations({
       // setDefaultPanelNumber: 'setDefaultPanelNumber'
-      setVaccumNumber: 'setVaccumNumber'
+      setVacuumNumber: 'setVacuumNumber'
     })
   },
   computed: {
@@ -78,17 +78,17 @@ export default Vue.extend({
     })
   },
   watch: {
-    current(vaccumId) {
-      console.log('vaccumId-->', vaccumId)
-      const { id, title } = this.vaccums.find(v => v.id === vaccumId)
+    current(vacuumId) {
+      console.log('vacuumId-->', vacuumId)
+      const { id, title } = this.vacuums.find(v => v.id === vacuumId)
       this.select = title
 
-      this.setVaccumNumber(id)
+      this.setVacuumNumber(id)
     },
   },
   created() {
-      const defaultPanelVaccum = 1
-      const { id, title } = this.vaccums[defaultPanelVaccum - 1]
+      const defaultPanelVacuum = 1
+      const { id, title } = this.vacuums[defaultPanelVacuum - 1]
       this.current = id
       this.select = title
   },

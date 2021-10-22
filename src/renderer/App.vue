@@ -67,7 +67,7 @@ export default Vue.extend({
             case 'wash':
               this.setParameters(parameter)
               break
-            case 'vaccum':
+            case 'vacuum':
               this.setDryParameters(parameter)
               break
             default:

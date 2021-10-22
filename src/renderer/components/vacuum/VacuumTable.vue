@@ -184,9 +184,12 @@ import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import Message from '@/components/app/Message'
 
+import { Component, Box, Circle, Button } from '@/shapes/index.js'
+
+
 export default {
   data: () => ({
-    name: 'vaccum-table',
+    name: 'vacuum-table',
     //loading: true,
     //records: [],
     active: '',
@@ -218,7 +221,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getVaccumNumber: 'getVaccumNumber',
+      getVacuumNumber: 'getVacuumNumber',
       getWetBalance: 'getWetBalance',
 
       getPanelType: 'getPanelType',
@@ -239,23 +242,15 @@ export default {
     
     setProgram(program) {
       /* dev */
-      console.log('vaccumProgram-->', program)
+      console.log('vacuumProgram-->', program)
       this.setDown(program)
-      /*    */
 
       this.active = program
       this.setActiveProgram(this.active)
       
-      /* this.updateDryStartProgram([
-        this.getPanelType,
-        this.getDefaultPanelNumber,
-        this.getActiveProgram,
-        this.getWetBalance
-      ]) */
-
       this.updateDryStartProgram([
         this.getPanelType,
-        this.getVaccumNumber,
+        this.getVacuumNumber,
         this.getActiveProgram,
         this.getDryBalance
       ])
@@ -300,10 +295,10 @@ export default {
     }
   },
   mounted() {
-    console.log(
-      'mounted getVaccumNumber-->',
-      JSON.stringify(this.getVaccumNumber)
-    )
+    /* console.log(
+      'mounted getVacuumNumber-->',
+      JSON.stringify(this.getVacuumNumber)
+    ) */
   },
   beforeDestroy() {
     //console.log('beforeDestroy ProgramTable-->',  JSON.stringify(this.actives) )

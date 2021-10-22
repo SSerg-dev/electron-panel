@@ -8,7 +8,7 @@ export default {
   */
   state: {
     // number: 1, 
-    activesVaccum: [
+    activesVacuum: [
       
       {
         id: 1,
@@ -64,15 +64,15 @@ export default {
   }, // end state
   // getters
   getters: {
-    getProgramsVaccum(state) {
-      return state.activesVaccum
+    getProgramsVacuum(state) {
+      return state.activesVacuum
     },
-    /* getVaccumNumber(state) {
+    /* getVacuumNumber(state) {
       return state.number
     } */
   },
   mutations: {
-    /* setVaccumNumber(state, number) {
+    /* setVacuumNumber(state, number) {
       state.number = number
     } */
   },

@@ -32,8 +32,8 @@
         <CashBill />
       </div>
 
-      <div v-if="this.getPanelType === 'vaccum'" align="center" class="cash">
-        <CashVaccumBill />
+      <div v-if="this.getPanelType === 'vacuum'" align="center" class="cash">
+        <CashVacuumBill />
       </div>
     </div>
   </div>
@@ -45,7 +45,7 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 import CashBill from '@/components/CashBill'
 import Message from '@/components/app/Message'
 import CashShow from '@/components/CashShow'
-import CashVaccumBill from '@/components/vaccum/CashVaccumBill'
+import CashVacuumBill from '@/components/vacuum/CashVacuumBill'
 
 export default Vue.extend({
   name: 'cash',
@@ -102,7 +102,7 @@ export default Vue.extend({
           this.$router.push('/')
         }
           break
-        case 'vaccum':
+        case 'vacuum':
            if (
           --seconds < 0 &&
           this.getDryBusyPanel === 'false' &&
@@ -133,7 +133,7 @@ export default Vue.extend({
     CashBill,
     Message,
     CashShow,
-    CashVaccumBill
+    CashVacuumBill
   }
 })
 </script>

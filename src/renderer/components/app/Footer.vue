@@ -1,6 +1,6 @@
 <template>
   <!-- <div v-if="getPanelType === 'wash'"> -->
-    <div v-if="getIsFooter">
+  <div v-if="getIsFooter">
     <div class="footer-panel white-text ">
       <div class="row">
         <div class="col s4"></div>
@@ -13,14 +13,18 @@
               style="background-image:url('./imgs/stop/stop-down.png'); width: 460px; height: 120px;"
               @click="setProgram('stop')"
             >
-              <div class="button-title-long button-title-stop">{{ `СТОП` }}</div>
+              <div class="button-title-long button-title-stop">
+                {{ `СТОП` }}
+              </div>
             </div>
             <div
               v-if="this.isDown.stop === true"
               style="background-image:url('./imgs/stop/stop-up.png'); width: 460px; height: 120px"
               @click="setProgram('stop')"
             >
-              <div class="button-title-long button-title-stop">{{ `СТОП` }}</div>
+              <div class="button-title-long button-title-stop">
+                {{ `СТОП` }}
+              </div>
             </div>
           </div>
         </div>
@@ -32,18 +36,21 @@
               style="background-image:url('./imgs/operator/operator-down.png'); width: 401px; height: 106px"
               @click="setProgram('operator')"
             >
-              <div class="button-title-long button-title-operator">{{ `КОНСУЛЬТАНТ` }}</div>
+              <div class="button-title-long button-title-operator">
+                {{ `КОНСУЛЬТАНТ` }}
+              </div>
             </div>
             <div
               v-if="this.isDown.operator === true"
               style="background-image:url('./imgs/operator/operator-up.png'); width: 401px; height: 106px"
               @click="setProgram('operator')"
             >
-              <div class="button-title-long button-title-operator">{{ `КОНСУЛЬТАНТ` }}</div>
+              <div class="button-title-long button-title-operator">
+                {{ `КОНСУЛЬТАНТ` }}
+              </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -66,11 +73,13 @@ export default {
   }),
   computed: {
     ...mapGetters({
+      getVacuumNumber: 'getVacuumNumber',
+      getWetBalance: 'getWetBalance',
+
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
-      /* dev */
       getPanelType: 'getPanelType',
       getIsFooter: 'getIsFooter'
     })
@@ -82,7 +91,8 @@ export default {
     }),
     ...mapGetters({}),
     ...mapActions({
-      updateStartProgram: 'updateStartProgram'
+      updateStartProgram: 'updateStartProgram',
+      updateDryStartProgram: 'updateDryStartProgram'
     }),
 
     setProgram(program) {
@@ -91,17 +101,33 @@ export default {
       this.setActiveProgram(this.active)
       this.setDown(program)
 
-      this.updateStartProgram([
-        this.getPanelType,
-        this.getDefaultPanelNumber,
-        this.getActiveProgram,
-        this.getWetBalance
-      ])
+      const type = this.getPanelType
+
+      switch (type) {
+        case 'wash':
+          this.updateStartProgram([
+            this.getPanelType,
+            this.getDefaultPanelNumber,
+            this.getActiveProgram,
+            this.getWetBalance
+          ])
+          break
+        case 'vacuum':
+          this.updateDryStartProgram([
+            this.getPanelType,
+            this.getVacuumNumber,
+            this.getActiveProgram,
+            this.getDryBalance
+          ])
+          break
+        default:
+          console.warn('no panel type')
+          break
+      }
 
       this.timeoutPopup = setTimeout(() => {
         this.$router.push('/popup')
       }, this.delay)
-
     },
     setDown(program) {
       this.clearDown()
@@ -174,7 +200,7 @@ export default {
 }
 .button-title-stop {
   padding-top: 24px;
-  padding-left: 180px; 
+  padding-left: 180px;
 }
 .operator {
   width: 401px;
@@ -189,7 +215,7 @@ export default {
 }
 .button-title-operator {
   padding-top: 16px;
-  padding-left: 72px; 
+  padding-left: 72px;
 }
 /* Plumb-Medium */
 .description {
@@ -197,5 +223,4 @@ export default {
   font-family: 'Plumb-Medium';
   font-weight: bold;
 }
-
 </style>

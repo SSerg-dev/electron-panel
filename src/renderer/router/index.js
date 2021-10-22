@@ -98,10 +98,10 @@ const router = new Router({
       component: () => import('../views/Password.vue')
     },
     /* {
-      path: '/vaccum',
-      name: 'vaccum',
+      path: '/vacuum',
+      name: 'vacuum',
       meta: { layout: 'main' },
-      component: () => import('../views/Vaccum.vue')
+      component: () => import('../views/Vacuum.vue')
     }, */
   ]
 })
