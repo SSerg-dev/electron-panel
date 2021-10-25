@@ -242,7 +242,7 @@ export default {
     
     setProgram(program) {
       /* dev */
-      console.log('vacuumProgram-->', program)
+      // console.log('vacuumProgram-->', program)
       this.setDown(program)
 
       this.active = program
@@ -256,9 +256,9 @@ export default {
       ])
 
 
-      // this.timeoutPopup = setTimeout(() => {
-      //   this.$router.push('/popup')
-      // }, 2000)
+       this.timeoutPopup = setTimeout(() => {
+         this.$router.push('/popup')
+       }, 2000)
 
     },
     setDown(program) {
@@ -310,7 +310,7 @@ export default {
 <style scoped>
 /* dev */
 .locate {
-  position: relative;
+  /* position: relative; */
   text-align: center;
 }
 .message {
@@ -325,7 +325,7 @@ export default {
 }
 table {
   position: absolute;
-  margin-top: 16.5em; /* 18em; */
+  margin-top: 16.5em; /* 18em; 16.5em; */
   margin-left: 2em; /* 33em; */
 
   font-family: 'Plumb-Medium';
@@ -360,6 +360,7 @@ td {
   margin-left: 1.5em;
 }
 .button-style {
+  padding-top: 0em;
   width: 945px;
   height: 105px;
   border: solid 6px #1de9b6;

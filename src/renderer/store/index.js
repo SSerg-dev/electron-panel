@@ -76,7 +76,7 @@ export default new Vuex.Store({
       'mosquito_x2',
       'turboDryer' // ?
     ],
-    dryPrograms: [
+    dryPrograms: [ 
       'vacuum',
       'air',
       'washer',
@@ -123,7 +123,7 @@ export default new Vuex.Store({
             'OPCUA',
             JSON.stringify({
               
-              node: `::AsGlobalPV:VacuumPost[${ getters.getVacUumNumber -
+              node: `::AsGlobalPV:VacuumPost[${ getters.getVacuumNumber -
                 1}].prog`,
               value: getters.getActiveProgramNumber
             })
@@ -610,14 +610,15 @@ export default new Vuex.Store({
 
       // panel_money
       parameter.title = '::AsGlobalPV:VacuumPost[0].panel_money'
-      /* dev */
       parameter.value = 112
+
+      /* dev 4prod */
       // --------------------------------
 
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
       )
-      //console.log('displayName-->', displayName)
+      // console.log('displayName-->', displayName)
 
       switch (displayName) {
         case 'progPrice':

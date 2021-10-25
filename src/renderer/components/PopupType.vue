@@ -108,7 +108,9 @@ export default Vue.extend({
         this.activeProgram === 'washer' ||
         this.activeProgram === 'vacuum' ||
         this.activeProgram === 'turboDryer' ||
-        this.activeProgram === 'air'
+        this.activeProgram === 'air' ||
+        this.activeProgram === 'blacking' ||
+        this.activeProgram === 'disinfection'
       )
         this.isWasher = true
       // 5 green
@@ -135,8 +137,9 @@ export default Vue.extend({
         if (--seconds < 0 && this.$route.name !== 'program') {
           console.log('--seconds-->', seconds)
           /* dev */
-          if (this.getPanelType === 'vacuum') this.$router.push('/')
-          else this.$router.push('/program')
+          // if (this.getPanelType === 'vacuum') this.$router.push('/')
+          // else this.$router.push('/program')
+          this.$router.push('/program')
         }
       }, 1000)
     }

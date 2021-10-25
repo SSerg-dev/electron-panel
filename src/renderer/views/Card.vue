@@ -23,9 +23,11 @@
     </div>
 
     <section>
+
       <div class="row">
         <div><CardBill /></div>
       </div>
+      
     </section>
   </div>
 </template>
