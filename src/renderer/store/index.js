@@ -118,7 +118,7 @@ export default new Vuex.Store({
       
       if (params[3] > 0 || params[2] === 'stop') {
         try {
-          // box index 1,2 ...
+          // box index 1,2 ... 
           ipcRenderer.send(
             'OPCUA',
             JSON.stringify({
@@ -331,15 +331,10 @@ export default new Vuex.Store({
     },
     // WET !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Платежи ----------------------------------------------------------------
-
     // Панель суммы платежей = (наличные или карта) + бонусы + сервисные деньги
     getWetBalance(state) {
-      // panelMoney
-      //return state.params.find((p) => p.title === "TAG_WET_BALANCE")?.value;
       return state.parameters.panelMoney
-      //return 1001
     },
-
     // end Платежи ------------------------------------------------------------
 
     getWetBusyPanel(state) {
@@ -539,8 +534,15 @@ export default new Vuex.Store({
   },
 
   mutations: {
+    /* dev */
+    setWetBalance(state, money) {
+      state.parameters.panelMoney = money
+    },
+    setDryBalance(state, money) {
+      state.dryParameters.panelMoney = money
+    },
     // set one parameter
-    setParameters(state, parameter) {
+    setParameters(state, parameter) { 
       //console.log('--setParameters')
 
       state.isParamsChange = !state.isParamsChange
@@ -548,8 +550,8 @@ export default new Vuex.Store({
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
       )
-      //console.log('----------------------------------------------------------')
-      //console.log(parameter.title, displayName, parameter.value)
+      // console.log('----------------------------------------------------------')
+      // console.log(parameter.title, displayName, parameter.value)
 
       //console.log('++displayName-->', displayName)
       //console.log('++parameter.value-->', parameter.value)

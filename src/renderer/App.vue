@@ -23,8 +23,26 @@ export default Vue.extend({
       return (this.$route.meta.layout || 'empty') + '-layout'
     },
     ...mapGetters({
-      getConfig: 'getConfig'
+      getConfig: 'getConfig',
+      /* dev */
+      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getVacuumNumber: 'getVacuumNumber',
+      getPanelType: 'getPanelType'
     })
+  },
+  watch: {
+    getDefaultPanelNumber(flag) {
+      // console.log('++watch getDefaultPanelNumber flag-->', flag)
+      this.clear(flag)
+    },
+    getVacuumNumber(flag) {
+      // console.log('++watch getVacuumNumber flag-->', flag)
+      this.clear(flag)
+    },
+    getPanelType(flag) {
+      // console.log('++watch getPanelType flag-->', flag)
+      this.clear(flag)
+    }
   },
   components: {
     EmptyLayout,
@@ -32,8 +50,28 @@ export default Vue.extend({
   },
   methods: {
     ...mapMutations({
-      setConfig: 'setConfig'
+      setConfig: 'setConfig',
+      setWetBalance: 'setWetBalance',
+      setDryBalance: 'setDryBalance' 
     }),
+    /*  */
+    clear(flag) {
+      this.updateClearBalance()
+      switch (flag) {
+            case 'wash':
+              this.setWetBalance(0)
+              break
+            case 'vacuum':
+              this.setDryBalance(0)
+              break
+            default:
+              break
+          }
+      
+      
+    },
+
+    /*  */
 
     setup() {
       /*
@@ -62,7 +100,7 @@ export default Vue.extend({
 
           /* dev 4prod */
           //if (parameter.title !== `::AsGlobalPV:DateTime.Time`) {
-          const type = this.getPanelType()
+          const type = this.getPanelType
           switch (type) {
             case 'wash':
               this.setParameters(parameter)
@@ -80,13 +118,42 @@ export default Vue.extend({
       })
 
       const self = this
+
       ipcRenderer.on('coin', (event, args) => {
-        self.updateCoinBalance(args)
+        const type = this.getPanelType
+        switch (type) {
+          case 'wash':
+            self.updateCoinBalance(args)
+            break
+          case 'vacuum':
+            self.updateDryCoinBalance(args)
+            break
+          default:
+            break
+        }
       })
 
+      /* ipcRenderer.on('coin', (event, args) => {
+        self.updateCoinBalance(args)
+      }) */
+
       ipcRenderer.on('banknot', (event, args) => {
-        self.updateBanknoteBalance(args)
+        const type = this.getPanelType()
+        switch (type) {
+          case 'wash':
+            self.updateBanknoteBalance(args)
+            break
+          case 'vacuum':
+            self.updateDryBanknoteBalance(args)
+            break
+          default:
+            break
+        }
       })
+
+      /* ipcRenderer.on('banknot', (event, args) => {
+        self.updateBanknoteBalance(args)
+      }) */
 
       ipcRenderer.on('humidity', (event, args) => {
         this.setHumidity(args)
@@ -104,9 +171,15 @@ export default Vue.extend({
       setDryParameters: 'setDryParameters'
     }),
     ...mapGetters({
-      getPanelType: 'getPanelType'
+      // getPanelType: 'getPanelType'
     }),
     ...mapActions({
+      /* dev */
+      updateClearBalance: 'updateClearBalance',
+
+      updateDryCoinBalance: 'updateDryCoinBalance',
+      updateDryBanknoteBalance: 'updateDryBanknoteBalance',
+
       updateCoinBalance: 'updateCoinBalance',
       updateBanknoteBalance: 'updateBanknoteBalance'
     })

@@ -210,7 +210,7 @@ export default {
     },
     setServiceBalance(state, balance) {
       state.serviceBalance = balance
-      //console.log('state.serviceBalance-->', state.serviceBalance)
+      // console.log('state.serviceBalance-->', state.serviceBalance)
     },
     setIncrement(state) {
       state.increment = 100
@@ -269,7 +269,6 @@ export default {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            //node: '::AsGlobalPV:PostBalance[4].paidService',
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
               1}].paidService`,
             value: getters.getServiceBalance
@@ -278,20 +277,22 @@ export default {
       } catch (e) {
         console.warn('Error:', e.message)
       }
-      // clear
-      // commit('setServiceBalance', 0)
-      //console.log('getters.getServiceBalance-->', getters.getServiceBalance)
     },
     // dev
 
     updateClearBalance({ commit, getters }) {
       try {
-        //console.log('!!!updateClearBalance')
+        /* dev */
+        commit('setServiceBalance', -getters.getServiceBalance)
+        commit('setCoinBalance', -getters.getCoinBalance)
+        commit('setBanknoteBalance', -getters.getBanknoteBalance)
+
+        // console.log('++updateClearBalance')
+
         // clear service
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            //node: '::AsGlobalPV:PostBalance[4].paidService',
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
               1}].paidService`,
             value: '0'
@@ -301,7 +302,6 @@ export default {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            //node: '::AsGlobalPV:PostBalance[4].paidMoney',
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
               1}].paidMoney`,
             value: '0'
@@ -311,7 +311,6 @@ export default {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            //node: '::AsGlobalPV:PostBalance[4].paidBonus',
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
               1}].paidBonus`,
             value: '0'
@@ -322,7 +321,6 @@ export default {
       }
       // clear
       commit('setServiceBalance', 0)
-      // console.log('!!!clear getters.getServiceBalance-->', getters.getServiceBalance)
     },
     updateReboot() {
       //console.log('!!!updateReboot')

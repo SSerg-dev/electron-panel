@@ -96,7 +96,7 @@ export default Vue.extend({
     clearTimeout(this.timeoutDelay)
   },
   created() {
-    console.log('++created type-->', this.type)
+    // console.log('++created type-->', this.type)
   },
 
   methods: {

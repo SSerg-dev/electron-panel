@@ -1032,7 +1032,7 @@ export default Vue.extend({
   watch: {
     /* dev */
     isCnw(flag) {
-      console.log('isCnw-->', flag)
+      //console.log('isCnw-->', flag)
       this.setCnw(flag)
     },
 

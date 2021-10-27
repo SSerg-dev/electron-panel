@@ -94,7 +94,7 @@ export default Vue.extend({
     }),
 
     ...mapMutations({
-      //setServiceBalance: 'setServiceBalance'
+
     }),
 
     setService(service) {

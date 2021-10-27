@@ -88,7 +88,7 @@
         "syspanel": "UA"
     },
     "log_path": "/var/log",
-    "type": "wash",
+    "type":  "wash",
     "ui": {
         "CNW": 0,
         "degreasing_enable": 0,

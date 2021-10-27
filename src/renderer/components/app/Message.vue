@@ -43,6 +43,15 @@ export default Vue.extend({
       getPanelType: 'getPanelType',
     })
   },
+  watch: {
+    getWetBalance(flag) {
+      console.log('getWetBalance-->', this.getWetBalance)
+    },
+    getDryBalance(flag) {
+      console.log('getDryBalance-->', this.getDryBalance)
+    }
+
+  },
 
   mounted() {}
 })

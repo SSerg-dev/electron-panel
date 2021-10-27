@@ -36,13 +36,6 @@ export default {
   getters: {
     
   },
-  actions: {},
-
-  /*
-  mutations: {
-    setWetBalance(state, balance) {
-      state.balance = balance
-    },
-  }, */
+  // actions: {},
   // modules: {}
 };

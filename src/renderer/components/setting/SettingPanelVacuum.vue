@@ -79,7 +79,7 @@ export default Vue.extend({
   },
   watch: {
     current(vacuumId) {
-      console.log('vacuumId-->', vacuumId)
+      // console.log('vacuumId-->', vacuumId)
       const { id, title } = this.vacuums.find(v => v.id === vacuumId)
       this.select = title
 

@@ -8,7 +8,7 @@
       <ul class="collection">
         <!-- 1 first -->
 
-        <li class="collection-item cost" @click="payUp('first')">
+        <li v-if="getVacuumNumber === 1" class="collection-item cost" @click="payUp('first')">
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               <div style="color: #00b9e3">{{ `ПОСТ №1 &nbsp &nbsp` }}</div>
@@ -16,6 +16,16 @@
             </div>
           </div>
         </li>
+        <li v-if="getVacuumNumber === 2" class="collection-item cost" @click="payUp('third')">
+          <div class="card white waves-effect button-style">
+            <div class="card-content black-text button-content-style">
+              <div style="color: #00b9e3">{{ `ПОСТ №3 &nbsp &nbsp` }}</div>
+              <div>{{ `ОПЛАТИТЬ` }}</div>
+            </div>
+          </div>
+        </li>
+
+        <!--        -->
 
         <!-- 2 operator -->
 
@@ -40,7 +50,7 @@
         </li>
 
         <!-- 3 second -->
-        <li class="collection-item cost" @click="payUp('second')">
+        <li v-if="getVacuumNumber === 1" class="collection-item cost" @click="payUp('second')">
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               <div>{{ `ОПЛАТИТЬ &nbsp &nbsp` }}</div>
@@ -49,6 +59,19 @@
             </div>
           </div>
         </li>
+
+        <li v-if="getVacuumNumber === 2" class="collection-item cost" @click="payUp('fourth')">
+          <div class="card white waves-effect button-style">
+            <div class="card-content black-text button-content-style">
+              <div>{{ `ОПЛАТИТЬ &nbsp &nbsp` }}</div>
+              <div style="color: #00b9e3">{{ `ПОСТ №4` }}</div>
+              
+            </div>
+          </div>
+        </li>
+
+
+
       </ul>
     </section>
   </div>
@@ -122,17 +145,28 @@ export default Vue.extend({
     payUp(program) {
       switch (program) {
         case 'first':
-          //console.log('first')
+          console.log('first')
           this.isMainMenu = true
           this.setVacuumNumber(1)
           break
+        case 'third':
+          console.log('third')
+          this.isMainMenu = true
+          // this.setVacuumNumber(3)
+          break
+
         case 'operator':
           this.setProgram(program)
           break
         case 'second':
-          //console.log('second')
+          console.log('second')
           this.isMainMenu = true
           this.setVacuumNumber(2)
+          break
+        case 'fourth':
+          console.log('fourth')
+          this.isMainMenu = true
+          // this.setVacuumNumber(4)
           break
 
         default:

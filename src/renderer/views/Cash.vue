@@ -73,7 +73,7 @@ export default Vue.extend({
   watch: {},
   methods: {
     ...mapActions({
-      //updateClearBalance: 'updateClearBalance'
+      
     }),
     ...mapMutations({
       setRouter: 'setRouter'
@@ -81,15 +81,6 @@ export default Vue.extend({
 
     gotoMainMenu(seconds) {
       this.intervalMainMenu = setInterval(() => {
-        /* 
-        if (
-          --seconds < 0 &&
-          this.getWetBusyPanel === 'false' &&
-          this.$route.name !== 'home'
-        ) {
-          this.$router.push('/')
-        }
-        */
         
        const type = this.getPanelType
        switch (type) {
