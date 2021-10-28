@@ -45,10 +45,10 @@ export default Vue.extend({
   },
   watch: {
     getWetBalance(flag) {
-      console.log('getWetBalance-->', this.getWetBalance)
+      console.log('Message getWetBalance-->', this.getWetBalance)
     },
     getDryBalance(flag) {
-      console.log('getDryBalance-->', this.getDryBalance)
+      console.log('Message getDryBalance-->', this.getDryBalance)
     }
 
   },

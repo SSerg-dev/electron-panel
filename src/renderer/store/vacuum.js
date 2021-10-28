@@ -7,7 +7,7 @@ export default {
     modules: {}
   */
   state: {
-    // number: 1, 
+     
     activesVacuum: [
       
       {
@@ -67,14 +67,10 @@ export default {
     getProgramsVacuum(state) {
       return state.activesVacuum
     },
-    /* getVacuumNumber(state) {
-      return state.number
-    } */
+  
   },
   mutations: {
-    /* setVacuumNumber(state, number) {
-      state.number = number
-    } */
+  
   },
   
   

@@ -71,7 +71,7 @@
             <span class="white-text">{{ this.getDefaultPanelNumber }}</span>
           </div>
           <div v-if="this.getPanelType === 'vacuum'">
-            <span class="white-text">{{ getVacuumNumber }}</span>
+            <span class="white-text">{{ getVacuum }}</span>
           </div>
           <div v-if="this.getPanelType === 'payment'">
             <span class="white-text">{{ getVacuumPayment }}</span>
@@ -158,7 +158,7 @@ export default {
       getWetBusyPanel: 'getWetBusyPanel',
       getIsPayCardMoney: 'getIsPayCardMoney',
       getPanelType: 'getPanelType',
-      getVacuumNumber: 'getVacuumNumber',
+      getVacuum: 'getVacuum',
       getVacuumPayment: 'getVacuumPayment',
       getCurrentLocale: 'getCurrentLocale',
       info: 'info',

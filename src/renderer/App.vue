@@ -99,7 +99,7 @@ export default Vue.extend({
           }
 
           /* dev 4prod */
-          //if (parameter.title !== `::AsGlobalPV:DateTime.Time`) {
+          if (parameter.title !== `::AsGlobalPV:DateTime.Time`) {
           const type = this.getPanelType
           switch (type) {
             case 'wash':
@@ -111,7 +111,7 @@ export default Vue.extend({
             default:
               break
           }
-          //}
+          }
         } catch (err) {
           console.warn('App.vue setup() error:', err)
         }

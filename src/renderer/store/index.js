@@ -550,8 +550,8 @@ export default new Vuex.Store({
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
       )
-      // console.log('----------------------------------------------------------')
-      // console.log(parameter.title, displayName, parameter.value)
+      //  console.log('----------------------------------------------------------')
+      //  console.log('from B&D -->',parameter.title, displayName, parameter.value)
 
       //console.log('++displayName-->', displayName)
       //console.log('++parameter.value-->', parameter.value)

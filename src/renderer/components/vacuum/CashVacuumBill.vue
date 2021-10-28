@@ -167,7 +167,7 @@ export default {
       get: function() {
         let flag
         this.getDryBalance > 0 ? (flag = true) : (flag = false)
-        console.log('flag-->', flag)
+        // console.log('flag-->', flag)
         console.log('--getDryBalance-->', this.getDryBalance)
         if (!flag) this.$message('Внесите минимальную сумму (10 руб.)')
         return flag

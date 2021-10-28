@@ -318,24 +318,22 @@ h4 {
   padding-top: 0rem;
   padding-left: 0rem;
 }
-#head {
+/* #head {
   margin-top: 0em;
   margin-bottom: 0em;
   margin-left: -0.5em;
 
   padding-top: 0em;
   padding-bottom: 0em;
-  /* padding-right: 10em; */
 
   position: fixed;
-  /* position: relative; */
   color: #121212;
   z-index: 1000;
-}
-.head-content {
+} */
+/* .head-content {
   padding-top: -1em;
   padding-bottom: 4em;
-}
+} */
 
 .paginate {
   font-size: 1em;
@@ -352,8 +350,8 @@ h4 {
   font-family: 'Plumb-Medium';
   font-weight: bold;
 }
-
-#content {
+  
+/* #content {
   margin-top: -4em;
-}
+} */
 </style>

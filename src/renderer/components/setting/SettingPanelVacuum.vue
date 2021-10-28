@@ -15,9 +15,7 @@
         <span class="card-title">Номер пылесоса:</span>
         <div class="input-field">
 
-          <!-- v-if="this.getPanelType === 'vacuum'" -->
           <div >
-            <!-- <div>{{ `${this.getPanelType}` }}</div> -->
             <select
               class="page-title white-text"
               ref="select"
@@ -31,10 +29,6 @@
             </select>
           </div>
 
-          <!-- dev -->
-
-          
-          <!--  -->
         </div>
       </div>
     </div>
@@ -64,12 +58,8 @@ export default Vue.extend({
     M.updateTextFields()
   },
   methods: {
-    ...mapGetters({
-      // getDefaultPanelNumber: 'getDefaultPanelNumber'
-    }),
     ...mapMutations({
-      // setDefaultPanelNumber: 'setDefaultPanelNumber'
-      setVacuumNumber: 'setVacuumNumber'
+      setVacuum: 'setVacuum'
     })
   },
   computed: {
@@ -83,7 +73,7 @@ export default Vue.extend({
       const { id, title } = this.vacuums.find(v => v.id === vacuumId)
       this.select = title
 
-      this.setVacuumNumber(id)
+      this.setVacuum(id)
     },
   },
   created() {

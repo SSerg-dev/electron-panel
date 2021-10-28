@@ -7,8 +7,16 @@
     <section v-if="!isMainMenu">
       <ul class="collection">
         <!-- 1 first -->
+        <!-- 
+          <pre>{{ `ОПЛАТИТЬ  ` }}</pre>
+              <div style="color: #00b9e3">{{ `ПОСТ №2` }}</div>
+         -->
 
-        <li v-if="getVacuumNumber === 1" class="collection-item cost" @click="payUp('first')">
+        <li
+          v-if="getVacuum === 1"
+          class="collection-item cost"
+          @click="payUp('first')"
+        >
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               <div style="color: #00b9e3">{{ `ПОСТ №1 &nbsp &nbsp` }}</div>
@@ -16,7 +24,11 @@
             </div>
           </div>
         </li>
-        <li v-if="getVacuumNumber === 2" class="collection-item cost" @click="payUp('third')">
+        <li
+          v-if="getVacuum === 2"
+          class="collection-item cost"
+          @click="payUp('third')"
+        >
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               <div style="color: #00b9e3">{{ `ПОСТ №3 &nbsp &nbsp` }}</div>
@@ -50,28 +62,31 @@
         </li>
 
         <!-- 3 second -->
-        <li v-if="getVacuumNumber === 1" class="collection-item cost" @click="payUp('second')">
+        <li
+          v-if="getVacuum === 1"
+          class="collection-item cost"
+          @click="payUp('second')"
+        >
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               <div>{{ `ОПЛАТИТЬ &nbsp &nbsp` }}</div>
               <div style="color: #00b9e3">{{ `ПОСТ №2` }}</div>
-              
             </div>
           </div>
         </li>
 
-        <li v-if="getVacuumNumber === 2" class="collection-item cost" @click="payUp('fourth')">
+        <li
+          v-if="getVacuum === 2"
+          class="collection-item cost"
+          @click="payUp('fourth')"
+        >
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               <div>{{ `ОПЛАТИТЬ &nbsp &nbsp` }}</div>
               <div style="color: #00b9e3">{{ `ПОСТ №4` }}</div>
-              
             </div>
           </div>
         </li>
-
-
-
       </ul>
     </section>
   </div>
@@ -103,6 +118,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getVacuumNumber: 'getVacuumNumber',
+      getVacuum: 'getVacuum',
       getWetBalance: 'getWetBalance',
 
       getPanelType: 'getPanelType',
@@ -152,7 +168,7 @@ export default Vue.extend({
         case 'third':
           console.log('third')
           this.isMainMenu = true
-          // this.setVacuumNumber(3)
+          this.setVacuumNumber(3)
           break
 
         case 'operator':
@@ -166,7 +182,7 @@ export default Vue.extend({
         case 'fourth':
           console.log('fourth')
           this.isMainMenu = true
-          // this.setVacuumNumber(4)
+          this.setVacuumNumber(4)
           break
 
         default:

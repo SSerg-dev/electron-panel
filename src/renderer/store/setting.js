@@ -7,8 +7,9 @@ export default {
     humidity: '',
     serviceBalance: 0,
     increment: 0,
-    // panel type
+    // panel type,
     vacuum: 1,
+    vacuumNumber: 1,
     payment: 1,
     isTooltipInstalled: true
   }, // end state
@@ -74,8 +75,13 @@ export default {
       return state.config.index
     },
     getVacuumNumber(state) {
+      return state.vacuumNumber
+    },
+    /* dev */
+    getVacuum(state) {
       return state.vacuum
     },
+
     getVacuumPayment(state) {
       return state.payment
     },
@@ -200,11 +206,16 @@ export default {
     },
 
     setDefaultPanelNumber(state, index) {
-      state.config.index = index
+      state.config.index = index 
     },
-    setVacuumNumber(state, vacuum) {
-      state.vacuum = vacuum
+    setVacuumNumber(state, vacuumNumber) {
+      state.vacuumNumber = vacuumNumber
     },
+    /* dev */
+    setVacuum(state, vacuum) {
+      return state.vacuum = vacuum
+    },
+
     setVacuumPayment(state, payment) {
       state.payment = payment
     },

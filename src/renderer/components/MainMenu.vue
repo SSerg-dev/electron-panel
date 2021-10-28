@@ -78,7 +78,11 @@ export default Vue.extend({
     getWetBalance(value) {
       // console.log('++ getDirectCash-->watch value-->', value, this.isDirectCash)
       //if (this.isDirectCash === 1)
-      this.$router.push('/cash')
+
+      /* dev */
+      //console.log('value-->', value)
+      if(value > 0) 
+        this.$router.push('/cash')
     }
   },
 

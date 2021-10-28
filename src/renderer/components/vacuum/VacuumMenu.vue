@@ -1,10 +1,6 @@
 <template>
   <div>
     
-      <!-- <div v-if="this.getPanelType === 'vacuum'">
-        <span class="white-text">{{ getVacuumNumber }}</span>
-      </div> -->
-    
     <section>
       
       <div>

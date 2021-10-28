@@ -295,10 +295,7 @@ export default {
     }
   },
   mounted() {
-    /* console.log(
-      'mounted getVacuumNumber-->',
-      JSON.stringify(this.getVacuumNumber)
-    ) */
+    
   },
   beforeDestroy() {
     //console.log('beforeDestroy ProgramTable-->',  JSON.stringify(this.actives) )
