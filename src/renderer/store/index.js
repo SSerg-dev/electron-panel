@@ -76,7 +76,7 @@ export default new Vuex.Store({
       'mosquito_x2',
       'turboDryer' // ?
     ],
-    dryPrograms: [ 
+    dryPrograms: [
       'vacuum',
       'air',
       'washer',
@@ -95,8 +95,7 @@ export default new Vuex.Store({
 
     dryParameters: {
       progPrice: '',
-      /* dev */
-      progShowMask: '126' /* all 126, 0 */,
+      progShowMask: '' /* all 126, 0 */,
       progStatusMask: '',
       busy: '',
       panelMoney: '0'
@@ -107,24 +106,23 @@ export default new Vuex.Store({
   actions: {
     /* dev */
     // Dry actions ======================
-    // update program
+    // update program 
     updateDryStartProgram({ commit, dispatch, getters, state }, params) {
       console.log('++updateDryStartProgram-->', JSON.stringify(params))
-      
+
       if (params[2] === 'operator') dispatch('updateDryCallOperator')
       const number = state.dryPrograms.findIndex(p => p === params[2]) + 1
 
       commit('setActiveProgramNumber', number)
-      
+
       if (params[3] > 0 || params[2] === 'stop') {
         try {
-          // box index 1,2 ... 
+          // box index 1,2 ...
           ipcRenderer.send(
             'OPCUA',
             JSON.stringify({
-              
-              node: `::AsGlobalPV:VacuumPost[${ getters.getVacuumNumber -
-                1}].prog`,
+              node: `::AsGlobalPV:VacuumPost[${getters.getVacuumNumber -
+                1}].program`,
               value: getters.getActiveProgramNumber
             })
           )
@@ -138,12 +136,11 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:Vacuum[${ getters.getVacuumNumber -
+            node: `::AsGlobalPV:Vacuum[${getters.getVacuumNumber -
               1}].operatorCall`,
             value: true
           })
         )
-
       } catch (e) {
         console.warn('Error:', e.message)
       }
@@ -200,7 +197,6 @@ export default new Vuex.Store({
     // end Платежи ----------------------
     // end Dry actions ==================
 
-    
     // Wet actions ======================
     updateStartProgram({ commit, dispatch, getters, state }, params) {
       console.log('updateStartProgram-->', JSON.stringify(params))
@@ -290,7 +286,6 @@ export default new Vuex.Store({
     // end Платежи ----------------------
 
     // end Wet actions ==================
-
 
     // update config
 
@@ -542,7 +537,7 @@ export default new Vuex.Store({
       state.dryParameters.panelMoney = money
     },
     // set one parameter
-    setParameters(state, parameter) { 
+    setParameters(state, parameter) {
       //console.log('--setParameters')
 
       state.isParamsChange = !state.isParamsChange
@@ -589,20 +584,6 @@ export default new Vuex.Store({
 
     /* dev */
     setDryParameters(state, parameter) {
-      // need list OPC parameters
-      // ::AsGlobalPV:VacuumPost[0].progPrice	[0, 23, 130, 140, 0, 0, 0]
-      // ::AsGlobalPV:VacuumPost[0].progShowMask	126
-      // ::AsGlobalPV:VacuumPost[0].progStatusMask	126
-      // ::AsGlobalPV:VacuumPost[0].busy	false
-      // ::AsGlobalPV:VacuumPost[0].panel_money	20
-      // ::AsGlobalPV:VacuumBalance[0].paidMoney	0
-      // ::AsGlobalPV:VacuumBalance[0].paidService	30
-      // ::AsGlobalPV:VacuumBalance[0].paidBonus	0
-      // ::AsGlobalPV:Vacuum[0].operatorCall	false
-      
-      // need list connect functions 
-
-
       // console.log('++setDryParameters')
       state.isParamsChange = !state.isParamsChange
 
@@ -611,8 +592,8 @@ export default new Vuex.Store({
       // parameter.value = [0, 23, 130, 140, 0, 0, 0]
 
       // panel_money
-      parameter.title = '::AsGlobalPV:VacuumPost[0].panel_money'
-      parameter.value = 112
+      // parameter.title = '::AsGlobalPV:VacuumPost[0].panel_money'
+      // parameter.value = 112
 
       /* dev 4prod */
       // --------------------------------
@@ -620,7 +601,7 @@ export default new Vuex.Store({
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
       )
-      // console.log('displayName-->', displayName)
+      // console.log('displayName-->', displayName, parameter.value)
 
       switch (displayName) {
         case 'progPrice':
@@ -636,11 +617,14 @@ export default new Vuex.Store({
           state.dryParameters.busy = parameter.value
           break
         case 'panel_money':
-          /* dev 4prod */
-          //state.dryParameters.panelMoney = parameter.value
           state.dryParameters.panelMoney = parameter.value
-          //console.log('state.dryParameters.panelMoney-->', state.dryParameters.panelMoney )
+        
+          /* dev */  
+        case 'paidMoney':
+          // console.log('state.dryParameters.panelMoney-->', state.dryParameters.panelMoney )
+          state.dryParameters.panelMoney = parameter.value
 
+          
           break
 
         default:

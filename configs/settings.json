@@ -36,7 +36,7 @@
     "country" : "RU",
     "__commentCurrency": "add default currency",
     "currency": "EUR",
-    "index": 5,
+    "index": 2,
     "languages": {
         "default": "EE",
         "panel": [
@@ -88,7 +88,7 @@
         "syspanel": "UA"
     },
     "log_path": "/var/log",
-    "type":  "wash",
+    "type":  "vacuum",
     "ui": {
         "CNW": 0,
         "degreasing_enable": 0,

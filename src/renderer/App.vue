@@ -138,7 +138,7 @@ export default Vue.extend({
       }) */
 
       ipcRenderer.on('banknot', (event, args) => {
-        const type = this.getPanelType()
+        const type = this.getPanelType
         switch (type) {
           case 'wash':
             self.updateBanknoteBalance(args)

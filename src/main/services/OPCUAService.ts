@@ -185,10 +185,10 @@ class OPCUAService extends EventEmitter {
 			);
 	
 			this.monitoredItemGroup.on("changed", (monitoredItem: ClientMonitoredItemBase, dataValue: DataValue, index: number) => {
-				try {
+				try { 
 					const value = String(dataValue.value.value)
 					const nodeId = String(monitoredItem.itemToMonitor.nodeId.value)
-					//const sbstr = nodeId.substring(nodeId.indexOf('['),nodeId.indexOf(']')+1)
+          //const sbstr = nodeId.substring(nodeId.indexOf('['),nodeId.indexOf(']')+1)
 					//const str = sbstr ? nodeId.replace(sbstr,"[{0}]") : nodeId
 					//const param = Object.keys(this.nodes).find(key => this.nodes[key] === str)
 					//this.emit("change", { param: param, value: value })
