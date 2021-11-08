@@ -50,6 +50,8 @@ class OPCUAService extends EventEmitter {
 		TAG_WET_TIME           : "::AsGlobalPV:ProcessEventExtern.washState[{0}].progTime",
 		
 		////////////////////////////////////////////////////////////////////////
+    /* dev */
+    TAG_DRY_IS_BUSY        : "::AsGlobalPV:VacuumPost[{0}].busy",
 
 		TAG_DRY_ENABLED        : "::AsGlobalPV:VacuumPost[{0}].active",
 		TAG_DRY_BALANCE        : "::AsGlobalPV:VacuumPost[{0}].panel_money",
@@ -156,21 +158,31 @@ class OPCUAService extends EventEmitter {
 			}).on("keepalive", () => {
 				//console.log("keepalive")
 			}).on("terminated", () => {
-				console.log("terminated")
+				console.log("terminated")  
 			})
 	
 			let itemsToMonitor = []
-	
+      
 			for (let tag in this.nodes) {
 				const node = this.nodes[tag].replace("{0}", String(num-1));
-				if ( (type.indexOf("vacuum") != -1 && node.indexOf("Post") != -1) || 
-				     (type.indexOf("wash") != -1 && node.indexOf("acuum") != -1) ) {
+				
+        /* dev */
+        // if ( (type.indexOf("vacuum") != -1 && node.indexOf("Post") != -1) || 
+        //     (type.indexOf("wash") != -1 && node.indexOf("acuum") != -1) ) {
+				// 	continue
+				// }
+        
+        if ( (type.indexOf("Vacuum") != -1 && node.indexOf("Post") != -1) || 
+            (type.indexOf("wash") != -1 && node.indexOf("acuum") != -1) ) {
 					continue
 				}
+
 				itemsToMonitor.push({
 					nodeId: resolveNodeId(`ns=${this.TAG_NS};s=${node}`),
 					attributeId: AttributeIds.Value
 				});
+        // console.log('itemsToMonitor-->', itemsToMonitor)
+
 			}
 	
 			this.monitoredItemGroup  = ClientMonitoredItemGroup.create(

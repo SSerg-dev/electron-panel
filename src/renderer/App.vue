@@ -33,15 +33,15 @@ export default Vue.extend({
   watch: {
     getDefaultPanelNumber(flag) {
       // console.log('++watch getDefaultPanelNumber flag-->', flag)
-      this.clear(flag)
+      // this.clear(flag)
     },
     getVacuumNumber(flag) {
       // console.log('++watch getVacuumNumber flag-->', flag)
-      this.clear(flag)
+      // this.clear(flag)
     },
     getPanelType(flag) {
       // console.log('++watch getPanelType flag-->', flag)
-      this.clear(flag)
+      // this.clear(flag)
     }
   },
   components: {

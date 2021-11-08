@@ -601,7 +601,7 @@ export default new Vuex.Store({
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
       )
-      // console.log('displayName-->', displayName, parameter.value)
+      //  console.log('displayName-->', displayName, parameter.value)
 
       switch (displayName) {
         case 'progPrice':
@@ -614,20 +614,19 @@ export default new Vuex.Store({
           state.dryParameters.progStatusMask = parameter.value
           break
         case 'busy':
+          // console.log('state.dryParameters.busy-->', state.dryParameters.busy)
           state.dryParameters.busy = parameter.value
           break
         case 'panel_money':
+          // console.log('panel_money-->state.dryParameters.panelMoney-->', state.dryParameters.panelMoney )
           state.dryParameters.panelMoney = parameter.value
         
-          /* dev */  
-        case 'paidMoney':
-          // console.log('state.dryParameters.panelMoney-->', state.dryParameters.panelMoney )
-          state.dryParameters.panelMoney = parameter.value
-
-          
-          break
-
-        default:
+        /* dev */  
+        // case 'paidMoney':
+        //   state.dryParameters.panelMoney = parameter.value
+        //   break
+        
+          default:
           break
       }
     },

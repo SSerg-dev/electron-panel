@@ -41,14 +41,24 @@ export default Vue.extend({
       getWetBalance: 'getWetBalance',
       getDryBalance: 'getDryBalance',
       getPanelType: 'getPanelType',
+    }),
+    ...mapMutations({
+      setWetBalance: 'setWetBalance',
+      setDryBalance: 'setDryBalance'                              
     })
   },
   watch: {
+    /* dev */
     getWetBalance(flag) {
+      // if(flag === '0')
+      //   this.setWetBalance(0) 
       console.log('Message getWetBalance-->', this.getWetBalance)
     },
     getDryBalance(flag) {
+      // if(flag === '0') 
+      //   this.setDryBalance(0)
       console.log('Message getDryBalance-->', this.getDryBalance)
+
     }
 
   },

@@ -6,7 +6,6 @@ export default {
   // Post
   async fetchPosts({ commit, getters, dispatch }, limit = 3) {
     try {
-      //console.log('!!!fetchPosts')
       const response = await fetch(
         'https://jsonplaceholder.typicode.com/posts?_limit=' + limit
       )
@@ -29,7 +28,6 @@ export default {
     },
     // Param
     validParams(state) {
-      //console.log('!!!validParams')
       return state.params.filter(p => {
         return p.title && p.value
       })

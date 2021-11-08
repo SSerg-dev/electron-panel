@@ -32,7 +32,7 @@
               </button>
               <button
                 v-else-if="this.isDown.disk === true"
-                style="background-image:url('./imgs/blue/blue_long_turbo_down.png'); width: 832px; height: 105px"
+                style="background-image:url('./imgs/blue/blue_long_turbo_down.png'); width: 832px; height: 105px" 
                 class="btn black"
                 @click="setProgram('disk')"
               >
