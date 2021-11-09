@@ -2,10 +2,10 @@
   <div>
     <div class="page-title">
       <div v-if="this.getPanelType === 'wash'">
-        {{ `${ getWetBalance }` }}
+        {{ `${ parseFloat(getWetBalance / Math.pow(10, digits)).toFixed(digits) }` }}
       </div>
       <div v-if="this.getPanelType === 'vacuum'">
-        {{ `${ getDryBalance }` }}
+        {{ `${ parseFloat(getDryBalance / Math.pow(10, digits)).toFixed(digits) }` }}
       </div>
       
     </div>
@@ -23,7 +23,9 @@ export default Vue.extend({
       title: '',
       type: '',
       value: 0
-    }
+      
+    },
+    digits: 0
   }),
 
   props: {
@@ -41,6 +43,7 @@ export default Vue.extend({
       getWetBalance: 'getWetBalance',
       getDryBalance: 'getDryBalance',
       getPanelType: 'getPanelType',
+      getFixedCurrency: 'getFixedCurrency'
     }),
     ...mapMutations({
       setWetBalance: 'setWetBalance',
@@ -57,13 +60,28 @@ export default Vue.extend({
     getDryBalance(flag) {
       // if(flag === '0') 
       //   this.setDryBalance(0)
-      console.log('Message getDryBalance-->', this.getDryBalance)
+      // console.log('Message getDryBalance-->', this.getDryBalance)
 
+    },
+    getFixedCurrency(flag) {
+      this.digits = flag
     }
+
 
   },
 
-  mounted() {}
+  mounted() { 
+    // console.log('getPanelType-->', this.getPanelType) 
+        
+  }, 
+  created() {
+    // console.log('Message-->getFixedCurrency-->', this.getFixedCurrency)
+    // console.log('typeof  this.getFixedCurrency-->', typeof this.getFixedCurrency)
+    
+    if(parseInt(this.getFixedCurrency)  > 0)
+      this.digits = this.getFixedCurrency
+  }
+
 })
 </script>
 

@@ -14,10 +14,7 @@
         </div>
       </div>
  
-      <!-- <div class="price">
-          <img src="imgs/price/price-up.png" />
-       </div> -->
-
+      
 
     </section>
   </div>
@@ -73,6 +70,7 @@ export default Vue.extend({
   },
   mounted() {
     // 02
+    console.log('++VacuumMenu')
   
   },
   

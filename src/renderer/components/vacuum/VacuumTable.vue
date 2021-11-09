@@ -298,7 +298,6 @@ export default {
     
   },
   beforeDestroy() {
-    //console.log('beforeDestroy ProgramTable-->',  JSON.stringify(this.actives) )
     clearTimeout(this.timeoutPopup)
   }
 }

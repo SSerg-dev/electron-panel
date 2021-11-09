@@ -14,7 +14,7 @@
         <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
           <!-- 1 -->
           <!-- ДИСКИ -->
-          <tr align="center" v-if="this.actives[14].display !== 'none'">
+          <!-- <tr align="center" v-if="this.actives[14].display !== 'none'">
             <td
               v-if="this.actives[24].display !== 'none'"
               colspan="1"
@@ -96,7 +96,11 @@
             </td>
 
             <td colspan="1"></td>
-          </tr>
+          </tr> -->
+          
+          <!-- dev -->
+            <WashTableDisk />  
+          <!--     -->
 
           <!-- 2 -->
           <!-- АНТИМОСКИТ -->
@@ -1144,7 +1148,8 @@ import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import Message from '@/components/app/Message'
 /* programs */
-// import ProgramTableDisk from '@/components/program/ProgramTableDisk'
+import 
+WashTableDisk from '@/components/wash/actives/WashTableDisk'
 
 export default {
   data: () => ({
@@ -1187,7 +1192,7 @@ export default {
   }),
   components: {
     Message,
-    // ProgramTableDisk
+    WashTableDisk
   },
   props: {
     actives: {

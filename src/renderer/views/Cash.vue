@@ -137,7 +137,7 @@ export default Vue.extend({
 .back {
   position: absolute;
   margin-top: 8em;
-  margin-left: 4em;
+  margin-left: 1.5em;
   z-index: 1;
 }
 .message {

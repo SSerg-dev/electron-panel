@@ -99,7 +99,7 @@ import EventBus from '@/bus/EventBus'
 .back {
   position: absolute;
   margin-top: 8em;
-  margin-left: 3.5em;
+  margin-left: 1.5em;
   z-index: 1;
 }
 .message {

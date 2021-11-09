@@ -100,13 +100,16 @@ export default new Vuex.Store({
       busy: '',
       panelMoney: '0'
     },
+    globalParameters: {
+      fixedCurrency: ''
+    },
 
     isDebug: true
   },
   actions: {
     /* dev */
     // Dry actions ======================
-    // update program 
+    // update program
     updateDryStartProgram({ commit, dispatch, getters, state }, params) {
       console.log('++updateDryStartProgram-->', JSON.stringify(params))
 
@@ -425,6 +428,13 @@ export default new Vuex.Store({
     getDryBusyPanel(state) {
       return state.dryParameters.busy
     },
+    /* dev */
+    getFixedCurrency(state) {
+      // ::AsGlobalPV:gFixedCurrency.digits
+      return state.globalParameters.fixedCurrency
+      // return 2
+    },
+
     /*
     getDryProg(state) {
       return state.params.filter(p => p.title.slice(4, 7) === 'DRY')
@@ -548,34 +558,28 @@ export default new Vuex.Store({
       //  console.log('----------------------------------------------------------')
       //  console.log('from B&D -->',parameter.title, displayName, parameter.value)
 
-      //console.log('++displayName-->', displayName)
+      // console.log('++displayName-->', displayName)
       //console.log('++parameter.value-->', parameter.value)
 
       switch (displayName) {
         case 'progPrice':
           state.parameters.progPrice = parameter.value
-          //console.log( '++state.parameters.progPrice-->', state.parameters.progPrice)
           break
         case 'progShowMask':
           state.parameters.progShowMask = parameter.value
-          // console.log( '++progShowMask', displayName, state.parameters.progShowMask)
           break
         case 'progStatusMask':
           state.parameters.progStatusMask = parameter.value
-          //console.log( '++progStatusMask', displayName, state.parameters.progStatusMask)
           break
-        // getWetBusyPanel
         case 'busy':
-          // console.log(displayName, state.parameters.busy)
           state.parameters.busy = parameter.value
           break
-        // panelMoney
         case 'PanelMoney':
           state.parameters.panelMoney = parameter.value
-          //console.log(displayName, state.parameters.panelMoney)
           break
-        //------------------------
-        //------------------------
+        case 'digits':
+          state.globalParameters.fixedCurrency = parameter.value
+          break
         default:
           //console.log('no param')
           break
@@ -584,24 +588,11 @@ export default new Vuex.Store({
 
     /* dev */
     setDryParameters(state, parameter) {
-      // console.log('++setDryParameters')
       state.isParamsChange = !state.isParamsChange
-
-      // progPrice
-      // parameter.title = '::AsGlobalPV:VacuumPost[0].progPrice'
-      // parameter.value = [0, 23, 130, 140, 0, 0, 0]
-
-      // panel_money
-      // parameter.title = '::AsGlobalPV:VacuumPost[0].panel_money'
-      // parameter.value = 112
-
-      /* dev 4prod */
-      // --------------------------------
-
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
       )
-      //  console.log('displayName-->', displayName, parameter.value)
+      // console.log('displayName-->', displayName, parameter.value)
 
       switch (displayName) {
         case 'progPrice':
@@ -614,19 +605,16 @@ export default new Vuex.Store({
           state.dryParameters.progStatusMask = parameter.value
           break
         case 'busy':
-          // console.log('state.dryParameters.busy-->', state.dryParameters.busy)
           state.dryParameters.busy = parameter.value
           break
         case 'panel_money':
-          // console.log('panel_money-->state.dryParameters.panelMoney-->', state.dryParameters.panelMoney )
           state.dryParameters.panelMoney = parameter.value
-        
-        /* dev */  
-        // case 'paidMoney':
-        //   state.dryParameters.panelMoney = parameter.value
-        //   break
-        
-          default:
+          break
+        case 'digits':
+          state.globalParameters.fixedCurrency = parameter.value
+          break
+
+        default:
           break
       }
     },

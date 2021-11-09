@@ -73,7 +73,7 @@
               <div style="color: #00b9e3">{{ `ПОСТ №2` }}</div>
             </div>
           </div>
-        </li>
+        </li> 
 
         <li
           v-if="getVacuum === 2"

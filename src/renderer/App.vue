@@ -98,8 +98,9 @@ export default Vue.extend({
             value: tag.value
           }
 
-          /* dev 4prod */
+          
           if (parameter.title !== `::AsGlobalPV:DateTime.Time`) {
+          
           const type = this.getPanelType
           switch (type) {
             case 'wash':
@@ -169,6 +170,7 @@ export default Vue.extend({
       setHumidity: 'setHumidity',
       setTemperature: 'setTemperature',
       setDryParameters: 'setDryParameters'
+      
     }),
     ...mapGetters({
       // getPanelType: 'getPanelType'

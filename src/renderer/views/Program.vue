@@ -2,9 +2,14 @@
   <div>
     
     <section>
+      <!-- dev -->
       
-      <div v-if="this.getPanelType === 'wash'">
+      <!-- <div v-if="this.getPanelType === 'wash'">
         <ProgramTable :actives="actives" :delay="delay" />
+      </div> --> 
+
+      <div v-if="this.getPanelType === 'wash'">
+        <WashTable :actives="actives" :delay="delay" />
       </div>
 
       <div v-if="this.getPanelType === 'vacuum'">
@@ -22,6 +27,7 @@
 import Vue from 'vue'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 import ProgramTable from '@/components/ProgramTable'
+import WashTable from '@/components/wash/WashTable'
 import VacuumTable from '@/components/vacuum/VacuumTable'
 
 export default Vue.extend({
@@ -148,7 +154,8 @@ export default Vue.extend({
 
   components: {
     ProgramTable,
-    VacuumTable
+    VacuumTable,
+    WashTable
   }
 })
 </script>
