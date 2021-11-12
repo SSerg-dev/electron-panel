@@ -32,10 +32,8 @@
         </div>
       </li>
       
-      <!--  & getIsPing -->
       <li 
       v-if="this.IsWetBalance === false"
-      @click="payUp('payEnd')"
       >
         <div
           class="card white waves-effect pay-end-bonus"
@@ -223,7 +221,7 @@ export default {
     },
 
     doReceipt() {
-      console.log('!!!doReceipt()')
+      console.log('!!! Wet doReceipt()')
       const storage = new Storage(this.client, this.url)
 
       /* dev */

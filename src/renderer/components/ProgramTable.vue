@@ -1204,13 +1204,24 @@ export default {
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getWetBalance: 'getWetBalance'
+      getWetBalance: 'getWetBalance',
+      getWetStopFreeCount: 'getWetStopFreeCount'
 
       //getWetProgShow: 'getWetProgShow', // '116321902'
       //getWetProgStatus: 'getWetProgStatus',
       //getWetProgPrice: 'getWetProgPrice',
     })
   },
+  /* dev */
+  watch: {
+    getWetStopFreeCount(flag) {
+      try {
+        if (parseInt(flag) > 0) 
+          this.$router.push('/popup')
+      } catch (err) {}
+    }
+  },
+
   methods: {
     ...mapActions({
       updateStartProgram: 'updateStartProgram'
@@ -1232,7 +1243,9 @@ export default {
       ])
 
       this.timeoutPopup = setTimeout(() => {
-        this.$router.push('/popup')
+        try {
+          this.$router.push('/popup')
+        } catch(err) {} 
       }, 2000)
     },
     setDown(program) {

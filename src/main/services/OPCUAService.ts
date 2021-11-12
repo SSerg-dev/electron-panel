@@ -169,11 +169,7 @@ class OPCUAService extends EventEmitter {
 				const node = this.nodes[tag].replace("{0}", String(num-1));
 				
         /* dev */
-        // if ( (type.indexOf("vacuum") != -1 && node.indexOf("Post") != -1) || 
-        //     (type.indexOf("wash") != -1 && node.indexOf("acuum") != -1) ) {
-				// 	continue
-				// }
-        
+        // if ( (type.indexOf("vacuum")
         if ( (type.indexOf("Vacuum") != -1 && node.indexOf("Post") != -1) || 
             (type.indexOf("wash") != -1 && node.indexOf("acuum") != -1) ) {
 					continue

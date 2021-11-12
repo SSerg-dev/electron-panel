@@ -3,9 +3,90 @@
   <div v-if="getIsFooter">
     <div class="footer-panel white-text ">
       <div class="row">
-        <div class="col s4"></div>
-
         <!-- /////////////////// -->
+        <!-- @click="gotoHome('home')" -->
+
+        <div class="col s4"> 
+          <div class="home">
+            <div
+              v-if="this.isDown.home === false"
+              style="background-image:url('./imgs/operator/home-down.png'); width: 401px; height: 106px"
+              @click="gotoHome('home')"
+            >
+              <div
+                class="button-title-long button-title-operator"
+                style="padding-left: 8rem;"
+
+              >
+                {{ `ДОМОЙ` }}
+              </div>
+            </div>
+            <div
+              v-if="this.isDown.home === true"
+              style="background-image:url('./imgs/operator/home-up.png'); width: 401px; height: 106px"
+              @click="gotoHome('home')" 
+            >
+              <div
+                class="button-title-long button-title-operator"
+                style="padding-left: 8rem;"
+              >
+                {{ `ДОМОЙ` }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ///////////////////// -->
+
+        <!-- <div class="col s4">
+          <div class="home">
+            <div
+              v-if="this.isDown.operator === false"
+              style="background-image:url('./imgs/operator/operator-down.png'); width: 401px; height: 106px"
+              @click="setProgram('operator')"
+            >
+             <div class="button-title-long button-title-operator">
+                {{ `КОНСУЛЬТАНТ` }}
+              </div>
+            </div>
+            <div
+              v-if="this.isDown.operator === true"
+              style="background-image:url('./imgs/operator/operator-up.png'); width: 401px; height: 106px"
+              @click="setProgram('operator')"
+            >
+              <div class="button-title-long button-title-operator">
+                {{ `КОНСУЛЬТАНТ` }}
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <!-- ///////////////////// -->
+
+        <!-- <div class="col s4">
+          <div class="operator" style="margin-left: 0rem; z-index: 42">
+            <div
+              v-if="this.isDown.operator === false"
+              style="background-image:url('./imgs/operator/operator-down.png'); width: 401px; height: 106px"
+              @click="setProgram('operator')"
+            >
+             <div class="button-title-long button-title-operator">
+                {{ `КОНСУЛЬТАНТ` }}
+              </div>
+            </div>
+            <div
+              v-if="this.isDown.operator === true"
+              style="background-image:url('./imgs/operator/operator-up.png'); width: 401px; height: 106px"
+              @click="setProgram('operator')"
+            >
+              <div class="button-title-long button-title-operator">
+                {{ `КОНСУЛЬТАНТ` }}
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <!-- ///////////////////// -->
+        
+
         <div class="col s4">
           <div class="stop" style="z-index: 0;">
             <div
@@ -36,7 +117,7 @@
               style="background-image:url('./imgs/operator/operator-down.png'); width: 401px; height: 106px"
               @click="setProgram('operator')"
             >
-              <div class="button-title-long button-title-operator">
+             <div class="button-title-long button-title-operator">
                 {{ `КОНСУЛЬТАНТ` }}
               </div>
             </div>
@@ -51,6 +132,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -68,7 +150,8 @@ export default {
     delay: 500,
     isDown: {
       stop: false,
-      operator: false
+      operator: false,
+      home: false
     }
   }),
   computed: {
@@ -81,7 +164,8 @@ export default {
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
       getPanelType: 'getPanelType',
-      getIsFooter: 'getIsFooter'
+      getIsFooter: 'getIsFooter',
+      getWetStopFreeCount: 'getWetStopFreeCount'
     })
   },
 
@@ -94,6 +178,22 @@ export default {
       updateStartProgram: 'updateStartProgram',
       updateDryStartProgram: 'updateDryStartProgram'
     }),
+
+    gotoHome(program) {
+      console.log('home-->', program)
+      this.isDown.home = true
+      this.timeoutDelay = setTimeout(() => {
+        this.isDown.home = false
+        /* dev */
+        try {
+        if (this.$route !== 'home')
+          // console.log('this.$route.name-->', this.$route.name)
+          this.$router.push('/')
+        } catch(err) {}
+
+      }, this.delay) 
+
+    },
 
     setProgram(program) {
       // console.log('setProgram-->', program)
@@ -120,14 +220,25 @@ export default {
             this.getDryBalance
           ])
           break
+
         default:
           console.warn('no panel type')
           break
       }
-
-      this.timeoutPopup = setTimeout(() => {
-        this.$router.push('/popup')
-      }, this.delay)
+      /* dev */
+      console.log('program-->', program)
+      if (
+        (this.getWetStopFreeCount === 0 && this.$route.name !== 'popup') ||
+        program === 'operator'
+      ) {
+        this.timeoutPopup = setTimeout(() => {
+          try {
+            this.$router.push('/popup')
+          } catch (err) {}
+        }, this.delay)
+      }
+      // else if (this.getWetBalance > 0)
+      //   this.$message(`Превышено число бесплатных остановок`)
     },
     setDown(program) {
       this.clearDown()
@@ -145,7 +256,15 @@ export default {
             this.isDown.operator = false
           }, this.delay)
           break
-
+        /* case 'home':
+          this.isDown.home = true
+          this.timeoutDelay = setTimeout(() => {
+            this.isDown.home = false
+          }, this.delay)
+          console.log('++home')
+          this.$router.push('/')
+          break
+        */
         default:
           break
       }
@@ -197,6 +316,7 @@ export default {
   left: 0%;
   padding-left: 300px;
   padding-top: 0px;
+  z-index: 1;
 }
 .button-title-stop {
   padding-top: 24px;
@@ -211,7 +331,7 @@ export default {
   top: 4%;
   left: 0%;
   margin-left: 46rem;
-  /* z-index: 1000; */
+  z-index: 1;
 }
 .button-title-operator {
   padding-top: 16px;
@@ -222,5 +342,16 @@ export default {
   font-size: 20px;
   font-family: 'Plumb-Medium';
   font-weight: bold;
+}
+.home {
+  width: 401px;
+  height: 106px;
+  position: absolute;
+  background-color: none;
+  opacity: 1;
+  top: 4%;
+  left: 0%;
+  margin-left: -0.6rem;
+  z-index: 1;
 }
 </style>

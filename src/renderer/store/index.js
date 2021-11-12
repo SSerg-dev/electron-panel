@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex, { Store } from 'vuex'
-import posts from './posts'
 import setting from './setting'
 import program from './program'
 import cost from './cost'
@@ -90,7 +89,9 @@ export default new Vuex.Store({
       progShowMask: '',
       progStatusMask: '',
       busy: '',
-      panelMoney: '0'
+      panelMoney: '0',
+      stopFreeCount: '0'
+      
     },
 
     dryParameters: {
@@ -353,6 +354,9 @@ export default new Vuex.Store({
     getWetProgPrice(state, getters) {
       return state.parameters.progPrice
     },
+    getWetStopFreeCount(state) {
+      return state.parameters.stopFreeCount
+    },
     // --------------------------------
 
     /* getWetProg(state) {
@@ -434,6 +438,7 @@ export default new Vuex.Store({
       return state.globalParameters.fixedCurrency
       // return 2
     },
+    
 
     /*
     getDryProg(state) {
@@ -580,6 +585,11 @@ export default new Vuex.Store({
         case 'digits':
           state.globalParameters.fixedCurrency = parameter.value
           break
+        case 'stopFreeCount':
+          state.parameters.stopFreeCount = parameter.value
+          // console.log('state.parameters.stopFreeCount-->', state.parameters.stopFreeCount)
+          break
+
         default:
           //console.log('no param')
           break
@@ -669,7 +679,7 @@ export default new Vuex.Store({
   } /* end mutations */,
 
   modules: {
-    posts,
+    
     setting,
     program,
     cost,

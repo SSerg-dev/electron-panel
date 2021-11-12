@@ -5,11 +5,16 @@
         <p>
           PopupType<br />
         </p>
+        
       </h3>
     </div> -->
     <div v-if="this.messageIndex > -1" class="message">
       {{ `${this.messages[this.messageIndex]}` }}
+      <div v-if="getWetStopFreeCount > 0" style="font-size: 2em">
+        {{ ` ${getWetStopFreeCount}` }}
+      </div>
     </div>
+
     <div class="locate">
       <section>
         <div class="row">
@@ -46,8 +51,8 @@ export default Vue.extend({
     isOperator: false,
     isTurbo: false,
     messages: [
-      'КНОПКА СТОП ОСТАНАВЛИВАЕТ ДВИГАТЕЛЬ',
-      'ВЫЗОВ ОТПРАВЛЕН, ОЖИДАЙТЕ',
+      `КНОПКА СТОП ОСТАНАВЛИВАЕТ ДВИГАТЕЛЬ`,
+      `ВЫЗОВ ОТПРАВЛЕН, ОЖИДАЙТЕ`,
       ''
     ],
     messageIndex: -1
@@ -55,8 +60,18 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getSecondsGotoPopupMenu: 'getSecondsGotoPopupMenu',
-      getPanelType: 'getPanelType'
+      getPanelType: 'getPanelType',
+      getWetStopFreeCount: 'getWetStopFreeCount'
     })
+  },
+  watch: {
+    getWetStopFreeCount(flag) {
+      try {
+        // && this.$route.name !== 'popup'
+        if (parseInt(flag) === 0) 
+          this.$router.push('/program')
+      } catch (err) {}
+    }
   },
   methods: {
     ...mapMutations({
@@ -132,21 +147,25 @@ export default Vue.extend({
       }
     },
 
-    gotoPopupMenu(seconds) {
-      this.intervalPopupMenu = setInterval(() => {
-        if (--seconds < 0 && this.$route.name !== 'program') {
-          console.log('--seconds-->', seconds)
-          /* dev */
-          // if (this.getPanelType === 'vacuum') this.$router.push('/')
-          // else this.$router.push('/program')
+    gotoProgramMenu(seconds) {
+      try {
+        this.intervalPopupMenu = setInterval(() => {
+        if (--seconds <= 0) {
           this.$router.push('/program')
+          return
         }
       }, 1000)
+
+      } catch(err) {console.warn(err)}
+      
     }
   },
   mounted() {
     this.setup()
-    this.gotoPopupMenu(this.getSecondsGotoPopupMenu)
+    /* dev */
+    if (parseInt(this.getWetStopFreeCount) === 0) {
+      this.gotoProgramMenu(this.getSecondsGotoPopupMenu)
+    }
   },
   beforeDestroy() {
     clearInterval(this.intervalPopupMenu)
@@ -170,9 +189,9 @@ h3 {
   position: relative;
 }
 .message {
-  position: absolute;
+  position: absolute; 
   width: 32rem;
-  top: 60%;
+  top: 50%;
   left: 28%;
   color: white;
   text-align: center;

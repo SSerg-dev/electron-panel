@@ -4,13 +4,13 @@
     <section>
       <!-- dev -->
       
-      <!-- <div v-if="this.getPanelType === 'wash'">
-        <ProgramTable :actives="actives" :delay="delay" />
-      </div> --> 
-
       <div v-if="this.getPanelType === 'wash'">
+        <ProgramTable :actives="actives" :delay="delay" />
+      </div> 
+
+      <!-- <div v-if="this.getPanelType === 'wash'">
         <WashTable :actives="actives" :delay="delay" />
-      </div>
+      </div> -->
 
       <div v-if="this.getPanelType === 'vacuum'">
         <VacuumTable :actives="activesVacuum" />

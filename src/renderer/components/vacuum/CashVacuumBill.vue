@@ -252,7 +252,7 @@ export default {
     },
 
     doReceipt() {
-      console.log('!!!doReceipt()')
+      console.log('!!! Dry doReceipt()')
       const storage = new Storage(this.client, this.url)
 
       /* dev */
