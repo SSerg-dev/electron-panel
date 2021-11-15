@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="page-title">
+    <!-- <div class="page-title">
       <h3>
           Popup screen<br />
           Помощь клиенту
       </h3>
-    </div>
+    </div> -->
 
     <section>
       <div class="row">
@@ -42,8 +42,8 @@ export default Vue.extend({
 
 <style scoped>
 .row {
-  padding-top: 15rem;
-  padding-left: 4rem;
+  padding-top: 18em;
+  padding-left: 4em;
 }
 .page-title {
   padding-top: 4em; /* 30px; */

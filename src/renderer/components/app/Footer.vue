@@ -6,7 +6,7 @@
         <!-- /////////////////// -->
         <!-- @click="gotoHome('home')" -->
 
-        <div class="col s4"> 
+        <div class="col s4">
           <div class="home">
             <div
               v-if="this.isDown.home === false"
@@ -16,7 +16,6 @@
               <div
                 class="button-title-long button-title-operator"
                 style="padding-left: 8rem;"
-
               >
                 {{ `ДОМОЙ` }}
               </div>
@@ -24,7 +23,7 @@
             <div
               v-if="this.isDown.home === true"
               style="background-image:url('./imgs/operator/home-up.png'); width: 401px; height: 106px"
-              @click="gotoHome('home')" 
+              @click="gotoHome('home')"
             >
               <div
                 class="button-title-long button-title-operator"
@@ -85,7 +84,6 @@
           </div>
         </div> -->
         <!-- ///////////////////// -->
-        
 
         <div class="col s4">
           <div class="stop" style="z-index: 0;">
@@ -117,7 +115,7 @@
               style="background-image:url('./imgs/operator/operator-down.png'); width: 401px; height: 106px"
               @click="setProgram('operator')"
             >
-             <div class="button-title-long button-title-operator">
+              <div class="button-title-long button-title-operator">
                 {{ `КОНСУЛЬТАНТ` }}
               </div>
             </div>
@@ -132,7 +130,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -180,19 +177,17 @@ export default {
     }),
 
     gotoHome(program) {
-      console.log('home-->', program)
+      // console.log('home-->', program)
       this.isDown.home = true
       this.timeoutDelay = setTimeout(() => {
         this.isDown.home = false
         /* dev */
         try {
-        if (this.$route !== 'home')
-          // console.log('this.$route.name-->', this.$route.name)
-          this.$router.push('/')
-        } catch(err) {}
-
-      }, this.delay) 
-
+          if (this.$route !== 'home')
+            // console.log('this.$route.name-->', this.$route.name)
+            this.$router.push('/')
+        } catch (err) {}
+      }, this.delay)
     },
 
     setProgram(program) {

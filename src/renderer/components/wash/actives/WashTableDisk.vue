@@ -1,50 +1,68 @@
 <template>
   <div>
-    <td>
-      <button
-        style="background-image:url('./imgs/blue/blue_long_turbo.png'); width: 832px; height: 105px"
-        class="btn black"
-      ></button>
-    </td>
-
-    <!-- <tr>
+    <!-- 1 -->
+    <!-- ДИСКИ -->
+    <tr>
       <td
-        v-if="this.actives[2].display === 'block'"
-        @click="setProgram('washer')"
+        v-if="this.actives[24].display === 'block'"
+        @click="setProgram('disk')"
       >
         <div
           class="waves-effect button-style"
           :class="[
-            { 'card white': !this.isDown.washer },
-            { 'card teal accent-3': this.isDown.washer }
+            { 'card white': !this.isDown.disk },
+            { 'card light-blue accent-2': this.isDown.disk }
           ]"
         >
           <div
             class="button-content-style"
             :class="[
-              { 'card-content black-text': !this.isDown.washer },
-              { 'card-content white-text': this.isDown.washer }
+              { 'card-content black-text': !this.isDown.disk },
+              { 'card-content white-text': this.isDown.disk }
             ]"
           >
-            {{ `${actives[2].title}` }}
-          </div>
+            {{ `${actives[14].title}` }}
+          </div> 
         </div>
       </td>
-    </tr> -->
-
+    </tr>
+    
+    
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 export default Vue.extend({
-  data: () => ({}),
-  methods: {
-    setProgram(program) {
-      // this.setDown(program)
+  data: () => ({
+    active: '',
+    timeoutPopup: null,
+    prefix: 'simple_',
 
-      // this.active = program
+    isDown: {
+      disk: false,
+      disk_x2: false
+    }
+  }),
+  props: {
+    actives: {
+      required: true,
+      type: Array
+    }
+  },
+
+  methods: {
+    ...mapMutations({
+      setActiveProgram: 'setActiveProgram'
+    }),
+    setProgram(program) {
+      this.setDown(program)
+
+      this.active = program
+      /* dev */
+      this.setActiveProgram(this.prefix + this.active + '_x2')
       // this.setActiveProgram(this.active)
 
       // this.updateDryStartProgram([
@@ -57,15 +75,46 @@ export default Vue.extend({
       this.timeoutPopup = setTimeout(() => {
         this.$router.push('/popup')
       }, 2000)
+    },
+    setDown(program) {
+    this.clearDown()
+    switch (program) {
+      /* dev */
+      case 'disk':
+        this.isDown.disk = true
+        break
+      case 'disk_x2':
+        this.isDown.disk_x2 = true
+        break
+
+      default:
+        break
     }
+  },
+  clearDown() {
+    this.isDown = Object.fromEntries(
+      Object.entries(this.isDown).map(([key, value]) => [key, false])
+    )
+  },
+  beforeDestroy() {
+    clearTimeout(this.timeoutPopup)
+  },
+
+  },
+  
+  created() {
+    // console.log('actives-->', JSON.stringify(this.actives))
   }
 })
 </script>
 
 <style scoped>
+tr {
+  padding-bottom: 0px;
+}
 td {
   padding-top: 0px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
   padding-right: 0px;
   padding-left: 0px;
 
@@ -73,24 +122,23 @@ td {
   width: 474px;
 }
 
-/* .price {
-  position: absolute;
-  margin-top: 4em;
-  margin-left: 1.5em;
-} */
+
 .button-style {
+  margin-left: 0em;
   padding-top: 0em;
   width: 945px;
-  height: 105px;
-  border: solid 6px #1de9b6;
+  height: 100px;
+  border: solid 6px #40c4ff;
   border-radius: 4em;
-  box-shadow: 0px 10px 20px #1de9b6;
+  box-shadow: 0px 6px 10px #40c4ff;
 }
 .button-content-style {
   font-size: 3.5em;
-  padding-top: 0.2em;
+  margin-left: 0.7em;
+  padding-top: 0.15em;
+  padding-right: 0em;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
 }
 </style>

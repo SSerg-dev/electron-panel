@@ -99,7 +99,7 @@
           </tr> -->
           
           <!-- dev -->
-            <WashTableDisk />  
+            <WashTableDisk :actives="actives"/>  
           <!--     -->
 
           <!-- 2 -->

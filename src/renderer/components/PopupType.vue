@@ -1,13 +1,5 @@
 <template>
   <div>
-    <!-- <div class="page-title">
-      <h3>
-        <p>
-          PopupType<br />
-        </p>
-        
-      </h3>
-    </div> -->
     <div v-if="this.messageIndex > -1" class="message">
       {{ `${this.messages[this.messageIndex]}` }}
       <div v-if="getWetStopFreeCount > 0" style="font-size: 2em">
@@ -17,7 +9,8 @@
 
     <div class="locate">
       <section>
-        <div class="row">
+        
+        <div class="popup">
           <p>
             <img v-if="isBasic" src="/imgs/popup/popup-basic.png" />
             <img v-if="isFoam" src="/imgs/popup/popup-foam.png" />
@@ -29,7 +22,13 @@
             <img v-if="isTurbo" src="/imgs/popup/popup-turbo.png" />
           </p>
         </div>
+
+        <div class="active">
+          <PopupTypeActive />
+        </div>
+
       </section>
+
     </div>
   </div>
 </template>
@@ -37,6 +36,7 @@
 <script>
 import Vue from 'vue'
 import { mapMutations, mapGetters } from 'vuex'
+import PopupTypeActive from '@/components/PopupTypeActive'
 
 export default Vue.extend({
   data: () => ({
@@ -68,8 +68,7 @@ export default Vue.extend({
     getWetStopFreeCount(flag) {
       try {
         // && this.$route.name !== 'popup'
-        if (parseInt(flag) === 0) 
-          this.$router.push('/program')
+        if (parseInt(flag) === 0) this.$router.push('/program')
       } catch (err) {}
     }
   },
@@ -80,84 +79,108 @@ export default Vue.extend({
     ...mapGetters({
       getActiveProgram: 'getActiveProgram'
     }),
+    active() {
+      const active = this.activeProgram.slice(7)
+      const index = active.indexOf('_')
 
+      return active.slice(index + 1)
+    },
     setup() {
       this.activeProgram = this.getActiveProgram()
 
-      // 1 blue
-      if (
-        this.activeProgram === 'disk' ||
-        this.activeProgram === 'disk_x2' ||
-        this.activeProgram === 'mosquito' ||
-        this.activeProgram === 'mosquito_x2' ||
-        this.activeProgram === 'shampoo' ||
-        this.activeProgram === 'shampoo_x2' ||
-        this.activeProgram === 'waterShampoo' ||
-        this.activeProgram === 'waterShampoo_turbo' ||
-        this.activeProgram === 'warmWater' ||
-        this.activeProgram === 'warmWater_turbo' ||
-        this.activeProgram === 'coldWater' ||
-        this.activeProgram === 'coldWater_turbo' ||
-        this.activeProgram === 'waxProtection' ||
-        this.activeProgram === 'waxProtection_turbo' ||
-        this.activeProgram === 'dryShine' ||
-        this.activeProgram === 'dryShine_turbo'
-      )
-        this.isBasic = true
-      // 2 red
-      if (
-        this.activeProgram === 'foam' ||
-        this.activeProgram === 'foam_color' ||
-        this.activeProgram === 'foam_x2'
-      )
-        this.isFoam = true
-      // 3 dark green
-      if (
-        this.activeProgram === 'brushFoam' ||
-        this.activeProgram === 'brushFoam_color' ||
-        this.activeProgram === 'brushFoam_x2'
-      )
-        this.isBrush = true
-      // 4 marin
-      if (
-        this.activeProgram === 'washer' ||
-        this.activeProgram === 'vacuum' ||
-        this.activeProgram === 'turboDryer' ||
-        this.activeProgram === 'air' ||
-        this.activeProgram === 'blacking' ||
-        this.activeProgram === 'disinfection'
-      )
-        this.isWasher = true
-      // 5 green
-      /* if (
+      if (this.activeProgram.slice(0, 7) !== 'simple_') {
+        // 1 blue
+        if (
+          this.activeProgram === 'disk' ||
+          this.activeProgram === 'disk_x2' ||
+          this.activeProgram === 'mosquito' ||
+          this.activeProgram === 'mosquito_x2' ||
+          this.activeProgram === 'shampoo' ||
+          this.activeProgram === 'shampoo_x2' ||
+          this.activeProgram === 'waterShampoo' ||
+          this.activeProgram === 'waterShampoo_turbo' ||
+          this.activeProgram === 'warmWater' ||
+          this.activeProgram === 'warmWater_turbo' ||
+          this.activeProgram === 'coldWater' ||
+          this.activeProgram === 'coldWater_turbo' ||
+          this.activeProgram === 'waxProtection' ||
+          this.activeProgram === 'waxProtection_turbo' ||
+          this.activeProgram === 'dryShine' ||
+          this.activeProgram === 'dryShine_turbo'
+        )
+          this.isBasic = true
+        // 2 red
+        if (
+          this.activeProgram === 'foam' ||
+          this.activeProgram === 'foam_color' ||
+          this.activeProgram === 'foam_x2'
+        )
+          this.isFoam = true
+        // 3 dark green
+        if (
+          this.activeProgram === 'brushFoam' ||
+          this.activeProgram === 'brushFoam_color' ||
+          this.activeProgram === 'brushFoam_x2'
+        )
+          this.isBrush = true
+        // 4 marin
+        if (
+          this.activeProgram === 'washer' ||
+          this.activeProgram === 'vacuum' ||
+          this.activeProgram === 'turboDryer' ||
+          this.activeProgram === 'air' ||
+          this.activeProgram === 'blacking' ||
+          this.activeProgram === 'disinfection'
+        )
+          this.isWasher = true
+        // 5 green
+        /* if (
         this.activeProgram === 'air'
       ) this.isAir = true */
-      // footer
-      if (this.activeProgram === 'stop') {
-        this.isStop = true
-        this.messageIndex = 0
-      }
-      if (this.activeProgram === 'operator') {
-        this.isOperator = true
-        this.messageIndex = 1
-      }
-      if (this.activeProgram === 'turbo') {
-        this.isTurbo = true
-        this.messageIndex = 2
+        // footer
+        if (this.activeProgram === 'stop') {
+          this.isStop = true
+          this.messageIndex = 0
+        }
+        if (this.activeProgram === 'operator') {
+          this.isOperator = true
+          this.messageIndex = 1
+        }
+        if (this.activeProgram === 'turbo') {
+          this.isTurbo = true
+          this.messageIndex = 2
+        }
+      } else {
+        // x2, turbo, color,
+        const active = this.active() 
+
+        switch (active) {
+          case 'x2':
+            console.log('++active-->', active)
+            break
+          case 'turbo':
+            console.log('++active-->', active)
+            break
+          case 'color':
+            console.log('++active-->', active)
+            break
+          default:
+            break
+        }
       }
     },
 
     gotoProgramMenu(seconds) {
       try {
         this.intervalPopupMenu = setInterval(() => {
-        if (--seconds <= 0) {
-          this.$router.push('/program')
-          return
-        }
-      }, 1000)
-
-      } catch(err) {console.warn(err)}
-      
+          if (--seconds <= 0) {
+            this.$router.push('/program')
+            return
+          }
+        }, 1000)
+      } catch (err) {
+        console.warn(err)
+      }
     }
   },
   mounted() {
@@ -170,7 +193,9 @@ export default Vue.extend({
   beforeDestroy() {
     clearInterval(this.intervalPopupMenu)
   },
-  components: {}
+  components: {
+    PopupTypeActive
+  },
 })
 </script>
 
@@ -189,7 +214,7 @@ h3 {
   position: relative;
 }
 .message {
-  position: absolute; 
+  position: absolute;
   width: 32rem;
   top: 50%;
   left: 28%;
