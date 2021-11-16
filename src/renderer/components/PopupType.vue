@@ -23,7 +23,8 @@
           </p>
         </div>
 
-        <div class="active">
+        <!-- :activeType = "activeType" -->
+        <div v-if="this.isActive" class="active">
           <PopupTypeActive />
         </div>
 
@@ -55,7 +56,10 @@ export default Vue.extend({
       `ВЫЗОВ ОТПРАВЛЕН, ОЖИДАЙТЕ`,
       ''
     ],
-    messageIndex: -1
+    messageIndex: -1,
+    delay: 0,
+    isActive: false,
+    activeType: ''
   }),
   computed: {
     ...mapGetters({
@@ -89,6 +93,8 @@ export default Vue.extend({
       this.activeProgram = this.getActiveProgram()
 
       if (this.activeProgram.slice(0, 7) !== 'simple_') {
+        this.isActive = false
+        this.delay = 1000
         // 1 blue
         if (
           this.activeProgram === 'disk' ||
@@ -146,23 +152,25 @@ export default Vue.extend({
           this.isOperator = true
           this.messageIndex = 1
         }
-        if (this.activeProgram === 'turbo') {
+        if (this.activeProgram === 'turbo') { 
           this.isTurbo = true
           this.messageIndex = 2
         }
       } else {
         // x2, turbo, color,
-        const active = this.active() 
+        this.isActive = true
+        this.delay = 10000000
+        this.activeType = this.active() 
 
-        switch (active) {
+        switch (this.activeType) {
           case 'x2':
-            console.log('++active-->', active)
+            console.log('x2+this.activeType-->', this.activeType)
             break
           case 'turbo':
-            console.log('++active-->', active)
+            console.log('turbo+this.activeType-->', this.activeType)
             break
           case 'color':
-            console.log('++active-->', active)
+            console.log('color+this.activeType-->', this.activeType)
             break
           default:
             break
@@ -177,7 +185,7 @@ export default Vue.extend({
             this.$router.push('/program')
             return
           }
-        }, 1000)
+        }, this.delay)
       } catch (err) {
         console.warn(err)
       }

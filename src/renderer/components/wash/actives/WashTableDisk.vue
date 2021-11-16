@@ -58,7 +58,7 @@ export default Vue.extend({
       setActiveProgram: 'setActiveProgram'
     }),
     setProgram(program) {
-      this.setDown(program)
+      this.setDown(program) 
 
       this.active = program
       /* dev */
@@ -84,6 +84,7 @@ export default Vue.extend({
         this.isDown.disk = true
         break
       case 'disk_x2':
+        console.log('disk_x2-->', program)
         this.isDown.disk_x2 = true
         break
 
