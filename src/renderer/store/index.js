@@ -36,6 +36,11 @@ export default new Vuex.Store({
     //postNumber: 5,
     activeProgram: '',
     activeProgramNumber: '-1',
+    /* dev */
+    activeProgramKit: {},
+    isActiveProgramKit: false,
+    /*     */
+
     message: {
       id: 1,
       title: '',
@@ -527,6 +532,14 @@ export default new Vuex.Store({
     getActiveProgram(state) {
       return state.activeProgram
     },
+    /* dev */
+    getActiveProgramKit(state) {
+      return state.activeProgramKit
+    },
+    getIsActiveProgramKit(state) {
+      return state.isActiveProgramKit
+    },
+
     getActiveProgramNumber(state) {
       console.log('state.activeProgramNumber-->', state.activeProgramNumber)
       return state.activeProgramNumber
@@ -664,6 +677,16 @@ export default new Vuex.Store({
       state.activeProgram = activeProgram
       //console.log('state.activeProgram-->', state.activeProgram)
     },
+    /* dev */
+    setActiveProgramKit(state, activeProgramKit) {
+      state.activeProgramKit = activeProgramKit
+      // console.log('state.activeProgramKit-->', state.activeProgramKit)
+    },
+    // isActiveProgramKit
+    setIsActiveProgramKit(state, isActiveProgramKit) {
+      state.isActiveProgramKit = isActiveProgramKit
+    },
+
     setActiveProgramNumber(state, activeProgramNumber) {
       state.activeProgramNumber = activeProgramNumber
       //console.log('state.activeProgramNumber-->', state.activeProgramNumber)

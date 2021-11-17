@@ -23,8 +23,7 @@
           </p>
         </div>
 
-        <!-- :activeType = "activeType" -->
-        <div v-if="this.isActive" class="active">
+        <div v-if="this.getIsActiveProgramKit()" class="active">
           <PopupTypeActive />
         </div>
 
@@ -42,6 +41,11 @@ import PopupTypeActive from '@/components/PopupTypeActive'
 export default Vue.extend({
   data: () => ({
     activeProgram: '',
+    
+    activeProgramKit: {},
+   
+    
+
     intervalPopupMenu: null,
     isBasic: false,
     isFoam: false,
@@ -58,8 +62,8 @@ export default Vue.extend({
     ],
     messageIndex: -1,
     delay: 0,
-    isActive: false,
-    activeType: ''
+    // isActiveKit: false,
+    activeKit: ''
   }),
   computed: {
     ...mapGetters({
@@ -78,12 +82,16 @@ export default Vue.extend({
   },
   methods: {
     ...mapMutations({
-      setActiveProgram: 'setActiveProgram'
+      setActiveProgram: 'setActiveProgram',
+      setActiveProgramKit: 'setActiveProgramKit',
+      setIsActiveProgramKit: 'setIsActiveProgramKit'
     }),
     ...mapGetters({
-      getActiveProgram: 'getActiveProgram'
+      getActiveProgram: 'getActiveProgram',
+      getActiveProgramKit: 'getActiveProgramKit',
+      getIsActiveProgramKit: 'getIsActiveProgramKit'
     }),
-    active() {
+    getActiveKit() {
       const active = this.activeProgram.slice(7)
       const index = active.indexOf('_')
 
@@ -91,9 +99,15 @@ export default Vue.extend({
     },
     setup() {
       this.activeProgram = this.getActiveProgram()
+      // console.log('--this.activeProgram-->', this.activeProgram)
+      this.activeProgramKit = this.getActiveProgramKit()
+      // console.log('this.activeProgramKit-->', this.activeProgramKit)
+      // console.log('++else if(this.getIsActiveProgramKit)-->', this.getIsActiveProgramKit())
 
-      if (this.activeProgram.slice(0, 7) !== 'simple_') {
-        this.isActive = false
+      
+        if(!this.getIsActiveProgramKit()) {
+        // if(true) {
+        this.setIsActiveProgramKit(false)
         this.delay = 1000
         // 1 blue
         if (
@@ -143,6 +157,7 @@ export default Vue.extend({
         /* if (
         this.activeProgram === 'air'
       ) this.isAir = true */
+
         // footer
         if (this.activeProgram === 'stop') {
           this.isStop = true
@@ -156,25 +171,40 @@ export default Vue.extend({
           this.isTurbo = true
           this.messageIndex = 2
         }
-      } else {
+      } 
+      if(this.getIsActiveProgramKit()) {
         // x2, turbo, color,
-        this.isActive = true
+        
+        this.setIsActiveProgramKit(true)
         this.delay = 10000000
-        this.activeType = this.active() 
 
-        switch (this.activeType) {
+        console.log('++else if(this.getIsActiveProgramKit)-->', this.getIsActiveProgramKit())
+
+        
+        console.log('!!++title-->', this.activeProgramKit.title)
+        console.log('!!++name-->', this.activeProgramKit.name)
+        console.log('!!++isX2-->', this.activeProgramKit.x2)
+        console.log('!!++isTurbo-->', this.activeProgramKit.color)
+        console.log('!!++isColor-->', this.activeProgramKit.turbo)
+        
+        
+        /* this.activeKit = this.getActiveKit() 
+        
+
+        switch (this.activeKit) {
           case 'x2':
-            console.log('x2+this.activeType-->', this.activeType)
+            console.log('x2+this.activeKit-->', this.activeKit)
             break
           case 'turbo':
-            console.log('turbo+this.activeType-->', this.activeType)
+            console.log('turbo+this.activeKit-->', this.activeKit)
             break
           case 'color':
-            console.log('color+this.activeType-->', this.activeType)
+            console.log('color+this.activeKit-->', this.activeKit)
             break
           default:
             break
-        }
+        } */
+
       }
     },
 
@@ -199,6 +229,7 @@ export default Vue.extend({
     }
   },
   beforeDestroy() {
+    this.setIsActiveProgramKit(false)
     clearInterval(this.intervalPopupMenu)
   },
   components: {
@@ -231,5 +262,8 @@ h3 {
   font-size: 3.5rem;
   font-weight: bold;
   z-index: 1;
+}
+.popup {
+  margin-top: 10em;
 }
 </style>

@@ -3,10 +3,7 @@
     <!-- 1 -->
     <!-- ДИСКИ -->
     <tr>
-      <td
-        v-if="this.actives[24].display === 'block'"
-        @click="setProgram('disk')"
-      >
+      <td @click="setProgram('disk')">
         <div
           class="waves-effect button-style"
           :class="[
@@ -22,12 +19,10 @@
             ]"
           >
             {{ `${actives[14].title}` }}
-          </div> 
+          </div>
         </div>
       </td>
     </tr>
-    
-    
   </div>
 </template>
 
@@ -37,9 +32,19 @@ import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 export default Vue.extend({
   data: () => ({
+    activeNumber: 14,
     active: '',
     timeoutPopup: null,
-    prefix: 'simple_',
+    /* prefix: 'simple_', */
+    prefix: 'kit_',
+
+    /* activeProgramKit: {
+      title: '',
+      isX2: true,
+      isTurbo: false,
+      isColor: false
+    }, */
+    activeProgramKit: {},
 
     isDown: {
       disk: false,
@@ -54,57 +59,77 @@ export default Vue.extend({
   },
 
   methods: {
-    ...mapMutations({
-      setActiveProgram: 'setActiveProgram'
+    ...mapGetters({
+      getActiveProgram: 'getActiveProgram',
+      getActiveProgramKit: 'getActiveProgramKit',
+      getIsActiveProgramKit: 'getIsActiveProgramKit'
     }),
+    ...mapMutations({
+      setActiveProgram: 'setActiveProgram',
+      setActiveProgramKit: 'setActiveProgramKit',
+      setIsActiveProgramKit: 'setIsActiveProgramKit'
+    }),
+
     setProgram(program) {
       this.setDown(program) 
+      this.setIsActiveProgramKit(true)
+      // console.log('this.getIsActiveProgramKit()-->', this.getIsActiveProgramKit())
 
-      this.active = program
-      /* dev */
-      this.setActiveProgram(this.prefix + this.active + '_x2')
-      // this.setActiveProgram(this.active)
-
-      // this.updateDryStartProgram([
-      //   this.getPanelType,
-      //   this.getVacuumNumber,
-      //   this.getActiveProgram,
-      //   this.getDryBalance
-      // ])
+      this.setActiveProgramKit(this.activeProgramKit)
+      // console.log('+!getActiveProgramKit-->', this.getActiveProgramKit())
 
       this.timeoutPopup = setTimeout(() => {
         this.$router.push('/popup')
       }, 2000)
     },
     setDown(program) {
-    this.clearDown()
-    switch (program) {
-      /* dev */
-      case 'disk':
-        this.isDown.disk = true
-        break
-      case 'disk_x2':
-        console.log('disk_x2-->', program)
-        this.isDown.disk_x2 = true
-        break
+      this.clearDown()
+      switch (program) { 
+        /* dev */
+        case 'disk':
+          this.isDown.disk = true
+          break
+        // case 'disk_x2':
+        //   this.isDown.disk_x2 = true
+        //   break
 
-      default:
-        break
+        default:
+          break
+      }
+    },
+    clearDown() {
+      this.isDown = Object.fromEntries(
+        Object.entries(this.isDown).map(([key, value]) => [key, false])
+      )
+    },
+    getKits() {
+      // console.log('actives-->', JSON.stringify(this.actives[14]))
+      const result = []
+      Object.entries(this.actives[this.activeNumber]).map(([key, value]) => {
+        if (
+          key === 'title' ||
+          key === 'name' ||
+          key === 'x2' ||
+          key === 'color' ||
+          key === 'turbo'
+        ) {
+          result.push([key, value])  
+        }
+        return
+      })
+
+      this.activeProgramKit = Object.fromEntries(result)
+      // console.log('this.activeProgramKit-->', this.activeProgramKit)
     }
-  },
-  clearDown() {
-    this.isDown = Object.fromEntries(
-      Object.entries(this.isDown).map(([key, value]) => [key, false])
-    )
-  },
+  }, // end methods  
+
   beforeDestroy() {
     clearTimeout(this.timeoutPopup)
   },
 
-  },
-  
   created() {
-    // console.log('actives-->', JSON.stringify(this.actives))
+    this.getKits()
+
   }
 })
 </script>
@@ -122,7 +147,6 @@ td {
   height: 105px;
   width: 474px;
 }
-
 
 .button-style {
   margin-left: 0em;

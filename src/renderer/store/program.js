@@ -16,8 +16,7 @@ export default {
 
   state: {
     // mode: [color, x2, turbo],
-    // color: false, x2: false, turbo: false
-
+    // x2: false, color: false,  turbo: true
     actives: [
       {
         id: 2,
@@ -26,7 +25,8 @@ export default {
         name: 'shampoo',
         row: 2,
         col: 0,
-        x2: true,
+        // x2: false, color: false,  turbo: false,
+        x2: true, color: false, turbo: false,
         display: 0
       },
       {
@@ -36,7 +36,7 @@ export default {
         name: 'waterShampoo',
         row: 3,
         col: 0,
-        /* color: false,  x2: false, */ turbo: true,
+        x2: false, color: false,  turbo: true,
         display: 0
       }, // main +
       {
@@ -46,7 +46,7 @@ export default {
         name: 'coldWater',
         row: 4,
         col: 0,
-        /* color: false,  x2: false, */ turbo: true,
+        x2: false, color: false,  turbo: true,
         display: 0
       }, // main +
       {
@@ -56,7 +56,7 @@ export default {
         name: 'waxProtection',
         row: 5,
         col: 0,
-        /* color: false, x2: false, */ turbo: true,
+        x2: false, color: false,  turbo: true,
         display: 0
       }, // main +
 
@@ -67,7 +67,7 @@ export default {
         name: 'dryShine',
         row: 6,
         col: 0,
-        turbo: true,
+        x2: false, color: false,  turbo: true,
         display: 0
       },
       {
@@ -78,8 +78,8 @@ export default {
         row: 7,
         col: 0,
         color: true,
-        x2: true,
-        /* turbo: false, */ display: 1
+        x2: true, color: false,  turbo: false,
+        display: 1
       }, // main + ?
       {
         id: 8,
@@ -89,8 +89,7 @@ export default {
         row: 8,
         col: 0,
         color: false,
-        x2: false,
-        turbo: false,
+        x2: false, color: false,  turbo: false,
         display: 0
       }, // main + ?
       {
@@ -100,7 +99,7 @@ export default {
         name: 'waterShampoo_turbo',
         row: 9,
         col: 0,
-        turbo: true,
+        x2: false, color: false,  turbo: true,
         display: 0
       }, // ext +
       {
@@ -110,7 +109,7 @@ export default {
         name: 'coldWater_turbo',
         row: 10,
         col: 0,
-        /* color: false, x2: false, */ turbo: true,
+        x2: false, color: false,  turbo: true,
         display: 0
       }, // ext +
 
@@ -121,7 +120,7 @@ export default {
         name: 'waxProtection_turbo',
         row: 11,
         col: 0,
-        turbo: true,
+        x2: false, color: false,  turbo: true,
         display: 0
       }, // ext +
       {
@@ -131,7 +130,7 @@ export default {
         name: 'dryShine_turbo',
         row: 12,
         col: 0,
-        turbo: true,
+        x2: false, color: false,  turbo: true,
         display: 0
       }, // ext +
       {
@@ -141,7 +140,7 @@ export default {
         name: 'warmWater',
         row: 13,
         col: 0,
-        turbo: true,
+        x2: false, color: false,  turbo: true,
         display: 0
       }, // main +
       {
@@ -151,7 +150,7 @@ export default {
         name: 'warmWater_turbo',
         row: 14,
         col: 0,
-        /* color: false, x2: false, */ turbo: true,
+        x2: false, color: false,  turbo: true,
         display: 0
       }, // ext +
       {
@@ -161,9 +160,8 @@ export default {
         name: 'brushShampoo',
         row: 15,
         col: 0,
-        color: true,
-        x2: true,
-        /* turbo: false, */ display: 0
+        x2: true, color: true,  turbo: false,
+        display: 0
       }, // main +
 
       {
@@ -173,8 +171,8 @@ export default {
         name: 'disk',
         row: 16,
         col: 0,
-        /* color: false, */ x2: true,
-        /* turbo: false, */ display: 0
+        x2: true, color: false,  turbo: false, 
+        display: 0
       }, // main +
       {
         id: 17,
@@ -183,8 +181,8 @@ export default {
         name: 'mosquito',
         row: 17,
         col: 0,
-        /* color: false, */ x2: true,
-        /* turbo: false, */ display: 0
+        x2: true, color: false,  turbo: false, 
+        display: 0
       }, // main +
       {
         id: 18,
@@ -193,7 +191,8 @@ export default {
         name: 'vacuum',
         row: 18,
         col: 0,
-        /* color: false, x2: false, turbo: false, */ display: 0
+        x2: false, color: false,  turbo: false, 
+        display: 0
       }, // main
       {
         id: 19,
@@ -202,9 +201,7 @@ export default {
         name: 'air',
         row: 19,
         col: 0,
-        color: false,
-        x2: false,
-        turbo: false,
+        x2: false, color: false,  turbo: false,
         display: 0
       }, // main
       {
@@ -214,7 +211,8 @@ export default {
         name: 'washer',
         row: 20,
         col: 0,
-        /* color: false, x2: false, turbo: false, */ display: 0
+        x2: false, color: false,  turbo: false, 
+        display: 0
       }, // main
 
       {
@@ -224,9 +222,7 @@ export default {
         name: 'brushFoam_color',
         row: 21,
         col: 0,
-        color: true,
-        x2: false,
-        turbo: false,
+        x2: false, color: true,  turbo: false,
         display: 1
       }, // ext
       {
@@ -236,9 +232,7 @@ export default {
         name: 'brushFoam_color',
         row: 22,
         col: 0,
-        color: true,
-        x2: false,
-        turbo: false,
+        x2: false, color: true,  turbo: false,
         display: 1
       }, // ext
       {
@@ -248,9 +242,7 @@ export default {
         name: 'shampoo_x2',
         row: 23,
         col: 0,
-        color: false,
-        x2: true,
-        turbo: false,
+        x2: true, color: false,  turbo: false,
         display: 0
       }, // ext
       {
@@ -260,9 +252,7 @@ export default {
         name: 'foam_x2',
         row: 24,
         col: 0,
-        color: false,
-        x2: true,
-        turbo: false,
+        x2: true, color: false,  turbo: false,
         display: 1
       }, // ext
       {
@@ -272,9 +262,7 @@ export default {
         name: 'brushFoam_x2',
         row: 25,
         col: 0,
-        color: false,
-        x2: true,
-        turbo: false,
+        x2: true, color: false,  turbo: false,
         display: 0
       }, // ext
 
@@ -285,9 +273,7 @@ export default {
         name: 'disk_x2',
         row: 26,
         col: 0,
-        color: false,
-        x2: true,
-        turbo: false,
+        x2: true, color: false,  turbo: false,
         display: 0
       },
       {
@@ -297,9 +283,7 @@ export default {
         name: 'mosquito_x2',
         row: 27,
         col: 0,
-        color: false,
-        x2: true,
-        turbo: false,
+        x2: true, color: false,  turbo: false,
         display: 0
       },
       {
@@ -309,7 +293,7 @@ export default {
         name: 'turboDryer',
         row: 28,
         col: 0,
-        /* color: false, x2: false, turbo: false, */
+        x2: false, color: false,  turbo: false,
         display: 0
       },
       {
@@ -318,9 +302,7 @@ export default {
         title: '',
         row: 29,
         col: 0,
-        color: false,
-        x2: false,
-        turbo: false,
+        x2: false, color: false,  turbo: false,
         display: 0
       },
       // dev
@@ -330,9 +312,7 @@ export default {
         title: 'DEV',
         row: 30,
         col: 0,
-        color: false,
-        x2: false,
-        turbo: false,
+        x2: false, color: false,  turbo: false,
         display: 0
       }
     ], // end actives:

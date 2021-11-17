@@ -13,7 +13,7 @@
         <table style="margin-left: 1em;">
           <tbody>
             <!-- turbo -->
-            <div>
+            
               <!-- row 01 -->
               <tr class="info-title">
                 <td colspan="2">
@@ -47,7 +47,7 @@
                   </div>
                 </td>
 
-                <!-- turbo -->
+                <!-- turbo --> 
                 <td>
                   <div
                     class="waves-effect button-turbo-style"
@@ -64,6 +64,7 @@
                     </div>
                   </div>
                 </td>
+
               </tr>
 
               <!-- row 03 -->
@@ -74,7 +75,7 @@
                   </div>
                 </td>
               </tr>
-            </div>
+            
             <!-- end turbo -->
 
 
@@ -162,9 +163,14 @@ export default {
 table,
 th,
 td {
+  
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+
   border: none;
   border-color: white;
-  /*  */
+  
 }
 
 .button-standard-style {
@@ -173,7 +179,7 @@ td {
   justify-content: center;
 
   padding-left: 0em;
-  margin-left: 0em;
+  margin-left: 0.0em;
   padding-top: 0em;
   width: 445px;
   height: 360px;
@@ -182,10 +188,11 @@ td {
   box-shadow: 0px 6px 10px #40c4ff;
 }
 .button-content-standard-style {
+  
   font-size: 4em;
   margin-left: 0em;
-  padding-top: 0.5em;
-  padding-right: 0.7em;
+  padding-top: 0.0em;
+  padding-right: 0.5em;
 }
 
 .button-turbo-style {
@@ -194,7 +201,7 @@ td {
   justify-content: center;
 
   padding-left: 0em;
-  margin-left: 1em;
+  margin-left: 1.5em;
   padding-top: 0em;
   width: 445px;
   height: 360px;
@@ -205,8 +212,8 @@ td {
 .button-content-turbo-style {
   font-size: 4em;
   margin-left: 0em;
-  padding-top: 0.5em;
-  padding-right: 0.7em;
+  padding-top: 0.0em;
+  padding-right: 0.5em;
 }
 .message {
   position: absolute;
@@ -218,7 +225,8 @@ td {
   text-align: justify;
   z-index: 1;
 }
-.number {
+
+/* .number {
   position: absolute;
   margin-top: -32em;
   margin-left: 17em;
@@ -230,5 +238,5 @@ td {
   font-weight: normal;
   text-align: justify;
   z-index: 1;
-}
+} */
 </style>
