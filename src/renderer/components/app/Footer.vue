@@ -165,6 +165,15 @@ export default {
       getWetStopFreeCount: 'getWetStopFreeCount'
     })
   },
+  /* dev */
+  watch: {
+    getWetStopFreeCount(flag) {
+      try {
+        if (parseInt(flag) > 0) 
+          this.$router.push('/popup')
+      } catch (err) {}
+    }
+  },
 
   methods: {
     ...mapMutations({
@@ -222,6 +231,7 @@ export default {
       }
       /* dev */
       console.log('program-->', program)
+      // console.log('this.getWetStopFreeCount-->', this.getWetStopFreeCount)
       if (
         (this.getWetStopFreeCount === 0 && this.$route.name !== 'popup') ||
         program === 'operator'

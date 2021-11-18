@@ -3,7 +3,8 @@
     <!-- <div
       id="button-main"
       style="background: white; margin-left: -8.0em; width: 945px;"
-    ></div> -->
+    >
+    </div> -->
 
     <ul style="margin-top: 18em;">
       <li
@@ -135,7 +136,8 @@ export default {
     //   console.log('run after 4 sec')
     // })
 
-    /* const button = new Button({
+    /* 
+    const button = new Button({
       selector: '#button-main',
       width: 60,
       height: 5,
@@ -152,8 +154,8 @@ export default {
     })
     button.hide()
     button.show()
-    button.opacity(0.5) */
-
+    button.opacity(0.5)
+    */
     /*     */
 
     //console.log('getDryBalance-->', this.getDryBalance)

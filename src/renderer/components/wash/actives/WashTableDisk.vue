@@ -57,7 +57,11 @@ export default Vue.extend({
       type: Array
     }
   },
-
+  computed: {
+    ...mapGetters({
+      getWetBalance: 'getWetBalance'
+    })
+  },
   methods: {
     ...mapGetters({
       getActiveProgram: 'getActiveProgram',
@@ -71,20 +75,25 @@ export default Vue.extend({
     }),
 
     setProgram(program) {
-      this.setDown(program) 
+      this.active = program
+
+      this.setDown(this.active)
+
       this.setIsActiveProgramKit(true)
       // console.log('this.getIsActiveProgramKit()-->', this.getIsActiveProgramKit())
 
       this.setActiveProgramKit(this.activeProgramKit)
       // console.log('+!getActiveProgramKit-->', this.getActiveProgramKit())
 
-      this.timeoutPopup = setTimeout(() => {
-        this.$router.push('/popup')
-      }, 2000)
+      if (parseInt(this.getWetBalance) > 0) {
+        this.timeoutPopup = setTimeout(() => {
+          this.$router.push('/popup')
+        }, 2000)
+      } else this.$message(`Недостаточно средств`)
     },
     setDown(program) {
       this.clearDown()
-      switch (program) { 
+      switch (program) {
         /* dev */
         case 'disk':
           this.isDown.disk = true
@@ -113,7 +122,7 @@ export default Vue.extend({
           key === 'color' ||
           key === 'turbo'
         ) {
-          result.push([key, value])  
+          result.push([key, value])
         }
         return
       })
@@ -121,7 +130,7 @@ export default Vue.extend({
       this.activeProgramKit = Object.fromEntries(result)
       // console.log('this.activeProgramKit-->', this.activeProgramKit)
     }
-  }, // end methods  
+  }, // end methods
 
   beforeDestroy() {
     clearTimeout(this.timeoutPopup)
@@ -129,7 +138,6 @@ export default Vue.extend({
 
   created() {
     this.getKits()
-
   }
 })
 </script>

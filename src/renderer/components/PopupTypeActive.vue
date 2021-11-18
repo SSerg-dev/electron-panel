@@ -13,73 +13,82 @@
         <table style="margin-left: 1em;">
           <tbody>
             <!-- turbo -->
-            
-              <!-- row 01 -->
-              <tr class="info-title">
-                <td colspan="2">
-                  <p align="center">
-                    {{ `${this.messages[0]}` }}
-                    <!-- {{ this.getDefaultPanelNumber }} -->
-                  </p>
-                </td>
-              </tr>
 
-              <!-- row 02 -->
-              <tr>
-                <!-- standard -->
-                <td>
+            <!-- row 01 -->
+            <tr class="info-title">
+              <td colspan="2">
+                <p align="center">
+                  {{ `${this.messages[0]}` }}
+                  <!-- {{ this.getDefaultPanelNumber }} -->
+                </p>
+              </td>
+            </tr>
+
+            <!-- row 02 -->
+            <tr>
+              <!-- standard -->
+              <td>
+                <div
+                  @click="setProgram('disk')"
+                  class="waves-effect button-standard-style"
+                  :class="[
+                    { 'card white': !this.isDown.disk },
+                    { 'card light-blue accent-2': this.isDown.disk }
+                  ]"
+                >
                   <div
-                    class="waves-effect button-standard-style"
+                    class="button-content-standard-style"
                     :class="[
-                      { 'card white': true },
-                      { 'card light-blue accent-2': !true }
+                      { 'card-content black-text': !this.isDown.disk },
+                      { 'card-content white-text': this.isDown.disk }
                     ]"
                   >
-                    <div
-                      class="button-content-standard-style"
-                      :class="[
-                        { 'card-content black-text': true },
-                        { 'card-content white-text': !true }
-                      ]"
-                    >
-                      {{ `${this.buttonTitle[0]}` }}
-                    </div>
+                    {{ `${this.buttonTitle[0]}` }}
                   </div>
-                </td>
+                </div>
+              </td>
 
-                <!-- turbo --> 
-                <td>
+              <!-- turbo -->
+              <!-- <td>
+                <div
+                  @click="setProgram('disk_x2')"
+                  class="waves-effect button-turbo-style"
+                  :class="[
+                    { 'card white': !this.isDown.disk_x2 },
+                    { 'card red': this.isDown.disk_x2 }
+                  ]"
+                >
                   <div
-                    class="waves-effect button-turbo-style"
-                    :class="[{ 'card white': true }, { 'card red': !true }]"
+                    class="button-content-turbo-style"
+                    :class="[
+                      { 'card-content black-text': !this.isDown.disk_x2 },
+                      { 'card-content white-text': this.isDown.disk_x2 }
+                    ]"
                   >
-                    <div
-                      class="button-content-turbo-style"
-                      :class="[
-                        { 'card-content black-text': true },
-                        { 'card-content white-text': !true }
-                      ]"
-                    >
-                      {{ `${this.buttonTitle[1]}` }}
-                    </div>
+                    {{ `${this.buttonTitle[1]}` }}
                   </div>
-                </td>
+                </div>
+              </td> -->
+              <!-- setButtonColor() -->
+              <div
+                @click="setButtonColor()"
+                class="waves-effect"
+                id="button-main"
+                style="background: yellow;"
+              >
+              </div>
+            </tr>
 
-              </tr>
+            <!-- row 03 -->
+            <tr class="image">
+              <td colspan="2">
+                <div>
+                  <img src="imgs/actives/blue-active.svg" />
+                </div>
+              </td>
+            </tr>
 
-              <!-- row 03 -->
-              <tr>
-                <td colspan="2">
-                  <div>
-                    <img src="imgs/actives/blue-active.svg" />
-                  </div>
-                </td>
-              </tr>
-            
             <!-- end turbo -->
-
-
-
           </tbody>
         </table>
       </div>
@@ -89,12 +98,24 @@
 
 <script>
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 import Message from '@/components/app/Message'
+/* dev */
+import { Component, Box, Circle, Button } from '@/shapes/index.js'
 
 export default {
   data: () => ({
+    button: null,
+    active: '',
+    timeoutDelay: null,
+    delay: 2000,
+    timeoutPopup: null,
+    isDown: {
+      /* dev */
+      disk: false,
+      disk_x2: false
+    },
     messages: [
       `Выберите давление:`,
       `Выберите цвет пены:`,
@@ -120,9 +141,118 @@ export default {
   }, */
   computed: {
     ...mapGetters({
-      getDefaultPanelNumber: 'getDefaultPanelNumber'
+      getPanelType: 'getPanelType',
+      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getActiveProgram: 'getActiveProgram',
+      getWetBalance: 'getWetBalance'
     })
   },
+
+  watch: {
+    getWetBalance(flag) {
+      if (parseInt(flag) === 0) {
+        this.clearDown()
+
+        this.timeoutPopup = setTimeout(() => {
+          try {
+            this.$router.push('/program')
+          } catch (err) {}
+        }, this.delay)
+      }
+    }
+  },
+
+  methods: {
+    ...mapActions({
+      updateStartProgram: 'updateStartProgram'
+    }),
+    ...mapMutations({
+      setActiveProgram: 'setActiveProgram'
+    }),
+
+    setButtonColor(color) {
+      console.log('setButtonColor')
+      this.button.hide()
+      this.button.show()
+
+    }, 
+    setProgram(program) {
+      /* dev */
+      console.log('new disk-->', program)
+
+      this.active = program
+      this.setActiveProgram(this.active)
+      this.setDown(program)
+
+      this.updateStartProgram([
+        this.getPanelType,
+        this.getDefaultPanelNumber,
+        this.getActiveProgram,
+        this.getWetBalance
+      ])
+      // console.log('this.$route.name-->', this.$route.name)
+      if (this.$route.name !== 'popup') {
+        this.timeoutPopup = setTimeout(() => {
+          try {
+            this.$router.push('/popup')
+          } catch (err) {}
+        }, this.delay)
+      }
+    },
+    setDown(program) {
+      this.clearDown()
+      switch (program) {
+        /* dev */
+        case 'disk':
+          this.isDown.disk = true
+          break
+        case 'disk_x2':
+          this.isDown.disk_x2 = true
+          break
+
+        default:
+          break
+      }
+    },
+    clearDown() {
+      this.isDown = Object.fromEntries(
+        Object.entries(this.isDown).map(([key, value]) => [key, false])
+      )
+    }
+  }, // end methods
+  mounted() {
+    
+/* Java Script */
+// const button = new Button({
+      this.button = new Button({
+      selector: '#button-main',
+      width: 28,
+      height: 25,
+
+      color: 'rgb(255, 255, 255)',
+      borderTopRightRadius: 2,
+      borderTopLeftRadius: 2,
+      borderBottomRightRadius: 2,
+      borderBottomLeftRadius: 2,
+
+      border: 'solid 0.4em #40c4ff',
+
+      boxShadow: '0px 10px 20px #40c4ff',
+
+       
+    })
+
+    // this.button.hide()
+    // this.button.show()
+    // this.button.opacity(0.5)
+    
+  },
+  
+  beforeDestroy() {
+    clearTimeout(this.timeoutDelay)
+    clearTimeout(this.timeoutPopup)
+  },
+
   components: {
     Message
   }
@@ -136,8 +266,10 @@ export default {
   margin-left: 0em;
   margin-top: 11em;
   padding-left: 0em;
+  padding-top: 2em;
   padding-bottom: 0em;
 
+  /* dev */
   border: solid 3px #00b9e3;
   border-radius: 2em;
   box-shadow: 0px 0px 10px 10px #00b9e3;
@@ -154,7 +286,7 @@ export default {
 
   margin-top: 0em;
   margin-left: 0em;
-  font-size: 4.75em;
+  font-size: 4.2em; /* 4.75em; */
 
   color: #fff;
   text-align: center;
@@ -163,14 +295,12 @@ export default {
 table,
 th,
 td {
-  
   /* display: flex;
   align-items: center;
   justify-content: center; */
 
   border: none;
   border-color: white;
-  
 }
 
 .button-standard-style {
@@ -179,19 +309,19 @@ td {
   justify-content: center;
 
   padding-left: 0em;
-  margin-left: 0.0em;
+  margin-left: 2.5em; /* 0em; */
   padding-top: 0em;
-  width: 445px;
-  height: 360px;
+
+  width: 400px; /* 460px; */
+  height: 360px; /* 360px; */
   border: solid 6px #40c4ff;
   border-radius: 40px;
   box-shadow: 0px 6px 10px #40c4ff;
 }
 .button-content-standard-style {
-  
   font-size: 4em;
   margin-left: 0em;
-  padding-top: 0.0em;
+  padding-top: 0em;
   padding-right: 0.5em;
 }
 
@@ -201,10 +331,10 @@ td {
   justify-content: center;
 
   padding-left: 0em;
-  margin-left: 1.5em;
+  margin-left: -0.6em; /* -0.6em; */
   padding-top: 0em;
-  width: 445px;
-  height: 360px;
+  width: 400px; /* 460px; */
+  height: 360px; /* 360px; */
   border: solid 6px #f44336;
   border-radius: 40px;
   box-shadow: 0px 6px 10px #f44336;
@@ -212,7 +342,7 @@ td {
 .button-content-turbo-style {
   font-size: 4em;
   margin-left: 0em;
-  padding-top: 0.0em;
+  padding-top: 0em;
   padding-right: 0.5em;
 }
 .message {
@@ -224,6 +354,10 @@ td {
   font-weight: normal; /* bold; */
   text-align: justify;
   z-index: 1;
+}
+.image {
+  height: 54em; /* 800px; */
+  /* background: yellow; */
 }
 
 /* .number {

@@ -37,7 +37,7 @@
 import Vue from 'vue'
 import { mapMutations, mapGetters } from 'vuex'
 import PopupTypeActive from '@/components/PopupTypeActive'
-
+ 
 export default Vue.extend({
   data: () => ({
     activeProgram: '',
