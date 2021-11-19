@@ -69,14 +69,38 @@
                   </div>
                 </div>
               </td> -->
+
               <!-- setButtonColor() -->
               <div
                 @click="setButtonColor()"
                 class="waves-effect"
-                id="button-main"
-                style="background: yellow;"
+                id="button-right"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  "
               >
+                <div style="font-size: 4em; color: black">
+                  {{ `${this.buttonTitle[1]}` }}
+                </div>
               </div>
+
+               <!-- <div
+                @click="setButtonColor()"
+                class="waves-effect"
+                id="button-main"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  background: yellow
+                  "
+              >
+                <div style="font-size: 4em; color: yellow">
+                  {{ `${this.buttonTitle[1]}` }}
+                </div>
+              </div> -->
             </tr>
 
             <!-- row 03 -->
@@ -106,7 +130,22 @@ import { Component, Box, Circle, Button } from '@/shapes/index.js'
 
 export default {
   data: () => ({
-    button: null,
+    /* x2 */
+    upX2Options: {
+      background: 'rgb(255, 255, 255)',
+      border: '0.4em solid rgb(64, 196, 255)',
+      boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
+      fontSize: '1em'
+    },
+    downX2Options: {
+      background: 'rgb(64, 196, 255)',
+      border: '0.4em solid rgb(64, 196, 255)',
+      boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
+      fontSize: '1em'
+    },
+    buttonMain: null,
+    buttonLeft: null,
+    buttonRight: null,
     active: '',
     timeoutDelay: null,
     delay: 2000,
@@ -171,11 +210,23 @@ export default {
     }),
 
     setButtonColor(color) {
-      console.log('setButtonColor')
-      this.button.hide()
-      this.button.show()
 
-    }, 
+      /* const background = 'rgb(64, 196, 255)'
+      const border = '0.4em solid rgb(64, 196, 255)'
+      const boxShadow = 'rgb(64, 196, 255) 0px 10px 20px'
+      const fontSize = '1em'
+
+      this.button.background = background
+      this.button.border = border
+      this.button.boxShadow = boxShadow
+      this.button.fontSize = fontSize
+
+      console.log('++this.button.background-->', this.button.background)
+      console.log('++this.button.border-->', this.button.border)
+      console.log('++this.button.boxShadow-->', this.button.boxShadow)
+      console.log('++this.button.fontSize-->', this.button.fontSize) */
+
+    },
     setProgram(program) {
       /* dev */
       console.log('new disk-->', program)
@@ -190,7 +241,6 @@ export default {
         this.getActiveProgram,
         this.getWetBalance
       ])
-      // console.log('this.$route.name-->', this.$route.name)
       if (this.$route.name !== 'popup') {
         this.timeoutPopup = setTimeout(() => {
           try {
@@ -218,36 +268,73 @@ export default {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-    }
+    },
+    /* dev */
+    setUpX2Options() {
+      /* 
+      upX2Options: {
+      background: 'rgb(255, 255, 255)',
+      border: '0.4em solid rgb(64, 196, 255)',
+      boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
+      */
+
+
+    },
+    setDownX2Options() {}
   }, // end methods
   mounted() {
-    
-/* Java Script */
-// const button = new Button({
-      this.button = new Button({
+    /* button-main */
+    /* this.buttonMain = new Button({
       selector: '#button-main',
+
       width: 28,
       height: 25,
 
-      color: 'rgb(255, 255, 255)',
-      borderTopRightRadius: 2,
-      borderTopLeftRadius: 2,
-      borderBottomRightRadius: 2,
-      borderBottomLeftRadius: 2,
+      background: 'rgb(255, 255, 255)',
+      borderTopRightRadius: 3,
+      borderTopLeftRadius: 3,
+      borderBottomRightRadius: 3,
+      borderBottomLeftRadius: 3,
 
       border: 'solid 0.4em #40c4ff',
+      boxShadow: '0px 10px 20px #40c4ff'
+    }) */
+    /* left button */
+    /* this.buttonLeft = new Button({
+      selector: '#button-left',
 
-      boxShadow: '0px 10px 20px #40c4ff',
+      width: 28,
+      height: 25,
 
-       
+      background: 'rgb(255, 255, 255)',
+      borderTopRightRadius: 3,
+      borderTopLeftRadius: 3,
+      borderBottomRightRadius: 3,
+      borderBottomLeftRadius: 3,
+
+      border: 'solid 0.4em #40c4ff',
+      boxShadow: '0px 10px 20px #40c4ff'
+    }) */
+
+    /* right button */
+    this.buttonRight = new Button({
+      selector: '#button-right',
+
+      width: 28,
+      height: 25,
+
+      background: 'rgb(255, 255, 255)',
+      borderTopRightRadius: 3,
+      borderTopLeftRadius: 3,
+      borderBottomRightRadius: 3,
+      borderBottomLeftRadius: 3,
+
+      border: 'solid 0.4em #40c4ff',
+      boxShadow: '0px 10px 20px #40c4ff'
     })
 
-    // this.button.hide()
-    // this.button.show()
-    // this.button.opacity(0.5)
-    
   },
-  
+
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutPopup)

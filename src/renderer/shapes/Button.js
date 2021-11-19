@@ -1,11 +1,57 @@
 import { Box } from '@/shapes/Box.js'
+import { getBlinkMemoryInfo } from 'process'
 
 class Button extends Box {
+
+  static type = 'BUTTON'
+
   constructor(options) {
     super(options)
-    this.$el.style.color = options.color
-    this.$el.style.boxShadow = options.boxShadow
+    // font color 
+    //this.$el.style.color = options.color
+    //this.$el.style.boxShadow = options.boxShadow
+
   }
+  // methods
+  getButtonInfo() {
+    console.log('!!++getButtonInfo')
+  }
+  // getters
+  get background() {
+    return this.$el.style.background
+  }
+  get color() {
+    return this.$el.style.color
+  }
+  get border() {
+    return this.$el.style.border
+  }
+  get boxShadow() {
+    return this.$el.style.boxShadow
+  }
+  
+  get fontSize() {
+    return this.$el.style.fontSize
+  } 
+
+  // setters
+  set background(newBackground) {
+    this.$el.style.background = newBackground
+  }
+  set color(newColor) {
+    this.$el.style.color = newColor
+  } 
+  set border(newBorder) {
+    this.$el.style.border = newBorder
+  }
+  set boxShadow(newBoxShadow) {
+    this.$el.style.boxShadow = newBoxShadow
+  }
+  // fontSize
+  set fontSize(newFontSize) {
+    this.$el.style.fontSize = newFontSize
+  }
+
 }
 
 export { Button }

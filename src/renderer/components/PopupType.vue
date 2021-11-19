@@ -169,7 +169,7 @@ export default Vue.extend({
         }
         if (this.activeProgram === 'turbo') { 
           this.isTurbo = true
-          this.messageIndex = 2
+          this.messageIndex = 2 
         }
       } 
       if(this.getIsActiveProgramKit()) {
@@ -178,15 +178,13 @@ export default Vue.extend({
         this.setIsActiveProgramKit(true)
         this.delay = 10000000
 
-        console.log('++else if(this.getIsActiveProgramKit)-->', this.getIsActiveProgramKit())
-
-        
+        /* console.log('++else if(this.getIsActiveProgramKit)-->', this.getIsActiveProgramKit())
         console.log('!!++title-->', this.activeProgramKit.title)
         console.log('!!++name-->', this.activeProgramKit.name)
         console.log('!!++isX2-->', this.activeProgramKit.x2)
         console.log('!!++isTurbo-->', this.activeProgramKit.color)
         console.log('!!++isColor-->', this.activeProgramKit.turbo)
-        
+         */
         
         /* this.activeKit = this.getActiveKit() 
         

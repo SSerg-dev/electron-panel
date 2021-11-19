@@ -1,6 +1,9 @@
 import { Component } from '@/shapes/Component.js'
 
 class Box extends Component {
+
+  static type = 'BOX'
+
   constructor(options) {
     super(options.selector)
 
@@ -14,10 +17,22 @@ class Box extends Component {
     this.$el.style.borderBottomLeftRadius =
       options.borderBottomLeftRadius + 'em'
 
-    this.$el.style.background = options.color
+    // background
+    this.$el.style.background = options.background
+    
+    // border
     this.$el.style.border = options.border
     this.$el.style.boxShadow = options.boxShadow
+
+    // font
+     this.$el.style.fontSize = options.fontSize
+    //  this.$el.style.fontFamily = options.fontFamily
+     this.$el.style.color = options.color 
+
   }
+
+  
+
 }
 
 export { Box }
