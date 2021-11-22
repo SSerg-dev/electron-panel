@@ -29,6 +29,13 @@ class Box extends Component {
     //  this.$el.style.fontFamily = options.fontFamily
      this.$el.style.color = options.color 
 
+    // flex
+    this.$el.style.display = options.display
+    this.$el.style.alignItems = options.alignItems
+    this.$el.style.justifyContent = options.justifyContent
+       
+
+
   }
 
   

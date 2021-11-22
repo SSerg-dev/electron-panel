@@ -10,8 +10,15 @@ class Button extends Box {
     // font color 
     //this.$el.style.color = options.color
     //this.$el.style.boxShadow = options.boxShadow
+    // flex
+    this.$el.style.display = 'flex'
+    this.$el.style.alignItems = 'center'
+    this.$el.style.justifyContent = 'center'
+    
 
   }
+
+
   // methods
   getButtonInfo() {
     console.log('!!++getButtonInfo')

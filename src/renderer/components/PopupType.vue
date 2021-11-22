@@ -9,7 +9,6 @@
 
     <div class="locate">
       <section>
-        
         <div class="popup">
           <p>
             <img v-if="isBasic" src="/imgs/popup/popup-basic.png" />
@@ -24,11 +23,9 @@
         </div>
 
         <div v-if="this.getIsActiveProgramKit()" class="active">
-          <PopupTypeActive />
+          <PopupTypeActive :activeProgramKit="activeProgramKit"/>
         </div>
-
       </section>
-
     </div>
   </div>
 </template>
@@ -37,14 +34,11 @@
 import Vue from 'vue'
 import { mapMutations, mapGetters } from 'vuex'
 import PopupTypeActive from '@/components/PopupTypeActive'
- 
+
 export default Vue.extend({
   data: () => ({
     activeProgram: '',
-    
     activeProgramKit: {},
-   
-    
 
     intervalPopupMenu: null,
     isBasic: false,
@@ -61,9 +55,9 @@ export default Vue.extend({
       ''
     ],
     messageIndex: -1,
-    delay: 0,
-    // isActiveKit: false,
-    activeKit: ''
+    delay: 0
+
+    // activeKit: ''
   }),
   computed: {
     ...mapGetters({
@@ -75,7 +69,6 @@ export default Vue.extend({
   watch: {
     getWetStopFreeCount(flag) {
       try {
-        // && this.$route.name !== 'popup'
         if (parseInt(flag) === 0) this.$router.push('/program')
       } catch (err) {}
     }
@@ -91,22 +84,13 @@ export default Vue.extend({
       getActiveProgramKit: 'getActiveProgramKit',
       getIsActiveProgramKit: 'getIsActiveProgramKit'
     }),
-    getActiveKit() {
-      const active = this.activeProgram.slice(7)
-      const index = active.indexOf('_')
-
-      return active.slice(index + 1)
-    },
     setup() {
       this.activeProgram = this.getActiveProgram()
-      // console.log('--this.activeProgram-->', this.activeProgram)
+      // console.log('this.activeProgram-->', this.activeProgram)
       this.activeProgramKit = this.getActiveProgramKit()
       // console.log('this.activeProgramKit-->', this.activeProgramKit)
-      // console.log('++else if(this.getIsActiveProgramKit)-->', this.getIsActiveProgramKit())
 
-      
-        if(!this.getIsActiveProgramKit()) {
-        // if(true) {
+      if (!this.getIsActiveProgramKit()) {
         this.setIsActiveProgramKit(false)
         this.delay = 1000
         // 1 blue
@@ -167,41 +151,15 @@ export default Vue.extend({
           this.isOperator = true
           this.messageIndex = 1
         }
-        if (this.activeProgram === 'turbo') { 
+        if (this.activeProgram === 'turbo') {
           this.isTurbo = true
-          this.messageIndex = 2 
+          this.messageIndex = 2
         }
-      } 
-      if(this.getIsActiveProgramKit()) {
+      }
+      if (this.getIsActiveProgramKit()) {
         // x2, turbo, color,
-        
         this.setIsActiveProgramKit(true)
         this.delay = 10000000
-
-        /* console.log('++else if(this.getIsActiveProgramKit)-->', this.getIsActiveProgramKit())
-        console.log('!!++title-->', this.activeProgramKit.title)
-        console.log('!!++name-->', this.activeProgramKit.name)
-        console.log('!!++isX2-->', this.activeProgramKit.x2)
-        console.log('!!++isTurbo-->', this.activeProgramKit.color)
-        console.log('!!++isColor-->', this.activeProgramKit.turbo)
-         */
-        
-        /* this.activeKit = this.getActiveKit() 
-        
-
-        switch (this.activeKit) {
-          case 'x2':
-            console.log('x2+this.activeKit-->', this.activeKit)
-            break
-          case 'turbo':
-            console.log('turbo+this.activeKit-->', this.activeKit)
-            break
-          case 'color':
-            console.log('color+this.activeKit-->', this.activeKit)
-            break
-          default:
-            break
-        } */
 
       }
     },
@@ -232,7 +190,7 @@ export default Vue.extend({
   },
   components: {
     PopupTypeActive
-  },
+  }
 })
 </script>
 

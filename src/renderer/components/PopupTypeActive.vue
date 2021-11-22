@@ -10,7 +10,7 @@
 
     <form @submit.prevent="">
       <div class="form">
-        <table style="margin-left: 1em;">
+        <table style="margin-left: 0.9em;">
           <tbody>
             <!-- turbo -->
 
@@ -25,22 +25,18 @@
             </tr>
 
             <!-- row 02 -->
-            <tr>
+            <tr class="button-group">
               <!-- standard -->
-              <td>
+              <td align="center">
                 <div
                   @click="setProgram('disk')"
-                  class="waves-effect button-standard-style"
-                  :class="[
-                    { 'card white': !this.isDown.disk },
-                    { 'card light-blue accent-2': this.isDown.disk }
-                  ]"
+                  class="waves-effect"
+                  id="button-left"
                 >
                   <div
-                    class="button-content-standard-style"
                     :class="[
-                      { 'card-content black-text': !this.isDown.disk },
-                      { 'card-content white-text': this.isDown.disk }
+                      { 'button-black-title': !this.isDownButtonLeft.disk },
+                      { 'button-white-title': this.isDownButtonLeft.disk }
                     ]"
                   >
                     {{ `${this.buttonTitle[0]}` }}
@@ -49,58 +45,23 @@
               </td>
 
               <!-- turbo -->
-              <!-- <td>
+
+              <td>
                 <div
                   @click="setProgram('disk_x2')"
-                  class="waves-effect button-turbo-style"
-                  :class="[
-                    { 'card white': !this.isDown.disk_x2 },
-                    { 'card red': this.isDown.disk_x2 }
-                  ]"
+                  class="waves-effect"
+                  id="button-right"
                 >
                   <div
-                    class="button-content-turbo-style"
                     :class="[
-                      { 'card-content black-text': !this.isDown.disk_x2 },
-                      { 'card-content white-text': this.isDown.disk_x2 }
+                      { 'button-black-title': !this.isDownButtonRight.disk_x2 },
+                      { 'button-white-title': this.isDownButtonRight.disk_x2 }
                     ]"
                   >
                     {{ `${this.buttonTitle[1]}` }}
                   </div>
                 </div>
-              </td> -->
-
-              <!-- setButtonColor() -->
-              <div
-                @click="setButtonColor()"
-                class="waves-effect"
-                id="button-right"
-                style="
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  "
-              >
-                <div style="font-size: 4em; color: black">
-                  {{ `${this.buttonTitle[1]}` }}
-                </div>
-              </div>
-
-               <!-- <div
-                @click="setButtonColor()"
-                class="waves-effect"
-                id="button-main"
-                style="
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  background: yellow
-                  "
-              >
-                <div style="font-size: 4em; color: yellow">
-                  {{ `${this.buttonTitle[1]}` }}
-                </div>
-              </div> -->
+              </td>
             </tr>
 
             <!-- row 03 -->
@@ -130,19 +91,39 @@ import { Component, Box, Circle, Button } from '@/shapes/index.js'
 
 export default {
   data: () => ({
-    /* x2 */
-    upX2Options: {
+    /* disk */
+    upDiskOptions: {
+      type: 'left',
       background: 'rgb(255, 255, 255)',
       border: '0.4em solid rgb(64, 196, 255)',
       boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
       fontSize: '1em'
     },
-    downX2Options: {
+    downDiskOptions: {
+      type: 'left',
       background: 'rgb(64, 196, 255)',
       border: '0.4em solid rgb(64, 196, 255)',
       boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
       fontSize: '1em'
     },
+    /* disk_x2 */
+    upDiskX2Options: {
+      type: 'right',
+      background: 'rgb(255, 255, 255)',
+      border: '0.4em solid rgb(244,67,54)',
+      boxShadow: 'rgb(244,67,54) 0px 10px 20px',
+      fontSize: '1em'
+    },
+    downDiskX2Options: {
+      type: 'right',
+      background: 'rgb(244,67,54)',
+      border: '0.4em solid rgb(244,67,54)',
+      boxShadow: 'rgb(244,67,54) 0px 10px 20px',
+      fontSize: '1em'
+    },
+    /* end disk */
+    // programName: '',
+
     buttonMain: null,
     buttonLeft: null,
     buttonRight: null,
@@ -150,11 +131,17 @@ export default {
     timeoutDelay: null,
     delay: 2000,
     timeoutPopup: null,
-    isDown: {
-      /* dev */
+    /* isDown: {
       disk: false,
       disk_x2: false
+    }, */
+    isDownButtonLeft: {
+      disk: false
     },
+    isDownButtonRight: {
+      disk_x2: false
+    },
+
     messages: [
       `Выберите давление:`,
       `Выберите цвет пены:`,
@@ -172,12 +159,13 @@ export default {
     ],
     buttonTitleIndex: -1
   }),
-  /* props: {
-    active: {
+  /* console.log('this.activeProgramKit-->', this.activeProgramKit) */
+  props: {
+    activeProgramKit: {
       required: true,
-      type: String
+      type: Object
     }
-  }, */
+  },
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
@@ -190,7 +178,8 @@ export default {
   watch: {
     getWetBalance(flag) {
       if (parseInt(flag) === 0) {
-        this.clearDown()
+        this.clearDownButtonLeft()
+        this.clearDownButtonRight()
 
         this.timeoutPopup = setTimeout(() => {
           try {
@@ -209,33 +198,39 @@ export default {
       setActiveProgram: 'setActiveProgram'
     }),
 
-    setButtonColor(color) {
+    setButtonStyle(options) {
+      console.log('options-->', options.type, options.background)
 
-      /* const background = 'rgb(64, 196, 255)'
-      const border = '0.4em solid rgb(64, 196, 255)'
-      const boxShadow = 'rgb(64, 196, 255) 0px 10px 20px'
-      const fontSize = '1em'
+      // console.log('options.background-->',typeof options.background )
 
-      this.button.background = background
-      this.button.border = border
-      this.button.boxShadow = boxShadow
-      this.button.fontSize = fontSize
+      if (options.type === 'left') {
+        this.buttonLeft.background = options.background
+        this.buttonLeft.border = options.border
+        this.buttonLeft.boxShadow = options.boxShadow
+        this.buttonLeft.fontSize = options.fontSize
 
-      console.log('++this.button.background-->', this.button.background)
-      console.log('++this.button.border-->', this.button.border)
-      console.log('++this.button.boxShadow-->', this.button.boxShadow)
-      console.log('++this.button.fontSize-->', this.button.fontSize) */
+        this.buttonRight.background = 'rgb(255, 255, 255)'
+      }
 
+      if (options.type === 'right') {
+        this.buttonRight.background = options.background
+        this.buttonRight.border = options.border
+        this.buttonRight.boxShadow = options.boxShadow
+        this.buttonRight.fontSize = options.fontSize
+
+        this.buttonLeft.background = 'rgb(255, 255, 255)'
+      }
     },
     setProgram(program) {
       /* dev */
-      console.log('new disk-->', program)
+      // console.log('new disk-->', program)
 
       this.active = program
       this.setActiveProgram(this.active)
       this.setDown(program)
 
-      this.updateStartProgram([
+      /* dev */
+      /* this.updateStartProgram([
         this.getPanelType,
         this.getDefaultPanelNumber,
         this.getActiveProgram,
@@ -247,60 +242,66 @@ export default {
             this.$router.push('/popup')
           } catch (err) {}
         }, this.delay)
-      }
+      } */
     },
     setDown(program) {
-      this.clearDown()
+      // this.clearDown()
       switch (program) {
         /* dev */
         case 'disk':
-          this.isDown.disk = true
+          console.log('program-->', program)
+
+          this.clearDownButtonRight()
+
+          this.isDownButtonLeft.disk
+            ? this.setButtonStyle(this.upDiskOptions)
+            : this.setButtonStyle(this.downDiskOptions)
+
+          this.isDownButtonLeft.disk = !this.isDownButtonLeft.disk
           break
+
         case 'disk_x2':
-          this.isDown.disk_x2 = true
+          this.clearDownButtonLeft()
+
+          this.isDownButtonRight.disk_x2
+            ? this.setButtonStyle(this.upDiskX2Options)
+            : this.setButtonStyle(this.downDiskX2Options)
+
+          this.isDownButtonRight.disk_x2 = !this.isDownButtonRight.disk_x2
           break
 
         default:
           break
       }
     },
-    clearDown() {
+    /* clearDown() {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
+    }, */
+    clearDownButtonLeft() {
+      this.isDownButtonLeft = Object.fromEntries(
+        Object.entries(this.isDownButtonLeft).map(([key, value]) => [
+          key,
+          false
+        ])
+      )
     },
-    /* dev */
-    setUpX2Options() {
-      /* 
-      upX2Options: {
-      background: 'rgb(255, 255, 255)',
-      border: '0.4em solid rgb(64, 196, 255)',
-      boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
-      */
-
-
-    },
-    setDownX2Options() {}
+    clearDownButtonRight() {
+      this.isDownButtonRight = Object.fromEntries(
+        Object.entries(this.isDownButtonRight).map(([key, value]) => [
+          key,
+          false
+        ])
+      )
+    }
   }, // end methods
+  created() {
+    
+  },
   mounted() {
-    /* button-main */
-    /* this.buttonMain = new Button({
-      selector: '#button-main',
-
-      width: 28,
-      height: 25,
-
-      background: 'rgb(255, 255, 255)',
-      borderTopRightRadius: 3,
-      borderTopLeftRadius: 3,
-      borderBottomRightRadius: 3,
-      borderBottomLeftRadius: 3,
-
-      border: 'solid 0.4em #40c4ff',
-      boxShadow: '0px 10px 20px #40c4ff'
-    }) */
     /* left button */
-    /* this.buttonLeft = new Button({
+    this.buttonLeft = new Button({
       selector: '#button-left',
 
       width: 28,
@@ -310,11 +311,11 @@ export default {
       borderTopRightRadius: 3,
       borderTopLeftRadius: 3,
       borderBottomRightRadius: 3,
-      borderBottomLeftRadius: 3,
+      borderBottomLeftRadius: 3
 
-      border: 'solid 0.4em #40c4ff',
-      boxShadow: '0px 10px 20px #40c4ff'
-    }) */
+      // border: 'solid 0.4em #40c4ff',
+      // boxShadow: '0px 10px 20px #40c4ff'
+    })
 
     /* right button */
     this.buttonRight = new Button({
@@ -327,12 +328,25 @@ export default {
       borderTopRightRadius: 3,
       borderTopLeftRadius: 3,
       borderBottomRightRadius: 3,
-      borderBottomLeftRadius: 3,
+      borderBottomLeftRadius: 3
 
-      border: 'solid 0.4em #40c4ff',
-      boxShadow: '0px 10px 20px #40c4ff'
+      // border: 'solid 0.4em rgb(244,67,54)',
+      // boxShadow: '0px 10px 20px rgb(244,67,54)'
     })
 
+    /* dev */
+    // this.programName = this.activeProgramKit.name
+
+    if (this.activeProgramKit.name === 'disk') {
+      // console.log('!!++this.activeProgramKit.name-->', this.activeProgramKit.title)
+      // left
+      this.buttonLeft.border = 'solid 0.4em #40c4ff'
+      this.buttonLeft.boxShadow = '0px 10px 20px #40c4ff'
+
+      // right
+      this.buttonRight.border = 'solid 0.4em rgb(244,67,54)'
+      this.buttonRight.boxShadow = '0px 10px 20px rgb(244,67,54)'
+    }
   },
 
   beforeDestroy() {
@@ -363,47 +377,18 @@ export default {
 }
 
 .info-title {
-  /* position: absolute; */
-
-  /* width: 800px; */
-  padding-top: 0em;
-  padding-left: 0em;
-  padding-right: 0em;
-  padding-bottom: 0em;
-
-  margin-top: 0em;
-  margin-left: 0em;
+  height: 1em;
   font-size: 4.2em; /* 4.75em; */
-
-  color: #fff;
-  text-align: center;
-  font-family: 'Plumb-Medium';
+  color: white;
 }
 table,
-th,
+tr,
 td {
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-
   border: none;
   border-color: white;
 }
-
-.button-standard-style {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+.button-group {
   padding-left: 0em;
-  margin-left: 2.5em; /* 0em; */
-  padding-top: 0em;
-
-  width: 400px; /* 460px; */
-  height: 360px; /* 360px; */
-  border: solid 6px #40c4ff;
-  border-radius: 40px;
-  box-shadow: 0px 6px 10px #40c4ff;
 }
 .button-content-standard-style {
   font-size: 4em;
@@ -444,7 +429,16 @@ td {
 }
 .image {
   height: 54em; /* 800px; */
+
   /* background: yellow; */
+}
+.button-black-title {
+  font-size: 4em;
+  color: black;
+}
+.button-white-title {
+  font-size: 4em;
+  color: white;
 }
 
 /* .number {

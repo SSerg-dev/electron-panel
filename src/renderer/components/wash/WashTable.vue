@@ -99,7 +99,9 @@
           </tr> -->
           
           <!-- dev -->
-            <WashTableDisk :actives="actives"/>  
+          <tr v-if="this.actives[14].display !== 'none'" style="height: 120px;">
+             <WashTableDisk :actives="actives"/>
+          </tr>  
           <!--     -->
 
           <!-- 2 -->

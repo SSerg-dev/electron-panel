@@ -2,7 +2,7 @@
   <div>
     <!-- 1 -->
     <!-- ДИСКИ -->
-    <tr>
+    
       <td @click="setProgram('disk')">
         <div
           class="waves-effect button-style"
@@ -22,7 +22,7 @@
           </div>
         </div>
       </td>
-    </tr>
+    
   </div>
 </template>
 
@@ -66,7 +66,7 @@ export default Vue.extend({
     ...mapGetters({
       getActiveProgram: 'getActiveProgram',
       getActiveProgramKit: 'getActiveProgramKit',
-      getIsActiveProgramKit: 'getIsActiveProgramKit'
+      getIsActiveProgramKit: 'getIsActiveProgramKit' 
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
@@ -82,7 +82,7 @@ export default Vue.extend({
       this.setIsActiveProgramKit(true)
       // console.log('this.getIsActiveProgramKit()-->', this.getIsActiveProgramKit())
 
-      this.setActiveProgramKit(this.activeProgramKit)
+      this.setActiveProgramKit(this.activeProgramKit) 
       // console.log('+!getActiveProgramKit-->', this.getActiveProgramKit())
 
       if (parseInt(this.getWetBalance) > 0) {
@@ -143,9 +143,7 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-tr {
-  padding-bottom: 0px;
-}
+
 td {
   padding-top: 0px;
   padding-bottom: 0px;
