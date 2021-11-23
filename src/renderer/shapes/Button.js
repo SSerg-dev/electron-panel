@@ -1,15 +1,27 @@
 import { Box } from '@/shapes/Box.js'
 import { getBlinkMemoryInfo } from 'process'
 
-class Button extends Box {
+class Button extends Box { 
 
   static type = 'BUTTON'
 
   constructor(options) {
     super(options)
+    /* dev */
+    // this.$el.style.width = 28,
+    // this.$el.style.height = 25,
+
+    // this.$el.style.background = 'rgb(255, 255, 255)',
+    // this.$el.style.borderTopRightRadius = 3,
+    // this.$el.style.borderTopLeftRadius = 3,
+    // this.$el.style.borderBottomRightRadius = 3,
+    // this.$el.style.borderBottomLeftRadius = 3
+    /*     */
+
     // font color 
     //this.$el.style.color = options.color
     //this.$el.style.boxShadow = options.boxShadow
+    
     // flex
     this.$el.style.display = 'flex'
     this.$el.style.alignItems = 'center'
@@ -58,6 +70,16 @@ class Button extends Box {
   set fontSize(newFontSize) {
     this.$el.style.fontSize = newFontSize
   }
+  // flex
+ set display(newDisplay) {
+   this.$el.style.display = newDisplay
+ }
+ set alignItems(newAlignItems) {
+   this.$el.style.alignItems = newAlignItems
+ }
+ set justifyContent(newJustifyContent) {
+   this.$el.style.justifyContent = newJustifyContent
+ }
 
 }
 

@@ -23,7 +23,8 @@
         </div>
 
         <div v-if="this.getIsActiveProgramKit()" class="active">
-          <PopupTypeActive :activeProgramKit="activeProgramKit"/>
+          <!-- <PopupTypeActive :activeProgramKit="activeProgramKit"/> -->
+          <PopupTypeActive :actives = "actives" />  
         </div>
       </section>
     </div>
@@ -50,7 +51,7 @@ export default Vue.extend({
     isOperator: false,
     isTurbo: false,
     messages: [
-      `КНОПКА СТОП ОСТАНАВЛИВАЕТ ДВИГАТЕЛЬ`,
+      `КНОПКА СТОП ОСТАНАВЛИВАЕТ ДВИГАТЕЛЬ`, 
       `ВЫЗОВ ОТПРАВЛЕН, ОЖИДАЙТЕ`,
       ''
     ],
@@ -59,6 +60,12 @@ export default Vue.extend({
 
     // activeKit: ''
   }),
+  props: {
+    actives: {
+      required: true,
+      type: Array
+    }
+  },
   computed: {
     ...mapGetters({
       getSecondsGotoPopupMenu: 'getSecondsGotoPopupMenu',
@@ -178,6 +185,8 @@ export default Vue.extend({
     }
   },
   mounted() {
+    // console.log('PopupType actives-->', this.actives[24])
+
     this.setup()
     /* dev */
     if (parseInt(this.getWetStopFreeCount) === 0) {

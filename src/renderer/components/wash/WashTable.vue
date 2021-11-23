@@ -1155,6 +1155,9 @@ WashTableDisk from '@/components/wash/actives/WashTableDisk'
 
 export default {
   data: () => ({
+    /* dev */
+    // testView: '',
+
     name: 'program-table',
     timeoutDelay: null,
     isVisible: false,
@@ -1205,6 +1208,11 @@ export default {
       required: true,
       type: Number
     }
+  },
+  watch: {
+    /* testView(flag) {
+      console.log('testView-->flag-->', flag)
+    } */
   },
   computed: {
     ...mapGetters({
@@ -1355,6 +1363,7 @@ export default {
       this.actives[22].display = 'block'
       
       //this.actives[18].display = 'block'
+      // this.testView = this.actives[24].display
 
     }
   },

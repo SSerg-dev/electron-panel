@@ -9,34 +9,80 @@
 
     <section>
       <div class="row">
-        <div><PopupType /></div>
+        
+        <div>
+          <PopupType :actives="actives" />
+        </div>
+
       </div>
     </section>
   </div>
 </template>
 
-<script  >
-
+<script>
 import Vue from 'vue'
-import { mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import PopupType from '@/components/PopupType'
 
 export default Vue.extend({
   data: () => ({
+    actives: [],
+    activeProg: []
   }),
+  /* dev */
+  watch: {
+    getParamsChange(flag) {
+      this.setActiveProg()
+    }
+  },
   computed: {
+    ...mapGetters({
+      getWetProgStatus: 'getWetProgStatus',
+      getWetProgShow: 'getWetProgShow',
+      getParamsChange: 'getParamsChange'
+    })
   },
   methods: {
+    ...mapGetters({
+      getPrograms: 'getPrograms',
+      getProgramsVacuum: 'getProgramsVacuum'
+    }),
+
     ...mapMutations({
       setRouter: 'setRouter'
-    })
+    }),
+
+    getActiveProgBit() {
+      return (this.getWetProgStatus >>> 0).toString(2)
+    },
+    setActiveProg() {
+      let activeProgNames = []
+      this.activeProg = [...this.getActiveProgBit()]
+        .reverse()
+        .join('')
+        .slice(1)
+
+      for (let i = 0; i <= this.activeProg.length; i++) {
+        if (this.activeProg.toString().slice(i, i + 1) === '0') {
+          this.actives[i].display = 'none'
+        } else {
+          this.actives[i].display = 'block'
+          activeProgNames.push(this.actives[i].name)
+        }
+      }
+
+      return this.actives
+    }
+  },
+  created() {
+    this.actives = this.getPrograms()
   },
   mounted() {
     this.setRouter('/popup')
   },
   components: {
     PopupType
-  },
+  }
 })
 </script>
 
@@ -53,5 +99,4 @@ export default Vue.extend({
   width: 50em;
   align-items: center;
 }
-
 </style>

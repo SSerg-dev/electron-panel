@@ -29,6 +29,8 @@ import { mapGetters, mapActions, mapMutations } from 'vuex'
 import ProgramTable from '@/components/ProgramTable'
 import WashTable from '@/components/wash/WashTable'
 import VacuumTable from '@/components/vacuum/VacuumTable'
+// import Popup from '@/views/Popup'
+
 
 export default Vue.extend({
   name: 'program',
@@ -61,6 +63,7 @@ export default Vue.extend({
       // console.log('++watch flag-->', flag)
       this.setActiveProg()
     }
+
   },
   methods: {
     ...mapMutations({
@@ -104,7 +107,7 @@ export default Vue.extend({
           activeProgNames.push(this.actives[i].name)
         }
       }
-      this.setActiveProgNames(activeProgNames)
+      this.setActiveProgNames(activeProgNames) 
 
       // crutch :(
 
@@ -155,7 +158,8 @@ export default Vue.extend({
   components: {
     ProgramTable,
     VacuumTable,
-    WashTable
+    WashTable,
+    // Popup
   }
 })
 </script>
