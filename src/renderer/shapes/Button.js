@@ -8,6 +8,7 @@ class Button extends Box {
   constructor(options) {
     super(options)
     /* dev */
+    
     // this.$el.style.width = 28,
     // this.$el.style.height = 25,
 

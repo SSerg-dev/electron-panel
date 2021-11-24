@@ -1,21 +1,22 @@
+
 <template>
   <div>
-    <!-- 1 -->
-    <!-- ДИСКИ -->
+    <!-- 2 mosquito -->
+    <!-- АНТИМОСКИТ -->
     
-      <td @click="setProgram('disk')">
+      <td @click="setProgram('mosquito')">
         <div
           class="waves-effect button-style"
           :class="[
-            { 'card white': !this.isDown.disk },
-            { 'card light-blue accent-2': this.isDown.disk }
+            { 'card white': !this.isDown.mosquito },
+            { 'card light-blue accent-2': this.isDown.mosquito }
           ]"
         >
           <div
             class="button-content-style"
             :class="[
-              { 'card-content black-text': !this.isDown.disk },
-              { 'card-content white-text': this.isDown.disk }
+              { 'card-content black-text': !this.isDown.mosquito },
+              { 'card-content white-text': this.isDown.mosquito }
             ]"
           >
             {{ `${actives[this.activeNumber].title}` }}
@@ -32,15 +33,15 @@ import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 export default Vue.extend({
   data: () => ({
-    activeNumber: 14,
+    activeNumber: 15,
     active: '',
     timeoutPopup: null,
     
     activeProgramKit: {},
 
     isDown: {
-      disk: false,
-      disk_x2: false
+      mosquito: false,
+      mosquito_x2: false
     }
   }),
   props: {
@@ -83,11 +84,11 @@ export default Vue.extend({
     setDown(program) {
       this.clearDown()
       switch (program) {
-        case 'disk':
-          this.isDown.disk = true
+        case 'mosquito':
+          this.isDown.mosquito = true
           break
-        // case 'disk_x2':
-        //   this.isDown.disk_x2 = true
+        // case 'mosquito_x2':
+        //   this.isDown.mosquito_x2 = true
         //   break
 
         default:
@@ -159,3 +160,4 @@ td {
   justify-content: left;
 }
 </style>
+

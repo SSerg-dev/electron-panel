@@ -17,6 +17,10 @@ class Box extends Component {
     this.$el.style.borderBottomLeftRadius =
       options.borderBottomLeftRadius + 'em'
 
+    this.$el.style.borderRadius =
+      options.borderRadius + 'em'
+  
+
     // background
     this.$el.style.background = options.background
     

@@ -2,11 +2,8 @@
   <section>
     <div class="message" style="background: none;">
       <div><Message /></div>
+      <!-- <div><span class="white-text">{{ this.getDefaultPanelNumber }}</span></div> -->
     </div>
-
-    <!-- <div class="message" style="background: yellow;">
-      <span class="white-text">{{ this.getDefaultPanelNumber }}</span>
-    </div> -->
 
     <form @submit.prevent="">
       <div class="form">
@@ -18,8 +15,10 @@
             <tr class="info-title">
               <td colspan="2">
                 <p align="center">
-                  {{ `${this.messages[0]}` }}
+                  {{ `${this.messages[this.messageIndex]}` }}
+
                   <!-- {{ this.getDefaultPanelNumber }} -->
+                  <!-- {{`${this.activeProgramKit.name}`}} -->
                 </p>
               </td>
             </tr>
@@ -27,19 +26,21 @@
             <!-- row 02 -->
             <tr class="button-group">
               <!-- standard -->
+              <!-- this.activeProgramKit.name  -->
+
               <td style="padding-left: 2em; padding-bottom: 1em;">
                 <div
-                  @click="setProgram('disk')"
+                  @click="setProgram('standard')"
                   class="waves-effect"
                   id="button-left"
                 >
                   <div
                     :class="[
-                      { 'button-black-title': !this.isDownButtonLeft.disk },
-                      { 'button-white-title': this.isDownButtonLeft.disk }
+                      { 'button-black-title': !this.isDownButtonLeft.standard },
+                      { 'button-white-title': this.isDownButtonLeft.standard }
                     ]"
                   >
-                    {{ `${this.buttonTitle[0]}` }}
+                    {{ `${this.buttonTitle[this.buttonStandardTitleIndex]}` }}
                   </div>
                 </div>
               </td>
@@ -48,17 +49,19 @@
 
               <td style="padding-left: 0em; padding-bottom: 1em;">
                 <div
-                  @click="setProgram('disk_x2')"
+                  @click="setProgram('advanced')"
                   class="waves-effect"
                   id="button-right"
                 >
                   <div
                     :class="[
-                      { 'button-black-title': !this.isDownButtonRight.disk_x2 },
-                      { 'button-white-title': this.isDownButtonRight.disk_x2 }
+                      {
+                        'button-black-title': !this.isDownButtonRight.advanced
+                      },
+                      { 'button-white-title': this.isDownButtonRight.advanced }
                     ]"
                   >
-                    {{ `${this.buttonTitle[5]}` }}
+                    {{ `${this.buttonTitle[this.buttonTitleIndex]}` }}
                   </div>
                 </div>
               </td>
@@ -67,8 +70,14 @@
             <!-- row 03 -->
             <tr class="image">
               <td colspan="2">
-                <div>
+                <div id="green-image">
                   <img src="imgs/actives/green-active.svg" />
+                </div>
+                <div id="blue-image">
+                  <img src="imgs/actives/blue-active.svg" />
+                </div>
+                <div id="red-image">
+                  <img src="imgs/actives/red-active.svg" />
                 </div>
               </td>
             </tr>
@@ -93,52 +102,75 @@ export default {
   data: () => ({
     // actives: [],
 
-    /* standart */
-    upStandartOptions: {
+    /* StandardOptions */
+    upStandardOptions: {
       type: 'left',
       background: 'rgb(255, 255, 255)',
       border: '0.4em solid rgb(64, 196, 255)',
       boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
       fontSize: '1em'
     },
-    downStandartOptions: {
+    downStandardOptions: {
       type: 'left',
       background: 'rgb(64, 196, 255)',
       border: '0.4em solid rgb(64, 196, 255)',
       boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
       fontSize: '1em'
     },
-    /* disk_x2 */
-    upDiskX2Options: {
+    /* X2Options */
+    upX2Options: {
       type: 'right',
       background: 'rgb(255, 255, 255)',
       border: '0.4em solid rgb(191,0,229)',
       boxShadow: 'rgb(191,0,229) 0px 10px 20px',
       fontSize: '1em'
     },
-    downDiskX2Options: {
+    downX2Options: {
       type: 'right',
-      background: 'rgb(191,0,229)',
+      background: 'rgb(191,0,229)', 
       border: '0.4em solid rgb(191,0,229)',
       boxShadow: 'rgb(191,0,229) 0px 10px 20px',
       fontSize: '1em'
     },
-    /* end disk */
-    // programName: '',
+    /* TurboOptions */
+    upTurboOptions: {
+      type: 'right',
+      background: 'rgb(255, 255, 255)',
+      border: '0.4em solid rgb(255,3,3)',
+      boxShadow: 'rgb(255,3,3) 0px 10px 20px',
+      fontSize: '1em'
+    },
+    downTurboOptions: {
+      type: 'right',
+      background: 'rgb(255,3,3)',
+      border: '0.4em solid rgb(255,3,3)',
+      boxShadow: 'rgb(255,3,3) 0px 10px 20px',
+      fontSize: '1em'
+    },
 
+    /* end Options */
+
+    // classes
     buttonMain: null,
     buttonLeft: null,
     buttonRight: null,
+
+    greenImage: null,
+    blueImage: null,
+    redImage: null,
+
     active: '',
     timeoutDelay: null,
     delay: 2000,
     timeoutPopup: null,
 
     isDownButtonLeft: {
-      disk: false
+      // disk: false,
+      standard: false
     },
     isDownButtonRight: {
-      disk_x2: false
+      // disk_x2: false
+      advanced: false
     },
 
     messages: [
@@ -157,6 +189,9 @@ export default {
       `ДВОЙНАЯ`
     ],
     buttonTitleIndex: -1,
+    buttonStandardTitleIndex: -1,
+
+    programName: '',
     activeProgramKit: ''
   }),
 
@@ -200,9 +235,7 @@ export default {
       if (this.actives[24].display === 'none') this.buttonRight.hide()
       else {
         this.buttonRight.show()
-        this.buttonRight.display = 'flex'
-        this.buttonRight.alignItems = 'center'
-        this.buttonRight.justifyContent = 'center'
+        this.flex()
       }
     }
   },
@@ -219,6 +252,12 @@ export default {
     ...mapMutations({
       setActiveProgram: 'setActiveProgram'
     }),
+
+    flex() {
+      this.buttonRight.display = 'flex'
+      this.buttonRight.alignItems = 'center'
+      this.buttonRight.justifyContent = 'center'
+    },
 
     setButtonStyle(options) {
       if (options.type === 'left') {
@@ -240,9 +279,21 @@ export default {
       }
     },
     setProgram(program) {
-      this.active = program
+      // console.log('setProgram-->',program)
+      if (program === 'standard') {
+        this.active = this.activeProgramKit.name
+      }
+      if (program === 'advanced') {
+        if (this.activeProgramKit.x2)
+          this.active = this.activeProgramKit.name + '_x2'
+        if (this.activeProgramKit.color)
+          this.active = this.activeProgramKit.name + '_color'
+        if (this.activeProgramKit.turbo)
+          this.active = this.activeProgramKit.name + '_turbo'
+      }
+
       this.setActiveProgram(this.active)
-      this.setDown(program)
+      this.setDown(this.active)
 
       /* dev */
       this.updateStartProgram([
@@ -261,30 +312,56 @@ export default {
     },
     setDown(program) {
       // this.clearDown()
+      // console.log('setDown(program)-->', program)
       switch (program) {
         /* dev */
+        // standard =====================
         case 'disk':
-          console.log('program-->', program)
+        case 'mosquito':
+        case 'shampoo':
+        case 'waterShampoo':  
+
+          // console.log('program-->', program)
 
           this.clearDownButtonRight()
 
-          this.isDownButtonLeft.disk
-            ? this.setButtonStyle(this.upStandartOptions)
-            : this.setButtonStyle(this.downStandartOptions)
+          this.isDownButtonLeft.standard
+            ? this.setButtonStyle(this.upStandardOptions)
+            : this.setButtonStyle(this.downStandardOptions)
 
-          this.isDownButtonLeft.disk = !this.isDownButtonLeft.disk
-          break
-
+          this.isDownButtonLeft.standard = !this.isDownButtonLeft.standard
+        break
+        
+        // advanced =====================
+        // x2 --------------------------- 
         case 'disk_x2':
+        case 'mosquito_x2':
+        case 'shampoo_x2':
+
           this.clearDownButtonLeft()
 
-          this.isDownButtonRight.disk_x2
-            ? this.setButtonStyle(this.upDiskX2Options)
-            : this.setButtonStyle(this.downDiskX2Options)
+          this.isDownButtonRight.advanced
+            ? this.setButtonStyle(this.upX2Options)
+            : this.setButtonStyle(this.downX2Options)
 
-          this.isDownButtonRight.disk_x2 = !this.isDownButtonRight.disk_x2
-          break
+          this.isDownButtonRight.advanced = !this.isDownButtonRight.advanced
+        break          
+        // turbo ------------------------
+        case 'waterShampoo_turbo':
+          /* dev */
+          // console.log('++++++++++++waterShampoo')
+          this.clearDownButtonLeft()
+          
+          this.isDownButtonRight.advanced
+            ? this.setButtonStyle(this.upTurboOptions)
+            : this.setButtonStyle(this.downTurboOptions)
 
+          this.isDownButtonRight.advanced = !this.isDownButtonRight.advanced
+
+        
+        break  
+
+        // end --------------------------
         default:
           break
       }
@@ -310,20 +387,15 @@ export default {
     },
     initial() {
       this.activeProgramKit = this.getActiveProgramKit()
-      console.log('this.activeProgramKit-->', this.activeProgramKit.name)
-
+      
       /* left button */
       this.buttonLeft = new Button({
         selector: '#button-left',
 
         width: 28,
         height: 25,
-
         background: 'rgb(255, 255, 255)',
-        borderTopRightRadius: 3,
-        borderTopLeftRadius: 3,
-        borderBottomRightRadius: 3,
-        borderBottomLeftRadius: 3
+        borderRadius: 3
       })
 
       /* right button */
@@ -332,34 +404,62 @@ export default {
 
         width: 28,
         height: 25,
-
         background: 'rgb(255, 255, 255)',
-        borderTopRightRadius: 3,
-        borderTopLeftRadius: 3,
-        borderBottomRightRadius: 3,
-        borderBottomLeftRadius: 3
+        borderRadius: 3
+      })
+
+      // image classes
+      this.greenImage = new Box({
+        selector: '#green-image'
+      })
+
+      this.blueImage = new Box({
+        selector: '#blue-image'
+      })
+
+      this.redImage = new Box({
+        selector: '#red-image'
       })
 
       /* dev */
-      // this.programName = this.activeProgramKit.name
+      console.log('this.activeProgramKit.name-->', this.activeProgramKit.name)
 
-      // blue
-      if (
-        this.activeProgramKit.name === 'disk' ||
-        this.activeProgramKit.name === 'mosquito' ||
-        this.activeProgramKit.name === 'shampoo'
-      ) {
-        // left
-        // this.buttonLeft.border = 'solid 0.4em #40c4ff'
-        // this.buttonLeft.boxShadow = '0px 10px 20px #40c4ff'
-        this.setButtonStyle(this.upStandartOptions)
+      // this.activeProgramKit.x2 = true
+      // this.activeProgramKit.color = true
+      // this.activeProgramKit.turbo = true
 
-        // right
-        // this.buttonRight.border = 'solid 0.4em rgb(191,0,229)'
-        // this.buttonRight.boxShadow = '0px 10px 20px rgb(191,0,229)'
-        this.setButtonStyle(this.upDiskX2Options)
+      // standardOptions
+      this.setButtonStyle(this.upStandardOptions)
+
+      if (this.activeProgramKit.x2) {
+        this.setButtonStyle(this.upX2Options)
+
+        this.messageIndex = 2
+        this.buttonStandardTitleIndex = 0
+        this.buttonTitleIndex = 5
+
+        this.greenImage.show()
+        this.blueImage.hide()
+        this.redImage.hide()
       }
 
+      if (this.activeProgramKit.color) {
+        this.greenImage.hide()
+        this.blueImage.hide()
+        this.redImage.show()
+      }
+      if (this.activeProgramKit.turbo) {
+        // console.log('++this.activeProgramKit.turbo-->', this.upTurboOptions)
+        this.setButtonStyle(this.upTurboOptions)
+        
+        this.messageIndex = 0
+        this.buttonStandardTitleIndex = 0
+        this.buttonTitleIndex = 1
+
+        this.greenImage.hide()
+        this.blueImage.show()
+        this.redImage.hide()
+      }
     }
   }, // end methods
 

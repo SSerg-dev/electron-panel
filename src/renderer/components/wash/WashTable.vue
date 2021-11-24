@@ -12,183 +12,17 @@
 
       <table border="0" width="100%" cellpadding="0" cellspacing="0">
         <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
+
           <!-- 1 -->
           <!-- ДИСКИ -->
-          <!-- <tr align="center" v-if="this.actives[14].display !== 'none'">
-            <td
-              v-if="this.actives[24].display !== 'none'"
-              colspan="1"
-              align="center"
-            >
-              <button
-                v-if="this.isDown.disk === false"
-                style="background-image:url('./imgs/blue/blue_long_turbo.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('disk')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[14].title}` }}
-                </div>
-              </button>
-              <button
-                v-else-if="this.isDown.disk === true"
-                style="background-image:url('./imgs/blue/blue_long_turbo_down.png'); width: 832px; height: 105px" 
-                class="btn black"
-                @click="setProgram('disk')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[14].title}` }}
-                </div>
-              </button>
-            </td>
-
-            <td
-              v-else-if="this.actives[24].display === 'none'"
-              colspan="1"
-              align="center"
-            >
-              <button
-                v-if="this.isDown.disk === false"
-                style="background-image:url('./imgs/blue/blue_long.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('disk')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[14].title}` }}
-                </div>
-              </button>
-              <button
-                v-else-if="this.isDown.disk === true"
-                style="background-image:url('./imgs/blue/blue_long_down.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('disk')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[14].title}` }}
-                </div>
-              </button>
-            </td>
-
-            <td
-              colspan="1"
-              v-if="
-                this.actives[24].display !== 'none' &&
-                  this.actives[24].x2 === true
-              "
-            >
-              <button
-                v-if="this.isDown.disk_x2 === false"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('disk_x2')"
-              >
-                <img src="imgs/x2/x2_an1.gif" />
-              </button>
-
-              <button
-                v-if="this.isDown.disk_x2 === true"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('disk_x2')"
-              >
-                <img src="imgs/x2/x2_an2.gif" />
-              </button>
-            </td>
-
-            <td colspan="1"></td>
-          </tr> -->
-          
-          <!-- dev -->
-          <tr v-if="this.actives[14].display !== 'none'" style="height: 120px;">
+          <tr v-if="this.actives[14].display !== 'none'" style="height: 110px;">
              <WashTableDisk :actives="actives"/>
           </tr>  
-          <!--     -->
-
+          
           <!-- 2 -->
           <!-- АНТИМОСКИТ -->
-          <tr align="center" v-if="this.actives[15].display !== 'none'">
-            <td
-              v-if="this.actives[25].display !== 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.mosquito === false"
-                style="background-image:url('./imgs/blue/blue_long_turbo.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('mosquito')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[15].title}` }}
-                </div>
-              </button>
-              <button
-                v-else-if="this.isDown.mosquito === true"
-                style="background-image:url('./imgs/blue/blue_long_turbo_down.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('mosquito')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[15].title}` }}
-                </div>
-              </button>
-            </td>
-
-            <td
-              v-if="this.actives[25].display === 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.mosquito === false"
-                style="background-image:url('./imgs/blue/blue_long.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('mosquito')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[15].title}` }}
-                </div>
-              </button>
-              <button
-                v-else-if="this.isDown.mosquito === true"
-                style="background-image:url('./imgs/blue/blue_long_down.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('mosquito')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[15].title}` }}
-                </div>
-              </button>
-            </td>
-
-            <td
-              colspan="1"
-              v-if="
-                this.actives[25].display !== 'none' &&
-                  this.actives[25].x2 === true
-              "
-            >
-              <button
-                v-if="this.isDown.mosquito_x2 === false"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('mosquito_x2')"
-              >
-                <img src="imgs/x2/x2_an1.gif" />
-              </button>
-
-              <button
-                v-if="this.isDown.mosquito_x2 === true"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('mosquito_x2')"
-              >
-                <img src="imgs/x2/x2_an2.gif" />
-              </button>
-            </td>
-            <td colspan="1"></td>
+          <tr v-if="this.actives[15].display !== 'none'" style="height: 115px;">
+             <WashTableMosquito :actives="actives"/>
           </tr>
 
           <!-- 3 -->
@@ -534,168 +368,14 @@
 
           <!-- 5 -->
           <!-- ШАМПУНЬ shampoo -->
-
-          <tr align="left" v-if="this.actives[0].display !== 'none'">
-            <td
-              v-if="this.actives[21].display !== 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.shampoo === false"
-                style="background-image:url('./imgs/blue/blue_long_turbo.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('shampoo')"
-              >
-                <div class="button-title-long">{{ `${actives[0].title}` }}</div>
-              </button>
-              <button
-                v-if="this.isDown.shampoo === true"
-                style="background-image:url('./imgs/blue/blue_long_turbo_down.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('shampoo')"
-              >
-                <div class="button-title-long">{{ `${actives[0].title}` }}</div>
-              </button>
-            </td>
-
-            <td
-              v-else-if="this.actives[21].display === 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.shampoo === false"
-                style="background-image:url('./imgs/blue/blue_long.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('shampoo')"
-              >
-                <div class="button-title-long">{{ `${actives[0].title}` }}</div>
-              </button>
-              <button
-                v-if="this.isDown.shampoo === true"
-                style="background-image:url('./imgs/blue/blue_long_down.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('shampoo')"
-              >
-                <div class="button-title-long">{{ `${actives[0].title}` }}</div>
-              </button>
-            </td>
-
-            <td
-              colspan="1"
-              v-if="
-                this.actives[21].display !== 'none' &&
-                  this.actives[21].x2 === true
-              "
-            >
-              <button
-                v-if="this.isDown.shampoo_x2 === false"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('shampoo_x2')"
-              >
-                <img src="imgs/x2/x2_an1.gif" />
-              </button>
-              <button
-                v-if="this.isDown.shampoo_x2 === true"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('shampoo_x2')"
-              >
-                <img src="imgs/x2/x2_an2.gif" />
-              </button>
-            </td>
-
-            <td colspan="1"></td>
+          <tr v-if="this.actives[0].display !== 'none'" style="height: 110px;">
+             <WashTableShampoo :actives="actives"/>
           </tr>
 
           <!-- 6 -->
           <!-- ВОДА + ШАМПУНЬ -->
-          <tr align="left" v-if="this.actives[1].display !== 'none'">
-            <td
-              v-if="this.actives[7].display !== 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.waterShampoo === false"
-                style="background-image:url('./imgs/blue/blue_long_turbo.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('waterShampoo')"
-              >
-                <div class="button-title-long noselect">
-                  {{ `${actives[1].title}` }}
-                </div>
-              </button>
-              <button
-                v-if="this.isDown.waterShampoo === true"
-                style="background-image:url('./imgs/blue/blue_long_turbo_down.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('waterShampoo')"
-              >
-                <div class="button-title-long noselect">
-                  {{ `${actives[1].title}` }}
-                </div>
-              </button>
-            </td>
-
-            <td
-              v-else-if="this.actives[7].display === 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.waterShampoo === false"
-                style="background-image:url('./imgs/blue/blue_long.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('waterShampoo')"
-              >
-                <div class="button-title-long noselect">
-                  {{ `${actives[1].title}` }}
-                </div>
-              </button>
-              <button
-                v-if="this.isDown.waterShampoo === true"
-                style="background-image:url('./imgs/blue/blue_long_down.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('waterShampoo')"
-              >
-                <div class="button-title-long noselect">
-                  {{ `${actives[1].title}` }}
-                </div>
-              </button>
-            </td>
-
-            <td
-              colspan="1"
-              v-if="
-                this.actives[7].display !== 'none' &&
-                  this.actives[7].turbo === true
-              "
-            >
-              <button
-                v-if="this.isDown.waterShampoo_turbo === false"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('waterShampoo_turbo')"
-              >
-                <img src="imgs/turbo/turbo_up_an3.gif" />
-              </button>
-              <button
-                v-if="this.isDown.waterShampoo_turbo === true"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('waterShampoo_turbo')"
-              >
-                <img src="imgs/turbo/turbo_up_an4.gif" />
-              </button>
-            </td>
-            <td colspan="1"></td>
+          <tr v-if="this.actives[1].display !== 'none'" style="height: 115px;">
+             <WashTableWaterShampoo :actives="actives"/>
           </tr>
 
           <!-- 7 -->
@@ -1150,8 +830,16 @@ import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import Message from '@/components/app/Message'
 /* programs */
-import 
-WashTableDisk from '@/components/wash/actives/WashTableDisk'
+import WashTableDisk from '@/components/wash/actives/WashTableDisk'
+// Mosquito
+import WashTableMosquito from '@/components/wash/actives/WashTableMosquito'
+// Shampoo
+import WashTableShampoo from '@/components/wash/actives/WashTableShampoo'
+// WaterShampoo
+import WashTableWaterShampoo from '@/components/wash/actives/WashTableWaterShampoo'
+
+
+
 
 export default {
   data: () => ({
@@ -1197,7 +885,10 @@ export default {
   }),
   components: {
     Message,
-    WashTableDisk
+    WashTableDisk,
+    WashTableMosquito,
+    WashTableShampoo,
+    WashTableWaterShampoo
   },
   props: {
     actives: {

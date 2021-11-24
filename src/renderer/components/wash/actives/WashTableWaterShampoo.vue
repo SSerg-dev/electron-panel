@@ -1,21 +1,21 @@
 <template>
   <div>
-    <!-- 1 -->
-    <!-- ДИСКИ -->
+    <!--  waterShampoo -->
+    <!-- ВОДА + ШАМПУНЬ -->
     
-      <td @click="setProgram('disk')">
+      <td @click="setProgram('waterShampoo')">
         <div
           class="waves-effect button-style"
           :class="[
-            { 'card white': !this.isDown.disk },
-            { 'card light-blue accent-2': this.isDown.disk }
+            { 'card white': !this.isDown.waterShampoo },
+            { 'card light-blue accent-2': this.isDown.waterShampoo }
           ]"
         >
           <div
             class="button-content-style"
             :class="[
-              { 'card-content black-text': !this.isDown.disk },
-              { 'card-content white-text': this.isDown.disk }
+              { 'card-content black-text': !this.isDown.waterShampoo },
+              { 'card-content white-text': this.isDown.waterShampoo }
             ]"
           >
             {{ `${actives[this.activeNumber].title}` }}
@@ -32,15 +32,15 @@ import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 export default Vue.extend({
   data: () => ({
-    activeNumber: 14,
+    activeNumber: 1,
     active: '',
     timeoutPopup: null,
     
     activeProgramKit: {},
 
     isDown: {
-      disk: false,
-      disk_x2: false
+      waterShampoo: false,
+      waterShampoo_x2: false
     }
   }),
   props: {
@@ -83,11 +83,11 @@ export default Vue.extend({
     setDown(program) {
       this.clearDown()
       switch (program) {
-        case 'disk':
-          this.isDown.disk = true
+        case 'waterShampoo':
+          this.isDown.waterShampoo = true
           break
-        // case 'disk_x2':
-        //   this.isDown.disk_x2 = true
+        // case 'waterShampoo_x2':
+        //   this.isDown.waterShampoo_x2 = true
         //   break
 
         default:
@@ -159,3 +159,4 @@ td {
   justify-content: left;
 }
 </style>
+
