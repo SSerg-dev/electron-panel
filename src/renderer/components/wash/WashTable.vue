@@ -21,14 +21,14 @@
           
           <!-- 2 -->
           <!-- АНТИМОСКИТ -->
-          <tr v-if="this.actives[15].display !== 'none'" style="height: 115px;">
+          <tr v-if="this.actives[15].display !== 'none'" style="height: 110px;">
              <WashTableMosquito :actives="actives"/>
           </tr>
 
           <!-- 3 -->
           <!-- ЩЕТКА + ПЕНА -->
-          <tr align="center" v-if="this.actives[13].display !== 'none'">
-            <!-- 1 -->
+          <!-- <tr align="center" v-if="this.actives[13].display !== 'none'">
+            
             <td
               v-if="
                 this.actives[20].display === 'none' &&
@@ -59,7 +59,7 @@
                 </div>
               </button>
             </td>
-            <!-- 2 -->
+            
             <td
               v-else-if="
                 this.actives[20].display === 'block' &&
@@ -91,7 +91,7 @@
               </button>
             </td>
 
-            <!-- 3 -->
+            
             <td
               v-else-if="
                 this.actives[20].display === 'none' &&
@@ -122,7 +122,7 @@
                 </div>
               </button>
             </td>
-            <!-- 4 -->
+            
             <td
               v-else-if="
                 this.actives[20].display === 'block' &&
@@ -201,6 +201,10 @@
                 <img src="imgs/x2/x2_an2.gif" />
               </button>
             </td>
+          </tr> -->
+
+          <tr v-if="this.actives[13].display !== 'none'" style="height: 110px;">
+             <WashTableBrushFoam :actives="actives"/>
           </tr>
 
           <!-- 4 -->
@@ -374,333 +378,36 @@
 
           <!-- 6 -->
           <!-- ВОДА + ШАМПУНЬ -->
-          <tr v-if="this.actives[1].display !== 'none'" style="height: 115px;">
+          <tr v-if="this.actives[1].display !== 'none'" style="height: 110px;">
              <WashTableWaterShampoo :actives="actives"/>
           </tr>
 
           <!-- 7 -->
           <!-- ТЕПЛАЯ ВОДА warmWater -->
-          <tr align="left" v-if="this.actives[11].display !== 'none'">
-            <td
-              v-if="this.actives[12].display !== 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.warmWater === false"
-                style="background-image:url('./imgs/blue/blue_long_turbo.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('warmWater')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[11].title}` }}
-                </div>
-              </button>
-              <button
-                v-if="this.isDown.warmWater === true"
-                style="background-image:url('./imgs/blue/blue_long_turbo_down.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('warmWater')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[11].title}` }}
-                </div>
-              </button>
-            </td>
-
-            <td
-              v-else-if="this.actives[12].display === 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.warmWater === false"
-                style="background-image:url('./imgs/blue/blue_long.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('warmWater')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[11].title}` }}
-                </div>
-              </button>
-              <button
-                v-if="this.isDown.warmWater === true"
-                style="background-image:url('./imgs/blue/blue_long_down.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('warmWater')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[11].title}` }}
-                </div>
-              </button>
-            </td>
-
-            <td
-              colspan="1"
-              v-if="
-                this.actives[12].display !== 'none' &&
-                  this.actives[12].turbo === true
-              "
-            >
-              <button
-                v-if="this.isDown.warmWater_turbo === false"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('warmWater_turbo')"
-              >
-                <img src="imgs/turbo/turbo_up_an3.gif" />
-              </button>
-              <button
-                v-if="this.isDown.warmWater_turbo === true"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('warmWater_turbo')"
-              >
-                <img src="imgs/turbo/turbo_up_an4.gif" />
-              </button>
-            </td>
-            <td colspan="1"></td>
+          <tr v-if="this.actives[11].display !== 'none'" style="height: 110px;">
+             <WashTableWarmWater :actives="actives"/>
           </tr>
 
           <!-- 8 -->
           <!-- ХОЛОДНАЯ ВОДА coldWater -->
-
-          <tr align="left" v-if="this.actives[2].display !== 'none'">
-            <td
-              v-if="this.actives[8].display !== 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.coldWater === false"
-                style="background-image:url('./imgs/blue/blue_long_turbo.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('coldWater')"
-              >
-                <div class="button-title-long">{{ `${actives[2].title}` }}</div>
-              </button>
-              <button
-                v-if="this.isDown.coldWater === true"
-                style="background-image:url('./imgs/blue/blue_long_turbo_down.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('coldWater')"
-              >
-                <div class="button-title-long">{{ `${actives[2].title}` }}</div>
-              </button>
-            </td>
-
-            <td
-              v-else-if="this.actives[8].display === 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.coldWater === false"
-                style="background-image:url('./imgs/blue/blue_long.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('coldWater')"
-              >
-                <div class="button-title-long">{{ `${actives[2].title}` }}</div>
-              </button>
-              <button
-                v-if="this.isDown.coldWater === true"
-                style="background-image:url('./imgs/blue/blue_long_down.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('coldWater')"
-              >
-                <div class="button-title-long">{{ `${actives[2].title}` }}</div>
-              </button>
-            </td>
-            <td
-              colspan="1"
-              v-if="
-                this.actives[8].display !== 'none' &&
-                  this.actives[8].turbo === true
-              "
-            >
-              <button
-                v-if="this.isDown.coldWater_turbo === false"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('coldWater_turbo')"
-              >
-                <img src="imgs/turbo/turbo_up_an3.gif" />
-              </button>
-              <button
-                v-if="this.isDown.coldWater_turbo === true"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('coldWater_turbo')"
-              >
-                <img src="imgs/turbo/turbo_up_an4.gif" />
-              </button>
-            </td>
-            <td colspan="1"></td>
+          <tr v-if="this.actives[2].display !== 'none'" style="height: 110px;">
+             <WashTableColdWater :actives="actives"/>
           </tr>
 
           <!-- 9 -->
           <!-- ВОСК И ЗАЩИТА waxProtection -->
-          <tr align="left" v-if="this.actives[3].display !== 'none'">
-            <td
-              v-if="this.actives[9].display !== 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.waxProtection === false"
-                style="background-image:url('./imgs/blue/blue_long_turbo.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('waxProtection')"
-              >
-                <div class="button-title-long">{{ `${actives[3].title}` }}</div>
-              </button>
-              <button
-                v-if="this.isDown.waxProtection === true"
-                style="background-image:url('./imgs/blue/blue_long_turbo_down.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('waxProtection')"
-              >
-                <div class="button-title-long">{{ `${actives[3].title}` }}</div>
-              </button>
-            </td>
-
-            <td
-              v-else-if="this.actives[9].display === 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.waxProtection === false"
-                style="background-image:url('./imgs/blue/blue_long.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('waxProtection')"
-              >
-                <div class="button-title-long">{{ `${actives[3].title}` }}</div>
-              </button>
-              <button
-                v-if="this.isDown.waxProtection === true"
-                style="background-image:url('./imgs/blue/blue_long_down.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('waxProtection')"
-              >
-                <div class="button-title-long">{{ `${actives[3].title}` }}</div>
-              </button>
-            </td>
-
-            <td
-              colspan="1"
-              v-if="
-                this.actives[9].display !== 'none' &&
-                  this.actives[9].turbo === true
-              "
-            >
-              <button
-                v-if="this.isDown.waxProtection_turbo === false"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('waxProtection_turbo')"
-              >
-                <img src="imgs/turbo/turbo_up_an3.gif" />
-              </button>
-              <button
-                v-if="this.isDown.waxProtection_turbo === true"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('waxProtection_turbo')"
-              >
-                <img src="imgs/turbo/turbo_up_an4.gif" />
-              </button>
-            </td>
-            <td colspan="1"></td>
+          <tr v-if="this.actives[3].display !== 'none'" style="height: 110px;">
+             <WashTableWaxProtection :actives="actives"/>
           </tr>
 
           <!-- 10 -->
           <!-- СУШКА И БЛЕСК dryShine-->
-
-          <tr align="left" v-if="this.actives[4].display !== 'none'">
-            <td
-              v-if="this.actives[10].display !== 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.dryShine === false"
-                style="background-image:url('./imgs/blue/blue_long_turbo.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('dryShine')"
-              >
-                <div class="button-title-long">{{ `${actives[4].title}` }}</div>
-              </button>
-              <button
-                v-if="this.isDown.dryShine === true"
-                style="background-image:url('./imgs/blue/blue_long_turbo_down.png'); width: 832px; height: 105px"
-                class="btn black"
-                @click="setProgram('dryShine')"
-              >
-                <div class="button-title-long">{{ `${actives[4].title}` }}</div>
-              </button>
-            </td>
-
-            <td
-              v-else-if="this.actives[10].display === 'none'"
-              colspan="1"
-              align="center"
-              heigth="115px"
-            >
-              <button
-                v-if="this.isDown.dryShine === false"
-                style="background-image:url('./imgs/blue/blue_long.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('dryShine')"
-              >
-                <div class="button-title-long">{{ `${actives[4].title}` }}</div>
-              </button>
-              <button
-                v-if="this.isDown.dryShine === true"
-                style="background-image:url('./imgs/blue/blue_long_down.png'); width: 962px; height: 105px"
-                class="btn black"
-                @click="setProgram('dryShine')"
-              >
-                <div class="button-title-long">{{ `${actives[4].title}` }}</div>
-              </button>
-            </td>
-
-            <td
-              colspan="1"
-              v-if="
-                this.actives[10].display !== 'none' &&
-                  this.actives[10].turbo === true
-              "
-            >
-              <button
-                v-if="this.isDown.dryShine_turbo === false"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('dryShine_turbo')"
-              >
-                <img src="imgs/turbo/turbo_up_an3.gif" />
-              </button>
-              <button
-                v-if="this.isDown.dryShine_turbo === true"
-                style="height: 105px"
-                class="btn x2"
-                @click="setProgram('dryShine_turbo')"
-              >
-                <img src="imgs/turbo/turbo_up_an4.gif" />
-              </button>
-            </td>
-            <td colspan="1"></td>
+          <tr v-if="this.actives[4].display !== 'none'" style="height: 125px;">
+             <WashTableDryShine :actives="actives"/>
           </tr>
 
           <!-- ПЫЛЕСОС vacuum -->
-          <tr align="left">
+          <tr align="left" style="margin-top: -0.5em;">
             <td
               colspan="1"
               align="center"
@@ -758,9 +465,7 @@
           </tr>
 
           <!-- ОМЫВАТЕЛЬ washer -->
-          
-
-          <tr align="left">
+          <tr align="left" style="margin-top: -0.5em;">
             <td
               colspan="1"
               align="center"
@@ -829,14 +534,16 @@
 import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import Message from '@/components/app/Message'
-/* programs */
 import WashTableDisk from '@/components/wash/actives/WashTableDisk'
-// Mosquito
 import WashTableMosquito from '@/components/wash/actives/WashTableMosquito'
-// Shampoo
 import WashTableShampoo from '@/components/wash/actives/WashTableShampoo'
-// WaterShampoo
 import WashTableWaterShampoo from '@/components/wash/actives/WashTableWaterShampoo'
+import WashTableWarmWater from '@/components/wash/actives/WashTableWarmWater'
+import WashTableColdWater from '@/components/wash/actives/WashTableColdWater'
+import WashTableWaxProtection from '@/components/wash/actives/WashTableWaxProtection'
+import WashTableDryShine from '@/components/wash/actives/WashTableDryShine'
+// WashTableBrushFoam
+import WashTableBrushFoam from '@/components/wash/actives/WashTableBrushFoam'
 
 
 
@@ -888,7 +595,12 @@ export default {
     WashTableDisk,
     WashTableMosquito,
     WashTableShampoo,
-    WashTableWaterShampoo
+    WashTableWaterShampoo,
+    WashTableWarmWater,
+    WashTableColdWater,
+    WashTableWaxProtection,
+    WashTableDryShine,
+    WashTableBrushFoam
   },
   props: {
     actives: {
@@ -1089,7 +801,7 @@ export default {
 
 table {
   position: absolute;
-  margin-top: 16.5em; /*17.5em 18em; */
+  margin-top: 17.5em; /*17.5em 18em; */
   margin-left: 0em; /* 33em; */
 
   font-family: 'Plumb-Medium';

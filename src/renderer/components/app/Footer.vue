@@ -192,9 +192,11 @@ export default {
         this.isDown.home = false
         /* dev */
         try {
-          if (this.$route !== 'home')
+          if (this.$route.name !== 'home') {
             // console.log('this.$route.name-->', this.$route.name)
             this.$router.push('/')
+          }
+            
         } catch (err) {}
       }, this.delay)
     },

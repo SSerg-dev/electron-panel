@@ -77,8 +77,7 @@ export default {
         name: 'foam',
         row: 7,
         col: 0,
-        color: true,
-        x2: true, color: false,  turbo: false,
+        x2: false, color: true,  turbo: false,
         display: 1
       }, // main + ?
       {
@@ -157,10 +156,10 @@ export default {
         id: 15,
         order: 14,
         title: 'ЩЕТКА + ПЕНА',
-        name: 'brushShampoo',
+        name: 'brushFoam', 
         row: 15,
         col: 0,
-        x2: true, color: true,  turbo: false,
+        x2: false, color: true,  turbo: false,
         display: 0
       }, // main +
 

@@ -16,9 +16,7 @@
               <td colspan="2">
                 <p align="center">
                   {{ `${this.messages[this.messageIndex]}` }}
-
                   <!-- {{ this.getDefaultPanelNumber }} -->
-                  <!-- {{`${this.activeProgramKit.name}`}} -->
                 </p>
               </td>
             </tr>
@@ -147,6 +145,37 @@ export default {
       boxShadow: 'rgb(255,3,3) 0px 10px 20px',
       fontSize: '1em'
     },
+    /* ColorOptions */
+    upStandardColorOptions: {
+      type: 'left',
+      background: 'rgb(255, 255, 255)',
+      border: '0.4em solid rgb(215, 215, 215)',
+      boxShadow: 'rgb(215, 215, 215) 0px 10px 20px',
+      fontSize: '1em'
+    },
+    downStandardColorOptions: {
+      type: 'left',
+      background: 'rgb(215, 215, 215)',
+      border: '0.4em solid rgb(215, 215, 215)',
+      boxShadow: 'rgb(215, 215, 215) 0px 10px 20px',
+      fontSize: '1em'
+    },
+
+    upColorOptions: {
+      type: 'right',
+      background: 'rgb(255, 255, 255)',
+      border: '0.4em solid rgb(255,63,155)',
+      boxShadow: 'rgb(255,63,155) 0px 10px 20px',
+      fontSize: '1em'
+    },
+    downColorOptions: {
+      type: 'right',
+      background: 'rgb(255,63,155)',
+      border: '0.4em solid rgb(255,63,155)',
+      boxShadow: 'rgb(255,63,155) 0px 10px 20px',
+      fontSize: '1em'
+    },
+
 
     /* end Options */
 
@@ -232,11 +261,16 @@ export default {
 
     getParamsChange(flag) {
       // console.log('PopupTypeActive-->', flag)
-      if (this.actives[24].display === 'none') this.buttonRight.hide()
+      // console.log('++this.activeProgramKit-->', this.activeProgramKit)
+      /* dev */
+      console.log('this.activeProgramKit.name-->', this.activeProgramKit.name)
+
+
+      /* if (this.actives[24].display === 'none') this.buttonRight.hide()
       else {
         this.buttonRight.show()
         this.flex()
-      }
+      } */
     }
   },
 
@@ -319,15 +353,28 @@ export default {
         case 'disk':
         case 'mosquito':
         case 'shampoo':
-        case 'waterShampoo':  
-
-          // console.log('program-->', program)
-
+        case 'waterShampoo':
+        case 'warmWater':
+        case 'coldWater':
+        case 'dryShine':
+        case 'brushFoam':     
+        
           this.clearDownButtonRight()
 
-          this.isDownButtonLeft.standard
+          /* dev */
+          if (this.activeProgramKit.color) {
+            this.isDownButtonLeft.standard
+            ? this.setButtonStyle(this.upStandardColorOptions)
+            : this.setButtonStyle(this.downStandardColorOptions)
+          }
+          /*     */
+          else {
+            this.isDownButtonLeft.standard
             ? this.setButtonStyle(this.upStandardOptions)
             : this.setButtonStyle(this.downStandardOptions)
+          }
+          
+          /*     */
 
           this.isDownButtonLeft.standard = !this.isDownButtonLeft.standard
         break
@@ -348,8 +395,10 @@ export default {
         break          
         // turbo ------------------------
         case 'waterShampoo_turbo':
-          /* dev */
-          // console.log('++++++++++++waterShampoo')
+        case 'warmWater_turbo':
+        case 'coldWater_turbo':
+        case 'dryShine_turbo':  
+            
           this.clearDownButtonLeft()
           
           this.isDownButtonRight.advanced
@@ -357,10 +406,22 @@ export default {
             : this.setButtonStyle(this.downTurboOptions)
 
           this.isDownButtonRight.advanced = !this.isDownButtonRight.advanced
+        break
+        // color ------------------------
+        case 'brushFoam_color':
+          
+          
+        // console.log('++brushFoam_color')
 
+        this.clearDownButtonLeft()
+          
+          this.isDownButtonRight.advanced
+            ? this.setButtonStyle(this.upColorOptions)
+            : this.setButtonStyle(this.downColorOptions)
+
+          this.isDownButtonRight.advanced = !this.isDownButtonRight.advanced
+        break
         
-        break  
-
         // end --------------------------
         default:
           break
@@ -421,15 +482,11 @@ export default {
         selector: '#red-image'
       })
 
-      /* dev */
-      console.log('this.activeProgramKit.name-->', this.activeProgramKit.name)
-
-      // this.activeProgramKit.x2 = true
-      // this.activeProgramKit.color = true
-      // this.activeProgramKit.turbo = true
-
       // standardOptions
-      this.setButtonStyle(this.upStandardOptions)
+      if (this.activeProgramKit.color) {
+        this.setButtonStyle(this.upStandardColorOptions)
+      }
+      else this.setButtonStyle(this.upStandardOptions)
 
       if (this.activeProgramKit.x2) {
         this.setButtonStyle(this.upX2Options)
@@ -444,6 +501,11 @@ export default {
       }
 
       if (this.activeProgramKit.color) {
+        this.setButtonStyle(this.upColorOptions)
+        this.messageIndex = 1
+        this.buttonStandardTitleIndex = 2
+        this.buttonTitleIndex = 3
+        
         this.greenImage.hide()
         this.blueImage.hide()
         this.redImage.show()
