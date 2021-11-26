@@ -1,21 +1,21 @@
 <template>
   <div>
-    <!--  brushFoam -->
+    <!--  foam -->
     <!-- ЩЕТКА + ПЕНА -->
     
-      <td @click="setProgram('brushFoam')">
+      <td @click="setProgram('foam')">
         <div
           class="waves-effect button-style"
           :class="[
-            { 'card white': !this.isDown.brushFoam },
-            { 'card light-green accent-3': this.isDown.brushFoam }
+            { 'card white': !this.isDown.foam },
+            { 'card deep-orange accent-3': this.isDown.foam }
           ]"
         >
           <div
             class="button-content-style"
             :class="[
-              { 'card-content black-text': !this.isDown.brushFoam },
-              { 'card-content white-text': this.isDown.brushFoam }
+              { 'card-content black-text': !this.isDown.foam },
+              { 'card-content white-text': this.isDown.foam }
             ]"
           >
             {{ `${actives[this.activeNumber].title}` }}
@@ -32,15 +32,15 @@ import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 export default Vue.extend({
   data: () => ({
-    activeNumber: 13,
+    activeNumber: 5,
     active: '',
     timeoutPopup: null,
     
     activeProgramKit: {},
 
     isDown: {
-      brushFoam: false,
-      brushFoam_color: false
+      foam: false,
+      foam_color: false
     }
   }),
   props: {
@@ -83,11 +83,11 @@ export default Vue.extend({
     setDown(program) {
       this.clearDown()
       switch (program) {
-        case 'brushFoam':
-          this.isDown.brushFoam = true
+        case 'foam':
+          this.isDown.foam = true
           break
-        // case 'brushFoam_color':
-        //   this.isDown.brushFoam_color = true
+        // case 'foam_color':
+        //   this.isDown.foam_color = true
         //   break
 
         default:
@@ -145,9 +145,9 @@ td {
   padding-top: 0em;
   width: 945px;
   height: 100px;
-  border: solid 6px rgb(118,255,3);
+  border: solid 6px rgb(255,61,0);
   border-radius: 4em;
-  box-shadow: 0px 6px 10px rgb(118,255,3);
+  box-shadow: 0px 6px 10px rgb(255,61,0);
 }
 .button-content-style {
   font-size: 3.5em;

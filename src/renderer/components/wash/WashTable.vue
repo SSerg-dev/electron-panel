@@ -27,348 +27,15 @@
 
           <!-- 3 -->
           <!-- ЩЕТКА + ПЕНА -->
-          <!-- <tr align="center" v-if="this.actives[13].display !== 'none'">
-            
-            <td
-              v-if="
-                this.actives[20].display === 'none' &&
-                  this.actives[23].display === 'none'
-              "
-              colspan="1"
-              align="center"
-              heigth="105px"
-            >
-              <button
-                v-if="this.isDown.brushFoam === false"
-                style="background-image:url('./imgs/green/green_long.png'); width: 962px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('brushFoam')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[13].title}` }}
-                </div>
-              </button>
-              <button
-                v-if="this.isDown.brushFoam === true"
-                style="background-image:url('./imgs/green/green_long_down.png'); width: 962px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('brushFoam')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[13].title}` }}
-                </div>
-              </button>
-            </td>
-            
-            <td
-              v-else-if="
-                this.actives[20].display === 'block' &&
-                  this.actives[23].display === 'none'
-              "
-              colspan="1"
-              align="center"
-              heigth="105px"
-            >
-              <button
-                v-if="this.isDown.brushFoam === false"
-                style="background-image:url('./imgs/green/green_long_x2.png'); width: 832px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('brushFoam')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[13].title}` }}
-                </div>
-              </button>
-              <button
-                v-if="this.isDown.brushFoam === true"
-                style="background-image:url('./imgs/green/green_long_down_x2.png'); width: 832px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('brushFoam')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[13].title}` }}
-                </div>
-              </button>
-            </td>
-
-            
-            <td
-              v-else-if="
-                this.actives[20].display === 'none' &&
-                  this.actives[23].display === 'block'
-              "
-              colspan="1"
-              align="center"
-              heigth="105px"
-            >
-              <button
-                v-if="this.isDown.brushFoam === false"
-                style="background-image:url('./imgs/green/green_long_x2.png'); width: 832px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('brushFoam')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[13].title}` }}
-                </div>
-              </button>
-              <button
-                v-if="this.isDown.brushFoam === true"
-                style="background-image:url('./imgs/green/green_long_down_x2.png'); width: 832px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('brushFoam')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[13].title}` }}
-                </div>
-              </button>
-            </td>
-            
-            <td
-              v-else-if="
-                this.actives[20].display === 'block' &&
-                  this.actives[23].display === 'block'
-              "
-              colspan="1"
-              align="center"
-              heigth="105px"
-            >
-              <button
-                v-if="this.isDown.brushFoam === false"
-                style="background-image:url('./imgs/green/green_long_x2_color.png'); width: 704px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('brushFoam')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[13].title}` }}
-                </div>
-              </button>
-              <button
-                v-if="this.isDown.brushFoam === true"
-                style="background-image:url('./imgs/green/green_long_down_x2_color.png'); width: 704px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('brushFoam')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[13].title}` }}
-                </div>
-              </button>
-            </td>
-
-            <td
-              colspan="1"
-              v-if="
-                this.actives[20].display !== 'none' &&
-                  this.actives[25].x2 === true
-              "
-            >
-              <button
-                v-if="this.isDown.brushFoam_color === false"
-                style="padding-right: 96px; height: 105px "
-                class="btn color"
-                @click="setProgram('brushFoam_color')"
-              >
-                <img src="imgs/color/color_an1.gif" />
-              </button>
-              <button
-                v-if="this.isDown.brushFoam_color === true"
-                style="padding-right: 96px; height: 105px "
-                class="btn color"
-                @click="setProgram('brushFoam_color')"
-              >
-                <img src="imgs/color/color_an2.gif" />
-              </button>
-            </td>
-
-            <td
-              style="padding-right: 8.4em;"
-              colspan="1"
-              v-if="this.actives[23].display !== 'none'"
-            >
-              <button
-                v-if="this.isDown.brushFoam_x2 === false"
-                style="padding-right: 96px; height: 105px"
-                class="btn x2"
-                @click="setProgram('brushFoam_x2')"
-              >
-                <img src="imgs/x2/x2_an1.gif" />
-              </button>
-              <button
-                v-if="this.isDown.brushFoam_x2 === true"
-                style="padding-right: 96px; height: 105px"
-                class="btn x2"
-                @click="setProgram('brushFoam_x2')"
-              >
-                <img src="imgs/x2/x2_an2.gif" />
-              </button>
-            </td>
-          </tr> -->
-
           <tr v-if="this.actives[13].display !== 'none'" style="height: 110px;">
              <WashTableBrushFoam :actives="actives"/>
           </tr>
 
           <!-- 4 -->
           <!-- ПЕНА -->
-          <tr align="center" v-if="this.actives[5].display !== 'none'">
-            <td
-              v-if="
-                this.actives[19].display === 'none' &&
-                  this.actives[22].display === 'none'
-              "
-              colspan="1"
-              align="center"
-              heigth="105px"
-            >
-              <button
-                v-if="this.isDown.foam === false"
-                style="background-image:url('./imgs/red/red_long.png'); width: 962px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('foam')"
-              >
-                <div class="button-title-long">{{ `${actives[5].title}` }}</div>
-              </button>
-              <button
-                v-if="this.isDown.foam === true"
-                style="background-image:url('./imgs/red/red_long_down.png'); width: 962px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('foam')"
-              >
-                <div class="button-title-long">{{ `${actives[5].title}` }}</div>
-              </button>
-            </td>
-
-            <!-- 2 -->
-            <td
-              v-else-if="
-                this.actives[19].display === 'block' &&
-                  this.actives[22].display === 'none'
-              "
-              colspan="1"
-              align="center"
-              heigth="105px"
-            >
-              <button
-                v-if="this.isDown.foam === false"
-                style="background-image:url('./imgs/red/red_long_x2.png'); width: 832px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('foam')"
-              >
-                <div class="button-title-long">{{ `${actives[5].title}` }}</div>
-              </button>
-              <button
-                v-if="this.isDown.foam === true"
-                style="background-image:url('./imgs/red/red_long_down_x2.png'); width: 832px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('foam')"
-              >
-                <div class="button-title-long">{{ `${actives[5].title}` }}</div>
-              </button>
-            </td>
-
-            <!-- 3 -->
-            <td
-              v-else-if="
-                this.actives[19].display === 'none' &&
-                  this.actives[22].display === 'block'
-              "
-              colspan="1"
-              align="center"
-              heigth="105px"
-            >
-              <button
-                v-if="this.isDown.foam === false"
-                style="background-image:url('./imgs/red/red_long_x2.png'); width: 832px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('foam')"
-              >
-                <div class="button-title-long">{{ `${actives[5].title}` }}</div>
-              </button>
-              <button
-                v-if="this.isDown.foam === true"
-                style="background-image:url('./imgs/red/red_long_down_x2.png'); width: 832px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('foam')"
-              >
-                <div class="button-title-long">{{ `${actives[5].title}` }}</div>
-              </button>
-            </td>
-
-            <!-- 4 -->
-            <td
-              v-else-if="
-                this.actives[19].display === 'block' &&
-                  this.actives[22].display === 'block'
-              "
-              colspan="1"
-              align="center"
-              heigth="105px"
-            >
-              <button
-                v-if="this.isDown.foam === false"
-                style="background-image:url('./imgs/red/red_long_x2_color.png'); width: 704px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('foam')"
-              >
-                <div class="button-title-long">{{ `${actives[5].title}` }}</div>
-              </button>
-              <button
-                v-if="this.isDown.foam === true"
-                style="background-image:url('./imgs/red/red_long_down_x2_color.png'); width: 704px; height: 105px;"
-                class="btn black red-size"
-                @click="setProgram('foam')"
-              >
-                <div class="button-title-long">{{ `${actives[5].title}` }}</div>
-              </button>
-            </td>
-
-            <td
-              colspan="1"
-              v-if="
-                this.actives[19].display !== 'none' &&
-                  this.actives[19].color === true
-              "
-            >
-              <button
-                v-if="this.isDown.foam_color === false"
-                style="padding-right: 96px; height: 105px "
-                class="btn color"
-                @click="setProgram('foam_color')"
-              >
-                <img src="imgs/color/color_an1.gif" />
-              </button>
-              <button
-                v-if="this.isDown.foam_color === true"
-                style="padding-right: 96px; height: 105px "
-                class="btn color"
-                @click="setProgram('foam_color')"
-              >
-                <img src="imgs/color/color_an2.gif" />
-              </button>
-            </td>
-
-            <td
-              style="padding-right: 8.4em;"
-              colspan="1"
-              v-if="this.actives[22].display !== 'none'"
-            >
-              <button
-                v-if="this.isDown.foam_x2 === false"
-                style="padding-right: 96px; height: 105px"
-                class="btn x2"
-                @click="setProgram('foam_x2')"
-              >
-                <img src="imgs/x2/x2_an1.gif" />
-              </button>
-              <button
-                v-if="this.isDown.foam_x2 === true"
-                style="padding-right: 96px; height: 105px"
-                class="btn x2"
-                @click="setProgram('foam_x2')"
-              >
-                <img src="imgs/x2/x2_an2.gif" />
-              </button>
-            </td>
-          </tr>
+          <tr v-if="this.actives[5].display !== 'none'" style="height: 110px;">
+             <WashTableFoam :actives="actives"/>
+          </tr> 
 
           <!-- 5 -->
           <!-- ШАМПУНЬ shampoo -->
@@ -402,126 +69,31 @@
 
           <!-- 10 -->
           <!-- СУШКА И БЛЕСК dryShine-->
-          <tr v-if="this.actives[4].display !== 'none'" style="height: 125px;">
+          <tr v-if="this.actives[4].display !== 'none'" style="height: 110px;">
              <WashTableDryShine :actives="actives"/>
           </tr>
 
-          <!-- ПЫЛЕСОС vacuum -->
-          <tr align="left" style="margin-top: -0.5em;">
-            <td
-              colspan="1"
-              align="center"
-              v-if="this.actives[16].display !== 'none'"
-            >
-              <button
-                v-if="this.isDown.vacuum === false"
-                style="background-image:url('./imgs/marin/marin_short.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('vacuum')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[16].title}` }}
-                </div>
-              </button>
-              <button
-                v-if="this.isDown.vacuum === true"
-                style="background-image:url('./imgs/marin/marin_short_down.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('vacuum')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[16].title}` }}
-                </div>
-              </button>
-            </td>
+          <!-- dry group -->
+          <!-- vacuum air washer turboDryer -->
 
-            <!-- ВОЗДУХ air -->
-            <td
-              colspan="1"
-              align="center"
-              v-if="this.actives[17].display !== 'none'"
-            >
-              <button
-                v-if="this.isDown.air === false"
-                style="background-image:url('./imgs/marin/marin_short.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('air')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[17].title}` }}
-                </div>
-              </button>
-              <button
-                v-if="this.isDown.air === true"
-                style="background-image:url('./imgs/marin/marin_short_down.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('air')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[17].title}` }}
-                </div>
-              </button>
-            </td>
-          </tr>
+          <tr>
 
-          <!-- ОМЫВАТЕЛЬ washer -->
-          <tr align="left" style="margin-top: -0.5em;">
-            <td
-              colspan="1"
-              align="center"
-              v-if="this.actives[18].display !== 'none'"
-              style="width: 474px;"
-            >
-              <button
-                v-if="this.isDown.washer === false"
-                style="background-image:url('./imgs/marin/marin_short.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('washer')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[18].title}` }}
-                </div>
-              </button>
-              <button
-                v-if="this.isDown.washer === true"
-                style="background-image:url('./imgs/marin/marin_short_down.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('washer')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[18].title}` }}
-                </div>
-              </button>
+            <td v-if="this.actives[16].display !== 'none'" style="height: 110px;">
+             <WashTableVacuum :actives="actives"/>
+            </td>
+            
+          <td v-if="this.actives[17].display !== 'none'" style="height: 110px;">
+             <WashTableAir :actives="actives"/>
             </td>
           
-            <!-- ТУРБОСУШКА TURBO DRYER turboDryer-->
-            <td
-              colspan="1"
-              align="left"
-              v-if="this.actives[26].display !== 'none'"
-              style="width: 474px;"
-            >
-              <button
-                v-if="this.isDown.turboDryer === false"
-                style="background-image:url('./imgs/marin/marin_short.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('turboDryer')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[26].title}` }}
-                </div>
-              </button>
-              <button
-                v-if="this.isDown.turboDryer === true"
-                style="background-image:url('./imgs/marin/marin_short_down.png'); width: 474px; height: 105px"
-                class="btn black"
-                @click="setProgram('turboDryer')"
-              >
-                <div class="button-title-long">
-                  {{ `${actives[26].title}` }}
-                </div>
-              </button>
+            <td v-if="this.actives[18].display !== 'none'" style="height: 110px;">
+             <WashTableWasher :actives="actives"/>
             </td>
+            
+            <td v-if="this.actives[26].display !== 'none'" style="height: 110px;">
+             <WashTableTurboDryer :actives="actives"/>
+            </td>
+
           </tr>
 
         </tbody>
@@ -542,9 +114,12 @@ import WashTableWarmWater from '@/components/wash/actives/WashTableWarmWater'
 import WashTableColdWater from '@/components/wash/actives/WashTableColdWater'
 import WashTableWaxProtection from '@/components/wash/actives/WashTableWaxProtection'
 import WashTableDryShine from '@/components/wash/actives/WashTableDryShine'
-// WashTableBrushFoam
 import WashTableBrushFoam from '@/components/wash/actives/WashTableBrushFoam'
-
+import WashTableFoam from '@/components/wash/actives/WashTableFoam'
+import WashTableVacuum from '@/components/wash/actives/WashTableVacuum'
+import WashTableAir from '@/components/wash/actives/WashTableAir'
+import WashTableWasher from '@/components/wash/actives/WashTableWasher'
+import WashTableTurboDryer from '@/components/wash/actives/WashTableTurboDryer'
 
 
 
@@ -561,33 +136,11 @@ export default {
     active: '',
     timeoutPopup: null,
     isDown: {
-      disk: false,
-      disk_x2: false,
-      mosquito: false,
-      mosquito_x2: false,
-      brushFoam: false,
-      brushFoam_color: false,
-      brushFoam_x2: false,
-      foam: false,
-      foam_color: false,
-      foam_x2: false,
-      shampoo: false,
-      shampoo_x2: false,
-      waterShampoo: false,
-      waterShampoo_turbo: false,
-      warmWater: false,
-      warmWater_turbo: false,
-      coldWater: false,
-      coldWater_turbo: false,
-      waxProtection: false,
-      waxProtection_turbo: false,
-      dryShine: false,
-      dryShine_turbo: false,
       washer: false,
       vacuum: false,
       turboDryer: false,
       air: false,
-      brushShampoo: false
+      
     }
   }),
   components: {
@@ -600,7 +153,12 @@ export default {
     WashTableColdWater,
     WashTableWaxProtection,
     WashTableDryShine,
-    WashTableBrushFoam
+    WashTableBrushFoam,
+    WashTableFoam,
+    WashTableVacuum,
+    WashTableAir,
+    WashTableTurboDryer,
+    WashTableWasher
   },
   props: {
     actives: {
@@ -656,84 +214,6 @@ export default {
     setDown(program) {
       this.clearDown()
       switch (program) {
-        case 'disk':
-          this.isDown.disk = true
-          break
-        case 'disk_x2':
-          this.isDown.disk = true
-          this.isDown.disk_x2 = true
-          break
-        case 'mosquito':
-          this.isDown.mosquito = true
-          break
-        case 'mosquito_x2':
-          this.isDown.mosquito = true
-          this.isDown.mosquito_x2 = true
-          break
-        case 'brushFoam':
-          this.isDown.brushFoam = true
-          break
-        case 'brushFoam_color':
-          this.isDown.brushFoam = true
-          this.isDown.brushFoam_color = true
-          break
-        case 'brushFoam_x2':
-          this.isDown.brushFoam = true
-          this.isDown.brushFoam_x2 = true
-          break
-        case 'foam':
-          this.isDown.foam = true
-          break
-        case 'foam_color':
-          this.isDown.foam = true
-          this.isDown.foam_color = true
-          break
-        case 'foam_x2':
-          this.isDown.foam = true
-          this.isDown.foam_x2 = true
-          break
-        case 'shampoo':
-          this.isDown.shampoo = true
-          break
-        case 'shampoo_x2':
-          this.isDown.shampoo = true
-          this.isDown.shampoo_x2 = true
-          break
-        case 'waterShampoo':
-          this.isDown.waterShampoo = true
-          break
-        case 'waterShampoo_turbo':
-          this.isDown.waterShampoo = true
-          this.isDown.waterShampoo_turbo = true
-          break
-        case 'warmWater':
-          this.isDown.warmWater = true
-          break
-        case 'warmWater_turbo':
-          this.isDown.warmWater = true
-          this.isDown.warmWater_turbo = true
-          break
-        case 'coldWater':
-          this.isDown.coldWater = true
-          break
-        case 'coldWater_turbo':
-          this.isDown.coldWater = true
-          this.isDown.coldWater_turbo = true
-          break
-        case 'waxProtection':
-          this.isDown.waxProtection = true
-          break
-        case 'waxProtection_turbo':
-          this.isDown.waxProtection = true
-          this.isDown.waxProtection_turbo = true
-          break
-        case 'dryShine':
-          this.isDown.dryShine = true
-          break
-        case 'dryShine_turbo':
-          this.isDown.dryShine = true
-          this.isDown.dryShine_turbo = true
-          break
         case 'washer':
           this.isDown.washer = true
           break
@@ -747,7 +227,6 @@ export default {
           this.isDown.air = true
           break
 
-        /*  */
         default:
           break
       }
@@ -759,15 +238,11 @@ export default {
     },
     setup() {
       /* dev */
-      this.actives[20].display = 'block'
-      this.actives[23].display = 'block'
+      // this.actives[20].display = 'block'
+      // this.actives[23].display = 'block'
 
-      this.actives[19].display = 'block'
-      this.actives[22].display = 'block'
-      
-      //this.actives[18].display = 'block'
-      // this.testView = this.actives[24].display
-
+      // this.actives[19].display = 'block'
+      // this.actives[22].display = 'block'
     }
   },
   mounted() {
@@ -802,7 +277,7 @@ export default {
 table {
   position: absolute;
   margin-top: 17.5em; /*17.5em 18em; */
-  margin-left: 0em; /* 33em; */
+  margin-left: 3em; /* 33em; */
 
   font-family: 'Plumb-Medium';
   font-weight: bold;
@@ -828,6 +303,13 @@ td {
 
   height: 105px;
   width: 474px;
+
+  float: left;
+/*   display: flex;
+  align-items: left;
+  justify-content: left;
+ */
+
 
 }
 .right-col {

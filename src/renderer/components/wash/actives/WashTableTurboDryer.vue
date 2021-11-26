@@ -1,21 +1,21 @@
 <template>
   <div>
-    <!--  brushFoam -->
-    <!-- ЩЕТКА + ПЕНА -->
+    <!--  turboDryer -->
+    <!-- ТУРБОСУШКА -->
     
-      <td @click="setProgram('brushFoam')">
+      <td @click="setProgram('turboDryer')">
         <div
           class="waves-effect button-style"
           :class="[
-            { 'card white': !this.isDown.brushFoam },
-            { 'card light-green accent-3': this.isDown.brushFoam }
+            { 'card white': !this.isDown.turboDryer },
+            { 'card card teal accent-3': this.isDown.turboDryer }
           ]"
         >
           <div
             class="button-content-style"
             :class="[
-              { 'card-content black-text': !this.isDown.brushFoam },
-              { 'card-content white-text': this.isDown.brushFoam }
+              { 'card-content black-text': !this.isDown.turboDryer },
+              { 'card-content white-text': this.isDown.turboDryer }
             ]"
           >
             {{ `${actives[this.activeNumber].title}` }}
@@ -32,15 +32,15 @@ import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 export default Vue.extend({
   data: () => ({
-    activeNumber: 13,
+    activeNumber: 26,
     active: '',
     timeoutPopup: null,
     
     activeProgramKit: {},
 
     isDown: {
-      brushFoam: false,
-      brushFoam_color: false
+      turboDryer: false,
+      turboDryer_color: false
     }
   }),
   props: {
@@ -83,11 +83,11 @@ export default Vue.extend({
     setDown(program) {
       this.clearDown()
       switch (program) {
-        case 'brushFoam':
-          this.isDown.brushFoam = true
+        case 'turboDryer':
+          this.isDown.turboDryer = true
           break
-        // case 'brushFoam_color':
-        //   this.isDown.brushFoam_color = true
+        // case 'turboDryer_color':
+        //   this.isDown.turboDryer_color = true
         //   break
 
         default:
@@ -137,17 +137,17 @@ td {
   padding-left: 0px;
 
   height: 105px;
-  width: 474px;
+  width: 230px; /* 474px; */
 }
 
 .button-style {
   margin-left: 0em;
   padding-top: 0em;
-  width: 945px;
+  width: 470px; /* 945px; */
   height: 100px;
-  border: solid 6px rgb(118,255,3);
+  border: solid 6px rgb(29,233,182);
   border-radius: 4em;
-  box-shadow: 0px 6px 10px rgb(118,255,3);
+  box-shadow: 0px 6px 10px rgb(29,233,182);
 }
 .button-content-style {
   font-size: 3.5em;
@@ -156,7 +156,7 @@ td {
   padding-right: 0em;
   display: flex;
   align-items: left;
-  justify-content: left;
+  justify-content: left; 
 }
 </style>
 

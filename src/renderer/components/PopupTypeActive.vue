@@ -125,7 +125,7 @@ export default {
     },
     downX2Options: {
       type: 'right',
-      background: 'rgb(191,0,229)', 
+      background: 'rgb(191,0,229)',
       border: '0.4em solid rgb(191,0,229)',
       boxShadow: 'rgb(191,0,229) 0px 10px 20px',
       fontSize: '1em'
@@ -176,7 +176,6 @@ export default {
       fontSize: '1em'
     },
 
-
     /* end Options */
 
     // classes
@@ -205,7 +204,12 @@ export default {
     messages: [
       `Выберите давление:`,
       `Выберите цвет пены:`,
-      `Выберите дозацию химии:`
+      `Выберите дозацию химии:`,
+      `ПЫЛЕСОС`,
+      `ВОЗДУХ`,
+      `ОМЫВАТЕЛЬ`,
+      `ТУРБОСУШКА`
+
     ],
     messageIndex: -1,
 
@@ -238,7 +242,8 @@ export default {
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
       /* dev */
-      getParamsChange: 'getParamsChange'
+      getParamsChange: 'getParamsChange',
+      getWetProgShow: 'getWetProgShow'
     })
   },
 
@@ -259,18 +264,8 @@ export default {
       }
     },
 
-    getParamsChange(flag) {
-      // console.log('PopupTypeActive-->', flag)
-      // console.log('++this.activeProgramKit-->', this.activeProgramKit)
-      /* dev */
-      console.log('this.activeProgramKit.name-->', this.activeProgramKit.name)
-
-
-      /* if (this.actives[24].display === 'none') this.buttonRight.hide()
-      else {
-        this.buttonRight.show()
-        this.flex()
-      } */
+    getWetProgShow(flag) {
+      this.showAdvanced()
     }
   },
 
@@ -287,6 +282,72 @@ export default {
       setActiveProgram: 'setActiveProgram'
     }),
 
+    showAdvanced() {
+      switch (this.activeProgramKit.name) {
+        case 'disk':
+          this.actives[24].display === 'none'
+            ? this.buttonRight.hide()
+            : this.restore()
+          break
+
+        case 'mosquito':
+          this.actives[25].display === 'none'
+            ? this.buttonRight.hide()
+            : this.restore()
+          break
+
+        case 'shampoo':
+          this.actives[21].display === 'none'
+            ? this.buttonRight.hide()
+            : this.restore()
+          break
+
+        case 'waterShampoo':
+          this.actives[7].display === 'none'
+            ? this.buttonRight.hide()
+            : this.restore()
+          break
+
+        case 'warmWater':
+          this.actives[12].display === 'none'
+            ? this.buttonRight.hide()
+            : this.restore()
+          break
+
+        case 'coldWater':
+          this.actives[8].display === 'none'
+            ? this.buttonRight.hide()
+            : this.restore()
+          break
+        case 'waxProtection':
+          this.actives[9].display === 'none'
+            ? this.buttonRight.hide()
+            : this.restore()
+          break
+        case 'dryShine':
+          this.actives[10].display === 'none'
+            ? this.buttonRight.hide()
+            : this.restore()
+          break
+        case 'brushFoam':
+          this.actives[20].display === 'none'
+            ? this.buttonRight.hide()
+            : this.restore()
+          break
+        case 'foam':
+          this.actives[19].display === 'none'
+            ? this.buttonRight.hide()
+            : this.restore()
+          break
+        // ------------------------------
+        default:
+          break
+      }
+    },
+    restore() {
+      this.buttonRight.show()
+      this.flex()
+    },
     flex() {
       this.buttonRight.display = 'flex'
       this.buttonRight.alignItems = 'center'
@@ -356,35 +417,34 @@ export default {
         case 'waterShampoo':
         case 'warmWater':
         case 'coldWater':
+        case 'waxProtection':
         case 'dryShine':
-        case 'brushFoam':     
-        
+        case 'brushFoam':
+        case 'foam':
           this.clearDownButtonRight()
 
           /* dev */
           if (this.activeProgramKit.color) {
             this.isDownButtonLeft.standard
-            ? this.setButtonStyle(this.upStandardColorOptions)
-            : this.setButtonStyle(this.downStandardColorOptions)
-          }
-          /*     */
-          else {
+              ? this.setButtonStyle(this.upStandardColorOptions)
+              : this.setButtonStyle(this.downStandardColorOptions)
+          } else {
+            /*     */
             this.isDownButtonLeft.standard
-            ? this.setButtonStyle(this.upStandardOptions)
-            : this.setButtonStyle(this.downStandardOptions)
+              ? this.setButtonStyle(this.upStandardOptions)
+              : this.setButtonStyle(this.downStandardOptions)
           }
-          
+
           /*     */
 
           this.isDownButtonLeft.standard = !this.isDownButtonLeft.standard
-        break
-        
+          break
+
         // advanced =====================
-        // x2 --------------------------- 
+        // x2 ---------------------------
         case 'disk_x2':
         case 'mosquito_x2':
         case 'shampoo_x2':
-
           this.clearDownButtonLeft()
 
           this.isDownButtonRight.advanced
@@ -392,36 +452,40 @@ export default {
             : this.setButtonStyle(this.downX2Options)
 
           this.isDownButtonRight.advanced = !this.isDownButtonRight.advanced
-        break          
+          break
         // turbo ------------------------
         case 'waterShampoo_turbo':
         case 'warmWater_turbo':
         case 'coldWater_turbo':
-        case 'dryShine_turbo':  
-            
+        case 'waxProtection_turbo':
+        case 'dryShine_turbo':
           this.clearDownButtonLeft()
-          
+
           this.isDownButtonRight.advanced
             ? this.setButtonStyle(this.upTurboOptions)
             : this.setButtonStyle(this.downTurboOptions)
 
           this.isDownButtonRight.advanced = !this.isDownButtonRight.advanced
-        break
+          break
         // color ------------------------
         case 'brushFoam_color':
-          
-          
-        // console.log('++brushFoam_color')
+        case 'foam_color':
+          // console.log('++brushFoam_color')
 
-        this.clearDownButtonLeft()
-          
+          this.clearDownButtonLeft()
+
           this.isDownButtonRight.advanced
             ? this.setButtonStyle(this.upColorOptions)
             : this.setButtonStyle(this.downColorOptions)
 
           this.isDownButtonRight.advanced = !this.isDownButtonRight.advanced
-        break
-        
+          break
+
+        // dry group
+        case 'vacuum':
+          console.log('++dry group')
+          break
+
         // end --------------------------
         default:
           break
@@ -447,8 +511,8 @@ export default {
       this.initial()
     },
     initial() {
-      this.activeProgramKit = this.getActiveProgramKit()
-      
+
+      // classes instances 
       /* left button */
       this.buttonLeft = new Button({
         selector: '#button-left',
@@ -481,46 +545,91 @@ export default {
       this.redImage = new Box({
         selector: '#red-image'
       })
+      // end classes
 
-      // standardOptions
-      if (this.activeProgramKit.color) {
-        this.setButtonStyle(this.upStandardColorOptions)
-      }
-      else this.setButtonStyle(this.upStandardOptions)
+      this.activeProgramKit = this.getActiveProgramKit()
 
-      if (this.activeProgramKit.x2) {
-        this.setButtonStyle(this.upX2Options)
+      // initial wet group
+      if (
+        this.activeProgramKit.name !== 'vacuum' &&
+        this.activeProgramKit.name !== 'air' &&
+        this.activeProgramKit.name !== 'washer' &&
+        this.activeProgramKit.name !== 'turboDryer'
+      ) {
+        console.log('!!!initial wet group-->')
 
-        this.messageIndex = 2
-        this.buttonStandardTitleIndex = 0
-        this.buttonTitleIndex = 5
+        // standardOptions
+        if (this.activeProgramKit.color) {
+          this.setButtonStyle(this.upStandardColorOptions)
+        } else this.setButtonStyle(this.upStandardOptions)
+
+        if (this.activeProgramKit.x2) {
+          this.setButtonStyle(this.upX2Options)
+
+          this.messageIndex = 2
+          this.buttonStandardTitleIndex = 0
+          this.buttonTitleIndex = 5
+
+          this.greenImage.show()
+          this.blueImage.hide()
+          this.redImage.hide()
+        }
+
+        if (this.activeProgramKit.color) {
+          this.setButtonStyle(this.upColorOptions)
+          this.messageIndex = 1
+          this.buttonStandardTitleIndex = 2
+          this.buttonTitleIndex = 3
+
+          this.greenImage.hide()
+          this.blueImage.hide()
+          this.redImage.show()
+        }
+        if (this.activeProgramKit.turbo) {
+          // console.log('++this.activeProgramKit.turbo-->', this.upTurboOptions)
+          this.setButtonStyle(this.upTurboOptions)
+
+          this.messageIndex = 0
+          this.buttonStandardTitleIndex = 0
+          this.buttonTitleIndex = 1
+
+          this.greenImage.hide()
+          this.blueImage.show()
+          this.redImage.hide()
+        }
+      } // end wet group
+
+      // initial dry group
+      else {
+        console.log('!!!initial dry group')
+
+        switch(this.activeProgramKit.name) {
+          case 'vacuum':
+            this.messageIndex = 3
+            break
+          case 'air':
+            this.messageIndex = 4
+            break
+          case 'washer':
+            this.messageIndex = 5
+            break
+          case 'turboDryer':
+            this.messageIndex = 6
+            break  
+          
+          default:
+            break        
+        }
 
         this.greenImage.show()
         this.blueImage.hide()
         this.redImage.hide()
-      }
 
-      if (this.activeProgramKit.color) {
-        this.setButtonStyle(this.upColorOptions)
-        this.messageIndex = 1
-        this.buttonStandardTitleIndex = 2
-        this.buttonTitleIndex = 3
-        
-        this.greenImage.hide()
-        this.blueImage.hide()
-        this.redImage.show()
-      }
-      if (this.activeProgramKit.turbo) {
-        // console.log('++this.activeProgramKit.turbo-->', this.upTurboOptions)
-        this.setButtonStyle(this.upTurboOptions)
-        
-        this.messageIndex = 0
-        this.buttonStandardTitleIndex = 0
-        this.buttonTitleIndex = 1
+        this.buttonLeft.hide()
+        this.buttonRight.hide()
 
-        this.greenImage.hide()
-        this.blueImage.show()
-        this.redImage.hide()
+        this.setProgram('standard')
+
       }
     }
   }, // end methods
@@ -528,6 +637,7 @@ export default {
   created() {},
   mounted() {
     this.setup()
+    this.showAdvanced()
   },
 
   beforeDestroy() {
