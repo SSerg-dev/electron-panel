@@ -1,5 +1,5 @@
 <template>
-  <div>
+<div>
     <!-- 1 -->
     <!-- ДИСКИ -->
     
@@ -158,4 +158,5 @@ td {
   align-items: left;
   justify-content: left;
 }
+
 </style>

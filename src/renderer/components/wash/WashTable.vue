@@ -127,6 +127,7 @@ export default {
   data: () => ({
     /* dev */
     // testView: '',
+    popupDelay: 2000,
 
     name: 'program-table',
     timeoutDelay: null,
@@ -198,7 +199,7 @@ export default {
     setProgram(program) {
       this.active = program
       this.setActiveProgram(this.active)
-      this.setDown(program)
+      this.setDown(program) 
 
       this.updateStartProgram([
         this.getPanelType,
@@ -209,7 +210,7 @@ export default {
 
       this.timeoutPopup = setTimeout(() => {
         this.$router.push('/popup')
-      }, 2000)
+      }, this.popupDelay)
     },
     setDown(program) {
       this.clearDown()
