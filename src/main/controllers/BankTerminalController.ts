@@ -14,87 +14,35 @@ import { TypesFolder } from 'node-opcua'
 import BCNet from '../services/BCNetService'
 
 const TAG = 'BANK TERMINAL'
-const enum States {
-  CONNECTED,
-  DISCONNECTED
-}
-const Currencies = ['RUS']
-
-const Config = {
-  ip: '',
-  port: 0
-}
-
 class BankTerminalController extends EventEmitter {
   static type = 'BANK_TERMINAL'
-
-  device: any
-  counter: number
-  state: States
-  currency: number
-  bills: number[]
-  port: number
-
-  /* dev */
-  config: typeof Config
-
-  constructor(config: typeof Config) {
+  constructor() {
     super()
-    this.counter = 0
-    this.currency = 0
-    this.bills = []
-    this.state = States.DISCONNECTED
-    this.port = 10
-
-    /* dev */
-    this.config = config
   }
   // methods
   public start(options: string) {
-    log(TAG, 'start BankTerminal...')
-    /* console.log('conf-->',conf) */
-    console.log('conf-->', options)
-
+    // log(TAG, 'start BankTerminal...')
     this.connect(options)
   }
   private connect = async (options: string) => {
-    log(TAG, 'BankTerminal Connecting...')
-    let port: string
-    // for (let i = 0; i < 4; i++) {
-      
     switch (options) {
       case 'vendotek':
-        console.log('++run vendotek')
-        this.device = new BCNet.Vendotek()
+        // STA +
+        // ------------------------------
+        log(TAG, 'BankTerminal Connecting to Vendotek')
+        BCNet.Vendotek.connect({
+          ip: '192.168.1.52',
+          port: 62801
+        })
+        // ------------------------------
+        // BCNet.Vendotek.sendIDLE() 
 
-      break
+        break
 
       default:
-      break  
-    }  
-
-
-    //   this.device = new CCNet.BillValidator(port, conf.debug)
-    //   this.setListeners()
-    //   try {
-    //     await this.device.connect()
-    //     this.port = i
-    //     this.state = States.CONNECTED
-    //     log(TAG, 'Connected at port', port)
-    //     break
-    //   } catch (err) {
-    //     this.state = States.DISCONNECTED
-    //     log(TAG, 'Connected error', err)
-    //   }
-    // }
-
-    // if (this.state !== States.CONNECTED) {
-    //   this.port = 10
-    //   throw new Error('No any device at /dev/ttyUSB[0-3] detected')
-    // } else {
-    //   return true
-    // }
+        break
+    }
   } // end connect
-}
+} // class BankTerminalController
 
 export default BankTerminalController

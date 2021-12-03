@@ -81,15 +81,6 @@ CoinAcceptor.on("accepted", (coin) => sendEventToView(mainWindow, "coin", coin))
 
 /* ----------------------------------------------------------------------- */
 const BankTerminal = new BankTerminalController()
-/* 
-"bank_terminal": {
-        "hardware": "vendotek",
-        "installed": true,
-        "max_sum": 500,
-        "min_sum": 20
-    },
-*/
-// BankTerminal.start()
 
 /* ----------------------------------------------------------------------- */
 
@@ -125,7 +116,7 @@ const idle = async (config: any) => {
       if ( config.bank_terminal.installed === true ) {
         BankTerminal.start(config.bank_terminal.hardware)
       } else {
-        console.log('not started --> BankTerminal.start()')
+        console.log('error started --> BankTerminal.start()')
       }
     }
 
