@@ -9,7 +9,6 @@ import OPCUAService from './services/OPCUAService'
 import GPIOService from './services/GPIOService'
 import BillValidatorController from './controllers/BillValidatorController'
 import CoinAcceptorController from './controllers/CoinAcceptorController'
-import BankTerminalController from './controllers/BankTerminalController'
 import { pathToFileURL } from 'url'
 import * as path from 'path'
 import { readFileSync } from 'fs'
@@ -79,11 +78,6 @@ const CoinAcceptor = new CoinAcceptorController()
 CoinAcceptor.on("connect", () => (isCoinAcceptorConnected = true))
 CoinAcceptor.on("accepted", (coin) => sendEventToView(mainWindow, "coin", coin))
 
-/* ----------------------------------------------------------------------- */
-const BankTerminal = new BankTerminalController()
-
-/* ----------------------------------------------------------------------- */
-
 /* */
 const idle = async (config: any) => {
 	if ( !mConfig || (mConfig.type !== config.type) || (mConfig.index !== config.index) ) {
@@ -109,19 +103,6 @@ const idle = async (config: any) => {
 			}
 		}
 	}
-
-  /* dev */
-  if ( config.bank_terminal ) {
-    if ( !mConfig || (mConfig.bank_terminal.installed !== config.bank_terminal.installed) ) {
-      if ( config.bank_terminal.installed === true ) {
-        BankTerminal.start(config.bank_terminal.hardware)
-      } else {
-        console.log('error started --> BankTerminal.start()')
-      }
-    }
-
-  }
- 
 
 	mConfig = config
 

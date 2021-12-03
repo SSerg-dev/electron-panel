@@ -4,9 +4,7 @@
 const net = require('net')
 const EventEmitter = require('events')
 
-/* 
-192.168.1.2:4840
-*/
+
 let Config = {
   ip: '',
   port: 0

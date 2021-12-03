@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="locate">
-      
       <router-link to="/">
         <div class="back">
           <img src="imgs/key/back.png" />
@@ -19,15 +18,12 @@
           </p> -->
         </h3>
       </div>
-
     </div>
 
     <section>
-
       <div class="row">
         <div><CardBill /></div>
       </div>
-      
     </section>
   </div>
 </template>
@@ -39,10 +35,12 @@ import { mapGetters, mapMutations } from 'vuex'
 import CardBill from '@/components/CardBill'
 import EventBus from '@/bus/EventBus'
 
- export default Vue.extend({
-  /* new component */
+import BankTerminalController from '@/controllers/BankTerminalController'
+
+export default Vue.extend({
+   
   name: 'card',
-  data: () => ({ 
+  data: () => ({
     intervalMainMenu: null,
     messages: [`Введите сумму пополнеия`, `Минимальная сумма 10 руб`],
     messageIndex: -1,
@@ -52,12 +50,14 @@ import EventBus from '@/bus/EventBus'
     ...mapGetters({
       getWetBusyPanel: 'getWetBusyPanel',
       getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
-
+      getDefaultTerminalType: 'getDefaultTerminalType',
+      getTerminalInstalled: 'getTerminalInstalled',
+      getDefaultPanelNumber: 'getDefaultPanelNumber'
     })
   },
   methods: {
     submitHandler(balance) {
-      this.balance = balance 
+      this.balance = balance
     },
 
     ...mapMutations({
@@ -78,8 +78,17 @@ import EventBus from '@/bus/EventBus'
     }
   },
   mounted() {
-    this.setRouter('/card') 
+    this.setRouter('/card')
     EventBus.$on('submitBonusMoney', this.submitHandler)
+    /* dev */
+    const BankTerminal = new BankTerminalController()
+    if (this.getTerminalInstalled) {
+      const options = {
+        type: this.getDefaultTerminalType,
+        number: this.getDefaultPanelNumber
+      }
+      BankTerminal.start(options)
+    }
 
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },
