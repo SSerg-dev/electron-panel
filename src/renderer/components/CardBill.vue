@@ -884,7 +884,9 @@ export default {
       getLanguageNatives: 'getLanguageNatives',
       /* dev */
       getPaymentLimitMin: 'getPaymentLimitMin',
-      getPaymentLimitMax: 'getPaymentLimitMax'
+      getPaymentLimitMax: 'getPaymentLimitMax',
+      getIsCardMoney: 'getIsCardMoney',
+      getIsBonusMoney: 'getIsBonusMoney'
     }),
 
     isMinBlinking: {
@@ -948,6 +950,9 @@ export default {
   },
 
   beforeDestroy() {
+    this.setIsCardMoney(false)
+    this.setIsBonusMoney(false) 
+
     clearTimeout(this.timeoutMinDelay)
     clearTimeout(this.timeoutMaxDelay)
   },
@@ -957,6 +962,9 @@ export default {
       EventBus.$emit('submitBonusMoney', balance)
     },
     /* dev */
+    emitCardMoney(card) {
+      EventBus.$emit('submitCardMoney', card)
+    },
     changeRowOfTable(balance) {
       if (balance < 1) {
         this.isCardRow = true
@@ -1001,12 +1009,6 @@ export default {
       this.overlay()
       
     },
-    /* dev */
-    /* payUp(program) {
-      if (program === 'append') {
-        this.$router.push('/status')
-      }
-    }, */
     ...mapGetters({
       getLoginBonusOptions: 'getLoginBonusOptions',
       getLoginBonusPhone: 'getLoginBonusPhone',
@@ -1015,19 +1017,30 @@ export default {
     }),
     ...mapMutations({
       setLoginBonusPhone: 'setLoginBonusPhone',
-      setLoginBonusPassword: 'setLoginBonusPassword'
+      setLoginBonusPassword: 'setLoginBonusPassword',
+      setIsCardMoney: 'setIsCardMoney',
+      setIsBonusMoney: 'setIsBonusMoney'
     }),
     ...mapActions({
       updateWetMoney: 'updateWetMoney'
     }),
-
+ 
     payUp() {
       const card = this.amount
       if ( this.amount >= this.getPaymentLimitMin && this.amount <= this.getPaymentLimitMax) {
-        this.updateWetMoney(card)
-        this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
+        /* dev */
+        if (this.getIsCardMoney && !this.getIsBonusMoney) {
+          this.emitCardMoney(card)
+          this.$message(`Банковской картой успешно оплачено:  ${+card} ₽`)
+        }
+         
+        if (this.getIsBonusMoney && this.getIsCardMoney) {
+          this.updateWetMoney(card)
+          this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
+        }
+        /*     */  
+
         this.$router.push('/program')
-        // clear
         this.display = this.title = this.body = '0'
       } else 
          this.$message(`Введите правильную сумму`)

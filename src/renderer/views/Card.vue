@@ -36,15 +36,17 @@ import CardBill from '@/components/CardBill'
 import EventBus from '@/bus/EventBus'
 
 import BankTerminalController from '@/controllers/BankTerminalController'
+import Vendotek from '../services/BCNetService/Types/Vendotek'
 
 export default Vue.extend({
-   
   name: 'card',
   data: () => ({
     intervalMainMenu: null,
     messages: [`Введите сумму пополнеия`, `Минимальная сумма 10 руб`],
     messageIndex: -1,
-    balance: 0
+    balance: 0,
+    card: 0,
+    terminalItem: {}
   }),
   computed: {
     ...mapGetters({
@@ -52,19 +54,59 @@ export default Vue.extend({
       getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
       getDefaultTerminalType: 'getDefaultTerminalType',
       getTerminalInstalled: 'getTerminalInstalled',
-      getDefaultPanelNumber: 'getDefaultPanelNumber'
+      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getIsCardMoney: 'getIsCardMoney'
     })
   },
   methods: {
+    initVendotek() {
+      // console.log('initVendotek(card)-->', this.card)
+      const bankTerminal = new BankTerminalController()
+      if (this.getTerminalInstalled) {
+        const options = {
+          type: this.getDefaultTerminalType,
+          number: this.getDefaultPanelNumber
+        }
+        bankTerminal.connect(options)
+        const item = bankTerminal.vendotekItem
+
+        this.doSequence(item)
+      }
+    },
+    doSequence(item) {
+      // console.log('doSequence-->item-->', JSON.stringify(item))
+      /* dev */
+      
+      // const amount = this.card
+      const amount = 42
+
+      // console.log('amount-->', amount)
+      
+      item.sendIDLE()
+      // item.sendDISABLED()
+
+      // item.sendPRODUCT(amount) /* 'VRP' */
+      // item.sendFINAL()
+      // item.sendABORT()
+      // item.sendACCEPT()
+      // item.pay(amount)
+      // item.refund(amount, params)
+    },
+
     submitHandler(balance) {
       this.balance = balance
     },
+    /* dev */
+    submitCardHandler(card) {
+      this.card = card
+      this.initVendotek()
+    },
 
     ...mapMutations({
-      setRouter: 'setRouter'
+      setRouter: 'setRouter',
+      setIsCardMoney: 'setIsCardMoney'
     }),
     gotoMainMenu(seconds) {
-      //console.log('gotoMainMenu')
       this.intervalMainMenu = setInterval(() => {
         if (
           --seconds < 0 &&
@@ -79,20 +121,19 @@ export default Vue.extend({
   },
   mounted() {
     this.setRouter('/card')
+    this.setIsCardMoney(true)
     EventBus.$on('submitBonusMoney', this.submitHandler)
     /* dev */
-    const BankTerminal = new BankTerminalController()
-    if (this.getTerminalInstalled) {
-      const options = {
-        type: this.getDefaultTerminalType,
-        number: this.getDefaultPanelNumber
-      }
-      BankTerminal.start(options)
-    }
+    // EventBus.$on('submitCardMoney', this.submitCardHandler)
+    this.initVendotek()
 
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },
   beforeDestroy() {
+    /* dev */
+    // this.setIsCardMoney(false)
+    // console.log('false++getIsCardMoney-->', this.getIsCardMoney)
+
     clearInterval(this.intervalMainMenu)
   },
   components: {

@@ -38,43 +38,29 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getWetBusyPanel: 'getWetBusyPanel',
-      getSecondsGotoMainMenu: 'getSecondsGotoMainMenu'
+      getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
+      getIsBonusMoney: 'getIsBonusMoney'
     })
   },
   methods: {
     ...mapMutations({
-      setRouter: 'setRouter'
+      setRouter: 'setRouter',
+      setIsBonusMoney: 'setIsBonusMoney'
     }),
-    
-    gotoMainMenu(seconds) {
 
+    gotoMainMenu(seconds) {
       this.intervalMainMenu = setInterval(() => {
-        if (
-          --seconds < 0 &&
-          /* dev */
-          /* this.getWetBusyPanel === 'false' && */
-          this.$route.name !== 'home'
-        ) {
-          //console.log('seconds-->', seconds)    
+        if (--seconds < 0 && this.$route.name !== 'home') {
           this.$router.push('/')
         }
       }, 1000)
-      
-    },
-
-    /* dev */
-    /* submitHandler(program) {
-      console.log(`BonusBill-> clicked --> ${program}`)
-    } */
+    }
   },
 
   mounted() {
     this.setRouter('/bonus')
-
+    this.setIsBonusMoney(true)
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
-
-    /* dev */
-    // EventBus.$on('submitBonusBill', this.submitHandler)
   },
   beforeDestroy() {
     clearInterval(this.intervalMainMenu)
@@ -84,7 +70,6 @@ export default Vue.extend({
     BonusBill
   }
 })
-
 </script>
 
 <style scoped>

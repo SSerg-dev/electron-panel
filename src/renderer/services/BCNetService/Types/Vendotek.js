@@ -9,18 +9,23 @@ let Config = {
   ip: '',
   port: 0
 }
-
 class Vendotek extends EventEmitter {
+  
+  static item = null
+  
   constructor(config) {
     super()
     this.config = Object.assign({}, Config, config)
     this.log = this.config.log || console.log
     this.opNumber = 0
   }
-
+  // methods
   static connect(config) {
     let item = new Vendotek(config)
     item.connecting = item.connect()
+    item.disconnecting = item.disconnect()
+     
+    this.item = item
     return item
   }
 
@@ -29,20 +34,22 @@ class Vendotek extends EventEmitter {
     this.socket.on('data', this.onData.bind(this))
     this.socket.on('error', this.onError.bind(this))
 
+    
     await new Promise((resolve, reject) => {
       this.socket.connect(this.config.port, this.config.ip, err => {
         if (err) return reject(err)
         resolve()
       })
     })
+
   }
 
-  async disconnect() {
+  async disconnect() { 
     this.disconnected = true
     this.disable()
-    this.conn.end()
-    this.conn.destroy()
-  }
+    // this.conn.end() 
+    // this.conn.destroy()
+  } 
 
   getCmdName(cmd) {
     switch (cmd) {
@@ -100,6 +107,7 @@ class Vendotek extends EventEmitter {
   }
 
   parseData(data) {
+  
     let lengthData = data.slice(0, 2)
     lengthData = lengthData.readUInt16BE()
 
@@ -140,7 +148,6 @@ class Vendotek extends EventEmitter {
 
       data = data.slice(length + 2)
     }
-
     return params
   }
 

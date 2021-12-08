@@ -39,6 +39,8 @@ export default new Vuex.Store({
     /* dev */
     activeProgramKit: {},
     isActiveProgramKit: false,
+    isCardMoney: false,
+    isBonusMoney: false,
     /*     */
 
     message: {
@@ -362,66 +364,6 @@ export default new Vuex.Store({
     getWetStopFreeCount(state) {
       return state.parameters.stopFreeCount
     },
-    // --------------------------------
-
-    /* getWetProg(state) {
-      return state.params.filter(p => p.title.slice(4, 7) === 'WET')
-    },
-    getWetStopTime(state) {
-      return state.params.find(p => p.title === 'TAG_WET_STOP_TIME')?.value
-    },
-    getWetEnabled(state) {
-      return state.params.find(p => p.title === 'TAG_WET_ENABLED')?.value
-    },
-    getWetProgram(state) {
-      return state.params.find(p => p.title === 'TAG_WET_PROGRAM')?.value
-    },
-    getWetMoney(state) {
-      return state.params.find(p => p.title === 'TAG_WET_MONEY')?.value
-    },
-    getWetServMoney(state) {
-      return state.params.find(p => p.title === 'TAG_WET_SERV_MONEY')?.value
-    },
-    getWetBonusMoney(state) {
-      return state.params.find(p => p.title === 'TAG_WET_BONUS_MONEY')?.value
-    },
-
-    getWetAddMoney(state) {
-      return state.params.find(p => p.title === 'TAG_WET_ADD_MONEY')?.value
-    },
-    getWetAddMoney2(state) {
-      return state.params.find(p => p.title === 'TAG_WET_ADD_MONEY2')?.value
-    },
-    getWetOrder(state) {
-      return state.params.find(p => p.title === 'TAG_WET_ORDER')?.value
-    },
-    getWetCallOperator(state) {
-      return state.params.find(p => p.title === 'TAG_WET_CALL_OPERATOR')?.value
-    },
-    getWetDoor(state) {
-      return state.params.find(p => p.title === 'TAG_WET_DOOR')?.value
-    },
-    getWetCollect(state) {
-      return state.params.find(p => p.title === 'TAG_WET_COLLECT')?.value
-    },
-    getWetShowOperatorCall(state) {
-      return state.params.find(p => p.title === 'TAG_WET_SHOW_OPERATOR_CALL')
-        ?.value
-    },
-    getWetBalanceIsTime(state) {
-      return state.params.find(p => p.title === 'TAG_WET_BALANCE_IS_TIME')
-        ?.value
-    },
-    getWetShowPrice(state) {
-      return state.params.find(p => p.title === 'TAG_WET_SHOW_PRICE')?.value
-    },
-    getWetMoneyTotal(state) {
-      return state.params.find(p => p.title === 'TAG_WET_MONEY_TOTAL')?.value
-    },
-    getWetTime(state) {
-      return state.params.find(p => p.title === 'TAG_WET_TIME')?.value
-    }, */
-    // END WET !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     // DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Список всех Dry программ
@@ -445,65 +387,7 @@ export default new Vuex.Store({
     },
     
 
-    /*
-    getDryProg(state) {
-      return state.params.filter(p => p.title.slice(4, 7) === 'DRY')
-    },
     
-    getWetProgram(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_PROGRAM')?.value
-    },
-    getDryProgStatus(state) {
-      let arr = state.params
-        .filter(p => p.title === 'TAG_DRY_PROG_STATUS')
-        .sort((a, b) => a - b)
-        .reverse()
-      return arr[0]?.value
-    },
-    
-    getDryAddMoney(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_ADD_MONEY')?.value
-    },
-    getDryAddMoney2(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_ADD_MONEY2')?.value
-    },
-    
-    getDryMoney(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_MONEY')?.value
-    },
-    getDryServMoney(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_SERV_MONEY')?.value
-    },
-    getDryOrder(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_ORDER')?.value
-    },
-    getDryCallOperator(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_CALL_OPERATOR')?.value
-    },
-    getDryDoor(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_DOOR')?.value
-    },
-    getDryCollect(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_COLLECT')?.value
-    },
-    getDryShowOperatorCall(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_SHOW_OPERATOR_CALL')
-        ?.value
-    },
-    getDryBalanceIsTime(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_BALANCE_IS_TIME')
-        ?.value
-    },
-    getDryShowPrice(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_SHOW_PRICE')?.value
-    },
-    getDryMoneyTotal(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_MONEY_TOTAL')?.value
-    },
-    getDryTime(state) {
-      return state.params.find(p => p.title === 'TAG_DRY_TIME')?.value
-    },
- */
     // END DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     info: s => s.info,
@@ -531,13 +415,19 @@ export default new Vuex.Store({
     },
     getActiveProgram(state) {
       return state.activeProgram
-    },
-    /* dev */
+    },    
     getActiveProgramKit(state) {
       return state.activeProgramKit
     },
     getIsActiveProgramKit(state) {
       return state.isActiveProgramKit
+    },
+    /* dev */
+    getIsCardMoney(state) {
+      return state.isCardMoney
+    },
+    getIsBonusMoney(state) {
+      return state.isBonusMoney
     },
 
     getActiveProgramNumber(state) {
@@ -557,7 +447,7 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    /* dev */
+    
     setWetBalance(state, money) {
       state.parameters.panelMoney = money
     },
@@ -686,6 +576,15 @@ export default new Vuex.Store({
     setIsActiveProgramKit(state, isActiveProgramKit) {
       state.isActiveProgramKit = isActiveProgramKit
     },
+    /* dev */
+    setIsCardMoney(state, isCardMoney) {
+      state.isCardMoney = isCardMoney
+    },
+    setIsBonusMoney(state, isBonusMoney) {
+      state.isBonusMoney = isBonusMoney 
+    },
+    /*     */
+
 
     setActiveProgramNumber(state, activeProgramNumber) {
       state.activeProgramNumber = activeProgramNumber
