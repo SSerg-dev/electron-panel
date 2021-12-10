@@ -1,33 +1,37 @@
 import { EventEmitter } from 'events'
 // import { type } from 'os'
 import BCNet from '../services/BCNetService'
-import Vendotek from '../services/BCNetService/Types/Vendotek'
+// import Vendotek from '../services/BCNetService/Types/Vendotek'
 
 const TAG = 'BANK TERMINAL'
 class BankTerminalController extends EventEmitter {
-  
   static type = 'BANK_TERMINAL'
-  vendotek = null
+  terminal = null
 
   constructor() {
     super()
   }
-  get vendotekItem() {
-    return this.vendotek
+  get terminalItem() {
+    return this.terminal
   }
-  
+
   connect = async options => {
     const { type, number } = options
-    const ip = '192.168.1.' + (BCNet.VENDOTEK_IP_SUFFIX + number).toString()
 
     switch (type) {
       case 'vendotek':
+        const ip =
+          '192.168.' +
+          BCNet.VENDOTEK_IP_SUBNET.toString() +
+          '.' +
+          (BCNet.VENDOTEK_IP_SUFFIX + number).toString()
         BCNet.Vendotek.connect({
           ip: ip,
           port: BCNet.VENDOTEK_PORT
         })
-        this.vendotek = BCNet.Vendotek.item
-
+        this.terminal = BCNet.Vendotek.item
+        break
+      case 'pax' :
         break
 
       default:
@@ -36,7 +40,7 @@ class BankTerminalController extends EventEmitter {
     let result = BCNet.Vendotek.item
     return result
   } // end connect
-
+  
 } // class BankTerminalController
 
 export default BankTerminalController

@@ -35,12 +35,16 @@ class Vendotek extends EventEmitter {
     this.socket.on('error', this.onError.bind(this))
 
     
-    await new Promise((resolve, reject) => {
-      this.socket.connect(this.config.port, this.config.ip, err => {
+    const response = await new Promise((resolve, reject) => {
+      const data = this.socket.connect(this.config.port, this.config.ip, err => {
         if (err) return reject(err)
-        resolve()
+        resolve(data)
       })
     })
+    /* dev */
+    // response.then((data) => {
+    //   console.log('data-->',typeof data)
+    // })
 
   }
 

@@ -31,12 +31,13 @@
 <script>
 /* eslint-disable */
 import Vue from 'vue'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 import CardBill from '@/components/CardBill'
 import EventBus from '@/bus/EventBus'
 
 import BankTerminalController from '@/controllers/BankTerminalController'
 import Vendotek from '../services/BCNetService/Types/Vendotek'
+import { type } from 'os'
 
 export default Vue.extend({
   name: 'card',
@@ -59,30 +60,39 @@ export default Vue.extend({
     })
   },
   methods: {
-    initVendotek() {
-      // console.log('initVendotek(card)-->', this.card)
+    ...mapActions({
+      updateWetMoney: 'updateWetMoney'
+    }),
+    initBankTerminal() {
       const bankTerminal = new BankTerminalController()
+
       if (this.getTerminalInstalled) {
         const options = {
           type: this.getDefaultTerminalType,
           number: this.getDefaultPanelNumber
         }
-        bankTerminal.connect(options)
-        const item = bankTerminal.vendotekItem
 
-        this.doSequence(item)
+        bankTerminal.connect(options)
+        const item = bankTerminal.terminalItem
+
+        switch (options.type) {
+          case 'vendotek':
+            this.flowSequenceVendotek(item)
+            break
+          case 'pax':
+            this.flowSequencePax(item)
+            break
+
+          default:
+            break
+        }
       }
     },
-    doSequence(item) {
-      // console.log('doSequence-->item-->', JSON.stringify(item))
-      /* dev */
-      
-      // const amount = this.card
-      const amount = 42
 
-      // console.log('amount-->', amount)
-      
-      item.sendIDLE()
+    flowSequenceVendotek(item) {
+      console.log('++flowSequenceVendotek')
+      const amount = this.card
+      // item.sendIDLE()
       // item.sendDISABLED()
 
       // item.sendPRODUCT(amount) /* 'VRP' */
@@ -91,15 +101,22 @@ export default Vue.extend({
       // item.sendACCEPT()
       // item.pay(amount)
       // item.refund(amount, params)
+      this.updateWetMoney(this.card)
+    },
+    flowSequencePax(item) {
+      console.log('!!flowSequencePax')
+      const amount = this.card
+
+      
     },
 
-    submitHandler(balance) {
+    submitBonusHandler(balance) {
       this.balance = balance
     },
     /* dev */
     submitCardHandler(card) {
       this.card = card
-      this.initVendotek()
+      this.initBankTerminal()
     },
 
     ...mapMutations({
@@ -122,10 +139,8 @@ export default Vue.extend({
   mounted() {
     this.setRouter('/card')
     this.setIsCardMoney(true)
-    EventBus.$on('submitBonusMoney', this.submitHandler)
-    /* dev */
-    // EventBus.$on('submitCardMoney', this.submitCardHandler)
-    this.initVendotek()
+    EventBus.$on('submitBonusMoney', this.submitBonusHandler)
+    EventBus.$on('submitCardMoney', this.submitCardHandler)
 
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },

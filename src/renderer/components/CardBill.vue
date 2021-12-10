@@ -1031,6 +1031,7 @@ export default {
         /* dev */
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
           this.emitCardMoney(card)
+          // this.updateWetMoney(card) // ?
           this.$message(`Банковской картой успешно оплачено:  ${+card} ₽`)
         }
          

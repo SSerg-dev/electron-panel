@@ -556,7 +556,6 @@ export default {
         this.activeProgramKit.name !== 'washer' &&
         this.activeProgramKit.name !== 'turboDryer'
       ) {
-        console.log('!!!initial wet group-->')
 
         // standardOptions
         if (this.activeProgramKit.color) {
