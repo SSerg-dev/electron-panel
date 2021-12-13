@@ -53,6 +53,7 @@ class BillValidatorController extends EventEmitter {
 			this.device = new CCNet.BillValidator(port, conf.debug)
 			this.setListeners()
 			try {
+        /* dev */
 				await this.device.connect()
 				this.port = i
 				this.state = States.CONNECTED

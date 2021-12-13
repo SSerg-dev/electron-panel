@@ -57,6 +57,7 @@ class BillValidator extends EventEmitter {
         /* --------------------------------------------------------------------- */
         /* Set peripheral addresses. */
         this.adr = ADR_BILL_VALIDATOR
+
         /* List of available commands. */
         this.commands = CMDS(this)
         /* --------------------------------------------------------------------- */

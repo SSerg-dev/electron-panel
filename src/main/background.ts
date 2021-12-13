@@ -111,7 +111,9 @@ CoinAcceptor.on('accepted', coin => sendEventToView(mainWindow, 'coin', coin))
 /* */
 const BankTerminal = new BankTerminalController()
 BankTerminal.on('connect', () => (isBankTerminalConnected = true))
-
+BankTerminal.on('enrolled', terminal =>
+  sendEventToView(mainWindow, 'emoney', terminal)
+)
 /* ----------------------------------------------------------------------- */
 
 const idle = async (config: any) => {
@@ -123,7 +125,8 @@ const idle = async (config: any) => {
     OPCUAClient.start(config.type, config.index)
   }
 
-  if (config.bill_validator) {
+  /* dev */
+  /* if (config.bill_validator) {
     if (
       !mConfig ||
       mConfig.bill_validator.installed !== config.bill_validator.installed
@@ -134,7 +137,7 @@ const idle = async (config: any) => {
         isBillValidatorConnected && BillValidator.stop()
       }
     }
-  }
+  } */
 
   if (config.coin_acceptor) {
     if (

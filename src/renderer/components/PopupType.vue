@@ -191,6 +191,7 @@ export default Vue.extend({
     /* dev */
     if (parseInt(this.getWetStopFreeCount) === 0) {
       this.gotoProgramMenu(this.getSecondsGotoPopupMenu)
+      // this.gotoProgramMenu(2000)
     }
   },
   beforeDestroy() {
