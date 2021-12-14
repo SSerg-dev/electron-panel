@@ -137,7 +137,7 @@ const idle = async (config: any) => {
         isBillValidatorConnected && BillValidator.stop()
       }
     }
-  } */
+  } */ 
 
   if (config.coin_acceptor) {
     if (
@@ -158,9 +158,10 @@ const idle = async (config: any) => {
       mConfig.bank_terminal.installed !== config.bank_terminal.installed
     ) {
       if (config.bank_terminal.installed === true) {
-        BankTerminal.start(config.bank_terminal.hardware)
+        BankTerminal.start(config.currency, config.bank_terminal.hardware)
       } else {
         console.log('not started --> BankTerminal.start()')
+        isBankTerminalConnected && BankTerminal.stop()
       }
     }
   }
