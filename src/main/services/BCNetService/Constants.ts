@@ -5,15 +5,18 @@
 + * 
 + */
 
+
+/* Message transmission start code. */
 export const SYNC = 0x02
 
-/*  */
-export const CRC_POLY = 0x08408
+export const ADR_SOURCE = 0x01
 
 /* Peripheral addresses. */
-export const ADR_BILL_TO_BILL   = 0x01
-export const ADR_COIN_CHANGER   = 0x02
-export const ADR_BILL_VALIDATOR = 0x03
-export const ADR_CARD_READER    = 0x04
+export const ADR_PAX_TERMINAL   = 0x02
+
+/* End of file Constants.ts */
+// --------------------------------------
+
+export const PAX_PORT = '/dev/ttyUSB0' // '/dev/ttyUSB2'
 
 /* End of file Constants.ts */

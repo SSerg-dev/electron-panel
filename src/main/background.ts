@@ -109,9 +109,9 @@ CoinAcceptor.on('accepted', coin => sendEventToView(mainWindow, 'coin', coin))
 
 /* ----------------------------------------------------------------------- */
 /* */
-const BankTerminal = new BankTerminalController()
-BankTerminal.on('connect', () => (isBankTerminalConnected = true))
-BankTerminal.on('enrolled', terminal =>
+const bankTerminal = new BankTerminalController()
+bankTerminal.on('connect', () => (isBankTerminalConnected = true))
+bankTerminal.on('enrolled', terminal =>
   sendEventToView(mainWindow, 'emoney', terminal)
 )
 /* ----------------------------------------------------------------------- */
@@ -153,15 +153,22 @@ const idle = async (config: any) => {
   }
   /* dev */
   if (config.bank_terminal) {
+    /* dev */
+    const options = {
+      type: config.bank_terminal.hardware,
+      number: config.index,
+      currency: config.currency
+    }
+
     if (
       !mConfig ||
       mConfig.bank_terminal.installed !== config.bank_terminal.installed
     ) {
       if (config.bank_terminal.installed === true) {
-        BankTerminal.start(config.currency, config.bank_terminal.hardware)
+        bankTerminal.start(options)
       } else {
         console.log('not started --> BankTerminal.start()')
-        isBankTerminalConnected && BankTerminal.stop()
+        // isBankTerminalConnected && bankTerminal.stop()
       }
     }
   }

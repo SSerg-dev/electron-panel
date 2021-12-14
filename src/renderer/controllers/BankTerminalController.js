@@ -1,9 +1,9 @@
+/**
+ * BankTerminalController.ts
+ * @copyright 2021 Alles Good
+ */
 import { EventEmitter } from 'events'
-// import { type } from 'os'
 import BCNet from '../services/BCNetService'
-// import Vendotek from '../services/BCNetService/Types/Vendotek'
-
-const TAG = 'BANK TERMINAL'
 class BankTerminalController extends EventEmitter {
   static type = 'BANK_TERMINAL'
   terminal = null
