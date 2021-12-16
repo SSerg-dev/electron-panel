@@ -124,7 +124,6 @@ const idle = async (config: any) => {
   ) {
     OPCUAClient.start(config.type, config.index)
   }
-
   /* dev */
   /* if (config.bill_validator) {
     if (
@@ -153,7 +152,6 @@ const idle = async (config: any) => {
   }
   /* dev */
   if (config.bank_terminal) {
-    /* dev */
     const options = {
       type: config.bank_terminal.hardware,
       number: config.index,
@@ -168,7 +166,7 @@ const idle = async (config: any) => {
         bankTerminal.start(options)
       } else {
         console.log('not started --> BankTerminal.start()')
-        // isBankTerminalConnected && bankTerminal.stop()
+        isBankTerminalConnected && bankTerminal.stop()
       }
     }
   }

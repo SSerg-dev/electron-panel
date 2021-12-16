@@ -1,6 +1,6 @@
 {
     "bank_terminal": {
-        "hardware": "pax",
+        "hardware": "vendotek",
         "installed": true,
         "max_sum": 500,
         "min_sum": 1

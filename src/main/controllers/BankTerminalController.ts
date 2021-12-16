@@ -35,6 +35,9 @@ class BankTerminalController extends EventEmitter {
         break
     }
   }
+  public stop = async () => {
+    console.log('BankTermialController-->plug stop')
+  }
 
 }
 

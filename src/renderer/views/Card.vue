@@ -43,7 +43,7 @@ export default Vue.extend({
   name: 'card',
   data: () => ({
     intervalMainMenu: null,
-    messages: [`Введите сумму пополнеия`, `Минимальная сумма 10 руб`],
+    messages: [`Введите сумму пополнения`, `Минимальная сумма 10 руб`],
     messageIndex: -1,
     balance: 0,
     card: 0,
@@ -59,6 +59,7 @@ export default Vue.extend({
       getIsCardMoney: 'getIsCardMoney'
     })
   },
+
   methods: {
     ...mapActions({
       updateWetMoney: 'updateWetMoney'
@@ -71,7 +72,6 @@ export default Vue.extend({
           type: this.getDefaultTerminalType,
           number: this.getDefaultPanelNumber
         }
-
         bankTerminal.connect(options)
         const item = bankTerminal.terminalItem
 
@@ -90,8 +90,9 @@ export default Vue.extend({
     },
 
     flowSequenceVendotek(item) {
-      console.log('++flowSequenceVendotek')
       const amount = this.card
+      // console.log('++flowSequenceVendotek--amount-->', amount)
+      // --------------------------------
       // item.sendIDLE()
       // item.sendDISABLED()
 
@@ -101,7 +102,31 @@ export default Vue.extend({
       // item.sendACCEPT()
       // item.pay(amount)
       // item.refund(amount, params)
-      this.updateWetMoney(this.card)
+      // --------------------------------
+      /* 
+      // Normal power-up sequence
+      item.sendIDLE()
+
+      // Approved operation sequence
+      item.sendPRODUCT(amount) // VRP
+      item.sendABORT()         // ABR
+                               // CON
+                               // DAT
+                               // DSC
+      item.sendFINAL()         // FIN
+      item.sendIDLE()          // IDL 
+      */
+      // --------------------------------
+      // item.enable()
+      item.pay(amount)
+      
+      // item.sendABORT()
+      item.sendFINAL()
+      // item.sendIDLE()
+      // item.disable()
+      // --------------------------------
+
+      // this.updateWetMoney(this.card)
     },
     flowSequencePax(item) {
       console.log('!!flowSequencePax')
@@ -141,6 +166,7 @@ export default Vue.extend({
     this.setIsCardMoney(true)
     EventBus.$on('submitBonusMoney', this.submitBonusHandler)
     EventBus.$on('submitCardMoney', this.submitCardHandler)
+    // item.enable()
 
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },
@@ -148,6 +174,7 @@ export default Vue.extend({
     /* dev */
     // this.setIsCardMoney(false)
     // console.log('false++getIsCardMoney-->', this.getIsCardMoney)
+    // item.disable()
 
     clearInterval(this.intervalMainMenu)
   },

@@ -47,10 +47,11 @@ class Pax extends EventEmitter {
     let port_num = 10
     const portInfo = await getSerialDevicesInfo('USB')
     if (portInfo) {
-      for (let i = 0; i < portInfo.lengthpo; i++) {
+      for (let i = 0; i < portInfo.length; i++) {
         /* dev */
-        // _path = portInfo[i].path
-        _path = '/dev/ttyUSB0'
+        _path = portInfo[i].path
+        console.log('_path-->',  portInfo[i].path)
+        // _path = '/dev/ttyUSB0'
         this.device = new BCNet.PaxDevice(_path, this.bills, conf.debug)
         try {
           await this.device.connect()

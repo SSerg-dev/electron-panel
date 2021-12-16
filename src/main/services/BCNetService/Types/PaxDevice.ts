@@ -176,7 +176,7 @@ class PaxDevice extends EventEmitter {
     if (!this.isOpen) {
       try {
         await this.open()
-        // console.log('PaxDevice--> connect success')
+        console.log('PaxDevice--> connect-->this.open()--> success')
       } catch (err) {
         // console.log('PaxDevice--> connect--> err', err)
         throw err
@@ -185,8 +185,8 @@ class PaxDevice extends EventEmitter {
     /* Begin device init. -------------------------------------------------- */ 
     /* dev */
      try {
-      console.log('++this.commands.Reset-->', this.commands.Reset)
-      await this.execute(this.commands.Reset)
+    // console.log('++this.commands.Reset-->', this.commands.Reset)
+    // await this.execute(this.commands.Reset)
     //   await this.execute(this.commands.SimplePoll)
 
     //   this.deviceInfo.manufacturer = await this.getManufacturedId()
@@ -214,17 +214,15 @@ class PaxDevice extends EventEmitter {
     }
   }
 
-  /**
-   *
-   */
-  getCoinInfo = async () => {
+  /* dev */
+
+  /* getCoinInfo = async () => {
     let data: any = {}
     let status: number
     let table: any = []
     try {
       status = await this.execute(this.commands.GetInhibitStatus)
       for (let i = 0; i < 16; i++) {
-        /*  */
         await wait(100)
         data = await this.execute(this.commands.GetCoinId, [i + 1])
         const v: number =
@@ -237,26 +235,22 @@ class PaxDevice extends EventEmitter {
             : data.coin === '1K0'
             ? 10
             : 0
-        //if ( v > 0 && data.country === "RU" ) {
         table.push({
           index: i,
           code: data.coin,
           value: v,
           enabled: (status & (1 << i)) != 0 ? true : false
         })
-        //}
       }
     } catch (err) {
       console.log('getCoinInfo Error:', err)
       throw err
     }
     return table
-  }
+  } */
 
-  /**
-   *
-   */
-  setCoinInfo = async (coin_table: any[] = [], enable_coins: number[] = []) => {
+  /* dev */
+  /* setCoinInfo = async (coin_table: any[] = [], enable_coins: number[] = []) => {
     let status = 0
     try {
       coin_table.forEach((el: any, index: number) => {
@@ -268,12 +262,11 @@ class PaxDevice extends EventEmitter {
         status & 0xff,
         (status >> 8) & 0xff
       ])
-      //console.log("setCoinInfo inhibit status:", status)
     } catch (err) {
       console.log('setCoinInfo Error:', err)
       throw err
     }
-  }
+  } */
 
   /**
    *
@@ -391,6 +384,8 @@ class PaxDevice extends EventEmitter {
    *
    * @param {Buffer} status
    */
+  /* dev */
+
   onCredit = (buffer: Buffer) => {
     let coin: any
     if (this.eventBuffer && buffer[0] != this.eventBuffer[0]) {
@@ -402,10 +397,8 @@ class PaxDevice extends EventEmitter {
 
       for (let i = 1; i < maxI; i += 2) {
         coin = this.coinTable.find((el: any) => el.index === buffer[i] - 1)
-        //console.log(`Coin = ${JSON.stringify(coin)}`)
         coin && this.emit('accepted', coin.value)
       }
-      //console.log(`Buffer = ${JSON.stringify(buffer)}`)
     }
     this.eventBuffer = buffer
   }

@@ -4,27 +4,35 @@
 const net = require('net')
 const EventEmitter = require('events')
 
-
 let Config = {
   ip: '',
   port: 0
 }
 class Vendotek extends EventEmitter {
-  
   static item = null
-  
+  responseBank = null
+
   constructor(config) {
     super()
     this.config = Object.assign({}, Config, config)
     this.log = this.config.log || console.log
     this.opNumber = 0
   }
+  // getters
+  get responseBankInfo() {
+    return this.responseBank
+  } 
+  // setters
+  set responseBankInfo( newResponce ) {
+    this.responseBank = newResponce
+  }
+
   // methods
   static connect(config) {
     let item = new Vendotek(config)
     item.connecting = item.connect()
-    item.disconnecting = item.disconnect()
-     
+    // item.disconnecting = item.disconnect()
+
     this.item = item
     return item
   }
@@ -34,26 +42,28 @@ class Vendotek extends EventEmitter {
     this.socket.on('data', this.onData.bind(this))
     this.socket.on('error', this.onError.bind(this))
 
-    
     const response = await new Promise((resolve, reject) => {
-      const data = this.socket.connect(this.config.port, this.config.ip, err => {
-        if (err) return reject(err)
-        resolve(data)
-      })
+      const data = this.socket.connect(
+        this.config.port,
+        this.config.ip,
+        err => {
+          if (err) return reject(err)
+          resolve(data)
+        }
+      )
     })
     /* dev */
     // response.then((data) => {
     //   console.log('data-->',typeof data)
     // })
-
   }
 
-  async disconnect() { 
+  async disconnect() {
     this.disconnected = true
     this.disable()
-    // this.conn.end() 
-    // this.conn.destroy()
-  } 
+    this.conn.end()
+    this.conn.destroy()
+  }
 
   getCmdName(cmd) {
     switch (cmd) {
@@ -84,6 +94,8 @@ class Vendotek extends EventEmitter {
     }
 
     this.log('VENDOTEK Data received', JSON.stringify(params))
+    /* dev */
+    // if(params.amount) this.responseBankInfo = params.amount 
 
     if (this.opNumber < params.number) this.opNumber = params.number
 
@@ -111,7 +123,6 @@ class Vendotek extends EventEmitter {
   }
 
   parseData(data) {
-  
     let lengthData = data.slice(0, 2)
     lengthData = lengthData.readUInt16BE()
 
@@ -157,6 +168,7 @@ class Vendotek extends EventEmitter {
 
   async awaitEvent(event, timeout) {
     return new Promise((resolve, reject) => {
+
       let check_response = data => {
         clearTimeout(timeoutFunc)
         resolve(data)
@@ -202,7 +214,7 @@ class Vendotek extends EventEmitter {
         }
 
         return Buffer.concat([
-          new Buffer([code]), 
+          new Buffer([code]),
           new Buffer([params[key].toString().length]),
           new Buffer(params[key].toString())
         ])
@@ -289,8 +301,11 @@ class Vendotek extends EventEmitter {
     this.opNumber++
 
     let params = await this.sendPRODUCT(amount).catch(e => ({}))
+    // this.responseBankInfo = params
+
     if (params.amount != amount) {
       setTimeout(() => {
+        
         this.payProcess = false
         this.sendIDLE()
       }, 10000)
@@ -304,7 +319,7 @@ class Vendotek extends EventEmitter {
 
     return params
   }
-
+  
   async refund(amount, params) {
     await this.sendIDLE()
     return this.send('ABR')
