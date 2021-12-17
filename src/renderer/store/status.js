@@ -8,7 +8,7 @@
 
 export default {
   state: {
-    status: -1,
+    messageStatus: -1,
     messages: [
       'Подключение к банковскому терминалу...',
       'Не удалось подключитьсяк банковскому терминалу',
@@ -18,41 +18,36 @@ export default {
       'Следуйте инструкциям на терминале'
     ],
     messageIndex: -1
-  },
+  }, // end state
+
   actions: {
-    // fetchStatus
-    async fetchStatus({ commit, getters, dispatch }, limit = 6) {
+    /* async fetchStatus({ commit, getters, dispatch }, limit = 6) {
       try {
         const response = await fetch(
           'https://jsonplaceholder.typicode.com/posts?_limit=' + limit
         )
-        const status = await response.json()
-        /* console.log('!!!fetchStatus-->', JSON.stringify(status[4].id)) */
-        commit('setStatusBill', JSON.stringify(status[5].id))
+        const messageStatus = await response.json()
+        commit('setStatusBill', JSON.stringify(messageStatus[5].id))
       } catch (e) {
         console.warn('Error:', e.message)
       }
-      //console.log('!!!fetchStatus-->')
-    }
+    } */
   },
   getters: {
     getStatusBill(state) {
-      return state.status
+      return state.messageStatus
     },
-
     getStatusBillMessages(state) {
       return state.messages[state.messageIndex]
     }
   },
   mutations: {
-    setStatusBill(state, status) {
-      state.status = status
-      console.log('state.status-->', state.status)
+    setStatusBill(state, messageStatus) {
+      state.messageStatus = messageStatus
+      // console.log('state.messageStatus-->', state.messageStatus)
     },
-    setStatusBillMessagesIndex(state, index) {
-      state.messageIndex = index
-      /* console.log('state.messageIndex-->', state.messageIndex) */
-      console.log('state.messageIndex-->', index)
+    setStatusBillMessagesIndex(state, messageIndex) {
+      state.messageIndex = messageIndex
     }
   }
 }

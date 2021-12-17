@@ -13,9 +13,7 @@
           <p align="center">
             {{ `${this.messages[0]}` }}
           </p>
-          <!-- <p align="center">
-            {{ `${this.messages[1]}` }}
-          </p> -->
+          
         </h3>
       </div>
     </div>
@@ -91,42 +89,11 @@ export default Vue.extend({
 
     flowSequenceVendotek(item) {
       const amount = this.card
-      // console.log('++flowSequenceVendotek--amount-->', amount)
-      // --------------------------------
-      // item.sendIDLE()
-      // item.sendDISABLED()
-
-      // item.sendPRODUCT(amount) /* 'VRP' */
-      // item.sendFINAL()
-      // item.sendABORT()
-      // item.sendACCEPT()
-      // item.pay(amount)
-      // item.refund(amount, params)
-      // --------------------------------
-      /* 
-      // Normal power-up sequence
-      item.sendIDLE()
-
-      // Approved operation sequence
-      item.sendPRODUCT(amount) // VRP
-      item.sendABORT()         // ABR
-                               // CON
-                               // DAT
-                               // DSC
-      item.sendFINAL()         // FIN
-      item.sendIDLE()          // IDL 
-      */
-      // --------------------------------
-      // item.enable()
       item.pay(amount)
-      
-      // item.sendABORT()
       item.sendFINAL()
-      // item.sendIDLE()
-      // item.disable()
-      // --------------------------------
-
+      /* dev */
       // this.updateWetMoney(this.card)
+      
     },
     flowSequencePax(item) {
       console.log('!!flowSequencePax')
@@ -138,9 +105,10 @@ export default Vue.extend({
     submitBonusHandler(balance) {
       this.balance = balance
     },
-    /* dev */
+    
     submitCardHandler(card) {
       this.card = card
+      /* dev */
       this.initBankTerminal()
     },
 
@@ -155,18 +123,18 @@ export default Vue.extend({
           this.getWetBusyPanel === 'false' &&
           this.$route.name !== 'home'
         ) {
-          console.log('seconds-->', seconds)
+          // console.log('seconds-->', seconds)
           this.$router.push('/')
         }
       }, 1000)
     }
   },
   mounted() {
+    
     this.setRouter('/card')
     this.setIsCardMoney(true)
     EventBus.$on('submitBonusMoney', this.submitBonusHandler)
     EventBus.$on('submitCardMoney', this.submitCardHandler)
-    // item.enable()
 
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },
@@ -174,8 +142,7 @@ export default Vue.extend({
     /* dev */
     // this.setIsCardMoney(false)
     // console.log('false++getIsCardMoney-->', this.getIsCardMoney)
-    // item.disable()
-
+  
     clearInterval(this.intervalMainMenu)
   },
   components: {
@@ -196,10 +163,10 @@ export default Vue.extend({
 }
 .message {
   width: 800px;
-  position: absolute;
+  position: absolute; 
   margin-top: 8.5em;
   margin-left: 3.5em;
-  color: white;
+  color:white; 
   font-size: 2.5em;
   z-index: 1;
 }
@@ -207,25 +174,5 @@ export default Vue.extend({
   padding-top: 25em;
   padding-left: 4em;
 }
-.page-title {
-  padding-top: 30px;
-  color: white;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50em;
-  align-items: center;
-  z-index: 1;
-}
-.page-subtitle {
-  margin-left: auto;
-  margin-right: auto;
-  width: 30em;
-}
-.info-title {
-  width: 800px;
-  padding-top: 2em;
-  margin-top: 0em;
-  margin-left: 0em;
-  font-size: 2.5em;
-}
+
 </style>

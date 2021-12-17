@@ -1028,20 +1028,21 @@ export default {
     payUp() {
       const card = this.amount
       if ( this.amount >= this.getPaymentLimitMin && this.amount <= this.getPaymentLimitMax) {
-        /* dev */
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
           this.emitCardMoney(card)
-          // this.updateWetMoney(card) // ?
-          this.$message(`Банковской картой успешно оплачено:  ${+card} ₽`)
+          this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)
+          this.$router.push('/status')
+          //this.$router.push('/program')
         }
          
         if (this.getIsBonusMoney && this.getIsCardMoney) {
           this.updateWetMoney(card)
           this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
+          this.$router.push('/program')
         }
-        /*     */  
-
-        this.$router.push('/program')
+                
+        // this.$router.push('/program')
+        
         this.display = this.title = this.body = '0'
       } else 
          this.$message(`Введите правильную сумму`)

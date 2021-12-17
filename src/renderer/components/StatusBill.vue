@@ -3,14 +3,19 @@
     <section>
       <div align="center" class="page-title">
         <div class="info-title" style="margin-bottom: 4em;">
-          <!-- this.getStatusBill -->
-          <p v-if="this.getStatusBill > -1" align="center">
-            {{ `${this.getStatusBillMessages()}` }}
-          </p>
-        </div>
+          <h3>
+            <div align="center">
+              {{ ` ${this.getStatusBillMessages} ` }}
+            </div>
 
-        <div v-if="this.seconds" class="timer-title">
-          {{ `${this.seconds}` }}
+            <div
+              v-if="this.seconds"
+              align="center"
+              style="font-size: 2em; padding-top: 2em;"
+            >
+              {{ `${this.seconds}` }}
+            </div>
+          </h3>
         </div>
 
         <div>
@@ -30,68 +35,70 @@ export default Vue.extend({
   name: 'setting-panel-type',
   data: () => ({
     intervalMainMenu: null,
-    seconds: 0
+    seconds: 42,
+    cardMessageIndex: 5,
+    card: 0
   }),
   computed: {
     ...mapGetters({
-      //getWetBusyPanel: 'getWetBusyPanel',
       getSecondsGotoProgramMenu: 'getSecondsGotoProgramMenu',
-      getStatusBill: 'getStatusBill'
+
+      getStatusBill: 'getStatusBill',
+      getStatusBillMessages: 'getStatusBillMessages'
     }),
     timer: function() {
       return this.seconds
     }
   },
-  watch: {
-    /* timer(value) {
-      console.log('watch value -->', value)
-    } */
-  },
+
   methods: {
-    gotoProgramMenu(seconds) {
+    submitCardHandler(card) {
+      this.card = card
+      /* dev */
+      console.log('++this.card-->', this.card)
+    },
+
+    gotoMainMenu(seconds) {
       this.intervalMainMenu = setInterval(() => {
-        //this.setSecondsStatusTimer(seconds)
         this.seconds = seconds
-        seconds--
-        if (seconds < 0) {
+        if (--seconds < 0 && this.$route.name !== 'program') {
           this.$router.push('/program')
         }
       }, 1000)
     },
+
     ...mapActions({
       fetchStatus: 'fetchStatus'
     }),
     ...mapMutations({
-      //setSecondsStatusTimer: 'setSecondsStatusTimer'
+      setStatusBill: 'setStatusBill',
       setStatusBillMessagesIndex: 'setStatusBillMessagesIndex'
-    }),
-    ...mapGetters({
-      getStatusBillMessages: 'getStatusBillMessages'
     })
-    /* submitHandler(program) {
-      console.log(`StatusBill--> clicked --> ${program}`)
-      if (program === 'confirm') {
-        this.messageIndex = 1
-      }
-    } */
   },
   mounted() {
-    //EventBus.$on('submit', this.submitHandler)
+    // EventBus.$on('submitBonusMoney', this.submitBonusHandler)
+    EventBus.$on('submitCardMoney', this.submitCardHandler)
 
-    // get status bill operation from outside device
-    // and set status in store setStatusBill()
-    this.fetchStatus()
 
-    // calc messageIndex for each message
-    // todo switch case ... 
-    const index = this.getStatusBill - 1
+    // todo this.setStatusBill from ...
+    this.setStatusBill('card')
 
-    // set messageIndex
-    this.setStatusBillMessagesIndex(index)
+    const type = this.getStatusBill
 
-    this.gotoProgramMenu(this.getSecondsGotoProgramMenu)
-    //this.gotoMainMenu(4)
+    switch (type) {
+      case 'card':
+        this.setStatusBillMessagesIndex(this.cardMessageIndex)
+        break
+      case 'bonus':
+        break
+
+      default:
+        break
+    }
+
+    this.gotoMainMenu(this.seconds) // this.getSecondsGotoMainMenu
   },
+
   beforeDestroy() {
     clearInterval(this.intervalMainMenu)
   },
@@ -115,6 +122,7 @@ export default Vue.extend({
   text-align: right;
 
   font-family: 'Plumb-Medium';
+
   font-weight: bold;
   z-index: 1;
 }
@@ -123,16 +131,7 @@ export default Vue.extend({
   padding-top: 0.5em;
   margin-top: 0em;
   margin-left: 0em;
-  font-size: 3em;
 }
-.timer-title {
-  width: 800px;
-  padding-top: 0em;
-  margin-top: 0em;
-  margin-left: -6em;
-  font-size: 4em;
-}
-
 /* [v-cloak] {
   display: none;
 } */

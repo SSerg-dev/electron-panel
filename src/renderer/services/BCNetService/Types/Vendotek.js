@@ -9,6 +9,7 @@ let Config = {
   port: 0
 }
 class Vendotek extends EventEmitter {
+
   static item = null
   responseBank = null
 
@@ -17,6 +18,14 @@ class Vendotek extends EventEmitter {
     this.config = Object.assign({}, Config, config)
     this.log = this.config.log || console.log
     this.opNumber = 0
+
+    // singelton
+    if (Vendotek.exists) {
+      return Vendotek.instance
+    }
+    Vendotek.instance = this
+    Vendotek.exists = true
+
   }
   // getters
   get responseBankInfo() {
@@ -28,6 +37,8 @@ class Vendotek extends EventEmitter {
   }
 
   // methods
+  
+
   static connect(config) {
     let item = new Vendotek(config)
     item.connecting = item.connect()
@@ -96,7 +107,7 @@ class Vendotek extends EventEmitter {
     this.log('VENDOTEK Data received', JSON.stringify(params))
     /* dev */
     // if(params.amount) this.responseBankInfo = params.amount 
-
+    
     if (this.opNumber < params.number) this.opNumber = params.number
 
     this.log('Emit event', this.getCmdName(params.cmd))
