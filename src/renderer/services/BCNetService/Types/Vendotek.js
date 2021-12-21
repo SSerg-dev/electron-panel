@@ -1,6 +1,8 @@
 // import { Vendotek } from 'vendotek'
 // export default Vendotek
 
+const Observer = require('./Observer.js')
+
 const net = require('net')
 const EventEmitter = require('events')
 
@@ -9,7 +11,6 @@ let Config = {
   port: 0
 }
 class Vendotek extends EventEmitter {
-
   static item = null
   responseBank = null
 
@@ -26,18 +27,34 @@ class Vendotek extends EventEmitter {
     Vendotek.instance = this
     Vendotek.exists = true
 
+    // observer
+    this.observers = []
   }
+
   // getters
   get responseBankInfo() {
     return this.responseBank
-  } 
+  }
   // setters
-  set responseBankInfo( newResponce ) {
+  set responseBankInfo(newResponce) {
     this.responseBank = newResponce
   }
 
   // methods
-  
+
+  // observer methods 
+  subscribe(observer) {
+    this.observers.push(observer)
+  }
+  unsubscribe(observer) {
+    this.observers = this.observers.filter(obs => obs !== observer) 
+  }
+  fire(action) {
+    this.observers.forEach( observer => {
+      observer.update(action) 
+    })
+  }
+  // end observer
 
   static connect(config) {
     let item = new Vendotek(config)
@@ -105,9 +122,16 @@ class Vendotek extends EventEmitter {
     }
 
     this.log('VENDOTEK Data received', JSON.stringify(params))
-    /* dev */
-    // if(params.amount) this.responseBankInfo = params.amount 
     
+    /* dev */
+    this.responseBankInfo = params
+    // console.log('++params.cmd-->', params.cmd)
+    if (this.responseBankInfo.amount > 0) {
+      // const observer = Observer.item
+      this.subscribe(Observer.item)
+      this.fire({type: 'RESOLVE', payload: this.responseBankInfo.amount})
+    }
+
     if (this.opNumber < params.number) this.opNumber = params.number
 
     this.log('Emit event', this.getCmdName(params.cmd))
@@ -179,7 +203,6 @@ class Vendotek extends EventEmitter {
 
   async awaitEvent(event, timeout) {
     return new Promise((resolve, reject) => {
-
       let check_response = data => {
         clearTimeout(timeoutFunc)
         resolve(data)
@@ -316,13 +339,19 @@ class Vendotek extends EventEmitter {
 
     if (params.amount != amount) {
       setTimeout(() => {
-        
         this.payProcess = false
         this.sendIDLE()
+        
+      
       }, 10000)
+      /* dev */
+      this.subscribe(Observer.item)
+      this.fire({type: 'REJECT', payload: params.amount })
+      
       throw new Error(
         `Wrond paid. Expected ${amount}, but result ${params.amount}`
       )
+      
     }
 
     await this.sendIDLE()
@@ -330,7 +359,7 @@ class Vendotek extends EventEmitter {
 
     return params
   }
-  
+
   async refund(amount, params) {
     await this.sendIDLE()
     return this.send('ABR')

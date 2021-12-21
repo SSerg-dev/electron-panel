@@ -7,12 +7,16 @@ import BCNet from '../services/BCNetService'
 class BankTerminalController extends EventEmitter {
   static type = 'BANK_TERMINAL'
   terminal = null
+  observer = null
 
   constructor() {
     super()
   }
   get terminalItem() {
     return this.terminal
+  }
+  get observerItem() {
+    return this.observer
   }
 
   connect = async options => {
@@ -30,8 +34,12 @@ class BankTerminalController extends EventEmitter {
           port: BCNet.VENDOTEK_PORT
         })
         this.terminal = BCNet.Vendotek.item
+        // initial observer
+        BCNet.Observer.initial()
+        this.observer = BCNet.Observer.item
+
         break
-      case 'pax' :
+      case 'pax':
         break
 
       default:
@@ -40,7 +48,6 @@ class BankTerminalController extends EventEmitter {
     let result = BCNet.Vendotek.item
     return result
   } // end connect
-  
 } // class BankTerminalController
 
 export default BankTerminalController

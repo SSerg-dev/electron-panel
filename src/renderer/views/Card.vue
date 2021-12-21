@@ -73,13 +73,20 @@ export default Vue.extend({
         bankTerminal.connect(options)
         const item = bankTerminal.terminalItem
 
+        /* dev */
+        const stream$ = item
+        const observer = bankTerminal.observerItem
+        stream$.subscribe(observer)
+        // stream$.fire({type: 'INCREMENT'})
+        // console.log('observer.state--> 01', observer.state)
+
         switch (options.type) {
           case 'vendotek':
             this.flowSequenceVendotek(item)
             break
-          case 'pax':
-            this.flowSequencePax(item)
-            break
+          // case 'pax':
+          //   this.flowSequencePax(item)
+          //   break
 
           default:
             break
@@ -108,7 +115,6 @@ export default Vue.extend({
     
     submitCardHandler(card) {
       this.card = card
-      /* dev */
       this.initBankTerminal()
     },
 

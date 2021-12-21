@@ -9,7 +9,7 @@
             </div>
 
             <div
-              v-if="this.seconds"
+              v-if="this.seconds > 0"
               align="center"
               style="font-size: 2em; padding-top: 2em;"
             >
@@ -30,6 +30,8 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import EventBus from '@/bus/EventBus'
+import BCNet from '../services/BCNetService'
+const Observer = require('../services/BCNetService/Types/Observer.js')
 
 export default Vue.extend({
   name: 'setting-panel-type',
@@ -37,7 +39,9 @@ export default Vue.extend({
     intervalMainMenu: null,
     seconds: 42,
     cardMessageIndex: 5,
-    card: 0
+    card: 0,
+    terminal: null,
+    observer: null
   }),
   computed: {
     ...mapGetters({
@@ -45,40 +49,67 @@ export default Vue.extend({
 
       getStatusBill: 'getStatusBill',
       getStatusBillMessages: 'getStatusBillMessages'
-    }),
-    timer: function() {
-      return this.seconds
-    }
+    })
   },
 
   methods: {
-    submitCardHandler(card) {
-      this.card = card
-      /* dev */
-      console.log('++this.card-->', this.card)
-    },
-
     gotoMainMenu(seconds) {
       this.intervalMainMenu = setInterval(() => {
         this.seconds = seconds
-        if (--seconds < 0 && this.$route.name !== 'program') {
+
+        this.observer = Observer.item
+
+        if (this.observer.state > 1 && this.observer.state === this.card) {
+          console.log('Операция одобрена, сумма:', this.observer.state)
+          this.cardMessageIndex = 3
+          this.setStatusBillMessagesIndex(this.cardMessageIndex)
+
+          /* dev */
+          // this.updateWetMoney(this.observer.state)
+          
+          this.$message(`Операция одобрена, сумма:  ${this.observer.state}`)
+          seconds = 0
+        }
+
+        //  if (this.observer.state !== 1) {
+        //  console.log('this.observer.state typeof-->',typeof this.observer.state)
+        //  console.log('this.observer.state -->',this.observer.state)
+        //  }
+           
+        /* if (this.observer.state === 0) {  
+          console.log('Операция отклонена')
+          this.cardMessageIndex = 4
+          this.setStatusBillMessagesIndex(this.cardMessageIndex)
+
+          this.$message(`Операция отклонена`)
+          seconds = 0
+        } */
+
+
+
+
+        if (--seconds < -4 && this.$route.name !== 'program') {
           this.$router.push('/program')
         }
       }, 1000)
     },
 
     ...mapActions({
-      fetchStatus: 'fetchStatus'
+      fetchStatus: 'fetchStatus',
+      updateWetMoney: 'updateWetMoney'
     }),
     ...mapMutations({
       setStatusBill: 'setStatusBill',
-      setStatusBillMessagesIndex: 'setStatusBillMessagesIndex'
+      setStatusBillMessagesIndex: 'setStatusBillMessagesIndex',
+      setCardMoney: 'setCardMoney'
+    }),
+    ...mapGetters({
+      getCardMoney: 'getCardMoney'
     })
   },
   mounted() {
-    // EventBus.$on('submitBonusMoney', this.submitBonusHandler)
-    EventBus.$on('submitCardMoney', this.submitCardHandler)
-
+    this.card = this.getCardMoney()
+    this.terminal = BCNet.Vendotek.item
 
     // todo this.setStatusBill from ...
     this.setStatusBill('card')

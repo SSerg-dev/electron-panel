@@ -1013,13 +1013,15 @@ export default {
       getLoginBonusOptions: 'getLoginBonusOptions',
       getLoginBonusPhone: 'getLoginBonusPhone',
       getIsPayCardMoney: 'getIsPayCardMoney',
+      getCardMoney: 'getCardMoney'
 
     }),
     ...mapMutations({
       setLoginBonusPhone: 'setLoginBonusPhone',
       setLoginBonusPassword: 'setLoginBonusPassword',
       setIsCardMoney: 'setIsCardMoney',
-      setIsBonusMoney: 'setIsBonusMoney'
+      setIsBonusMoney: 'setIsBonusMoney',
+      setCardMoney: 'setCardMoney'
     }),
     ...mapActions({
       updateWetMoney: 'updateWetMoney'
@@ -1030,6 +1032,7 @@ export default {
       if ( this.amount >= this.getPaymentLimitMin && this.amount <= this.getPaymentLimitMax) {
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
           this.emitCardMoney(card)
+          this.setCardMoney(card)
           this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)
           this.$router.push('/status')
           //this.$router.push('/program')

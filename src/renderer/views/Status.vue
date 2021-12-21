@@ -25,7 +25,6 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 import StatusBill from '@/components/StatusBill'
-import EventBus from '@/bus/EventBus'
 
 export default Vue.extend({
   date: () => ({
@@ -38,8 +37,10 @@ export default Vue.extend({
     })
   },
   methods: {
+    
     ...mapMutations({
       setRouter: 'setRouter'
+      
     })
 
   },

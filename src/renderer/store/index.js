@@ -41,6 +41,8 @@ export default new Vuex.Store({
     isActiveProgramKit: false,
     isCardMoney: false,
     isBonusMoney: false,
+
+    cardMoney: 0,
     /*     */
 
     message: {
@@ -98,7 +100,6 @@ export default new Vuex.Store({
       busy: '',
       panelMoney: '0',
       stopFreeCount: '0'
-      
     },
 
     dryParameters: {
@@ -426,6 +427,9 @@ export default new Vuex.Store({
     getIsCardMoney(state) {
       return state.isCardMoney
     },
+    getCardMoney(state) {
+      return state.cardMoney
+    },
     getIsBonusMoney(state) {
       return state.isBonusMoney
     },
@@ -580,9 +584,14 @@ export default new Vuex.Store({
     setIsCardMoney(state, isCardMoney) {
       state.isCardMoney = isCardMoney
     },
+    setCardMoney(state, cardMoney) {
+      state.cardMoney = cardMoney
+      // console.log('++state.cardMoney-->', state.cardMoney)
+    },
     setIsBonusMoney(state, isBonusMoney) {
       state.isBonusMoney = isBonusMoney 
     },
+    
     /*     */
 
 
