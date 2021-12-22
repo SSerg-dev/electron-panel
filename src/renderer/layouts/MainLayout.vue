@@ -3,21 +3,34 @@
     <Navbar @click="isOpen = !isOpen" />
     <!-- <button class="btn">TEST</button> -->
     <main class="app-content" :class="{ full: !isOpen }">
+      <!-- dev -->
+      <Snowf
+        :amount="500"
+        :size="5"
+        :speed="1.5"
+        :wind="0"
+        :opacity="0.8"
+        :swing="1"
+        :image="null"
+        :zIndex="null"
+        :resize="true"
+        color="#fff"
+      />
+      <!--     -->
       <div class="app-page">
         <router-view />
       </div>
     </main>
-    
-    
+
     <div
       v-if="
         this.$route.name !== 'cost' &&
-        this.$route.name != 'language' &&
-        this.$route.name != 'setting' &&
-        this.$route.name != 'popup'
+          this.$route.name != 'language' &&
+          this.$route.name != 'setting' &&
+          this.$route.name != 'popup'
       "
       class="footer"
-    > 
+    >
       <Footer />
     </div>
   </div>
@@ -35,6 +48,8 @@ import { setInterval, clearInterval } from 'timers'
 import { Database } from '@/storage/database.js'
 import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
 import { Storage } from '@/storage/index.js'
+
+import Snowf from 'vue-snowf'
 
 export default Vue.extend({
   name: 'main-layout',
@@ -83,17 +98,17 @@ export default Vue.extend({
       // console.log('!!this.options-->', this.options)
 
       const response = await this.storage.getClient(method, this.options, type)
-      
+
       // console.log('+response.result-->', typeof response)
-      if (response === undefined ){
+      if (response === undefined) {
         this.setIsPing(false)
-          // this.$message(`ping ${this.url} недоступен`)
-          return
+        // this.$message(`ping ${this.url} недоступен`)
+        return
       }
       if (+response.result === 0) {
         this.setIsPing(true)
-          // this.$message(`ping ${this.url} выполнен успешно`)
-      } 
+        // this.$message(`ping ${this.url} выполнен успешно`)
+      }
       //this.$message(`ping ${this.getIsPing()}`)
     },
     async pingUrl() {
@@ -138,10 +153,8 @@ export default Vue.extend({
   created() {
     //console.log('!!++this.getPanelType-->', this.getPanelType)
   },
-  
-  async mounted() {
-    
 
+  async mounted() {
     this.storage = new Storage(this.client, this.url)
 
     this.intervalPing = setInterval(() => {
@@ -157,7 +170,8 @@ export default Vue.extend({
   },
   components: {
     Navbar,
-    Footer
+    Footer,
+    Snowf
   },
   computed: {
     locale() {

@@ -1,10 +1,8 @@
-// import { Vendotek } from 'vendotek'
-// export default Vendotek
+const net = require('net')
+const EventEmitter = require('events')
 
 const Observer = require('./Observer.js')
 
-const net = require('net')
-const EventEmitter = require('events')
 
 let Config = {
   ip: '',
@@ -125,11 +123,10 @@ class Vendotek extends EventEmitter {
     
     /* dev */
     this.responseBankInfo = params
-    // console.log('++params.cmd-->', params.cmd)
     if (this.responseBankInfo.amount > 0) {
-      // const observer = Observer.item
       this.subscribe(Observer.item)
       this.fire({type: 'RESOLVE', payload: this.responseBankInfo.amount})
+      this.unsubscribe(Observer.item)
     }
 
     if (this.opNumber < params.number) this.opNumber = params.number
@@ -347,7 +344,7 @@ class Vendotek extends EventEmitter {
       /* dev */
       this.subscribe(Observer.item)
       this.fire({type: 'REJECT', payload: params.amount })
-      
+      this.unsubscribe(Observer.item)
       throw new Error(
         `Wrond paid. Expected ${amount}, but result ${params.amount}`
       )

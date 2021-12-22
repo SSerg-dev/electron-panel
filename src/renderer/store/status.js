@@ -38,7 +38,9 @@ export default {
       return state.messageStatus
     },
     getStatusBillMessages(state) {
+      /* dev */
       return state.messages[state.messageIndex]
+      // return state.messages
     }
   },
   mutations: {

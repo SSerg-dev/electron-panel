@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a name="top"></a>
-    <div class="row head-content">
+    <div class="row">
+      
       <div class="col s2">
         <router-link to="/">
           <div class="back">
@@ -9,6 +9,7 @@
           </div>
         </router-link>
       </div>
+
       <div class="col s7">
         <div class="page-title">
           <!-- СТОИМОСТЬ ПРОГРАММ -->
@@ -23,25 +24,15 @@
           <!-- <h4 align="left"><pre class="white-text"> {{status}} </pre></h4> -->
         </div>
       </div>
+      
     </div>
 
-    <section id="content">
-      <div class="row">
-        <!-- <div class="col"><CostList :costs="costs" /></div> -->
-        <div class="col"><CostList :costs="items" /></div>
-      </div>
-      <a name="bottom"></a>
-    </section>
+    <div class="row">
+      <!-- <div class="col"><CostList :costs="costs" /></div> -->
+      <div class="col"><CostList :costs="items" /></div>
+    </div>
 
     <div class="paginate">
-      <!-- <Paginate
-        v-model="page"
-        :page-count="pageCount"
-        :click-handler="pageChangeHandler"
-        :prev-text="'Назад'"
-        :next-text="'Вперед'"
-        :container-class="'pagination'"
-      /> -->
       <Paginate
         v-model="page"
         :page-count="pageCount"
@@ -103,7 +94,6 @@ export default Vue.extend({
   watch: {
     getParamsChange(flag) {
       //console.log(' watch flag-->', flag)
-      
       /* dev */
       /* const type = this.getPanelType
       switch (type) {
@@ -120,10 +110,13 @@ export default Vue.extend({
           console.warn('not getPanelType')
           break
       } */
-
     }
   },
   methods: {
+    /* gotoHome() {
+      this.$router.push('/')
+    }, */
+
     ...mapMutations({
       setRouter: 'setRouter'
     }),
@@ -149,7 +142,6 @@ export default Vue.extend({
       }
       //console.log('++progShow-->', progShow)
       return progShow
-
     },
 
     getActiveProgInt(bin) {
@@ -183,16 +175,14 @@ export default Vue.extend({
     setDryActiveProg() {
       this.dryActiveProg = [...this.getActiveProgBit()].reverse().join('')
       //console.log('this.dryActiveProg-->', this.dryActiveProg)
-      
 
       if (this.getDryProgPrice !== undefined) {
         this.dryProgPrice = this.getDryProgPrice.toString().split(',')
         //console.log('this.dryProgPrice-->', this.dryProgPrice)
       }
-      
+
       this.dryActiveProg = this.dryActiveProg.slice(1)
       //console.log('this.dryActiveProg.length-->',this.dryActiveProg)
-      
 
       for (let i = 0; i < this.dryActiveProg.length; i++) {
         //console.log('this.costs-->', JSON.stringify(this.costs[i].display))
@@ -253,26 +243,25 @@ export default Vue.extend({
     this.setRouter('/cost')
 
     const type = this.getPanelType
-      switch (type) {
-        case 'wash':
-          this.costs = this.getCosts()
-          this.setActiveProg()
-          break
-        case 'vacuum':
-          this.costs = this.getDryCosts()
-          this.setDryActiveProg()
-          break
-        default:
-          this.costs = []
-          console.warn('not getPanelType')
-          break
-      }
+    switch (type) {
+      case 'wash':
+        this.costs = this.getCosts()
+        this.setActiveProg()
+        break
+      case 'vacuum':
+        this.costs = this.getDryCosts()
+        this.setDryActiveProg()
+        break
+      default:
+        this.costs = []
+        console.warn('not getPanelType')
+        break
+    }
 
     const displayCosts = this.costs
       .filter(cost => cost.display === '1')
       .filter(cost => cost.mode !== 'hide')
-  
-   
+
     /* common     */
     this.setupPagination(displayCosts)
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
@@ -315,27 +304,11 @@ h4 {
   color: white;
 }
 .back {
-  padding-top: 0rem;
-  padding-left: 0rem;
+  padding-top: 2em;
+  padding-left: 0em;
   margin-left: -1.5em;
-  
+  z-index: 1;
 }
-/* #head {
-  margin-top: 0em;
-  margin-bottom: 0em;
-  margin-left: -0.5em;
-
-  padding-top: 0em;
-  padding-bottom: 0em;
-
-  position: fixed;
-  color: #121212;
-  z-index: 1000;
-} */
-/* .head-content {
-  padding-top: -1em;
-  padding-bottom: 4em;
-} */
 
 .paginate {
   font-size: 1em;
@@ -352,8 +325,4 @@ h4 {
   font-family: 'Plumb-Medium';
   font-weight: bold;
 }
-  
-/* #content {
-  margin-top: -4em;
-} */
 </style>

@@ -122,7 +122,7 @@ export default Vue.extend({
         this.collect()
     },
     async readCash() {
-      console.log('++++readCash')
+      console.log('++readCash')
       // cash
       const method = methods[2]
       const type = types[6] /* types[4] */ // ['cash', 'card', 'bonus', 'service', 'common', 'ping', 'finance']

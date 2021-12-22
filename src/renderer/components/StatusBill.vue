@@ -5,7 +5,8 @@
         <div class="info-title" style="margin-bottom: 4em;">
           <h3>
             <div align="center">
-              {{ ` ${this.getStatusBillMessages} ` }}
+              {{ ` ${ this.getStatusBillMessages } ` }}
+              <!-- {{ ` ${ this.message } ` }} -->
             </div>
 
             <div
@@ -38,10 +39,12 @@ export default Vue.extend({
   data: () => ({
     intervalMainMenu: null,
     seconds: 42,
-    cardMessageIndex: 5,
+    cardMessageIndex: -1,
     card: 0,
     terminal: null,
-    observer: null
+    observer: null,
+    sleepMs: 4000
+    // message: ''
   }),
   computed: {
     ...mapGetters({
@@ -53,42 +56,44 @@ export default Vue.extend({
   },
 
   methods: {
+    sleep(ms) {
+      const date = Date.now()
+      let currentDate = null
+      do {
+        currentDate = Date.now()
+      } while (currentDate - date < ms)
+    },
     gotoMainMenu(seconds) {
       this.intervalMainMenu = setInterval(() => {
         this.seconds = seconds
 
         this.observer = Observer.item
 
-        if (this.observer.state > 1 && this.observer.state === this.card) {
+        if (this.observer.state > 0 && this.observer.state === this.card) {
           console.log('Операция одобрена, сумма:', this.observer.state)
           this.cardMessageIndex = 3
           this.setStatusBillMessagesIndex(this.cardMessageIndex)
-
-          /* dev */
-          // this.updateWetMoney(this.observer.state)
-          
+          this.updateWetMoney(this.observer.state)
           this.$message(`Операция одобрена, сумма:  ${this.observer.state}`)
+          this.sleep(this.sleepMs)
           seconds = 0
         }
 
-        //  if (this.observer.state !== 1) {
-        //  console.log('this.observer.state typeof-->',typeof this.observer.state)
-        //  console.log('this.observer.state -->',this.observer.state)
-        //  }
-           
-        /* if (this.observer.state === 0) {  
+        // console.log('typeof this.observer.state-->', typeof this.observer.state)
+        if (!(typeof this.observer.state === 'number') && this.card > 0) {
           console.log('Операция отклонена')
           this.cardMessageIndex = 4
           this.setStatusBillMessagesIndex(this.cardMessageIndex)
-
+          /* dev */
+          // this.message = this.getStatusBillMessages
           this.$message(`Операция отклонена`)
-          seconds = 0
-        } */
+          this.sleep(this.sleepMs)
+          // seconds = 0
+          this.$router.push('/')
+        }
 
-
-
-
-        if (--seconds < -4 && this.$route.name !== 'program') {
+        if (--seconds < 0 && this.$route.name !== 'program') {
+          
           this.$router.push('/program')
         }
       }, 1000)
@@ -118,6 +123,7 @@ export default Vue.extend({
 
     switch (type) {
       case 'card':
+        this.cardMessageIndex = 5
         this.setStatusBillMessagesIndex(this.cardMessageIndex)
         break
       case 'bonus':
