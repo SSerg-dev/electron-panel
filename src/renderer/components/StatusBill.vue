@@ -4,10 +4,14 @@
       <div align="center" class="page-title">
         <div class="info-title" style="margin-bottom: 4em;">
           <h3>
-            <div align="center">
-              {{ ` ${ this.getStatusBillMessages } ` }}
-              <!-- {{ ` ${ this.message } ` }} -->
+            
+            <div id="message" align="center">
+              {{ ` ${ getStatusBillMessages } ` }}
             </div>
+            <!-- <input v-model="isShow" v-if="isShow"> -->
+            <!-- <div v-if="isShow" align="center">
+              {{ ` SSS ` }}
+            </div> -->
 
             <div
               v-if="this.seconds > 0"
@@ -43,20 +47,27 @@ export default Vue.extend({
     card: 0,
     terminal: null,
     observer: null,
-    sleepMs: 4000
-    // message: ''
+    sleepMs: 4000,
+    message: null,
+    isShow: false
   }),
   computed: {
     ...mapGetters({
       getSecondsGotoProgramMenu: 'getSecondsGotoProgramMenu',
-
       getStatusBill: 'getStatusBill',
       getStatusBillMessages: 'getStatusBillMessages'
     })
   },
+  watch: {
+    getStatusBillMessages(flag) {
+      console.log('getStatusBillMessages flag-->', flag)
+    }
+  },
 
   methods: {
+    
     sleep(ms) {
+      
       const date = Date.now()
       let currentDate = null
       do {
@@ -64,36 +75,46 @@ export default Vue.extend({
       } while (currentDate - date < ms)
     },
     gotoMainMenu(seconds) {
+
       this.intervalMainMenu = setInterval(() => {
         this.seconds = seconds
-
+        
         this.observer = Observer.item
-
+        
         if (this.observer.state > 0 && this.observer.state === this.card) {
           console.log('Операция одобрена, сумма:', this.observer.state)
           this.cardMessageIndex = 3
           this.setStatusBillMessagesIndex(this.cardMessageIndex)
+
           this.updateWetMoney(this.observer.state)
+
           this.$message(`Операция одобрена, сумма:  ${this.observer.state}`)
           this.sleep(this.sleepMs)
           seconds = 0
         }
 
-        // console.log('typeof this.observer.state-->', typeof this.observer.state)
         if (!(typeof this.observer.state === 'number') && this.card > 0) {
-          console.log('Операция отклонена')
+          
           this.cardMessageIndex = 4
-          this.setStatusBillMessagesIndex(this.cardMessageIndex)
+          this.setStatusBillMessagesIndex(this.cardMessageIndex) 
+          
           /* dev */
-          // this.message = this.getStatusBillMessages
+          // const container = document.getElementById('message')
+          // const content = container.innerHTML
+          // container.innerHTML = content
+          // this.$forceUpdate()
+
+          // this.isShow = true
+
+          // emit
+          
           this.$message(`Операция отклонена`)
           this.sleep(this.sleepMs)
-          // seconds = 0
           this.$router.push('/')
         }
+        
 
         if (--seconds < 0 && this.$route.name !== 'program') {
-          
           this.$router.push('/program')
         }
       }, 1000)

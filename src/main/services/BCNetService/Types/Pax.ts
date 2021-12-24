@@ -35,9 +35,9 @@ class Pax extends EventEmitter {
     this.instance.connect()
     // this.instance.disconnect()
 
-    // console.log('++Pax static connect port-->', item.config.port)
-    // console.log('++Pax static connect number-->', item.config.number)
-    // console.log('++Pax static connect currency-->', item.config.currency)
+    console.log('++Pax static connect port-->', item.config.port)
+    console.log('++Pax static connect number-->', item.config.number)
+    console.log('++Pax static connect currency-->', item.config.currency)
 
     return item
   }
@@ -46,6 +46,9 @@ class Pax extends EventEmitter {
     let _path: string
     let port_num = 10
     const portInfo = await getSerialDevicesInfo('USB')
+    /* dev */
+    console.log('++portInfo-->', portInfo)
+
     if (portInfo) {
       for (let i = 0; i < portInfo.length; i++) {
         /* dev */

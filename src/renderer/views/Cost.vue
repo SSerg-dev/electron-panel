@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="row">
-      
       <div class="col s2">
         <router-link to="/">
           <div class="back">
@@ -11,7 +10,7 @@
       </div>
 
       <div class="col s7">
-        <div class="page-title">
+        <div class="_page-title">
           <!-- СТОИМОСТЬ ПРОГРАММ -->
           <!-- <h4>{{getWetProgShow}}</h4> -->
           <!-- <h4>{{ getWetProgStatus }}</h4> -->
@@ -24,11 +23,9 @@
           <!-- <h4 align="left"><pre class="white-text"> {{status}} </pre></h4> -->
         </div>
       </div>
-      
     </div>
 
     <div class="row">
-      <!-- <div class="col"><CostList :costs="costs" /></div> -->
       <div class="col"><CostList :costs="items" /></div>
     </div>
 
@@ -113,10 +110,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    /* gotoHome() {
-      this.$router.push('/')
-    }, */
-
     ...mapMutations({
       setRouter: 'setRouter'
     }),
@@ -279,10 +272,10 @@ export default Vue.extend({
 
 <style scoped>
 .row {
-  padding-top: 4rem;
-  margin-bottom: 0rem;
+  padding-top: 4em;
+  margin-bottom: 14em;
   margin-left: 4em;
-  width: 1080px;
+  width: 100%;
 
   color: white;
 }
@@ -303,20 +296,20 @@ export default Vue.extend({
 h4 {
   color: white;
 }
+
 .back {
-  padding-top: 2em;
-  padding-left: 0em;
-  margin-left: -1.5em;
+  position: absolute;
+  margin-top: 4.5em;
+  margin-left: -2.5em;
   z-index: 1;
 }
 
 .paginate {
   font-size: 1em;
   width: 100%;
-  /* height: 0px; */
-  position: fixed;
-  left: 20em;
 
+  position: absolute;/* fixed; */
+  left: 20em;
   bottom: 16em;
 
   background: #121212;

@@ -65,7 +65,7 @@ console.log(' ')
 
 /* ----------------------------------------------------------------------- */
 /* */
-getSerialDevicesInfo('USB').then(ports => {
+getSerialDevicesInfo('USB').then(ports => {   
   //ports.forEach( (el: any) => execShellCommand(`kill -9 $(fuser ${el.path})`))
 })
 
@@ -124,7 +124,7 @@ const idle = async (config: any) => {
   ) {
     OPCUAClient.start(config.type, config.index)
   }
-  /* dev */
+  /* dev */ 
   /* if (config.bill_validator) {
     if (
       !mConfig ||
