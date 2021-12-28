@@ -165,7 +165,7 @@ const idle = async (config: any) => {
       if (config.bank_terminal.installed === true) {
         bankTerminal.start(options)
       } else {
-        console.log('not started --> BankTerminal.start()')
+        // console.log('not started --> BankTerminal.start()')
         isBankTerminalConnected && bankTerminal.stop()
       }
     }

@@ -77,9 +77,7 @@ export default Vue.extend({
         const stream$ = item
         const observer = bankTerminal.observerItem
         stream$.subscribe(observer)
-        // stream$.fire({type: 'INCREMENT'})
-        // console.log('observer.state--> 01', observer.state)
-
+        
         switch (options.type) {
           case 'vendotek':
             this.flowSequenceVendotek(item)
