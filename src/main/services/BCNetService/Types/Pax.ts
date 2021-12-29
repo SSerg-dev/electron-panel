@@ -45,15 +45,14 @@ class Pax extends EventEmitter {
     this.connect()
     this.device.getSaleRequest()
 
+    // this.getComPort()
   }
 
   // connect to pax ---------------------
   private connect = async () => {
     const { port, number, currency } = Pax.instance.config
     let port_num = 10
-
     this.device = new BCNet.PaxDevice(port, this.bills, conf.debug)
-
     try {
       await this.device.connect()
       log(TAG, 'Connected at port', port)
@@ -63,6 +62,23 @@ class Pax extends EventEmitter {
       delete this.device
       port_num = 10
     }
+  }
+  // test com port
+  private getComPort() {
+    const SerialPort = require('serialport')
+    const port = new SerialPort('/dev/ttyPos0', function(err: any) {
+      if (err) {
+        return console.log('Error: ', err.message)
+      }
+      console.log('++port-->', port)
+    })
+
+    port.write('main screen turn on', function(err: any) {
+      if (err) {
+        return console.log('Error on write: ', err.message)
+      }
+      console.log('message written')
+    })
   }
 
   // end methods
