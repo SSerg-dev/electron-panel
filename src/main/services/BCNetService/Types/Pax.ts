@@ -29,7 +29,7 @@ class Pax extends EventEmitter {
   }
 
   // methods
-  static connect(config: any) {
+  static connect(config: any) { 
     let item = new Pax()
     item.config = config
     this.instance = item
@@ -52,7 +52,7 @@ class Pax extends EventEmitter {
   private connect = async () => {
     const { port, number, currency } = Pax.instance.config
     let port_num = 10
-    this.device = new BCNet.PaxDevice(port, this.bills, conf.debug)
+    this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)
     try {
       await this.device.connect()
       log(TAG, 'Connected at port', port)

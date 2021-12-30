@@ -26,7 +26,6 @@ import {
 import { PaxRequest } from './PaxRequest'
 import { PaxMessage } from './PaxMessage'
 
-
 /**
  * Class PaxDevice
  */
@@ -34,6 +33,8 @@ class PaxDevice extends EventEmitter {
   adr: number
   commands: any
   port: string
+  currency: string
+  date: any
   portOptions: any
   serial: any
   parser: any
@@ -49,12 +50,14 @@ class PaxDevice extends EventEmitter {
    * @param {String} port Serialport address.
    * @param {Boolean} debug Printing debug info flag.
    */
-  constructor(port: string, bills: number[], debug: boolean) {
+  constructor(port: string, currency: string, bills: number[], debug: boolean) {
     super()
     let self = this
     this.adr = ADR_PAX_TERMINAL
     this.commands = CMDS(this)
     this.port = port || ''
+    this.currency = currency || 'RU'
+    this.date = new Date()
     this.portOptions = {
       baudRate: 11520,
       databits: 8,
@@ -149,37 +152,72 @@ class PaxDevice extends EventEmitter {
     })
   }
   // end comport methods ----------------
-  
-  // pax methods ------------------------
-  createMessage = (_code: number, _message: string) => {
-    // let mes: PaxMessage 
-    // this.PaxMessage.
-    this.paxMessage.numField = _code
-    this.paxMessage.mesLen = 12
-    this.paxMessage.data = _message
 
-    console.log('this.paxMessage-->', this.paxMessage)
+  // pax methods ------------------------
+  dateFilter = (value: any, format = 'date') => {
+    let yyyy = this.date.getFullYear()
+    let mm = this.date.getMonth() + 1
+    let dd = this.date.getDate()
+
+    let hh =
+      this.date.getHours() < 10
+        ? '0' + this.date.getHours()
+        : this.date.getHours()
+    let min =
+      this.date.getMinutes() < 10
+        ? '0' + this.date.getMinutes()
+        : this.date.getMinutes()
+    let ss =
+      this.date.getSeconds() < 10
+        ? '0' + this.date.getSeconds()
+        : this.date.getSeconds()
+
+    return String(10000 * yyyy + 100 * mm + dd + hh + min + ss)
+  }
+  // toHex = (num: string) => Math.abs(num).toString(16)
+
+  createMessage = (code: number, message: string) => {
+    this.paxMessage.numField = code
+    this.paxMessage.mesLen = message.length
+    this.paxMessage.data = message
+
+    // console.log('this.paxMessage-->', this.paxMessage)
     return this.paxMessage
-    
   }
 
-  getSaleRequest = () => {
-    this.paxRequest.messages[0] = AMOUNT_FUNC
-    this.paxRequest.messages[1] = CURRENCY_FUNC
-    this.paxRequest.messages[2] = TIMEDATE_FUNC
-    this.paxRequest.messages[3] = CODE_FUNC
-    this.paxRequest.messages[4] = UNUMBER_FUNC
-    this.paxRequest.messages[5] = IDENT_FUNC
-    this.paxRequest.messages[6] = VUNAME_FUNC
+  getSaleRequest = (sum: number = 10, ern: number, dataLength: number) => {
+    // this.paxRequest.messages[0] = AMOUNT_FUNC
+    // this.paxRequest.messages[1] = CURRENCY_FUNC
+    // this.paxRequest.messages[2] = TIMEDATE_FUNC
+    // this.paxRequest.messages[3] = CODE_FUNC
+    // this.paxRequest.messages[4] = UNUMBER_FUNC
+    // this.paxRequest.messages[5] = IDENT_FUNC
+    // this.paxRequest.messages[6] = VUNAME_FUNC
 
-    //  console.log('this.paxRequest.messages-->', this.paxRequest.messages)
+    // console.log('++this.currency-->', this.currency)
+
+    this.paxRequest.messages[0] = this.createMessage(
+      AMOUNT_FUNC,
+      (sum * 100).toString()
+    )
+    this.paxRequest.messages[1] = this.createMessage(
+      CURRENCY_FUNC,
+      this.currency
+    )
+    this.date = new Date()
+    this.paxRequest.messages[2] = this.createMessage(
+      TIMEDATE_FUNC,
+      this.dateFilter(this.date)
+    )
+    // console.log('TIMEDATE_FUNC-->', parseInt(TIMEDATE_FUNC.toString(), 16))
+    console.log('this.paxRequest.messages[2]-->', this.paxRequest.messages[2])
     // ----------------------------------
-    let _dataLength = 5
+    dataLength = 5
     this.paxRequest.messages.forEach((item: any, index: number) => {
-      _dataLength += 3
-      _dataLength += this.paxRequest.messages[index].toString().length
+      dataLength += 3
+      dataLength += this.paxRequest.messages[index].toString().length
     })
-    this.paxRequest.mesgsLen = _dataLength - 5
+    this.paxRequest.mesgsLen = dataLength - 5
     console.log('this.paxRequest.mesgsLen-->', this.paxRequest.mesgsLen)
     // ----------------------------------
     this.paxRequest.stx = BCNet.STX_RES
@@ -188,7 +226,7 @@ class PaxDevice extends EventEmitter {
       (this.paxRequest.mesgsLen & 0xff).toString() +
       (this.paxRequest.mesgsLen >> 8).toString()
 
-     console.log('++saleData-->', saleData)
+    console.log('++saleData-->', saleData)
     // ----------------------------------
     /* for (int i = 0; i < 7; i++) {
        saleData[offset++] = (char)(sale_req.messages[i].num_field);
@@ -197,20 +235,17 @@ class PaxDevice extends EventEmitter {
        strncpy(&saleData[offset], sale_req.messages[i].data, sale_req.messages[i].mes_len);
        offset += sale_req.messages[i].mes_len;
    } */
-   
-    const a = 42, b = '++SS'
-    this.createMessage(a,b)
+
+    const code = 42,
+      message = '++SS'
+    this.createMessage(code, message)
     // saleData: string =
-      // for (let index in this.paxRequest.messages) {
-      //   // console.log('index-->', index)
-      //   saleData = 
-      // } 
-     
+    // for (let index in this.paxRequest.messages) {
+    //   // console.log('index-->', index)
+    //   saleData =
+    // }
 
-    
     // ----------------------------------
-
-
   }
 
   // end pax methods --------------------
