@@ -11,7 +11,7 @@ import { ADR_PAX_TERMINAL } from '../Constants'
 import BCNetParser from '../BCNetParser'
 import CMDS from '../Commands'
 import { wait } from '../../../utils'
-import BCNet from '../../../services/BCNetService'
+import BCNet from '..'
 
 import {
   AMOUNT_FUNC,
@@ -26,11 +26,24 @@ import {
 import { PaxRequest } from './PaxRequest'
 import { PaxMessage } from './PaxMessage'
 
+enum MessageType {
+  sale,
+  ack,
+  nak,
+  eot,
+  wait,
+  response,
+  answer,
+  succes,
+  fail
+}
+
 /**
  * Class PaxDevice
  */
 class PaxDevice extends EventEmitter {
   adr: number
+  terminalId: string
   commands: any
   port: string
   currency: string
@@ -40,10 +53,11 @@ class PaxDevice extends EventEmitter {
   parser: any
   isDebug: any
   bills: any
-  /* dev */
   paxRequest: any
   paxMessage: any
-
+  dataLength: number = 0
+  messageType: MessageType = MessageType.wait  
+  
   /**
    * PaxDevice constructor.
    *
@@ -69,14 +83,15 @@ class PaxDevice extends EventEmitter {
     this.serial = new SerialPort(this.port, this.portOptions, err =>
       console.log(err)
     )
-    //  console.log('this.serial-->', this.serial)
     this.parser = this.serial.pipe(new BCNetParser())
     this.isDebug = debug || false
     this.bills = bills || []
-    /* dev */
-    //  this.terminalId = '00080951'
+    this.terminalId = '00080951'
     this.paxRequest = PaxRequest
     this.paxMessage = PaxMessage
+
+    // this.messageType = MessageType.wait  
+  
   }
   // getters
   get isOpen() {
@@ -129,7 +144,7 @@ class PaxDevice extends EventEmitter {
     try {
       await this.close()
     } catch (err) {
-      //throw err
+      throw err
     }
   }
 
@@ -138,6 +153,7 @@ class PaxDevice extends EventEmitter {
    */
   close = () => {
     let self = this
+
     return new Promise<any>((resolve, reject) => {
       if (self.serial.isOpen) {
         self.serial.close((error: any) => {
@@ -154,47 +170,58 @@ class PaxDevice extends EventEmitter {
   // end comport methods ----------------
 
   // pax methods ------------------------
-  dateFilter = (value: any, format = 'date') => {
-    let yyyy = this.date.getFullYear()
-    let mm = this.date.getMonth() + 1
-    let dd = this.date.getDate()
 
-    let hh =
-      this.date.getHours() < 10
-        ? '0' + this.date.getHours()
-        : this.date.getHours()
-    let min =
-      this.date.getMinutes() < 10
-        ? '0' + this.date.getMinutes()
-        : this.date.getMinutes()
-    let ss =
-      this.date.getSeconds() < 10
-        ? '0' + this.date.getSeconds()
-        : this.date.getSeconds()
+  dateFilter = (value: any, format = 'datetime') => {
+    const options: any = {}
 
-    return String(10000 * yyyy + 100 * mm + dd + hh + min + ss)
+    options.day = '2-digit'
+    options.month = '2-digit'
+    options.year = 'numeric'
+
+    options.hour = '2-digit'
+    options.minute = '2-digit'
+    options.second = '2-digit'
+
+    let year, month, day
+    let hour, minute, second
+
+    let result = new Intl.DateTimeFormat('ru-RU', options).format(
+      new Date(value)
+    )
+
+    year = result.slice(6, 10)
+    month = result.slice(3, 5)
+    day = result.slice(0, 2)
+
+    hour = result.slice(12, 14)
+    minute = result.slice(15, 17)
+    second = result.slice(18, 20)
+
+    if (format.includes('date')) result = year + month + day
+    if (format.includes('time')) result = hour + minute + second
+    if (format.includes('datetime'))
+      result = year + month + day + hour + minute + second
+
+    return result
   }
-  // toHex = (num: string) => Math.abs(num).toString(16)
 
-  createMessage = (code: number, message: string) => {
-    this.paxMessage.numField = code
-    this.paxMessage.mesLen = message.length
-    this.paxMessage.data = message
+  toHex = (num: any) => Math.abs(num).toString(16)
 
-    // console.log('this.paxMessage-->', this.paxMessage)
-    return this.paxMessage
+  clear() {
+    this.paxRequest.messages = []
+    this.dataLength = 0
   }
 
-  getSaleRequest = (sum: number = 10, ern: number, dataLength: number) => {
-    // this.paxRequest.messages[0] = AMOUNT_FUNC
-    // this.paxRequest.messages[1] = CURRENCY_FUNC
-    // this.paxRequest.messages[2] = TIMEDATE_FUNC
-    // this.paxRequest.messages[3] = CODE_FUNC
-    // this.paxRequest.messages[4] = UNUMBER_FUNC
-    // this.paxRequest.messages[5] = IDENT_FUNC
-    // this.paxRequest.messages[6] = VUNAME_FUNC
+  createMessage = (code: any, message: string) => {
+    /* dev */
+    // code = '0x' + this.toHex(code).toUpperCase()
+    code = this.toHex(code)
+    this.paxMessage = new PaxMessage(code, message.length, message)
+    return new PaxMessage(code, message.length, message)
+  }
 
-    // console.log('++this.currency-->', this.currency)
+  getSaleRequest = (sum: number = 100, ern: number = 3) => {
+    this.clear()
 
     this.paxRequest.messages[0] = this.createMessage(
       AMOUNT_FUNC,
@@ -209,43 +236,143 @@ class PaxDevice extends EventEmitter {
       TIMEDATE_FUNC,
       this.dateFilter(this.date)
     )
-    // console.log('TIMEDATE_FUNC-->', parseInt(TIMEDATE_FUNC.toString(), 16))
-    console.log('this.paxRequest.messages[2]-->', this.paxRequest.messages[2])
-    // ----------------------------------
-    dataLength = 5
+    this.paxRequest.messages[3] = this.createMessage(CODE_FUNC, '1')
+    this.paxRequest.messages[4] = this.createMessage(
+      UNUMBER_FUNC,
+      ern.toString()
+    )
+    this.paxRequest.messages[5] = this.createMessage(
+      IDENT_FUNC,
+      this.terminalId
+    )
+    this.paxRequest.messages[6] = this.createMessage(
+      VUNAME_FUNC,
+      'VM' + this.terminalId
+    )
+
+    this.dataLength = 5
     this.paxRequest.messages.forEach((item: any, index: number) => {
-      dataLength += 3
-      dataLength += this.paxRequest.messages[index].toString().length
+      this.dataLength += 3
+      this.dataLength += this.paxRequest.messages[index].mesLen
     })
-    this.paxRequest.mesgsLen = dataLength - 5
-    console.log('this.paxRequest.mesgsLen-->', this.paxRequest.mesgsLen)
-    // ----------------------------------
+    this.paxRequest.mesgsLen = this.dataLength - 5
+
     this.paxRequest.stx = BCNet.STX_RES
     let saleData: string =
       this.paxRequest.stx +
       (this.paxRequest.mesgsLen & 0xff).toString() +
       (this.paxRequest.mesgsLen >> 8).toString()
 
-    console.log('++saleData-->', saleData)
-    // ----------------------------------
-    /* for (int i = 0; i < 7; i++) {
-       saleData[offset++] = (char)(sale_req.messages[i].num_field);
-       saleData[offset++] = (char)(sale_req.messages[i].mes_len & 0xff);
-       saleData[offset++] = (char)(sale_req.messages[i].mes_len >> 8);
-       strncpy(&saleData[offset], sale_req.messages[i].data, sale_req.messages[i].mes_len);
-       offset += sale_req.messages[i].mes_len;
-   } */
+    this.paxRequest.messages.forEach((item: any, index: number) => {
+      saleData += this.paxRequest.messages[index].numField.toString()
+      saleData += (this.paxRequest.messages[index].mesLen & 0xff).toString()
+      saleData += (this.paxRequest.messages[index].mesLen >> 8).toString()
+      saleData += this.paxRequest.messages[index].data.toString()
+    })
 
-    const code = 42,
-      message = '++SS'
-    this.createMessage(code, message)
-    // saleData: string =
-    // for (let index in this.paxRequest.messages) {
-    //   // console.log('index-->', index)
-    //   saleData =
+    const crc16 = this.getCRC16(saleData, this.dataLength - 2)
+    saleData += crc16 & 0xff
+    saleData += crc16 >> 8 // ?
+
+    // console.log('++saleData-->', saleData.length, saleData)
+    return saleData
+
+    /* dev */
+    // return this.getRequest()
+  }
+
+  getReconciliationRequest() {
+    this.clear()
+    this.paxRequest.messages[0] = this.createMessage(CODE_FUNC, '59')
+    this.paxRequest.messages[1] = this.createMessage(
+      IDENT_FUNC,
+      this.terminalId
+    )
+    this.paxRequest.messages[2] = this.createMessage(
+      VUNAME_FUNC,
+      'VM' + this.terminalId
+    )
+    return this.getRequest()
+  }
+
+  getCheckRequest() {
+    this.clear()
+    this.paxRequest.messages[0] = this.createMessage(CODE_FUNC, '26')
+    return this.getRequest()
+  }
+
+  getRequest() {
+    this.dataLength = 5
+    this.paxRequest.messages.forEach((item: any, index: number) => {
+      this.dataLength += 3
+      this.dataLength += this.paxRequest.messages[index].mesLen
+    })
+    this.paxRequest.mesgsLen = this.dataLength - 5
+
+    this.paxRequest.stx = BCNet.STX_RES
+    let data: string =
+      this.paxRequest.stx +
+      (this.paxRequest.mesgsLen & 0xff).toString() +
+      (this.paxRequest.mesgsLen >> 8).toString()
+    console.log('--request data-->', data)
+
+    this.paxRequest.messages.forEach((item: any, index: number) => {
+      data += this.paxRequest.messages[index].numField.toString()
+      data += (this.paxRequest.messages[index].mesLen & 0xff).toString()
+      data += (this.paxRequest.messages[index].mesLen >> 8).toString()
+      data += this.paxRequest.messages[index].data.toString()
+    })
+
+    const crc16 = this.getCRC16(data, this.dataLength - 2)
+    data += crc16 & 0xff
+    data += crc16 >> 8 // ?
+
+    console.log('++request data-->', data.length, data)
+    return data
+  }
+  /* dev */
+  sale(sum: number = 100, ern: number = 3) {
+    this.clear()
+    let data: string = this.getSaleRequest(sum, ern)
+    return this.request(data)
+  }
+  request(data: string) {
+    console.log('request data-->', data)
+    /* dev */
+    // ----------------------------------
+    let buff: string,
+      ebuf: string,
+      end: boolean = true,
+      res: number = 0,
+      nakCount: number = 0
+    const chWait = [0x2, 0x5, 0x0, 0x19, 0x2, 0x0, 0x32, 0x31, 0xa5, 0xc2]
+    // ----------------------------------
+    console.log('this.messageType-->', this.messageType)
+    // while (end) {
+
     // }
+  }
 
-    // ----------------------------------
+  /*     */
+
+  getCRC16(pBuf: any, lSize: number) {
+    let s: number
+    for (s = 0x0000; lSize > 0; lSize--, pBuf++) {
+      let b = pBuf
+      for (let j = 0; j < 8; j++) {
+        let x16 =
+          (b & 0x80 && s & 0x8000) || (!(b & 0x80) && !(s & 0x8000)) ? 0 : 1
+        let x15 = (x16 && s & 0x4000) || (!x16 && !(s & 0x4000)) ? 0 : 1
+        let x2 = (x16 && s & 0x0002) || (!x16 && !(s & 0x0002)) ? 0 : 1
+        s = s << 1
+        b = b << 1
+        s |= x16 ? 0x0001 : 0
+        s = x2 ? s | 0x0004 : s & 0xfffb
+        s = x15 ? s | 0x8000 : s & 0x7fff
+      }
+    }
+    s = (s << 8) + (s >> 8)
+    return s
   }
 
   // end pax methods --------------------

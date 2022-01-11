@@ -43,9 +43,13 @@ class Pax extends EventEmitter {
   // flowSequence -----------------------
   private flowSequence = async () => {
     this.connect()
-    this.device.getSaleRequest()
+    /* dev */
+    // this.device.getSaleRequest()
+    // this.device.getReconciliationRequest()
+    // this.device.getCheckRequest()
+    this.device.sale()
 
-    // this.getComPort()
+    // this.getComPort() 
   }
 
   // connect to pax ---------------------
