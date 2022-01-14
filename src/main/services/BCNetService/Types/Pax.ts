@@ -43,11 +43,12 @@ class Pax extends EventEmitter {
   // flowSequence -----------------------
   private flowSequence = async () => {
     this.connect()
+
     /* dev */
     // this.device.getSaleRequest()
     // this.device.getReconciliationRequest()
     // this.device.getCheckRequest()
-    this.device.sale()
+    // this.device.sale()
 
     // this.getComPort() 
   }
@@ -68,13 +69,13 @@ class Pax extends EventEmitter {
     }
   }
   // test com port
-  private getComPort() {
+  private getComPort() { 
     const SerialPort = require('serialport')
     const port = new SerialPort('/dev/ttyPos0', function(err: any) {
       if (err) {
         return console.log('Error: ', err.message)
       }
-      console.log('++port-->', port)
+      console.log('++getComPort-->', port)
     })
 
     port.write('main screen turn on', function(err: any) {

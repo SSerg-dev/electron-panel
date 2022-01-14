@@ -3,6 +3,11 @@
     <div class="page-title">
       <h3>{{ 'LanguageTitle' | localize }}</h3>
     </div>
+    <router-link to="/">
+        <div class="back">
+          <img src="imgs/key/back.png" />
+        </div>
+      </router-link>
 
     <section>
       <form @submit.prevent>
@@ -344,13 +349,24 @@ export default Vue.extend({
   margin-right: auto;
   width: 20em;
 }
+.back {
+  position: absolute;
+  margin-top: -0.8em;
+  margin-left: 2.2em;
+  z-index: 1;
+}
+
+table{
+  position: absolute;
+}
 table,
 th,
 td {
   /* border: solid; */
   border: none;
-  margin-left: 3rem;
-  margin-bottom: 0remem;
+  margin-left: 3em;
+  margin-bottom: 0em;
+  margin-top: 5em;
   height: 220px;
   width: 220px;
 
@@ -377,15 +393,10 @@ th {
 .paginate {
   font-size: 1em;
   width: 100%;
-  /* height: 0px; */
   position: fixed;
   left: 15em;
-
   bottom: 16em;
-
   background: #121212;
-  /* border: solid darkcyan; */
-
   font-family: 'Plumb-Medium';
   font-weight: bold;
 }

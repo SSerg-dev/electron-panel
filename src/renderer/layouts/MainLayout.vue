@@ -4,6 +4,7 @@
     <!-- <button class="btn">TEST</button> -->
     <main class="app-content" :class="{ full: !isOpen }">
       <!-- dev -->
+
       <Snowf
         :amount="500"
         :size="5"
@@ -16,6 +17,7 @@
         :resize="true"
         color="#fff"
       />
+
       <!--     -->
       <div class="app-page">
         <router-view />

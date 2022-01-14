@@ -24,6 +24,7 @@
     */
    constructor (device: any) {
      super(0x30, device)
+    //  console.log('!!++reset constructor')
    }
    
  }

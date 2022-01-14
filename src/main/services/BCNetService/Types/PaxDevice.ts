@@ -7,7 +7,7 @@
 
 import { EventEmitter } from 'events'
 import SerialPort from 'serialport'
-import { ADR_PAX_TERMINAL } from '../Constants'
+import { ADR_CARD_READER, CRC_POLY } from '../Constants'
 import BCNetParser from '../BCNetParser'
 import CMDS from '../Commands'
 import { wait } from '../../../utils'
@@ -32,6 +32,7 @@ enum MessageType {
   nak,
   eot,
   wait,
+  request,
   response,
   answer,
   succes,
@@ -43,31 +44,41 @@ enum MessageType {
  */
 class PaxDevice extends EventEmitter {
   adr: number
-  terminalId: string
   commands: any
   port: string
-  currency: string
-  date: any
   portOptions: any
   serial: any
   parser: any
+  info: any
   isDebug: any
   bills: any
+  status: any
+
+  isSend: boolean
+  /* dev */
+  currency: string
+  date: any
+  terminalId: string
   paxRequest: any
   paxMessage: any
   dataLength: number = 0
-  messageType: MessageType = MessageType.wait  
-  
+  messageType: any = MessageType.request
+
   /**
    * PaxDevice constructor.
    *
    * @param {String} port Serialport address.
    * @param {Boolean} debug Printing debug info flag.
    */
-  constructor(port: string, currency: string, bills: number[], debug: boolean) {
+  constructor(
+    port: string,
+    currency: string,
+    bills: number[],
+    debug: boolean = false
+  ) {
     super()
     let self = this
-    this.adr = ADR_PAX_TERMINAL
+    this.adr = ADR_CARD_READER
     this.commands = CMDS(this)
     this.port = port || ''
     this.currency = currency || 'RU'
@@ -79,20 +90,28 @@ class PaxDevice extends EventEmitter {
       parity: 'none',
       autoOpen: false
     }
+    this.isSend = false
     /* Create comport driver.  */
     this.serial = new SerialPort(this.port, this.portOptions, err =>
-      console.log(err)
+      this.debug(err)
     )
     this.parser = this.serial.pipe(new BCNetParser())
+    /* Device identification information. */
+    this.info = {
+      model: '',
+      serial: '',
+      asset: ''
+    }
     this.isDebug = debug || false
     this.bills = bills || []
     this.terminalId = '00080951'
     this.paxRequest = PaxRequest
     this.paxMessage = PaxMessage
 
-    // this.messageType = MessageType.wait  
-  
+    // this.messageType = MessageType.wait
+    // console.log('this.commands-->', this.commands)
   }
+
   // getters
   get isOpen() {
     return this.serial.isOpen
@@ -113,6 +132,7 @@ class PaxDevice extends EventEmitter {
         resolve(true)
       } else {
         self.serial.open((error: any) => {
+          // console.log('++self.serial.open')
           if (error) {
             reject(error)
           }
@@ -135,7 +155,35 @@ class PaxDevice extends EventEmitter {
         throw err
       }
     }
+    // device init --------------
+    try {
+      await this.reset()
+      /* dev */
+      // await this.execute(this.commands.Ack)
+      // await this.execute(this.commands.Nak)
+
+      this.sale()
+
+      // await this.waitStatus('13', 1500)
+      // console.log('++this.commands.Identification-->', this.commands.Identification)
+
+      // this.info = await this.execute(this.commands.Identification)
+      // console.log('++this.info-->', this.info )
+
+      return true
+    } catch (error) {
+      throw error
+    }
   } // end connect
+
+  reset = async () => {
+    try {
+      await this.execute(this.commands.Reset)
+      // console.log('!!++reset')
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   /**
    * Disconnect from device.
@@ -168,6 +216,85 @@ class PaxDevice extends EventEmitter {
     })
   }
   // end comport methods ----------------
+
+  // request & response methods ---------
+
+  /**
+   * Sending a data packet.
+   *
+   * @param {Buffer} request Data packet.
+   * @param {Number} timeout The maximum time to complete this action.
+   * @returns {Promise}
+   */
+  send = (request: Buffer, timeout: number = 1000) => {
+    /* Linked self. */
+    let self = this
+    // console.log('++send-->', request)
+    /* Async worker. */
+    return new Promise<any>(async (resolve, reject) => {
+      /* Timeout timer. */
+      let timer: any = null
+      /* Timeout timer handler. */
+      let timerHandler = () => {
+        /* Update flag. */
+        self.isSend = false
+        /* Send event. */
+        reject(new Error('Request timeout.'))
+      }
+      /* Receive packet handler. */
+      let handler = async (response: Buffer) => {
+        /* Unbind timeout handler. */
+        clearTimeout(timer)
+        /* Unbind event. */
+        self.parser.removeListener('data', handler)
+
+        this.debug(`response => ${response.toString()}`)
+        await wait(100)
+
+        /* Check CRC */
+        let ln = response.length
+        let check = response.slice(ln - 2, ln)
+        let slice = response.slice(0, ln - 2)
+
+        /* dev */
+        /* Check response CRC. */
+        // if ( check.toString() !== (self.getCRC16(slice)).toString() ) {
+        //     this.debug("Send NAK")
+        //     await self.serial.write(self.commands.Nak.request())
+        //     self.isSend = false
+        //     reject(new Error('Wrong response data hash.'))
+        // }
+
+        /* Get data from packet. */
+        let data = response.slice(3, ln - 2)
+        /* Check response type. */
+        if (data.length == 1 && data[0] == 0xff) {
+          /* Response receive as NAK. */
+          reject(new Error('Wrong request data hash.'))
+        } else {
+          /* Send ACK. */
+          this.debug('Send ACK')
+          await self.serial.write(self.commands.Ack.request())
+        }
+        /* Update flag. */
+        self.isSend = false
+        /* Send event. */
+        resolve(data)
+      }
+      /* Bind event. */
+      self.parser.once('data', handler)
+      /* Update flag. */
+      self.isSend = true
+      /* Send packet. */
+      this.debug(`request => ${request.toString()}`)
+      await wait(100)
+      self.serial.write(request)
+      /* Bind timeout handler. */
+      timer = setTimeout(timerHandler, timeout)
+    })
+  }
+
+  // end request & response methods -----
 
   // pax methods ------------------------
 
@@ -250,7 +377,8 @@ class PaxDevice extends EventEmitter {
       'VM' + this.terminalId
     )
 
-    this.dataLength = 5
+    // ----------------------------------
+    /* this.dataLength = 5
     this.paxRequest.messages.forEach((item: any, index: number) => {
       this.dataLength += 3
       this.dataLength += this.paxRequest.messages[index].mesLen
@@ -270,15 +398,16 @@ class PaxDevice extends EventEmitter {
       saleData += this.paxRequest.messages[index].data.toString()
     })
 
-    const crc16 = this.getCRC16(saleData, this.dataLength - 2)
+    const crc16 = this._getCRC16(saleData, this.dataLength - 2)
     saleData += crc16 & 0xff
     saleData += crc16 >> 8 // ?
 
-    // console.log('++saleData-->', saleData.length, saleData)
-    return saleData
+    return saleData */
 
+    // ----------------------------------
     /* dev */
-    // return this.getRequest()
+
+    return this.getRequest()
   }
 
   getReconciliationRequest() {
@@ -314,7 +443,7 @@ class PaxDevice extends EventEmitter {
       this.paxRequest.stx +
       (this.paxRequest.mesgsLen & 0xff).toString() +
       (this.paxRequest.mesgsLen >> 8).toString()
-    console.log('--request data-->', data)
+    console.log('request header data-->', data)
 
     this.paxRequest.messages.forEach((item: any, index: number) => {
       data += this.paxRequest.messages[index].numField.toString()
@@ -323,21 +452,23 @@ class PaxDevice extends EventEmitter {
       data += this.paxRequest.messages[index].data.toString()
     })
 
-    const crc16 = this.getCRC16(data, this.dataLength - 2)
+    const crc16 = this._getCRC16(data, this.dataLength - 2)
     data += crc16 & 0xff
     data += crc16 >> 8 // ?
 
-    console.log('++request data-->', data.length, data)
+    console.log('request header + body data-->', data)
     return data
   }
   /* dev */
-  sale(sum: number = 100, ern: number = 3) {
+  sale(sum: number = 10, ern: number = 3) {
     this.clear()
+    this.messageType = MessageType[5]
+
     let data: string = this.getSaleRequest(sum, ern)
     return this.request(data)
   }
-  request(data: string) {
-    console.log('request data-->', data)
+  request(request: string) {
+    // console.log('request data-->', request)
     /* dev */
     // ----------------------------------
     let buff: string,
@@ -347,15 +478,35 @@ class PaxDevice extends EventEmitter {
       nakCount: number = 0
     const chWait = [0x2, 0x5, 0x0, 0x19, 0x2, 0x0, 0x32, 0x31, 0xa5, 0xc2]
     // ----------------------------------
-    console.log('this.messageType-->', this.messageType)
-    // while (end) {
+    // let self = this
 
-    // }
+    switch (this.messageType) {
+      case 'request':
+        // console.log('++request-->', this.messageType)
+        // this.send(data)
+        // let response =  this.send(request)
+
+        break
+
+      case 'wait':
+        break
+      case 'answer':
+        break
+      case 'response':
+        break
+      case 'eot':
+        break
+      case 'response':
+        break
+
+      default:
+        break
+    }
   }
 
   /*     */
 
-  getCRC16(pBuf: any, lSize: number) {
+  _getCRC16(pBuf: any, lSize: number) {
     let s: number
     for (s = 0x0000; lSize > 0; lSize--, pBuf++) {
       let b = pBuf
@@ -375,6 +526,126 @@ class PaxDevice extends EventEmitter {
     return s
   }
 
+  /* Utils methods --------------------------------------------------------- */
+  /* ----------------------------------------------------------------------- */
+
+  /**
+   * Waits for the occurrence of the specified status event.
+   *
+   * @param {String} status Number of status code.
+   * @param {Number} timeout The maximum time to complete this action.
+   * @returns {Promise}
+   */
+  waitStatus = (status: string, timeout: number = 1000) => {
+    console.log('++waitStatus')
+    let self = this
+    return new Promise<any>((resolve, reject) => {
+      if (self.status == status) {
+        resolve(true)
+      }
+      let timer: any = null
+      let timerHandler = () => {
+        clearTimeout(timer)
+        self.removeListener('status', handler)
+        reject(new Error('Request timeout.'))
+      }
+      let handler = (primary: string) => {
+        if (primary == status) {
+          clearTimeout(timer)
+          self.removeListener('status', handler)
+          resolve(true)
+        }
+      }
+      self.on('status', handler)
+      if (timeout) {
+        timer = setTimeout(timerHandler, timeout)
+      }
+    })
+  } // end waitStatus
+
+  /**
+   * Waiting for the completion of the processing of the current command.
+   *
+   * @param {Number} timeout The maximum time to complete this action.
+   * @returns {Promise}
+   */
+  waitSending = (timeout: number = 1000) => {
+    // console.log('++waitSending')
+    let self = this
+    return new Promise<any>((resolve, reject) => {
+      let timer: any = null
+      let interval: number = 50
+      let counter: number = 0
+      if (!self.isSend) {
+        resolve(true)
+      }
+      let timerHandler = () => {
+        counter += interval
+        if (!self.isSend) {
+          clearInterval(timer)
+          resolve(true)
+        } else if (counter >= timeout) {
+          clearInterval(timer)
+          reject(new Error('Request timeout.'))
+        }
+      }
+      timer = setInterval(timerHandler, interval)
+    })
+  } // end waitSending
+
+  /**
+   * Execute the specified command.
+   *
+   * @param {Object} command Target command.
+   * @param {Object} params Execute parameters.
+   * @param {Number} timeout The maximum time to complete this action.
+   * @returns {Promise}
+   */
+  execute = (command: any, params: any[] = [], timeout: number = 1000) => {
+    let self = this
+    return new Promise<any>(async (resolve, reject) => {
+      try {
+        let request = command.request(params)
+        await self.waitSending(timeout)
+        let response = await self.send(request, timeout)
+        resolve(command.response(response))
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
+  /**
+   * Calculation packet checksum.
+   *
+   * @param {Buffer} buffer Raw data for calculation.
+   * @returns {Number} Calculated checksum.
+   */
+  getCRC16 = (buffer: Buffer) => {
+    let CRC = 0
+    let buf = Buffer.alloc(2)
+    for (let i = 0; i < buffer.length; i++) {
+      CRC ^= buffer[i]
+      for (let j = 0; j < 8; j++) {
+        if (CRC & 0x0001) {
+          CRC >>= 1
+          CRC ^= CRC_POLY
+        } else CRC >>= 1
+      }
+    }
+    buf.writeUInt16BE(CRC, 0)
+    return Array.prototype.reverse.call(buf)
+  }
+
+  /**
+   * Printing data to console.
+   *
+   * @param {Any} params Data for printing to console.
+   */
+  debug = (...params: any) => {
+    if (this.isDebug) {
+      console.log(params)
+    }
+  }
   // end pax methods --------------------
 } // end class PaxDevice
 

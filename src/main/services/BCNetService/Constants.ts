@@ -5,20 +5,16 @@
 + * 
 + */
 
-
 /* Message transmission start code. */
 export const SYNC = 0x02
-
-export const ADR_SOURCE = 0x01
-
+/*  */
+export const CRC_POLY = 0x08408
 /* Peripheral addresses. */
-export const ADR_PAX_TERMINAL   = 0x03
-
-// --------------------------------------
-
+export const ADR_CARD_READER = 0x04
+/* port */
 export const PAX_PORT = '/dev/ttyPos0' //  '/dev/ttyUSB2'  
 
-// --------------------------------------
+// from Qt src --------------------------
 export const ACK_RES = 0x06
 export const NAK_RES = 0x15
 export const EOT_RES = 0x4
