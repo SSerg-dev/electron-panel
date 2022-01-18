@@ -12,6 +12,8 @@ import Nak from './Nak'
 import Poll from './Poll'
 import Reset from './Reset'
 import SetSecurity from './SetSecurity'
+import Request from './Request'
+// 
  
  export default (device: any) => {
      return {
@@ -22,6 +24,7 @@ import SetSecurity from './SetSecurity'
         Poll : new Poll(device),
         Reset : new Reset(device),
         SetSecurity : new SetSecurity(device),
+        Request : new Request(device),
      }
  }
  

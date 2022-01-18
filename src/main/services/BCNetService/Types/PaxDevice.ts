@@ -14,6 +14,12 @@ import { wait } from '../../../utils'
 import BCNet from '..'
 
 import {
+  ACK_RES,
+  NAK_RES,
+  EOT_RES,
+  STX_RES,
+  TIMEOUT_1,
+  TIMEOUT_2,
   AMOUNT_FUNC,
   CURRENCY_FUNC,
   TIMEDATE_FUNC,
@@ -25,6 +31,8 @@ import {
 
 import { PaxRequest } from './PaxRequest'
 import { PaxMessage } from './PaxMessage'
+import { resolve } from 'dns'
+import { reject } from 'lodash'
 
 enum MessageType {
   sale,
@@ -95,6 +103,13 @@ class PaxDevice extends EventEmitter {
     this.serial = new SerialPort(this.port, this.portOptions, err =>
       this.debug(err)
     )
+    /* On serial open event. */
+    this.serial.on('open', () => self.onSerialPortOpen())
+    /* On serial error event. */
+    this.serial.on('error', (error: any) => self.onSerialPortError(error))
+    /* On serial close event. */
+    this.serial.on('close', () => this.onSerialPortClose())
+
     this.parser = this.serial.pipe(new BCNetParser())
     /* Device identification information. */
     this.info = {
@@ -132,7 +147,6 @@ class PaxDevice extends EventEmitter {
         resolve(true)
       } else {
         self.serial.open((error: any) => {
-          // console.log('++self.serial.open')
           if (error) {
             reject(error)
           }
@@ -150,21 +164,20 @@ class PaxDevice extends EventEmitter {
     if (!this.isOpen) {
       try {
         const response = await this.open()
-        //  console.log('PaxDevice-->connect-->response', response)
       } catch (err) {
         throw err
       }
     }
     // device init --------------
     try {
-      await this.reset()
       /* dev */
+      // await this.reset()
       // await this.execute(this.commands.Ack)
       // await this.execute(this.commands.Nak)
 
       this.sale()
 
-      // await this.waitStatus('13', 1500)
+      // await this.waitStatus('13', 5000)
       // console.log('++this.commands.Identification-->', this.commands.Identification)
 
       // this.info = await this.execute(this.commands.Identification)
@@ -182,6 +195,22 @@ class PaxDevice extends EventEmitter {
       // console.log('!!++reset')
     } catch (error) {
       console.log(error)
+    }
+  }
+  
+
+  isBusy = () => {
+    switch (this.status) {
+      case ACK_RES:
+        return false
+      case NAK_RES:
+      case EOT_RES:
+      case STX_RES:
+      case TIMEOUT_1:
+      case TIMEOUT_2:
+        return true
+      default:
+        return false
     }
   }
 
@@ -217,6 +246,13 @@ class PaxDevice extends EventEmitter {
   }
   // end comport methods ----------------
 
+  /**
+   * On serial events
+   */
+  onSerialPortOpen = () => this.debug('Serialport Open.')
+  onSerialPortError = (error: any) => this.debug('Serialport Error:', error)
+  onSerialPortClose = () => this.debug('Serialport Close.')
+
   // request & response methods ---------
 
   /**
@@ -229,7 +265,6 @@ class PaxDevice extends EventEmitter {
   send = (request: Buffer, timeout: number = 1000) => {
     /* Linked self. */
     let self = this
-    // console.log('++send-->', request)
     /* Async worker. */
     return new Promise<any>(async (resolve, reject) => {
       /* Timeout timer. */
@@ -255,20 +290,22 @@ class PaxDevice extends EventEmitter {
         let ln = response.length
         let check = response.slice(ln - 2, ln)
         let slice = response.slice(0, ln - 2)
-
-        /* dev */
         /* Check response CRC. */
-        // if ( check.toString() !== (self.getCRC16(slice)).toString() ) {
-        //     this.debug("Send NAK")
-        //     await self.serial.write(self.commands.Nak.request())
-        //     self.isSend = false
-        //     reject(new Error('Wrong response data hash.'))
-        // }
-
+        if (check.toString() !== self.getCRC16(slice).toString()) {
+          /* Send NAK. */
+          this.debug('Send NAK')
+          await self.serial.write(self.commands.Nak.request())
+          /* Update flag. */
+          self.isSend = false
+          /* Send event. */
+          reject(new Error('Wrong response data hash.'))
+        }
         /* Get data from packet. */
         let data = response.slice(3, ln - 2)
         /* Check response type. */
-        if (data.length == 1 && data[0] == 0xff) {
+        if (data.length == 1 && data[0] == 0x00) {
+          /* Response receive as ACK. */
+        } else if (data.length == 1 && data[0] == 0xff) {
           /* Response receive as NAK. */
           reject(new Error('Wrong request data hash.'))
         } else {
@@ -293,6 +330,46 @@ class PaxDevice extends EventEmitter {
       timer = setTimeout(timerHandler, timeout)
     })
   }
+
+  sendRequest = async (request: Buffer, timeout: number = 1000) => {
+    let self = this
+    this.status = false
+    this.reset()
+
+    let temp: any = 'AAA'
+
+    temp = Buffer.from(temp)
+    // console.log('from temp-->', temp)
+    const isResponse = await self.serial.write(temp)
+
+    // self.serial.on('readable', function () {
+    //   console.log('Data:', self.serial.read())
+    // })
+
+    // temp = self.serial.read()
+    // console.log('read temp-->', temp)
+
+    const promise = new Promise((resolve, reject) => {
+      // setTimeout(() => {
+
+      // }, timeout)
+
+      const paxData = { name: 'pax', value: 42 }
+
+      if (isResponse) {
+        this.status = true
+        resolve(paxData)
+      } else {
+        this.status = false
+        reject(new Error('Response reject error'))
+      }
+    })
+    promise
+      .then(data => {
+        console.log('promise data-->', data)
+      })
+      .catch(error => console.log('Response data error', error))
+  } // end sendRequest
 
   // end request & response methods -----
 
@@ -377,36 +454,6 @@ class PaxDevice extends EventEmitter {
       'VM' + this.terminalId
     )
 
-    // ----------------------------------
-    /* this.dataLength = 5
-    this.paxRequest.messages.forEach((item: any, index: number) => {
-      this.dataLength += 3
-      this.dataLength += this.paxRequest.messages[index].mesLen
-    })
-    this.paxRequest.mesgsLen = this.dataLength - 5
-
-    this.paxRequest.stx = BCNet.STX_RES
-    let saleData: string =
-      this.paxRequest.stx +
-      (this.paxRequest.mesgsLen & 0xff).toString() +
-      (this.paxRequest.mesgsLen >> 8).toString()
-
-    this.paxRequest.messages.forEach((item: any, index: number) => {
-      saleData += this.paxRequest.messages[index].numField.toString()
-      saleData += (this.paxRequest.messages[index].mesLen & 0xff).toString()
-      saleData += (this.paxRequest.messages[index].mesLen >> 8).toString()
-      saleData += this.paxRequest.messages[index].data.toString()
-    })
-
-    const crc16 = this._getCRC16(saleData, this.dataLength - 2)
-    saleData += crc16 & 0xff
-    saleData += crc16 >> 8 // ?
-
-    return saleData */
-
-    // ----------------------------------
-    /* dev */
-
     return this.getRequest()
   }
 
@@ -430,7 +477,9 @@ class PaxDevice extends EventEmitter {
     return this.getRequest()
   }
 
-  getRequest() {
+  /* dev */
+
+  /* getRequest() {
     this.dataLength = 5
     this.paxRequest.messages.forEach((item: any, index: number) => {
       this.dataLength += 3
@@ -459,15 +508,87 @@ class PaxDevice extends EventEmitter {
     console.log('request header + body data-->', data)
     return data
   }
+ */
+
   /* dev */
-  sale(sum: number = 10, ern: number = 3) {
+  // converters -------------------------
+  str2hex = (str: any) => {
+    str = str.toString()
+    let hex = []
+    for (let i = 0; i < str.length; i++) {
+      hex.push('0x' + str.charCodeAt(i).toString(16))
+    }
+    return hex
+  }
+  hex2bin = (buf: any) => {
+    let d = []
+    for( let i = 0, max = buf.length; i < max; i++ ) {
+      // Iterator by bits
+      for( let j = 8; j > 0; j-- ) {
+        if( buf[i] & Math.pow(2, j-1) ) {
+          d.push(true)
+        } else {
+          d.push(false)
+        }
+      }
+    }
+    return d.reverse()
+  }
+  
+  // end converters ---------------------
+
+
+  getRequest() {
+    this.dataLength = 5
+    this.paxRequest.messages.forEach((item: any, index: number) => {
+      this.dataLength += 3
+      this.dataLength += this.paxRequest.messages[index].mesLen
+    })
+    this.paxRequest.mesgsLen = this.dataLength - 5
+
+    this.paxRequest.stx = BCNet.STX_RES 
+    let data: string = this.paxRequest.stx
+    // + (this.paxRequest.mesgsLen & 0xff).toString()
+    // + (this.paxRequest.mesgsLen >> 8).toString()
+    // console.log('request header data-->',data)
+    const messageArray = [...this.str2hex(this.paxRequest.stx), ...this.str2hex(this.paxRequest.mesgsLen)]
+    console.log(
+      'this.str2hex header data-->',
+      // this.str2hex(this.paxRequest.stx),
+      // this.str2hex(this.paxRequest.mesgsLen),
+      // this.paxRequest.mesgsLen,
+      // this.paxRequest
+      messageArray
+    )
+
+    // this.paxRequest.messages.forEach((item: any, index: number) => {
+    //   data += this.paxRequest.messages[index].numField.toString()
+    //   data += (this.paxRequest.messages[index].mesLen & 0xff).toString()
+    //   data += (this.paxRequest.messages[index].mesLen >> 8).toString()
+    //   data += this.paxRequest.messages[index].data.toString()
+    // })
+
+    // const crc16 = this._getCRC16(data, this.dataLength - 2)
+    // data += crc16 & 0xff
+    // data += crc16 >> 8 // ?
+    // console.log('request header + body data-->', data)
+
+    return data
+  }
+
+  sale(sum: number = 10, ern: number = 1) {
+    let result
     this.clear()
     this.messageType = MessageType[5]
 
     let data: string = this.getSaleRequest(sum, ern)
-    return this.request(data)
+
+    result = this.request(data)
+    // console.log('++result-->', data)
+
+    return result
   }
-  request(request: string) {
+  request(request: any) {
     // console.log('request data-->', request)
     /* dev */
     // ----------------------------------
@@ -483,8 +604,7 @@ class PaxDevice extends EventEmitter {
     switch (this.messageType) {
       case 'request':
         // console.log('++request-->', this.messageType)
-        // this.send(data)
-        // let response =  this.send(request)
+        this.sendRequest(request, TIMEOUT_1 * 1000)
 
         break
 
@@ -495,8 +615,6 @@ class PaxDevice extends EventEmitter {
       case 'response':
         break
       case 'eot':
-        break
-      case 'response':
         break
 
       default:
