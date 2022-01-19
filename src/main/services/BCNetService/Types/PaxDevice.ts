@@ -172,10 +172,11 @@ class PaxDevice extends EventEmitter {
     try {
       /* dev */
       // await this.reset()
+      await this.request2()
       // await this.execute(this.commands.Ack)
       // await this.execute(this.commands.Nak)
 
-      this.sale()
+      // this.sale()
 
       // await this.waitStatus('13', 5000)
       // console.log('++this.commands.Identification-->', this.commands.Identification)
@@ -197,7 +198,15 @@ class PaxDevice extends EventEmitter {
       console.log(error)
     }
   }
-  
+
+  request2 = async () => {
+    try {
+      // console.log('++this.commands.Request')
+      await this.execute(this.commands.Request)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   isBusy = () => {
     switch (this.status) {
@@ -274,7 +283,7 @@ class PaxDevice extends EventEmitter {
         /* Update flag. */
         self.isSend = false
         /* Send event. */
-        reject(new Error('Request timeout.'))
+        reject(new Error('Request timeout: 286'))
       }
       /* Receive packet handler. */
       let handler = async (response: Buffer) => {
@@ -433,7 +442,9 @@ class PaxDevice extends EventEmitter {
     )
     this.paxRequest.messages[1] = this.createMessage(
       CURRENCY_FUNC,
-      this.currency
+      /* dev */
+      // this.currency
+      '643'
     )
     this.date = new Date()
     this.paxRequest.messages[2] = this.createMessage(
@@ -449,6 +460,7 @@ class PaxDevice extends EventEmitter {
       IDENT_FUNC,
       this.terminalId
     )
+    /* dev */
     this.paxRequest.messages[6] = this.createMessage(
       VUNAME_FUNC,
       'VM' + this.terminalId
@@ -507,8 +519,7 @@ class PaxDevice extends EventEmitter {
 
     console.log('request header + body data-->', data)
     return data
-  }
- */
+  } */
 
   /* dev */
   // converters -------------------------
@@ -522,10 +533,10 @@ class PaxDevice extends EventEmitter {
   }
   hex2bin = (buf: any) => {
     let d = []
-    for( let i = 0, max = buf.length; i < max; i++ ) {
+    for (let i = 0, max = buf.length; i < max; i++) {
       // Iterator by bits
-      for( let j = 8; j > 0; j-- ) {
-        if( buf[i] & Math.pow(2, j-1) ) {
+      for (let j = 8; j > 0; j--) {
+        if (buf[i] & Math.pow(2, j - 1)) {
           d.push(true)
         } else {
           d.push(false)
@@ -534,46 +545,69 @@ class PaxDevice extends EventEmitter {
     }
     return d.reverse()
   }
-  
+
   // end converters ---------------------
 
-
   getRequest() {
-    this.dataLength = 5
+    let result
+    this.paxRequest.stx = BCNet.STX_RES
+
+    this.paxRequest.mesgsLen = 0
+    this.paxRequest.mesgsData = ''
+
     this.paxRequest.messages.forEach((item: any, index: number) => {
-      this.dataLength += 3
-      this.dataLength += this.paxRequest.messages[index].mesLen
+      this.paxRequest.mesgsLen += this.paxRequest.messages[index].mesLen
+      this.paxRequest.mesgsData += this.paxRequest.messages[index].data
     })
-    this.paxRequest.mesgsLen = this.dataLength - 5
-
-    this.paxRequest.stx = BCNet.STX_RES 
-    let data: string = this.paxRequest.stx
-    // + (this.paxRequest.mesgsLen & 0xff).toString()
-    // + (this.paxRequest.mesgsLen >> 8).toString()
-    // console.log('request header data-->',data)
-    const messageArray = [...this.str2hex(this.paxRequest.stx), ...this.str2hex(this.paxRequest.mesgsLen)]
-    console.log(
-      'this.str2hex header data-->',
-      // this.str2hex(this.paxRequest.stx),
-      // this.str2hex(this.paxRequest.mesgsLen),
-      // this.paxRequest.mesgsLen,
-      // this.paxRequest
-      messageArray
-    )
-
-    // this.paxRequest.messages.forEach((item: any, index: number) => {
-    //   data += this.paxRequest.messages[index].numField.toString()
-    //   data += (this.paxRequest.messages[index].mesLen & 0xff).toString()
-    //   data += (this.paxRequest.messages[index].mesLen >> 8).toString()
-    //   data += this.paxRequest.messages[index].data.toString()
-    // })
-
-    // const crc16 = this._getCRC16(data, this.dataLength - 2)
-    // data += crc16 & 0xff
-    // data += crc16 >> 8 // ?
     // console.log('request header + body data-->', data)
+    // ----------------------------------
+    const stx = Buffer.from([this.paxRequest.stx])
 
-    return data
+    // console.log('01 stx-->', stx)
+    // console.log('02 mesgsLen-->', this.paxRequest.mesgsLen)
+
+    // ----------------------------------
+    // const buf = Buffer.from([0x1, 0x2])
+    // console.log('--buf-->', buf)
+    // buf.swap16()
+    // console.log('++buf-->',buf)
+    // ----------------------------------
+
+    let cmd = Buffer.concat([
+      Buffer.from([this.paxRequest.stx]), // stx 1 byte
+      /* dev */
+      // Buffer.from([this.paxRequest.mesgsLen, '00']), // mesgsLen 2 byte ??
+      Buffer.from(['46', '00']),
+      Buffer.from(['00']), // field number 1 byte
+      Buffer.from([this.paxRequest.messages[0].mesLen, '00']), // mesgsLen 2 byte ??
+      Buffer.from(this.str2hex(this.paxRequest.messages[0].data.toString(10))), // data
+      Buffer.from(['04']),
+      Buffer.from([this.paxRequest.messages[1].mesLen, '00']),
+      Buffer.from(this.str2hex(this.paxRequest.messages[1].data.toString(10))),
+      Buffer.from(['21']),
+      Buffer.from([this.paxRequest.messages[2].mesLen, '00']),
+      Buffer.from(this.str2hex(this.paxRequest.messages[2].data.toString(10))),
+      Buffer.from(['25']),
+      Buffer.from([this.paxRequest.messages[3].mesLen, '00']),
+      Buffer.from(this.str2hex(this.paxRequest.messages[3].data.toString(10))),
+      Buffer.from(['26']),
+      Buffer.from([this.paxRequest.messages[4].mesLen, '00']),
+      Buffer.from(this.str2hex(this.paxRequest.messages[4].data.toString(10))),
+      Buffer.from(['27']),
+      Buffer.from([this.paxRequest.messages[5].mesLen, '00']),
+      Buffer.from(this.str2hex(this.paxRequest.messages[5].data.toString(10))) // 00080951
+
+      /* 
+      02 2e 00 00 03 00 31 30 30 04 03 00 36 34 33 15 0e
+      00 32 30 32 32 30 31 31 39 31 33 31 30 30 31 19 01 
+      00 31 1a 01 00 31 1b 08 00 30 30 30 38 30 39 35 31
+      */
+    ])
+
+    console.log('--cmd-->', cmd)
+    result = cmd
+
+    return result
   }
 
   sale(sum: number = 10, ern: number = 1) {
@@ -581,7 +615,7 @@ class PaxDevice extends EventEmitter {
     this.clear()
     this.messageType = MessageType[5]
 
-    let data: string = this.getSaleRequest(sum, ern)
+    let data: any = this.getSaleRequest(sum, ern)
 
     result = this.request(data)
     // console.log('++result-->', data)
@@ -589,17 +623,16 @@ class PaxDevice extends EventEmitter {
     return result
   }
   request(request: any) {
-    // console.log('request data-->', request)
-    /* dev */
     // ----------------------------------
-    let buff: string,
-      ebuf: string,
-      end: boolean = true,
-      res: number = 0,
-      nakCount: number = 0
-    const chWait = [0x2, 0x5, 0x0, 0x19, 0x2, 0x0, 0x32, 0x31, 0xa5, 0xc2]
+    // let buff: string,
+    //   ebuf: string,
+    //   end: boolean = true,
+    //   res: number = 0,
+    //   nakCount: number = 0
+    // const chWait = [0x2, 0x5, 0x0, 0x19, 0x2, 0x0, 0x32, 0x31, 0xa5, 0xc2]
     // ----------------------------------
-    // let self = this
+
+    // ----------------------------------
 
     switch (this.messageType) {
       case 'request':
@@ -665,7 +698,7 @@ class PaxDevice extends EventEmitter {
       let timerHandler = () => {
         clearTimeout(timer)
         self.removeListener('status', handler)
-        reject(new Error('Request timeout.'))
+        reject(new Error('Request timeout: 703'))
       }
       let handler = (primary: string) => {
         if (primary == status) {
@@ -704,7 +737,7 @@ class PaxDevice extends EventEmitter {
           resolve(true)
         } else if (counter >= timeout) {
           clearInterval(timer)
-          reject(new Error('Request timeout.'))
+          reject(new Error('Request timeout: 742'))
         }
       }
       timer = setInterval(timerHandler, interval)

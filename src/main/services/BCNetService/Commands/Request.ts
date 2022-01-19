@@ -9,9 +9,6 @@
 
  /**
   * Class Request
-  * 
-  * Command for BankTerminal to self-Request.
-  * 
   * @description BCNet Document 1
   * @version 1.0.0
   */
@@ -23,9 +20,9 @@
     * @param {Object} device 
     */
    constructor (device: any) {
-     super(0x42, device)
-     
-    console.log('++Request constructor')
+     super(0x2a, device)
+
+    // console.log('++Request constructor')
    }
    
  }

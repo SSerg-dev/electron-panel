@@ -58,20 +58,22 @@ class Command {
    */
   assemble = (params: Buffer = Buffer.from([0])) => {
 
-    let cmd = Buffer.concat([
+    /* dev */
+    /* let cmd = Buffer.concat([
       Buffer.from([SYNC, this.device.adr]),
       Buffer.from([params.length + 6]),
       Buffer.from([this.cmd])
-    ])
-    
-    console.log('cmd-->', cmd) // cmd--> <Buffer 02 04 06 30>
+    ]) */
+    let sum = 1, ern = 1
+    let cmd = this.device.getSaleRequest(sum, ern)
+    // console.log('this.cmd-->', this.cmd)
     
     if (params.length) {
       cmd = Buffer.concat([cmd, params])
     }
     /* Assemble full packet data. */
     let result = Buffer.concat([cmd, this.device.getCRC16(cmd)])
-    console.log('++assemble result-->', result) // ++assemble result--> <Buffer 02 04 06 30 44 3f> 
+    console.log('++cmd-->', result)  
 
     return  result
   }
