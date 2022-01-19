@@ -40,13 +40,13 @@ class Command {
    */
   request = (params: any = Buffer.from([])): Buffer =>
     this.assemble(Buffer.from(params))
-
   /**
    * Processing command response.
    *
    * @param {Buffer} data
    */
   response = (data: Buffer): any => data
+
 
   /* Utils methods --------------------------------------------------------- */
   /* ----------------------------------------------------------------------- */

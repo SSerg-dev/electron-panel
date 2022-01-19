@@ -563,12 +563,6 @@ class PaxDevice extends EventEmitter {
     // ----------------------------------
     const stx = Buffer.from([this.paxRequest.stx])
 
-    // console.log('01 stx-->', stx)
-    // console.log('02 mesgsLen-->', this.paxRequest.mesgsLen)
-
-    // ----------------------------------
-    // const buf = Buffer.from([0x1, 0x2])
-    // console.log('--buf-->', buf)
     // buf.swap16()
     // console.log('++buf-->',buf)
     // ----------------------------------

@@ -12,6 +12,7 @@ import {
 } from '../../../utils'
 import * as conf from '../../../config'
 import BCNet from '../../../services/BCNetService'
+import { compile } from 'vue/types/umd'
 
 const TAG = 'PAX TERMINAL'
 
@@ -29,7 +30,7 @@ class Pax extends EventEmitter {
   }
 
   // methods
-  static connect(config: any) { 
+  static connect(config: any) {
     let item = new Pax()
     item.config = config
     this.instance = item
@@ -50,7 +51,7 @@ class Pax extends EventEmitter {
     // this.device.getCheckRequest()
     // this.device.sale()
 
-    // this.getComPort() 
+    // this.getComPort()
   }
 
   // connect to pax ---------------------
@@ -68,16 +69,16 @@ class Pax extends EventEmitter {
       port_num = 10
     }
   }
+
   // test com port
-  private getComPort() { 
+  private getComPort() {
     const SerialPort = require('serialport')
     const port = new SerialPort('/dev/ttyPos0', function(err: any) {
       if (err) {
         return console.log('Error: ', err.message)
       }
-      console.log('++getComPort-->', port)
+      // console.log('++getComPort-->', port)
     })
-
     port.write('main screen turn on', function(err: any) {
       if (err) {
         return console.log('Error on write: ', err.message)
