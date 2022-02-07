@@ -33,6 +33,7 @@ import { PaxRequest } from './PaxRequest'
 import { PaxMessage } from './PaxMessage'
 import { resolve } from 'dns'
 import { reject } from 'lodash'
+import { log } from 'console'
 
 enum MessageType {
   sale,
@@ -566,6 +567,26 @@ class PaxDevice extends EventEmitter {
     // buf.swap16()
     // console.log('++buf-->',buf)
     // ----------------------------------
+    const swap = (number: any) => {
+      let buf
+      switch (number.length) {
+        case 1:
+          buf = Buffer.from(['0', number.charCodeAt(0).toString(10)])
+          break
+        case 2:
+          buf = Buffer.from([
+            number.charCodeAt(0).toString(10),
+            number.charCodeAt(1).toString(10)
+          ])
+          break
+        default:
+          buf = Buffer.from(['0', '0'])
+      }
+      buf = buf.swap16()
+      return buf
+    }
+    console.log('buf-->', swap('42'))
+    // --------------------------------------
 
     let cmd = Buffer.concat([
       Buffer.from([this.paxRequest.stx]), // stx 1 byte
@@ -599,6 +620,7 @@ class PaxDevice extends EventEmitter {
     ])
 
     console.log('--cmd-->', cmd)
+
     result = cmd
 
     return result
@@ -626,7 +648,7 @@ class PaxDevice extends EventEmitter {
     // const chWait = [0x2, 0x5, 0x0, 0x19, 0x2, 0x0, 0x32, 0x31, 0xa5, 0xc2]
     // ----------------------------------
 
-    // ----------------------------------
+    // ---------------------------------- 
 
     switch (this.messageType) {
       case 'request':

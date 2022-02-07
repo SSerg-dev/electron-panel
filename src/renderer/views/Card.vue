@@ -75,6 +75,7 @@ export default Vue.extend({
 
         /* dev */
         const stream$ = item
+        
         const observer = bankTerminal.observerItem
         stream$.subscribe(observer)
         
@@ -93,6 +94,7 @@ export default Vue.extend({
     },
 
     flowSequenceVendotek(item) {
+      
       const amount = this.card
       item.pay(amount)
       item.sendFINAL()
@@ -101,7 +103,7 @@ export default Vue.extend({
       
     },
     flowSequencePax(item) {
-      console.log('!!flowSequencePax')
+      console.log('++flowSequencePax')
       const amount = this.card
 
       

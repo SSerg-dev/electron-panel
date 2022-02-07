@@ -55,6 +55,8 @@ class Vendotek extends EventEmitter {
   // end observer
 
   static connect(config) {
+    // console.log('++config', config)
+    
     let item = new Vendotek(config)
     item.connecting = item.connect()
     // item.disconnecting = item.disconnect()

@@ -20,7 +20,7 @@
     * @param {Object} device 
     */
    constructor (device: any) {
-     super(0x2a, device)
+     super(0x2a, device) // 42
 
     // console.log('++Request constructor')
    }
