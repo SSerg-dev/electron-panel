@@ -57,7 +57,7 @@ class Pax extends EventEmitter {
   // connect to pax ---------------------
   private connect = async () => {
     const { port, number, currency } = Pax.instance.config
-    let port_num = 10
+    // let port_num = 10
     this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)
     try {
       await this.device.connect()
@@ -66,7 +66,7 @@ class Pax extends EventEmitter {
       log(TAG, 'Connected error', err)
       await this.device.disconnect()
       delete this.device
-      port_num = 10
+      // port_num = 10
     }
   }
 

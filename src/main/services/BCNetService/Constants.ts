@@ -13,6 +13,7 @@ export const CRC_POLY = 0x08408
 export const ADR_CARD_READER = 0x04
 /* port */
 export const PAX_PORT = '/dev/ttyPos0' //  '/dev/ttyUSB2'  
+export const TERMINAL_ID = '00080951'
 
 // from Qt src --------------------------
 export const ACK_RES = 0x06
@@ -29,6 +30,7 @@ export const CODE_FUNC = 0x19
 export const UNUMBER_FUNC = 0x1A
 export const IDENT_FUNC = 0x1B
 export const VUNAME_FUNC = 0x59
+
 // --------------------------------------
 
 

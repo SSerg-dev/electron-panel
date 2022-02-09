@@ -7,7 +7,7 @@
 
 import { EventEmitter } from 'events'
 import SerialPort from 'serialport'
-import { ADR_CARD_READER, CRC_POLY } from '../Constants'
+import { ADR_CARD_READER, CRC_POLY, TERMINAL_ID } from '../Constants'
 import BCNetParser from '../BCNetParser'
 import CMDS from '../Commands'
 import { wait } from '../../../utils'
@@ -31,9 +31,6 @@ import {
 
 import { PaxRequest } from './PaxRequest'
 import { PaxMessage } from './PaxMessage'
-import { resolve } from 'dns'
-import { reject } from 'lodash'
-import { log } from 'console'
 
 enum MessageType {
   sale,
@@ -64,7 +61,6 @@ class PaxDevice extends EventEmitter {
   status: any
 
   isSend: boolean
-  /* dev */
   currency: string
   date: any
   terminalId: string
@@ -120,22 +116,17 @@ class PaxDevice extends EventEmitter {
     }
     this.isDebug = debug || false
     this.bills = bills || []
-    this.terminalId = '00080951'
+    this.terminalId = TERMINAL_ID
     this.paxRequest = PaxRequest
     this.paxMessage = PaxMessage
-
-    // this.messageType = MessageType.wait
-    // console.log('this.commands-->', this.commands)
   }
 
   // getters
   get isOpen() {
     return this.serial.isOpen
   }
-  // end getters
 
   // methods
-
   // comport methods --------------------
   /**
    * Open comport.
@@ -161,7 +152,6 @@ class PaxDevice extends EventEmitter {
    * Connect to device.
    */
   connect = async () => {
-    /* Check comport. */
     if (!this.isOpen) {
       try {
         const response = await this.open()
@@ -171,62 +161,21 @@ class PaxDevice extends EventEmitter {
     }
     // device init --------------
     try {
-      /* dev */
-      // await this.reset()
-      await this.request2()
+      // await
+      /* Reset device. */
+      this.execute(this.commands.Reset)
+      /* Request device. */
+      // this.execute(this.commands.Request)
+
       // await this.execute(this.commands.Ack)
       // await this.execute(this.commands.Nak)
 
-      // this.sale()
-
-      // await this.waitStatus('13', 5000)
-      // console.log('++this.commands.Identification-->', this.commands.Identification)
-
-      // this.info = await this.execute(this.commands.Identification)
-      // console.log('++this.info-->', this.info )
-
       return true
-    } catch (error) {
-      throw error
+    } catch (err) {
+      throw err
     }
   } // end connect
 
-  reset = async () => {
-    try {
-      await this.execute(this.commands.Reset)
-      // console.log('!!++reset')
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  request2 = async () => {
-    try {
-      // console.log('++this.commands.Request')
-      await this.execute(this.commands.Request)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  isBusy = () => {
-    switch (this.status) {
-      case ACK_RES:
-        return false
-      case NAK_RES:
-      case EOT_RES:
-      case STX_RES:
-      case TIMEOUT_1:
-      case TIMEOUT_2:
-        return true
-      default:
-        return false
-    }
-  }
-
-  /**
-   * Disconnect from device.
-   */
   disconnect = async () => {
     try {
       await this.close()
@@ -235,9 +184,6 @@ class PaxDevice extends EventEmitter {
     }
   }
 
-  /**
-   * Close comport.
-   */
   close = () => {
     let self = this
 
@@ -273,113 +219,19 @@ class PaxDevice extends EventEmitter {
    * @returns {Promise}
    */
   send = (request: Buffer, timeout: number = 1000) => {
-    /* Linked self. */
     let self = this
-    /* Async worker. */
     return new Promise<any>(async (resolve, reject) => {
-      /* Timeout timer. */
-      let timer: any = null
-      /* Timeout timer handler. */
-      let timerHandler = () => {
-        /* Update flag. */
-        self.isSend = false
-        /* Send event. */
-        reject(new Error('Request timeout: 286'))
-      }
-      /* Receive packet handler. */
-      let handler = async (response: Buffer) => {
-        /* Unbind timeout handler. */
-        clearTimeout(timer)
-        /* Unbind event. */
-        self.parser.removeListener('data', handler)
+      // let timer: any = null
+      // let timerHandler = () => {
+      //     self.isSend = false
+      //         reject(new Error('Request timeout.'))
+      // }
 
-        this.debug(`response => ${response.toString()}`)
-        await wait(100)
-
-        /* Check CRC */
-        let ln = response.length
-        let check = response.slice(ln - 2, ln)
-        let slice = response.slice(0, ln - 2)
-        /* Check response CRC. */
-        if (check.toString() !== self.getCRC16(slice).toString()) {
-          /* Send NAK. */
-          this.debug('Send NAK')
-          await self.serial.write(self.commands.Nak.request())
-          /* Update flag. */
-          self.isSend = false
-          /* Send event. */
-          reject(new Error('Wrong response data hash.'))
-        }
-        /* Get data from packet. */
-        let data = response.slice(3, ln - 2)
-        /* Check response type. */
-        if (data.length == 1 && data[0] == 0x00) {
-          /* Response receive as ACK. */
-        } else if (data.length == 1 && data[0] == 0xff) {
-          /* Response receive as NAK. */
-          reject(new Error('Wrong request data hash.'))
-        } else {
-          /* Send ACK. */
-          this.debug('Send ACK')
-          await self.serial.write(self.commands.Ack.request())
-        }
-        /* Update flag. */
-        self.isSend = false
-        /* Send event. */
-        resolve(data)
-      }
-      /* Bind event. */
-      self.parser.once('data', handler)
-      /* Update flag. */
-      self.isSend = true
-      /* Send packet. */
-      this.debug(`request => ${request.toString()}`)
-      await wait(100)
       self.serial.write(request)
-      /* Bind timeout handler. */
-      timer = setTimeout(timerHandler, timeout)
+
+      // timer = setTimeout(timerHandler, timeout = 10000)
     })
   }
-
-  sendRequest = async (request: Buffer, timeout: number = 1000) => {
-    let self = this
-    this.status = false
-    this.reset()
-
-    let temp: any = 'AAA'
-
-    temp = Buffer.from(temp)
-    // console.log('from temp-->', temp)
-    const isResponse = await self.serial.write(temp)
-
-    // self.serial.on('readable', function () {
-    //   console.log('Data:', self.serial.read())
-    // })
-
-    // temp = self.serial.read()
-    // console.log('read temp-->', temp)
-
-    const promise = new Promise((resolve, reject) => {
-      // setTimeout(() => {
-
-      // }, timeout)
-
-      const paxData = { name: 'pax', value: 42 }
-
-      if (isResponse) {
-        this.status = true
-        resolve(paxData)
-      } else {
-        this.status = false
-        reject(new Error('Response reject error'))
-      }
-    })
-    promise
-      .then(data => {
-        console.log('promise data-->', data)
-      })
-      .catch(error => console.log('Response data error', error))
-  } // end sendRequest
 
   // end request & response methods -----
 
@@ -427,8 +279,6 @@ class PaxDevice extends EventEmitter {
   }
 
   createMessage = (code: any, message: string) => {
-    /* dev */
-    // code = '0x' + this.toHex(code).toUpperCase()
     code = this.toHex(code)
     this.paxMessage = new PaxMessage(code, message.length, message)
     return new PaxMessage(code, message.length, message)
@@ -522,8 +372,6 @@ class PaxDevice extends EventEmitter {
     return data
   } */
 
-  /* dev */
-  // converters -------------------------
   str2hex = (str: any) => {
     str = str.toString()
     let hex = []
@@ -532,27 +380,12 @@ class PaxDevice extends EventEmitter {
     }
     return hex
   }
-  hex2bin = (buf: any) => {
-    let d = []
-    for (let i = 0, max = buf.length; i < max; i++) {
-      // Iterator by bits
-      for (let j = 8; j > 0; j--) {
-        if (buf[i] & Math.pow(2, j - 1)) {
-          d.push(true)
-        } else {
-          d.push(false)
-        }
-      }
-    }
-    return d.reverse()
-  }
-
-  // end converters ---------------------
 
   getRequest() {
-    let result
-    this.paxRequest.stx = BCNet.STX_RES
+    const base = 10
+    const headSize = 3
 
+    this.paxRequest.stx = BCNet.STX_RES
     this.paxRequest.mesgsLen = 0
     this.paxRequest.mesgsData = ''
 
@@ -560,142 +393,74 @@ class PaxDevice extends EventEmitter {
       this.paxRequest.mesgsLen += this.paxRequest.messages[index].mesLen
       this.paxRequest.mesgsData += this.paxRequest.messages[index].data
     })
-    // console.log('request header + body data-->', data)
-    // ----------------------------------
-    const stx = Buffer.from([this.paxRequest.stx])
-
-    // buf.swap16()
-    // console.log('++buf-->',buf)
-    // ----------------------------------
-    const swap = (number: any) => {
-      let buf
-      switch (number.length) {
-        case 1:
-          buf = Buffer.from(['0', number.charCodeAt(0).toString(10)])
-          break
-        case 2:
-          buf = Buffer.from([
-            number.charCodeAt(0).toString(10),
-            number.charCodeAt(1).toString(10)
-          ])
-          break
-        default:
-          buf = Buffer.from(['0', '0'])
-      }
-      buf = buf.swap16()
-      return buf
-    }
-    console.log('buf-->', swap('42'))
-    // --------------------------------------
-
-    let cmd = Buffer.concat([
+    
+    const requestLength = this.paxRequest.mesgsLen + this.paxRequest.messages.length * headSize
+     
+    const head = Buffer.concat([
       Buffer.from([this.paxRequest.stx]), // stx 1 byte
-      /* dev */
-      // Buffer.from([this.paxRequest.mesgsLen, '00']), // mesgsLen 2 byte ??
-      Buffer.from(['46', '00']),
-      Buffer.from(['00']), // field number 1 byte
-      Buffer.from([this.paxRequest.messages[0].mesLen, '00']), // mesgsLen 2 byte ??
-      Buffer.from(this.str2hex(this.paxRequest.messages[0].data.toString(10))), // data
-      Buffer.from(['04']),
-      Buffer.from([this.paxRequest.messages[1].mesLen, '00']),
-      Buffer.from(this.str2hex(this.paxRequest.messages[1].data.toString(10))),
-      Buffer.from(['21']),
-      Buffer.from([this.paxRequest.messages[2].mesLen, '00']),
-      Buffer.from(this.str2hex(this.paxRequest.messages[2].data.toString(10))),
-      Buffer.from(['25']),
-      Buffer.from([this.paxRequest.messages[3].mesLen, '00']),
-      Buffer.from(this.str2hex(this.paxRequest.messages[3].data.toString(10))),
-      Buffer.from(['26']),
-      Buffer.from([this.paxRequest.messages[4].mesLen, '00']),
-      Buffer.from(this.str2hex(this.paxRequest.messages[4].data.toString(10))),
-      Buffer.from(['27']),
-      Buffer.from([this.paxRequest.messages[5].mesLen, '00']),
-      Buffer.from(this.str2hex(this.paxRequest.messages[5].data.toString(10))) // 00080951
+      Buffer.from([requestLength.toString(base), '00']) // requestLength 2 byte 
+    ])
+    
+    const body = Buffer.concat([
+      Buffer.from([this.paxRequest.messages[0].numField]), // field number 1 byte
+      Buffer.from([this.paxRequest.messages[0].mesLen, '00']), // mesgsLen 2 byte
+      Buffer.from(this.str2hex(this.paxRequest.messages[0].data.toString(base))), // data variable byte
 
-      /* 
-      02 2e 00 00 03 00 31 30 30 04 03 00 36 34 33 15 0e
-      00 32 30 32 32 30 31 31 39 31 33 31 30 30 31 19 01 
-      00 31 1a 01 00 31 1b 08 00 30 30 30 38 30 39 35 31
-      */
+      Buffer.from([this.paxRequest.messages[1].numField]),
+      Buffer.from([this.paxRequest.messages[1].mesLen, '00']),
+      Buffer.from(this.str2hex(this.paxRequest.messages[1].data.toString(base))),
+
+      Buffer.from([this.paxRequest.messages[2].numField]),
+      Buffer.from([this.paxRequest.messages[2].mesLen, '00']),
+      Buffer.from(this.str2hex(this.paxRequest.messages[2].data.toString(base))),
+
+      Buffer.from([this.paxRequest.messages[3].numField]),
+      Buffer.from([this.paxRequest.messages[3].mesLen, '00']),
+      Buffer.from(this.str2hex(this.paxRequest.messages[3].data.toString(base))),
+
+      Buffer.from([this.paxRequest.messages[4].numField]),
+      Buffer.from([this.paxRequest.messages[4].mesLen, '00']),
+      Buffer.from(this.str2hex(this.paxRequest.messages[4].data.toString(base))),
+
+      Buffer.from([this.paxRequest.messages[5].numField]),
+      Buffer.from([this.paxRequest.messages[5].mesLen, '00']),
+      Buffer.from(this.str2hex(this.paxRequest.messages[5].data.toString(base))), // 00080951
+
+      Buffer.from([this.paxRequest.messages[6].numField]),
+      Buffer.from([this.paxRequest.messages[6].mesLen, '00']),
+      Buffer.from(this.str2hex(this.paxRequest.messages[6].data.toString(base))) // VM00080951
     ])
 
-    console.log('--cmd-->', cmd)
-
-    result = cmd
-
-    return result
-  }
-
-  sale(sum: number = 10, ern: number = 1) {
-    let result
-    this.clear()
-    this.messageType = MessageType[5]
-
-    let data: any = this.getSaleRequest(sum, ern)
-
-    result = this.request(data)
-    // console.log('++result-->', data)
+    const result = Buffer.concat([head, body])
+    // console.log('--result-->', result)
 
     return result
   }
-  request(request: any) {
-    // ----------------------------------
-    // let buff: string,
-    //   ebuf: string,
-    //   end: boolean = true,
-    //   res: number = 0,
-    //   nakCount: number = 0
-    // const chWait = [0x2, 0x5, 0x0, 0x19, 0x2, 0x0, 0x32, 0x31, 0xa5, 0xc2]
-    // ----------------------------------
 
-    // ---------------------------------- 
-
-    switch (this.messageType) {
-      case 'request':
-        // console.log('++request-->', this.messageType)
-        this.sendRequest(request, TIMEOUT_1 * 1000)
-
+  /* dev */
+  // ----------------------------------
+  swap = (number: any, base: any = 16) => {
+    let buf
+    switch (number.length) {
+      case 1:
+        buf = Buffer.from(['0', number.charCodeAt(0).toString(base)])
         break
-
-      case 'wait':
+      case 2:
+        buf = Buffer.from([
+          number.charCodeAt(0).toString(base),
+          number.charCodeAt(1).toString(base)
+        ])
         break
-      case 'answer':
-        break
-      case 'response':
-        break
-      case 'eot':
-        break
-
       default:
-        break
+        buf = Buffer.from(['0', '0'])
     }
+    buf = buf.swap16()
+    return buf
   }
-
-  /*     */
-
-  _getCRC16(pBuf: any, lSize: number) {
-    let s: number
-    for (s = 0x0000; lSize > 0; lSize--, pBuf++) {
-      let b = pBuf
-      for (let j = 0; j < 8; j++) {
-        let x16 =
-          (b & 0x80 && s & 0x8000) || (!(b & 0x80) && !(s & 0x8000)) ? 0 : 1
-        let x15 = (x16 && s & 0x4000) || (!x16 && !(s & 0x4000)) ? 0 : 1
-        let x2 = (x16 && s & 0x0002) || (!x16 && !(s & 0x0002)) ? 0 : 1
-        s = s << 1
-        b = b << 1
-        s |= x16 ? 0x0001 : 0
-        s = x2 ? s | 0x0004 : s & 0xfffb
-        s = x15 ? s | 0x8000 : s & 0x7fff
-      }
-    }
-    s = (s << 8) + (s >> 8)
-    return s
-  }
+  // console.log('buf-->', swap('42'))
+  // --------------------------------------
 
   /* Utils methods --------------------------------------------------------- */
-  /* ----------------------------------------------------------------------- */
-
   /**
    * Waits for the occurrence of the specified status event.
    *
@@ -772,9 +537,14 @@ class PaxDevice extends EventEmitter {
     let self = this
     return new Promise<any>(async (resolve, reject) => {
       try {
-        let request = command.request(params)
+        /* Preparing command to send. */
+        const request = command.request(params)
+        // console.log('request', request)
+
         await self.waitSending(timeout)
-        let response = await self.send(request, timeout)
+        await wait(100)
+
+        const response = await self.send(request, timeout)
         resolve(command.response(response))
       } catch (error) {
         reject(error)
@@ -787,6 +557,27 @@ class PaxDevice extends EventEmitter {
    * @param {Buffer} buffer Raw data for calculation.
    * @returns {Number} Calculated checksum.
    */
+  /* _getCRC16(pBuf: any, lSize: number = 0) {
+
+    let s: number
+    for (s = 0x0000; lSize > 0; lSize--, pBuf++) {
+      let b = pBuf
+      for (let j = 0; j < 8; j++) {
+        let x16 =
+          (b & 0x80 && s & 0x8000) || (!(b & 0x80) && !(s & 0x8000)) ? 0 : 1
+        let x15 = (x16 && s & 0x4000) || (!x16 && !(s & 0x4000)) ? 0 : 1
+        let x2 = (x16 && s & 0x0002) || (!x16 && !(s & 0x0002)) ? 0 : 1
+        s = s << 1
+        b = b << 1
+        s |= x16 ? 0x0001 : 0
+        s = x2 ? s | 0x0004 : s & 0xfffb
+        s = x15 ? s | 0x8000 : s & 0x7fff
+      }
+    }
+    s = (s << 8) + (s >> 8)
+    return s
+  } */
+  // ------------------------------------
   getCRC16 = (buffer: Buffer) => {
     let CRC = 0
     let buf = Buffer.alloc(2)

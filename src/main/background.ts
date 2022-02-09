@@ -151,7 +151,8 @@ const idle = async (config: any) => {
     }
   }
   /* dev */
-  if (config.bank_terminal) {
+
+  /* if (config.bank_terminal) {
     const options = {
       type: config.bank_terminal.hardware,
       number: config.index,
@@ -165,12 +166,10 @@ const idle = async (config: any) => {
       if (config.bank_terminal.installed === true) {
         bankTerminal.start(options)
       } else {
-        // console.log('not started --> BankTerminal.start()')
         isBankTerminalConnected && bankTerminal.stop()
       }
     }
-  }
-  /*     */
+  } */
 
   mConfig = config
 }

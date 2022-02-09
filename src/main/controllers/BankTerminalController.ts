@@ -20,12 +20,14 @@ class BankTerminalController extends EventEmitter {
   public start = async (options: any) => {
     const { type, number, currency } = options
     const config = {
-      port: BCNet.PAX_PORT,
+      // port: BCNet.PAX_PORT,
+      port: null,
       number: number, 
       currency: currency
     }
     switch (type) {
       case 'pax':
+        config.port = BCNet.PAX_PORT
         BCNet.Pax.connect(config)
         break
       case 'mdb':
