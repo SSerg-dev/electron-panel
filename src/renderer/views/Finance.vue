@@ -247,17 +247,15 @@ export default Vue.extend({
 }
 .button-setting {
   margin-top: 0em;
-  border: solid 3px #00b9e3;
+  border: solid 0px white;
   font-size: 2em;
+  background-color: #00b9e3;
   border-radius: 2rem;
   box-shadow: 6px 6px 10px #00b9e3;
-}
-.btn {
   height: 2em;
   width: 9em;
-  border: solid;
-  /* border-width: 1px; */
-  border-color: #00b9e3;
-  background-color: #26a69a;
+
 }
+
+
 </style>

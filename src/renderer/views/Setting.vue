@@ -11,33 +11,27 @@
         style="background: white; 
         width: 92%;
         border-radius: 5px;
-        box-shadow: 6px 6px 10px #00b9e3;
+        box-shadow: 10px 10px 10px #00b9e3;
         "
       >
         <li class="tab col s3">
-          <a active class="black-text" href="#swipe-1" style="font-size: 32px"
-            >Обзор</a
-          >
-        </li>
-
-        <li class="tab col s3">
-          <a class="black-text" href="#swipe-2" style="font-size: 32px;"
+          <a active class="black-text" href="#swipe-1" style="font-size: 32px;"
             >Экран</a
           >
         </li>
 
         <li class="tab col s3">
-          <a class=" black-text" href="#swipe-3" style="font-size: 32px"
+          <a class=" black-text" href="#swipe-2" style="font-size: 32px"
             >Настройки</a
           >
         </li>
         <li class="tab col s3">
-          <a class="black-text" href="#swipe-4" style="font-size: 32px"
+          <a class="black-text" href="#swipe-3" style="font-size: 32px"
             >Языки</a
           >
         </li>
         <li class="tab col s3">
-          <a class="black-text" href="#swipe-5" style="font-size: 32px"
+          <a class="black-text" href="#swipe-4" style="font-size: 32px"
             >Финансы</a
           >
         </li>
@@ -48,31 +42,22 @@
       <div
         id="swipe-1"
         class="col s8 black"
-        style="box-shadow: 5px 5px 10px #00b9e3;"
+        style="box-shadow: 10px 10px 10px #00b9e3;"
       >
-        <!-- Обзор -->
+      <!-- Обзор -->
         <div>
           <h2 class="white-text page-subtitle">Обзор</h2>
           <br />
           <div class="row panel">
             <div class="page-title white-text" style="padding-left: 1em;">
-              <h4>Общие</h4>
+              
             </div>
             <SettingOverviewService />
             <SettingOverviewCommon />
           </div>
         </div>
-        <hr />
+        <!-- <hr /> -->
         <!-- end Обзор -->
-      </div>
-
-      <!--  -->
-
-      <div
-        id="swipe-2"
-        class="col s8 black"
-        style="box-shadow: 5px 5px 10px #00b9e3;"
-      >
         <!-- Экран -->
         <div>
           <h2 class="white-text page-subtitle">Экран</h2>
@@ -408,15 +393,17 @@
               </tr> -->
             </tbody>
           </table>
+          <div style="margin-top: -0.6em;">
+          <hr />
+        </div>
           <!-- end table -->
         </div>
-        <hr />
         <!-- end Экран -->
       </div>
       <!--  -->
 
       <div
-        id="swipe-3"
+        id="swipe-2"
         class="col s8 black"
         style="box-shadow: 10px 10px 10px #00b9e3;"
       >
@@ -723,7 +710,7 @@
       </div>
 
       <div
-        id="swipe-4"
+        id="swipe-3"
         class="col s8 black"
         style="box-shadow: 10px 10px 10px #00b9e3;"
       >
@@ -761,7 +748,7 @@
       <!-- end Языки -->
 
       <div
-        id="swipe-5"
+        id="swipe-4"
         class="col s8 black"
         style="box-shadow: 10px 10px 10px #00b9e3;"
       >
@@ -835,8 +822,9 @@
           </button>
         </div>
       </div>
+
     </form>
-    <a name="bottom"></a>
+    <!-- <a name="bottom"></a> -->
   </div>
 </template>
 
@@ -1111,7 +1099,7 @@ export default Vue.extend({
   border: solid;
   border-width: 1px;
   border-color: white;
-  background-color: #26a69a;
+  /* background-color: #26a69a; */
 }
 .right {
   padding-right: 0rem;
@@ -1126,8 +1114,9 @@ export default Vue.extend({
 /* dev */
 .button-setting {
   margin-top: 0.5em;
-  border: solid 3px #00b9e3;
+  border: solid 1px #00b9e3;
   font-size: 2em;
+  background-color: #00b9e3;
   border-radius: 2rem;
   box-shadow: 6px 6px 10px #00b9e3;
 }

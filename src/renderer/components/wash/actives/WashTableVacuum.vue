@@ -35,6 +35,7 @@ export default Vue.extend({
     activeNumber: 16,
     active: '',
     timeoutPopup: null,
+    timeoutSetUp: null,
     
     activeProgramKit: {},
 
@@ -93,6 +94,11 @@ export default Vue.extend({
         default:
           break
       }
+      this.timeoutSetUp = setTimeout(() => {
+        try {
+          this.clearDown()
+        } catch (err) {}
+      }, 2000)
     },
     clearDown() {
       this.isDown = Object.fromEntries(
@@ -120,6 +126,7 @@ export default Vue.extend({
 
   beforeDestroy() {
     clearTimeout(this.timeoutPopup)
+    clearTimeout(this.timeoutSetUp)
   },
 
   created() {

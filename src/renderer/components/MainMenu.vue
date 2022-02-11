@@ -42,7 +42,7 @@
 
         <!-- 5 -->
         <li v-if="getIsPing" class="collection-item" @click="payUp('bonus')">
-          <div class="card white waves-effect button-style">
+          <div class="card white waves-effect button-style-bonus">
             <div class="card-content black-text button-content-style">
               🎁 {{ 'BONUSES' | localize }}
             </div>
@@ -185,13 +185,21 @@ section {
 }
 .button-style {
   padding-left: 4em;
-
   width: 945px;
   height: 160px;
   border: solid 6px #00b9e3;
   border-radius: 4em;
   box-shadow: 0px 10px 20px #00b9e3;
 }
+.button-style-bonus {
+  padding-left: 4em;
+  width: 945px;
+  height: 160px;
+  border: solid 6px rgb(118, 255, 3);
+  border-radius: 4em;
+  box-shadow: 0px 10px 20px rgb(118, 255, 3);
+}
+/* rgb(118, 255, 3); */
 .button-content-style {
   font-size: 4em;
   padding-top: 1.1em;

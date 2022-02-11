@@ -85,7 +85,7 @@
             42,
             43
         ],
-        "syspanel": "UA"
+        "syspanel": "UA" 
     },
     "log_path": "/var/log",
     "type":  "wash",

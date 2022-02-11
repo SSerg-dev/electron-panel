@@ -104,6 +104,7 @@ export default Vue.extend({
           const type = this.getPanelType
           switch (type) {
             case 'wash':
+              // console.log('parameter-->', parameter)
               this.setParameters(parameter)
               break
             case 'vacuum':

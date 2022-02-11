@@ -163,17 +163,35 @@ export default {
     isCardMoney: false,
     isPing: false,
     loginSettingPassword: '5',
-    isLoginSettingPassword: false
+    isLoginSettingPassword: false,
+    isReceipt: {
+      read: false,
+      create: false,
+      print: false
+    },
+    isMoneyToBonus: false
      
   }, // end state
   // Options
   //actions: {},
   getters: {
     // dev
+    getIsReceiptRead(state) {
+      return state.isReceipt.read  
+    },
+    getIsReceiptCreate(state) {
+      return state.isReceipt.create  
+    },
+    getIsReceiptPrint(state) {
+      return state.isReceipt.print  
+    },
+    getIsMoneyToBonus(state) {
+      return state.isMoneyToBonus
+    },
+
     getLoginSettingPassword(state) {
       return state.loginSettingPassword
     },
-    // isLoginSettingPassword
     getIsLoginSettingPassword(state) {
       return state.isLoginSettingPassword
     },
@@ -265,7 +283,20 @@ export default {
     } */
   },
   mutations: {
-    // loginBonus
+    /* dev */
+    setIsReceiptRead(state, read) {
+      state.isReceipt.read = read 
+    },
+    setIsReceiptCreate(state, create) {
+      state.isReceipt.create = create  
+    },
+    setIsReceiptPrint(state, print) {
+      state.isReceipt.print = print 
+    },
+    setIsMoneyToBonus(state, money2bonus) {
+      state.isMoneyToBonus = money2bonus
+    },
+
     setLoginBonusPhone(state, phone) {
       state.loginBonus.params.phone = phone
     },

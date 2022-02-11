@@ -1,5 +1,10 @@
 <template>
-  <section>
+  <div class="locate">
+    <router-link to="/program">
+      <div class="back">
+        <img src="imgs/key/back.png" />
+      </div>
+    </router-link>
     <div class="message" style="background: none;">
       <div><Message /></div>
       <!-- <div><span class="white-text">{{ this.getDefaultPanelNumber }}</span></div> -->
@@ -85,7 +90,7 @@
         </table>
       </div>
     </form>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -209,7 +214,6 @@ export default {
       `ВОЗДУХ`,
       `ОМЫВАТЕЛЬ`,
       `ТУРБОСУШКА`
-
     ],
     messageIndex: -1,
 
@@ -511,8 +515,7 @@ export default {
       this.initial()
     },
     initial() {
-
-      // classes instances 
+      // classes instances
       /* left button */
       this.buttonLeft = new Button({
         selector: '#button-left',
@@ -556,7 +559,6 @@ export default {
         this.activeProgramKit.name !== 'washer' &&
         this.activeProgramKit.name !== 'turboDryer'
       ) {
-
         // standardOptions
         if (this.activeProgramKit.color) {
           this.setButtonStyle(this.upStandardColorOptions)
@@ -602,7 +604,7 @@ export default {
       else {
         console.log('!!!initial dry group')
 
-        switch(this.activeProgramKit.name) {
+        switch (this.activeProgramKit.name) {
           case 'vacuum':
             this.messageIndex = 3
             break
@@ -614,10 +616,10 @@ export default {
             break
           case 'turboDryer':
             this.messageIndex = 6
-            break  
-          
+            break
+
           default:
-            break        
+            break
         }
 
         this.greenImage.show()
@@ -628,7 +630,6 @@ export default {
         this.buttonRight.hide()
 
         this.setProgram('standard')
-
       }
     }
   }, // end methods
@@ -702,7 +703,16 @@ td {
   font-size: 4em;
   color: white;
 }
-
+.locate {
+  position: relative;
+  text-align: center;
+}
+.back {
+  position: absolute;
+  margin-top: -22em;
+  margin-left: -2em;
+  z-index: 1;
+}
 /* .number {
   position: absolute;
   margin-top: -32em;

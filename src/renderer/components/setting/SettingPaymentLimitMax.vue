@@ -153,10 +153,10 @@ td {
   width: 128px;
 }
 .button-setting {
-  border: solid 3px #00b9e3;
+  border: solid 1px white;
   font-size: 1.5em;
   border-radius: 2.5em;
-  /* dev */
+  background-color: #00b9e3;
   height: 2.5em;
   width: 2.5em;
   padding-bottom: 0em;

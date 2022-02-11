@@ -1,9 +1,10 @@
 <template>
   <div class="page-title">
     <ul style="margin-top: 18em;">
-
-      <li v-if="this.IsWetBalance === true  &&  this.getIsPing" 
-        @click="payUp('payBonus')">
+      <li
+        v-if="this.IsWetBalance === true && this.getIsPing"
+        @click="payUp('payBonus')"
+      >
         <div
           class="card white waves-effect pay-end-bonus"
           style="
@@ -31,10 +32,8 @@
           </div>
         </div>
       </li>
-      
-      <li 
-      v-if="this.IsWetBalance === false"
-      >
+
+      <li v-if="this.IsWetBalance === false">
         <div
           class="card white waves-effect pay-end-bonus"
           style="
@@ -60,13 +59,8 @@
             {{ 'ВНЕСИТЕ ОПЛАТУ' }}
           </div>
         </div>
-
-        
       </li>
-      <li
-      v-if="this.IsWetBalance === true"
-      @click="payUp('payEnd')"
-      >
+      <li v-if="this.IsWetBalance === true" @click="payUp('payEnd')">
         <div
           class="card white waves-effect pay-end-bonus"
           style="
@@ -93,8 +87,6 @@
           </div>
         </div>
       </li>
-
-
     </ul>
   </div>
 </template>
@@ -144,6 +136,7 @@ export default {
       }
     }
   },
+  
   methods: {
     ...mapGetters({
       getCashEnabler: 'getCashEnabler',
@@ -158,7 +151,11 @@ export default {
       //createCash: 'cash/createCash',
       setCashEnabler: 'setCashEnabler',
       setIsPayBonusMoney: 'setIsPayBonusMoney',
-      setIsAppendBonusMoney: 'setIsAppendBonusMoney'
+      setIsAppendBonusMoney: 'setIsAppendBonusMoney',
+
+      setIsReceiptRead: 'setIsReceiptRead',
+      setIsReceiptCreate: 'setIsReceiptCreate',
+      setIsReceiptPrint: 'setIsReceiptPrint'
     }),
     ...mapActions({
       updateWetMoney: 'updateWetMoney'
@@ -187,11 +184,17 @@ export default {
       const type = types[4]
 
       this.options = this.getReadReceiptOptions()
-      const response = (
-        await this.storage.getClient(method, this.options, type)
-      )(+response.result === 0)
-        ? this.$message(`Выполняется панелью при формировании чека`)
-        : this.$message(`НЕ выполняется панелью при формировании чека`)
+      const response = await this.storage.getClient(method, this.options, type)
+      if (response) {
+        // console.log('response.result', response.result)
+        if (+response.result === 0) {
+          this.setIsReceiptRead(true)
+          this.$message(`Выполняется панелью при формировании чека`)
+        } else {
+          this.setIsReceiptRead(false)
+          this.$message(`НЕ выполняется панелью при формировании чека`)
+        }
+      }
     },
 
     // 02 createReceipt
@@ -225,7 +228,7 @@ export default {
       const storage = new Storage(this.client, this.url)
 
       /* dev */
-      //this.readReceipt()
+      this.readReceipt()
       //this.createReceipt()
       //this.printReceipt()
     },
@@ -235,18 +238,16 @@ export default {
       const type = types[0]
 
       //console.log('payCashMoney')
-      
+
       const storage = new Storage(this.client, this.url)
       this.options = this.getStoreMoneyOptions()
       const response = await this.storage.getClient(method, this.options, type)
 
       /* dev */
       //console.log('++storeMoney-->', typeof response)
-      if (response === undefined ) {
+      if (response === undefined) {
         this.$router.push('/program')
-        this.$message(
-          `Связь с connect недоступна!!!`
-        )
+        this.$message(`Связь с connect недоступна!!!`)
         return
       }
       /* dev vacuum */
@@ -256,10 +257,9 @@ export default {
           `Оплата наличными прошла успешно, внесенная сумма:  ${+this
             .getWetBalance} ₽`
         )
-      }
-      else {
+      } else {
         this.$error('payCashMoney $error')
-        //this.$message(`Оплата наличными не прошла`)   
+        //this.$message(`Оплата наличными не прошла`)
       }
     },
     async appendBonusMoney() {
@@ -294,7 +294,7 @@ export default {
       } */
       //----
     },
-    //---------- 
+    //----------
 
     //----------
 

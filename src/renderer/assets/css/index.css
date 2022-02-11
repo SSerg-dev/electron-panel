@@ -144,6 +144,7 @@
  }
  /* Каркас */
  /* materialaze #26a69a */
+ 
  /* background: #121212 */
  /* 
    
@@ -303,4 +304,11 @@
    vertical-align: middle;
    margin: 0 16px;
  }
+
+.switch label input[type=checkbox]:checked+.lever:after {
+  background-color: #00b9e3;
+}
+.switch label input[type=checkbox]:checked+.lever {
+  background-color: #b3e5fc ;
+}
  

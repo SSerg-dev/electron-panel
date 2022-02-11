@@ -146,19 +146,19 @@ export default Vue.extend({
 .display {
   font-size: 1.6em;
 }
-.btn {
+/* .btn {
   font-size: 1em;
   border: solid 1px black;
   background-color: #26a69a;
-}
+} */
 td {
   width: 128px;
 }
 .button-setting {
-  border: solid 3px #00b9e3;
+  border: solid 1px white;
   font-size: 1.5em;
-  border-radius: 2.5em;
-  /* dev */
+  border-radius: 50%;
+  background-color: #00b9e3;
   height: 2.5em;
   width: 2.5em;
   padding-bottom: 0em;

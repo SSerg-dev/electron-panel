@@ -110,13 +110,11 @@ export default Vue.extend({
 
 <style scoped>
 .button-setting {
-  border: solid 3px #00b9e3;
+  border: solid 1px white;
   font-size: 1.4em;
   border-radius: 2em;
-
+  background-color: #00b9e3;
   width: 380px;
 }
-.btn {
-  background-color: #26A69A; 
-}
+
 </style>

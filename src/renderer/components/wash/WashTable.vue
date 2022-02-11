@@ -6,7 +6,13 @@
           <div><Message /></div>
         </div>
         <div  v-if="getWetBalance > 0" class="price">
-          <img src="imgs/price/price-up.png" />
+          <img src="imgs/price/price-up.svg" />
+        </div>
+        <div  v-if="getIsReceiptRead" class="price-menu">
+          <img src="imgs/price/price-menu.svg" />
+        </div>
+        <div  v-if="getIsMoneyToBonus" class="price-bonus">
+          <img src="imgs/price/price-bonus.svg" /> 
         </div>
       </section>
 
@@ -181,19 +187,28 @@ export default {
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getWetBalance: 'getWetBalance'
+      getWetBalance: 'getWetBalance',
 
-      //getWetProgShow: 'getWetProgShow', // '116321902'
-      //getWetProgStatus: 'getWetProgStatus',
-      //getWetProgPrice: 'getWetProgPrice',
+      getIsReceiptRead: 'getIsReceiptRead',
+      getIsReceiptCreate: 'getIsReceiptCreate',
+      getIsReceiptPrint: 'getIsReceiptPrint',
+      getIsMoneyToBonus: 'getIsMoneyToBonus'
+      
     })
   },
+  
   methods: {
     ...mapActions({
       updateStartProgram: 'updateStartProgram'
     }),
     ...mapMutations({
-      setActiveProgram: 'setActiveProgram'
+      setActiveProgram: 'setActiveProgram',
+
+      setIsReceiptRead: 'setIsReceiptRead',
+      setIsReceiptCreate: 'setIsReceiptCreate',
+      setIsReceiptPrint: 'setIsReceiptPrint',
+      setIsMoneyToBonus: 'setIsMoneyToBonus'
+      
     }),
     ...mapGetters({}),
     setProgram(program) {
@@ -238,12 +253,7 @@ export default {
       )
     },
     setup() {
-      /* dev */
-      // this.actives[20].display = 'block'
-      // this.actives[23].display = 'block'
-
-      // this.actives[19].display = 'block'
-      // this.actives[22].display = 'block'
+      this.setIsMoneyToBonus(false)
     }
   },
   mounted() {
@@ -256,6 +266,8 @@ export default {
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutPopup)
+    this.setIsReceiptRead(false)
+  
   },
   created() {
     this.setup()
@@ -277,7 +289,7 @@ export default {
 
 table {
   position: absolute;
-  margin-top: 17.5em; /*17.5em 18em; */
+  margin-top: 18em; /*17.5em 18em; */
   margin-left: 3em; /* 33em; */
 
   font-family: 'Plumb-Medium';
@@ -373,7 +385,17 @@ td {
 }
 .price {
   position: absolute;
-  margin-top: 4em;
+  margin-top: -0.6em;
   margin-left: 0em;
+}
+.price-menu {
+  position: absolute;
+  margin-top: 9em;
+  margin-left: 0em;
+}
+.price-bonus {
+  position: absolute;
+  margin-top: -0.6em;
+  margin-left: 62em;
 }
 </style>

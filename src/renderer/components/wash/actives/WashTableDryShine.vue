@@ -2,27 +2,26 @@
   <div>
     <!--  dryShine -->
     <!-- СУШКА И БЛЕСК -->
-    
-      <td @click="setProgram('dryShine')">
+
+    <td @click="setProgram('dryShine')">
+      <div
+        class="waves-effect button-style"
+        :class="[
+          { 'card white': !this.isDown.dryShine },
+          { 'card light-blue accent-2': this.isDown.dryShine }
+        ]"
+      >
         <div
-          class="waves-effect button-style"
+          class="button-content-style"
           :class="[
-            { 'card white': !this.isDown.dryShine },
-            { 'card light-blue accent-2': this.isDown.dryShine }
+            { 'card-content black-text': !this.isDown.dryShine },
+            { 'card-content white-text': this.isDown.dryShine }
           ]"
         >
-          <div
-            class="button-content-style"
-            :class="[
-              { 'card-content black-text': !this.isDown.dryShine },
-              { 'card-content white-text': this.isDown.dryShine }
-            ]"
-          >
-            {{ `${actives[this.activeNumber].title}` }}
-          </div>
+          {{ `${actives[this.activeNumber].title}` }}
         </div>
-      </td>
-    
+      </div>
+    </td>
   </div>
 </template>
 
@@ -35,7 +34,8 @@ export default Vue.extend({
     activeNumber: 4,
     active: '',
     timeoutPopup: null,
-    
+    timeoutSetUp: null,
+
     activeProgramKit: {},
 
     isDown: {
@@ -58,7 +58,7 @@ export default Vue.extend({
     ...mapGetters({
       getActiveProgram: 'getActiveProgram',
       getActiveProgramKit: 'getActiveProgramKit',
-      getIsActiveProgramKit: 'getIsActiveProgramKit' 
+      getIsActiveProgramKit: 'getIsActiveProgramKit'
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
@@ -72,7 +72,7 @@ export default Vue.extend({
       this.setDown(this.active)
 
       this.setIsActiveProgramKit(true)
-      this.setActiveProgramKit(this.activeProgramKit) 
+      this.setActiveProgramKit(this.activeProgramKit)
 
       if (parseInt(this.getWetBalance) > 0) {
         this.timeoutPopup = setTimeout(() => {
@@ -93,6 +93,11 @@ export default Vue.extend({
         default:
           break
       }
+      this.timeoutSetUp = setTimeout(() => {
+        try {
+          this.clearDown()
+        } catch (err) {}
+      }, 2000)
     },
     clearDown() {
       this.isDown = Object.fromEntries(
@@ -120,6 +125,7 @@ export default Vue.extend({
 
   beforeDestroy() {
     clearTimeout(this.timeoutPopup)
+    clearTimeout(this.timeoutSetUp)
   },
 
   created() {
@@ -129,7 +135,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-
 td {
   padding-top: 0px;
   padding-bottom: 0px;
@@ -159,4 +164,3 @@ td {
   justify-content: left;
 }
 </style>
-

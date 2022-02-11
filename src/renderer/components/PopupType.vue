@@ -9,7 +9,7 @@
 
     <div class="locate">
       <section>
-        <div class="popup">
+        <!-- <div class="popup">
           <p>
             <img v-if="isBasic" src="/imgs/popup/popup-basic.png" />
             <img v-if="isFoam" src="/imgs/popup/popup-foam.png" />
@@ -20,7 +20,7 @@
             <img v-if="isOperator" src="/imgs/popup/popup-operator.png" />
             <img v-if="isTurbo" src="/imgs/popup/popup-turbo.png" />
           </p>
-        </div>
+        </div> -->
 
         <div v-if="this.getIsActiveProgramKit()" class="active">
           <!-- <PopupTypeActive :activeProgramKit="activeProgramKit"/> -->
@@ -51,7 +51,8 @@ export default Vue.extend({
     isOperator: false,
     isTurbo: false,
     messages: [
-      `КНОПКА СТОП ОСТАНАВЛИВАЕТ ДВИГАТЕЛЬ`, 
+      /* `КНОПКА СТОП ОСТАНАВЛИВАЕТ ДВИГАТЕЛЬ`, */ 
+      `БЕСПЛАТНЫЙ СТОП`,
       `ВЫЗОВ ОТПРАВЛЕН, ОЖИДАЙТЕ`,
       ''
     ],
