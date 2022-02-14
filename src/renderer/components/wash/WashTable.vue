@@ -20,7 +20,7 @@
         <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
 
           <!-- 1 -->
-          <!-- ДИСКИ -->
+          <!-- ДИСКИ --> 
           <tr v-if="this.actives[14].display !== 'none'" style="height: 110px;">
              <WashTableDisk :actives="actives"/>
           </tr>  

@@ -24,12 +24,20 @@
       </div>
     </main>
 
-    <div
+    <!-- <div
       v-if="
         this.$route.name !== 'cost' &&
           this.$route.name != 'language' &&
           this.$route.name != 'setting' &&
           this.$route.name != 'popup'
+      "
+      class="footer"
+    > -->
+    <div
+      v-if="
+        this.$route.name !== 'cost' &&
+          this.$route.name != 'language' &&
+          this.$route.name != 'setting' 
       "
       class="footer"
     >

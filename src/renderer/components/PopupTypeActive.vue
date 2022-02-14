@@ -73,14 +73,14 @@
             <!-- row 03 -->
             <tr class="image">
               <td colspan="2">
-                <div id="green-image">
-                  <img src="imgs/actives/green-active.svg" />
+                <div id="green-image" class="active">
+                  <img src="imgs/actives/green-active-m.svg" />
                 </div>
-                <div id="blue-image">
-                  <img src="imgs/actives/blue-active.svg" />
+                <div id="blue-image" class="active">
+                  <img src="imgs/actives/blue-active-m.svg" />
                 </div>
-                <div id="red-image">
-                  <img src="imgs/actives/red-active.svg" />
+                <div id="red-image" class="active">
+                  <img src="imgs/actives/red-active-m.svg" />
                 </div>
               </td>
             </tr>
@@ -654,7 +654,7 @@ export default {
 <style scoped>
 .form {
   width: 67em;
-  height: 88em;
+  height: 82em;
   margin-left: 0em;
   margin-top: 11em;
   padding-left: 0em;
@@ -712,6 +712,10 @@ td {
   margin-top: -22em;
   margin-left: -2em;
   z-index: 1;
+}
+.active {
+  padding-left: 4.5rem; 
+  padding-bottom: 6rem;
 }
 /* .number {
   position: absolute;
