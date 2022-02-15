@@ -148,7 +148,7 @@ td {
 .button-style {
   margin-left: 0em;
   padding-top: 0em;
-  width: 945px;
+  width: 470px;
   height: 100px;
   border: solid 6px #40c4ff;
   border-radius: 4em;

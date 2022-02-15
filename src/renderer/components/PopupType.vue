@@ -9,22 +9,14 @@
 
     <div class="locate">
       <section>
-        <!-- <div class="popup">
+        <div class="popup">
           <p>
-            <img v-if="isBasic" src="/imgs/popup/popup-basic.png" />
-            <img v-if="isFoam" src="/imgs/popup/popup-foam.png" />
-            <img v-if="isBrush" src="/imgs/popup/popup-brush.png" />
-            <img v-if="isWasher" src="/imgs/popup/popup-washer.png" />
-            <img v-if="isAir" src="/imgs/popup/popup-air.png" />
             <img v-if="isStop" src="/imgs/popup/popup-stop.png" />
-            <img v-if="isOperator" src="/imgs/popup/popup-operator.png" />
-            <img v-if="isTurbo" src="/imgs/popup/popup-turbo.png" />
           </p>
-        </div> -->
+        </div>
 
-        <div v-if="this.getIsActiveProgramKit()" class="active">
-          <!-- <PopupTypeActive :activeProgramKit="activeProgramKit"/> -->
-          <PopupTypeActive :actives = "actives" />  
+        <div v-if="this.getIsActiveProgramKit() && !isStop" class="active">
+          <PopupTypeActive :actives="actives" />
         </div>
       </section>
     </div>
@@ -51,7 +43,8 @@ export default Vue.extend({
     isOperator: false,
     isTurbo: false,
     messages: [
-      /* `КНОПКА СТОП ОСТАНАВЛИВАЕТ ДВИГАТЕЛЬ`, */ 
+      /* `КНОПКА СТОП ОСТАНАВЛИВАЕТ ДВИГАТЕЛЬ`, */
+
       `БЕСПЛАТНЫЙ СТОП`,
       `ВЫЗОВ ОТПРАВЛЕН, ОЖИДАЙТЕ`,
       ''
@@ -71,13 +64,19 @@ export default Vue.extend({
     ...mapGetters({
       getSecondsGotoPopupMenu: 'getSecondsGotoPopupMenu',
       getPanelType: 'getPanelType',
-      getWetStopFreeCount: 'getWetStopFreeCount'
+      getWetStopFreeCount: 'getWetStopFreeCount',
+      getWetSpend: 'getWetSpend'
     })
   },
   watch: {
     getWetStopFreeCount(flag) {
       try {
-        if (parseInt(flag) === 0) this.$router.push('/program')
+        if (parseInt(flag) > 0) {
+          this.isStop = true
+        } else {
+          this.isStop = false
+          if (this.$route.name !== 'program') this.$router.push('/program')
+        }
       } catch (err) {}
     }
   },
@@ -167,8 +166,8 @@ export default Vue.extend({
       if (this.getIsActiveProgramKit()) {
         // x2, turbo, color,
         this.setIsActiveProgramKit(true)
-        this.delay = 10000000
-
+        /* dev */
+        this.delay = 1000000
       }
     },
 
@@ -189,11 +188,9 @@ export default Vue.extend({
     // console.log('PopupType actives-->', this.actives[24])
 
     this.setup()
-    /* dev */
-    if (parseInt(this.getWetStopFreeCount) === 0) {
+    /* if (parseInt(this.getWetStopFreeCount) === 0) {
       this.gotoProgramMenu(this.getSecondsGotoPopupMenu)
-      // this.gotoProgramMenu(2000)
-    }
+    } */
   },
   beforeDestroy() {
     this.setIsActiveProgramKit(false)

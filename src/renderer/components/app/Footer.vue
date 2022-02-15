@@ -35,55 +35,6 @@
           </div>
         </div>
 
-        <!-- ///////////////////// -->
-
-        <!-- <div class="col s4">
-          <div class="home">
-            <div
-              v-if="this.isDown.operator === false"
-              style="background-image:url('./imgs/operator/operator-down.png'); width: 401px; height: 106px"
-              @click="setProgram('operator')"
-            >
-             <div class="button-title-long button-title-operator">
-                {{ `КОНСУЛЬТАНТ` }}
-              </div>
-            </div>
-            <div
-              v-if="this.isDown.operator === true"
-              style="background-image:url('./imgs/operator/operator-up.png'); width: 401px; height: 106px"
-              @click="setProgram('operator')"
-            >
-              <div class="button-title-long button-title-operator">
-                {{ `КОНСУЛЬТАНТ` }}
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- ///////////////////// -->
-
-        <!-- <div class="col s4">
-          <div class="operator" style="margin-left: 0rem; z-index: 42">
-            <div
-              v-if="this.isDown.operator === false"
-              style="background-image:url('./imgs/operator/operator-down.png'); width: 401px; height: 106px"
-              @click="setProgram('operator')"
-            >
-             <div class="button-title-long button-title-operator">
-                {{ `КОНСУЛЬТАНТ` }}
-              </div>
-            </div>
-            <div
-              v-if="this.isDown.operator === true"
-              style="background-image:url('./imgs/operator/operator-up.png'); width: 401px; height: 106px"
-              @click="setProgram('operator')"
-            >
-              <div class="button-title-long button-title-operator">
-                {{ `КОНСУЛЬТАНТ` }}
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- ///////////////////// -->
 
         <div class="col s4">
           <div class="stop" style="z-index: 0;">
@@ -169,7 +120,9 @@ export default {
   watch: {
     getWetStopFreeCount(flag) {
       try {
-        if (parseInt(flag) > 0) 
+        /* dev */
+        if (parseInt(flag) > 0 && this.$route.name !== 'popup')
+        // if (parseInt(flag) > 0 ) 
           this.$router.push('/popup')
       } catch (err) {}
     }
@@ -255,6 +208,10 @@ export default {
           this.isDown.stop = true
           this.timeoutDelay = setTimeout(() => {
             this.isDown.stop = false
+            /* dev */
+            try {
+            this.$router.push('/program')
+          } catch (err) {}
           }, this.delay)
           break
         case 'operator':

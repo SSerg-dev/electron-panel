@@ -99,7 +99,8 @@ export default new Vuex.Store({
       progStatusMask: '',
       busy: '',
       panelMoney: '0',
-      stopFreeCount: '0'
+      stopFreeCount: '0',
+      spend: ''
     },
 
     dryParameters: {
@@ -365,6 +366,9 @@ export default new Vuex.Store({
     getWetStopFreeCount(state) {
       return state.parameters.stopFreeCount
     },
+    getWetSpend(state) {
+      return state.parameters.spend
+    },
 
     // DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Список всех Dry программ
@@ -386,9 +390,7 @@ export default new Vuex.Store({
       return state.globalParameters.fixedCurrency
       // return 2
     },
-    
 
-    
     // END DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     info: s => s.info,
@@ -416,7 +418,7 @@ export default new Vuex.Store({
     },
     getActiveProgram(state) {
       return state.activeProgram
-    },    
+    },
     getActiveProgramKit(state) {
       return state.activeProgramKit
     },
@@ -451,7 +453,6 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    
     setWetBalance(state, money) {
       state.parameters.panelMoney = money
     },
@@ -471,7 +472,7 @@ export default new Vuex.Store({
       //  console.log('from B&D -->',parameter.title, displayName, parameter.value)
 
       // console.log('++displayName-->', displayName)
-      //console.log('++parameter.value-->', parameter.value)
+      // console.log('++parameter.value-->', parameter.value)
 
       switch (displayName) {
         case 'progPrice':
@@ -494,7 +495,9 @@ export default new Vuex.Store({
           break
         case 'stopFreeCount':
           state.parameters.stopFreeCount = parameter.value
-          // console.log('state.parameters.stopFreeCount-->', state.parameters.stopFreeCount)
+          break
+        case 'spend':
+          state.parameters.spend = parameter.value
           break
 
         default:
@@ -589,11 +592,10 @@ export default new Vuex.Store({
       // console.log('++state.cardMoney-->', state.cardMoney)
     },
     setIsBonusMoney(state, isBonusMoney) {
-      state.isBonusMoney = isBonusMoney 
+      state.isBonusMoney = isBonusMoney
     },
-    
-    /*     */
 
+    /*     */
 
     setActiveProgramNumber(state, activeProgramNumber) {
       state.activeProgramNumber = activeProgramNumber
@@ -610,7 +612,6 @@ export default new Vuex.Store({
   } /* end mutations */,
 
   modules: {
-    
     setting,
     program,
     cost,

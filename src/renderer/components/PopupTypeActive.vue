@@ -31,7 +31,7 @@
               <!-- standard -->
               <!-- this.activeProgramKit.name  -->
 
-              <td style="padding-left: 2em; padding-bottom: 1em;">
+              <td style="padding-left: 4.8em; padding-bottom: 1em;">
                 <div
                   @click="setProgram('standard')"
                   class="waves-effect"
@@ -50,7 +50,7 @@
 
               <!-- turbo -->
 
-              <td style="padding-left: 0em; padding-bottom: 1em;">
+              <td style="padding-right: 2em; padding-bottom: 1em;">
                 <div
                   @click="setProgram('advanced')"
                   class="waves-effect"
@@ -520,7 +520,7 @@ export default {
       this.buttonLeft = new Button({
         selector: '#button-left',
 
-        width: 28,
+        width: 25, // 28
         height: 25,
         background: 'rgb(255, 255, 255)',
         borderRadius: 3
@@ -530,7 +530,7 @@ export default {
       this.buttonRight = new Button({
         selector: '#button-right',
 
-        width: 28,
+        width: 25, //28
         height: 25,
         background: 'rgb(255, 255, 255)',
         borderRadius: 3
@@ -717,17 +717,5 @@ td {
   padding-left: 4.5rem; 
   padding-bottom: 6rem;
 }
-/* .number {
-  position: absolute;
-  margin-top: -32em;
-  margin-left: 17em;
-  color: #fff;
 
-  font-size: 5em;
-
-  font-family: 'Plumb-Medium';
-  font-weight: normal;
-  text-align: justify;
-  z-index: 1;
-} */
 </style>

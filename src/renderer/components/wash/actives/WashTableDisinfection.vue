@@ -1,21 +1,21 @@
 <template>
   <div>
-    <!--  dryShine -->
-    <!-- СУШКА И БЛЕСК -->
+    <!--  disinfection -->
+    <!-- ДЕЗИНФЕКЦИЯ -->
 
-    <td @click="setProgram('dryShine')">
+    <td @click="setProgram('disinfection')">
       <div
         class="waves-effect button-style"
         :class="[
-          { 'card white': !this.isDown.dryShine },
-          { 'card light-blue accent-2': this.isDown.dryShine }
+          { 'card white': !this.isDown.disinfection },
+          { 'card light-blue accent-2': this.isDown.disinfection }
         ]"
       >
         <div
           class="button-content-style"
           :class="[
-            { 'card-content black-text': !this.isDown.dryShine },
-            { 'card-content white-text': this.isDown.dryShine }
+            { 'card-content black-text': !this.isDown.disinfection },
+            { 'card-content white-text': this.isDown.disinfection }
           ]"
         >
           {{ `${actives[this.activeNumber].title}` }}
@@ -31,7 +31,7 @@ import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 export default Vue.extend({
   data: () => ({
-    activeNumber: 4,
+    activeNumber: 28,
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -39,8 +39,8 @@ export default Vue.extend({
     activeProgramKit: {},
 
     isDown: {
-      dryShine: false,
-      dryShine_x2: false
+      disinfection: false,
+      shampoo_x2: false
     }
   }),
   props: {
@@ -83,11 +83,11 @@ export default Vue.extend({
     setDown(program) {
       this.clearDown()
       switch (program) {
-        case 'dryShine':
-          this.isDown.dryShine = true
+        case 'disinfection':
+          this.isDown.disinfection = true
           break
-        // case 'dryShine_x2':
-        //   this.isDown.dryShine_x2 = true
+        // case 'shampoo_x2':
+        //   this.isDown.shampoo_x2 = true
         //   break
 
         default:
@@ -106,6 +106,7 @@ export default Vue.extend({
     },
     getKits() {
       const result = []
+      
       Object.entries(this.actives[this.activeNumber]).map(([key, value]) => {
         if (
           key === 'title' ||
@@ -148,7 +149,7 @@ td {
 .button-style {
   margin-left: 0em;
   padding-top: 0em;
-  width: 470px;
+  width: 945px;
   height: 100px;
   border: solid 6px #40c4ff;
   border-radius: 4em;

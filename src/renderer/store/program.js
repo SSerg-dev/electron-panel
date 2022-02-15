@@ -18,6 +18,7 @@ export default {
     // mode: [color, x2, turbo],
     // x2: false, color: false,  turbo: true
     actives: [
+      
       {
         id: 2,
         order: 1,
@@ -25,9 +26,8 @@ export default {
         name: 'shampoo',
         row: 2,
         col: 0,
-        // x2: false, color: false,  turbo: false,
         x2: true, color: false, turbo: false,
-        display: 0
+        display: 0,
       },
       {
         id: 3,
@@ -37,38 +37,38 @@ export default {
         row: 3,
         col: 0,
         x2: false, color: false,  turbo: true,
-        display: 0
-      }, // main +
+        display: 0,
+      }, 
       {
         id: 4,
         order: 3,
-        title: 'ХОЛОДНАЯ ВОДА',
+        title: 'ХОЛОДНАЯ',
         name: 'coldWater',
         row: 4,
         col: 0,
         x2: false, color: false,  turbo: true,
-        display: 0
+        display: 0,
       }, // main +
       {
         id: 5,
         order: 4,
-        title: 'ВОСК И ЗАЩИТА',
+        title: 'ВОСК',
         name: 'waxProtection',
         row: 5,
         col: 0,
         x2: false, color: false,  turbo: true,
-        display: 0
+        display: 0,
       }, // main +
 
       {
         id: 6,
         order: 5,
-        title: 'СУШКА И БЛЕСК',
+        title: 'ОСМОС', /* 'СУШКА И БЛЕСК', */
         name: 'dryShine',
         row: 6,
         col: 0,
         x2: false, color: false,  turbo: true,
-        display: 0
+        display: 0,
       },
       {
         id: 7,
@@ -78,7 +78,7 @@ export default {
         row: 7,
         col: 0,
         x2: false, color: true,  turbo: false,
-        display: 1
+        display: 0
       }, // main + ?
       {
         id: 8,
@@ -89,7 +89,7 @@ export default {
         col: 0,
         color: false,
         x2: false, color: false,  turbo: false,
-        display: 0
+        display: 0,
       }, // main + ?
       {
         id: 9,
@@ -99,7 +99,7 @@ export default {
         row: 9,
         col: 0,
         x2: false, color: false,  turbo: true,
-        display: 0
+        display: 0,
       }, // ext +
       {
         id: 10,
@@ -109,7 +109,7 @@ export default {
         row: 10,
         col: 0,
         x2: false, color: false,  turbo: true,
-        display: 0
+        display: 0,
       }, // ext +
 
       {
@@ -120,7 +120,7 @@ export default {
         row: 11,
         col: 0,
         x2: false, color: false,  turbo: true,
-        display: 0
+        display: 0,
       }, // ext +
       {
         id: 12,
@@ -130,17 +130,17 @@ export default {
         row: 12,
         col: 0,
         x2: false, color: false,  turbo: true,
-        display: 0
+        display: 0,
       }, // ext +
       {
         id: 13,
         order: 12,
-        title: 'ТЕПЛАЯ ВОДА',
+        title: 'ТЕПЛАЯ',
         name: 'warmWater',
         row: 13,
         col: 0,
         x2: false, color: false,  turbo: true,
-        display: 0
+        display: 0,
       }, // main +
       {
         id: 14,
@@ -150,17 +150,17 @@ export default {
         row: 14,
         col: 0,
         x2: false, color: false,  turbo: true,
-        display: 0
+        display: 0,
       }, // ext +
       {
         id: 15,
         order: 14,
-        title: 'ЩЕТКА + ПЕНА',
+        title: 'ЩЕТКА',
         name: 'brushFoam', 
         row: 15,
         col: 0,
         x2: false, color: true,  turbo: false,
-        display: 0
+        display: 0,
       }, // main +
 
       {
@@ -171,7 +171,7 @@ export default {
         row: 16,
         col: 0,
         x2: true, color: false,  turbo: false, 
-        display: 0
+        display: 0,
       }, // main +
       {
         id: 17,
@@ -181,7 +181,7 @@ export default {
         row: 17,
         col: 0,
         x2: true, color: false,  turbo: false, 
-        display: 0
+        display: 0,
       }, // main +
       {
         id: 18,
@@ -191,7 +191,7 @@ export default {
         row: 18,
         col: 0,
         x2: false, color: false,  turbo: false, 
-        display: 0
+        display: 0,
       }, // main
       {
         id: 19,
@@ -201,7 +201,7 @@ export default {
         row: 19,
         col: 0,
         x2: false, color: false,  turbo: false,
-        display: 0
+        display: 0,
       }, // main
       {
         id: 20,
@@ -211,7 +211,7 @@ export default {
         row: 20,
         col: 0,
         x2: false, color: false,  turbo: false, 
-        display: 0
+        display: 0,
       }, // main
 
       {
@@ -222,7 +222,7 @@ export default {
         row: 21,
         col: 0,
         x2: false, color: true,  turbo: false,
-        display: 1
+        display: 0,
       }, // ext
       {
         id: 22,
@@ -232,7 +232,7 @@ export default {
         row: 22,
         col: 0,
         x2: false, color: true,  turbo: false,
-        display: 1
+        display: 0,
       }, // ext
       {
         id: 23,
@@ -242,7 +242,7 @@ export default {
         row: 23,
         col: 0,
         x2: true, color: false,  turbo: false,
-        display: 0
+        display: 0,
       }, // ext
       {
         id: 24,
@@ -252,7 +252,7 @@ export default {
         row: 24,
         col: 0,
         x2: true, color: false,  turbo: false,
-        display: 1
+        display: 0,
       }, // ext
       {
         id: 25,
@@ -262,7 +262,7 @@ export default {
         row: 25,
         col: 0,
         x2: true, color: false,  turbo: false,
-        display: 0
+        display: 0,
       }, // ext
 
       {
@@ -273,7 +273,7 @@ export default {
         row: 26,
         col: 0,
         x2: true, color: false,  turbo: false,
-        display: 0
+        display: 0,
       },
       {
         id: 27,
@@ -283,7 +283,7 @@ export default {
         row: 27,
         col: 0,
         x2: true, color: false,  turbo: false,
-        display: 0
+        display: 0,
       },
       {
         id: 28,
@@ -293,27 +293,31 @@ export default {
         row: 28,
         col: 0,
         x2: false, color: false,  turbo: false,
-        display: 0
+        display: 0,
       },
       {
         id: 29,
         order: 0,
-        title: '',
+        title: 'ОБЕЗЖИРИВАНИЕ',
+        name: 'degrease',
         row: 29,
         col: 0,
-        x2: false, color: false,  turbo: false,
-        display: 0
+        // x2: false, color: false,  turbo: false,
+        x2: true, color: false, turbo: false,
+        display: 0,
       },
-      // dev
+      /* disinfection */
       {
         id: 30,
         order: 0,
-        title: 'DEV',
+        title: 'ДЕЗИНФЕКЦИЯ',
+        name: 'disinfection',
         row: 30,
         col: 0,
-        x2: false, color: false,  turbo: false,
-        display: 0
-      }
+        x2: true, color: false, turbo: false,
+        display: 0,
+      },
+
     ], // end actives:
 
     activeProgNames: []

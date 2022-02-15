@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="locate">
     <!-- <div class="page-title">
       <h3>
           Popup screen<br />
@@ -7,13 +7,16 @@
       </h3>
     </div> -->
 
+    <!-- dev -->
+    <!-- <div v-if="!getIsMoneyToBonus" class="price-bonus">
+      <img src="imgs/price/price-bonus.svg" />
+    </div> -->
+
     <section>
       <div class="row">
-        
         <div>
           <PopupType :actives="actives" />
         </div>
-
       </div>
     </section>
   </div>
@@ -39,7 +42,8 @@ export default Vue.extend({
     ...mapGetters({
       getWetProgStatus: 'getWetProgStatus',
       getWetProgShow: 'getWetProgShow',
-      getParamsChange: 'getParamsChange'
+      getParamsChange: 'getParamsChange',
+      getIsMoneyToBonus: 'getIsMoneyToBonus'
     })
   },
   methods: {
@@ -63,7 +67,10 @@ export default Vue.extend({
         .slice(1)
 
       for (let i = 0; i <= this.activeProg.length; i++) {
-        if (this.activeProg.toString().slice(i, i + 1) === '0') {
+        if (
+          this.activeProg.toString().slice(i, i + 1) === '0' ||
+          this.activeProg.toString().slice(i, i + 1) === 'none'
+        ) {
           this.actives[i].display = 'none'
         } else {
           this.actives[i].display = 'block'
@@ -98,5 +105,10 @@ export default Vue.extend({
   margin-right: auto;
   width: 50em;
   align-items: center;
+}
+.price-bonus {
+  position: absolute;
+  margin-top: -0.6em;
+  margin-left: 50em;
 }
 </style>

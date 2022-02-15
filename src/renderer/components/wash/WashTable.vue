@@ -5,103 +5,111 @@
         <div class="message">
           <div><Message /></div>
         </div>
-        <div  v-if="getWetBalance > 0" class="price">
+        <div v-if="getWetBalance > 0" class="price">
           <img src="imgs/price/price-up.svg" />
         </div>
-        <div  v-if="getIsReceiptRead" class="price-menu">
+        <div v-if="getIsReceiptRead" class="price-menu">
           <img src="imgs/price/price-menu.svg" />
         </div>
-        <div  v-if="getIsMoneyToBonus" class="price-bonus">
-          <img src="imgs/price/price-bonus.svg" /> 
-        </div>
+        <!-- <div v-if="!getIsMoneyToBonus" class="price-bonus">
+          <img src="imgs/price/price-bonus.svg" />
+        </div> -->
       </section>
 
       <table border="0" width="100%" cellpadding="0" cellspacing="0">
         <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
+          <!-- 0 -->
+          <!-- ОБЕЗЖИРИВАНИЕ degrease -->
+          <tr v-if="this.actives[27].display !== 'none'">
+            <WashTableDegrease :actives="actives" />
+          </tr>
 
           <!-- 1 -->
-          <!-- ДИСКИ --> 
-          <tr v-if="this.actives[14].display !== 'none'" style="height: 110px;">
-             <WashTableDisk :actives="actives"/>
-          </tr>  
-          
+          <!-- ДИСКИ -->
+          <tr v-if="this.actives[14].display !== 'none'">
+            <WashTableDisk :actives="actives" />
+          </tr>
+
           <!-- 2 -->
           <!-- АНТИМОСКИТ -->
-          <tr v-if="this.actives[15].display !== 'none'" style="height: 110px;">
-             <WashTableMosquito :actives="actives"/>
+          <tr v-if="this.actives[15].display !== 'none'">
+            <WashTableMosquito :actives="actives" />
           </tr>
 
           <!-- 3 -->
-          <!-- ЩЕТКА + ПЕНА -->
-          <tr v-if="this.actives[13].display !== 'none'" style="height: 110px;">
-             <WashTableBrushFoam :actives="actives"/>
+          <!-- ШАМПУНЬ shampoo -->
+          <tr v-if="this.actives[0].display !== 'none'">
+            <WashTableShampoo :actives="actives" />
           </tr>
 
           <!-- 4 -->
-          <!-- ПЕНА -->
-          <tr v-if="this.actives[5].display !== 'none'" style="height: 110px;">
-             <WashTableFoam :actives="actives"/>
-          </tr> 
+          <!-- ЩЕТКА + ПЕНА -->
+          <tr v-if="this.actives[13].display !== 'none'">
+            <WashTableBrushFoam :actives="actives" />
+          </tr>
 
           <!-- 5 -->
-          <!-- ШАМПУНЬ shampoo -->
-          <tr v-if="this.actives[0].display !== 'none'" style="height: 110px;">
-             <WashTableShampoo :actives="actives"/>
+          <!-- ПЕНА -->
+          <tr v-if="this.actives[5].display !== 'none'">
+            <WashTableFoam :actives="actives" />
           </tr>
 
           <!-- 6 -->
           <!-- ВОДА + ШАМПУНЬ -->
-          <tr v-if="this.actives[1].display !== 'none'" style="height: 110px;">
-             <WashTableWaterShampoo :actives="actives"/>
+          <tr v-if="this.actives[1].display !== 'none'">
+            <WashTableWaterShampoo :actives="actives" />
           </tr>
 
           <!-- 7 -->
-          <!-- ТЕПЛАЯ ВОДА warmWater -->
-          <tr v-if="this.actives[11].display !== 'none'" style="height: 110px;">
-             <WashTableWarmWater :actives="actives"/>
+          <!-- ХОЛОДНАЯ ВОДА coldWater -->
+          <tr v-if="this.actives[2].display !== 'none'">
+            <WashTableColdWater :actives="actives" />
           </tr>
 
           <!-- 8 -->
-          <!-- ХОЛОДНАЯ ВОДА coldWater -->
-          <tr v-if="this.actives[2].display !== 'none'" style="height: 110px;">
-             <WashTableColdWater :actives="actives"/>
+          <!-- ТЕПЛАЯ ВОДА warmWater -->
+          <tr v-if="this.actives[11].display !== 'none'">
+            <WashTableWarmWater :actives="actives" />
           </tr>
 
           <!-- 9 -->
           <!-- ВОСК И ЗАЩИТА waxProtection -->
-          <tr v-if="this.actives[3].display !== 'none'" style="height: 110px;">
-             <WashTableWaxProtection :actives="actives"/>
+          <tr v-if="this.actives[3].display !== 'none'">
+            <WashTableWaxProtection :actives="actives" />
           </tr>
 
           <!-- 10 -->
           <!-- СУШКА И БЛЕСК dryShine-->
-          <tr v-if="this.actives[4].display !== 'none'" style="height: 110px;">
-             <WashTableDryShine :actives="actives"/>
+          <tr v-if="this.actives[4].display !== 'none'">
+            <WashTableDryShine :actives="actives" />
+          </tr>
+
+          <!-- 11 -->
+          <!-- ДЕЗИНФЕКЦИЯ disinfection -->
+          <tr v-if="this.actives[28].display !== 'none'">
+            <WashTableDisinfection :actives="actives" />
           </tr>
 
           <!-- dry group -->
           <!-- vacuum air washer turboDryer -->
 
           <tr>
-
-            <td v-if="this.actives[16].display !== 'none'" style="height: 110px;">
-             <WashTableVacuum :actives="actives"/>
+            <td v-if="this.actives[16].display !== 'none'">
+              <WashTableVacuum :actives="actives" />
             </td>
-            
-          <td v-if="this.actives[17].display !== 'none'" style="height: 110px;">
-             <WashTableAir :actives="actives"/>
+            <td v-if="this.actives[26].display !== 'none'">
+              <WashTableTurboDryer :actives="actives" />
             </td>
-          
-            <td v-if="this.actives[18].display !== 'none'" style="height: 110px;">
-             <WashTableWasher :actives="actives"/>
-            </td>
-            
-            <td v-if="this.actives[26].display !== 'none'" style="height: 110px;">
-             <WashTableTurboDryer :actives="actives"/>
-            </td>
-
           </tr>
+          <tr>
+            <td v-if="this.actives[17].display !== 'none'">
+              <WashTableAir :actives="actives" />
+            </td>
 
+            <td v-if="this.actives[18].display !== 'none'">
+              <WashTableWasher :actives="actives" />
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -126,8 +134,9 @@ import WashTableVacuum from '@/components/wash/actives/WashTableVacuum'
 import WashTableAir from '@/components/wash/actives/WashTableAir'
 import WashTableWasher from '@/components/wash/actives/WashTableWasher'
 import WashTableTurboDryer from '@/components/wash/actives/WashTableTurboDryer'
-
-
+import WashTableDegrease from '@/components/wash/actives/WashTableDegrease'
+import WashTableDisinfection from '@/components/wash/actives/WashTableDisinfection'
+/* WashTableDisinfection */
 
 export default {
   data: () => ({
@@ -146,8 +155,7 @@ export default {
       washer: false,
       vacuum: false,
       turboDryer: false,
-      air: false,
-      
+      air: false
     }
   }),
   components: {
@@ -165,7 +173,9 @@ export default {
     WashTableVacuum,
     WashTableAir,
     WashTableTurboDryer,
-    WashTableWasher
+    WashTableWasher,
+    WashTableDegrease,
+    WashTableDisinfection
   },
   props: {
     actives: {
@@ -193,10 +203,9 @@ export default {
       getIsReceiptCreate: 'getIsReceiptCreate',
       getIsReceiptPrint: 'getIsReceiptPrint',
       getIsMoneyToBonus: 'getIsMoneyToBonus'
-      
     })
   },
-  
+
   methods: {
     ...mapActions({
       updateStartProgram: 'updateStartProgram'
@@ -208,13 +217,12 @@ export default {
       setIsReceiptCreate: 'setIsReceiptCreate',
       setIsReceiptPrint: 'setIsReceiptPrint',
       setIsMoneyToBonus: 'setIsMoneyToBonus'
-      
     }),
     ...mapGetters({}),
     setProgram(program) {
       this.active = program
       this.setActiveProgram(this.active)
-      this.setDown(program) 
+      this.setDown(program)
 
       this.updateStartProgram([
         this.getPanelType,
@@ -267,7 +275,6 @@ export default {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutPopup)
     this.setIsReceiptRead(false)
-  
   },
   created() {
     this.setup()
@@ -280,7 +287,7 @@ export default {
   position: absolute;
   margin-top: -10em;
   margin-left: 17em;
-  
+
   font-family: 'Plumb-Medium';
   font-weight: normal; /* bold; */
   text-align: justify;
@@ -304,7 +311,7 @@ table {
 
 tr {
   text-align: center;
-  height: 115px;
+  height: 120px;
 
   float: left;
 }
@@ -318,12 +325,10 @@ td {
   width: 474px;
 
   float: left;
-/*   display: flex;
+  /*   display: flex;
   align-items: left;
   justify-content: left;
  */
-
-
 }
 .right-col {
   padding-right: 0rem;
@@ -336,20 +341,17 @@ td {
   background-color: #121212;
   width: 0rem;
   height: 0rem;
-
 }
 .x2 {
   background-color: #121212;
   width: 0rem;
   height: 0rem;
-
 }
 .color {
   border-color: white;
   background-color: #121212;
   width: 0rem;
   height: 0rem;
-
 }
 .button-title-long {
   position: relative;

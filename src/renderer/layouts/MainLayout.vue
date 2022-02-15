@@ -3,9 +3,8 @@
     <Navbar @click="isOpen = !isOpen" />
     <!-- <button class="btn">TEST</button> -->
     <main class="app-content" :class="{ full: !isOpen }">
-      <!-- dev -->
-
-      <Snowf
+     
+      <!-- <Snowf
         :amount="500"
         :size="5"
         :speed="1.5"
@@ -16,7 +15,7 @@
         :zIndex="null"
         :resize="true"
         color="#fff"
-      />
+      /> -->
 
       <!--     -->
       <div class="app-page">

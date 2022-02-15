@@ -38,6 +38,7 @@ class OPCUAService extends EventEmitter {
 		TAG_WET_SERV_MONEY     : "::AsGlobalPV:PostBalance[{0}].paidService",
 		TAG_WET_BONUS_MONEY    : "::AsGlobalPV:PostBalance[{0}].paidBonus",
 		TAG_WET_ORDER          : "::AsGlobalPV:PostBalance[{0}].order",
+    TAG_WET_SPEND          :  "::AsGlobalPV:PostBalance[{0}].spend",
 		
 		TAG_WET_CALL_OPERATOR  : "::AsGlobalPV:PostN[{0}].operatorCall",
 		TAG_WET_DOOR           : "::AsGlobalPV:PostN[{0}].door",
@@ -53,6 +54,7 @@ class OPCUAService extends EventEmitter {
     /* dev */
     TAG_DRY_IS_BUSY        : "::AsGlobalPV:VacuumPost[{0}].busy", 
     TAG_G_FIXED_CURRENCY   : "::AsGlobalPV:gFixedCurrency.digits",
+
 
 
 		TAG_DRY_ENABLED        : "::AsGlobalPV:VacuumPost[{0}].active",

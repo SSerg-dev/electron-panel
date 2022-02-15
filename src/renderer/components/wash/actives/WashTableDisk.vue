@@ -120,6 +120,7 @@ export default Vue.extend({
       })
 
       this.activeProgramKit = Object.fromEntries(result)
+
     }
   }, // end methods
 
@@ -130,6 +131,8 @@ export default Vue.extend({
 
   created() {
     this.getKits()
+    // console.log('++this.actives[]', this.actives[this.activeNumber])
+    
   }
 })
 </script>
@@ -148,7 +151,7 @@ td {
 .button-style {
   margin-left: 0em;
   padding-top: 0em;
-  width: 945px;
+  width: 470px; /* 945px; */ 
   height: 100px;
   border: solid 6px #40c4ff;
   border-radius: 4em;
