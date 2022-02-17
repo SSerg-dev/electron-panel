@@ -24,9 +24,9 @@ class Button extends Box {
     //this.$el.style.boxShadow = options.boxShadow
     
     // flex
-    this.$el.style.display = 'flex'
-    this.$el.style.alignItems = 'center'
-    this.$el.style.justifyContent = 'center'
+    // this.$el.style.display = 'flex'
+    // this.$el.style.alignItems = 'center'
+    // this.$el.style.justifyContent = 'center'
     
 
   }
@@ -49,10 +49,19 @@ class Button extends Box {
   get boxShadow() {
     return this.$el.style.boxShadow
   }
-  
   get fontSize() {
     return this.$el.style.fontSize
   } 
+  get width() {
+    return this.$el.style.width
+  }
+  get justifyContent() {
+    return this.$el.style.justifyContent
+  }
+  get alignItems() {
+    return this.$el.style.alignItems
+  }
+
 
   // setters
   set background(newBackground) {
@@ -71,6 +80,10 @@ class Button extends Box {
   set fontSize(newFontSize) {
     this.$el.style.fontSize = newFontSize
   }
+  set width(newWidth) {
+    this.$el.style.width = newWidth
+  }
+  
   // flex
  set display(newDisplay) {
    this.$el.style.display = newDisplay

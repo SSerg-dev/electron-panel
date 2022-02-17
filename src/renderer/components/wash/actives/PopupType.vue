@@ -12,7 +12,6 @@
         <div class="popup">
           <p>
             <img v-if="isStop" src="/imgs/popup/popup-stop.png" />
-            <img v-if="isOperator" src="/imgs/popup/popup-operator.png" />
           </p>
         </div>
 
@@ -35,16 +34,25 @@ export default Vue.extend({
     activeProgramKit: {},
 
     intervalPopupMenu: null,
+    isBasic: false,
+    isFoam: false,
+    isBrush: false,
+    isWasher: false,
+    isAir: false,
     isStop: false,
     isOperator: false,
+    isTurbo: false,
     messages: [
       /* `КНОПКА СТОП ОСТАНАВЛИВАЕТ ДВИГАТЕЛЬ`, */
+
       `БЕСПЛАТНЫЙ СТОП`,
       `ВЫЗОВ ОТПРАВЛЕН, ОЖИДАЙТЕ`,
       ''
     ],
     messageIndex: -1,
     delay: 0
+
+    // activeKit: ''
   }),
   props: {
     actives: {
@@ -65,7 +73,6 @@ export default Vue.extend({
       try {
         if (parseInt(flag) > 0) {
           this.isStop = true
-          this.messageIndex = 0
         } else {
           this.isStop = false
           if (this.$route.name !== 'program') this.$router.push('/program')
@@ -86,10 +93,61 @@ export default Vue.extend({
     }),
     setup() {
       this.activeProgram = this.getActiveProgram()
+      // console.log('this.activeProgram-->', this.activeProgram)
       this.activeProgramKit = this.getActiveProgramKit()
+      // console.log('this.activeProgramKit-->', this.activeProgramKit)
+
       if (!this.getIsActiveProgramKit()) {
         this.setIsActiveProgramKit(false)
         this.delay = 1000
+        // 1 blue
+        if (
+          this.activeProgram === 'disk' ||
+          this.activeProgram === 'disk_x2' ||
+          this.activeProgram === 'mosquito' ||
+          this.activeProgram === 'mosquito_x2' ||
+          this.activeProgram === 'shampoo' ||
+          this.activeProgram === 'shampoo_x2' ||
+          this.activeProgram === 'waterShampoo' ||
+          this.activeProgram === 'waterShampoo_turbo' ||
+          this.activeProgram === 'warmWater' ||
+          this.activeProgram === 'warmWater_turbo' ||
+          this.activeProgram === 'coldWater' ||
+          this.activeProgram === 'coldWater_turbo' ||
+          this.activeProgram === 'waxProtection' ||
+          this.activeProgram === 'waxProtection_turbo' ||
+          this.activeProgram === 'dryShine' ||
+          this.activeProgram === 'dryShine_turbo'
+        )
+          this.isBasic = true
+        // 2 red
+        if (
+          this.activeProgram === 'foam' ||
+          this.activeProgram === 'foam_color' ||
+          this.activeProgram === 'foam_x2'
+        )
+          this.isFoam = true
+        // 3 dark green
+        if (
+          this.activeProgram === 'brushFoam' ||
+          this.activeProgram === 'brushFoam_color' ||
+          this.activeProgram === 'brushFoam_x2'
+        )
+          this.isBrush = true
+        // 4 marin
+        if (
+          this.activeProgram === 'washer' ||
+          this.activeProgram === 'vacuum' ||
+          this.activeProgram === 'turboDryer' ||
+          this.activeProgram === 'air' ||
+          this.activeProgram === 'blacking' ||
+          this.activeProgram === 'disinfection'
+        )
+          this.isWasher = true
+        // 5 green
+        /* if (
+        this.activeProgram === 'air'
+      ) this.isAir = true */
 
         // footer
         if (this.activeProgram === 'stop') {
@@ -105,13 +163,12 @@ export default Vue.extend({
           this.messageIndex = 2
         }
       }
-      
       if (this.getIsActiveProgramKit()) {
         // x2, turbo, color,
-        //this.setIsActiveProgramKit(true)
+        this.setIsActiveProgramKit(true)
+        /* dev */
         this.delay = 1000000
       }
-      
     },
 
     gotoProgramMenu(seconds) {
@@ -131,9 +188,9 @@ export default Vue.extend({
     // console.log('PopupType actives-->', this.actives[24])
 
     this.setup()
-    if (parseInt(this.getWetStopFreeCount) === 0) {
+    /* if (parseInt(this.getWetStopFreeCount) === 0) {
       this.gotoProgramMenu(this.getSecondsGotoPopupMenu)
-    }
+    } */
   },
   beforeDestroy() {
     this.setIsActiveProgramKit(false)
@@ -168,7 +225,7 @@ h3 {
   text-align: center;
   font-size: 3.5rem;
   font-weight: bold;
-  z-index: 1000;
+  z-index: 1;
 }
 .popup {
   margin-top: 10em;

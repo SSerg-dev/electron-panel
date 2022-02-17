@@ -27,25 +27,25 @@
           <!-- 1 -->
           <!-- ДИСКИ -->
           <tr v-if="this.actives[14].display !== 'none'">
-            <WashTableDisk :actives="actives" />
+            <WashTableDiskEx :actives="actives" />
           </tr>
-
+ 
           <!-- 2 -->
           <!-- АНТИМОСКИТ -->
           <tr v-if="this.actives[15].display !== 'none'">
-            <WashTableMosquito :actives="actives" />
+            <WashTableMosquitoEx :actives="actives" />
           </tr>
 
           <!-- 3 -->
           <!-- ШАМПУНЬ shampoo -->
           <tr v-if="this.actives[0].display !== 'none'">
-            <WashTableShampoo :actives="actives" />
+            <WashTableShampooEx :actives="actives" />
           </tr>
 
           <!-- 4 -->
           <!-- ЩЕТКА + ПЕНА -->
           <tr v-if="this.actives[13].display !== 'none'">
-            <WashTableBrushFoam :actives="actives" />
+            <WashTableBrushFoamEx :actives="actives" />
           </tr>
 
           <!-- 5 -->
@@ -120,15 +120,15 @@
 import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import Message from '@/components/app/Message'
-import WashTableDisk from '@/components/wash/actives/WashTableDisk'
-import WashTableMosquito from '@/components/wash/actives/WashTableMosquito'
-import WashTableShampoo from '@/components/wash/actives/WashTableShampoo'
+import WashTableDiskEx from '@/components/wash/actives/WashTableDiskEx'
+import WashTableMosquitoEx from '@/components/wash/actives/WashTableMosquitoEx'
+import WashTableShampooEx from '@/components/wash/actives/WashTableShampooEx'
 import WashTableWaterShampoo from '@/components/wash/actives/WashTableWaterShampoo'
 import WashTableWarmWater from '@/components/wash/actives/WashTableWarmWater'
 import WashTableColdWater from '@/components/wash/actives/WashTableColdWater'
 import WashTableWaxProtection from '@/components/wash/actives/WashTableWaxProtection'
 import WashTableDryShine from '@/components/wash/actives/WashTableDryShine'
-import WashTableBrushFoam from '@/components/wash/actives/WashTableBrushFoam'
+import WashTableBrushFoamEx from '@/components/wash/actives/WashTableBrushFoamEx'
 import WashTableFoam from '@/components/wash/actives/WashTableFoam'
 import WashTableVacuum from '@/components/wash/actives/WashTableVacuum'
 import WashTableAir from '@/components/wash/actives/WashTableAir'
@@ -160,15 +160,15 @@ export default {
   }),
   components: {
     Message,
-    WashTableDisk,
-    WashTableMosquito,
-    WashTableShampoo,
+    WashTableDiskEx,
+    WashTableMosquitoEx,
+    WashTableShampooEx,
     WashTableWaterShampoo,
     WashTableWarmWater,
     WashTableColdWater,
     WashTableWaxProtection,
     WashTableDryShine,
-    WashTableBrushFoam,
+    WashTableBrushFoamEx,
     WashTableFoam,
     WashTableVacuum,
     WashTableAir,

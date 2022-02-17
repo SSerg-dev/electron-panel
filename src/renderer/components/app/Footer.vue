@@ -1,11 +1,7 @@
 <template>
-  <!-- <div v-if="getPanelType === 'wash'"> -->
   <div v-if="getIsFooter">
     <div class="footer-panel white-text ">
       <div class="row">
-        <!-- /////////////////// -->
-        <!-- @click="gotoHome('home')" -->
-
         <div class="col s4">
           <div class="home">
             <div
@@ -34,7 +30,6 @@
             </div>
           </div>
         </div>
-
 
         <div class="col s4">
           <div class="stop" style="z-index: 0;">
@@ -116,13 +111,10 @@ export default {
       getWetStopFreeCount: 'getWetStopFreeCount'
     })
   },
-  /* dev */
   watch: {
     getWetStopFreeCount(flag) {
       try {
-        /* dev */
         if (parseInt(flag) > 0 && this.$route.name !== 'popup')
-        // if (parseInt(flag) > 0 ) 
           this.$router.push('/popup')
       } catch (err) {}
     }
@@ -139,27 +131,21 @@ export default {
     }),
 
     gotoHome(program) {
-      // console.log('home-->', program)
       this.isDown.home = true
       this.timeoutDelay = setTimeout(() => {
         this.isDown.home = false
-        /* dev */
         try {
           if (this.$route.name !== 'home') {
-            // console.log('this.$route.name-->', this.$route.name)
             this.$router.push('/')
           }
-            
-        } catch (err) {} 
+        } catch (err) {}
       }, this.delay)
     },
 
     setProgram(program) {
-      // console.log('setProgram-->', program)
       this.active = program
       this.setActiveProgram(this.active)
       this.setDown(program)
-
       const type = this.getPanelType
 
       switch (type) {
@@ -184,34 +170,21 @@ export default {
           console.warn('no panel type')
           break
       }
-      /* dev */
-      console.log('program-->', program)
-      // console.log('this.getWetStopFreeCount-->', this.getWetStopFreeCount)
-      if (
-        (this.getWetStopFreeCount === 0 && this.$route.name !== 'popup') ||
-        program === 'operator'
-      ) {
+      if (program === 'operator') {
         this.timeoutPopup = setTimeout(() => {
           try {
             this.$router.push('/popup')
           } catch (err) {}
         }, this.delay)
       }
-      // else if (this.getWetBalance > 0)
-      //   this.$message(`Превышено число бесплатных остановок`)
     },
     setDown(program) {
       this.clearDown()
-      //console.log('program-->', program)
       switch (program) {
         case 'stop':
           this.isDown.stop = true
           this.timeoutDelay = setTimeout(() => {
             this.isDown.stop = false
-            /* dev */
-            try {
-            this.$router.push('/program')
-          } catch (err) {}
           }, this.delay)
           break
         case 'operator':
@@ -219,16 +192,6 @@ export default {
           this.timeoutDelay = setTimeout(() => {
             this.isDown.operator = false
           }, this.delay)
-          break
-        /* case 'home':
-          this.isDown.home = true
-          this.timeoutDelay = setTimeout(() => {
-            this.isDown.home = false
-          }, this.delay)
-          console.log('++home')
-          this.$router.push('/')
-          break
-        */
         default:
           break
       }
@@ -238,7 +201,6 @@ export default {
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
     }
-    /*  */
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
@@ -248,16 +210,13 @@ export default {
 </script>
 
 <style scoped>
-/* dev */
 .footer-panel {
   height: 106px;
   width: 100%;
   position: fixed;
   left: 0em;
-  bottom: -0.2em; /* -1.5em; */ /* 0px; */
-  opacity: 0.5;
-
-  /* background: linear-gradient(180deg, #2d2a47, #212045); */
+  bottom: -0.2em;
+  opacity: 1; /* 0.5 */
   background: #121212;
 }
 

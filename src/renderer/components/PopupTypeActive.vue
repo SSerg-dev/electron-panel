@@ -7,12 +7,11 @@
     </router-link>
     <div class="message" style="background: none;">
       <div><Message /></div>
-      <!-- <div><span class="white-text">{{ this.getDefaultPanelNumber }}</span></div> -->
     </div>
 
     <form @submit.prevent="">
       <div class="form">
-        <table style="margin-left: 1em; margin-top: -1em;">
+        <table style="margin-left: 1em; margin-top: 0em;">
           <tbody>
             <!-- turbo -->
 
@@ -21,7 +20,6 @@
               <td colspan="2">
                 <p align="center">
                   {{ `${this.messages[this.messageIndex]}` }}
-                  <!-- {{ this.getDefaultPanelNumber }} -->
                 </p>
               </td>
             </tr>
@@ -31,7 +29,7 @@
               <!-- standard -->
               <!-- this.activeProgramKit.name  -->
 
-              <td style="padding-left: 4.8em; padding-bottom: 1em;">
+              <td style="padding-left: 4.8em; padding-top: 2em; padding-bottom: 1em;">
                 <div
                   @click="setProgram('standard')"
                   class="waves-effect"
@@ -50,7 +48,7 @@
 
               <!-- turbo -->
 
-              <td style="padding-right: 2em; padding-bottom: 1em;">
+              <td style="padding-right: 2em; padding-top: 2em; padding-bottom: 1em;">
                 <div
                   @click="setProgram('advanced')"
                   class="waves-effect"
@@ -521,9 +519,13 @@ export default {
         selector: '#button-left',
 
         width: 25, // 28
-        height: 25,
+        height: 23,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 3
+        borderRadius: 3,
+
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
       })
 
       /* right button */
@@ -531,9 +533,13 @@ export default {
         selector: '#button-right',
 
         width: 25, //28
-        height: 25,
+        height: 23,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 3
+        borderRadius: 3,
+
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
       })
 
       // image classes
@@ -668,13 +674,16 @@ export default {
 }
 
 .info-title {
-  height: 1em;
+  
+  height: 1.5em;
   font-size: 4.2em; /* 4.75em; */
   color: white;
+   
 }
 table,
 tr,
 td {
+  
   border: none;
   border-color: white;
 }

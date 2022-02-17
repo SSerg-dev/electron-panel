@@ -10,6 +10,7 @@
           { 'card white': !this.isDown.degrease },
           { 'card light-blue accent-2': this.isDown.degrease }
         ]"
+
       >
         <div
           class="button-content-style"
@@ -17,6 +18,7 @@
             { 'card-content black-text': !this.isDown.degrease },
             { 'card-content white-text': this.isDown.degrease }
           ]"
+          style="justify-content: left;"
         >
           {{ `${actives[this.activeNumber].title}` }}
         </div>

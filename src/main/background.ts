@@ -271,8 +271,11 @@ app.commandLine.appendSwitch('ignore-certificate-errors', 'true')
 app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors')
 app.commandLine.appendSwitch('--enable-logging')
 
+
 /* */
 app.on('ready', () => {
+  /* dev */
+  app.allowRendererProcessReuse = false
   createWindow()
   log(TAG, 'Created window')
 

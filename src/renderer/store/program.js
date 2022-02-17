@@ -176,7 +176,7 @@ export default {
       {
         id: 17,
         order: 16,
-        title: 'АНТИМОСКИТ',
+        title: 'МОСКИТ',
         name: 'mosquito',
         row: 17,
         col: 0,
@@ -278,7 +278,7 @@ export default {
       {
         id: 27,
         order: 26,
-        title: 'АНТИМОСКИТ Х2',
+        title: 'МОСКИТ Х2',
         name: 'mosquito_x2',
         row: 27,
         col: 0,

@@ -17,6 +17,7 @@
             { 'card-content black-text': !this.isDown.mosquito },
             { 'card-content white-text': this.isDown.mosquito }
           ]"
+          style="justify-content: left;"
         >
           {{ `${actives[this.activeNumber].title}` }}
         </div>
