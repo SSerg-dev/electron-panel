@@ -1,38 +1,42 @@
 <template>
   <div>
-    <!-- 1 mosquito -->
-    <!-- МОСКИТ -->
+    <!--  waterShampoo -->
+    <!-- ВОДА + ШАМПУНЬ -->
     <td>
-      <div @click="setProgram('mosquito')" class="waves-effect " id="button-left-mosquito">
+      <div
+        @click="setProgram('waterShampoo')"
+        class="waves-effect "
+        id="button-left-water"
+      >
         <div
           class="button-content-style"
           :class="[
-            { 'card-content black-text': !this.isDown.mosquito},
-            { 'card-content white-text': this.isDown.mosquito },
+            { 'card-content black-text': !this.isDown.waterShampoo },
+            { 'card-content white-text': this.isDown.waterShampoo }
           ]"
         >
-           {{ `${actives[this.activeNumber].title}` }} 
+          {{ `${actives[this.activeNumber].title}` }}
         </div>
       </div>
     </td>
 
-    <!-- МОСКИТ X2-->
+    <!-- ШАМПУНЬ X2-->
     <!--  style="background: yellow" -->
     <td>
       <div
-        @click="setProgram('mosquito_x2')"
+        @click="setProgram('waterShampoo_turbo')"
         class="waves-effect"
-        id="button-right-mosquito"
+        id="button-right-water"
       >
         <div
-          class="button-content-style-x2"
+          class="button-content-style-turbo"
           :class="[
-            { 'card-content black-text': !this.isDown.mosquito_x2 },
-            { 'card-content white-text': this.isDown.mosquito_x2 }
+            { 'card-content black-text': !this.isDown.waterShampoo_turbo },
+            { 'card-content white-text': this.isDown.waterShampoo_turbo }
           ]"
         >
           <div style="font-style: italic;">
-            {{ `${actives[this.activeNumber_x2].name.slice(-2)}` }}
+            {{ `${actives[this.activeNumber_turbo].name.slice(-5)}` }}
           </div>
         </div>
       </div>
@@ -45,12 +49,19 @@ import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
-import { upStandardOptions, downStandardOptions, upX2Options, downX2Options } from '@/shapes/index.js'
+import {
+  upStandardOptions,
+  downStandardOptions,
+  upX2Options,
+  downX2Options,
+  upColorOptions,
+  downColorOptions
+} from '@/shapes/index.js'
+
 import { log } from '../../../../main/utils'
 
 export default Vue.extend({
   data: () => ({
-    
     upStandardOptions: upStandardOptions,
     downStandardOptions: downStandardOptions,
     upX2Options: upX2Options,
@@ -61,8 +72,8 @@ export default Vue.extend({
 
     /*     */
 
-    activeNumber: 15,
-    activeNumber_x2: 25,
+    activeNumber: 1,
+    activeNumber_turbo: 7,
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -70,8 +81,8 @@ export default Vue.extend({
     activeProgramKit: {},
 
     isDown: {
-      mosquito: false,
-      mosquito_x2: false
+      waterShampoo: false,
+      waterShampoo_turbo: false 
     }
   }),
   props: {
@@ -95,7 +106,7 @@ export default Vue.extend({
         this.buttonLeft.background = 'white'
         this.buttonRight.background = 'white'
       }
-    },
+    }
   },
   methods: {
     ...mapGetters({
@@ -138,18 +149,18 @@ export default Vue.extend({
       this.clearDown()
 
       switch (program) {
-        case 'mosquito':
+        case 'waterShampoo':
           /* dev */
           this.setButtonStyle(this.downStandardOptions)
-          this.isDown.mosquito = true
+          this.isDown.waterShampoo = true
           break
-        case 'mosquito_x2':
+        case 'waterShampoo_turbo':
           // this.setButtonStyle(this.downStandardOptions)
-          // this.isDown.mosquito = true
+          // this.isDown.waterShampoo = true
 
           this.setButtonStyle(this.downX2Options)
-          this.isDown.mosquito_x2 = true
-          
+          this.isDown.waterShampoo_turbo = true
+
           break
 
         default:
@@ -158,9 +169,8 @@ export default Vue.extend({
       this.timeoutSetUp = setTimeout(() => {
         try {
           // console.log('this.getWetBalance',typeof this.getWetBalance)
-          
-          if (this.getWetBalance === '0')
-            this.clearDown()
+
+          if (this.getWetBalance === '0') this.clearDown()
         } catch (err) {}
       }, 2000)
     },
@@ -186,6 +196,7 @@ export default Vue.extend({
       })
 
       this.activeProgramKit = Object.fromEntries(result)
+      // console.log('this.activeProgramKit', this.activeProgramKit)
     },
     setup() {
       this.initial()
@@ -194,7 +205,7 @@ export default Vue.extend({
       // classes instances
       /* left button */
       this.buttonLeft = new Button({
-        selector: '#button-left-mosquito',
+        selector: '#button-left-water',
 
         width: 26,
         height: 7,
@@ -207,7 +218,7 @@ export default Vue.extend({
       })
       /* right button */
       this.buttonRight = new Button({
-        selector: '#button-right-mosquito',
+        selector: '#button-right-water',
 
         width: 7,
         height: 7,
@@ -216,34 +227,31 @@ export default Vue.extend({
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-
+        justifyContent: 'center'
       })
       // end classes
 
-      if (this.activeProgramKit.x2) {
-        this.upStandardOptions.width = '25.5em'
+      if (this.activeProgramKit.turbo) {
+        this.upStandardOptions.width = '58em'
         this.setButtonStyle(this.upStandardOptions)
         this.setButtonStyle(this.upX2Options)
       } else {
-        this.upStandardOptions.width = '32em'
+        this.upStandardOptions.width = '65em'
         this.setButtonStyle(this.upStandardOptions)
         this.buttonRight.hide()
       }
     },
     setButtonStyle(options) {
-      // console.log('options-->', options)
+      console.log('options-->', options)
 
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
         this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width = '25.5em'//options.width
+        this.buttonLeft.width = '58em'//options.width
 
         this.buttonRight.background = 'rgb(255, 255, 255)'
-        // if (this.activeProgramKit.x2)
-        //   this.buttonLeft.width = '26em'
       }
 
       if (options.type === 'right') {
@@ -275,7 +283,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-
 table,
 tr,
 td {
@@ -289,11 +296,10 @@ td {
   padding-top: 0em;
   padding-right: 0em;
 }
-.button-content-style-x2 {
-  font-size: 3.0em;
-  margin-left: -0.1em;
+.button-content-style-turbo {
+  font-size: 2.4em;
+  margin-left: -0.15em;
   padding-top: 0em;
   padding-right: 0em;
-  
 }
 </style>

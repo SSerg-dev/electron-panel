@@ -1,34 +1,58 @@
 <template>
   <div>
-    <!-- 1 mosquito -->
-    <!-- МОСКИТ -->
+    <!--  foam -->
+    <!-- ЩЕТКА + ПЕНА -->
     <td>
-      <div @click="setProgram('mosquito')" class="waves-effect " id="button-left-mosquito">
+      <div
+        @click="setProgram('foam')"
+        class="waves-effect "
+        id="button-left-foam"
+      >
         <div
           class="button-content-style"
           :class="[
-            { 'card-content black-text': !this.isDown.mosquito},
-            { 'card-content white-text': this.isDown.mosquito },
+            { 'card-content black-text': !this.isDown.foam },
+            { 'card-content white-text': this.isDown.foam }
           ]"
         >
-           {{ `${actives[this.activeNumber].title}` }} 
+          {{ `${actives[this.activeNumber].title}` }}
         </div>
       </div>
     </td>
 
-    <!-- МОСКИТ X2-->
-    <!--  style="background: yellow" -->
+    <!-- ЩЕТКА center-->
     <td>
       <div
-        @click="setProgram('mosquito_x2')"
+        @click="setProgram('foam_color')"
         class="waves-effect"
-        id="button-right-mosquito"
+        id="button-center-foam"
+      >
+        <div
+          class="button-content-style-color"
+          :class="[
+            { 'card-content white-text': this.isDown.foam_color },
+            { 'card-content white-text': !this.isDown.foam_color }
+          ]"
+        >
+          <div style="font-style: italic;">
+            {{ `${actives[this.activeNumber_color].name.slice(-5)}` }}
+          </div>
+        </div>
+      </div>
+    </td>
+
+    <!-- ЩЕТКА X2-->
+    <td>
+      <div
+        @click="setProgram('foam_x2')"
+        class="waves-effect"
+        id="button-right-foam"
       >
         <div
           class="button-content-style-x2"
           :class="[
-            { 'card-content black-text': !this.isDown.mosquito_x2 },
-            { 'card-content white-text': this.isDown.mosquito_x2 }
+            { 'card-content black-text': !this.isDown.foam_x2 },
+            { 'card-content white-text': this.isDown.foam_x2 }
           ]"
         >
           <div style="font-style: italic;">
@@ -45,24 +69,40 @@ import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
-import { upStandardOptions, downStandardOptions, upX2Options, downX2Options } from '@/shapes/index.js'
+import {
+  upStandardOptions,
+  downStandardOptions,
+  upX2Options,
+  downX2Options,
+  upColorOptions,
+  downColorOptions,
+  upRedOptions,
+  downRedOptions
+} from '@/shapes/index.js'
+
 import { log } from '../../../../main/utils'
 
 export default Vue.extend({
   data: () => ({
-    
+    // options
     upStandardOptions: upStandardOptions,
     downStandardOptions: downStandardOptions,
     upX2Options: upX2Options,
     downX2Options: downX2Options,
+    upColorOptions: upColorOptions,
+    downColorOptions: downColorOptions,
+    upRedOptions: upRedOptions,
+    downRedOptions: downRedOptions,
+
     // classes
     buttonLeft: null,
     buttonRight: null,
+    buttonCenter: null,
 
-    /*     */
+    activeNumber: 5,
+    activeNumber_x2: 22,
+    activeNumber_color: 19,
 
-    activeNumber: 15,
-    activeNumber_x2: 25,
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -70,8 +110,9 @@ export default Vue.extend({
     activeProgramKit: {},
 
     isDown: {
-      mosquito: false,
-      mosquito_x2: false
+      foam: false,
+      foam_x2: false,
+      foam_color: false
     }
   }),
   props: {
@@ -92,10 +133,8 @@ export default Vue.extend({
     getWetBalance(flag) {
       if (parseInt(flag) === 0) {
         this.clearDown()
-        this.buttonLeft.background = 'white'
-        this.buttonRight.background = 'white'
       }
-    },
+    }
   },
   methods: {
     ...mapGetters({
@@ -117,7 +156,6 @@ export default Vue.extend({
       this.setActiveProgram(this.active)
       this.setDown(this.active)
 
-      /* dev */
       this.updateStartProgram([
         this.getPanelType,
         this.getDefaultPanelNumber,
@@ -138,18 +176,17 @@ export default Vue.extend({
       this.clearDown()
 
       switch (program) {
-        case 'mosquito':
-          /* dev */
-          this.setButtonStyle(this.downStandardOptions)
-          this.isDown.mosquito = true
+        case 'foam':
+          this.setButtonStyle(this.downRedOptions)
+          this.isDown.foam = true
           break
-        case 'mosquito_x2':
-          // this.setButtonStyle(this.downStandardOptions)
-          // this.isDown.mosquito = true
-
+        case 'foam_x2':
           this.setButtonStyle(this.downX2Options)
-          this.isDown.mosquito_x2 = true
-          
+          this.isDown.foam_x2 = true
+          break
+        case 'foam_color':
+          this.setButtonStyle(this.downColorOptions)
+          this.isDown.foam_color = true
           break
 
         default:
@@ -157,10 +194,7 @@ export default Vue.extend({
       }
       this.timeoutSetUp = setTimeout(() => {
         try {
-          // console.log('this.getWetBalance',typeof this.getWetBalance)
-          
-          if (this.getWetBalance === '0')
-            this.clearDown()
+          if (this.getWetBalance === '0') this.clearDown()
         } catch (err) {}
       }, 2000)
     },
@@ -168,7 +202,11 @@ export default Vue.extend({
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-      this.setButtonStyle(this.upStandardOptions)
+      this.setButtonStyle(this.upRedOptions)
+      this.setButtonStyle(this.upColorOptions)
+      this.setButtonStyle(this.upX2Options)
+
+
     },
     getKits() {
       const result = []
@@ -186,6 +224,7 @@ export default Vue.extend({
       })
 
       this.activeProgramKit = Object.fromEntries(result)
+      // console.log('this.activeProgramKit', this.activeProgramKit)
     },
     setup() {
       this.initial()
@@ -194,9 +233,9 @@ export default Vue.extend({
       // classes instances
       /* left button */
       this.buttonLeft = new Button({
-        selector: '#button-left-mosquito',
+        selector: '#button-left-foam',
 
-        width: 26,
+        width: 51,
         height: 7,
         background: 'rgb(255, 255, 255)',
         borderRadius: 4,
@@ -205,9 +244,10 @@ export default Vue.extend({
         alignItems: 'center',
         justifyContent: 'left'
       })
-      /* right button */
-      this.buttonRight = new Button({
-        selector: '#button-right-mosquito',
+
+      /* center button */
+      this.buttonCenter = new Button({
+        selector: '#button-center-foam',
 
         width: 7,
         height: 7,
@@ -216,44 +256,52 @@ export default Vue.extend({
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-
+        justifyContent: 'center'
       })
-      // end classes
 
-      if (this.activeProgramKit.x2) {
-        this.upStandardOptions.width = '25.5em'
-        this.setButtonStyle(this.upStandardOptions)
-        this.setButtonStyle(this.upX2Options)
-      } else {
-        this.upStandardOptions.width = '32em'
-        this.setButtonStyle(this.upStandardOptions)
-        this.buttonRight.hide()
-      }
+      /* right button */
+      this.buttonRight = new Button({
+        selector: '#button-right-foam',
+
+        width: 7,
+        height: 7,
+        background: 'rgb(255, 255, 255)',
+        borderRadius: 4,
+
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      })
+
+      // end classes
+      
+      // set options      
+      this.setButtonStyle(this.upRedOptions)
+      this.setButtonStyle(this.upColorOptions)
+      this.setButtonStyle(this.upX2Options)
     },
     setButtonStyle(options) {
       // console.log('options-->', options)
-
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
-        this.buttonLeft.border = options.border
+        this.buttonLeft.border = options.border  
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width = '25.5em'//options.width
-
-        this.buttonRight.background = 'rgb(255, 255, 255)'
-        // if (this.activeProgramKit.x2)
-        //   this.buttonLeft.width = '26em'
+        this.buttonLeft.width =  '51em'
       }
-
+      if (options.type === 'center') {
+        this.buttonCenter.background = options.background
+        this.buttonCenter.border = options.border
+        this.buttonCenter.boxShadow = options.boxShadow
+        this.buttonCenter.fontSize = options.fontSize
+        this.buttonCenter.width = options.width
+      }
       if (options.type === 'right') {
         this.buttonRight.background = options.background
         this.buttonRight.border = options.border
         this.buttonRight.boxShadow = options.boxShadow
         this.buttonRight.fontSize = options.fontSize
         this.buttonRight.width = options.width
-
-        this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
 
       // this.buttonRight.hide()
@@ -275,7 +323,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-
 table,
 tr,
 td {
@@ -289,11 +336,16 @@ td {
   padding-top: 0em;
   padding-right: 0em;
 }
+.button-content-style-color {
+  font-size: 2.5em;
+  margin-left: -0.2em;
+  padding-top: 0em;
+  padding-right: 0em;
+}
 .button-content-style-x2 {
-  font-size: 3.0em;
+  font-size: 3em;
   margin-left: -0.1em;
   padding-top: 0em;
   padding-right: 0em;
-  
 }
 </style>

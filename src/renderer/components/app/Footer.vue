@@ -135,9 +135,12 @@ export default {
       this.timeoutDelay = setTimeout(() => {
         this.isDown.home = false
         try {
-          if (this.$route.name !== 'home') {
+          /* dev */
+          /* if (this.$route.name !== 'home') {
             this.$router.push('/')
-          }
+          } */
+          this.$router.push('/program')
+
         } catch (err) {}
       }, this.delay)
     },

@@ -30,8 +30,8 @@
         <div
           class="button-content-style-color"
           :class="[
-            { 'card-content black-text': !this.isDown.brushFoam_color },
-            { 'card-content white-text': this.isDown.brushFoam_color }
+            { 'card-content white-text': this.isDown.brushFoam_color },
+            { 'card-content white-text': !this.isDown.brushFoam_color }
           ]"
         >
           <div style="font-style: italic;">
@@ -75,31 +75,34 @@ import {
   upX2Options,
   downX2Options,
   upColorOptions,
-  downColorOptions
+  downColorOptions,
+  upGreenOptions,
+  downGreenOptions
 } from '@/shapes/index.js'
 
 import { log } from '../../../../main/utils'
 
 export default Vue.extend({
   data: () => ({
+    // options
     upStandardOptions: upStandardOptions,
     downStandardOptions: downStandardOptions,
     upX2Options: upX2Options,
     downX2Options: downX2Options,
     upColorOptions: upColorOptions,
     downColorOptions: downColorOptions,
+    upGreenOptions: upGreenOptions,
+    downGreenOptions: downGreenOptions,
 
     // classes
     buttonLeft: null,
     buttonRight: null,
     buttonCenter: null,
-    // center
-
-    /*     */
 
     activeNumber: 13,
     activeNumber_x2: 21,
     activeNumber_color: 20,
+
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -108,7 +111,8 @@ export default Vue.extend({
 
     isDown: {
       brushFoam: false,
-      brushFoam_x2: false
+      brushFoam_x2: false,
+      brushFoam_color: false
     }
   }),
   props: {
@@ -129,9 +133,6 @@ export default Vue.extend({
     getWetBalance(flag) {
       if (parseInt(flag) === 0) {
         this.clearDown()
-        this.buttonLeft.background = 'white'
-        this.buttonRight.background = 'white'
-        this.buttonCenter.background = 'white'
       }
     }
   },
@@ -155,7 +156,6 @@ export default Vue.extend({
       this.setActiveProgram(this.active)
       this.setDown(this.active)
 
-      /* dev */
       this.updateStartProgram([
         this.getPanelType,
         this.getDefaultPanelNumber,
@@ -177,25 +177,16 @@ export default Vue.extend({
 
       switch (program) {
         case 'brushFoam':
-          /* dev */
-          this.setButtonStyle(this.downStandardOptions)
+          this.setButtonStyle(this.downGreenOptions)
           this.isDown.brushFoam = true
           break
         case 'brushFoam_x2':
-          // this.setButtonStyle(this.downStandardOptions)
-          // this.isDown.brushFoam = true
-
           this.setButtonStyle(this.downX2Options)
           this.isDown.brushFoam_x2 = true
-
           break
-        // upColorOptions
         case 'brushFoam_color':
-          console.log('++brushFoam_color')
-
           this.setButtonStyle(this.downColorOptions)
           this.isDown.brushFoam_color = true
-
           break
 
         default:
@@ -203,8 +194,6 @@ export default Vue.extend({
       }
       this.timeoutSetUp = setTimeout(() => {
         try {
-          // console.log('this.getWetBalance',typeof this.getWetBalance)
-
           if (this.getWetBalance === '0') this.clearDown()
         } catch (err) {}
       }, 2000)
@@ -213,7 +202,10 @@ export default Vue.extend({
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-      this.setButtonStyle(this.upStandardOptions)
+      this.setButtonStyle(this.upGreenOptions)
+      this.setButtonStyle(this.upColorOptions)
+      this.setButtonStyle(this.upX2Options)
+
     },
     getKits() {
       const result = []
@@ -242,7 +234,7 @@ export default Vue.extend({
       this.buttonLeft = new Button({
         selector: '#button-left-brush',
 
-        width: 26,
+        width: 51,
         height: 7,
         background: 'rgb(255, 255, 255)',
         borderRadius: 4,
@@ -281,41 +273,20 @@ export default Vue.extend({
       })
 
       // end classes
-      /* 
-      if (!this.activeProgramKit.x2) {
-        this.upStandardOptions.width = '51em' //'58em'
-        this.setButtonStyle(this.upStandardOptions)
-        this.setButtonStyle(this.upX2Options)
-      } else {
-        this.upStandardOptions.width = '65em'
-        this.setButtonStyle(this.upStandardOptions)
-        this.buttonRight.hide()
-      }
-      */
-      /* dev */
-      this.upStandardOptions.width = '51em'
-      // this.upColorOptions.background = 'rgb(25, 25, 25)'
-      // console.log('this.upStandardOptions', this.upStandardOptions)
       
-      this.setButtonStyle(this.upStandardOptions)
+      // set options      
+      this.setButtonStyle(this.upGreenOptions)
       this.setButtonStyle(this.upColorOptions)
       this.setButtonStyle(this.upX2Options)
-
     },
     setButtonStyle(options) {
-      // console.log('options-->', options)
 
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
         this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width = options.width
-
-        this.buttonRight.background = 'rgb(255, 255, 255)'
-        this.buttonCenter.background = 'rgb(255, 255, 255)'
-        // if (this.activeProgramKit.x2)
-        //   this.buttonLeft.width = '26em'
+        this.buttonLeft.width =  '51em'
       }
 
       if (options.type === 'center') {
@@ -323,10 +294,7 @@ export default Vue.extend({
         this.buttonCenter.border = options.border
         this.buttonCenter.boxShadow = options.boxShadow
         this.buttonCenter.fontSize = options.fontSize
-        this.buttonCenter.width = options.width 
-
-        this.buttonLeft.background = 'rgb(255, 255, 255)'
-        this.buttonRight.background = 'rgb(255, 255, 255)'
+        this.buttonCenter.width = options.width
       }
 
       if (options.type === 'right') {
@@ -335,11 +303,7 @@ export default Vue.extend({
         this.buttonRight.boxShadow = options.boxShadow
         this.buttonRight.fontSize = options.fontSize
         this.buttonRight.width = options.width
-
-        this.buttonLeft.background = 'rgb(255, 255, 255)'
-        this.buttonCenter.background = 'rgb(255, 255, 255)'
       }
-
       // this.buttonRight.hide()
       // this.buttonRight.show()
     }
@@ -373,8 +337,8 @@ td {
   padding-right: 0em;
 }
 .button-content-style-color {
-  font-size: 2.6em;
-  margin-left: -0.1em;
+  font-size: 2.5em;
+  margin-left: -0.2em;
   padding-top: 0em;
   padding-right: 0em;
 }

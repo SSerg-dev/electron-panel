@@ -51,13 +51,13 @@
           <!-- 5 -->
           <!-- ПЕНА -->
           <tr v-if="this.actives[5].display !== 'none'">
-            <WashTableFoam :actives="actives" />
+            <WashTableFoamEx :actives="actives" />
           </tr>
 
           <!-- 6 -->
           <!-- ВОДА + ШАМПУНЬ -->
           <tr v-if="this.actives[1].display !== 'none'">
-            <WashTableWaterShampoo :actives="actives" />
+            <WashTableWaterShampooEx :actives="actives" />
           </tr>
 
           <!-- 7 -->
@@ -123,13 +123,13 @@ import Message from '@/components/app/Message'
 import WashTableDiskEx from '@/components/wash/actives/WashTableDiskEx'
 import WashTableMosquitoEx from '@/components/wash/actives/WashTableMosquitoEx'
 import WashTableShampooEx from '@/components/wash/actives/WashTableShampooEx'
-import WashTableWaterShampoo from '@/components/wash/actives/WashTableWaterShampoo'
+import WashTableWaterShampooEx from '@/components/wash/actives/WashTableWaterShampooEx'
 import WashTableWarmWater from '@/components/wash/actives/WashTableWarmWater'
 import WashTableColdWater from '@/components/wash/actives/WashTableColdWater'
 import WashTableWaxProtection from '@/components/wash/actives/WashTableWaxProtection'
 import WashTableDryShine from '@/components/wash/actives/WashTableDryShine'
 import WashTableBrushFoamEx from '@/components/wash/actives/WashTableBrushFoamEx'
-import WashTableFoam from '@/components/wash/actives/WashTableFoam'
+import WashTableFoamEx from '@/components/wash/actives/WashTableFoamEx'
 import WashTableVacuum from '@/components/wash/actives/WashTableVacuum'
 import WashTableAir from '@/components/wash/actives/WashTableAir'
 import WashTableWasher from '@/components/wash/actives/WashTableWasher'
@@ -163,13 +163,13 @@ export default {
     WashTableDiskEx,
     WashTableMosquitoEx,
     WashTableShampooEx,
-    WashTableWaterShampoo,
+    WashTableWaterShampooEx,
     WashTableWarmWater,
     WashTableColdWater,
     WashTableWaxProtection,
     WashTableDryShine,
     WashTableBrushFoamEx,
-    WashTableFoam,
+    WashTableFoamEx,
     WashTableVacuum,
     WashTableAir,
     WashTableTurboDryer,
