@@ -74,7 +74,7 @@ const downRedOptions = {
   boxShadow: 'rgb(255,3,3) 0px 10px 20px',
   fontSize: '1em'
 }
-
+ 
 
 export {
   upStandardOptions,
