@@ -75,6 +75,7 @@ const downRedOptions = {
   fontSize: '1em'
 }
 
+
 export {
   upStandardOptions,
   downStandardOptions,
