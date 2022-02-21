@@ -275,9 +275,38 @@ export default Vue.extend({
       // end classes
       
       // set options      
+      /* dev */
+      // if (this.actives[this.activeNumber_x2].display === 'none') {
+      //   this.buttonRight.hide()
+      //   this.upStandardOptions.width = '58em'//'65em'
+      // }
+      // console.log('this.actives[this.activeNumber_x2].display', this.actives[this.activeNumber_x2].display)
+      
+      // if (this.actives[this.activeNumber_x2].display === 'block') {
+      //   this.restore('right')
+      // }
+
       this.setButtonStyle(this.upGreenOptions)
       this.setButtonStyle(this.upColorOptions)
       this.setButtonStyle(this.upX2Options)
+
+    },
+
+    restore(type) {
+      if (type === 'right') {
+        this.buttonRight.show()
+        this.upStandardOptions.width = '51em'
+      }
+      if (type === 'left') {
+      }
+      this.flex()
+      return
+    },
+
+    flex() {
+      this.buttonRight.display = 'flex'
+      this.buttonRight.alignItems = 'center'
+      this.buttonRight.justifyContent = 'center'
     },
     setButtonStyle(options) {
 
@@ -286,7 +315,7 @@ export default Vue.extend({
         this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width =  '51em'
+        this.buttonLeft.width =  options.width//'51em'
       }
 
       if (options.type === 'center') {

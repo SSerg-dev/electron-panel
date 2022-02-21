@@ -54,8 +54,8 @@ import {
   downStandardOptions,
   upX2Options,
   downX2Options,
-  upColorOptions,
-  downColorOptions
+  upTurboOptions,
+  downTurboOptions
 } from '@/shapes/index.js'
 
 import { log } from '../../../../main/utils'
@@ -66,6 +66,8 @@ export default Vue.extend({
     downStandardOptions: downStandardOptions,
     upX2Options: upX2Options,
     downX2Options: downX2Options,
+    upTurboOptions: upTurboOptions,
+    downTurboOptions: downTurboOptions,
     // classes
     buttonLeft: null,
     buttonRight: null,
@@ -158,7 +160,7 @@ export default Vue.extend({
           // this.setButtonStyle(this.downStandardOptions)
           // this.isDown.waterShampoo = true
 
-          this.setButtonStyle(this.downX2Options)
+          this.setButtonStyle(this.downTurboOptions)
           this.isDown.waterShampoo_turbo = true
 
           break
@@ -231,25 +233,42 @@ export default Vue.extend({
       })
       // end classes
 
-      if (this.activeProgramKit.turbo) {
-        this.upStandardOptions.width = '58em'
-        this.setButtonStyle(this.upStandardOptions)
-        this.setButtonStyle(this.upX2Options)
-      } else {
-        this.upStandardOptions.width = '65em'
-        this.setButtonStyle(this.upStandardOptions)
+      if (this.actives[this.activeNumber_turbo].display === 'none') {
         this.buttonRight.hide()
+        this.upStandardOptions.width = '64em'
       }
+      if (this.actives[this.activeNumber_turbo].display === 'block') {
+        this.restore('right')
+      }
+      this.setButtonStyle(this.upStandardOptions)
+      this.setButtonStyle(this.upTurboOptions)
+
+    },
+
+    restore(type) {
+      if (type === 'right') {
+        this.buttonRight.show()
+        this.upStandardOptions.width = '58em'
+      }
+      if (type === 'left') {
+      }
+      this.flex()
+      return
+    },
+    flex() {
+      this.buttonRight.display = 'flex'
+      this.buttonRight.alignItems = 'center'
+      this.buttonRight.justifyContent = 'center'
     },
     setButtonStyle(options) {
-      console.log('options-->', options)
+      // console.log('options-->', options)
 
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
         this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width = '58em'//options.width
+        this.buttonLeft.width = options.width
 
         this.buttonRight.background = 'rgb(255, 255, 255)'
       }

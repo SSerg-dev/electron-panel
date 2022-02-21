@@ -63,25 +63,25 @@
           <!-- 7 -->
           <!-- ХОЛОДНАЯ ВОДА coldWater -->
           <tr v-if="this.actives[2].display !== 'none'">
-            <WashTableColdWater :actives="actives" />
+            <WashTableColdWaterEx :actives="actives" />
           </tr>
 
           <!-- 8 -->
           <!-- ТЕПЛАЯ ВОДА warmWater -->
           <tr v-if="this.actives[11].display !== 'none'">
-            <WashTableWarmWater :actives="actives" />
+            <WashTableWarmWaterEx :actives="actives" />
           </tr>
 
           <!-- 9 -->
           <!-- ВОСК И ЗАЩИТА waxProtection -->
           <tr v-if="this.actives[3].display !== 'none'">
-            <WashTableWaxProtection :actives="actives" />
+            <WashTableWaxProtectionEx :actives="actives" />
           </tr>
 
           <!-- 10 -->
           <!-- СУШКА И БЛЕСК dryShine-->
           <tr v-if="this.actives[4].display !== 'none'">
-            <WashTableDryShine :actives="actives" />
+            <WashTableDryShineEx :actives="actives" />
           </tr>
 
           <!-- 11 -->
@@ -124,10 +124,10 @@ import WashTableDiskEx from '@/components/wash/actives/WashTableDiskEx'
 import WashTableMosquitoEx from '@/components/wash/actives/WashTableMosquitoEx'
 import WashTableShampooEx from '@/components/wash/actives/WashTableShampooEx'
 import WashTableWaterShampooEx from '@/components/wash/actives/WashTableWaterShampooEx'
-import WashTableWarmWater from '@/components/wash/actives/WashTableWarmWater'
-import WashTableColdWater from '@/components/wash/actives/WashTableColdWater'
-import WashTableWaxProtection from '@/components/wash/actives/WashTableWaxProtection'
-import WashTableDryShine from '@/components/wash/actives/WashTableDryShine'
+import WashTableWarmWaterEx from '@/components/wash/actives/WashTableWarmWaterEx'
+import WashTableColdWaterEx from '@/components/wash/actives/WashTableColdWaterEx'
+import WashTableWaxProtectionEx from '@/components/wash/actives/WashTableWaxProtectionEx'
+import WashTableDryShineEx from '@/components/wash/actives/WashTableDryShineEx'
 import WashTableBrushFoamEx from '@/components/wash/actives/WashTableBrushFoamEx'
 import WashTableFoamEx from '@/components/wash/actives/WashTableFoamEx'
 import WashTableVacuum from '@/components/wash/actives/WashTableVacuum'
@@ -164,10 +164,10 @@ export default {
     WashTableMosquitoEx,
     WashTableShampooEx,
     WashTableWaterShampooEx,
-    WashTableWarmWater,
-    WashTableColdWater,
-    WashTableWaxProtection,
-    WashTableDryShine,
+    WashTableWarmWaterEx,
+    WashTableColdWaterEx,
+    WashTableWaxProtectionEx,
+    WashTableDryShineEx,
     WashTableBrushFoamEx,
     WashTableFoamEx,
     WashTableVacuum,
@@ -320,9 +320,9 @@ td {
   padding-bottom: 0px;
   padding-right: 0px;
   padding-left: 0px;
-
-  height: 105px;
-  width: 474px;
+  
+  width: 32em;
+  height: 7em;
 
   float: left;
   /*   display: flex;

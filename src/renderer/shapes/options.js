@@ -28,6 +28,21 @@ const downX2Options = {
   boxShadow: 'rgb(191,0,229) 0px 10px 20px',
   fontSize: '1em'
 }
+/* TurboOptions */
+const upTurboOptions = {
+  type: 'right',
+  background: 'rgb(255, 255, 255)',
+  border: '0.4em solid rgb(255,3,3)',
+  boxShadow: 'rgb(255,3,3) 0px 10px 20px',
+  fontSize: '1.01em'
+}
+const downTurboOptions = {
+  type: 'right',
+  background: 'rgb(255,3,3)',
+  border: '0.4em solid rgb(255,3,3)',
+  boxShadow: 'rgb(255,3,3) 0px 10px 20px',
+  fontSize: '1em'
+}
 
 /* ColorOptions */
 const upColorOptions = {
@@ -74,7 +89,6 @@ const downRedOptions = {
   boxShadow: 'rgb(255,3,3) 0px 10px 20px',
   fontSize: '1em'
 }
- 
 
 export {
   upStandardOptions,
@@ -86,5 +100,7 @@ export {
   upGreenOptions,
   downGreenOptions,
   upRedOptions,
-  downRedOptions
+  downRedOptions,
+  upTurboOptions,
+  downTurboOptions
 }

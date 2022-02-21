@@ -12,7 +12,9 @@ import {
   upGreenOptions,
   downGreenOptions,
   upRedOptions,
-  downRedOptions
+  downRedOptions,
+  upTurboOptions,
+  downTurboOptions
 
 } from '@/shapes/options.js'
 
@@ -27,5 +29,7 @@ export {
   upGreenOptions,
   downGreenOptions,
   upRedOptions,
-  downRedOptions
+  downRedOptions,
+  upTurboOptions,
+  downTurboOptions
 }

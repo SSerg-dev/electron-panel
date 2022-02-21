@@ -3,15 +3,19 @@
     <!-- 1 mosquito -->
     <!-- ДИСКИ -->
     <td>
-      <div @click="setProgram('disk')" class="waves-effect " id="button-left-disk">
+      <div
+        @click="setProgram('disk')"
+        class="waves-effect "
+        id="button-left-disk"
+      >
         <div
           class="button-content-style"
           :class="[
-            { 'card-content black-text': !this.isDown.disk},
-            { 'card-content white-text': this.isDown.disk },
+            { 'card-content black-text': !this.isDown.disk },
+            { 'card-content white-text': this.isDown.disk }
           ]"
         >
-           {{ `${actives[this.activeNumber].title}` }} 
+          {{ `${actives[this.activeNumber].title}` }}
         </div>
       </div>
     </td>
@@ -45,12 +49,16 @@ import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
-import { upStandardOptions, downStandardOptions, upX2Options, downX2Options } from '@/shapes/index.js'
+import {
+  upStandardOptions,
+  downStandardOptions,
+  upX2Options,
+  downX2Options
+} from '@/shapes/index.js'
 import { log } from '../../../../main/utils'
 
 export default Vue.extend({
   data: () => ({
-    
     upStandardOptions: upStandardOptions,
     downStandardOptions: downStandardOptions,
     upX2Options: upX2Options,
@@ -95,7 +103,7 @@ export default Vue.extend({
         this.buttonLeft.background = 'white'
         this.buttonRight.background = 'white'
       }
-    },
+    }
   },
   methods: {
     ...mapGetters({
@@ -117,7 +125,6 @@ export default Vue.extend({
       this.setActiveProgram(this.active)
       this.setDown(this.active)
 
-      /* dev */
       this.updateStartProgram([
         this.getPanelType,
         this.getDefaultPanelNumber,
@@ -144,12 +151,8 @@ export default Vue.extend({
           this.isDown.disk = true
           break
         case 'disk_x2':
-          // this.setButtonStyle(this.downStandardOptions)
-          // this.isDown.disk = true
-
           this.setButtonStyle(this.downX2Options)
           this.isDown.disk_x2 = true
-          
           break
 
         default:
@@ -158,9 +161,8 @@ export default Vue.extend({
       this.timeoutSetUp = setTimeout(() => {
         try {
           // console.log('this.getWetBalance',typeof this.getWetBalance)
-          
-          if (this.getWetBalance === '0')
-            this.clearDown()
+
+          if (this.getWetBalance === '0') this.clearDown()
         } catch (err) {}
       }, 2000)
     },
@@ -182,7 +184,7 @@ export default Vue.extend({
         ) {
           result.push([key, value])
         }
-        return
+        return result
       })
 
       this.activeProgramKit = Object.fromEntries(result)
@@ -216,23 +218,41 @@ export default Vue.extend({
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-
+        justifyContent: 'center'
       })
       // end classes
 
-      // console.log('++this.activeProgramKit', this.activeProgramKit)
-
-      if (this.activeProgramKit.x2) {
-        this.upStandardOptions.width = '25.5em'
-        this.setButtonStyle(this.upStandardOptions)
-        this.setButtonStyle(this.upX2Options)
-      } else {
-        this.upStandardOptions.width = '32em'
-        this.setButtonStyle(this.upStandardOptions)
+      /* dev */
+      if (this.actives[this.activeNumber_x2].display === 'none') {
         this.buttonRight.hide()
+        this.upStandardOptions.width = '32em'
       }
+      if (this.actives[this.activeNumber_x2].display === 'block') {
+        this.restore('right')
+      }
+      this.setButtonStyle(this.upStandardOptions)
+      this.setButtonStyle(this.upX2Options)
     },
+
+    restore(type) {
+      if (type === 'right') {
+        this.buttonRight.show()
+        this.upStandardOptions.width = '25.5em'
+      }
+      if (type === 'left') {
+      }
+      this.flex()
+      return
+    },
+
+    flex() {
+      this.buttonRight.display = 'flex'
+      this.buttonRight.alignItems = 'center'
+      this.buttonRight.justifyContent = 'center'
+    },
+
+    /* end dev */
+
     setButtonStyle(options) {
       // console.log('options-->', options)
 
@@ -241,11 +261,9 @@ export default Vue.extend({
         this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width = '25.5em' //options.width
+        this.buttonLeft.width = options.width
 
         this.buttonRight.background = 'rgb(255, 255, 255)'
-        // if (this.activeProgramKit.x2)
-        //   this.buttonLeft.width = '26em'
       }
 
       if (options.type === 'right') {
@@ -257,9 +275,6 @@ export default Vue.extend({
 
         this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
-
-      // this.buttonRight.hide()
-      // this.buttonRight.show()
     }
   }, // end methods
 
@@ -277,10 +292,10 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-
 table,
 tr,
 td {
+  /* box-sizing:border-box; */
   border: none;
   border-color: white;
   padding-top: 0.5em;
@@ -296,10 +311,9 @@ td {
   justify-content: left; */
 }
 .button-content-style-x2 {
-  font-size: 3.0em;
+  font-size: 3em;
   margin-left: -0.1em;
   padding-top: 0em;
   padding-right: 0em;
-  
 }
 </style>

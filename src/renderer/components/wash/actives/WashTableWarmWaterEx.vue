@@ -1,18 +1,18 @@
 <template>
   <div>
-    <!--  foam -->
-    <!-- ЩЕТКА + ПЕНА -->
+    <!--  warmWater -->
+    <!-- ТЕПЛАЯ ВОДА -->
     <td>
       <div
-        @click="setProgram('foam')"
+        @click="setProgram('warmWater')"
         class="waves-effect "
-        id="button-left-foam"
+        id="button-left-warm-water"
       >
         <div
           class="button-content-style"
           :class="[
-            { 'card-content black-text': !this.isDown.foam },
-            { 'card-content white-text': this.isDown.foam }
+            { 'card-content black-text': !this.isDown.warmWater },
+            { 'card-content white-text': this.isDown.warmWater }
           ]"
         >
           {{ `${actives[this.activeNumber].title}` }}
@@ -20,43 +20,23 @@
       </div>
     </td>
 
-    <!-- ЩЕТКА center-->
+    <!-- ШАМПУНЬ X2-->
+    <!--  style="background: yellow" -->
     <td>
       <div
-        @click="setProgram('foam_color')"
+        @click="setProgram('warmWater_turbo')"
         class="waves-effect"
-        id="button-center-foam"
+        id="button-right-warm-water"
       >
         <div
-          class="button-content-style-color"
+          class="button-content-style-turbo"
           :class="[
-            { 'card-content white-text': this.isDown.foam_color },
-            { 'card-content white-text': !this.isDown.foam_color }
+            { 'card-content black-text': !this.isDown.warmWater_turbo },
+            { 'card-content white-text': this.isDown.warmWater_turbo }
           ]"
         >
           <div style="font-style: italic;">
-            {{ `${actives[this.activeNumber_color].name.slice(-5)}` }}
-          </div>
-        </div>
-      </div>
-    </td>
-
-    <!-- ЩЕТКА X2-->
-    <td>
-      <div
-        @click="setProgram('foam_x2')"
-        class="waves-effect"
-        id="button-right-foam"
-      >
-        <div
-          class="button-content-style-x2"
-          :class="[
-            { 'card-content black-text': !this.isDown.foam_x2 },
-            { 'card-content white-text': this.isDown.foam_x2 }
-          ]"
-        >
-          <div style="font-style: italic;">
-            {{ `${actives[this.activeNumber_x2].name.slice(-2)}` }}
+            {{ `${actives[this.activeNumber_turbo].name.slice(-5)}` }}
           </div>
         </div>
       </div>
@@ -74,36 +54,28 @@ import {
   downStandardOptions,
   upX2Options,
   downX2Options,
-  upColorOptions,
-  downColorOptions,
-  upRedOptions,
-  downRedOptions
-  
+  upTurboOptions,
+  downTurboOptions
 } from '@/shapes/index.js'
 
 import { log } from '../../../../main/utils'
 
 export default Vue.extend({
   data: () => ({
-    // options
     upStandardOptions: upStandardOptions,
     downStandardOptions: downStandardOptions,
     upX2Options: upX2Options,
     downX2Options: downX2Options,
-    upColorOptions: upColorOptions,
-    downColorOptions: downColorOptions,
-    upRedOptions: upRedOptions,
-    downRedOptions: downRedOptions,
-
+    upTurboOptions: upTurboOptions,
+    downTurboOptions: downTurboOptions,
     // classes
     buttonLeft: null,
     buttonRight: null,
-    buttonCenter: null,
 
-    activeNumber: 5,
-    activeNumber_x2: 22,
-    activeNumber_color: 19,
+    /*     */
 
+    activeNumber: 11,
+    activeNumber_turbo: 12,
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -111,9 +83,8 @@ export default Vue.extend({
     activeProgramKit: {},
 
     isDown: {
-      foam: false,
-      foam_x2: false,
-      foam_color: false
+      warmWater: false,
+      warmWater_turbo: false 
     }
   }),
   props: {
@@ -134,6 +105,8 @@ export default Vue.extend({
     getWetBalance(flag) {
       if (parseInt(flag) === 0) {
         this.clearDown()
+        this.buttonLeft.background = 'white'
+        this.buttonRight.background = 'white'
       }
     }
   },
@@ -157,6 +130,7 @@ export default Vue.extend({
       this.setActiveProgram(this.active)
       this.setDown(this.active)
 
+      /* dev */
       this.updateStartProgram([
         this.getPanelType,
         this.getDefaultPanelNumber,
@@ -177,17 +151,18 @@ export default Vue.extend({
       this.clearDown()
 
       switch (program) {
-        case 'foam':
-          this.setButtonStyle(this.downRedOptions)
-          this.isDown.foam = true
+        case 'warmWater':
+          /* dev */
+          this.setButtonStyle(this.downStandardOptions)
+          this.isDown.warmWater = true
           break
-        case 'foam_x2':
-          this.setButtonStyle(this.downX2Options)
-          this.isDown.foam_x2 = true
-          break
-        case 'foam_color':
-          this.setButtonStyle(this.downColorOptions)
-          this.isDown.foam_color = true
+        case 'warmWater_turbo':
+          // this.setButtonStyle(this.downStandardOptions)
+          // this.isDown.warmWater = true
+
+          this.setButtonStyle(this.downTurboOptions)
+          this.isDown.warmWater_turbo = true
+
           break
 
         default:
@@ -195,6 +170,8 @@ export default Vue.extend({
       }
       this.timeoutSetUp = setTimeout(() => {
         try {
+          // console.log('this.getWetBalance',typeof this.getWetBalance)
+
           if (this.getWetBalance === '0') this.clearDown()
         } catch (err) {}
       }, 2000)
@@ -203,11 +180,7 @@ export default Vue.extend({
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-      this.setButtonStyle(this.upRedOptions)
-      this.setButtonStyle(this.upColorOptions)
-      this.setButtonStyle(this.upX2Options)
-
-
+      this.setButtonStyle(this.upStandardOptions)
     },
     getKits() {
       const result = []
@@ -234,9 +207,9 @@ export default Vue.extend({
       // classes instances
       /* left button */
       this.buttonLeft = new Button({
-        selector: '#button-left-foam',
+        selector: '#button-left-warm-water',
 
-        width: 51,
+        width: 26,
         height: 7,
         background: 'rgb(255, 255, 255)',
         borderRadius: 4,
@@ -245,24 +218,9 @@ export default Vue.extend({
         alignItems: 'center',
         justifyContent: 'left'
       })
-
-      /* center button */
-      this.buttonCenter = new Button({
-        selector: '#button-center-foam',
-
-        width: 7,
-        height: 7,
-        background: 'rgb(255, 255, 255)',
-        borderRadius: 4,
-
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      })
-
       /* right button */
       this.buttonRight = new Button({
-        selector: '#button-right-foam',
+        selector: '#button-right-warm-water',
 
         width: 7,
         height: 7,
@@ -273,52 +231,28 @@ export default Vue.extend({
         alignItems: 'center',
         justifyContent: 'center'
       })
-
       // end classes
-      
-      // set options  
-      /* dev */
-      if (this.actives[this.activeNumber_x2].display === 'none') {
+
+      if (this.actives[this.activeNumber_turbo].display === 'none') {
         this.buttonRight.hide()
-        this.upRedOptions.width =  '58em' // '65em'  
+        this.upStandardOptions.width = '32em'
       }
-      // console.log('this.actives[this.activeNumber_x2].display', this.actives[this.activeNumber_x2].display)
-      
-      // if (this.actives[this.activeNumber_color].display === 'none') {
-      //   this.buttonCenter.hide()
-      //   this.upRedOptions.width =  '58em' // '65em'  
-      // }
-      
-      if (this.actives[this.activeNumber_x2].display === 'block') {
+      if (this.actives[this.activeNumber_turbo].display === 'block') {
         this.restore('right')
       }
-      
-      // if (this.actives[this.activeNumber_color].display === 'block') {
-      //   this.restore('center')
-      // }
-
-      this.setButtonStyle(this.upRedOptions)
-      this.setButtonStyle(this.upColorOptions)
-      this.setButtonStyle(this.upX2Options)
-      
+      this.setButtonStyle(this.upStandardOptions)
+      this.setButtonStyle(this.upTurboOptions)
     },
     restore(type) {
       if (type === 'right') {
         this.buttonRight.show()
-        this.upRedOptions.width = '51em'
+        this.upStandardOptions.width = '25.5em'
       }
-      // if (type === 'center') {
-      //   this.buttonCenter.show()
-      //   this.upRedOptions.width = '51em'
-      // }
       if (type === 'left') {
       }
-
-      // this.upRedOptions.width = '51em'
       this.flex()
       return
     },
-
     flex() {
       this.buttonRight.display = 'flex'
       this.buttonRight.alignItems = 'center'
@@ -327,26 +261,25 @@ export default Vue.extend({
 
     setButtonStyle(options) {
       // console.log('options-->', options)
+
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
-        this.buttonLeft.border = options.border  
+        this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
         this.buttonLeft.width = options.width
+
+        this.buttonRight.background = 'rgb(255, 255, 255)'
       }
-      if (options.type === 'center') {
-        this.buttonCenter.background = options.background
-        this.buttonCenter.border = options.border
-        this.buttonCenter.boxShadow = options.boxShadow
-        this.buttonCenter.fontSize = options.fontSize
-        this.buttonCenter.width = options.width
-      }
+
       if (options.type === 'right') {
         this.buttonRight.background = options.background
         this.buttonRight.border = options.border
         this.buttonRight.boxShadow = options.boxShadow
         this.buttonRight.fontSize = options.fontSize
         this.buttonRight.width = options.width
+
+        this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
 
       // this.buttonRight.hide()
@@ -381,15 +314,9 @@ td {
   padding-top: 0em;
   padding-right: 0em;
 }
-.button-content-style-color {
-  font-size: 2.5em;
-  margin-left: -0.2em;
-  padding-top: 0em;
-  padding-right: 0em;
-}
-.button-content-style-x2 {
-  font-size: 3em;
-  margin-left: -0.1em;
+.button-content-style-turbo {
+  font-size: 2.4em;
+  margin-left: -0.15em;
   padding-top: 0em;
   padding-right: 0em;
 }
