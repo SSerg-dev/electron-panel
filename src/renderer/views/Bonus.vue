@@ -6,13 +6,9 @@
           <img src="imgs/key/back.png" />
         </div>
       </router-link>
-      <div class="page-title">
-        <!-- <h3>
-        <p>
-          Для входа в систему введите номер<br />
-          телефона или отсканируйте QR код
-        </p>
-      </h3> -->
+
+      <div align="justify" class="message">
+        <div><Message /></div>
       </div>
 
       <section>
@@ -28,6 +24,7 @@
 /* eslint-disable */
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
+import Message from '@/components/app/Message'
 import BonusBill from '@/components/BonusBill'
 import EventBus from '@/bus/EventBus'
 
@@ -39,7 +36,6 @@ export default Vue.extend({
     ...mapGetters({
       getWetBusyPanel: 'getWetBusyPanel',
       getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
-      getIsBonusMoney: 'getIsBonusMoney'
     })
   },
   methods: {
@@ -67,7 +63,8 @@ export default Vue.extend({
   },
 
   components: {
-    BonusBill
+    BonusBill,
+    Message
   }
 })
 </script>
@@ -78,13 +75,23 @@ export default Vue.extend({
 }
 .back {
   position: absolute;
-  margin-top: 8em;
+  margin-top: -18em;
   margin-left: 1.5em;
+  z-index: 1;
+}
+.message {
+  position: absolute;
+  margin-top: -32em;
+  margin-left: 19em;
+
+  font-family: 'Plumb-Medium';
+  font-weight: normal;
+  text-align: justify;
   z-index: 1;
 }
 .row {
   color: white;
-  margin-top: 15rem;
+  margin-top: 25rem;
   margin-bottom: 0rem;
 }
 .page-title {

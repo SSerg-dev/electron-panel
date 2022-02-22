@@ -8,12 +8,25 @@
         <div v-if="getWetBalance > 0" class="price">
           <img src="imgs/price/price-up.svg" />
         </div>
+
         <div v-if="getIsReceiptRead" class="price-menu">
           <img src="imgs/price/price-menu.svg" />
         </div>
-        <!-- <div v-if="!getIsMoneyToBonus" class="price-bonus">
-          <img src="imgs/price/price-bonus.svg" />
-        </div> -->
+
+        <!-- <router-link to="/bonus">
+          <div v-if="!getIsMoneyToBonus" class="price-bonus">
+            <img src="imgs/price/price-bonus.svg" />
+          </div>
+        </router-link> -->
+        
+          <div 
+            v-if="!getIsMoneyToBonus"
+            @click="setProgram('savemoney')" 
+            class="price-bonus">
+            <img src="imgs/price/price-bonus.svg" />
+          </div>
+        
+
       </section>
 
       <table border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -29,7 +42,7 @@
           <tr v-if="this.actives[14].display !== 'none'">
             <WashTableDiskEx :actives="actives" />
           </tr>
- 
+
           <!-- 2 -->
           <!-- АНТИМОСКИТ -->
           <tr v-if="this.actives[15].display !== 'none'">
@@ -202,7 +215,8 @@ export default {
       getIsReceiptRead: 'getIsReceiptRead',
       getIsReceiptCreate: 'getIsReceiptCreate',
       getIsReceiptPrint: 'getIsReceiptPrint',
-      getIsMoneyToBonus: 'getIsMoneyToBonus'
+      getIsMoneyToBonus: 'getIsMoneyToBonus',
+      getWetStopFreeCount: 'getWetStopFreeCount'
     })
   },
 
@@ -216,10 +230,16 @@ export default {
       setIsReceiptRead: 'setIsReceiptRead',
       setIsReceiptCreate: 'setIsReceiptCreate',
       setIsReceiptPrint: 'setIsReceiptPrint',
-      setIsMoneyToBonus: 'setIsMoneyToBonus'
+      setIsMoneyToBonus: 'setIsMoneyToBonus',
+      setMoneyToBonus: 'setMoneyToBonus'
     }),
     ...mapGetters({}),
     setProgram(program) {
+      if (program === 'savemoney') {
+        this.saveMoney()
+        return
+      }
+
       this.active = program
       this.setActiveProgram(this.active)
       this.setDown(program)
@@ -255,6 +275,19 @@ export default {
           break
       }
     },
+    saveMoney() {
+      if (this.getWetStopFreeCount >= 0) {
+        
+        console.log('this.getIsMoneyToBonus', this.getIsMoneyToBonus, this.getMoneyToBonus)
+    
+        this.setIsMoneyToBonus(true) 
+        // this.setMoneyToBonus(this.getWetStopFreeCount)
+        this.setMoneyToBonus(2)
+        this.$router.push('/bonus')
+      }
+      
+
+    },
     clearDown() {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
@@ -262,9 +295,11 @@ export default {
     },
     setup() {
       this.setIsMoneyToBonus(false)
+      this.setMoneyToBonus(0)
     }
   },
   mounted() {
+
     if (!this.isVisible) {
       this.timeoutDelay = setTimeout(() => {
         this.isVisible = true
@@ -320,7 +355,7 @@ td {
   padding-bottom: 0px;
   padding-right: 0px;
   padding-left: 0px;
-  
+
   width: 32em;
   height: 7em;
 

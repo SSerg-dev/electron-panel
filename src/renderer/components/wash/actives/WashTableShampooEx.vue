@@ -207,7 +207,7 @@ export default Vue.extend({
       this.buttonLeft = new Button({
         selector: '#button-left-shampoo',
 
-        width: 26,
+        width: 58,
         height: 7,
         background: 'rgb(255, 255, 255)',
         borderRadius: 4,
@@ -232,7 +232,7 @@ export default Vue.extend({
       // end classes
       if (this.actives[this.activeNumber_x2].display === 'none') {
         // this.buttonRight.hide()
-        this.upStandardOptions.width = '58em'//'65em'
+        this.upStandardOptions.width = '58em' //'65em' 
       }
       if (this.actives[this.activeNumber_x2].display === 'block') {
         this.restore('right')
@@ -243,7 +243,7 @@ export default Vue.extend({
     restore(type) {
       if (type === 'right') {
         this.buttonRight.show()
-        this.upStandardOptions.width = '58em'
+        this.upStandardOptions.width = '58em'//'65em'
       }
       if (type === 'left') {
       }

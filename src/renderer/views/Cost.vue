@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="row">
+      
       <div class="col s2">
         <router-link to="/">
           <div class="back">
@@ -9,20 +10,6 @@
         </router-link>
       </div>
 
-      <div class="col s7">
-        <div class="_page-title">
-          <!-- СТОИМОСТЬ ПРОГРАММ -->
-          <!-- <h4>{{getWetProgShow}}</h4> -->
-          <!-- <h4>{{ getWetProgStatus }}</h4> -->
-          <!-- <h4 align="left">{{ getWetProgPrice }}</h4> -->
-
-          <!-- <h4>{{ getWetBusyPanel }}</h4> -->
-          <!-- <h4 align="left">{{ getParamsChange }}</h4> -->
-          <!-- <h4 align="left">{{ this.$store.state.isParamsChange }}</h4> -->
-
-          <!-- <h4 align="left"><pre class="white-text"> {{status}} </pre></h4> -->
-        </div>
-      </div>
     </div>
 
     <div class="row">

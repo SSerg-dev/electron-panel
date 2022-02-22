@@ -209,7 +209,7 @@ export default Vue.extend({
       this.buttonLeft = new Button({
         selector: '#button-left-water',
 
-        width: 26,
+        width: 58,
         height: 7,
         background: 'rgb(255, 255, 255)',
         borderRadius: 4,
@@ -247,7 +247,7 @@ export default Vue.extend({
 
     restore(type) {
       if (type === 'right') {
-        this.buttonRight.show()
+        // this.buttonRight.show()
         this.upStandardOptions.width = '58em'
       }
       if (type === 'left') {
@@ -268,7 +268,7 @@ export default Vue.extend({
         this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width = options.width
+        this.buttonLeft.width = '58em' // options.width 
 
         this.buttonRight.background = 'rgb(255, 255, 255)'
       }
@@ -283,6 +283,7 @@ export default Vue.extend({
         this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
 
+     
       // this.buttonRight.hide()
       // this.buttonRight.show()
     }

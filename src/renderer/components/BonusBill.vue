@@ -2,12 +2,17 @@
   <div>
     <section>
       <div class="info-title">
-        <h3>
+        <h3 v-if="!getIsMoneyToBonus">
           <p align="center">
             {{ `${this.messages[0]}` }}
           </p>
           <p align="center">
             {{ `${this.messages[1]}` }}
+          </p>
+        </h3>
+        <h3 v-if="getIsMoneyToBonus">
+          <p align="center">
+            {{ `${this.messages[2]}` }}
           </p>
         </h3>
       </div>
@@ -324,6 +329,7 @@
                         @click="payUp('append')"
                         class="card white waves-effect"
                         style="
+                        margin-top: 4em;
                         width: 420px;
                         height: 120px; 
                         border: solid 6px #00B9E3; 
@@ -351,6 +357,7 @@
                         @click="payUp('confirm')"
                         class="card white waves-effect"
                         style="
+                  margin-top: 4em;      
                   width: 420px;
                   height: 120px; 
                   border: solid 6px #00B9E3; 
@@ -381,7 +388,6 @@
             <div class="qr-code">
               <BonusBillQr />
             </div>
-
           </div>
         </div>
       </form>
@@ -421,7 +427,11 @@ export default {
     password: '',
     clickCount: 0,
 
-    messages: [`Для зачисления бонусов,`, `введите номер телефона`],
+    messages: [
+      `Для зачисления бонусов,`,
+      `введите номер телефона`,
+      `юридический текст для зачисления остаточной суммы на Ваш бонусный счет`
+    ],
     messageIndex: -1
 
     /*
@@ -431,10 +441,20 @@ export default {
   }),
   mounted() {
     this.storage = new Storage(this.client, this.url)
-    /* dev */
-    // getIsLoginSettingPassword
     this.setIsLoginSettingPassword(false)
     this.setRouter('/bonus')
+    /* dev */
+    this.getIsMoneyToBonus
+    this.getMoneyToBonus
+    console.log(
+      'this.getIsMoneyToBonus',
+      this.getIsMoneyToBonus,
+      this.getMoneyToBonus
+    )
+  },
+  beforeDestroy() {
+    this.setIsMoneyToBonus(false)
+    this.setMoneyToBonus(0)
   },
   components: {
     BonusBillQr
@@ -442,7 +462,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getWetBalance: 'getWetBalance'
+      getWetBalance: 'getWetBalance',
+      getIsMoneyToBonus: 'getIsMoneyToBonus',
+      getMoneyToBonus: 'getMoneyToBonus'
     }),
     IsWetBalance: {
       get: function() {
@@ -471,7 +493,9 @@ export default {
       setLoginBonusPassword: 'setLoginBonusPassword',
       setAppendBonus: 'setAppendBonus',
       setIsLoginSettingPassword: 'setIsLoginSettingPassword',
-      setRouter: 'setRouter'
+      setRouter: 'setRouter',
+      setIsMoneyToBonus: 'setIsMoneyToBonus',
+      setMoneyToBonus: 'setMoneyToBonus'
     }),
     ...mapActions({
       updateWetBonusMoney: 'updateWetBonusMoney'
@@ -481,7 +505,6 @@ export default {
       //console.log('emitClick!!!')
       EventBus.$emit('submitBonusBill', program)
     },
-    
 
     payUp(program) {
       //console.log('++program-->', program)
@@ -501,7 +524,7 @@ export default {
       this.options = this.getAppendBonus()
       this.options.params.phone = this.phone
 
-      // 
+      //
       this.options.params.sum = this.sum
       this.options.params.cash = this.cash
       this.options.params.order = this.order
@@ -515,7 +538,11 @@ export default {
         response = await this.storage.getClient(method, this.options, type)
         if (+response.result === 0) {
           /* dev */
-          console.log('BonusBill-row-517-->type-->options-->', type, this.options)
+          console.log(
+            'BonusBill-row-517-->type-->options-->',
+            type,
+            this.options
+          )
           /* ??? how match */
           this.$message(`Вам насчислены бонусы`)
           this.setIsAppendBonusMoney(false)
@@ -679,7 +706,6 @@ export default {
 }
 
 .qr-code {
-
   /* position: absolute;
   background-color: white;
 
@@ -689,8 +715,8 @@ export default {
   margin-left: 45em;
   padding-top: 0.5em;
   padding-left: 0.5em;
-  z-index: 1; */
-  
+  */
+  z-index: 1;
 }
 /* dev */
 .pay-up-title {

@@ -34,7 +34,7 @@ const upTurboOptions = {
   background: 'rgb(255, 255, 255)',
   border: '0.4em solid rgb(255,3,3)',
   boxShadow: 'rgb(255,3,3) 0px 10px 20px',
-  fontSize: '1.01em'
+  fontSize: '1.em'
 }
 const downTurboOptions = {
   type: 'right',

@@ -108,21 +108,45 @@ export default {
       getWetBalance: 'getWetBalance',
       getPanelType: 'getPanelType',
       getIsFooter: 'getIsFooter',
-      getWetStopFreeCount: 'getWetStopFreeCount'
+      getWetStopFreeCount: 'getWetStopFreeCount',
+      getIsMoneyToBonus: 'getIsMoneyToBonus',
+      getMoneyToBonus: 'getMoneyToBonus'
     })
   },
   watch: {
     getWetStopFreeCount(flag) {
-      try {
-        if (parseInt(flag) > 0 && this.$route.name !== 'popup')
-          this.$router.push('/popup')
+      try { 
+        /* dev */
+        // if (parseInt(flag) > 0 && this.$route.name !== 'popup')
+        //   this.$router.push('/popup')
+
+        if (parseInt(flag) > 0) {
+          // this.setIsMoneyToBonus(true) 
+
+        }
+
+
       } catch (err) {}
     }
+  },
+  mounted() {
+    this.setIsMoneyToBonus(false)
+    // console.log('this.getIsMoneyToBonus', this.getIsMoneyToBonus)
+    // this.setIsMoneyToBonus(true)
+    // console.log('this.getIsMoneyToBonus', this.getIsMoneyToBonus)
+
+    // console.log('this.getMoneyToBonus', this.getMoneyToBonus)
+    // this.setMoneyToBonus(16)
+    // console.log('this.getMoneyToBonus', this.getMoneyToBonus)
+    
+
   },
 
   methods: {
     ...mapMutations({
-      setActiveProgram: 'setActiveProgram'
+      setActiveProgram: 'setActiveProgram',
+      setIsMoneyToBonus: 'setIsMoneyToBonus',
+      setMoneyToBonus: 'setMoneyToBonus' 
     }),
     ...mapGetters({}),
     ...mapActions({

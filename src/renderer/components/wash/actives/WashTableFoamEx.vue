@@ -78,7 +78,6 @@ import {
   downColorOptions,
   upRedOptions,
   downRedOptions
-  
 } from '@/shapes/index.js'
 
 import { log } from '../../../../main/utils'
@@ -206,8 +205,6 @@ export default Vue.extend({
       this.setButtonStyle(this.upRedOptions)
       this.setButtonStyle(this.upColorOptions)
       this.setButtonStyle(this.upX2Options)
-
-
     },
     getKits() {
       const result = []
@@ -275,51 +272,67 @@ export default Vue.extend({
       })
 
       // end classes
-      
-      // set options  
+
+      // set options
       /* dev */
-      if (this.actives[this.activeNumber_x2].display === 'none') {
-        this.buttonRight.hide()
-        this.upRedOptions.width =  '58em' // '65em'  
-      }
-      // console.log('this.actives[this.activeNumber_x2].display', this.actives[this.activeNumber_x2].display)
-      
-      // if (this.actives[this.activeNumber_color].display === 'none') {
-      //   this.buttonCenter.hide()
-      //   this.upRedOptions.width =  '58em' // '65em'  
-      // }
-      
-      if (this.actives[this.activeNumber_x2].display === 'block') {
-        this.restore('right')
-      }
-      
-      // if (this.actives[this.activeNumber_color].display === 'block') {
-      //   this.restore('center')
-      // }
+      // this.resize()
+      // this.redraw()
 
       this.setButtonStyle(this.upRedOptions)
       this.setButtonStyle(this.upColorOptions)
       this.setButtonStyle(this.upX2Options)
-      
+
     },
-    restore(type) {
-      if (type === 'right') {
-        this.buttonRight.show()
+
+    resize() {
+      if (
+        this.actives[this.activeNumber_x2].display === 'none' &&
+        this.actives[this.activeNumber_color].display === 'none'
+      )
+        this.upRedOptions.width = '65em'
+      if (
+        (this.actives[this.activeNumber_x2].display === 'block' &&
+          this.actives[this.activeNumber_color].display === 'none') ||
+        (this.actives[this.activeNumber_x2].display === 'none' &&
+          this.actives[this.activeNumber_color].display === 'block')
+      )
+        this.upRedOptions.width = '58em'
+      if (
+        this.actives[this.activeNumber_x2].display === 'block' &&
+        this.actives[this.activeNumber_color].display === 'block'
+      )
         this.upRedOptions.width = '51em'
-      }
-      // if (type === 'center') {
-      //   this.buttonCenter.show()
-      //   this.upRedOptions.width = '51em'
-      // }
-      if (type === 'left') {
-      }
 
-      // this.upRedOptions.width = '51em'
-      this.flex()
-      return
+    },
+    redraw() {
+      this.setButtonStyle(this.upRedOptions)
+      this.setButtonStyle(this.upColorOptions)
+      this.setButtonStyle(this.upX2Options)
+
+      console.log('this.actives[this.activeNumber_color].display', this.actives[this.activeNumber_color].display)
+      console.log('this.actives[this.activeNumber_x2].display', this.actives[this.activeNumber_x2].display)
+      console.log('this.upRedOptions.width', this.upRedOptions.width)
+      
+      if (this.actives[this.activeNumber_color].display === 'none')
+         this.buttonCenter.hide()
+      if (this.actives[this.activeNumber_x2].display === 'none')
+         this.buttonRight.hide()   
+
     },
 
-    flex() {
+    
+
+    flexLeft() {
+      this.buttonLeft.display = 'flex'
+      this.buttonLeft.alignItems = 'center'
+      this.buttonLeft.justifyContent = 'left'
+    },
+    flexCenter() {
+      this.buttonCenter.display = 'flex'
+      this.buttonCenter.alignItems = 'center'
+      this.buttonCenter.justifyContent = 'center'
+    },
+    flexRight() {
       this.buttonRight.display = 'flex'
       this.buttonRight.alignItems = 'center'
       this.buttonRight.justifyContent = 'center'
@@ -329,10 +342,11 @@ export default Vue.extend({
       // console.log('options-->', options)
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
-        this.buttonLeft.border = options.border  
+        this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width = options.width
+        this.buttonLeft.width = '51em'// options.width
+        this.flexLeft()
       }
       if (options.type === 'center') {
         this.buttonCenter.background = options.background
@@ -340,6 +354,7 @@ export default Vue.extend({
         this.buttonCenter.boxShadow = options.boxShadow
         this.buttonCenter.fontSize = options.fontSize
         this.buttonCenter.width = options.width
+        this.flexCenter()
       }
       if (options.type === 'right') {
         this.buttonRight.background = options.background
@@ -347,10 +362,8 @@ export default Vue.extend({
         this.buttonRight.boxShadow = options.boxShadow
         this.buttonRight.fontSize = options.fontSize
         this.buttonRight.width = options.width
+        this.flexRight
       }
-
-      // this.buttonRight.hide()
-      // this.buttonRight.show()
     }
   }, // end methods
 

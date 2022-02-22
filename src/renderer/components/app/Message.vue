@@ -1,12 +1,16 @@
 <template>
   <div>
     <div class="page-title">
-      <div v-if="this.getPanelType === 'wash'">
+      <div v-if="this.getPanelType === 'wash' && !getIsMoneyToBonus">
         {{ `${ parseFloat(getWetBalance / Math.pow(10, digits)).toFixed(digits) }` }}
       </div>
-      <div v-if="this.getPanelType === 'vacuum'">
+      <div v-if="this.getPanelType === 'vacuum' && !getIsMoneyToBonus">
         {{ `${ parseFloat(getDryBalance / Math.pow(10, digits)).toFixed(digits) }` }}
       </div>
+      <div v-if="getIsMoneyToBonus">
+        {{ `${ parseFloat(getMoneyToBonus / Math.pow(10, digits)).toFixed(digits) }` }}
+      </div>
+
       
     </div>
   </div>
@@ -43,7 +47,9 @@ export default Vue.extend({
       getWetBalance: 'getWetBalance',
       getDryBalance: 'getDryBalance',
       getPanelType: 'getPanelType',
-      getFixedCurrency: 'getFixedCurrency'
+      getFixedCurrency: 'getFixedCurrency',
+      getIsMoneyToBonus: 'getIsMoneyToBonus',
+      getMoneyToBonus: 'getMoneyToBonus'
     }),
     ...mapMutations({
       setWetBalance: 'setWetBalance',

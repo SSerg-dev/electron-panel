@@ -169,7 +169,8 @@ export default {
       create: false,
       print: false
     },
-    isMoneyToBonus: false
+    isMoneyToBonus: false,
+    MoneyToBonus: 0
      
   }, // end state
   // Options
@@ -187,6 +188,9 @@ export default {
     },
     getIsMoneyToBonus(state) {
       return state.isMoneyToBonus
+    },
+    getMoneyToBonus(state) {
+      return state.MoneyToBonus
     },
 
     getLoginSettingPassword(state) {
@@ -293,8 +297,11 @@ export default {
     setIsReceiptPrint(state, print) {
       state.isReceipt.print = print 
     },
-    setIsMoneyToBonus(state, money2bonus) {
-      state.isMoneyToBonus = money2bonus
+    setIsMoneyToBonus(state, isMoney) {
+      state.isMoneyToBonus = isMoney
+    },
+    setMoneyToBonus(state, money) {
+      state.MoneyToBonus = money
     },
 
     setLoginBonusPhone(state, phone) {

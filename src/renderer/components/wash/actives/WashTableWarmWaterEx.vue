@@ -209,7 +209,7 @@ export default Vue.extend({
       this.buttonLeft = new Button({
         selector: '#button-left-warm-water',
 
-        width: 26,
+        width: 25.5,
         height: 7,
         background: 'rgb(255, 255, 255)',
         borderRadius: 4,
