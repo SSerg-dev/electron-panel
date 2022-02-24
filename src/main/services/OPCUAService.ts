@@ -22,6 +22,7 @@ class OPCUAService extends EventEmitter {
     private TAG_NS = 6
 
 	public nodes: { [key: string]: string; } = {
+    TAG_WET_ZERO_MONEY     : "::AsGlobalPV:PostN[{0}].cmdZeroMoney",
 		TAG_WET_STOP_TIME      : "::AsGlobalPV:PostN[{0}].stopFreeCount",
 		TAG_WET_IS_BUSY        : "::AsGlobalPV:PostN[{0}].busy",
 
@@ -54,6 +55,7 @@ class OPCUAService extends EventEmitter {
     /* dev */
     TAG_DRY_IS_BUSY        : "::AsGlobalPV:VacuumPost[{0}].busy", 
     TAG_G_FIXED_CURRENCY   : "::AsGlobalPV:gFixedCurrency.digits",
+
 
 
 

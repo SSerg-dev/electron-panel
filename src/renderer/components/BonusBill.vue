@@ -2,23 +2,26 @@
   <div>
     <section>
       <div class="info-title">
-        <h3 v-if="!getIsMoneyToBonus">
+        <h3 v-if="getIsPayBonusMoney && !getIsMoneyToBonus">
           <p align="center">
             {{ `${this.messages[0]}` }}
           </p>
+        </h3>
+        <!-- <h3 v-if="getIsAppendBonusMoney">
           <p align="center">
             {{ `${this.messages[1]}` }}
           </p>
-        </h3>
+        </h3> -->
         <h3 v-if="getIsMoneyToBonus">
           <p align="center">
             {{ `${this.messages[2]}` }}
           </p>
         </h3>
+
       </div>
 
       <form @submit.prevent="" novalidate>
-        <div class="imgs" style="padding-top: 2em">
+        <div class="imgs">
           <div class="display" style="padding-left: 4em">
             <input
               type="tel"
@@ -385,7 +388,7 @@
             </div>
             <!-- <div class="col s2"></div> -->
 
-            <div class="qr-code">
+            <div>
               <BonusBillQr />
             </div>
           </div>
@@ -415,7 +418,7 @@ export default {
     totString: '',
     code: '+7 ',
 
-    sum: 42,
+    sum: 0,
     cash: true,
     order: '13',
 
@@ -428,9 +431,13 @@ export default {
     clickCount: 0,
 
     messages: [
-      `Для зачисления бонусов,`,
-      `введите номер телефона`,
-      `юридический текст для зачисления остаточной суммы на Ваш бонусный счет`
+      `Для входа в систему введите номер телефона
+       или отсканируйте QR код`,
+      `Для зачисления бонусов, 
+      введите номер телефона`,
+      `Нажимая "Зачислить", Вы даете свое согласие на отправку 
+      Вам СМС-сообщения и обработку персональных данных,
+      согласно условиям, размещенным на сайте: www.alles-bonus.com`
     ],
     messageIndex: -1
 
@@ -443,14 +450,20 @@ export default {
     this.storage = new Storage(this.client, this.url)
     this.setIsLoginSettingPassword(false)
     this.setRouter('/bonus')
-    /* dev */
-    this.getIsMoneyToBonus
-    this.getMoneyToBonus
-    console.log(
-      'this.getIsMoneyToBonus',
-      this.getIsMoneyToBonus,
+
+    // this.setWetZeroMoney(false)
+    // console.log('--getWetZeroMoney:',this.getWetZeroMoney)
+    // this.setWetZeroMoney(true)
+    // console.log('++getWetZeroMoney:', this.getWetZeroMoney)
+    // this.updateWetZeroMoney(true)
+    // this.$message(`Ваш остаток ${this.getMoneyToBonus} сохранен бонусами`)
+    
+    if (this.getIsMoneyToBonus) {
       this.getMoneyToBonus
-    )
+      this.setIsAppendBonusMoney(true)
+      this.setIsPayBonusMoney(false)
+    }
+    
   },
   beforeDestroy() {
     this.setIsMoneyToBonus(false)
@@ -464,7 +477,8 @@ export default {
     ...mapGetters({
       getWetBalance: 'getWetBalance',
       getIsMoneyToBonus: 'getIsMoneyToBonus',
-      getMoneyToBonus: 'getMoneyToBonus'
+      getMoneyToBonus: 'getMoneyToBonus',
+      getWetZeroMoney: 'getWetZeroMoney'
     }),
     IsWetBalance: {
       get: function() {
@@ -495,43 +509,51 @@ export default {
       setIsLoginSettingPassword: 'setIsLoginSettingPassword',
       setRouter: 'setRouter',
       setIsMoneyToBonus: 'setIsMoneyToBonus',
-      setMoneyToBonus: 'setMoneyToBonus'
+      setMoneyToBonus: 'setMoneyToBonus',
+      setWetZeroMoney: 'setWetZeroMoney'
     }),
     ...mapActions({
-      updateWetBonusMoney: 'updateWetBonusMoney'
+      updateWetBonusMoney: 'updateWetBonusMoney',
+      updateWetZeroMoney: 'updateWetZeroMoney'
     }),
 
     emitClick(program) {
-      //console.log('emitClick!!!')
+      // console.log('emitClick!!!')
       EventBus.$emit('submitBonusBill', program)
     },
 
     payUp(program) {
-      //console.log('++program-->', program)
-      if (this.getIsAppendBonusMoney() && program === 'append') {
+      if (this.getIsAppendBonusMoney() && program === 'append' && !this.getIsMoneyToBonus) {
+        console.log('appendBonusMoney')
         this.appendBonusMoney()
       }
+      if (this.getIsMoneyToBonus && program === 'append') {
+        this.saveBonusMoney()
+      }
+
       if (this.getIsPayBonusMoney() && program === 'confirm') {
+        console.log('payBonusMoney')
+        
         this.payBonusMoney()
       }
       this.emitClick(program)
     },
-
+    // ЗАЧИСЛИТЬ
     async appendBonusMoney() {
       const method = methods[10]
       const type = types[4]
 
       this.options = this.getAppendBonus()
+      this.sum = 42 //this.getMoneyToBonus
+      
       this.options.params.phone = this.phone
-
-      //
       this.options.params.sum = this.sum
       this.options.params.cash = this.cash
       this.options.params.order = this.order
 
       this.setAppendBonus(this.options.params)
       this.options = this.getAppendBonus()
-      // console.log('options-->this.options-->', JSON.stringify(this.options))
+      console.log('options-->this.options-->', JSON.stringify(this.options))
 
       let response
       if (this.phone.length === this.phoneParseLength) {
@@ -556,14 +578,46 @@ export default {
         this.$message(`Введите правильно номер мобильного телефона`)
       }
     },
+      // ЗАЧИСЛИТЬ НА БОНУСЫ ПОСЛЕ НАЖАТИЯ СТОП И СОХРАНИТЬ ПРОГРАММЫ 
+    async saveBonusMoney() {
+      console.log('++saveBonusMoney')
+      
+      const method = methods[10]
+      const type = types[4]
+      // options = params: { "phone":"","sum":0,"cash":true,"order":"" }
+      this.options = this.getAppendBonus()
+      this.sum = +this.getMoneyToBonus
+
+      this.options.params.phone = this.phone
+      this.options.params.sum = this.sum
+      this.options.params.cash = this.cash
+      this.options.params.order = this.order
+
+      this.setAppendBonus(this.options.params)
+      this.options = this.getAppendBonus()
+      // console.log('++options-->this.options-->', JSON.stringify(this.options))
+
+      let response
+      if (this.phone.length === this.phoneParseLength) {
+        response = await this.storage.getClient(method, this.options, type)
+        if (+response.result === 0) {
+          /* dev */
+          this.updateWetZeroMoney(true)
+          this.setIsMoneyToBonus(false)
+
+          this.$message(`Ваш остаток ${ this.getMoneyToBonus } сохранен бонусами`)
+          this.setIsAppendBonusMoney(false)
+          this.$router.push('/program')
+          //this.$router.push('/')
+        } else {
+          this.$message(`Ошибка:  ${response.error}`)
+        }
+      } else {
+        this.$message(`Введите правильно номер мобильного телефона`)
+      }
+    },
     // ПОДТВЕРДИТЬ
     async payBonusMoney() {
-      //console.log('ПОДТВЕРДИТЬ BonusBill-->payBonusMoney!!!')
-      // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-      /* this.phoneNotParse = this.phone.replace(/[^+0-9]/g, '')
-      this.setLoginBonusPhone(this.phoneNotParse)
-      this.$router.push('/password') */
       if (this.phone.length === this.phoneParseLength) {
         this.phoneNotParse = this.phone.replace(/[^+0-9]/g, '')
         this.setLoginBonusPhone(this.phoneNotParse)
@@ -571,59 +625,6 @@ export default {
       } else {
         this.$message(`Введите правильно номер мобильного телефона`)
       }
-      // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      /*
-      const method = methods[8]
-      const type = types[2]
-
-      let response
-      if (this.phone.length === this.phoneParseLength) {
-        // dev
-        // if (this.options.params.phone === this.phoneNotParse) {
-        if (true) {
-          // if (this.IsWetBalance) {
-          if (true) {
-            // dev
-            this.$router.push('/password')
-            this.options = this.getLoginBonusOptions()
-
-            console.log(
-              'BonusBill-->this.options.params',
-              JSON.stringify(this.options.params)
-            )
-            if (this.options.params.pin) {
-              response = await this.storage.getClient(
-                method,
-                this.options,
-                type
-              )
-              if (+response.result === 0) {
-                this.$message(
-                  `Уважаемый ${response.profile.firstname} ${response.profile.lastname} на Вашем бонусном счету ${response.profile.b_balance} ₽ `
-                )
-                //this.setIsPayBonusMoney(false)
-                // clear
-                this.setLoginBonusPhone('')
-                this.setLoginBonusPassword('')
-              } else this.$message(`Ошибка оплаты Вашего бонусного счета`)
-            }
-          } else {
-            this.$message('Внесите минимальную сумму (10 руб.)')
-            // this.$router.push('/bonus')
-            // dev
-          }
-        } else {
-          this.$message(
-            `Телефон с номером ${this.phone} в бонусной системе не зарегистрирован`
-          )
-        }
-
-        //---
-      } else {
-        this.$message(`Введите правильно номер мобильного телефона`)
-      }
-      */
-      // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }, // payBonusMoney
 
     setNumber(num) {
@@ -662,66 +663,24 @@ export default {
   font-size: 2.5em;
 }
 .imgs {
-  position: relative;
-}
-
-.display {
-  width: 980px;
-  /* padding-left: 6rem;
-  margin-bottom: 0rem; */
-
   position: absolute;
-  margin-top: 0em;
-  margin-left: 0em;
+  padding-top: 1em;
+}
+.display {
+  position: absolute;
+  width: 66em;
   z-index: 1;
 }
 .phone {
-  /* margin-top: 0em; */
-  margin: 0 auto;
-  /* padding-top: 6em; */
-  width: 253px;
-  height: 125px;
+  width: 16em;/* 253px; */
+  height: 8em;/* 125px; */
   color: #ffffff;
   text-align: left;
   font-family: 'Plumb-Medium';
   text-transform: uppercase;
-
-  /* font-size: 3rem; */
-  /* border-bottom: 2px solid #eee; */
 }
-.qr-title {
-  position: absolute;
-  margin-top: 5.5em;
-  margin-left: 25em;
-
-  top: 0%;
-  left: 0%;
-  color: white;
-  text-align: right;
-
-  font-size: 2em;
-  font-family: 'Plumb-Medium';
-  font-weight: bold;
-  z-index: 1;
-}
-
-.qr-code {
-  /* position: absolute;
-  background-color: white;
-
-  width: 320px;
-  height: 320px;
-  margin-top: 8em;
-  margin-left: 45em;
-  padding-top: 0.5em;
-  padding-left: 0.5em;
-  */
-  z-index: 1;
-}
-/* dev */
 .pay-up-title {
   position: absolute;
-
   margin-top: 0em;
   margin-left: 0em;
   z-index: 1;
@@ -736,7 +695,6 @@ td {
   height: 150px;
   width: 150px;
   padding-right: 1.5em;
-  /* border-color: #121212; */
 }
 
 .btn {

@@ -155,7 +155,7 @@ export default Vue.extend({
           this.isDown.shampoo = true
           break
         case 'shampoo_x2':
-          // this.setButtonStyle(this.downStandardOptions)
+          this.setButtonStyle(this.downStandardOptions)
           // this.isDown.shampoo = true
 
           this.setButtonStyle(this.downX2Options)
@@ -266,11 +266,9 @@ export default Vue.extend({
         this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width = options.width
+        this.buttonLeft.width = '58em' // options.width
 
         this.buttonRight.background = 'rgb(255, 255, 255)'
-        // if (this.activeProgramKit.x2)
-        //   this.buttonLeft.width = '26em'
       }
 
       if (options.type === 'right') {

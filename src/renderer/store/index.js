@@ -100,7 +100,8 @@ export default new Vuex.Store({
       busy: '',
       panelMoney: '0',
       stopFreeCount: '0',
-      spend: ''
+      spend: '',
+      zeroMoney: ''
     },
 
     dryParameters: {
@@ -296,7 +297,25 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
+    
+    updateWetZeroMoney({ getters }, zeroMoney) {
+      try {
+        ipcRenderer.send(
+          'OPCUA',
+          JSON.stringify({
+            node: `::AsGlobalPV:PostN[${getters.getDefaultPanelNumber -
+              1}].cmdZeroMoney`,
+            value: zeroMoney
+          })
+        )
+      } catch (e) {
+        console.warn('Error:', e.message)
+      }
+    },
+   
+
     // end Платежи ----------------------
+
 
     // end Wet actions ==================
 
@@ -368,6 +387,9 @@ export default new Vuex.Store({
     },
     getWetSpend(state) {
       return state.parameters.spend
+    },
+    getWetZeroMoney(state) {
+      return state.parameters.zeroMoney
     },
 
     // DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -499,6 +521,9 @@ export default new Vuex.Store({
         case 'spend':
           state.parameters.spend = parameter.value
           break
+        case 'cmdZeroMoney':
+          state.parameters.cmdZeroMoney = parameter.value
+          break
 
         default:
           //console.log('no param')
@@ -595,7 +620,9 @@ export default new Vuex.Store({
       state.isBonusMoney = isBonusMoney
     },
 
-    /*     */
+    setWetZeroMoney(state, zeroMoney) {
+      state.parameters.zeroMoney = zeroMoney
+    },
 
     setActiveProgramNumber(state, activeProgramNumber) {
       state.activeProgramNumber = activeProgramNumber

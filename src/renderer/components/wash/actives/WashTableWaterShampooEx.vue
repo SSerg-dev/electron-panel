@@ -84,7 +84,7 @@ export default Vue.extend({
 
     isDown: {
       waterShampoo: false,
-      waterShampoo_turbo: false 
+      waterShampoo_turbo: false
     }
   }),
   props: {
@@ -148,21 +148,25 @@ export default Vue.extend({
       } else this.$message(`Недостаточно средств`)
     },
     setDown(program) {
+      /* dev */
+      /* if (this.actives[this.activeNumber_turbo].display === 'none')
+        this.upStandardOptions.width = '64em'
+      if (this.actives[this.activeNumber_turbo].display === 'block') {
+        this.restore('right')
+      } */  
+
       this.clearDown()
 
       switch (program) {
         case 'waterShampoo':
-          /* dev */
           this.setButtonStyle(this.downStandardOptions)
           this.isDown.waterShampoo = true
           break
         case 'waterShampoo_turbo':
-          // this.setButtonStyle(this.downStandardOptions)
-          // this.isDown.waterShampoo = true
+          this.setButtonStyle(this.downStandardOptions)
 
           this.setButtonStyle(this.downTurboOptions)
           this.isDown.waterShampoo_turbo = true
-
           break
 
         default:
@@ -242,12 +246,11 @@ export default Vue.extend({
       }
       this.setButtonStyle(this.upStandardOptions)
       this.setButtonStyle(this.upTurboOptions)
-
     },
 
     restore(type) {
       if (type === 'right') {
-        // this.buttonRight.show()
+        this.buttonRight.show()
         this.upStandardOptions.width = '58em'
       }
       if (type === 'left') {
@@ -268,7 +271,7 @@ export default Vue.extend({
         this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width = '58em' // options.width 
+        this.buttonLeft.width = '58em' // options.width   
 
         this.buttonRight.background = 'rgb(255, 255, 255)'
       }
@@ -282,10 +285,6 @@ export default Vue.extend({
 
         this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
-
-     
-      // this.buttonRight.hide()
-      // this.buttonRight.show()
     }
   }, // end methods
 

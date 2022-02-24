@@ -18,15 +18,14 @@
             <img src="imgs/price/price-bonus.svg" />
           </div>
         </router-link> -->
-        
-          <div 
-            v-if="!getIsMoneyToBonus"
-            @click="setProgram('savemoney')" 
-            class="price-bonus">
-            <img src="imgs/price/price-bonus.svg" />
-          </div>
-        
 
+        <div
+          v-if="getIsMoneyToBonus"
+          @click="setProgram('savemoney')"
+          class="price-bonus"
+        >
+          <img src="imgs/price/price-bonus.svg" />
+        </div>
       </section>
 
       <table border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -133,6 +132,8 @@
 import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import Message from '@/components/app/Message'
+import { Component, Box, Circle, Button } from '@/shapes/index.js'
+
 import WashTableDiskEx from '@/components/wash/actives/WashTableDiskEx'
 import WashTableMosquitoEx from '@/components/wash/actives/WashTableMosquitoEx'
 import WashTableShampooEx from '@/components/wash/actives/WashTableShampooEx'
@@ -276,17 +277,11 @@ export default {
       }
     },
     saveMoney() {
-      if (this.getWetStopFreeCount >= 0) {
-        
-        console.log('this.getIsMoneyToBonus', this.getIsMoneyToBonus, this.getMoneyToBonus)
-    
-        this.setIsMoneyToBonus(true) 
-        // this.setMoneyToBonus(this.getWetStopFreeCount)
-        this.setMoneyToBonus(2)
+      if (this.getWetStopFreeCount > 0) {
+        this.setIsMoneyToBonus(true)
+        this.setMoneyToBonus(this.getWetStopFreeCount)
         this.$router.push('/bonus')
       }
-      
-
     },
     clearDown() {
       this.isDown = Object.fromEntries(
@@ -296,10 +291,28 @@ export default {
     setup() {
       this.setIsMoneyToBonus(false)
       this.setMoneyToBonus(0)
+      this.initial()
+    },
+    initial() {
+      // classes instances
+      /* button bonus */
+      
+      /* this.buttonBonus = new Button({
+        selector: '#button-bonus',
+
+        width: 25, // 28
+        height: 23,
+        background: 'rgb(255, 255, 255)',
+        borderRadius: 3,
+
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }) */
+
     }
   },
   mounted() {
-
     if (!this.isVisible) {
       this.timeoutDelay = setTimeout(() => {
         this.isVisible = true

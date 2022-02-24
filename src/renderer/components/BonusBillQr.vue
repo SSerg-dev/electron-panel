@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="page-title">
+    <div>
       <!-- /////////////////// -->
-      <div>
+      <div class="qr-title">
         <h3>
           <p align="center">
             Авторизация
@@ -22,6 +22,7 @@
         :margin=2 />
       </div>
     </div>
+
   </div>
 </template>
 
@@ -81,18 +82,16 @@ export default {
 </script>
 
 <style scoped>
-.page-title {
-  margin-top: 8em;
-  margin-bottom: 2em;
-  margin-left: 28em; /* 16em; */
-  padding-top: 0em;
+.qr-title {
+  position: absolute;
+  margin-top: 10em;
+  margin-left: 45.5em;
   color: white;
-  /* background: blue; */
-
   font-family: 'Plumb-Medium';
 }
 .qr-code {
-  padding-top: 4em;
-  padding-left: 18em;
+  position: absolute;
+  margin-top: 20em;
+  margin-left: 44em;
 }
 </style>

@@ -121,25 +121,14 @@ export default {
         //   this.$router.push('/popup')
 
         if (parseInt(flag) > 0) {
-          // this.setIsMoneyToBonus(true) 
-
-        }
-
-
+          this.setIsMoneyToBonus(true) 
+        } 
       } catch (err) {}
     }
   },
   mounted() {
     this.setIsMoneyToBonus(false)
-    // console.log('this.getIsMoneyToBonus', this.getIsMoneyToBonus)
-    // this.setIsMoneyToBonus(true)
-    // console.log('this.getIsMoneyToBonus', this.getIsMoneyToBonus)
-
-    // console.log('this.getMoneyToBonus', this.getMoneyToBonus)
-    // this.setMoneyToBonus(16)
-    // console.log('this.getMoneyToBonus', this.getMoneyToBonus)
-    
-
+    this.setMoneyToBonus(0)
   },
 
   methods: {
@@ -160,10 +149,10 @@ export default {
         this.isDown.home = false
         try {
           /* dev */
-          /* if (this.$route.name !== 'home') {
+          if (this.$route.name !== 'home') {
             this.$router.push('/')
-          } */
-          this.$router.push('/program')
+          }
+          // this.$router.push('/program')
 
         } catch (err) {}
       }, this.delay)
