@@ -311,7 +311,7 @@ td {
 
 .button-content-style {
   font-size: 3.5em;
-  margin-left: 1.2em;
+  margin-left: 0.7em;
   padding-top: 0em;
   padding-right: 0em;
 }

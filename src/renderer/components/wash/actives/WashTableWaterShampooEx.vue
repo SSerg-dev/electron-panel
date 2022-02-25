@@ -71,6 +71,7 @@ export default Vue.extend({
     // classes
     buttonLeft: null,
     buttonRight: null,
+    visible: '',
 
     /*     */
 
@@ -148,23 +149,23 @@ export default Vue.extend({
       } else this.$message(`Недостаточно средств`)
     },
     setDown(program) {
-      /* dev */
-      /* if (this.actives[this.activeNumber_turbo].display === 'none')
-        this.upStandardOptions.width = '64em'
-      if (this.actives[this.activeNumber_turbo].display === 'block') {
-        this.restore('right')
-      } */  
-
       this.clearDown()
 
       switch (program) {
         case 'waterShampoo':
+          
+          /* if (this.visible === 'none') {
+            this.downStandardOptions.width = '64em'
+          }
+          if (this.visible === 'block') {
+            this.downStandardOptions.width = '58em'
+            this.flex()
+          } */
+
           this.setButtonStyle(this.downStandardOptions)
           this.isDown.waterShampoo = true
           break
         case 'waterShampoo_turbo':
-          this.setButtonStyle(this.downStandardOptions)
-
           this.setButtonStyle(this.downTurboOptions)
           this.isDown.waterShampoo_turbo = true
           break
@@ -174,8 +175,6 @@ export default Vue.extend({
       }
       this.timeoutSetUp = setTimeout(() => {
         try {
-          // console.log('this.getWetBalance',typeof this.getWetBalance)
-
           if (this.getWetBalance === '0') this.clearDown()
         } catch (err) {}
       }, 2000)
@@ -184,6 +183,14 @@ export default Vue.extend({
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
+        /* if (this.visible === 'none') {
+          this.upStandardOptions.width = '64em'
+        }
+        if (this.visible === 'block') {
+          this.upStandardOptions.width = '58em'
+          this.flex()
+        } */
+
       this.setButtonStyle(this.upStandardOptions)
     },
     getKits() {
@@ -236,42 +243,35 @@ export default Vue.extend({
         justifyContent: 'center'
       })
       // end classes
-
-      if (this.actives[this.activeNumber_turbo].display === 'none') {
+      this.visible = this.actives[this.activeNumber_turbo].display
+      this.resize(this.visible)
+    },
+    resize(visible) {
+      if (visible === 'none') {
         this.buttonRight.hide()
         this.upStandardOptions.width = '64em'
       }
-      if (this.actives[this.activeNumber_turbo].display === 'block') {
-        this.restore('right')
+      if (visible === 'block') {
+        this.buttonRight.show()
+        this.upStandardOptions.width = '58em'
+        this.flex()
       }
       this.setButtonStyle(this.upStandardOptions)
       this.setButtonStyle(this.upTurboOptions)
     },
 
-    restore(type) {
-      if (type === 'right') {
-        this.buttonRight.show()
-        this.upStandardOptions.width = '58em'
-      }
-      if (type === 'left') {
-      }
-      this.flex()
-      return
-    },
     flex() {
       this.buttonRight.display = 'flex'
       this.buttonRight.alignItems = 'center'
       this.buttonRight.justifyContent = 'center'
     },
     setButtonStyle(options) {
-      // console.log('options-->', options)
-
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
         this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width = '58em' // options.width   
+        this.buttonLeft.width = '58em' // options.width 
 
         this.buttonRight.background = 'rgb(255, 255, 255)'
       }

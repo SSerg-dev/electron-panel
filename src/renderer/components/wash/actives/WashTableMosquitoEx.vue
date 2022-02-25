@@ -240,7 +240,7 @@ export default Vue.extend({
     restore(type) {
       if (type === 'right') {
         this.buttonRight.show()
-        this.upStandardOptions.width = '25.5em'
+        this.upStandardOptions.width = '4em'
       }
       if (type === 'left') {
       }

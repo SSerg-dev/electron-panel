@@ -32,80 +32,80 @@
         <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
           <!-- 0 -->
           <!-- ОБЕЗЖИРИВАНИЕ degrease -->
-          <tr v-if="this.actives[27].display !== 'none'">
+          <tr  v-if="this.actives[27].display !== 'none'">
             <WashTableDegrease :actives="actives" />
           </tr>
 
           <!-- 1 -->
           <!-- ДИСКИ -->
-          <tr v-if="this.actives[14].display !== 'none'">
+          <tr  v-if="this.actives[14].display !== 'none'">
             <WashTableDiskEx :actives="actives" />
           </tr>
 
           <!-- 2 -->
           <!-- АНТИМОСКИТ -->
-          <tr v-if="this.actives[15].display !== 'none'">
+          <tr  v-if="this.actives[15].display !== 'none'">
             <WashTableMosquitoEx :actives="actives" />
           </tr>
 
           <!-- 3 -->
           <!-- ШАМПУНЬ shampoo -->
-          <tr v-if="this.actives[0].display !== 'none'">
+          <tr  v-if="this.actives[0].display !== 'none'">
             <WashTableShampooEx :actives="actives" />
           </tr>
 
           <!-- 4 -->
           <!-- ЩЕТКА + ПЕНА -->
-          <tr v-if="this.actives[13].display !== 'none'">
+          <tr  v-if="this.actives[13].display !== 'none'">
             <WashTableBrushFoamEx :actives="actives" />
           </tr>
 
           <!-- 5 -->
           <!-- ПЕНА -->
-          <tr v-if="this.actives[5].display !== 'none'">
+          <tr  v-if="this.actives[5].display !== 'none'">
             <WashTableFoamEx :actives="actives" />
           </tr>
 
           <!-- 6 -->
           <!-- ВОДА + ШАМПУНЬ -->
-          <tr v-if="this.actives[1].display !== 'none'">
+          <tr  v-if="this.actives[1].display !== 'none'">
             <WashTableWaterShampooEx :actives="actives" />
           </tr>
 
           <!-- 7 -->
           <!-- ХОЛОДНАЯ ВОДА coldWater -->
-          <tr v-if="this.actives[2].display !== 'none'">
+          <tr  v-if="this.actives[2].display !== 'none'">
             <WashTableColdWaterEx :actives="actives" />
           </tr>
 
           <!-- 8 -->
           <!-- ТЕПЛАЯ ВОДА warmWater -->
-          <tr v-if="this.actives[11].display !== 'none'">
+          <tr  v-if="this.actives[11].display !== 'none'">
             <WashTableWarmWaterEx :actives="actives" />
           </tr>
 
           <!-- 9 -->
           <!-- ВОСК И ЗАЩИТА waxProtection -->
-          <tr v-if="this.actives[3].display !== 'none'">
+          <tr  v-if="this.actives[3].display !== 'none'">
             <WashTableWaxProtectionEx :actives="actives" />
           </tr>
 
           <!-- 10 -->
           <!-- СУШКА И БЛЕСК dryShine-->
-          <tr v-if="this.actives[4].display !== 'none'">
+          <tr  v-if="this.actives[4].display !== 'none'">
             <WashTableDryShineEx :actives="actives" />
           </tr>
 
           <!-- 11 -->
           <!-- ДЕЗИНФЕКЦИЯ disinfection -->
-          <tr v-if="this.actives[28].display !== 'none'">
+          <tr  v-if="this.actives[28].display !== 'none'">
             <WashTableDisinfection :actives="actives" />
           </tr>
 
           <!-- dry group -->
           <!-- vacuum air washer turboDryer -->
 
-          <tr>
+          <tr >
             <td v-if="this.actives[16].display !== 'none'">
               <WashTableVacuum :actives="actives" />
             </td>
@@ -113,7 +113,7 @@
               <WashTableTurboDryer :actives="actives" />
             </td>
           </tr>
-          <tr>
+          <tr >
             <td v-if="this.actives[17].display !== 'none'">
               <WashTableAir :actives="actives" />
             </td>
@@ -279,7 +279,7 @@ export default {
     saveMoney() {
       if (this.getWetStopFreeCount > 0) {
         this.setIsMoneyToBonus(true)
-        this.setMoneyToBonus(this.getWetStopFreeCount)
+        this.setMoneyToBonus(this.getWetBalance)
         this.$router.push('/bonus')
       }
     },
@@ -344,7 +344,7 @@ export default {
 
 table {
   position: absolute;
-  margin-top: 18em; /*17.5em 18em; */
+  margin-top: 8em; /*17.5em 18em; */
   margin-left: 3em; /* 33em; */
 
   font-family: 'Plumb-Medium';
@@ -360,6 +360,8 @@ table {
 tr {
   text-align: center;
   height: 120px;
+  padding-right: 0px;
+
 
   float: left;
 }
@@ -373,79 +375,12 @@ td {
   height: 7em;
 
   float: left;
-  /*   display: flex;
+  /* 
+  display: flex;
   align-items: left;
-  justify-content: left;
- */
-}
-.right-col {
-  padding-right: 0rem;
-  margin-left: -3rem;
-}
-.marin-short-rigth {
-  padding-right: 6rem;
-}
-.turbo {
-  background-color: #121212;
-  width: 0rem;
-  height: 0rem;
-}
-.x2 {
-  background-color: #121212;
-  width: 0rem;
-  height: 0rem;
-}
-.color {
-  border-color: white;
-  background-color: #121212;
-  width: 0rem;
-  height: 0rem;
-}
-.button-title-long {
-  position: relative;
-  top: 0%;
-  left: 6%;
-  color: black;
-  font-size: 3.5rem;
-  font-weight: bold;
-  text-align: left;
+  justify-content: left; 
+  */
 
-  font-family: 'Plumb-Medium';
 }
-/* Plumb-Medium */
-.description {
-  font-family: 'Plumb-Medium';
-  font-size: 20px;
-  font-weight: bold;
-}
-/*  */
-.red-size {
-  width: 704px;
-  height: 105px;
-}
-.page-title {
-  margin-top: -5em;
-  margin-left: 0em;
-  color: white;
 
-  font-size: 3em;
-  font-family: 'Plumb-Medium';
-  font-weight: bold;
-  z-index: 1;
-}
-.price {
-  position: absolute;
-  margin-top: -0.6em;
-  margin-left: 0em;
-}
-.price-menu {
-  position: absolute;
-  margin-top: 9em;
-  margin-left: 0em;
-}
-.price-bonus {
-  position: absolute;
-  margin-top: -0.6em;
-  margin-left: 62em;
-}
 </style>

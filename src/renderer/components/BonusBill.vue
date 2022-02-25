@@ -17,7 +17,6 @@
             {{ `${this.messages[2]}` }}
           </p>
         </h3>
-
       </div>
 
       <form @submit.prevent="" novalidate>
@@ -439,12 +438,9 @@ export default {
       Вам СМС-сообщения и обработку персональных данных,
       согласно условиям, размещенным на сайте: www.alles-bonus.com`
     ],
-    messageIndex: -1
-
-    /*
-    this.payBonusMoney()
-    this.appendBonusMoney()
-    */
+    messageIndex: -1,
+    delay: 1000,
+    timeoutDelay: null
   }),
   mounted() {
     this.storage = new Storage(this.client, this.url)
@@ -457,17 +453,18 @@ export default {
     // console.log('++getWetZeroMoney:', this.getWetZeroMoney)
     // this.updateWetZeroMoney(true)
     // this.$message(`Ваш остаток ${this.getMoneyToBonus} сохранен бонусами`)
-    
+
     if (this.getIsMoneyToBonus) {
       this.getMoneyToBonus
       this.setIsAppendBonusMoney(true)
       this.setIsPayBonusMoney(false)
     }
-    
   },
   beforeDestroy() {
+    clearTimeout(this.timeoutDelay)
     this.setIsMoneyToBonus(false)
     this.setMoneyToBonus(0)
+
   },
   components: {
     BonusBillQr
@@ -523,7 +520,11 @@ export default {
     },
 
     payUp(program) {
-      if (this.getIsAppendBonusMoney() && program === 'append' && !this.getIsMoneyToBonus) {
+      if (
+        this.getIsAppendBonusMoney() &&
+        program === 'append' &&
+        !this.getIsMoneyToBonus
+      ) {
         console.log('appendBonusMoney')
         this.appendBonusMoney()
       }
@@ -533,7 +534,7 @@ export default {
 
       if (this.getIsPayBonusMoney() && program === 'confirm') {
         console.log('payBonusMoney')
-        
+
         this.payBonusMoney()
       }
       this.emitClick(program)
@@ -545,7 +546,7 @@ export default {
 
       this.options = this.getAppendBonus()
       this.sum = 42 //this.getMoneyToBonus
-      
+
       this.options.params.phone = this.phone
       this.options.params.sum = this.sum
       this.options.params.cash = this.cash
@@ -578,10 +579,10 @@ export default {
         this.$message(`Введите правильно номер мобильного телефона`)
       }
     },
-      // ЗАЧИСЛИТЬ НА БОНУСЫ ПОСЛЕ НАЖАТИЯ СТОП И СОХРАНИТЬ ПРОГРАММЫ 
+    // ЗАЧИСЛИТЬ НА БОНУСЫ ПОСЛЕ НАЖАТИЯ СТОП И СОХРАНИТЬ ПРОГРАММЫ
     async saveBonusMoney() {
       console.log('++saveBonusMoney')
-      
+
       const method = methods[10]
       const type = types[4]
       // options = params: { "phone":"","sum":0,"cash":true,"order":"" }
@@ -605,10 +606,16 @@ export default {
           this.updateWetZeroMoney(true)
           this.setIsMoneyToBonus(false)
 
-          this.$message(`Ваш остаток ${ this.getMoneyToBonus } сохранен бонусами`)
+          this.$message(`Ваш остаток ${this.getMoneyToBonus} сохранен бонусами`)
           this.setIsAppendBonusMoney(false)
-          this.$router.push('/program')
-          //this.$router.push('/')
+
+          this.timeoutDelay = setTimeout(() => {
+            try {
+              this.$router.push('/program')
+            } catch (err) {}
+          }, this.delay)
+      
+          // this.$router.push('/')
         } else {
           this.$message(`Ошибка:  ${response.error}`)
         }
@@ -672,8 +679,8 @@ export default {
   z-index: 1;
 }
 .phone {
-  width: 16em;/* 253px; */
-  height: 8em;/* 125px; */
+  width: 16em; /* 253px; */
+  height: 8em; /* 125px; */
   color: #ffffff;
   text-align: left;
   font-family: 'Plumb-Medium';
