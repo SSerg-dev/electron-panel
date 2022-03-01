@@ -26,7 +26,7 @@
 <script>
 import Vue from 'vue'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
-import ProgramTable from '@/components/ProgramTable'
+// import ProgramTable from '@/components/ProgramTable'
 import WashTable from '@/components/wash/WashTable'
 import VacuumTable from '@/components/vacuum/VacuumTable'
 // import Popup from '@/views/Popup'
@@ -157,7 +157,7 @@ export default Vue.extend({
   },
 
   components: {
-    ProgramTable,
+    // ProgramTable,
     VacuumTable,
     WashTable,
     // Popup

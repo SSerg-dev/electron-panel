@@ -137,11 +137,7 @@ export default Vue.extend({
       }
       for (let i = 0; i <= this.activeProg.length; i++) {
         if (typeof this.costs[i].display !== undefined) {
-          //console.log('++this.selectActiveProg(this.costs[i].name)-->', i, this.selectActiveProg(this.costs[i].name))
-          /* dev  ??? */
-          //if (!this.selectActiveProg(this.costs[i].name))
           this.costs[i].display = this.activeProg.toString().slice(i, i + 1)
-          //else this.costs[i].display = 0
         }
         if (typeof this.progPrice !== undefined)
           this.costs[i].price = this.progPrice[i + 1]?.toString()
@@ -154,18 +150,14 @@ export default Vue.extend({
     /* dev */
     setDryActiveProg() {
       this.dryActiveProg = [...this.getActiveProgBit()].reverse().join('')
-      //console.log('this.dryActiveProg-->', this.dryActiveProg)
-
+      
       if (this.getDryProgPrice !== undefined) {
         this.dryProgPrice = this.getDryProgPrice.toString().split(',')
-        //console.log('this.dryProgPrice-->', this.dryProgPrice)
       }
 
       this.dryActiveProg = this.dryActiveProg.slice(1)
-      //console.log('this.dryActiveProg.length-->',this.dryActiveProg)
 
       for (let i = 0; i < this.dryActiveProg.length; i++) {
-        //console.log('this.costs-->', JSON.stringify(this.costs[i].display))
         if (typeof this.costs[i].display !== undefined) {
           this.costs[i].display = this.dryActiveProg?.toString().slice(i, i + 1)
         }
@@ -216,7 +208,8 @@ export default Vue.extend({
     },
     ...mapGetters({
       getCosts: 'getCosts',
-      getDryCosts: 'getDryCosts'
+      getDryCosts: 'getDryCosts',
+      getPrograms: 'getPrograms'
     })
   },
   mounted() {
@@ -225,7 +218,9 @@ export default Vue.extend({
     const type = this.getPanelType
     switch (type) {
       case 'wash':
-        this.costs = this.getCosts()
+        /* !!!dev */
+        // this.costs = this.getCosts()
+        this.costs = this.getPrograms()
         this.setActiveProg()
         break
       case 'vacuum':

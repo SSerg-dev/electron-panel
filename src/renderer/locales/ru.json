@@ -1,12 +1,12 @@
 {
-    "LanguageTitle": "Локализация",
-    "BOX": "ПОСТ",
-    "VACUUM": "ПЫЛЕСОС",
-    "PAYMENT": "ОПЛАТА",
-    "locales": "RU",
-    "PROGRAMS_COST": "СТОИМОСТЬ ПРОГРАММ",
-    "CASH": "НАЛИЧНЫМИ",
-    "BANK_CARD": "БАНКОВСКОЙ КАРТОЙ",
-    "BONUSES": "БОНУСАМИ",
-    "Choose_your_payment_method": "Выберите способ оплаты"
+  "LanguageTitle": "Локализация",
+  "BOX": "ПОСТ",
+  "VACUUM": "ПЫЛЕСОС",
+  "PAYMENT": "ОПЛАТА",
+  "locales": "RU",
+  "PROGRAMS_COST": "СТОИМОСТЬ ПРОГРАММ",
+  "CASH": "НАЛИЧНЫМИ",
+  "BANK_CARD": "БАНКОВСКОЙ КАРТОЙ",
+  "BONUSES": "БОНУСАМИ",
+  "Choose_your_payment_method": "Выберите способ оплаты"
 }
