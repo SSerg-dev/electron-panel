@@ -60,8 +60,8 @@ export default Vue.extend({
   /* dev */
   watch: {
     getParamsChange(flag) {
-      // console.log('++watch flag-->', flag)
-      this.setActiveProg()
+      const actives = this.setActiveProg()
+      // console.log('++actives', actives[7])
     }
 
   },
@@ -142,6 +142,7 @@ export default Vue.extend({
 
   created() {
     this.actives = this.getPrograms()
+    // console.log('!!this.actives', this.actives[7])
     /* dev */
     this.activesVacuum = this.getProgramsVacuum() 
   },

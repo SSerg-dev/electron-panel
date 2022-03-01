@@ -4,14 +4,16 @@ const upStandardOptions = {
   background: 'rgb(255, 255, 255)',
   border: '0.4em solid rgb(64, 196, 255)',
   boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
-  fontSize: '1em'
+  fontSize: '1em',
+  width: '25.5em'
 }
 const downStandardOptions = {
   type: 'left',
   background: 'rgb(64, 196, 255)',
   border: '0.4em solid rgb(64, 196, 255)',
   boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
-  fontSize: '1em'
+  fontSize: '1em',
+  width: '25.5em'
 }
 /* X2Options */
 const upX2Options = {
@@ -19,14 +21,16 @@ const upX2Options = {
   background: 'rgb(255, 255, 255)',
   border: '0.4em solid rgb(191,0,229)',
   boxShadow: 'rgb(191,0,229) 0px 10px 20px',
-  fontSize: '1em'
+  fontSize: '1em',
+  width: '7em'
 }
 const downX2Options = {
   type: 'right',
   background: 'rgb(191,0,229)',
   border: '0.4em solid rgb(191,0,229)',
   boxShadow: 'rgb(191,0,229) 0px 10px 20px',
-  fontSize: '1em'
+  fontSize: '1em',
+  width: '7em'
 }
 /* TurboOptions */
 const upTurboOptions = {
@@ -34,14 +38,16 @@ const upTurboOptions = {
   background: 'rgb(255, 255, 255)',
   border: '0.4em solid rgb(255,3,3)',
   boxShadow: 'rgb(255,3,3) 0px 10px 20px',
-  fontSize: '1.em'
+  fontSize: '1.em',
+  width: '7em'
 }
 const downTurboOptions = {
   type: 'right',
   background: 'rgb(255,3,3)',
   border: '0.4em solid rgb(255,3,3)',
   boxShadow: 'rgb(255,3,3) 0px 10px 20px',
-  fontSize: '1em'
+  fontSize: '1em',
+  width: '7em'
 }
 
 /* ColorOptions */
@@ -51,14 +57,16 @@ const upColorOptions = {
     'linear-gradient(to bottom right, rgb(81,210,166), rgb(0,185,228),rgb(255,63,155))',
   border: '0.2em solid rgb(81,210,166)',
   boxShadow: 'rgb(81,210,166) 0px 10px 20px',
-  fontSize: '1em'
+  fontSize: '1em',
+  width: '7em'
 }
 const downColorOptions = {
   type: 'center',
   background: 'rgb(255,63,155)',
   border: '0.2em solid rgb(255,63,155)',
   boxShadow: 'rgb(255,63,155) 0px 10px 20px',
-  fontSize: '1em'
+  fontSize: '1em',
+  width: '7em'
 }
 
 const upGreenOptions = {
@@ -66,28 +74,32 @@ const upGreenOptions = {
   background: 'rgb(255,255,255)',
   border: '0.4em solid rgb(118, 255, 3)',
   boxShadow: 'rgb(118, 255, 3) 0px 10px 20px',
-  fontSize: '1em'
+  fontSize: '1em',
+  width: '51em'
 }
 const downGreenOptions = {
   type: 'left',
   background: 'rgb(118, 255, 3)',
   border: '0.4em solid rgb(118, 255, 3)',
   boxShadow: 'rgb(118, 255, 3) 0px 10px 20px',
-  fontSize: '1em'
+  fontSize: '1em',
+  width: '51em'
 }
 const upRedOptions = {
   type: 'left',
   background: 'rgb(255,255,255)',
   border: '0.4em solid rgb(255,3,3)',
   boxShadow: 'rgb(255,3,3) 0px 10px 20px',
-  fontSize: '1em'
+  fontSize: '1em',
+  width: '7em'
 }
 const downRedOptions = {
   type: 'left',
   background: 'rgb(255,3,3)',
   border: '0.4em solid rgb(255,3,3)',
   boxShadow: 'rgb(255,3,3) 0px 10px 20px',
-  fontSize: '1em'
+  fontSize: '1em',
+  width: '7em'
 }
 
 export {

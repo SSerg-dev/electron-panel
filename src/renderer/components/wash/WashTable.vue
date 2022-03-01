@@ -335,7 +335,7 @@ export default {
   position: absolute;
   margin-top: -10em;
   margin-left: 17em;
-
+  
   font-family: 'Plumb-Medium';
   font-weight: normal; /* bold; */
   text-align: justify;
@@ -344,7 +344,8 @@ export default {
 
 table {
   position: absolute;
-  margin-top: 8em; /*17.5em 18em; */
+  /* position: relative; */
+  margin-top: 18em; /*8em 17.5em 18em; */
   margin-left: 3em; /* 33em; */
 
   font-family: 'Plumb-Medium';
@@ -381,6 +382,22 @@ td {
   justify-content: left; 
   */
 
+}
+
+.price {
+  position: absolute;
+  margin-top: -0.6em;
+  margin-left: 0em;
+}
+.price-menu {
+  position: absolute;
+  margin-top: 9em;
+  margin-left: 0em;
+}
+.price-bonus {
+  position: absolute;
+  margin-top: -0.6em;
+  margin-left: 62em;
 }
 
 </style>

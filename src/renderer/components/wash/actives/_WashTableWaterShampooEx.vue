@@ -21,6 +21,7 @@
     </td>
 
     <!-- ШАМПУНЬ X2-->
+    <!--  style="background: yellow" -->
     <td>
       <div
         @click="setProgram('waterShampoo_turbo')"
@@ -73,8 +74,10 @@ export default Vue.extend({
     // classes
     buttonLeft: null,
     buttonRight: null,
-
     visible: '',
+
+    /*     */
+
     activeNumber: 1,
     activeNumber_turbo: 7,
     active: '',
@@ -106,6 +109,8 @@ export default Vue.extend({
     getWetBalance(flag) {
       if (parseInt(flag) === 0) {
         this.clearDown()
+        // this.buttonLeft.background = 'white'
+        // this.buttonRight.background = 'white'
       }
     }
   },
@@ -129,6 +134,7 @@ export default Vue.extend({
       this.setActiveProgram(this.active)
       this.setDown(this.active)
 
+      /* dev */
       this.updateStartProgram([
         this.getPanelType,
         this.getDefaultPanelNumber,
@@ -146,10 +152,14 @@ export default Vue.extend({
       } else this.$message(`Недостаточно средств`)
     },
     setDown(program) {
+      console.log('!!setDown')
+      
       this.clearDown()
 
       switch (program) {
         case 'waterShampoo':
+          console.log('++waterShampoo', this._downStandardOptions)
+          this._downStandardOptions.width = '58em'
           this.setButtonStyle(this._downStandardOptions)
           this.isDown.waterShampoo = true
           break
@@ -171,6 +181,17 @@ export default Vue.extend({
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
+      if (this.visible === 'none ') 
+        this._upStandardOptions.width = '64em'
+      if (this.visible === 'block ') 
+        this._upStandardOptions.width = '58em'
+      
+      this._upStandardOptions.background = 'white'
+      this._upTurboOptions.background = 'white' 
+
+      console.log('++!!!!clearDown-->', this.visible, this._upStandardOptions )
+      
+
       this.setButtonStyle(this._upStandardOptions)
       this.setButtonStyle(this._upTurboOptions)
     },
@@ -225,49 +246,92 @@ export default Vue.extend({
       })
       // end classes
 
-      // clone
-      this._upStandardOptions = { ...upStandardOptions }
-      this._downStandardOptions = { ...downStandardOptions }
-      this._upTurboOptions = { ...upTurboOptions }
-      this._downTurboOptions = { ...downTurboOptions }
-      // end clone
-
-      if (this.visible === 'none') {
-        this.restore('left')
-      }
-      if (this.visible === 'block') {
-        this.restore('right')
-      }
-      if (this.visible === 0) {
-        this.restore('init')
-      }
+      // Proxy
+      this._upStandardOptions = new Proxy(upStandardOptions, {
+        get(target, prop) {
+          return target[prop]
+        },
+        set(target, prop, value) {
+          if (prop in target) {
+            target[prop] = value
+            return true
+          } else {
+            throw new Error(`No ${prop} field in target`)
+            return false
+          }
+        }
+      })
+      this._downStandardOptions = new Proxy(downStandardOptions, {
+        get(target, prop) {
+          return target[prop]
+        },
+        set(target, prop, value) {
+          if (prop in target) {
+            target[prop] = value
+            return true
+          } else {
+            throw new Error(`No ${prop} field in target`)
+            return false
+          }
+        }
+      })
+      this._upTurboOptions = new Proxy(upTurboOptions, {
+        get(target, prop) {
+          return target[prop]
+        },
+        set(target, prop, value) {
+          if (prop in target) {
+            target[prop] = value
+            return true
+          } else {
+            throw new Error(`No ${prop} field in target`)
+            return false
+          }
+        }
+      })
+      this._downTurboOptions = new Proxy(downTurboOptions, {
+        get(target, prop) {
+          return target[prop]
+        },
+        set(target, prop, value) {
+          if (prop in target) {
+            target[prop] = value
+            return true
+          } else {
+            throw new Error(`No ${prop} field in target`)
+            return false
+          }
+        }
+      })
+      // end Proxy
+      /* dev */
+      // this._upStandardOptions.width = '58em'
+      this.visible = this.actives[this.activeNumber_turbo].display
+      this.resize(this.visible)
     },
-    restore(type) {
-      if (type === 'left') {
-        console.log('left')
-        this._upStandardOptions.width = '64em'
-        this._downStandardOptions.width = '64em'
-        this.buttonRight.hide()
-      }
-      if (type === 'right') {
-        console.log('right')
-        this._upStandardOptions.width = '58em'
-        this._downStandardOptions.width = '58em'
-        this.buttonRight.show()
-        this.flex()
-      }
-      if (type === 'init') {
-        console.log('init')
-        this._upStandardOptions.width = '58em'
-        this._downStandardOptions.width = '58em'
-        this.buttonRight.show()
-        this.flex()
-      }
+    resize(visible) {
+      console.log('visible', visible)
 
+      if (visible) {
+        if (visible === 'none') {
+          this.buttonRight.hide()
+          this._upStandardOptions.width = this._downStandardOptions.width =
+            '64em'
+        }
+        if (visible === 'block') {
+          this.buttonRight.show()
+          this._upStandardOptions.width = this._downStandardOptions.width =
+            '58em'
+          this.flex()
+          // console.log('++_downStandardOptions', this._downStandardOptions)
+        }
+      } else {
+        // this._upStandardOptions.width = '58em'
+        // console.log('else-->this._upStandardOptions', this._upStandardOptions)
+        
+      }
       this.setButtonStyle(this._upStandardOptions)
       this.setButtonStyle(this._upTurboOptions)
-
-      return
     },
 
     flex() {
@@ -281,7 +345,7 @@ export default Vue.extend({
         this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width = options.width // '58em'
+        this.buttonLeft.width = options.width // '58em' 
 
         this.buttonRight.background = 'rgb(255, 255, 255)'
       }
@@ -302,15 +366,10 @@ export default Vue.extend({
     clearTimeout(this.timeoutPopup)
     clearTimeout(this.timeoutSetUp)
   },
-
   created() {
-    this.visible = this.actives[this.activeNumber_turbo].display
-    // console.log('--this.visible', this.visible) 
     this.getKits()
   },
   mounted() {
-    this.visible = this.actives[this.activeNumber_turbo].display
-    // console.log('++this.visible', this.visible) 
     this.setup()
   }
 })
