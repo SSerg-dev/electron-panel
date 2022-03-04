@@ -39,7 +39,7 @@ export default {
           key: 'EUR',
           emoji: '🇪🇺',
           currency: 'EUR',
-          symbol: '€'
+          symbol: '€',
         })
 
       const defaultCurrency = getters.getDefaultCurrency

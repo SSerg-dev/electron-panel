@@ -111,6 +111,7 @@ export default Vue.extend({
       let progShow
       switch (type) {
         case 'wash':
+          // console.log('!!', this.getWetProgShow)
           progShow = (this.getWetProgShow >>> 0).toString(2)
           break
         case 'vacuum':
@@ -129,9 +130,13 @@ export default Vue.extend({
     },
 
     setActiveProg() {
-      console.log('---setActiveProg')
+      // console.log('setActiveProg')
+      // console.log('++this.costs', this.costs)
+      //console.log('!!!', [...this.getActiveProgBit()])
+      
 
       this.activeProg = [...this.getActiveProgBit()].reverse().join('')
+ 
       if (this.getWetProgPrice !== undefined) {
         this.progPrice = this.getWetProgPrice.toString().split(',')
       }
@@ -142,11 +147,12 @@ export default Vue.extend({
         if (typeof this.progPrice !== undefined)
           this.costs[i].price = this.progPrice[i + 1]?.toString()
       }
-
+      
       this.setTurboItems(this.costs)
 
       return this.costs
     },
+    
     /* dev */
     setDryActiveProg() {
       this.dryActiveProg = [...this.getActiveProgBit()].reverse().join('')
@@ -197,14 +203,14 @@ export default Vue.extend({
       for (let i = 0; i < prices.length; i++) {
         this.setTurboItem(prices[i])
       }
-      //console.log("this.costs-->", JSON.stringify(this.costs))
+      // console.log("this.costs-->", JSON.stringify(this.costs))
     },
 
     setTurboItem(price) {
       const name = price.name.slice(0, -6)
       const index = this.costs.findIndex(c => c.name === name)
       this.costs[index].priceTurbo = price.price
-      //console.log("priceTurbo->", this.costs[index].priceTurbo);
+      // console.log("priceTurbo->", this.costs[index].priceTurbo);
     },
     ...mapGetters({
       getCosts: 'getCosts',
@@ -219,8 +225,9 @@ export default Vue.extend({
     switch (type) {
       case 'wash':
         /* !!!dev */
-        // this.costs = this.getCosts()
-        this.costs = this.getPrograms()
+        this.costs = this.getCosts()
+        // this.costs = this.getPrograms()
+        
         this.setActiveProg()
         break
       case 'vacuum':

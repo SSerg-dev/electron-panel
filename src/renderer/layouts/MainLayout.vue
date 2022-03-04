@@ -190,4 +190,11 @@ export default Vue.extend({
 })
 </script>
 
-<style></style>
+<style>
+.app-main-layout {
+  background-color: #121212;
+  /* background-color: yellow */
+  /* background-color: black */
+}
+
+</style>

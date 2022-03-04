@@ -5,7 +5,7 @@
     <td>
       <div
         @click="setProgram('waterShampoo')"
-        class="waves-effect "
+        class="waves-effect"
         id="button-left-water"
       >
         <div
@@ -64,7 +64,7 @@ export default Vue.extend({
     upTurboOptions: upTurboOptions,
     downTurboOptions: downTurboOptions,
 
-    // Proxy
+    // clone
     _upStandardOptions: null,
     _downStandardOptions: null,
     _upTurboOptions: null,
@@ -304,7 +304,7 @@ export default Vue.extend({
   },
 
   created() {
-    this.visible = this.actives[this.activeNumber_turbo].display
+    // this.visible = this.actives[this.activeNumber_turbo].display
     // console.log('--this.visible', this.visible) 
     this.getKits()
   },

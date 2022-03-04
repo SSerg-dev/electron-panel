@@ -21,7 +21,6 @@
     </td>
 
     <!-- МОСКИТ X2-->
-    <!--  style="background: yellow" -->
     <td>
       <div
         @click="setProgram('mosquito_x2')"
@@ -63,12 +62,18 @@ export default Vue.extend({
     downStandardOptions: downStandardOptions,
     upX2Options: upX2Options,
     downX2Options: downX2Options,
+
+    // clone
+    _upStandardOptions: null,
+    _downStandardOptions: null,
+    _upX2Options: null,
+    _downX2Options: null,
+
     // classes
     buttonLeft: null,
     buttonRight: null,
 
-    /*     */
-
+    visible: '',
     activeNumber: 15,
     activeNumber_x2: 25,
     active: '',
@@ -125,7 +130,6 @@ export default Vue.extend({
       this.setActiveProgram(this.active)
       this.setDown(this.active)
 
-      /* dev */
       this.updateStartProgram([
         this.getPanelType,
         this.getDefaultPanelNumber,
@@ -147,17 +151,12 @@ export default Vue.extend({
 
       switch (program) {
         case 'mosquito':
-          /* dev */
-          this.setButtonStyle(this.downStandardOptions)
+          this.setButtonStyle(this._downStandardOptions)
           this.isDown.mosquito = true
           break
         case 'mosquito_x2':
-          // this.setButtonStyle(this.downStandardOptions)
-          // this.isDown.mosquito = true
-
-          this.setButtonStyle(this.downX2Options)
+          this.setButtonStyle(this._downX2Options)
           this.isDown.mosquito_x2 = true
-
           break
 
         default:
@@ -165,8 +164,6 @@ export default Vue.extend({
       }
       this.timeoutSetUp = setTimeout(() => {
         try {
-          // console.log('this.getWetBalance',typeof this.getWetBalance)
-
           if (this.getWetBalance === '0') this.clearDown()
         } catch (err) {}
       }, 2000)
@@ -175,7 +172,8 @@ export default Vue.extend({
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-      this.setButtonStyle(this.upStandardOptions)
+      this.setButtonStyle(this._upStandardOptions)
+      this.setButtonStyle(this._upX2Options)
     },
     getKits() {
       const result = []
@@ -199,6 +197,7 @@ export default Vue.extend({
     },
     initial() {
       // classes instances
+      
       /* left button */
       this.buttonLeft = new Button({
         selector: '#button-left-mosquito',
@@ -227,24 +226,50 @@ export default Vue.extend({
       })
       // end classes
 
-      if (this.actives[this.activeNumber_x2].display === 'none') {
-        this.buttonRight.hide()
-        this.upStandardOptions.width = '32em'
+      // clone
+      this._upStandardOptions = { ...upStandardOptions }
+      this._downStandardOptions = { ...downStandardOptions }
+      this._upX2Options = { ...upX2Options }
+      this._downX2Options = { ...downX2Options }
+      // end clone
+
+      if (this.visible === 'none') {
+        this.restore('left')
       }
-      if (this.actives[this.activeNumber_x2].display === 'block') {
+      if (this.visible === 'block') {
         this.restore('right')
       }
-      this.setButtonStyle(this.upStandardOptions)
-      this.setButtonStyle(this.upX2Options)
+      if (this.visible === 0) {
+        this.restore('init')
+      }
+
     },
+
     restore(type) {
-      if (type === 'right') {
-        this.buttonRight.show()
-        this.upStandardOptions.width = '25.5em'
-      }
       if (type === 'left') {
+        console.log('left')
+        this._upStandardOptions.width = '32em'
+        this._downStandardOptions.width = '32em'
+        this.buttonRight.hide()
       }
-      this.flex()
+      if (type === 'right') {
+        console.log('right')
+        this._upStandardOptions.width = '25.5em'
+        this._downStandardOptions.width = '25.5em'
+        this.buttonRight.show()
+        this.flex()
+      }
+      if (type === 'init') {
+        console.log('init')
+        this._upStandardOptions.width = '25.5em'
+        this._downStandardOptions.width = '25.5em'
+        this.buttonRight.show()
+        this.flex()
+      }
+
+      this.setButtonStyle(this._upStandardOptions)
+      this.setButtonStyle(this._upX2Options)
+
       return
     },
 
@@ -254,10 +279,7 @@ export default Vue.extend({
       this.buttonRight.justifyContent = 'center'
     },
 
-    /* end dev */
-
     setButtonStyle(options) {
-      // console.log('options-->', options)
 
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
@@ -279,8 +301,6 @@ export default Vue.extend({
         this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
 
-      // this.buttonRight.hide()
-      // this.buttonRight.show()
     }
   }, // end methods
 
@@ -292,6 +312,7 @@ export default Vue.extend({
     this.getKits()
   },
   mounted() {
+    this.visible = this.actives[this.activeNumber_x2].display
     this.setup()
   }
 })

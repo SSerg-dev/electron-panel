@@ -20,8 +20,7 @@
       </div>
     </td>
 
-    <!-- ШАМПУНЬ X2-->
-    <!--  style="background: yellow" -->
+    <!-- ТЕПЛАЯ ВОДА X2-->
     <td>
       <div
         @click="setProgram('warmWater_turbo')"
@@ -52,8 +51,6 @@ import { Component, Box, Circle, Button } from '@/shapes/index.js'
 import {
   upStandardOptions,
   downStandardOptions,
-  upX2Options,
-  downX2Options,
   upTurboOptions,
   downTurboOptions
 } from '@/shapes/index.js'
@@ -64,10 +61,15 @@ export default Vue.extend({
   data: () => ({
     upStandardOptions: upStandardOptions,
     downStandardOptions: downStandardOptions,
-    upX2Options: upX2Options,
-    downX2Options: downX2Options,
     upTurboOptions: upTurboOptions,
     downTurboOptions: downTurboOptions,
+
+    // clone
+    _upStandardOptions: null,
+    _downStandardOptions: null,
+    _upTurboOptions: null,
+    _downTurboOptions: null,
+
     // classes
     buttonLeft: null,
     buttonRight: null,
@@ -84,7 +86,7 @@ export default Vue.extend({
 
     isDown: {
       warmWater: false,
-      warmWater_turbo: false 
+      warmWater_turbo: false
     }
   }),
   props: {
@@ -130,7 +132,6 @@ export default Vue.extend({
       this.setActiveProgram(this.active)
       this.setDown(this.active)
 
-      /* dev */
       this.updateStartProgram([
         this.getPanelType,
         this.getDefaultPanelNumber,
@@ -152,17 +153,12 @@ export default Vue.extend({
 
       switch (program) {
         case 'warmWater':
-          /* dev */
-          this.setButtonStyle(this.downStandardOptions)
+          this.setButtonStyle(this._downStandardOptions)
           this.isDown.warmWater = true
           break
         case 'warmWater_turbo':
-          // this.setButtonStyle(this.downStandardOptions)
-          // this.isDown.warmWater = true
-
-          this.setButtonStyle(this.downTurboOptions)
+          this.setButtonStyle(this._downTurboOptions)
           this.isDown.warmWater_turbo = true
-
           break
 
         default:
@@ -170,8 +166,6 @@ export default Vue.extend({
       }
       this.timeoutSetUp = setTimeout(() => {
         try {
-          // console.log('this.getWetBalance',typeof this.getWetBalance)
-
           if (this.getWetBalance === '0') this.clearDown()
         } catch (err) {}
       }, 2000)
@@ -180,7 +174,8 @@ export default Vue.extend({
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-      this.setButtonStyle(this.upStandardOptions)
+      this.setButtonStyle(this._upStandardOptions)
+      this.setButtonStyle(this._upTurboOptions)
     },
     getKits() {
       const result = []
@@ -196,7 +191,6 @@ export default Vue.extend({
         }
         return
       })
-
       this.activeProgramKit = Object.fromEntries(result)
       // console.log('this.activeProgramKit', this.activeProgramKit)
     },
@@ -205,6 +199,7 @@ export default Vue.extend({
     },
     initial() {
       // classes instances
+
       /* left button */
       this.buttonLeft = new Button({
         selector: '#button-left-warm-water',
@@ -233,26 +228,52 @@ export default Vue.extend({
       })
       // end classes
 
-      if (this.actives[this.activeNumber_turbo].display === 'none') {
-        this.buttonRight.hide()
-        this.upStandardOptions.width = '32em'
+      // clone
+      this._upStandardOptions = { ...upStandardOptions }
+      this._downStandardOptions = { ...downStandardOptions }
+      this._upTurboOptions = { ...upTurboOptions }
+      this._downTurboOptions = { ...downTurboOptions }
+      // end clone
+
+      if (this.visible === 'none') {
+        this.restore('left')
       }
-      if (this.actives[this.activeNumber_turbo].display === 'block') {
+      if (this.visible === 'block') {
         this.restore('right')
       }
-      this.setButtonStyle(this.upStandardOptions)
-      this.setButtonStyle(this.upTurboOptions)
+      if (this.visible === 0) {
+        this.restore('init')
+      }
     },
+
     restore(type) {
-      if (type === 'right') {
-        this.buttonRight.show()
-        this.upStandardOptions.width = '25.5em'
-      }
       if (type === 'left') {
+        console.log('left')
+        this._upStandardOptions.width = '32em'
+        this._downStandardOptions.width = '32em'
+        this.buttonRight.hide()
       }
-      this.flex()
+      if (type === 'right') {
+        console.log('right')
+        this._upStandardOptions.width = '25.5em'
+        this._downStandardOptions.width = '25.5em'
+        this.buttonRight.show()
+        this.flex()
+      }
+      if (type === 'init') {
+        console.log('init')
+        this._upStandardOptions.width = '25.5em'
+        this._downStandardOptions.width = '25.5em'
+        this.buttonRight.show()
+        this.flex()
+      }
+
+      this.setButtonStyle(this._upStandardOptions)
+      this.setButtonStyle(this._upTurboOptions)
+
       return
     },
+
     flex() {
       this.buttonRight.display = 'flex'
       this.buttonRight.alignItems = 'center'
@@ -260,7 +281,6 @@ export default Vue.extend({
     },
 
     setButtonStyle(options) {
-      // console.log('options-->', options)
 
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
@@ -281,9 +301,6 @@ export default Vue.extend({
 
         this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
-
-      // this.buttonRight.hide()
-      // this.buttonRight.show()
     }
   }, // end methods
 
@@ -295,6 +312,7 @@ export default Vue.extend({
     this.getKits()
   },
   mounted() {
+    this.visible = this.actives[this.activeNumber_turbo].display
     this.setup()
   }
 })

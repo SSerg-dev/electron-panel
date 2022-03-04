@@ -37,9 +37,7 @@
               {{ `${this.messages[0]}` }}
               {{ `${this.firstname}` }}
             </p>
-
             <p align="center" style="font-size: 140px;">
-              <!-- {{ this.amountString }} -->
               {{ this.balance }}
             </p>
             <p align="center">
@@ -52,150 +50,28 @@
           <tbody>
             <!-- row 01 -->
             <tr>
-              <td colspan="3">
-                <div class="display">{{ display }}</div>
+              <td colspan="4" class="display">
+                
+                <!-- <div v-if="this.currency === 'RUB'">
+                  {{ new Intl.NumberFormat('ru').format(display) }}
+                </div>
+                <div v-else>
+                  {{ new Intl.NumberFormat('en').format(display) }}
+                </div> -->
+
+                <!-- style="background: linear-gradient(to bottom right, rgb(81,210,166), rgb(0,185,228),rgb(255,63,155)); border-radius: 0.1em;" -->
+                <div>{{ parseFloat(display).toFixed(2) }}</div>
               </td>
-              <td colspan="2">
-                <h2>
-                  <div class="white-text" style="margin-left: 1.8em;">
-                    {{ this.emoji }}
-                    {{ this.currency }}
-                    {{ this.symbol }}
-                  </div>
-                </h2>
+              <td colspan="1" class="white-text currency">
+                <div align="center" style="font-size: 1em;">
+                  <p>{{ this.emoji }}</p>
+                  {{ this.currency }}
+                  {{ this.symbol }}
+                </div>
               </td>
             </tr>
             <!-- row 02 -->
-            <tr v-if="this.isBonusRow">
-              <td>
-                <div
-                  @click="setNumber('-10')"
-                  class="card white waves-effect"
-                  style="
-                  width: 220px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
-                  "
-                >
-                  <div
-                    class="card-content black-text"
-                    style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
-                  >
-                    {{ `-10` }}
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div
-                  @click="setNumber('1')"
-                  class="card white waves-effect"
-                  style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
-                  "
-                >
-                  <div
-                    class="card-content black-text"
-                    style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
-                  >
-                    1
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div
-                  @click="setNumber('2')"
-                  class="card white waves-effect"
-                  style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
-                  "
-                >
-                  <div
-                    class="card-content black-text"
-                    style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
-                  >
-                    2
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div
-                  @click="setNumber('3')"
-                  class="card white waves-effect"
-                  style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
-                  "
-                >
-                  <div
-                    class="card-content black-text"
-                    style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
-                  >
-                    3
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div
-                  @click="setNumber('10')"
-                  class="card white waves-effect"
-                  style="
-                  width: 220px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
-                  "
-                >
-                  <div
-                    class="card-content black-text"
-                    style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
-                  >
-                    +10
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <!-- dev -->
-            <!-- row 02++ -->
-            <tr v-else>
+            <tr class="bonus-row">
               <td>
                 <div
                   @click="setNumber('')"
@@ -203,13 +79,11 @@
                   style="
                   width: 220px;
                   height: 120px; 
-                  border: solid 6px #00B9E3; 
+                  border: none; 
                   border-radius: 2.5em;
                   box-shadow: 0px 6px 10px #00b9e3;
-                  
                   "
                 >
-                  <!-- v-if="this.amount < getPaymentLimitMin && isMinBlinking" -->
                   <div
                     v-if="isMinBlinking && isMin"
                     id="blink"
@@ -221,7 +95,6 @@
                   "
                   >
                     {{ `Min ${getPaymentLimitMin}` }}
-                    <!-- {{  `${this.isMinBlinking}`  }} -->
                   </div>
 
                   <div
@@ -313,13 +186,14 @@
                 </div>
               </td>
               <td>
+                <!-- border: solid 6px #00B9E3; -->
                 <div
                   @click="setNumber('')"
                   class="card black waves-effect"
                   style="
                   width: 220px;
                   height: 120px; 
-                  border: solid 6px #00B9E3; 
+                  border: none; 
                   border-radius: 2.5em;
                   box-shadow: 0px 6px 10px #00b9e3;
                   
@@ -773,9 +647,9 @@
                   style="
                   width: 420px;
                   height: 120px; 
-                  border: solid 6px #00B9E3; 
+                  border: solid 6px rgb(118, 255, 3); 
                   border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
+                  box-shadow: 0px 6px 10px rgb(118, 255, 3);
                   
                   "
                 >
@@ -794,7 +668,7 @@
 
               <td>
                 <div
-                  @click="setNumber('1000', (fixed = true))"
+                  @click="setNumber('', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -860,7 +734,7 @@ export default {
     maxY: 1620,
 
     client: 'fetch',
-    url: 'https://192.168.1.3/', 
+    url: 'https://192.168.1.3/',
     storage: null,
     options: {},
 
@@ -945,13 +819,13 @@ export default {
     this.payBonusMoney()
   },
   created() {
-    //this.setup()    
+    //this.setup()
     this.initCurrency()
   },
 
   beforeDestroy() {
     this.setIsCardMoney(false)
-    this.setIsBonusMoney(false) 
+    this.setIsBonusMoney(false)
 
     clearTimeout(this.timeoutMinDelay)
     clearTimeout(this.timeoutMaxDelay)
@@ -977,6 +851,7 @@ export default {
     initCurrency() {
       /* dev */
       const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
+
       this.current = id
       this.select = title
 
@@ -984,7 +859,7 @@ export default {
       this.currency = currency
       this.symbol = symbol
       /*     */
-      },
+    },
 
     overlay() {
       const overlay = this.$refs.overlay
@@ -1007,14 +882,12 @@ export default {
     setup() {
       this.display = this.amount = this.getPaymentLimitMin
       this.overlay()
-      
     },
     ...mapGetters({
       getLoginBonusOptions: 'getLoginBonusOptions',
       getLoginBonusPhone: 'getLoginBonusPhone',
       getIsPayCardMoney: 'getIsPayCardMoney',
       getCardMoney: 'getCardMoney'
-
     }),
     ...mapMutations({
       setLoginBonusPhone: 'setLoginBonusPhone',
@@ -1026,10 +899,13 @@ export default {
     ...mapActions({
       updateWetMoney: 'updateWetMoney'
     }),
- 
+
     payUp() {
       const card = this.amount
-      if ( this.amount >= this.getPaymentLimitMin && this.amount <= this.getPaymentLimitMax) {
+      if (
+        this.amount >= this.getPaymentLimitMin &&
+        this.amount <= this.getPaymentLimitMax
+      ) {
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
           this.emitCardMoney(card)
           this.setCardMoney(card)
@@ -1037,19 +913,17 @@ export default {
           this.$router.push('/status')
           //this.$router.push('/program')
         }
-         
+
         if (this.getIsBonusMoney && this.getIsCardMoney) {
           this.updateWetMoney(card)
           this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
           this.$router.push('/program')
         }
-                
-        // this.$router.push('/program')
-        
-        this.display = this.title = this.body = '0'
-      } else 
-         this.$message(`Введите правильную сумму`)
 
+        // this.$router.push('/program')
+
+        this.display = this.title = this.body = '0'
+      } else this.$message(`Введите правильную сумму`)
     },
     // ПОДТВЕРДИТЬ
     async payBonusMoney() {
@@ -1130,19 +1004,28 @@ export default {
 </script>
 
 <style scoped>
+.currency {
+  padding-left: 1em;
+  /* background: yellow; */
+  font-size: 3em;
+}
 .display {
   width: 0em;
-  position: absolute;
-  margin-top: -0.8em;
-  margin-left: 0.15em; /* 0.15em; */
-  text-decoration: underline;
+  margin-top: 0em;
+  margin-left: 0em;
+  text-decoration: none; /* underline; */
   color: #ffffff;
+  /* background: yellow; */
   font-size: 10em;
   line-height: 1em;
   z-index: 1;
 
   font-weight: bold;
   font-family: 'Plumb-Medium';
+}
+.bonus-row {
+  margin-top: 0em;
+  z-index: 1;
 }
 .page-title {
   padding-top: 13em;
@@ -1152,14 +1035,11 @@ export default {
   margin-right: auto;
   width: 20em;
 }
-/* table { 
-  width: 840px;
-} */
 
-/* table,
-tr {
-  width: 840px;
-} */
+table {
+  margin-top: -3em;
+  margin-left: -0.2em;
+}
 
 table,
 th,

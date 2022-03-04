@@ -24,13 +24,12 @@ export default {
         name: 'shampoo',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 2,
         col: 0,
         x2: true,
         color: false,
         turbo: false,
-        display: 0,
+        display: 1,
         mode: ''
       },
       {
@@ -40,7 +39,6 @@ export default {
         name: 'waterShampoo',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 3,
         col: 0,
         x2: false,
@@ -56,7 +54,6 @@ export default {
         name: 'coldWater',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 4,
         col: 0,
         x2: false,
@@ -64,7 +61,7 @@ export default {
         turbo: true,
         display: 0,
         mode: 'turbo'
-      }, // main +
+      },  
       {
         id: 5,
         order: 4,
@@ -72,7 +69,6 @@ export default {
         name: 'waxProtection',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 5,
         col: 0,
         x2: false,
@@ -80,7 +76,7 @@ export default {
         turbo: true,
         display: 0,
         mode: 'turbo'
-      }, // main +
+      },   
 
       {
         id: 6,
@@ -89,7 +85,6 @@ export default {
         name: 'dryShine',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 6,
         col: 0,
         x2: false,
@@ -105,7 +100,6 @@ export default {
         name: 'foam',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 7,
         col: 0,
         x2: false,
@@ -113,7 +107,7 @@ export default {
         turbo: false,
         display: 0,
         mode: ''
-      }, // main + ?
+      },    
       {
         id: 8,
         order: 7,
@@ -121,7 +115,6 @@ export default {
         name: 'stop',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 8,
         col: 0,
         color: false,
@@ -130,7 +123,7 @@ export default {
         turbo: false,
         display: 0,
         mode: ''
-      }, // main + ?
+      },    
       {
         id: 9,
         order: 8,
@@ -138,7 +131,6 @@ export default {
         name: 'waterShampoo_turbo',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 9,
         col: 0,
         x2: false,
@@ -146,7 +138,7 @@ export default {
         turbo: true,
         display: 0,
         mode: 'hide'
-      }, // ext +
+      },    
       {
         id: 10,
         order: 9,
@@ -154,7 +146,6 @@ export default {
         name: 'coldWater_turbo',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 10,
         col: 0,
         x2: false,
@@ -162,7 +153,7 @@ export default {
         turbo: true,
         display: 0,
         mode: 'hide'
-      }, // ext +
+      },    
 
       {
         id: 11,
@@ -171,7 +162,6 @@ export default {
         name: 'waxProtection_turbo',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 11,
         col: 0,
         x2: false,
@@ -179,7 +169,7 @@ export default {
         turbo: true,
         display: 0,
         mode: 'hide'
-      }, // ext +
+      },    
       {
         id: 12,
         order: 11,
@@ -187,7 +177,6 @@ export default {
         name: 'dryShine_turbo',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 12,
         col: 0,
         x2: false,
@@ -195,7 +184,7 @@ export default {
         turbo: true,
         display: 0,
         mode: 'hide'
-      }, // ext +
+      },    
       {
         id: 13,
         order: 12,
@@ -203,7 +192,6 @@ export default {
         name: 'warmWater',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 13,
         col: 0,
         x2: false,
@@ -211,7 +199,7 @@ export default {
         turbo: true,
         display: 0,
         mode: 'turbo'
-      }, // main +
+      },   
       {
         id: 14,
         order: 13,
@@ -219,7 +207,6 @@ export default {
         name: 'warmWater_turbo',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 14,
         col: 0,
         x2: false,
@@ -227,7 +214,7 @@ export default {
         turbo: true,
         display: 0,
         mode: 'hide'
-      }, // ext +
+      },    
       {
         id: 15,
         order: 14,
@@ -235,7 +222,6 @@ export default {
         name: 'brushFoam',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 15,
         col: 0,
         x2: false,
@@ -243,7 +229,7 @@ export default {
         turbo: false,
         display: 0,
         mode: ''
-      }, // main +
+      },   
 
       {
         id: 16,
@@ -252,7 +238,6 @@ export default {
         name: 'disk',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 16,
         col: 0,
         x2: true,
@@ -260,7 +245,7 @@ export default {
         turbo: false,
         display: 0,
         mode: ''
-      }, // main +
+      },   
       {
         id: 17,
         order: 16,
@@ -268,7 +253,6 @@ export default {
         name: 'mosquito',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 17,
         col: 0,
         x2: true,
@@ -276,7 +260,7 @@ export default {
         turbo: false,
         display: 0,
         mode: ''
-      }, // main +
+      },   
       {
         id: 18,
         order: 17,
@@ -284,7 +268,6 @@ export default {
         name: 'vacuum',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 18,
         col: 0,
         x2: false,
@@ -300,7 +283,6 @@ export default {
         name: 'air',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 19,
         col: 0,
         x2: false,
@@ -316,7 +298,6 @@ export default {
         name: 'washer',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 20,
         col: 0,
         x2: false,
@@ -333,7 +314,6 @@ export default {
         name: 'brushFoam_color',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 21,
         col: 0,
         x2: false,
@@ -349,7 +329,6 @@ export default {
         name: 'brushFoam_color',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 22,
         col: 0,
         x2: false,
@@ -365,7 +344,6 @@ export default {
         name: 'shampoo_x2',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 23,
         col: 0,
         x2: true,
@@ -381,7 +359,6 @@ export default {
         name: 'foam_x2',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 24,
         col: 0,
         x2: true,
@@ -397,7 +374,6 @@ export default {
         name: 'brushFoam_x2',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 25,
         col: 0,
         x2: true,
@@ -414,7 +390,6 @@ export default {
         name: 'disk_x2',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 26,
         col: 0,
         x2: true,
@@ -430,7 +405,6 @@ export default {
         name: 'mosquito_x2',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 27,
         col: 0,
         x2: true,
@@ -446,7 +420,6 @@ export default {
         name: 'turboDryer',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 28,
         col: 0,
         x2: false,
@@ -462,10 +435,8 @@ export default {
         name: 'degrease',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 29,
         col: 0,
-        // x2: false, color: false,  turbo: false,
         x2: true,
         color: false,
         turbo: false,
@@ -480,7 +451,6 @@ export default {
         name: 'disinfection',
         price: 0,
         priceTurbo: 0,
-        mode: '',
         row: 30,
         col: 0,
         x2: true,

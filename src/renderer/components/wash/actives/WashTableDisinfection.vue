@@ -106,7 +106,7 @@ export default Vue.extend({
     },
     getKits() {
       const result = []
-      
+
       Object.entries(this.actives[this.activeNumber]).map(([key, value]) => {
         if (
           key === 'title' ||
@@ -149,7 +149,7 @@ td {
 .button-style {
   margin-left: 0em;
   padding-top: 0em;
-  width: 64em;
+  width: 65em;
   height: 7em;
   border: solid 6px #40c4ff;
   border-radius: 4em;
@@ -161,7 +161,7 @@ td {
   padding-top: 0.15em;
   padding-right: 0em;
   display: flex;
-  align-items: left;
+  align-items: center;
   justify-content: left;
 }
 </style>

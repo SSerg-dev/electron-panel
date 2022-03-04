@@ -18,7 +18,6 @@
             { 'card-content black-text': !this.isDown.degrease },
             { 'card-content white-text': this.isDown.degrease }
           ]"
-          style="justify-content: left;"
         >
           {{ `${actives[this.activeNumber].title}` }}
         </div>
@@ -78,7 +77,7 @@ export default Vue.extend({
 
       if (parseInt(this.getWetBalance) > 0) {
         this.timeoutPopup = setTimeout(() => {
-          this.$router.push('/popup')
+          // this.$router.push('/popup')
         }, 2000)
       } else this.$message(`Недостаточно средств`)
     },
@@ -151,7 +150,7 @@ td {
 .button-style {
   margin-left: 0em;
   padding-top: 0em;
-  width: 64em;
+  width: 65em;
   height: 7em;
   border: solid 6px #40c4ff;
   border-radius: 4em;
@@ -163,7 +162,7 @@ td {
   padding-top: 0.15em;
   padding-right: 0em;
   display: flex;
-  align-items: left;
+  align-items: center;
   justify-content: left;
 }
 </style>

@@ -5,26 +5,80 @@
         <div class="message">
           <div><Message /></div>
         </div>
-        <div v-if="getWetBalance > 0" class="price">
+
+        <!-- <div v-if="getWetBalance >= 0" class="price">
           <img src="imgs/price/price-up.svg" />
-        </div>
+        </div> -->
 
-        <div v-if="getIsReceiptRead" class="price-menu">
+        <!-- <div v-if="!getIsReceiptRead" class="price-menu">
           <img src="imgs/price/price-menu.svg" />
-        </div>
+        </div> -->
 
-        <!-- <router-link to="/bonus">
-          <div v-if="!getIsMoneyToBonus" class="price-bonus">
-            <img src="imgs/price/price-bonus.svg" />
+        <!-- dev -->
+        <div
+          @click="setProgram('price')"
+          class="waves-effect price"
+          id="button-price"
+        >
+          <div
+            class="button-content-style"
+            :class="[
+              { 'card-content black-text': !this.isDown.price },
+              { 'card-content white-text': this.isDown.price }
+            ]"
+          >
+            {{ `📄` }}
           </div>
-        </router-link> -->
+        </div>
 
         <div
+          @click="setProgram('receipt')"
+          class="waves-effect receipt"
+          id="button-receipt"
+        >
+          <div
+            class="button-content-style"
+            :class="[
+              { 'card-content black-text': !this.isDown.receipt },
+              { 'card-content white-text': this.isDown.receipt }
+            ]"
+          >
+            {{ `🧾` }}
+          </div>
+        </div>
+
+        <!-- <p>📄 🧾 📝 📋 🗒️</p> -->
+
+        <!-- <div
           v-if="getIsMoneyToBonus"
           @click="setProgram('savemoney')"
           class="price-bonus"
         >
           <img src="imgs/price/price-bonus.svg" />
+        </div> -->
+
+        <div>
+          <div
+            @click="setProgram('savemoney')"
+            class="waves-effect bonus"
+            id="button-bonus"
+          >
+            <div
+              class="button-content-style"
+              :class="[
+                { 'card-content black-text': !this.isDown.bonus },
+                { 'card-content white-text': this.isDown.bonus }
+              ]"
+            >
+              <div align="center" style="font-size: 0.42em;">
+                <ul>
+                  <li>{{ this.currency }} {{ this.symbol }}</li>
+                  <li>{{ `⬇️` }}</li>
+                  <li style="font-size: 2em;">{{ `🎁` }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -32,80 +86,80 @@
         <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
           <!-- 0 -->
           <!-- ОБЕЗЖИРИВАНИЕ degrease -->
-          <tr  v-if="this.actives[27].display !== 'none'">
+          <tr v-if="this.actives[27].display !== 'none'">
             <WashTableDegrease :actives="actives" />
           </tr>
 
           <!-- 1 -->
           <!-- ДИСКИ -->
-          <tr  v-if="this.actives[14].display !== 'none'">
+          <tr v-if="this.actives[14].display !== 'none'">
             <WashTableDiskEx :actives="actives" />
           </tr>
 
           <!-- 2 -->
           <!-- АНТИМОСКИТ -->
-          <tr  v-if="this.actives[15].display !== 'none'">
+          <tr v-if="this.actives[15].display !== 'none'">
             <WashTableMosquitoEx :actives="actives" />
           </tr>
 
           <!-- 3 -->
           <!-- ШАМПУНЬ shampoo -->
-          <tr  v-if="this.actives[0].display !== 'none'">
+          <tr v-if="this.actives[0].display !== 'none'">
             <WashTableShampooEx :actives="actives" />
           </tr>
 
           <!-- 4 -->
           <!-- ЩЕТКА + ПЕНА -->
-          <tr  v-if="this.actives[13].display !== 'none'">
+          <tr v-if="this.actives[13].display !== 'none'">
             <WashTableBrushFoamEx :actives="actives" />
           </tr>
 
           <!-- 5 -->
           <!-- ПЕНА -->
-          <tr  v-if="this.actives[5].display !== 'none'">
+          <tr v-if="this.actives[5].display !== 'none'">
             <WashTableFoamEx :actives="actives" />
           </tr>
 
           <!-- 6 -->
           <!-- ВОДА + ШАМПУНЬ -->
-          <tr  v-if="this.actives[1].display !== 'none'">
+          <tr v-if="this.actives[1].display !== 'none'">
             <WashTableWaterShampooEx :actives="actives" />
           </tr>
 
           <!-- 7 -->
           <!-- ХОЛОДНАЯ ВОДА coldWater -->
-          <tr  v-if="this.actives[2].display !== 'none'">
+          <tr v-if="this.actives[2].display !== 'none'">
             <WashTableColdWaterEx :actives="actives" />
           </tr>
 
           <!-- 8 -->
           <!-- ТЕПЛАЯ ВОДА warmWater -->
-          <tr  v-if="this.actives[11].display !== 'none'">
+          <tr v-if="this.actives[11].display !== 'none'">
             <WashTableWarmWaterEx :actives="actives" />
           </tr>
 
           <!-- 9 -->
           <!-- ВОСК И ЗАЩИТА waxProtection -->
-          <tr  v-if="this.actives[3].display !== 'none'">
+          <tr v-if="this.actives[3].display !== 'none'">
             <WashTableWaxProtectionEx :actives="actives" />
           </tr>
 
           <!-- 10 -->
           <!-- СУШКА И БЛЕСК dryShine-->
-          <tr  v-if="this.actives[4].display !== 'none'">
+          <tr v-if="this.actives[4].display !== 'none'">
             <WashTableDryShineEx :actives="actives" />
           </tr>
 
           <!-- 11 -->
           <!-- ДЕЗИНФЕКЦИЯ disinfection -->
-          <tr  v-if="this.actives[28].display !== 'none'">
+          <tr v-if="this.actives[28].display !== 'none'">
             <WashTableDisinfection :actives="actives" />
           </tr>
 
           <!-- dry group -->
           <!-- vacuum air washer turboDryer -->
 
-          <tr >
+          <tr>
             <td v-if="this.actives[16].display !== 'none'">
               <WashTableVacuum :actives="actives" />
             </td>
@@ -113,7 +167,7 @@
               <WashTableTurboDryer :actives="actives" />
             </td>
           </tr>
-          <tr >
+          <tr>
             <td v-if="this.actives[17].display !== 'none'">
               <WashTableAir :actives="actives" />
             </td>
@@ -165,12 +219,25 @@ export default {
     //records: [],
     active: '',
     timeoutPopup: null,
+    timeoutSetUp: null,
     isDown: {
       washer: false,
       vacuum: false,
       turboDryer: false,
-      air: false
-    }
+      air: false,
+      price: false,
+      receipt: false,
+      bonus: false
+    },
+    buttonPrice: null,
+    buttonReceipt: null,
+    buttonBonus: null,
+
+    /* dev */
+    emoji: '',
+    currency: '',
+    symbol: '',
+    currencies: []
   }),
   components: {
     Message,
@@ -205,6 +272,14 @@ export default {
     /* testView(flag) {
       console.log('testView-->flag-->', flag)
     } */
+    getIsMoneyToBonus(flag) {
+      console.log('getIsMoneyToBonus', flag)
+      if (flag) {
+        this.buttonBonus.show()
+        this.flex()
+      } 
+      else this.buttonBonus.hide()
+    }
   },
   computed: {
     ...mapGetters({
@@ -217,7 +292,10 @@ export default {
       getIsReceiptCreate: 'getIsReceiptCreate',
       getIsReceiptPrint: 'getIsReceiptPrint',
       getIsMoneyToBonus: 'getIsMoneyToBonus',
-      getWetStopFreeCount: 'getWetStopFreeCount'
+      getWetStopFreeCount: 'getWetStopFreeCount',
+
+      getInitCurrency: 'getInitCurrency',
+      getDefaultCurrency: 'getDefaultCurrency'
     })
   },
 
@@ -237,7 +315,25 @@ export default {
     ...mapGetters({}),
     setProgram(program) {
       if (program === 'savemoney') {
+        this.isDown.bonus = true
+        this.buttonBonus.background = 'rgb(64, 196, 255)'
+        this.setDown()
+        /* dev */
         this.saveMoney()
+        return
+      }
+      if (program === 'price') {
+        this.isDown.price = true
+        this.buttonPrice.background = 'rgb(64, 196, 255)'
+        this.setDown()
+        /* dev */
+        this.$router.push('/cost')
+        return
+      }
+      if (program === 'receipt') {
+        this.isDown.receipt = true
+        this.buttonReceipt.background = 'rgb(64, 196, 255)'
+        this.setDown()
         return
       }
 
@@ -257,7 +353,7 @@ export default {
       }, this.popupDelay)
     },
     setDown(program) {
-      this.clearDown()
+      //this.clearDown()
       switch (program) {
         case 'washer':
           this.isDown.washer = true
@@ -275,6 +371,11 @@ export default {
         default:
           break
       }
+      this.timeoutSetUp = setTimeout(() => {
+        try {
+          this.clearDown()
+        } catch (err) {}
+      }, 2000)
     },
     saveMoney() {
       if (this.getWetStopFreeCount > 0) {
@@ -287,30 +388,89 @@ export default {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
+      this.buttonPrice.background = 'rgb(255, 255, 255)'
+      this.buttonReceipt.background = 'rgb(255, 255, 255)'
+      this.buttonBonus.background = 'rgb(255, 255, 255)'
     },
     setup() {
       this.setIsMoneyToBonus(false)
       this.setMoneyToBonus(0)
-      this.initial()
+      this.initCurrency()
     },
     initial() {
       // classes instances
-      /* button bonus */
-      
-      /* this.buttonBonus = new Button({
-        selector: '#button-bonus',
 
-        width: 25, // 28
-        height: 23,
+      /* button price */
+      this.buttonPrice = new Button({
+        selector: '#button-price',
+
+        width: 8.5,
+        height: 8.5,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 3,
+        border: '0.4em solid rgb(64, 196, 255)',
+        boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
+        borderRadius: 2,
+        fontSize: '1em',
 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
-      }) */
+      })
+      // button-receipt
+      this.buttonReceipt = new Button({
+        selector: '#button-receipt',
 
-    }
+        width: 8.5,
+        height: 8.5,
+        background: 'rgb(255, 255, 255)',
+        border: '0.4em solid rgb(64, 196, 255)',
+        boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
+        borderRadius: 2,
+        fontSize: '1em',
+
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      })
+      /* button bonus */
+      this.buttonBonus = new Button({
+        selector: '#button-bonus',
+
+        width: 8.5,
+        height: 17.5,
+        background: 'rgb(255, 255, 255)',
+        border: '0.4em solid rgb(64, 196, 255)',
+        boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
+        borderRadius: 2,
+        fontSize: '1em',
+
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      })
+      this.buttonBonus.hide()
+      // this.buttonBonus.show()
+      // this.flex()
+
+      // end classes instances
+    },
+    initCurrency() {
+      /* dev */
+      const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
+
+      this.current = id
+      this.select = title
+
+      this.emoji = emoji
+      this.currency = currency
+      this.symbol = symbol
+      /*     */
+    },
+    flex() {
+      this.buttonBonus.display = 'flex'
+      this.buttonBonus.alignItems = 'center'
+      this.buttonBonus.justifyContent = 'center'
+    },
   },
   mounted() {
     if (!this.isVisible) {
@@ -318,10 +478,12 @@ export default {
         this.isVisible = true
       }, this.delay)
     }
+    this.initial()
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutPopup)
+    clearTimeout(this.timeoutSetUp)
     this.setIsReceiptRead(false)
   },
   created() {
@@ -335,7 +497,7 @@ export default {
   position: absolute;
   margin-top: -10em;
   margin-left: 17em;
-  
+
   font-family: 'Plumb-Medium';
   font-weight: normal; /* bold; */
   text-align: justify;
@@ -363,7 +525,6 @@ tr {
   height: 120px;
   padding-right: 0px;
 
-
   float: left;
 }
 td {
@@ -376,28 +537,33 @@ td {
   height: 7em;
 
   float: left;
-  /* 
-  display: flex;
-  align-items: left;
-  justify-content: left; 
-  */
-
 }
 
 .price {
   position: absolute;
-  margin-top: -0.6em;
+}
+.receipt {
+  position: absolute;
+  margin-top: 9.2em;
   margin-left: 0em;
 }
-.price-menu {
+.bonus {
   position: absolute;
-  margin-top: 9em;
-  margin-left: 0em;
-}
-.price-bonus {
-  position: absolute;
-  margin-top: -0.6em;
+  margin-top: 0em;
   margin-left: 62em;
+  /* dev */
+  padding-bottom: 0em;
+}
+.button-content-style {
+  font-size: 5em;
+  margin-left: 0em;
+  padding-top: 0em;
+  padding-right: 0em;
+
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+
 }
 
 </style>
