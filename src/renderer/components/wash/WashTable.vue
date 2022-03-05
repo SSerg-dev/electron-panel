@@ -6,16 +6,9 @@
           <div><Message /></div>
         </div>
 
-        <!-- <div v-if="getWetBalance >= 0" class="price">
-          <img src="imgs/price/price-up.svg" />
-        </div> -->
-
-        <!-- <div v-if="!getIsReceiptRead" class="price-menu">
-          <img src="imgs/price/price-menu.svg" />
-        </div> -->
-
-        <!-- dev -->
+        <!-- v-if="getWetBalance > 0" -->
         <div
+          
           @click="setProgram('price')"
           class="waves-effect price"
           id="button-price"
@@ -31,6 +24,7 @@
           </div>
         </div>
 
+        <!-- v-if="!getIsReceiptRead" -->
         <div
           @click="setProgram('receipt')"
           class="waves-effect receipt"
@@ -47,38 +41,28 @@
           </div>
         </div>
 
-        <!-- <p>📄 🧾 📝 📋 🗒️</p> -->
-
-        <!-- <div
-          v-if="getIsMoneyToBonus"
+        <!-- v-if="!getIsMoneyToBonus" -->
+        <div
           @click="setProgram('savemoney')"
-          class="price-bonus"
+          class="waves-effect bonus"
+          id="button-bonus"
         >
-          <img src="imgs/price/price-bonus.svg" />
-        </div> -->
-
-        <div>
           <div
-            @click="setProgram('savemoney')"
-            class="waves-effect bonus"
-            id="button-bonus"
+            class="button-content-style"
+            :class="[
+              { 'card-content black-text': !this.isDown.bonus },
+              { 'card-content white-text': this.isDown.bonus }
+            ]"
           >
-            <div
-              class="button-content-style"
-              :class="[
-                { 'card-content black-text': !this.isDown.bonus },
-                { 'card-content white-text': this.isDown.bonus }
-              ]"
-            >
-              <div align="center" style="font-size: 0.42em;">
-                <ul>
-                  <li>{{ this.currency }} {{ this.symbol }}</li>
-                  <li>{{ `⬇️` }}</li>
-                  <li style="font-size: 2em;">{{ `🎁` }}</li>
-                </ul>
-              </div>
+            <div align="center" style="font-size: 0.42em;">
+              <ul>
+                <li>{{ this.currency }} {{ this.symbol }}</li>
+                <li>{{ `⬇️` }}</li>
+                <li style="font-size: 2em;">{{ `🎁` }}</li>
+              </ul>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -268,18 +252,37 @@ export default {
       type: Number
     }
   },
+
+  /* 
+  this.buttonPrice.hide()
+      this.buttonReceipt.hide()
+      this.buttonBonus.hide()
+  */
   watch: {
-    /* testView(flag) {
-      console.log('testView-->flag-->', flag)
-    } */
+    getWetBalance(flag) {
+      console.log('getWetBalance', flag)
+      // if (flag) {
+      //   this.buttonPrice.show()
+      //   this.flex()
+      // } else this.buttonPrice.hide()
+    },
+    
+    getIsReceiptRead(flag) {
+      console.log('getIsReceiptRead', flag)
+      // if (flag) {
+      //   this.buttonReceipt.show()
+      //   this.flex()
+      // } else this.buttonReceipt.hide()
+    },
+    
     getIsMoneyToBonus(flag) {
       console.log('getIsMoneyToBonus', flag)
       if (flag) {
         this.buttonBonus.show()
         this.flex()
-      } 
-      else this.buttonBonus.hide()
+      } else this.buttonBonus.hide() 
     }
+
   },
   computed: {
     ...mapGetters({
@@ -396,6 +399,7 @@ export default {
       this.setIsMoneyToBonus(false)
       this.setMoneyToBonus(0)
       this.initCurrency()
+      this.initial()
     },
     initial() {
       // classes instances
@@ -416,6 +420,7 @@ export default {
         alignItems: 'center',
         justifyContent: 'center'
       })
+
       // button-receipt
       this.buttonReceipt = new Button({
         selector: '#button-receipt',
@@ -432,7 +437,8 @@ export default {
         alignItems: 'center',
         justifyContent: 'center'
       })
-      /* button bonus */
+
+      // button bonus
       this.buttonBonus = new Button({
         selector: '#button-bonus',
 
@@ -448,8 +454,16 @@ export default {
         alignItems: 'center',
         justifyContent: 'center'
       })
-      this.buttonBonus.hide()
-      // this.buttonBonus.show()
+
+      if (!+this.getWetBalance > 0) this.buttonPrice.hide()
+      if (!this.getIsReceiptRead) this.buttonReceipt.hide()
+      if (!this.getIsMoneyToBonus) this.buttonBonus.hide()
+
+      // console.log('++getWetBalance',this.getWetBalance)
+      // console.log('++getIsReceiptRead', this.getIsReceiptRead)
+      // console.log('++getIsMoneyToBonus', this.getIsMoneyToBonus)
+      
+      //this.buttonBonus.show()
       // this.flex()
 
       // end classes instances
@@ -470,7 +484,7 @@ export default {
       this.buttonBonus.display = 'flex'
       this.buttonBonus.alignItems = 'center'
       this.buttonBonus.justifyContent = 'center'
-    },
+    }
   },
   mounted() {
     if (!this.isVisible) {
@@ -478,16 +492,20 @@ export default {
         this.isVisible = true
       }, this.delay)
     }
-    this.initial()
+    //this.initial()
+    this.setup()
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutPopup)
     clearTimeout(this.timeoutSetUp)
     this.setIsReceiptRead(false)
+    this.setIsMoneyToBonus(false)
   },
   created() {
-    this.setup()
+    // this.initial()
+    // this.setup()
+    
   }
 }
 </script>
@@ -541,6 +559,7 @@ td {
 
 .price {
   position: absolute;
+  margin-top: 0em;
 }
 .receipt {
   position: absolute;
@@ -551,8 +570,6 @@ td {
   position: absolute;
   margin-top: 0em;
   margin-left: 62em;
-  /* dev */
-  padding-bottom: 0em;
 }
 .button-content-style {
   font-size: 5em;
@@ -563,7 +580,5 @@ td {
   /* display: flex;
   align-items: center;
   justify-content: center; */
-
 }
-
 </style>

@@ -246,20 +246,20 @@ export default Vue.extend({
     },
     restore(type) {
       if (type === 'left') {
-        console.log('left')
+        // console.log('left')
         this._upStandardOptions.width = '65em'
         this._downStandardOptions.width = '65em'
         this.buttonRight.hide()
       }
       if (type === 'right') {
-        console.log('right')
+        // console.log('right')
         this._upStandardOptions.width = '58em'
         this._downStandardOptions.width = '58em'
         this.buttonRight.show()
         this.flex()
       }
       if (type === 'init') {
-        console.log('init')
+        // console.log('init')
         this._upStandardOptions.width = '58em'
         this._downStandardOptions.width = '58em'
         this.buttonRight.show()

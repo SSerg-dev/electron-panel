@@ -58,6 +58,7 @@ import { log } from '../../../../main/utils'
 
 export default Vue.extend({
   data: () => ({
+    // options
     upStandardOptions: upStandardOptions,
     downStandardOptions: downStandardOptions,
     upX2Options: upX2Options,
@@ -246,20 +247,20 @@ export default Vue.extend({
 
     restore(type) {
       if (type === 'left') {
-        console.log('left')
+        // console.log('left')
         this._upStandardOptions.width = '32em'
         this._downStandardOptions.width = '32em'
         this.buttonRight.hide()
       }
       if (type === 'right') {
-        console.log('right')
+        // console.log('right')
         this._upStandardOptions.width = '25.5em'
         this._downStandardOptions.width = '25.5em'
         this.buttonRight.show()
         this.flex()
       }
       if (type === 'init') {
-        console.log('init')
+        // console.log('init')
         this._upStandardOptions.width = '25.5em'
         this._downStandardOptions.width = '25.5em'
         this.buttonRight.show()

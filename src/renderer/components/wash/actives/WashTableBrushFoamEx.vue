@@ -94,13 +94,27 @@ export default Vue.extend({
     upGreenOptions: upGreenOptions,
     downGreenOptions: downGreenOptions,
 
+    // clone
+    _upStandardOptions: null,
+    _downStandardOptions: null,
+    _upX2Options: null,
+    _downX2Options: null,
+    _upColorOptions: null,
+    _downColorOptions: null,
+    _upGreenOptions: null,
+    _downGreenOptions: null,
+
     // classes
     buttonLeft: null,
     buttonRight: null,
     buttonCenter: null,
 
+    visible: '',
+    visible_x2: '',
+    visible_color: '',
+
     activeNumber: 13,
-    activeNumber_x2: 21,
+    activeNumber_x2: 23,
     activeNumber_color: 20,
 
     active: '',
@@ -177,15 +191,15 @@ export default Vue.extend({
 
       switch (program) {
         case 'brushFoam':
-          this.setButtonStyle(this.downGreenOptions)
+          this.setButtonStyle(this._downGreenOptions)
           this.isDown.brushFoam = true
           break
         case 'brushFoam_x2':
-          this.setButtonStyle(this.downX2Options)
+          this.setButtonStyle(this._downX2Options)
           this.isDown.brushFoam_x2 = true
           break
         case 'brushFoam_color':
-          this.setButtonStyle(this.downColorOptions)
+          this.setButtonStyle(this._downColorOptions)
           this.isDown.brushFoam_color = true
           break
 
@@ -202,10 +216,10 @@ export default Vue.extend({
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-      this.setButtonStyle(this.upGreenOptions)
-      this.setButtonStyle(this.upColorOptions)
-      this.setButtonStyle(this.upX2Options)
-
+      this.setButtonStyle(this._upStandardOptions)
+      this.setButtonStyle(this._upX2Options)
+      this.setButtonStyle(this._upColorOptions)
+      this.setButtonStyle(this._upGreenOptions)
     },
     getKits() {
       const result = []
@@ -230,6 +244,7 @@ export default Vue.extend({
     },
     initial() {
       // classes instances
+
       /* left button */
       this.buttonLeft = new Button({
         selector: '#button-left-brush',
@@ -273,49 +288,112 @@ export default Vue.extend({
       })
 
       // end classes
-      
-      // set options      
-      /* dev */
-      // if (this.actives[this.activeNumber_x2].display === 'none') {
-      //   this.buttonRight.hide()
-      //   this.upStandardOptions.width = '58em'//'65em'
-      // }
-      // console.log('this.actives[this.activeNumber_x2].display', this.actives[this.activeNumber_x2].display)
-      
-      // if (this.actives[this.activeNumber_x2].display === 'block') {
-      //   this.restore('right')
-      // }
 
-      this.setButtonStyle(this.upGreenOptions)
-      this.setButtonStyle(this.upColorOptions)
-      this.setButtonStyle(this.upX2Options)
+      // clone
+      this._upStandardOptions = { ...upStandardOptions }
+      this._downStandardOptions = { ...downStandardOptions }
+      this._upX2Options = { ...upX2Options }
+      this._downX2Options = { ...downX2Options }
+      this._upColorOptions = { ...upColorOptions }
+      this._downColorOptions = { ...downColorOptions }
+      this._upGreenOptions = { ...upGreenOptions }
+      this._downGreenOptions = { ...downGreenOptions }
+      // end clone
 
+      if (
+        this.visible === 'block' &&
+        this.visible_color === 'none' &&
+        this.visible_x2 === 'none'
+      ) {
+        this.restore('left')
+      } else if (
+        this.visible === 'block' &&
+        this.visible_color === 'block' &&
+        this.visible_x2 === 'none'
+      ) {
+        this.restore('right_color')
+      } else if (
+        this.visible === 'block' &&
+        this.visible_color === 'none' &&
+        this.visible_x2 === 'block'
+      ) {
+        this.restore('right_x2')
+      } else if (
+        this.visible === 'block' &&
+        this.visible_color === 'block' &&
+        this.visible_x2 === 'block'
+      ) {
+        this.restore('right_color_x2')
+      }
     },
 
     restore(type) {
-      if (type === 'right') {
-        this.buttonRight.show()
-        this.upStandardOptions.width = '51em'
+      switch (type) {
+        case 'left':
+          this._upGreenOptions.width = '65em'
+          this._downGreenOptions.width = '65em'
+          this.buttonLeft.show()
+          this.flex()
+          this.buttonCenter.hide()
+          this.buttonRight.hide()
+          break
+
+        case 'right_color':
+          this._upGreenOptions.width = '58em'
+          this._downGreenOptions.width = '58em'
+          this.buttonLeft.show()
+          this.buttonCenter.show()
+          this.flex()
+          this.buttonRight.hide()
+          break
+
+        case 'right_x2':
+          this._upGreenOptions.width = '58em'
+          this._downGreenOptions.width = '58em'
+          this.buttonLeft.show()
+          this.buttonRight.show()
+          this.flex()
+          this.buttonCenter.hide()
+          break
+
+        case 'right_color_x2':
+          this._upGreenOptions.width = '51em'
+          this._downGreenOptions.width = '51em'
+          this.buttonLeft.show()
+          this.buttonCenter.show()
+          this.buttonRight.show()
+          this.flex()
+          break
+
+        default:
+          break
       }
-      if (type === 'left') {
-      }
-      this.flex()
-      return
+
+      this.setButtonStyle(this._upGreenOptions)
+      this.setButtonStyle(this._upColorOptions)
+      this.setButtonStyle(this._upX2Options)
     },
 
     flex() {
+      this.buttonLeft.display = 'flex'
+      this.buttonLeft.alignItems = 'center'
+      this.buttonLeft.justifyContent = 'left'
+
+      this.buttonCenter.display = 'flex'
+      this.buttonCenter.alignItems = 'center'
+      this.buttonCenter.justifyContent = 'center'
+
       this.buttonRight.display = 'flex'
       this.buttonRight.alignItems = 'center'
       this.buttonRight.justifyContent = 'center'
     },
     setButtonStyle(options) {
-
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
         this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width =  options.width//'51em'
+        this.buttonLeft.width = options.width
       }
 
       if (options.type === 'center') {
@@ -333,8 +411,6 @@ export default Vue.extend({
         this.buttonRight.fontSize = options.fontSize
         this.buttonRight.width = options.width
       }
-      // this.buttonRight.hide()
-      // this.buttonRight.show()
     }
   }, // end methods
 
@@ -346,6 +422,10 @@ export default Vue.extend({
     this.getKits()
   },
   mounted() {
+    this.visible = this.actives[this.activeNumber].display
+    this.visible_x2 = this.actives[this.activeNumber_x2].display
+    this.visible_color = this.actives[this.activeNumber_color].display
+
     this.setup()
   }
 })
