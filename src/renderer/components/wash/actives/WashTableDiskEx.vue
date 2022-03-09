@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- 1 mosquito -->
+    <!-- 1 -->
     <!-- ДИСКИ -->
     <td>
       <div
@@ -63,20 +63,29 @@ export default Vue.extend({
     downStandardOptions: downStandardOptions,
     upX2Options: upX2Options,
     downX2Options: downX2Options,
-    
+
     // clone
     _upStandardOptions: null,
     _downStandardOptions: null,
     _upX2Options: null,
     _downX2Options: null,
-    
+
     // classes
     buttonLeft: null,
     buttonRight: null,
 
+    // native
     visible: '',
+    visible_x2: '',
     activeNumber: 14,
     activeNumber_x2: 24,
+
+    // neighbor mosquito
+    visibleMosquito: '',
+    visibleMosquito_x2: '',
+    activeMosquitoNumber: 15,
+    activeMosquitoNumber_x2: 25,
+
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -99,17 +108,15 @@ export default Vue.extend({
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getWetBalance: 'getWetBalance'
+      getWetBalance: 'getWetBalance',
     })
   },
   watch: {
     getWetBalance(flag) {
       if (parseInt(flag) === 0) {
         this.clearDown()
-        this.buttonLeft.background = 'white'
-        this.buttonRight.background = 'white'
       }
-    }
+    },
   },
   methods: {
     ...mapGetters({
@@ -152,7 +159,6 @@ export default Vue.extend({
 
       switch (program) {
         case 'disk':
-          /* dev */
           this.setButtonStyle(this._downStandardOptions)
           this.isDown.disk = true
           break
@@ -199,6 +205,7 @@ export default Vue.extend({
     },
     initial() {
       // classes instances
+
       /* left button */
       this.buttonLeft = new Button({
         selector: '#button-left-disk',
@@ -234,37 +241,49 @@ export default Vue.extend({
       this._downX2Options = { ...downX2Options }
       // end clone
 
-      if (this.visible === 'none') {
-        this.restore('left')
+      if (this.visibleMosquito === 'block') {
+        if (this.visible_x2 === 'none') {
+          this.restore('left')
+        } else if (this.visible_x2 === 'block') {
+          this.restore('right')
+        }
+      } else if (this.visibleMosquito === 'none') {
+        if (this.visible_x2 === 'none') {
+          this.restore('leftMosquito')
+        } else if (this.visible_x2 === 'block') {
+          this.restore('rightMosquito')
+        }
       }
-      if (this.visible === 'block') {
-        this.restore('right')
-      }
-      if (this.visible === 0) {
-        this.restore('init')
-      }
-    },
+    }, // end initial()
 
     restore(type) {
-      if (type === 'left') {
-        // console.log('left')
-        this._upStandardOptions.width = '32em'
-        this._downStandardOptions.width = '32em'
-        this.buttonRight.hide()
-      }
-      if (type === 'right') {
-        // console.log('right')
-        this._upStandardOptions.width = '25.5em'
-        this._downStandardOptions.width = '25.5em'
-        this.buttonRight.show()
-        this.flex()
-      }
-      if (type === 'init') {
-        // console.log('init')
-        this._upStandardOptions.width = '25.5em'
-        this._downStandardOptions.width = '25.5em'
-        this.buttonRight.show()
-        this.flex()
+
+      switch (type) {
+        case 'left':
+          this._upStandardOptions.width = '32em'
+          this._downStandardOptions.width = '32em'
+          this.buttonRight.hide()
+          break
+        case 'right':
+          this._upStandardOptions.width = '25.5em'
+          this._downStandardOptions.width = '25.5em'
+          this.buttonRight.show()
+          this.flex()
+          break
+        case 'leftMosquito':
+          this._upStandardOptions.width = '65em'
+          this._downStandardOptions.width = '65em'
+          this.buttonRight.hide()
+          break
+        case 'rightMosquito':
+          this._upStandardOptions.width = '58em'
+          this._downStandardOptions.width = '58em'
+          this.buttonRight.show()
+          this.flex()
+          break
+
+        default:
+          break
       }
 
       this.setButtonStyle(this._upStandardOptions)
@@ -274,13 +293,15 @@ export default Vue.extend({
     },
 
     flex() {
+      this.buttonLeft.display = 'flex'
+      this.buttonLeft.alignItems = 'center'
+      this.buttonLeft.justifyContent = 'left'
+
       this.buttonRight.display = 'flex'
       this.buttonRight.alignItems = 'center'
       this.buttonRight.justifyContent = 'center'
     },
-
     setButtonStyle(options) {
-
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
         this.buttonLeft.border = options.border
@@ -308,14 +329,18 @@ export default Vue.extend({
     clearTimeout(this.timeoutSetUp)
   },
   created() {
-    // console.log('--this.visible', this.visible)
     this.getKits()
   },
   mounted() {
-    this.visible = this.actives[this.activeNumber_x2].display
-    // console.log('++this.visible', this.visible)
+    // native
+    this.visible = this.actives[this.activeNumber].display
+    this.visible_x2 = this.actives[this.activeNumber_x2].display
+
+    // neighbor mosquito
+    this.visibleMosquito = this.actives[this.activeMosquitoNumber].display
+    this.visibleMosquito_x2 = this.actives[this.activeMosquitoNumber_x2].display
+
     this.setup()
-    
   }
 })
 </script>

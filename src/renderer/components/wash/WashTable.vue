@@ -8,7 +8,6 @@
 
         <!-- v-if="getWetBalance > 0" -->
         <div
-          
           @click="setProgram('price')"
           class="waves-effect price"
           id="button-price"
@@ -62,106 +61,108 @@
               </ul>
             </div>
           </div>
-
         </div>
       </section>
 
-      <table border="0" width="100%" cellpadding="0" cellspacing="0">
-        <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
-          <!-- 0 -->
-          <!-- ОБЕЗЖИРИВАНИЕ degrease -->
-          <tr v-if="this.actives[27].display !== 'none'">
-            <WashTableDegrease :actives="actives" />
-          </tr>
+      <div :key="getWetProgShow">
+        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+          <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
+            <!-- 0 -->
+            <!-- ОБЕЗЖИРИВАНИЕ degrease -->
+            <tr v-if="this.actives[27].display !== 'none'">
+              <WashTableDegrease :actives="actives" />
+            </tr>
 
-          <!-- 1 -->
-          <!-- ДИСКИ -->
-          <tr v-if="this.actives[14].display !== 'none'">
-            <WashTableDiskEx :actives="actives" />
-          </tr>
+            <!-- 1 -->
+            <!-- ДИСКИ -->
+            <tr v-if="this.actives[14].display !== 'none'">
+              <WashTableDiskEx :actives="actives" />
+            </tr>
 
-          <!-- 2 -->
-          <!-- АНТИМОСКИТ -->
-          <tr v-if="this.actives[15].display !== 'none'">
-            <WashTableMosquitoEx :actives="actives" />
-          </tr>
+            <!-- 2 -->
+            <!-- АНТИМОСКИТ -->
+            <tr v-if="this.actives[15].display !== 'none'">
+              <WashTableMosquitoEx :actives="actives" />
+            </tr>
 
-          <!-- 3 -->
-          <!-- ШАМПУНЬ shampoo -->
-          <tr v-if="this.actives[0].display !== 'none'">
-            <WashTableShampooEx :actives="actives" />
-          </tr>
+            <!-- 3 -->
+            <!-- ШАМПУНЬ shampoo -->
+            <tr v-if="this.actives[0].display !== 'none'">
+              <WashTableShampooEx :actives="actives" />
+            </tr>
 
-          <!-- 4 -->
-          <!-- ЩЕТКА + ПЕНА -->
-          <tr v-if="this.actives[13].display !== 'none'">
-            <WashTableBrushFoamEx :actives="actives" />
-          </tr>
+            <!-- 4 -->
+            <!-- ЩЕТКА + ПЕНА -->
+            <tr v-if="this.actives[13].display !== 'none'">
+              <WashTableBrushFoamEx :actives="actives" />
+            </tr>
 
-          <!-- 5 -->
-          <!-- ПЕНА -->
-          <tr v-if="this.actives[5].display !== 'none'">
-            <WashTableFoamEx :actives="actives" />
-          </tr>
+            <!-- 5 -->
+            <!-- ПЕНА -->
+            <tr v-if="this.actives[5].display !== 'none'">
+              <WashTableFoamEx :actives="actives" />
+            </tr>
 
-          <!-- 6 -->
-          <!-- ВОДА + ШАМПУНЬ -->
-          <tr v-if="this.actives[1].display !== 'none'">
-            <WashTableWaterShampooEx :actives="actives" />
-          </tr>
+            <!-- 6 -->
+            <!-- ВОДА + ШАМПУНЬ -->
+            <tr v-if="this.actives[1].display !== 'none'">
+              <WashTableWaterShampooEx :actives="actives" />
+            </tr>
 
-          <!-- 7 -->
-          <!-- ХОЛОДНАЯ ВОДА coldWater -->
-          <tr v-if="this.actives[2].display !== 'none'">
-            <WashTableColdWaterEx :actives="actives" />
-          </tr>
+            <!-- 7 -->
+            <!-- ХОЛОДНАЯ ВОДА coldWater -->
+            <tr v-if="this.actives[2].display !== 'none'">
+              <WashTableColdWaterEx :actives="actives" />
+            </tr>
 
-          <!-- 8 -->
-          <!-- ТЕПЛАЯ ВОДА warmWater -->
-          <tr v-if="this.actives[11].display !== 'none'">
-            <WashTableWarmWaterEx :actives="actives" />
-          </tr>
+            <!-- 8 -->
+            <!-- ТЕПЛАЯ ВОДА warmWater -->
+            <tr v-if="this.actives[11].display !== 'none'">
+              <WashTableWarmWaterEx :actives="actives" />
+            </tr>
 
-          <!-- 9 -->
-          <!-- ВОСК И ЗАЩИТА waxProtection -->
-          <tr v-if="this.actives[3].display !== 'none'">
-            <WashTableWaxProtectionEx :actives="actives" />
-          </tr>
+            <!-- 9 -->
+            <!-- ВОСК И ЗАЩИТА waxProtection -->
+            <tr v-if="this.actives[3].display !== 'none'">
+              <WashTableWaxProtectionEx :actives="actives" />
+            </tr>
 
-          <!-- 10 -->
-          <!-- СУШКА И БЛЕСК dryShine-->
-          <tr v-if="this.actives[4].display !== 'none'">
-            <WashTableDryShineEx :actives="actives" />
-          </tr>
+            <!-- 10 -->
+            <!-- СУШКА И БЛЕСК dryShine-->
+            <tr v-if="this.actives[4].display !== 'none'">
+              <WashTableDryShineEx :actives="actives" />
+            </tr>
 
-          <!-- 11 -->
-          <!-- ДЕЗИНФЕКЦИЯ disinfection -->
-          <tr v-if="this.actives[28].display !== 'none'">
-            <WashTableDisinfection :actives="actives" />
-          </tr>
+            <!-- 11 -->
+            <!-- ДЕЗИНФЕКЦИЯ disinfection -->
+            <tr v-if="this.actives[28].display !== 'none'">
+              <WashTableDisinfection :actives="actives" />
+            </tr>
 
-          <!-- dry group -->
-          <!-- vacuum air washer turboDryer -->
+            <!-- dry group -->
+            <!-- vacuum air washer turboDryer -->
 
-          <tr>
-            <td v-if="this.actives[16].display !== 'none'">
-              <WashTableVacuum :actives="actives" />
-            </td>
-            <td v-if="this.actives[26].display !== 'none'">
-              <WashTableTurboDryer :actives="actives" />
-            </td>
-          </tr>
-          <tr>
-            <td v-if="this.actives[17].display !== 'none'">
-              <WashTableAir :actives="actives" />
-            </td>
+              <tr v-if="this.actives[16].display !== 'none'">
+                <WashTableVacuum :actives="actives" />
+              </tr>
+              
+              <tr v-if="this.actives[26].display !== 'none'">
+                <WashTableTurboDryer :actives="actives" />
+              </tr>
+            
+              <tr v-if="this.actives[17].display !== 'none'">
+                <WashTableAir :actives="actives" />
+              </tr>
 
-            <td v-if="this.actives[18].display !== 'none'">
-              <WashTableWasher :actives="actives" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              <tr v-if="this.actives[18].display !== 'none'">
+                <WashTableWasher :actives="actives" />
+              </tr>
+            
+
+
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -261,12 +262,8 @@ export default {
   watch: {
     getWetBalance(flag) {
       console.log('getWetBalance', flag)
-      // if (flag) {
-      //   this.buttonPrice.show()
-      //   this.flex()
-      // } else this.buttonPrice.hide()
     },
-    
+
     getIsReceiptRead(flag) {
       console.log('getIsReceiptRead', flag)
       // if (flag) {
@@ -274,15 +271,14 @@ export default {
       //   this.flex()
       // } else this.buttonReceipt.hide()
     },
-    
+
     getIsMoneyToBonus(flag) {
       console.log('getIsMoneyToBonus', flag)
       if (flag) {
         this.buttonBonus.show()
         this.flex()
-      } else this.buttonBonus.hide() 
+      } else this.buttonBonus.hide()
     }
-
   },
   computed: {
     ...mapGetters({
@@ -290,6 +286,9 @@ export default {
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
+
+      getWetProgStatus: 'getWetProgStatus',
+      getWetProgShow: 'getWetProgShow',
 
       getIsReceiptRead: 'getIsReceiptRead',
       getIsReceiptCreate: 'getIsReceiptCreate',
@@ -462,7 +461,7 @@ export default {
       // console.log('++getWetBalance',this.getWetBalance)
       // console.log('++getIsReceiptRead', this.getIsReceiptRead)
       // console.log('++getIsMoneyToBonus', this.getIsMoneyToBonus)
-      
+
       //this.buttonBonus.show()
       // this.flex()
 
@@ -505,7 +504,6 @@ export default {
   created() {
     // this.initial()
     // this.setup()
-    
   }
 }
 </script>

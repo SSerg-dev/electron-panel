@@ -94,10 +94,24 @@ export default Vue.extend({
     upRedOptions: upRedOptions,
     downRedOptions: downRedOptions,
 
+    // clone
+    _upStandardOptions: null,
+    _downStandardOptions: null,
+    _upX2Options: null,
+    _downX2Options: null,
+    _upColorOptions: null,
+    _downColorOptions: null,
+    _upRedOptions: null,
+    _downRedOptions: null,
+
     // classes
     buttonLeft: null,
     buttonRight: null,
     buttonCenter: null,
+
+    visible: '',
+    visible_x2: '',
+    visible_color: '',
 
     activeNumber: 5,
     activeNumber_x2: 22,
@@ -177,15 +191,15 @@ export default Vue.extend({
 
       switch (program) {
         case 'foam':
-          this.setButtonStyle(this.downRedOptions)
+          this.setButtonStyle(this._downRedOptions)
           this.isDown.foam = true
           break
         case 'foam_x2':
-          this.setButtonStyle(this.downX2Options)
+          this.setButtonStyle(this._downX2Options)
           this.isDown.foam_x2 = true
           break
         case 'foam_color':
-          this.setButtonStyle(this.downColorOptions)
+          this.setButtonStyle(this._downColorOptions)
           this.isDown.foam_color = true
           break
 
@@ -202,9 +216,10 @@ export default Vue.extend({
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-      this.setButtonStyle(this.upRedOptions)
-      this.setButtonStyle(this.upColorOptions)
-      this.setButtonStyle(this.upX2Options)
+      this.setButtonStyle(this._upStandardOptions)
+      this.setButtonStyle(this._upX2Options)
+      this.setButtonStyle(this._upColorOptions)
+      this.setButtonStyle(this._upRedOptions)
     },
     getKits() {
       const result = []
@@ -229,6 +244,7 @@ export default Vue.extend({
     },
     initial() {
       // classes instances
+
       /* left button */
       this.buttonLeft = new Button({
         selector: '#button-left-foam',
@@ -272,97 +288,126 @@ export default Vue.extend({
       })
 
       // end classes
+      // clone
+      this._upStandardOptions = { ...upStandardOptions }
+      this._downStandardOptions = { ...downStandardOptions }
+      this._upX2Options = { ...upX2Options }
+      this._downX2Options = { ...downX2Options }
+      this._upColorOptions = { ...upColorOptions }
+      this._downColorOptions = { ...downColorOptions }
+      this._upRedOptions = { ...upRedOptions }
+      this._downRedOptions = { ...downRedOptions }
+      // end clone
+      if (
+        this.visible === 'block' &&
+        this.visible_color === 'none' &&
+        this.visible_x2 === 'none'
+      ) {
+        this.restore('left')
+      } else if (
+        this.visible === 'block' &&
+        this.visible_color === 'block' &&
+        this.visible_x2 === 'none'
+      ) {
+        this.restore('right_color')
+      } else if (
+        this.visible === 'block' &&
+        this.visible_color === 'none' &&
+        this.visible_x2 === 'block'
+      ) {
+        this.restore('right_x2')
+      } else if (
+        this.visible === 'block' &&
+        this.visible_color === 'block' &&
+        this.visible_x2 === 'block'
+      ) {
+        this.restore('right_color_x2')
+      }
+    },
+    restore(type) {
+      switch (type) {
+        case 'left':
+          this._upRedOptions.width = '65em'
+          this._downRedOptions.width = '65em'
+          this.buttonLeft.show()
+          this.flex()
+          this.buttonCenter.hide()
+          this.buttonRight.hide()
+          break
 
-      // set options
-      /* dev */
-      // this.resize()
-      // this.redraw()
+        case 'right_color':
+          this._upRedOptions.width = '58em'
+          this._downRedOptions.width = '58em'
+          this.buttonLeft.show()
+          this.buttonCenter.show()
+          this.flex()
+          this.buttonRight.hide()
+          break
 
-      this.setButtonStyle(this.upRedOptions)
-      this.setButtonStyle(this.upColorOptions)
-      this.setButtonStyle(this.upX2Options)
+        case 'right_x2':
+          this._upRedOptions.width = '58em'
+          this._downRedOptions.width = '58em'
+          this.buttonLeft.show()
+          this.buttonRight.show()
+          this.flex()
+          this.buttonCenter.hide()
+          break
 
+        case 'right_color_x2':
+          this._upRedOptions.width = '51em'
+          this._downRedOptions.width = '51em'
+          this.buttonLeft.show()
+          this.buttonCenter.show()
+          this.buttonRight.show()
+          this.flex()
+          break
+
+        default:
+          break
+      }
+
+      this.setButtonStyle(this._upRedOptions)
+      this.setButtonStyle(this._upColorOptions)
+      this.setButtonStyle(this._upX2Options)
     },
 
-    resize() {
-      if (
-        this.actives[this.activeNumber_x2].display === 'none' &&
-        this.actives[this.activeNumber_color].display === 'none'
-      )
-        this.upRedOptions.width = '65em'
-      if (
-        (this.actives[this.activeNumber_x2].display === 'block' &&
-          this.actives[this.activeNumber_color].display === 'none') ||
-        (this.actives[this.activeNumber_x2].display === 'none' &&
-          this.actives[this.activeNumber_color].display === 'block')
-      )
-        this.upRedOptions.width = '58em'
-      if (
-        this.actives[this.activeNumber_x2].display === 'block' &&
-        this.actives[this.activeNumber_color].display === 'block'
-      )
-        this.upRedOptions.width = '51em'
-
-    },
-    redraw() {
-      this.setButtonStyle(this.upRedOptions)
-      this.setButtonStyle(this.upColorOptions)
-      this.setButtonStyle(this.upX2Options)
-
-      console.log('this.actives[this.activeNumber_color].display', this.actives[this.activeNumber_color].display)
-      console.log('this.actives[this.activeNumber_x2].display', this.actives[this.activeNumber_x2].display)
-      console.log('this.upRedOptions.width', this.upRedOptions.width)
-      
-      if (this.actives[this.activeNumber_color].display === 'none')
-         this.buttonCenter.hide()
-      if (this.actives[this.activeNumber_x2].display === 'none')
-         this.buttonRight.hide()   
-
-    },
-
-    
-
-    flexLeft() {
+    flex() {
       this.buttonLeft.display = 'flex'
       this.buttonLeft.alignItems = 'center'
       this.buttonLeft.justifyContent = 'left'
-    },
-    flexCenter() {
+
       this.buttonCenter.display = 'flex'
       this.buttonCenter.alignItems = 'center'
       this.buttonCenter.justifyContent = 'center'
-    },
-    flexRight() {
+
       this.buttonRight.display = 'flex'
       this.buttonRight.alignItems = 'center'
       this.buttonRight.justifyContent = 'center'
     },
 
     setButtonStyle(options) {
-      // console.log('options-->', options)
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
         this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width = '51em'// options.width
-        this.flexLeft()
+        this.buttonLeft.width = options.width
       }
+
       if (options.type === 'center') {
         this.buttonCenter.background = options.background
         this.buttonCenter.border = options.border
         this.buttonCenter.boxShadow = options.boxShadow
         this.buttonCenter.fontSize = options.fontSize
         this.buttonCenter.width = options.width
-        this.flexCenter()
       }
+
       if (options.type === 'right') {
         this.buttonRight.background = options.background
         this.buttonRight.border = options.border
         this.buttonRight.boxShadow = options.boxShadow
         this.buttonRight.fontSize = options.fontSize
         this.buttonRight.width = options.width
-        this.flexRight
       }
     }
   }, // end methods
@@ -375,6 +420,10 @@ export default Vue.extend({
     this.getKits()
   },
   mounted() {
+    this.visible = this.actives[this.activeNumber].display
+    this.visible_x2 = this.actives[this.activeNumber_x2].display
+    this.visible_color = this.actives[this.activeNumber_color].display
+
     this.setup()
   }
 })

@@ -3,8 +3,28 @@
     <!--  vacuum -->
     <!-- ПЫЛЕСОС -->
     
-      <td @click="setProgram('vacuum')">
+      <!-- <td @click="setProgram('vacuum')">
         <div
+          class="waves-effect button-style"
+          :class="[
+            { 'card white': !this.isDown.vacuum },
+            { 'card card teal accent-3': this.isDown.vacuum }
+          ]"
+        >
+          <div
+            class="button-content-style"
+            :class="[
+              { 'card-content black-text': !this.isDown.vacuum },
+              { 'card-content white-text': this.isDown.vacuum }
+            ]"
+          >
+            {{ `${actives[this.activeNumber].title}` }}
+          </div>
+        </div>
+      </td> -->
+      <td>
+        <div
+          @click="setProgram('vacuum')"
           class="waves-effect button-style"
           :class="[
             { 'card white': !this.isDown.vacuum },
@@ -30,9 +50,34 @@
 import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 
+import { Component, Box, Circle, Button } from '@/shapes/index.js'
+import {
+  upDryOptions,
+  downDryOptions
+} from '@/shapes/index.js'
+
+
+
 export default Vue.extend({
   data: () => ({
+    upDryOptions: upDryOptions,
+    downDryOptions: downDryOptions,
+
+    // clone
+    _upDryOptions: null,
+    _downDryOptions: null,
+
+    // classes
+    buttonLeft: null,
+    buttonRight: null,
+
+    // native
+    visible: '',
     activeNumber: 16,
+
+    // neighbor TurboDryer
+    visibleTurboDryer: '',
+
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -85,12 +130,9 @@ export default Vue.extend({
       this.clearDown()
       switch (program) {
         case 'vacuum':
+          this.setButtonStyle(this._downDryOptions)
           this.isDown.vacuum = true
           break
-        // case 'vacuum_color':
-        //   this.isDown.vacuum_color = true
-        //   break
-
         default:
           break
       }
@@ -104,6 +146,8 @@ export default Vue.extend({
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
+
+      this.setButtonStyle(this._upDryOptions)
     },
     getKits() {
       const result = []
@@ -121,7 +165,31 @@ export default Vue.extend({
       })
 
       this.activeProgramKit = Object.fromEntries(result)
+    },
+    
+    setButtonStyle(options) {
+      if (options.type === 'left') {
+        this.buttonLeft.background = options.background
+        this.buttonLeft.border = options.border
+        this.buttonLeft.boxShadow = options.boxShadow
+        this.buttonLeft.fontSize = options.fontSize
+        this.buttonLeft.width = options.width
+
+        this.buttonRight.background = 'rgb(255, 255, 255)'
+      }
+
+      if (options.type === 'right') {
+        this.buttonRight.background = options.background
+        this.buttonRight.border = options.border
+        this.buttonRight.boxShadow = options.boxShadow
+        this.buttonRight.fontSize = options.fontSize
+        this.buttonRight.width = options.width
+
+        this.buttonLeft.background = 'rgb(255, 255, 255)'
+      }
     }
+
+
   }, // end methods
 
   beforeDestroy() {

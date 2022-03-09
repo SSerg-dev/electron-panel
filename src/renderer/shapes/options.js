@@ -101,6 +101,22 @@ const downRedOptions = {
   fontSize: '1em',
   width: '7em'
 }
+const upDryOptions = {
+  type: 'left',
+  background: 'rgb(255,255,255)',
+  border: '0.4em solid rgb(29,233,182)',
+  boxShadow: 'rgb(29,233,182) 0px 10px 20px',
+  fontSize: '1em',
+  width: '7em'
+}
+const downDryOptions = {
+  type: 'left',
+  background: 'rgb(29,233,182)',
+  border: '0.4em solid rgb(29,233,182)',
+  boxShadow: 'rgb(29,233,182) 0px 10px 20px',
+  fontSize: '1em',
+  width: '7em'
+}
 
 export {
   upStandardOptions,
@@ -114,5 +130,8 @@ export {
   upRedOptions,
   downRedOptions,
   upTurboOptions,
-  downTurboOptions
+  downTurboOptions,
+  upDryOptions,
+  downDryOptions
+
 }

@@ -73,9 +73,18 @@ export default Vue.extend({
     buttonLeft: null,
     buttonRight: null,
 
+    // native
     visible: '',
+    visible_x2: '',
     activeNumber: 15,
     activeNumber_x2: 25,
+
+    // neighbor mosquito
+    visibleDisk: '',
+    visibleDisk_x2: '',
+    activeDiskNumber: 14,
+    activeDiskNumber_x2: 24,
+    
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -105,8 +114,6 @@ export default Vue.extend({
     getWetBalance(flag) {
       if (parseInt(flag) === 0) {
         this.clearDown()
-        this.buttonLeft.background = 'white'
-        this.buttonRight.background = 'white'
       }
     }
   },
@@ -233,38 +240,50 @@ export default Vue.extend({
       this._downX2Options = { ...downX2Options }
       // end clone
 
-      if (this.visible === 'none') {
-        this.restore('left')
-      }
-      if (this.visible === 'block') {
-        this.restore('right')
-      }
-      if (this.visible === 0) {
-        this.restore('init')
+      if (this.visibleDisk === 'block') {
+        if (this.visible_x2 === 'none') {
+          this.restore('left')
+        } else if (this.visible_x2 === 'block') {
+          this.restore('right')
+        }
+      } else if (this.visibleDisk === 'none') {
+        if (this.visible_x2 === 'none') {
+          this.restore('leftDisk')
+        } else if (this.visible_x2 === 'block') {
+          this.restore('rightDisk')
+        }
       }
 
-    },
+    }, // end initial()
 
     restore(type) {
-      if (type === 'left') {
-        // console.log('left')
-        this._upStandardOptions.width = '32em'
-        this._downStandardOptions.width = '32em'
-        this.buttonRight.hide()
-      }
-      if (type === 'right') {
-        // console.log('right')
-        this._upStandardOptions.width = '25.5em'
-        this._downStandardOptions.width = '25.5em'
-        this.buttonRight.show()
-        this.flex()
-      }
-      if (type === 'init') {
-        // console.log('init')
-        this._upStandardOptions.width = '25.5em'
-        this._downStandardOptions.width = '25.5em'
-        this.buttonRight.show()
-        this.flex()
+
+      switch (type) {
+        case 'left':
+          this._upStandardOptions.width = '32em'
+          this._downStandardOptions.width = '32em'
+          this.buttonRight.hide()
+          break
+        case 'right':
+          this._upStandardOptions.width = '25.5em'
+          this._downStandardOptions.width = '25.5em'
+          this.buttonRight.show()
+          this.flex()
+          break
+        case 'leftDisk':
+          this._upStandardOptions.width = '65em'
+          this._downStandardOptions.width = '65em'
+          this.buttonRight.hide()
+          break
+        case 'rightDisk':
+          this._upStandardOptions.width = '58em'
+          this._downStandardOptions.width = '58em'
+          this.buttonRight.show()
+          this.flex()
+          break
+
+        default:
+          break
       }
 
       this.setButtonStyle(this._upStandardOptions)
@@ -274,6 +293,10 @@ export default Vue.extend({
     },
 
     flex() {
+      this.buttonLeft.display = 'flex'
+      this.buttonLeft.alignItems = 'center'
+      this.buttonLeft.justifyContent = 'left'
+
       this.buttonRight.display = 'flex'
       this.buttonRight.alignItems = 'center'
       this.buttonRight.justifyContent = 'center'
@@ -312,7 +335,15 @@ export default Vue.extend({
     this.getKits()
   },
   mounted() {
-    this.visible = this.actives[this.activeNumber_x2].display
+
+    // native
+    this.visible = this.actives[this.activeNumber].display
+    this.visible_x2 = this.actives[this.activeNumber_x2].display
+
+    // neighbor mosquito
+    this.visibleDisk = this.actives[this.activeDiskNumber].display
+    this.visibleDisk_x2 = this.actives[this.activeDiskNumber_x2].display
+
     this.setup()
   }
 })

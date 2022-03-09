@@ -20,7 +20,7 @@
       </div>
     </td>
 
-    <!-- ХОЛОДНАЯ ВОДА X2-->
+    <!-- ХОЛОДНАЯ ВОДА turbo-->
     <td>
       <div
         @click="setProgram('coldWater_turbo')"
@@ -74,9 +74,18 @@ export default Vue.extend({
     buttonLeft: null,
     buttonRight: null,
 
+    // native
     visible: '',
+    visible_turbo: '',
     activeNumber: 2,
     activeNumber_turbo: 8,
+
+    // neighbor Warm
+    visibleWarm: '',
+    visibleWarm_turbo: '',
+    activeWarmNumber: 11,
+    activeWarmNumber_turbo: 12,
+
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -106,8 +115,6 @@ export default Vue.extend({
     getWetBalance(flag) {
       if (parseInt(flag) === 0) {
         this.clearDown()
-        this.buttonLeft.background = 'white'
-        this.buttonRight.background = 'white'
       }
     }
   },
@@ -131,7 +138,6 @@ export default Vue.extend({
       this.setActiveProgram(this.active)
       this.setDown(this.active)
 
-      /* dev */
       this.updateStartProgram([
         this.getPanelType,
         this.getDefaultPanelNumber,
@@ -174,6 +180,7 @@ export default Vue.extend({
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
+      
       this.setButtonStyle(this._upStandardOptions)
       this.setButtonStyle(this._upTurboOptions)
     },
@@ -228,7 +235,7 @@ export default Vue.extend({
         justifyContent: 'center'
       })
       // end classes
-      
+
       // clone
       this._upStandardOptions = { ...upStandardOptions }
       this._downStandardOptions = { ...downStandardOptions }
@@ -236,37 +243,48 @@ export default Vue.extend({
       this._downTurboOptions = { ...downTurboOptions }
       // end clone
 
-      if (this.visible === 'none') {
-        this.restore('left')
+      if (this.visibleWarm === 'block') {
+        if (this.visible_turbo === 'none') {
+          this.restore('left')
+        } else if (this.visible_turbo === 'block') {
+          this.restore('right')
+        }
+      } else if (this.visibleWarm === 'none') {
+        if (this.visible_turbo === 'none') {
+          this.restore('leftWarm')
+        } else if (this.visible_turbo === 'block') {
+          this.restore('rightWarm')
+        }
       }
-      if (this.visible === 'block') {
-        this.restore('right')
-      }
-      if (this.visible === 0) {
-        this.restore('init')
-      }
-    },
+    }, // end initial()
 
-      restore(type) {
-      if (type === 'left') {
-        // console.log('left')
-        this._upStandardOptions.width = '32em'
-        this._downStandardOptions.width = '32em'
-        this.buttonRight.hide()
-      }
-      if (type === 'right') {
-        // console.log('right')
-        this._upStandardOptions.width = '25.5em'
-        this._downStandardOptions.width = '25.5em'
-        this.buttonRight.show()
-        this.flex()
-      }
-      if (type === 'init') {
-        // console.log('init')
-        this._upStandardOptions.width = '25.5em'
-        this._downStandardOptions.width = '25.5em'
-        this.buttonRight.show()
-        this.flex()
+    restore(type) {
+      switch (type) {
+        case 'left':
+          this._upStandardOptions.width = '32em'
+          this._downStandardOptions.width = '32em'
+          this.buttonRight.hide()
+          break
+        case 'right':
+          this._upStandardOptions.width = '25.5em'
+          this._downStandardOptions.width = '25.5em'
+          this.buttonRight.show()
+          this.flex()
+          break
+        case 'leftWarm':
+          this._upStandardOptions.width = '65em'
+          this._downStandardOptions.width = '65em'
+          this.buttonRight.hide()
+          break
+        case 'rightWarm':
+          this._upStandardOptions.width = '58em'
+          this._downStandardOptions.width = '58em'
+          this.buttonRight.show()
+          this.flex()
+          break
+
+        default:
+          break
       }
 
       this.setButtonStyle(this._upStandardOptions)
@@ -276,13 +294,16 @@ export default Vue.extend({
     },
 
     flex() {
+      this.buttonLeft.display = 'flex'
+      this.buttonLeft.alignItems = 'center'
+      this.buttonLeft.justifyContent = 'left'
+
       this.buttonRight.display = 'flex'
       this.buttonRight.alignItems = 'center'
       this.buttonRight.justifyContent = 'center'
     },
 
     setButtonStyle(options) {
-
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
         this.buttonLeft.border = options.border
@@ -313,7 +334,14 @@ export default Vue.extend({
     this.getKits()
   },
   mounted() {
-    this.visible = this.actives[this.activeNumber_turbo].display
+    // native
+    this.visible = this.actives[this.activeNumber].display
+    this.visible_turbo = this.actives[this.activeNumber_turbo].display
+
+    // neighbor warm
+    this.visibleWarm = this.actives[this.activeWarmNumber].display
+    this.visibleWarm_turbo = this.actives[this.activeWarmNumber_turbo].display
+
     this.setup()
   }
 })

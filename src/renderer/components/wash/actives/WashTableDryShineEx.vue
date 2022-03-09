@@ -20,7 +20,7 @@
       </div>
     </td>
 
-    <!-- СУШКА И БЛЕСК X2-->
+    <!-- СУШКА И БЛЕСК turbo-->
     <td>
       <div
         @click="setProgram('dryShine_turbo')"
@@ -74,9 +74,18 @@ export default Vue.extend({
     buttonLeft: null,
     buttonRight: null,
 
+    // native
     visible: '',
+    visible_turbo: '',
     activeNumber: 4,
     activeNumber_turbo: 10,
+
+    // neighbor Wax
+    visibleWax: '',
+    visibleWax_turbo: '',
+    activeWaxNumber: 3,
+    activeWaxNumber_turbo: 9,
+
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -106,8 +115,6 @@ export default Vue.extend({
     getWetBalance(flag) {
       if (parseInt(flag) === 0) {
         this.clearDown()
-        this.buttonLeft.background = 'white'
-        this.buttonRight.background = 'white'
       }
     }
   },
@@ -235,37 +242,49 @@ export default Vue.extend({
       this._downTurboOptions = { ...downTurboOptions }
       // end clone
 
-      if (this.visible === 'none') {
-        this.restore('left')
-      }
-      if (this.visible === 'block') {
-        this.restore('right')
-      }
-      if (this.visible === 0) {
-        this.restore('init')
+      if (this.visibleWax === 'block') {
+        if (this.visible_turbo === 'none') {
+          this.restore('left')
+        } else if (this.visible_turbo === 'block') {
+          this.restore('right')
+        }
+      } else if (this.visibleWax === 'none') {
+        if (this.visible_turbo === 'none') {
+          this.restore('leftWax')
+        } else if (this.visible_turbo === 'block') {
+          this.restore('rightWax')
+        }
       }
 
-    },
-      restore(type) {
-      if (type === 'left') {
-        // console.log('left')
-        this._upStandardOptions.width = '32em'
-        this._downStandardOptions.width = '32em'
-        this.buttonRight.hide()
-      }
-      if (type === 'right') {
-        // console.log('right')
-        this._upStandardOptions.width = '25.5em'
-        this._downStandardOptions.width = '25.5em'
-        this.buttonRight.show()
-        this.flex()
-      }
-      if (type === 'init') {
-        // console.log('init')
-        this._upStandardOptions.width = '25.5em'
-        this._downStandardOptions.width = '25.5em'
-        this.buttonRight.show()
-        this.flex()
+    }, // end initial()
+
+    restore(type) {
+      switch (type) {
+        case 'left':
+          this._upStandardOptions.width = '32em'
+          this._downStandardOptions.width = '32em'
+          this.buttonRight.hide()
+          break
+        case 'right':
+          this._upStandardOptions.width = '25.5em'
+          this._downStandardOptions.width = '25.5em'
+          this.buttonRight.show()
+          this.flex()
+          break
+        case 'leftWax':
+          this._upStandardOptions.width = '65em'
+          this._downStandardOptions.width = '65em'
+          this.buttonRight.hide()
+          break
+        case 'rightWax':
+          this._upStandardOptions.width = '58em'
+          this._downStandardOptions.width = '58em'
+          this.buttonRight.show()
+          this.flex()
+          break
+
+        default:
+          break
       }
 
       this.setButtonStyle(this._upStandardOptions)
@@ -273,7 +292,12 @@ export default Vue.extend({
 
       return
     },
+
     flex() {
+      this.buttonLeft.display = 'flex'
+      this.buttonLeft.alignItems = 'center'
+      this.buttonLeft.justifyContent = 'left'
+
       this.buttonRight.display = 'flex'
       this.buttonRight.alignItems = 'center'
       this.buttonRight.justifyContent = 'center'
@@ -311,7 +335,14 @@ export default Vue.extend({
     this.getKits()
   },
   mounted() {
-    this.visible = this.actives[this.activeNumber_turbo].display
+    // native
+    this.visible = this.actives[this.activeNumber].display
+    this.visible_turbo = this.actives[this.activeNumber_turbo].display
+
+    // neighbor Wax
+    this.visibleWax = this.actives[this.activeWaxNumber].display
+    this.visibleWax_turbo = this.actives[this.activeWaxNumber_turbo].display
+
     this.setup()
   }
 })

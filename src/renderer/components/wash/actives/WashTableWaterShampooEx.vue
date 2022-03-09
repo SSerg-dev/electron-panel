@@ -245,8 +245,8 @@ export default Vue.extend({
     restore(type) {
       if (type === 'left') {
         // console.log('left')
-        this._upStandardOptions.width = '64em'
-        this._downStandardOptions.width = '64em'
+        this._upStandardOptions.width = '65em'
+        this._downStandardOptions.width = '65em'
         this.buttonRight.hide()
       }
       if (type === 'right') {

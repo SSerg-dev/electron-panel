@@ -20,7 +20,7 @@
       </div>
     </td>
 
-    <!-- ВОСК И ЗАЩИТА X2-->
+    <!-- ВОСК И ЗАЩИТА turbo-->
     <td>
       <div
         @click="setProgram('waxProtection_turbo')"
@@ -74,9 +74,18 @@ export default Vue.extend({
     buttonLeft: null,
     buttonRight: null,
 
+    // native
     visible: '',
+    visible_turbo: '',
     activeNumber: 3,
     activeNumber_turbo: 9,
+
+    // neighbor DryShine
+    visibleDryShine: '',
+    visibleDryShine_turbo: '',
+    activeDryShineNumber: 4,
+    activeDryShineNumber_turbo: 10,
+
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -106,8 +115,6 @@ export default Vue.extend({
     getWetBalance(flag) {
       if (parseInt(flag) === 0) {
         this.clearDown()
-        this.buttonLeft.background = 'white'
-        this.buttonRight.background = 'white'
       }
     }
   },
@@ -234,39 +241,50 @@ export default Vue.extend({
       this._upTurboOptions = { ...upTurboOptions }
       this._downTurboOptions = { ...downTurboOptions }
       // end clone
+      
+      if (this.visibleDryShine === 'block') {
+        if (this.visible_turbo === 'none') {
+          this.restore('left')
+        } else if (this.visible_turbo === 'block') {
+          this.restore('right')
+        }
+      } else if (this.visibleDryShine === 'none') {
+        if (this.visible_turbo === 'none') {
+          this.restore('leftDryShine')
+        } else if (this.visible_turbo === 'block') {
+          this.restore('rightDryShine')
+        }
+      }
 
-      if (this.visible === 'none') {
-        this.restore('left')
-      }
-      if (this.visible === 'block') {
-        this.restore('right')
-      }
-      if (this.visible === 0) {
-        this.restore('init')
-      }
-
-    },
+    }, // end initial()
 
     restore(type) {
-      if (type === 'left') {
-        // console.log('left')
-        this._upStandardOptions.width = '32em'
-        this._downStandardOptions.width = '32em'
-        this.buttonRight.hide()
-      }
-      if (type === 'right') {
-        // console.log('right')
-        this._upStandardOptions.width = '25.5em'
-        this._downStandardOptions.width = '25.5em'
-        this.buttonRight.show()
-        this.flex()
-      }
-      if (type === 'init') {
-        // console.log('init')
-        this._upStandardOptions.width = '25.5em'
-        this._downStandardOptions.width = '25.5em'
-        this.buttonRight.show()
-        this.flex()
+      switch (type) {
+        case 'left':
+          this._upStandardOptions.width = '32em'
+          this._downStandardOptions.width = '32em'
+          this.buttonRight.hide()
+          break
+        case 'right':
+          this._upStandardOptions.width = '25.5em'
+          this._downStandardOptions.width = '25.5em'
+          this.buttonRight.show()
+          this.flex()
+          break
+        case 'leftDryShine':
+          this._upStandardOptions.width = '65em'
+          this._downStandardOptions.width = '65em'
+          this.buttonRight.hide()
+          break
+        case 'rightDryShine':
+          this._upStandardOptions.width = '58em'
+          this._downStandardOptions.width = '58em'
+          this.buttonRight.show()
+          this.flex()
+          break
+
+        default:
+          break
       }
 
       this.setButtonStyle(this._upStandardOptions)
@@ -276,6 +294,10 @@ export default Vue.extend({
     },
 
     flex() {
+      this.buttonLeft.display = 'flex'
+      this.buttonLeft.alignItems = 'center'
+      this.buttonLeft.justifyContent = 'left'
+
       this.buttonRight.display = 'flex'
       this.buttonRight.alignItems = 'center'
       this.buttonRight.justifyContent = 'center'
@@ -314,7 +336,14 @@ export default Vue.extend({
     this.getKits()
   },
   mounted() {
-    this.visible = this.actives[this.activeNumber_turbo].display
+    // native
+    this.visible = this.actives[this.activeNumber].display
+    this.visible_turbo = this.actives[this.activeNumber_turbo].display
+
+    // neighbor DryShine
+    this.visibleDryShine = this.actives[this.activeDryShineNumber].display
+    this.visibleDryShine_turbo = this.actives[this.activeDryShineNumber_turbo].display
+
     this.setup()
   }
 })
