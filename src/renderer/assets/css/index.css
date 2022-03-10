@@ -247,7 +247,7 @@
  .pagination li.disabled a {
    /* border: solid; */
    border: none;
-   border-width: 0.13rem ;
+   border-width: 0.13em ;
    border-color: white;
    border-radius: 2rem;
  

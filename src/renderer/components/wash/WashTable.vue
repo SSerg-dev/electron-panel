@@ -145,7 +145,7 @@
               <tr v-if="this.actives[16].display !== 'none'">
                 <WashTableVacuum :actives="actives" />
               </tr>
-              
+
               <tr v-if="this.actives[26].display !== 'none'">
                 <WashTableTurboDryer :actives="actives" />
               </tr>
@@ -377,7 +377,7 @@ export default {
         try {
           this.clearDown()
         } catch (err) {}
-      }, 2000)
+      }, 1000)
     },
     saveMoney() {
       if (this.getWetStopFreeCount > 0) {
@@ -539,6 +539,7 @@ table {
 tr {
   text-align: center;
   height: 120px;
+  padding-left: 0px;
   padding-right: 0px;
 
   float: left;

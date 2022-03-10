@@ -180,7 +180,7 @@ export default Vue.extend({
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-      
+
       this.setButtonStyle(this._upStandardOptions)
       this.setButtonStyle(this._upTurboOptions)
     },

@@ -97,7 +97,7 @@ export default Vue.extend({
         try {
           this.clearDown()
         } catch (err) {}
-      }, 2000)
+      }, 1000)
     },
     clearDown() {
       this.isDown = Object.fromEntries(

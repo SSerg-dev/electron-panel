@@ -107,7 +107,7 @@ const upDryOptions = {
   border: '0.4em solid rgb(29,233,182)',
   boxShadow: 'rgb(29,233,182) 0px 10px 20px',
   fontSize: '1em',
-  width: '7em'
+  width: '32em'
 }
 const downDryOptions = {
   type: 'left',
@@ -115,7 +115,7 @@ const downDryOptions = {
   border: '0.4em solid rgb(29,233,182)',
   boxShadow: 'rgb(29,233,182) 0px 10px 20px',
   fontSize: '1em',
-  width: '7em'
+  width: '32em'
 }
 
 export {

@@ -262,7 +262,7 @@ export default Vue.extend({
 <style scoped>
 .row {
   padding-top: 4em;
-  margin-bottom: 14em;
+  margin-bottom: 10em;
   margin-left: 4em;
   width: 100%;
 
@@ -297,9 +297,9 @@ h4 {
   font-size: 1em;
   width: 100%;
 
-  position: absolute;/* fixed; */
+  position: fixed;/*  absolute; relative;*/
   left: 20em;
-  bottom: 16em;
+  bottom: 4em;
 
   background: #121212;
   /* border: solid darkcyan; */

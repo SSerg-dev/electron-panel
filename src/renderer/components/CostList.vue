@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row item">
+    <div class="list-title">
       <div class="col s4">Программа</div>
       <div class="col ">цена за 1 мин</div>
       <div class="col ">
@@ -44,17 +44,13 @@ export default Vue.extend({
     })
   },
   mounted() {
-    //console.log('++this.costs mounted!!!-->', this.costs[4])
   },
   created() {
-    //console.log('++this.costs created!!!-->', this.costs[4])
     this.initCurrency()
-
   },
   methods: {
     initCurrency() {
 
-      /* dev */
       const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
       this.current = id
       this.select = title
@@ -64,54 +60,36 @@ export default Vue.extend({
       this.symbol = symbol
       /*     */
     },
-    /* ...mapGetters({
-      getDefaultCurrency: 'getDefaultCurrency',
-      getLanguageNatives: 'getLanguageNatives',
-
-
-    }) */
   }
 })
 </script>
 
 <style scoped>
-.row {
-  font-size: 2rem;
-  color: white;
-}
-/* .programm {
-  text-align: left;
-} */
-.item {
-  /*  */
+
+.list-title {
   width: 92%;
-  margin-left: 2em;
+  margin-left: -0.4em;
+  margin-bottom: 1.8em;
   padding-left: 0.8em;
+  font-size: 3.5em;
+  color: white;
+  border: solid 1px #00b9e3;
+  
 }
 
 ul {
+  margin-left: -1.2em;
   padding-top: 0rem;
 }
 ul li {
   list-style: none;
-  padding: 30px; /* 13px; */
+  padding-top: 0.5em; /* 30px */
   background: #121212;
 }
 ul li:nth-child(even) {
-  color: #00b9e3; /* #fff; */
+  color:  white;/* #00b9e3; */
   background: #212121;
 }
-/*  */
-.footer-panel {
-  height: 106px;
-  width: 100%;
-  position: fixed;
-  left: 0em;
-  bottom: -0.2em; /* -1.5em; */ /* 0px; */
-  opacity: 0.5;
 
-  /* background: linear-gradient(180deg, #2d2a47, #212045); */
-  background: #121212;
-}
 /*  */
 </style>
