@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="row">
-      
       <div class="col s2">
         <router-link to="/">
           <div class="back">
@@ -9,18 +8,20 @@
           </div>
         </router-link>
       </div>
-
     </div>
 
     <div class="row">
       <div class="col"><CostList :costs="items" /></div>
     </div>
 
-    <div class="paginate">
+    <div 
+    class="paginate"
+    style="padding-left: 8em;"
+    >
       <Paginate
         v-model="page"
         :page-count="pageCount"
-        :click-handler="pageChangeHandler"
+        :click-handler="pageChangeHandler" 
         :prev-text="''"
         :next-text="''"
         :container-class="'pagination'"
@@ -75,27 +76,11 @@ export default Vue.extend({
       getPanelType: 'getPanelType'
     })
   },
+  /* 
   watch: {
-    getParamsChange(flag) {
-      //console.log(' watch flag-->', flag)
-      /* dev */
-      /* const type = this.getPanelType
-      switch (type) {
-        case 'wash':
-          this.costs = this.getCosts()
-          this.setActiveProg()
-          break
-        case 'vacuum':
-          this.costs = this.getDryCosts()
-          this.setDryActiveProg()
-          break
-        default:
-          this.costs = []
-          console.warn('not getPanelType')
-          break
-      } */
-    }
-  },
+    getParamsChange(flag) {}
+  }, 
+  */
   methods: {
     ...mapMutations({
       setRouter: 'setRouter'
@@ -103,7 +88,7 @@ export default Vue.extend({
     setDown() {
       this.isDown = !this.isDown
     },
-
+    
     getActiveProgBit() {
       //return (this.getWetProgShow >>> 0).toString(2)
 
@@ -133,10 +118,9 @@ export default Vue.extend({
       // console.log('setActiveProg')
       // console.log('++this.costs', this.costs)
       //console.log('!!!', [...this.getActiveProgBit()])
-      
 
       this.activeProg = [...this.getActiveProgBit()].reverse().join('')
- 
+
       if (this.getWetProgPrice !== undefined) {
         this.progPrice = this.getWetProgPrice.toString().split(',')
       }
@@ -147,16 +131,16 @@ export default Vue.extend({
         if (typeof this.progPrice !== undefined)
           this.costs[i].price = this.progPrice[i + 1]?.toString()
       }
-      
+
       this.setTurboItems(this.costs)
 
       return this.costs
     },
-    
+
     /* dev */
     setDryActiveProg() {
       this.dryActiveProg = [...this.getActiveProgBit()].reverse().join('')
-      
+
       if (this.getDryProgPrice !== undefined) {
         this.dryProgPrice = this.getDryProgPrice.toString().split(',')
       }
@@ -164,11 +148,13 @@ export default Vue.extend({
       this.dryActiveProg = this.dryActiveProg.slice(1)
 
       for (let i = 0; i < this.dryActiveProg.length; i++) {
+
         if (typeof this.costs[i].display !== undefined) {
           this.costs[i].display = this.dryActiveProg?.toString().slice(i, i + 1)
         }
         if (typeof this.dryProgPrice !== undefined)
           this.costs[i].price = this.dryProgPrice[i + 1]?.toString()
+
       }
 
       return this.costs
@@ -225,9 +211,9 @@ export default Vue.extend({
     switch (type) {
       case 'wash':
         /* !!!dev */
-        this.costs = this.getCosts()
-        // this.costs = this.getPrograms()
-        
+        // this.costs = this.getCosts()
+        this.costs = this.getPrograms()
+
         this.setActiveProg()
         break
       case 'vacuum':
@@ -297,7 +283,7 @@ h4 {
   font-size: 1em;
   width: 100%;
 
-  position: fixed;/*  absolute; relative;*/
+  position: fixed; /*  absolute; relative;*/
   left: 20em;
   bottom: 4em;
 

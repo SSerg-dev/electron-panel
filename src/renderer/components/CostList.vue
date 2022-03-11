@@ -73,7 +73,8 @@ export default Vue.extend({
   padding-left: 0.8em;
   font-size: 3.5em;
   color: white;
-  border: solid 1px #00b9e3;
+  border: 1px solid;
+  border-color: #00b9e3;
   
 }
 

@@ -136,16 +136,22 @@ export default {
       }
     }
   },
-  
+
   methods: {
     ...mapGetters({
       getCashEnabler: 'getCashEnabler',
       getStoreMoneyOptions: 'getStoreMoneyOptions',
       getAppendBonus: 'getAppendBonus',
-      /* dev */
+      
       getCreateReceiptOptions: 'getCreateReceiptOptions',
       getReadReceiptOptions: 'getReadReceiptOptions',
-      getPrintReceiptOptions: 'getPrintReceiptOptions'
+      getPrintReceiptOptions: 'getPrintReceiptOptions',
+
+      /* dev */
+      getIsReceiptRead: 'getIsReceiptRead',
+      getIsReceiptCreate: 'getIsReceiptCreate',
+      getIsReceiptPrint: 'getIsReceiptPrint'
+
     }),
     ...mapMutations({
       //createCash: 'cash/createCash',
@@ -177,8 +183,8 @@ export default {
         this.$router.push('/bonus')
       }
     },
-    /* dev */
-    // 01 readReceipt
+
+// 01 readReceipt
     async readReceipt() {
       const method = methods[6]
       const type = types[4]
@@ -189,12 +195,16 @@ export default {
         // console.log('response.result', response.result)
         if (+response.result === 0) {
           this.setIsReceiptRead(true)
-          this.$message(`Выполняется панелью при формировании чека`)
+          this.$message(
+            `01 Выполняется панелью при формировании чека result--> ${+response.result}`
+          )
         } else {
           this.setIsReceiptRead(false)
           this.$message(`НЕ выполняется панелью при формировании чека`)
         }
       }
+      console.log('++getIsReceiptRead', this.getIsReceiptRead())
+
     },
 
     // 02 createReceipt
@@ -203,11 +213,18 @@ export default {
       const type = types[4]
 
       this.options = this.getCreateReceiptOptions()
-      const response = (
-        await this.storage.getClient(method, this.options, type)
-      )(+response.result === 0)
-        ? this.$message(`Выполняется при запросе чека панелью`)
-        : this.$message(`НЕ выполняется при запросе чека панелью`)
+      const response = await this.storage.getClient(method, this.options, type)
+      if (+response.result === 0) {
+        this.setIsReceiptCreate(true)
+        this.$message(
+          `02 Выполняется при запросе чека панелью result--> ${+response.result}`
+        )
+      } else {
+        this.setIsReceiptCreate(false)
+        this.$message(`НЕ выполняется при запросе чека панелью`)
+      }
+      console.log('++getIsReceiptCreate', this.getIsReceiptCreate())
+      
     },
 
     // 03 printReceipt
@@ -216,11 +233,18 @@ export default {
       const type = types[4]
 
       this.options = this.getPrintReceiptOptions()
-      const response = (
-        await this.storage.getClient(method, this.options, type)
-      )(+response.result === 0)
-        ? this.$message(`Выполняется панелью  на запрос печати чека`)
-        : this.$message(`НЕ выполняется панелью  на запрос печати чека`)
+      const response = await this.storage.getClient(method, this.options, type)
+      if (+response.result === 0) {
+        this.setIsReceiptPrint(true)
+        this.$message(
+          `03 Выполняется панелью  на запрос печати чека result--> ${+response.result}`
+        )
+      } else {
+        this.setIsReceiptPrint(false)
+        this.$message(`НЕ выполняется панелью  на запрос печати чека`)
+      }
+      console.log('++getIsReceiptPrint', this.getIsReceiptPrint())
+      
     },
 
     doReceipt() {
@@ -229,8 +253,8 @@ export default {
 
       /* dev */
       this.readReceipt()
-      //this.createReceipt()
-      //this.printReceipt()
+      this.createReceipt()
+      // this.printReceipt()
     },
 
     async payCashMoney() {
