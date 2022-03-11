@@ -185,6 +185,7 @@ export default {
     },
 
 // 01 readReceipt
+
     async readReceipt() {
       const method = methods[6]
       const type = types[4]
