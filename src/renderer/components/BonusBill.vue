@@ -381,6 +381,7 @@
                       </div>
                     </td>
                   </tr>
+
                   <!--     -->
                 </tbody>
               </table>
@@ -525,20 +526,22 @@ export default {
         program === 'append' &&
         !this.getIsMoneyToBonus
       ) {
-        console.log('appendBonusMoney')
+        console.log('BonusBill-->appendBonusMoney')
         this.appendBonusMoney()
       }
+      
       if (this.getIsMoneyToBonus && program === 'append') {
+        console.log('BonusBill-->saveBonusMoney')
         this.saveBonusMoney()
       }
-
-      if (this.getIsPayBonusMoney() && program === 'confirm') {
-        console.log('payBonusMoney')
-
+      if (this.getIsPayBonusMoney() && program === 'confirm' && !this.getIsMoneyToBonus) {
+        console.log('BonusBill-->payBonusMoney')
         this.payBonusMoney()
       }
+
       this.emitClick(program)
     },
+
     // ЗАЧИСЛИТЬ
     async appendBonusMoney() {
       const method = methods[10]
@@ -624,10 +627,11 @@ export default {
       }
     },
     // ПОДТВЕРДИТЬ
-    async payBonusMoney() {
+    payBonusMoney() {
       if (this.phone.length === this.phoneParseLength) {
         this.phoneNotParse = this.phone.replace(/[^+0-9]/g, '')
         this.setLoginBonusPhone(this.phoneNotParse)
+        console.log('this.phoneNotParse', this.phoneNotParse)
         this.$router.push('/password')
       } else {
         this.$message(`Введите правильно номер мобильного телефона`)

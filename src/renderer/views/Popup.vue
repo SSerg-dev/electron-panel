@@ -1,22 +1,16 @@
 <template>
   <div class="locate">
-    <!-- <div class="page-title">
-      <h3>
-          Popup screen<br />
-          Помощь клиенту
-      </h3>
-    </div> -->
-
-    <!-- dev -->
-    <!-- <div v-if="!getIsMoneyToBonus" class="price-bonus">
-      <img src="imgs/price/price-bonus.svg" />
-    </div> -->
-
     <section>
       <div class="row">
-        <div>
+
+        <!-- <div>
           <PopupType :actives="actives" />
+        </div> -->
+
+        <div v-if="!getIsMoneyToBonus">
+          <PopupBonus :actives="actives" />
         </div>
+
       </div>
     </section>
   </div>
@@ -26,6 +20,7 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 import PopupType from '@/components/PopupType'
+import PopupBonus from '@/components/PopupBonus'
 
 export default Vue.extend({
   data: () => ({
@@ -85,10 +80,13 @@ export default Vue.extend({
     this.actives = this.getPrograms()
   },
   mounted() {
+    console.log('++Popup')
+    
     this.setRouter('/popup')
   },
   components: {
-    PopupType
+    PopupType,
+    PopupBonus
   }
 })
 </script>
@@ -99,7 +97,7 @@ export default Vue.extend({
   padding-left: 4em;
 }
 .page-title {
-  padding-top: 4em; /* 30px; */
+  padding-top: 4em;
   color: white;
   margin-left: auto;
   margin-right: auto;

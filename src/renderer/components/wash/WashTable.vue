@@ -62,9 +62,18 @@
             </div>
           </div>
         </div>
+
+        <div 
+        v-if="!this.getIsMoneyToBonus"
+        class="savemoney"
+        >
+        <WashTableBonus :actives="actives"/>
+      </div>
+
       </section>
 
-      <div :key="getWetProgShow">
+      
+      <div v-if="this.getIsMoneyToBonus" :key="getWetProgShow">
         <table border="0" width="100%" cellpadding="0" cellspacing="0">
           <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
             <!-- 0 -->
@@ -142,24 +151,21 @@
             <!-- dry group -->
             <!-- vacuum air washer turboDryer -->
 
-              <tr v-if="this.actives[16].display !== 'none'">
-                <WashTableVacuum :actives="actives" />
-              </tr>
+            <tr v-if="this.actives[16].display !== 'none'">
+              <WashTableVacuum :actives="actives" />
+            </tr>
 
-              <tr v-if="this.actives[26].display !== 'none'">
-                <WashTableTurboDryer :actives="actives" />
-              </tr>
-            
-              <tr v-if="this.actives[17].display !== 'none'">
-                <WashTableAir :actives="actives" />
-              </tr>
+            <tr v-if="this.actives[26].display !== 'none'">
+              <WashTableTurboDryer :actives="actives" />
+            </tr>
 
-              <tr v-if="this.actives[18].display !== 'none'">
-                <WashTableWasher :actives="actives" />
-              </tr>
-            
+            <tr v-if="this.actives[17].display !== 'none'">
+              <WashTableAir :actives="actives" />
+            </tr>
 
-
+            <tr v-if="this.actives[18].display !== 'none'">
+              <WashTableWasher :actives="actives" />
+            </tr>
           </tbody>
         </table>
       </div>
@@ -172,6 +178,10 @@ import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import Message from '@/components/app/Message'
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
+
+import { Database } from '@/storage/database.js'
+import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
+import { Storage } from '@/storage/index.js'
 
 import WashTableDiskEx from '@/components/wash/actives/WashTableDiskEx'
 import WashTableMosquitoEx from '@/components/wash/actives/WashTableMosquitoEx'
@@ -189,19 +199,23 @@ import WashTableWasher from '@/components/wash/actives/WashTableWasher'
 import WashTableTurboDryer from '@/components/wash/actives/WashTableTurboDryer'
 import WashTableDegrease from '@/components/wash/actives/WashTableDegrease'
 import WashTableDisinfection from '@/components/wash/actives/WashTableDisinfection'
-/* WashTableDisinfection */
+
+import WashTableBonus from '@/components/wash/WashTableBonus'
+
 
 export default {
   data: () => ({
-    /* dev */
-    // testView: '',
     popupDelay: 2000,
 
     name: 'program-table',
     timeoutDelay: null,
     isVisible: false,
-    //loading: true,
-    //records: [],
+
+    client: 'fetch',
+    url: 'https://192.168.1.3/',
+    storage: null,
+    options: {},
+
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -218,7 +232,6 @@ export default {
     buttonReceipt: null,
     buttonBonus: null,
 
-    /* dev */
     emoji: '',
     currency: '',
     symbol: '',
@@ -241,7 +254,8 @@ export default {
     WashTableTurboDryer,
     WashTableWasher,
     WashTableDegrease,
-    WashTableDisinfection
+    WashTableDisinfection,
+    WashTableBonus
   },
   props: {
     actives: {
@@ -254,11 +268,6 @@ export default {
     }
   },
 
-  /* 
-  this.buttonPrice.hide()
-      this.buttonReceipt.hide()
-      this.buttonBonus.hide()
-  */
   watch: {
     getWetBalance(flag) {
       console.log('getWetBalance', flag)
@@ -311,31 +320,36 @@ export default {
       setIsReceiptRead: 'setIsReceiptRead',
       setIsReceiptCreate: 'setIsReceiptCreate',
       setIsReceiptPrint: 'setIsReceiptPrint',
+
       setIsMoneyToBonus: 'setIsMoneyToBonus',
       setMoneyToBonus: 'setMoneyToBonus'
     }),
-    ...mapGetters({}),
+    ...mapGetters({
+      getPrintReceiptOptions: 'getPrintReceiptOptions'
+      // getIsReceiptPrint: 'getIsReceiptPrint'
+    }),
     setProgram(program) {
+      if (program === 'price') {
+        this.isDown.price = true
+        this.buttonPrice.background = 'rgb(64, 196, 255)'
+        this.setDown()
+        this.$router.push('/cost')
+        return
+      }
+      if (program === 'receipt') {
+        this.printReceipt()
+        this.isDown.receipt = true
+        this.buttonReceipt.background = 'rgb(64, 196, 255)'
+        this.setDown()
+        return
+      }
+
       if (program === 'savemoney') {
         this.isDown.bonus = true
         this.buttonBonus.background = 'rgb(64, 196, 255)'
         this.setDown()
         /* dev */
         this.saveMoney()
-        return
-      }
-      if (program === 'price') {
-        this.isDown.price = true
-        this.buttonPrice.background = 'rgb(64, 196, 255)'
-        this.setDown()
-        /* dev */
-        this.$router.push('/cost')
-        return
-      }
-      if (program === 'receipt') {
-        this.isDown.receipt = true
-        this.buttonReceipt.background = 'rgb(64, 196, 255)'
-        this.setDown()
         return
       }
 
@@ -380,12 +394,32 @@ export default {
       }, 1000)
     },
     saveMoney() {
-      if (this.getWetStopFreeCount > 0) {
+      if (this.getWetStopFreeCount >= 0) {
         this.setIsMoneyToBonus(true)
         this.setMoneyToBonus(this.getWetBalance)
-        this.$router.push('/bonus')
+        /* dev */
+        // this.$router.push('/bonus')
       }
     },
+    // printReceipt
+    async printReceipt() {
+      const method = methods[7]
+      const type = types[4]
+
+      this.options = this.getPrintReceiptOptions()
+      const response = await this.storage.getClient(method, this.options, type)
+      if (+response.result === 0) {
+        this.setIsReceiptPrint(true)
+        this.$message(
+          `03 Выполняется панелью  на запрос печати чека result--> ${+response.result}`
+        )
+      } else {
+        this.setIsReceiptPrint(false)
+        this.$message(`НЕ выполняется панелью  на запрос печати чека`)
+      }
+      console.log('++ WashTable-->getIsReceiptPrint-->', this.getIsReceiptPrint)
+    },
+
     clearDown() {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
@@ -456,19 +490,12 @@ export default {
 
       if (!+this.getWetBalance > 0) this.buttonPrice.hide()
       if (!this.getIsReceiptRead) this.buttonReceipt.hide()
-      if (!this.getIsMoneyToBonus) this.buttonBonus.hide()
-
-      // console.log('++getWetBalance',this.getWetBalance)
-      // console.log('++getIsReceiptRead', this.getIsReceiptRead)
-      // console.log('++getIsMoneyToBonus', this.getIsMoneyToBonus)
-
-      //this.buttonBonus.show()
-      // this.flex()
+      /* dev */
+      if (this.getIsMoneyToBonus) this.buttonBonus.hide()
 
       // end classes instances
     },
     initCurrency() {
-      /* dev */
       const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
 
       this.current = id
@@ -486,13 +513,14 @@ export default {
     }
   },
   mounted() {
+    this.storage = new Storage(this.client, this.url)
+    //this.initial()
+    this.setup()
     if (!this.isVisible) {
       this.timeoutDelay = setTimeout(() => {
         this.isVisible = true
       }, this.delay)
     }
-    //this.initial()
-    this.setup()
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
@@ -570,6 +598,12 @@ td {
   margin-top: 0em;
   margin-left: 62em;
 }
+.savemoney {
+  position: absolute;
+  margin-top: 12em;
+  margin-left: 2em;
+}
+
 .button-content-style {
   font-size: 5em;
   margin-left: 0em;

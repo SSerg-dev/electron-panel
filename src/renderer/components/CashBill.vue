@@ -116,7 +116,6 @@ export default {
     url: 'https://192.168.1.3/',
     storage: null,
     options: {}
-    //IsWetBalance: false
   }),
   mounted() {
     this.storage = new Storage(this.client, this.url)
@@ -204,7 +203,7 @@ export default {
           this.$message(`НЕ выполняется панелью при формировании чека`)
         }
       }
-      console.log('++getIsReceiptRead', this.getIsReceiptRead())
+      // console.log('++getIsReceiptRead', this.getIsReceiptRead())
 
     },
 
@@ -224,12 +223,13 @@ export default {
         this.setIsReceiptCreate(false)
         this.$message(`НЕ выполняется при запросе чека панелью`)
       }
-      console.log('++getIsReceiptCreate', this.getIsReceiptCreate())
+      // console.log('++getIsReceiptCreate', this.getIsReceiptCreate())
       
     },
 
     // 03 printReceipt
-    async printReceipt() {
+
+    /* async printReceipt() {
       const method = methods[7]
       const type = types[4]
 
@@ -246,7 +246,7 @@ export default {
       }
       console.log('++getIsReceiptPrint', this.getIsReceiptPrint())
       
-    },
+    }, */
 
     doReceipt() {
       console.log('!!! Wet doReceipt()')

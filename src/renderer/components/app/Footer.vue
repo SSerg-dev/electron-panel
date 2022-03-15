@@ -123,6 +123,9 @@ export default {
         if (parseInt(flag) > 0) {
           this.setIsMoneyToBonus(true) 
         } 
+        else {
+          this.setIsMoneyToBonus(false)
+        }
       } catch (err) {}
     }
   },
@@ -152,7 +155,8 @@ export default {
           /* if (this.$route.name !== 'home') {
             this.$router.push('/')
           } */
-          this.$router.push('/program')
+          /* this.$router.push('/program') */
+          this.$router.push('/popup')
 
         } catch (err) {}
       }, this.delay)
