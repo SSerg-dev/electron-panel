@@ -171,7 +171,7 @@ export default Vue.extend({
       //this.pingUrl()
       // this.completeWash()
       //console.log('this.getDefaultPanelNumber-->', this.getDefaultPanelNumber())
-    }, 2000)
+    }, 1000)
     //},
   },
   beforeDestroy() {

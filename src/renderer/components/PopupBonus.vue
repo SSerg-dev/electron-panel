@@ -46,7 +46,7 @@ export default Vue.extend({
     messages: [
       'На Ваш счет',
       'зачислено',
-      'бонуса',
+      'бонуса(ов)',
       'Баланс всегда доступен',
       'в личном кабинете',
       'в мобильном приложении',
@@ -63,77 +63,75 @@ export default Vue.extend({
   },
   computed: {
     ...mapGetters({
-      getSecondsGotoPopupMenu: 'getSecondsGotoPopupMenu',
-      getPanelType: 'getPanelType',
-      getWetStopFreeCount: 'getWetStopFreeCount',
-      getWetSpend: 'getWetSpend',
-      getWetBalance: 'getWetBalance'
+      // getSecondsGotoPopupMenu: 'getSecondsGotoPopupMenu',
+      // getPanelType: 'getPanelType',
+      // getWetStopFreeCount: 'getWetStopFreeCount',
+      // getWetSpend: 'getWetSpend',
+      // getWetBalance: 'getWetBalance'
     })
   },
   watch: {
-    getWetStopFreeCount(flag) {
-      try {
-        if (parseInt(flag) > 0) {
-          this.isStop = true
-          this.messageIndex = 0
-        } else {
-          this.isStop = false
-          if (this.$route.name !== 'program') this.$router.push('/program')
-        }
-      } catch (err) {}
-    }
+    // getWetStopFreeCount(flag) {
+    //   try {
+    //     if (parseInt(flag) > 0) {
+    //       this.isStop = true
+    //       this.messageIndex = 0
+    //     } else {
+    //       this.isStop = false
+    //       if (this.$route.name !== 'program') this.$router.push('/program')
+    //     }
+    //   } catch (err) {}
+    // }
   },
   methods: {
     ...mapMutations({
-      setActiveProgram: 'setActiveProgram',
-      setActiveProgramKit: 'setActiveProgramKit',
-      setIsActiveProgramKit: 'setIsActiveProgramKit'
+      // setActiveProgram: 'setActiveProgram',
+      // setActiveProgramKit: 'setActiveProgramKit',
+      // setIsActiveProgramKit: 'setIsActiveProgramKit'
     }),
     ...mapGetters({
-      getActiveProgram: 'getActiveProgram',
-      getActiveProgramKit: 'getActiveProgramKit',
-      getIsActiveProgramKit: 'getIsActiveProgramKit'
+      // getActiveProgram: 'getActiveProgram',
+      // getActiveProgramKit: 'getActiveProgramKit',
+      // getIsActiveProgramKit: 'getIsActiveProgramKit'
     }),
     setup() {
-      this.activeProgram = this.getActiveProgram()
-      this.activeProgramKit = this.getActiveProgramKit()
-      if (!this.getIsActiveProgramKit()) {
-        this.setIsActiveProgramKit(false)
-        this.delay = 1000
+      // this.activeProgram = this.getActiveProgram()
+      // this.activeProgramKit = this.getActiveProgramKit()
+      // if (!this.getIsActiveProgramKit()) {
+      //   this.setIsActiveProgramKit(false)
+      //   this.delay = 1000
 
-        // footer
-        if (this.activeProgram === 'stop') {
-          this.isStop = true
-          this.messageIndex = 0
-        }
-        if (this.activeProgram === 'operator') {
-          this.isOperator = true
-          this.messageIndex = 1
-        }
-        if (this.activeProgram === 'turbo') {
-          this.isTurbo = true
-          this.messageIndex = 2
-        }
-      }
+      //   // footer
+      //   if (this.activeProgram === 'stop') {
+      //     this.isStop = true
+      //     this.messageIndex = 0
+      //   }
+      //   if (this.activeProgram === 'operator') {
+      //     this.isOperator = true
+      //     this.messageIndex = 1
+      //   }
+      //   if (this.activeProgram === 'turbo') {
+      //     this.isTurbo = true
+      //     this.messageIndex = 2
+      //   }
+      // }
 
-      if (this.getIsActiveProgramKit()) {
-        // x2, turbo, color,
-        //this.setIsActiveProgramKit(true)
-        this.delay = 1000000
-      }
+      // if (this.getIsActiveProgramKit()) {
+      //   this.delay = 1000000
+      // }
     },
 
     gotoProgramMenu(seconds) {
-      try {
-        this.intervalPopupMenu = setInterval(() => {
-          if (--seconds <= 0) {
-            this.$router.push('/program')
-            return
-          }
-        }, this.delay)
-      } catch (err) {
-        console.warn(err)
-      }
+      // try {
+      //   this.intervalPopupMenu = setInterval(() => {
+      //     if (--seconds <= 0) {
+      //       this.$router.push('/program')
+      //       return
+      //     }
+      //   }, this.delay)
+      // } catch (err) {
+      //   console.warn(err)
+      // }
     }
   },
   mounted() {
@@ -151,7 +149,7 @@ export default Vue.extend({
     clearInterval(this.intervalPopupMenu)
   },
   components: {
-    PopupTypeActive
+    // PopupTypeActive
   }
 })
 </script>

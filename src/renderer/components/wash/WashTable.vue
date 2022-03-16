@@ -63,112 +63,110 @@
           </div>
         </div>
 
-        <div 
-        v-if="!this.getIsMoneyToBonus"
-        class="savemoney"
+        <div
+          v-if="this.isVisibleWashTableBonus"
+          class="savemoney"
         >
-        <WashTableBonus :actives="actives"/>
-      </div>
+          <WashTableBonus :actives="actives" />
+        </div>
 
+        <div v-else :key="getWetProgShow">
+          <table border="0" width="100%" cellpadding="0" cellspacing="0">
+            <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
+              <!-- 0 -->
+              <!-- ОБЕЗЖИРИВАНИЕ degrease -->
+              <tr v-if="this.actives[27].display !== 'none'">
+                <WashTableDegrease :actives="actives" />
+              </tr>
+
+              <!-- 1 -->
+              <!-- ДИСКИ -->
+              <tr v-if="this.actives[14].display !== 'none'">
+                <WashTableDiskEx :actives="actives" />
+              </tr>
+
+              <!-- 2 -->
+              <!-- АНТИМОСКИТ -->
+              <tr v-if="this.actives[15].display !== 'none'">
+                <WashTableMosquitoEx :actives="actives" />
+              </tr>
+
+              <!-- 3 -->
+              <!-- ШАМПУНЬ shampoo -->
+              <tr v-if="this.actives[0].display !== 'none'">
+                <WashTableShampooEx :actives="actives" />
+              </tr>
+
+              <!-- 4 -->
+              <!-- ЩЕТКА + ПЕНА -->
+              <tr v-if="this.actives[13].display !== 'none'">
+                <WashTableBrushFoamEx :actives="actives" />
+              </tr>
+
+              <!-- 5 -->
+              <!-- ПЕНА -->
+              <tr v-if="this.actives[5].display !== 'none'">
+                <WashTableFoamEx :actives="actives" />
+              </tr>
+
+              <!-- 6 -->
+              <!-- ВОДА + ШАМПУНЬ -->
+              <tr v-if="this.actives[1].display !== 'none'">
+                <WashTableWaterShampooEx :actives="actives" />
+              </tr>
+
+              <!-- 7 -->
+              <!-- ХОЛОДНАЯ ВОДА coldWater -->
+              <tr v-if="this.actives[2].display !== 'none'">
+                <WashTableColdWaterEx :actives="actives" />
+              </tr>
+
+              <!-- 8 -->
+              <!-- ТЕПЛАЯ ВОДА warmWater -->
+              <tr v-if="this.actives[11].display !== 'none'">
+                <WashTableWarmWaterEx :actives="actives" />
+              </tr>
+
+              <!-- 9 -->
+              <!-- ВОСК И ЗАЩИТА waxProtection -->
+              <tr v-if="this.actives[3].display !== 'none'">
+                <WashTableWaxProtectionEx :actives="actives" />
+              </tr>
+
+              <!-- 10 -->
+              <!-- СУШКА И БЛЕСК dryShine-->
+              <tr v-if="this.actives[4].display !== 'none'">
+                <WashTableDryShineEx :actives="actives" />
+              </tr>
+
+              <!-- 11 -->
+              <!-- ДЕЗИНФЕКЦИЯ disinfection -->
+              <tr v-if="this.actives[28].display !== 'none'">
+                <WashTableDisinfection :actives="actives" />
+              </tr>
+
+              <!-- dry group -->
+              <!-- vacuum air washer turboDryer -->
+
+              <tr v-if="this.actives[16].display !== 'none'">
+                <WashTableVacuum :actives="actives" />
+              </tr>
+
+              <tr v-if="this.actives[26].display !== 'none'">
+                <WashTableTurboDryer :actives="actives" />
+              </tr>
+
+              <tr v-if="this.actives[17].display !== 'none'">
+                <WashTableAir :actives="actives" />
+              </tr>
+
+              <tr v-if="this.actives[18].display !== 'none'">
+                <WashTableWasher :actives="actives" />
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
-
-      
-      <div v-if="this.getIsMoneyToBonus" :key="getWetProgShow">
-        <table border="0" width="100%" cellpadding="0" cellspacing="0">
-          <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
-            <!-- 0 -->
-            <!-- ОБЕЗЖИРИВАНИЕ degrease -->
-            <tr v-if="this.actives[27].display !== 'none'">
-              <WashTableDegrease :actives="actives" />
-            </tr>
-
-            <!-- 1 -->
-            <!-- ДИСКИ -->
-            <tr v-if="this.actives[14].display !== 'none'">
-              <WashTableDiskEx :actives="actives" />
-            </tr>
-
-            <!-- 2 -->
-            <!-- АНТИМОСКИТ -->
-            <tr v-if="this.actives[15].display !== 'none'">
-              <WashTableMosquitoEx :actives="actives" />
-            </tr>
-
-            <!-- 3 -->
-            <!-- ШАМПУНЬ shampoo -->
-            <tr v-if="this.actives[0].display !== 'none'">
-              <WashTableShampooEx :actives="actives" />
-            </tr>
-
-            <!-- 4 -->
-            <!-- ЩЕТКА + ПЕНА -->
-            <tr v-if="this.actives[13].display !== 'none'">
-              <WashTableBrushFoamEx :actives="actives" />
-            </tr>
-
-            <!-- 5 -->
-            <!-- ПЕНА -->
-            <tr v-if="this.actives[5].display !== 'none'">
-              <WashTableFoamEx :actives="actives" />
-            </tr>
-
-            <!-- 6 -->
-            <!-- ВОДА + ШАМПУНЬ -->
-            <tr v-if="this.actives[1].display !== 'none'">
-              <WashTableWaterShampooEx :actives="actives" />
-            </tr>
-
-            <!-- 7 -->
-            <!-- ХОЛОДНАЯ ВОДА coldWater -->
-            <tr v-if="this.actives[2].display !== 'none'">
-              <WashTableColdWaterEx :actives="actives" />
-            </tr>
-
-            <!-- 8 -->
-            <!-- ТЕПЛАЯ ВОДА warmWater -->
-            <tr v-if="this.actives[11].display !== 'none'">
-              <WashTableWarmWaterEx :actives="actives" />
-            </tr>
-
-            <!-- 9 -->
-            <!-- ВОСК И ЗАЩИТА waxProtection -->
-            <tr v-if="this.actives[3].display !== 'none'">
-              <WashTableWaxProtectionEx :actives="actives" />
-            </tr>
-
-            <!-- 10 -->
-            <!-- СУШКА И БЛЕСК dryShine-->
-            <tr v-if="this.actives[4].display !== 'none'">
-              <WashTableDryShineEx :actives="actives" />
-            </tr>
-
-            <!-- 11 -->
-            <!-- ДЕЗИНФЕКЦИЯ disinfection -->
-            <tr v-if="this.actives[28].display !== 'none'">
-              <WashTableDisinfection :actives="actives" />
-            </tr>
-
-            <!-- dry group -->
-            <!-- vacuum air washer turboDryer -->
-
-            <tr v-if="this.actives[16].display !== 'none'">
-              <WashTableVacuum :actives="actives" />
-            </tr>
-
-            <tr v-if="this.actives[26].display !== 'none'">
-              <WashTableTurboDryer :actives="actives" />
-            </tr>
-
-            <tr v-if="this.actives[17].display !== 'none'">
-              <WashTableAir :actives="actives" />
-            </tr>
-
-            <tr v-if="this.actives[18].display !== 'none'">
-              <WashTableWasher :actives="actives" />
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
   </div>
 </template>
@@ -202,7 +200,6 @@ import WashTableDisinfection from '@/components/wash/actives/WashTableDisinfecti
 
 import WashTableBonus from '@/components/wash/WashTableBonus'
 
-
 export default {
   data: () => ({
     popupDelay: 2000,
@@ -210,6 +207,7 @@ export default {
     name: 'program-table',
     timeoutDelay: null,
     isVisible: false,
+    isVisibleWashTableBonus: false,
 
     client: 'fetch',
     url: 'https://192.168.1.3/',
@@ -286,7 +284,11 @@ export default {
       if (flag) {
         this.buttonBonus.show()
         this.flex()
-      } else this.buttonBonus.hide()
+      } else {
+        this.isVisibleWashTableBonus = false
+        this.buttonBonus.hide()
+      }
+      
     }
   },
   computed: {
@@ -395,6 +397,8 @@ export default {
     },
     saveMoney() {
       if (this.getWetStopFreeCount >= 0) {
+        this.isVisibleWashTableBonus = true  
+
         this.setIsMoneyToBonus(true)
         this.setMoneyToBonus(this.getWetBalance)
         /* dev */
@@ -429,6 +433,7 @@ export default {
       this.buttonBonus.background = 'rgb(255, 255, 255)'
     },
     setup() {
+      /* dev */
       this.setIsMoneyToBonus(false)
       this.setMoneyToBonus(0)
       this.initCurrency()
@@ -491,7 +496,7 @@ export default {
       if (!+this.getWetBalance > 0) this.buttonPrice.hide()
       if (!this.getIsReceiptRead) this.buttonReceipt.hide()
       /* dev */
-      if (this.getIsMoneyToBonus) this.buttonBonus.hide()
+      if (!this.getIsMoneyToBonus) this.buttonBonus.hide()
 
       // end classes instances
     },
@@ -552,7 +557,7 @@ table {
   position: absolute;
   /* position: relative; */
   margin-top: 18em; /*8em 17.5em 18em; */
-  margin-left: 3em; /* 33em; */
+  margin-left: 2.5em; /* 33em; */
 
   font-family: 'Plumb-Medium';
   font-weight: bold;
@@ -587,11 +592,12 @@ td {
 .price {
   position: absolute;
   margin-top: 0em;
+  margin-left: 0.5em;
 }
 .receipt {
   position: absolute;
   margin-top: 9.2em;
-  margin-left: 0em;
+  margin-left: 0.5em;
 }
 .bonus {
   position: absolute;

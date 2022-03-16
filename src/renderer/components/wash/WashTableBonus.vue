@@ -147,7 +147,8 @@ export default {
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getWetBalance: 'getWetBalance'
+      getWetBalance: 'getWetBalance',
+      getWetStopFreeCount: 'getWetStopFreeCount'
     })
   },
 
@@ -165,12 +166,16 @@ export default {
       getIsActiveProgramKit: 'getIsActiveProgramKit'
     }),
     ...mapActions({
-      updateStartProgram: 'updateStartProgram'
+      updateStartProgram: 'updateStartProgram',
+      updateWetZeroMoney: 'updateWetZeroMoney'
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setActiveProgramKit: 'setActiveProgramKit',
-      setIsActiveProgramKit: 'setIsActiveProgramKit'
+      setIsActiveProgramKit: 'setIsActiveProgramKit',
+
+      setIsMoneyToBonus: 'setIsMoneyToBonus',
+      setMoneyToBonus: 'setMoneyToBonus'
     }),
     setProgram(program) {
       this.active = program
@@ -191,11 +196,26 @@ export default {
         }, this.delay)
       } else this.$message(`Недостаточно средств`)
     },
+
+    saveMoney() {
+      if (this.getWetStopFreeCount >= 0) {
+        // this.isVisibleWashTableBonus = true  
+
+        this.setIsMoneyToBonus(true)
+        this.setMoneyToBonus(this.getWetBalance)
+        
+      }
+    },
     setDown(program) {
       this.clearDown()
 
       switch (program) {
+
         case 'yes':
+          console.log('++yes')
+          // this.updateWetZeroMoney(true)
+          this.saveMoney()
+
           this.setButtonStyle(this._downGreenOptions)
           this.isDown.yes = true
           this.timeoutDelay = setTimeout(() => {
@@ -205,12 +225,18 @@ export default {
           }, this.delay = 500)
           
           break
+
         case 'no':
+          console.log('++no')  
+
+          this.setMoneyToBonus(0)
+          this.setIsMoneyToBonus(false)
+
           this.setButtonStyle(this._downRedOptions)
           this.isDown.no = true
           this.timeoutDelay = setTimeout(() => {
             try {
-              this.$router.push('/')
+              // this.$router.push('/program')
             } catch (err) {}
           }, this.delay = 500)
           
@@ -223,7 +249,7 @@ export default {
         try {
           if (this.getWetBalance !== '0') this.clearDown()
         } catch (err) {}
-      }, 2000)
+      }, 1000)
     },
 
     clearDown() {

@@ -183,7 +183,7 @@ export default Vue.extend({
       if (parseInt(this.getWetBalance) > 0) {
         this.timeoutPopup = setTimeout(() => {
           // this.$router.push('/popup')
-        }, 2000)
+        }, 1000)
       } else this.$message(`Недостаточно средств`)
     },
     setDown(program) {
@@ -210,7 +210,7 @@ export default Vue.extend({
         try {
           if (this.getWetBalance === '0') this.clearDown()
         } catch (err) {}
-      }, 2000)
+      }, 1000)
     },
     clearDown() {
       this.isDown = Object.fromEntries(
@@ -327,8 +327,8 @@ export default Vue.extend({
     restore(type) {
       switch (type) {
         case 'left':
-          this._upRedOptions.width = '65em'
-          this._downRedOptions.width = '65em'
+          this._upRedOptions.width = '67em'
+          this._downRedOptions.width = '67em'
           this.buttonLeft.show()
           this.flex()
           this.buttonCenter.hide()
@@ -435,6 +435,7 @@ tr,
 td {
   border: none;
   padding-top: 0.5em;
+  padding-right: 15px;
 }
 
 .button-content-style {

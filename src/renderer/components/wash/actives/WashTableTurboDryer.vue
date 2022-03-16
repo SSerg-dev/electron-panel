@@ -123,7 +123,7 @@ export default Vue.extend({
       if (parseInt(this.getWetBalance) > 0) {
         this.timeoutPopup = setTimeout(() => {
           // this.$router.push('/popup')
-        }, 2000)
+        }, 1000)
       } else this.$message(`Недостаточно средств`)
     },
     setDown(program) {
@@ -217,15 +217,15 @@ export default Vue.extend({
       switch (type) {
         case 'left':
         case 'combo':
-          this._upDryOptions.width = this.upDryOptions.width // '32em'
-          this._downDryOptions.width = this.downDryOptions.width // '32em'
+          this._upDryOptions.width = this.upDryOptions.width = '33em'// '32em'
+          this._downDryOptions.width = this.downDryOptions.width = '33em'// '32em'
           this.buttonLeft.show()
           this.flex()
           break
         case 'right':
         case 'last':
-          this._upDryOptions.width = '65em'
-          this._downDryOptions.width = '65em'
+          this._upDryOptions.width = '67em'
+          this._downDryOptions.width = '67em'
           this.buttonLeft.show()
           this.flex()
           break
@@ -283,6 +283,7 @@ tr,
 td {
   border: none;
   padding-top: 0.5em;
+  padding-right: 10px;
 }
 
 .button-content-style {

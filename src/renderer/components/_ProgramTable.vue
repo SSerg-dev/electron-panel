@@ -1246,7 +1246,7 @@ export default {
         try {
           this.$router.push('/popup')
         } catch(err) {} 
-      }, 2000)
+      }, 1000)
     },
     setDown(program) {
       this.clearDown()

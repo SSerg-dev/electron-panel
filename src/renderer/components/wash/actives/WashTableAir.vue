@@ -116,7 +116,7 @@ export default Vue.extend({
       if (parseInt(this.getWetBalance) > 0) {
         this.timeoutPopup = setTimeout(() => {
           // this.$router.push('/popup')
-        }, 2000)
+        }, 1000)
       } else this.$message(`Недостаточно средств`)
     },
     setDown(program) {
@@ -170,7 +170,7 @@ export default Vue.extend({
       this.buttonLeft = new Button({
         selector: '#button-air',
 
-        width: 32,
+        width: 33,
         height: 7,
         background: 'rgb(255, 255, 255)',
         borderRadius: 4,
@@ -204,8 +204,8 @@ export default Vue.extend({
           this.flex()
           break
         case 'right':
-          this._upDryOptions.width = '65em'
-          this._downDryOptions.width = '65em'
+          this._upDryOptions.width = '67em'
+          this._downDryOptions.width = '67em'
           this.buttonLeft.show()
           this.flex()
           break
@@ -260,6 +260,7 @@ tr,
 td {
   border: none;
   padding-top: 0.5em;
+  padding-right: 10px;
 }
 
 .button-content-style {

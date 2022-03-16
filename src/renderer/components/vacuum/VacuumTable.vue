@@ -258,7 +258,7 @@ export default {
 
        this.timeoutPopup = setTimeout(() => {
          this.$router.push('/popup')
-       }, 2000)
+       }, 1000)
 
     },
     setDown(program) {

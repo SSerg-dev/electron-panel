@@ -151,7 +151,7 @@ export default Vue.extend({
       if (parseInt(this.getWetBalance) > 0) {
         this.timeoutPopup = setTimeout(() => {
           // this.$router.push('/popup')
-        }, 2000)
+        }, 1000)
       } else this.$message(`Недостаточно средств`)
     },
     setDown(program) {
@@ -174,7 +174,7 @@ export default Vue.extend({
         try {
           if (this.getWetBalance === '0') this.clearDown()
         } catch (err) {}
-      }, 2000)
+      }, 1000)
     },
     clearDown() {
       this.isDown = Object.fromEntries(
@@ -354,6 +354,7 @@ tr,
 td {
   border: none;
   padding-top: 0.5em;
+  padding-right: 10px;
 }
 
 .button-content-style {

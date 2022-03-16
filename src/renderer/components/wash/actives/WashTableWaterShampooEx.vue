@@ -142,7 +142,7 @@ export default Vue.extend({
       if (parseInt(this.getWetBalance) > 0) {
         this.timeoutPopup = setTimeout(() => {
           // this.$router.push('/popup')
-        }, 2000)
+        }, 1000)
       } else this.$message(`Недостаточно средств`)
     },
     setDown(program) {
@@ -165,7 +165,7 @@ export default Vue.extend({
         try {
           if (this.getWetBalance === '0') this.clearDown()
         } catch (err) {}
-      }, 2000)
+      }, 1000)
     },
     clearDown() {
       this.isDown = Object.fromEntries(
@@ -245,21 +245,21 @@ export default Vue.extend({
     restore(type) {
       if (type === 'left') {
         // console.log('left')
-        this._upStandardOptions.width = '65em'
-        this._downStandardOptions.width = '65em'
+        this._upStandardOptions.width = '67em'
+        this._downStandardOptions.width = '67em'
         this.buttonRight.hide()
       }
       if (type === 'right') {
         // console.log('right')
-        this._upStandardOptions.width = '58em'
-        this._downStandardOptions.width = '58em'
+        this._upStandardOptions.width = '59.5em'
+        this._downStandardOptions.width = '59.5em'
         this.buttonRight.show()
         this.flex()
       }
       if (type === 'init') {
         // console.log('init')
-        this._upStandardOptions.width = '58em'
-        this._downStandardOptions.width = '58em'
+        this._upStandardOptions.width = '59.5em'
+        this._downStandardOptions.width = '59.5em'
         this.buttonRight.show()
         this.flex()
       }
@@ -322,6 +322,7 @@ tr,
 td {
   border: none;
   padding-top: 0.5em;
+  padding-right: 10px;
 }
 
 .button-content-style {

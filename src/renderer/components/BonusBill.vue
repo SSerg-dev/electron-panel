@@ -456,7 +456,8 @@ export default {
     // this.$message(`Ваш остаток ${this.getMoneyToBonus} сохранен бонусами`)
 
     if (this.getIsMoneyToBonus) {
-      this.getMoneyToBonus
+      // this.getMoneyToBonus
+      // this.setWetZeroMoney(true)
       this.setIsAppendBonusMoney(true)
       this.setIsPayBonusMoney(false)
     }
@@ -529,8 +530,8 @@ export default {
         console.log('BonusBill-->appendBonusMoney')
         this.appendBonusMoney()
       }
-      
-      if (this.getIsMoneyToBonus && program === 'append') {
+      /* if (this.getIsMoneyToBonus && program === 'append') { */
+      if (this.getIsMoneyToBonus && program === 'confirm') {
         console.log('BonusBill-->saveBonusMoney')
         this.saveBonusMoney()
       }
@@ -618,7 +619,7 @@ export default {
             } catch (err) {}
           }, this.delay)
       
-          // this.$router.push('/')
+          this.$router.push('/popup')
         } else {
           this.$message(`Ошибка:  ${response.error}`)
         }

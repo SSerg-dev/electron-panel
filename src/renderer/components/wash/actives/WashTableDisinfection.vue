@@ -77,7 +77,7 @@ export default Vue.extend({
       if (parseInt(this.getWetBalance) > 0) {
         this.timeoutPopup = setTimeout(() => {
           this.$router.push('/popup')
-        }, 2000)
+        }, 1000)
       } else this.$message(`Недостаточно средств`)
     },
     setDown(program) {
@@ -142,14 +142,14 @@ td {
   padding-right: 0px;
   padding-left: 0px;
 
-  height: 105px;
-  width: 474px;
+  /* height: 105px;
+  width: 474px; */
 }
 
 .button-style {
   margin-left: 0em;
   padding-top: 0em;
-  width: 65em;
+  width: 67em;
   height: 7em;
   border: solid 6px #40c4ff;
   border-radius: 4em;

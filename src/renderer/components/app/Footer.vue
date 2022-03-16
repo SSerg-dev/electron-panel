@@ -152,11 +152,11 @@ export default {
         this.isDown.home = false
         try {
           /* dev */
-          /* if (this.$route.name !== 'home') {
+          if (this.$route.name !== 'home') {
             this.$router.push('/')
-          } */
-          /* this.$router.push('/program') */
-          this.$router.push('/popup')
+          }
+          // this.$router.push('/program')
+          /* this.$router.push('/popup') */
 
         } catch (err) {}
       }, this.delay)
