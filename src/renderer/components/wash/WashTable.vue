@@ -209,6 +209,7 @@ export default {
     isVisible: false,
     isVisibleWashTableBonus: false,
 
+
     client: 'fetch',
     url: 'https://192.168.1.3/',
     storage: null,
@@ -393,7 +394,7 @@ export default {
         try {
           this.clearDown()
         } catch (err) {}
-      }, 1000)
+      }, 500)
     },
     saveMoney() {
       if (this.getWetStopFreeCount >= 0) {
@@ -521,11 +522,14 @@ export default {
     this.storage = new Storage(this.client, this.url)
     //this.initial()
     this.setup()
+
     if (!this.isVisible) {
       this.timeoutDelay = setTimeout(() => {
         this.isVisible = true
+        
       }, this.delay)
     }
+    
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)

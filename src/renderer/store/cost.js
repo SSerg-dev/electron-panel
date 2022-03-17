@@ -39,7 +39,7 @@ export default {
             },
             {
               id: 5,
-              title: 'СУШКА И БЛЕСК',
+              title: 'ОСМОС'/* 'СУШКА И БЛЕСК' */,
               name: 'dryShine',
               price: 0,
               priceTurbo: 0,

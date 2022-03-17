@@ -420,6 +420,7 @@ td {
   padding-bottom: 0em;
   font-size: 3.5em;
   color: white;
+  /* color: yellow; */
 }
 .legal-title {
   /* position: fixed; */

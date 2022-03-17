@@ -676,7 +676,7 @@
                   border: solid 6px #00B9E3; 
                   border-radius: 2.5em;
                   box-shadow: 0px 6px 10px #00b9e3;
-                  
+                  opacity: 0.4;
                   "
                 >
                   <div

@@ -4,11 +4,7 @@
     <!-- ВОЗДУХ -->
 
     <td>
-      <div
-       @click="setProgram('air')"
-       class="waves-effect"
-       id="button-air"
-      >
+      <div @click="setProgram('air')" class="waves-effect" id="button-air">
         <div
           class="button-content-style"
           :class="[
@@ -42,7 +38,7 @@ export default Vue.extend({
     // classes
     buttonLeft: null,
     buttonRight: null,
-    
+
     // native
     visible: '',
     activeNumber: 17,
@@ -108,7 +104,7 @@ export default Vue.extend({
         this.getDefaultPanelNumber,
         this.getActiveProgram,
         this.getWetBalance
-      ])      
+      ])
 
       this.setIsActiveProgramKit(true)
       this.setActiveProgramKit(this.activeProgramKit)
@@ -134,7 +130,7 @@ export default Vue.extend({
         try {
           this.clearDown()
         } catch (err) {}
-      }, 1000)
+      }, 500)
     },
     clearDown() {
       this.isDown = Object.fromEntries(
@@ -188,24 +184,27 @@ export default Vue.extend({
 
       if (this.visibleWasher === 'block') {
         this.restore('left')
-      } else if (this.visibleWasher === 'none' || this.visibleWasher === 0) {
+      } else if (
+        this.visibleWasher === 'none' || 
+        this.visibleWasher === 0
+      )  { 
         this.restore('right')
       }
     }, // end initial()
 
     restore(type) {
       // console.log('++type', type)
-      
+
       switch (type) {
         case 'left':
-          this._upDryOptions.width = this.upDryOptions.width
-          this._downDryOptions.width = this.downDryOptions.width
+          this._upDryOptions.width = this.upDryOptions.width = '33em'
+          this._downDryOptions.width = this.downDryOptions.width = '33em'
           this.buttonLeft.show()
           this.flex()
           break
         case 'right':
-          this._upDryOptions.width = '67em'
-          this._downDryOptions.width = '67em'
+          this._upDryOptions.width = '33em' //'67em'
+          this._downDryOptions.width = '33em' //'67em'
           this.buttonLeft.show()
           this.flex()
           break
@@ -231,7 +230,6 @@ export default Vue.extend({
         this.buttonLeft.width = options.width
       }
     }
-
   }, // end methods
 
   beforeDestroy() {
@@ -254,7 +252,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-
 table,
 tr,
 td {

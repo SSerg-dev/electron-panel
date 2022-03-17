@@ -18,8 +18,8 @@ export default {
     // x2: false, color: false,  turbo: true
     actives: [
       {
-        id: 2,
-        order: 1,
+        id: 1,
+        order: 6,
         title: 'ШАМПУНЬ',
         name: 'shampoo',
         price: 0,
@@ -33,8 +33,8 @@ export default {
         mode: ''
       },
       {
-        id: 3,
-        order: 2,
+        id: 2,
+        order: 14,
         title: 'ВОДА + ШАМПУНЬ',
         name: 'waterShampoo',
         price: 0,
@@ -48,8 +48,8 @@ export default {
         mode: 'turbo'
       },
       {
-        id: 4,
-        order: 3,
+        id: 3,
+        order: 16,
         title: 'ХОЛОДНАЯ',
         name: 'coldWater',
         price: 0,
@@ -63,8 +63,8 @@ export default {
         mode: 'turbo'
       },  
       {
-        id: 5,
-        order: 4,
+        id: 4,
+        order: 20,
         title: 'ВОСК',
         name: 'waxProtection',
         price: 0,
@@ -79,8 +79,8 @@ export default {
       },   
 
       {
-        id: 6,
-        order: 5,
+        id: 5,
+        order: 22,
         title: 'ОСМОС' /* 'СУШКА И БЛЕСК', */,
         name: 'dryShine',
         price: 0,
@@ -94,8 +94,8 @@ export default {
         mode: 'turbo'
       },
       {
-        id: 7,
-        order: 6,
+        id: 6,
+        order: 11,
         title: 'ПЕНА',
         name: 'foam',
         price: 0,
@@ -109,8 +109,8 @@ export default {
         mode: ''
       },    
       {
-        id: 8,
-        order: 7,
+        id: 7,
+        order: 29,
         title: 'СТОП/ПАУЗА',
         name: 'stop',
         price: 0,
@@ -125,8 +125,8 @@ export default {
         mode: ''
       },    
       {
-        id: 9,
-        order: 8,
+        id: 8,
+        order: 15,
         title: 'ВОДА + ШАМПУНЬ ТУРБО',
         name: 'waterShampoo_turbo',
         price: 0,
@@ -140,8 +140,8 @@ export default {
         mode: 'hide'
       },    
       {
-        id: 10,
-        order: 9,
+        id: 9,
+        order: 17,
         title: 'ХОЛОДНАЯ ВОДА ТУРБО',
         name: 'coldWater_turbo',
         price: 0,
@@ -156,8 +156,8 @@ export default {
       },    
 
       {
-        id: 11,
-        order: 10,
+        id: 10,
+        order: 21,
         title: 'ВОСК И ЗАЩИТА ТУРБО',
         name: 'waxProtection_turbo',
         price: 0,
@@ -171,8 +171,8 @@ export default {
         mode: 'hide'
       },    
       {
-        id: 12,
-        order: 11,
+        id: 11,
+        order: 23,
         title: 'СУШКА И БЛЕСК ТУРБО',
         name: 'dryShine_turbo',
         price: 0,
@@ -186,8 +186,8 @@ export default {
         mode: 'hide'
       },    
       {
-        id: 13,
-        order: 12,
+        id: 12,
+        order: 18,
         title: 'ТЕПЛАЯ',
         name: 'warmWater',
         price: 0,
@@ -201,8 +201,8 @@ export default {
         mode: 'turbo'
       },   
       {
-        id: 14,
-        order: 13,
+        id: 13,
+        order: 19,
         title: 'ТЕПЛАЯ ВОДА ТУРБО',
         name: 'warmWater_turbo',
         price: 0,
@@ -216,8 +216,8 @@ export default {
         mode: 'hide'
       },    
       {
-        id: 15,
-        order: 14,
+        id: 14,
+        order: 8,
         title: 'ЩЕТКА',
         name: 'brushFoam',
         price: 0,
@@ -232,8 +232,8 @@ export default {
       },   
 
       {
-        id: 16,
-        order: 15,
+        id: 15,
+        order: 2,
         title: 'ДИСКИ',
         name: 'disk',
         price: 0,
@@ -247,8 +247,8 @@ export default {
         mode: ''
       },   
       {
-        id: 17,
-        order: 16,
+        id: 16,
+        order: 4,
         title: 'МОСКИТ',
         name: 'mosquito',
         price: 0,
@@ -262,8 +262,8 @@ export default {
         mode: ''
       },   
       {
-        id: 18,
-        order: 17,
+        id: 17,
+        order: 27,
         title: 'ПЫЛЕСОС',
         name: 'vacuum',
         price: 0,
@@ -277,8 +277,8 @@ export default {
         mode: ''
       }, // main
       {
-        id: 19,
-        order: 18,
+        id: 18,
+        order: 28,
         title: 'ВОЗДУХ',
         name: 'air',
         price: 0,
@@ -292,8 +292,8 @@ export default {
         mode: ''
       }, // main
       {
-        id: 20,
-        order: 19,
+        id: 19,
+        order: 25,
         title: 'ОМЫВАТЕЛЬ',
         name: 'washer',
         price: 0,
@@ -308,10 +308,10 @@ export default {
       }, // main
 
       {
-        id: 21,
-        order: 20,
+        id: 20,
+        order: 12,
         title: 'ПЕНА ЦВЕТ',
-        name: 'brushFoam_color',
+        name: 'foam_color',
         price: 0,
         priceTurbo: 0,
         row: 21,
@@ -323,8 +323,8 @@ export default {
         mode: ''
       }, // ext
       {
-        id: 22,
-        order: 21,
+        id: 21,
+        order: 9,
         title: 'ЩЕТКА ЦВЕТ',
         name: 'brushFoam_color',
         price: 0,
@@ -338,8 +338,8 @@ export default {
         mode: ''
       }, // ext
       {
-        id: 23,
-        order: 22,
+        id: 22,
+        order: 7,
         title: 'ШАМПУНЬ Х2',
         name: 'shampoo_x2',
         price: 0,
@@ -353,8 +353,8 @@ export default {
         mode: ''
       }, // ext
       {
-        id: 24,
-        order: 23,
+        id: 23,
+        order: 13,
         title: 'ПЕНА Х2',
         name: 'foam_x2',
         price: 0,
@@ -368,8 +368,8 @@ export default {
         mode: ''
       }, // ext
       {
-        id: 25,
-        order: 24,
+        id: 24,
+        order: 10,
         title: 'ЩЕТКА Х2',
         name: 'brushFoam_x2',
         price: 0,
@@ -384,8 +384,8 @@ export default {
       }, // ext
 
       {
-        id: 26,
-        order: 25,
+        id: 25,
+        order: 3,
         title: 'ДИСКИ Х2',
         name: 'disk_x2',
         price: 0,
@@ -399,8 +399,8 @@ export default {
         mode: ''
       },
       {
-        id: 27,
-        order: 26,
+        id: 26,
+        order: 5,
         title: 'МОСКИТ Х2',
         name: 'mosquito_x2',
         price: 0,
@@ -414,8 +414,8 @@ export default {
         mode: ''
       },
       {
-        id: 28,
-        order: 27,
+        id: 27,
+        order: 26,
         title: 'ТУРБОСУШКА',
         name: 'turboDryer',
         price: 0,
@@ -429,8 +429,8 @@ export default {
         mode: ''
       },
       {
-        id: 29,
-        order: 0,
+        id: 28,
+        order: 1,
         title: 'ОБЕЗЖИРИВАНИЕ',
         name: 'degrease',
         price: 0,
@@ -445,8 +445,8 @@ export default {
       },
       /* disinfection */
       {
-        id: 30,
-        order: 0,
+        id: 29,
+        order: 24,
         title: 'ДЕЗИНФЕКЦИЯ',
         name: 'disinfection',
         price: 0,

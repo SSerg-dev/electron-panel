@@ -14,14 +14,11 @@
       <div class="col"><CostList :costs="items" /></div>
     </div>
 
-    <div 
-    class="paginate"
-    style="padding-left: 8em;"
-    >
+    <div class="paginate" style="padding-left: 8em;">
       <Paginate
         v-model="page"
         :page-count="pageCount"
-        :click-handler="pageChangeHandler" 
+        :click-handler="pageChangeHandler"
         :prev-text="''"
         :next-text="''"
         :container-class="'pagination'"
@@ -88,7 +85,7 @@ export default Vue.extend({
     setDown() {
       this.isDown = !this.isDown
     },
-    
+
     getActiveProgBit() {
       //return (this.getWetProgShow >>> 0).toString(2)
 
@@ -148,13 +145,11 @@ export default Vue.extend({
       this.dryActiveProg = this.dryActiveProg.slice(1)
 
       for (let i = 0; i < this.dryActiveProg.length; i++) {
-
         if (typeof this.costs[i].display !== undefined) {
           this.costs[i].display = this.dryActiveProg?.toString().slice(i, i + 1)
         }
         if (typeof this.dryProgPrice !== undefined)
           this.costs[i].price = this.dryProgPrice[i + 1]?.toString()
-
       }
 
       return this.costs
@@ -211,9 +206,15 @@ export default Vue.extend({
     switch (type) {
       case 'wash':
         /* !!!dev */
-        // this.costs = this.getCosts()
-        this.costs = this.getPrograms()
+        this.costs = this.getCosts()
+        // this.costs = this.getPrograms()
+        // this.costs = this.getPrograms().sort((a, b) =>
+        //   a.order > b.order ? 1 : b.order > a.order ? -1 : 0
+        // )
+        // console.log('++this.costs', this.costs)
+        
 
+        
         this.setActiveProg()
         break
       case 'vacuum':

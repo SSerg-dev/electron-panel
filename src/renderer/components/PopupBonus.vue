@@ -4,8 +4,8 @@
       <div>
         <p align="center">{{ `${this.messages[0]}` }}</p>
         <p align="center">{{ `${this.messages[1]}` }}</p>
-        <div style="font-size: 2.2em;">
-          <p align="center">{{ `${this.getWetBalance}` }}</p>
+        <div style="font-size: 2.2em; color: yellow;">
+          <p align="center">{{ `${this.getMoneyToBonus}` }}</p>
         </div>
         <p align="center">{{ `${this.messages[2]}` }}</p>
       </div>
@@ -46,14 +46,15 @@ export default Vue.extend({
     messages: [
       'На Ваш счет',
       'зачислено',
-      'бонуса(ов)',
+      'бонуса (ов)',
       'Баланс всегда доступен',
       'в личном кабинете',
       'в мобильном приложении',
       'ALLES BONUS'
     ],
     messageIndex: -1,
-    delay: 0
+    delay: 13000,
+    timeoutDelay: null
   }),
   props: {
     actives: {
@@ -63,94 +64,29 @@ export default Vue.extend({
   },
   computed: {
     ...mapGetters({
-      // getSecondsGotoPopupMenu: 'getSecondsGotoPopupMenu',
-      // getPanelType: 'getPanelType',
-      // getWetStopFreeCount: 'getWetStopFreeCount',
-      // getWetSpend: 'getWetSpend',
-      // getWetBalance: 'getWetBalance'
+      getWetBalance: 'getWetBalance',
+      getMoneyToBonus: 'getMoneyToBonus'
     })
   },
-  watch: {
-    // getWetStopFreeCount(flag) {
-    //   try {
-    //     if (parseInt(flag) > 0) {
-    //       this.isStop = true
-    //       this.messageIndex = 0
-    //     } else {
-    //       this.isStop = false
-    //       if (this.$route.name !== 'program') this.$router.push('/program')
-    //     }
-    //   } catch (err) {}
-    // }
-  },
+  watch: {},
   methods: {
-    ...mapMutations({
-      // setActiveProgram: 'setActiveProgram',
-      // setActiveProgramKit: 'setActiveProgramKit',
-      // setIsActiveProgramKit: 'setIsActiveProgramKit'
-    }),
-    ...mapGetters({
-      // getActiveProgram: 'getActiveProgram',
-      // getActiveProgramKit: 'getActiveProgramKit',
-      // getIsActiveProgramKit: 'getIsActiveProgramKit'
-    }),
-    setup() {
-      // this.activeProgram = this.getActiveProgram()
-      // this.activeProgramKit = this.getActiveProgramKit()
-      // if (!this.getIsActiveProgramKit()) {
-      //   this.setIsActiveProgramKit(false)
-      //   this.delay = 1000
-
-      //   // footer
-      //   if (this.activeProgram === 'stop') {
-      //     this.isStop = true
-      //     this.messageIndex = 0
-      //   }
-      //   if (this.activeProgram === 'operator') {
-      //     this.isOperator = true
-      //     this.messageIndex = 1
-      //   }
-      //   if (this.activeProgram === 'turbo') {
-      //     this.isTurbo = true
-      //     this.messageIndex = 2
-      //   }
-      // }
-
-      // if (this.getIsActiveProgramKit()) {
-      //   this.delay = 1000000
-      // }
-    },
-
-    gotoProgramMenu(seconds) {
-      // try {
-      //   this.intervalPopupMenu = setInterval(() => {
-      //     if (--seconds <= 0) {
-      //       this.$router.push('/program')
-      //       return
-      //     }
-      //   }, this.delay)
-      // } catch (err) {
-      //   console.warn(err)
-      // }
-    }
+    ...mapMutations({}),
+    ...mapGetters({}),
+    setup() {}
   },
   mounted() {
-    // console.log('PopupType actives-->', this.actives[24])
-
-    console.log('++PopupBonus')
-
-    /* this.setup()
-    if (parseInt(this.getWetStopFreeCount) === 0) {
-      this.gotoProgramMenu(this.getSecondsGotoPopupMenu)
-    } */
+    if (this.$route.name !== 'program') {
+      this.timeoutDelay = setTimeout(() => {
+        try {
+          this.$router.push('/program')
+        } catch (err) {}
+      }, this.delay)
+    }
   },
   beforeDestroy() {
-    this.setIsActiveProgramKit(false)
-    clearInterval(this.intervalPopupMenu)
+    clearTimeout(this.timeoutDelay)
   },
-  components: {
-    // PopupTypeActive
-  }
+  components: {}
 })
 </script>
 

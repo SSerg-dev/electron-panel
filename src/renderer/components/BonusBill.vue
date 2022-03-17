@@ -7,16 +7,17 @@
             {{ `${this.messages[0]}` }}
           </p>
         </h3>
-        <!-- <h3 v-if="getIsAppendBonusMoney">
+        <h3 v-else-if="getIsAppendBonusMoney && !getIsMoneyToBonus">
           <p align="center">
             {{ `${this.messages[1]}` }}
           </p>
-        </h3> -->
-        <h3 v-if="getIsMoneyToBonus">
+        </h3>
+        <h3 v-else-if="getIsMoneyToBonus">
           <p align="center">
             {{ `${this.messages[2]}` }}
           </p>
         </h3>
+
       </div>
 
       <form @submit.prevent="" novalidate>
@@ -434,7 +435,7 @@ export default {
       `Для входа в систему введите номер телефона
        или отсканируйте QR код`,
       `Для зачисления бонусов, 
-      введите номер телефона`,
+       введите номер телефона`,
       `Нажимая "Зачислить", Вы даете свое согласие на отправку 
       Вам СМС-сообщения и обработку персональных данных,
       согласно условиям, размещенным на сайте: www.alles-bonus.com`
@@ -465,7 +466,7 @@ export default {
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     this.setIsMoneyToBonus(false)
-    this.setMoneyToBonus(0)
+    // this.setMoneyToBonus(0)
 
   },
   components: {
@@ -615,11 +616,11 @@ export default {
 
           this.timeoutDelay = setTimeout(() => {
             try {
-              this.$router.push('/program')
+              this.$router.push('/popup')
             } catch (err) {}
-          }, this.delay)
+          }, this.delay = 0)
       
-          this.$router.push('/popup')
+          
         } else {
           this.$message(`Ошибка:  ${response.error}`)
         }
