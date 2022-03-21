@@ -19,8 +19,8 @@
         v-model="page"
         :page-count="pageCount"
         :click-handler="pageChangeHandler"
-        :prev-text="''"
-        :next-text="''"
+        :prev-text="'<'"
+        :next-text="'>'"
         :container-class="'pagination'"
       />
     </div>
@@ -47,16 +47,13 @@ export default Vue.extend({
     progPrice: [],
     activeProg: [],
     busyProg: [],
-    /* dev */
+
     dryProgPrice: [],
     dryActiveProg: [],
     dryBusyProg: [],
 
-    //interval: null,
     intervalMainMenu: null,
     date: null
-
-    //order = [0, 9, 10, 8, 5, 1, 7, 2, 3, 4, 11, 12, 13, 6,14,15,16,17,18,19,20,21]
   }), // End Data
   computed: {
     ...mapGetters({
@@ -69,15 +66,9 @@ export default Vue.extend({
       getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
       getParamsChange: 'getParamsChange',
       getActiveProgNames: 'getActiveProgNames',
-      /* dev */
       getPanelType: 'getPanelType'
     })
   },
-  /* 
-  watch: {
-    getParamsChange(flag) {}
-  }, 
-  */
   methods: {
     ...mapMutations({
       setRouter: 'setRouter'
@@ -87,13 +78,10 @@ export default Vue.extend({
     },
 
     getActiveProgBit() {
-      //return (this.getWetProgShow >>> 0).toString(2)
-
       const type = this.getPanelType
       let progShow
       switch (type) {
         case 'wash':
-          // console.log('!!', this.getWetProgShow)
           progShow = (this.getWetProgShow >>> 0).toString(2)
           break
         case 'vacuum':
@@ -103,7 +91,6 @@ export default Vue.extend({
           console.warn('no progShow')
           break
       }
-      //console.log('++progShow-->', progShow)
       return progShow
     },
 
@@ -112,10 +99,6 @@ export default Vue.extend({
     },
 
     setActiveProg() {
-      // console.log('setActiveProg')
-      // console.log('++this.costs', this.costs)
-      //console.log('!!!', [...this.getActiveProgBit()])
-
       this.activeProg = [...this.getActiveProgBit()].reverse().join('')
 
       if (this.getWetProgPrice !== undefined) {
@@ -125,8 +108,12 @@ export default Vue.extend({
         if (typeof this.costs[i].display !== undefined) {
           this.costs[i].display = this.activeProg.toString().slice(i, i + 1)
         }
-        if (typeof this.progPrice !== undefined)
-          this.costs[i].price = this.progPrice[i + 1]?.toString()
+        if (typeof this.progPrice !== undefined) {
+          // this.costs[i].price = this.progPrice[i + 1]?.toString()
+          /* dev */
+          const priceIndex = this.costs[i].id - 1
+          this.costs[i].price = this.progPrice[priceIndex]?.toString()
+        }
       }
 
       this.setTurboItems(this.costs)
@@ -134,7 +121,6 @@ export default Vue.extend({
       return this.costs
     },
 
-    /* dev */
     setDryActiveProg() {
       this.dryActiveProg = [...this.getActiveProgBit()].reverse().join('')
 
@@ -171,8 +157,6 @@ export default Vue.extend({
       }, 1000)
     },
     setTurboItems(costs) {
-      //console.log('!!!setTurboItems')
-
       let prices = costs.filter(
         c =>
           c.name === 'waterShampoo_turbo' ||
@@ -184,14 +168,12 @@ export default Vue.extend({
       for (let i = 0; i < prices.length; i++) {
         this.setTurboItem(prices[i])
       }
-      // console.log("this.costs-->", JSON.stringify(this.costs))
     },
 
     setTurboItem(price) {
       const name = price.name.slice(0, -6)
       const index = this.costs.findIndex(c => c.name === name)
       this.costs[index].priceTurbo = price.price
-      // console.log("priceTurbo->", this.costs[index].priceTurbo);
     },
     ...mapGetters({
       getCosts: 'getCosts',
@@ -205,16 +187,14 @@ export default Vue.extend({
     const type = this.getPanelType
     switch (type) {
       case 'wash':
-        /* !!!dev */
-        this.costs = this.getCosts()
-        // this.costs = this.getPrograms()
-        // this.costs = this.getPrograms().sort((a, b) =>
-        //   a.order > b.order ? 1 : b.order > a.order ? -1 : 0
-        // )
-        // console.log('++this.costs', this.costs)
-        
+        /* dev */
+        // this.costs = this.getCosts()
+        const programs = this.getPrograms()
 
-        
+        this.costs = programs.sort((a, b) =>
+          a.order > b.order ? 1 : b.order > a.order ? -1 : 0
+        )
+
         this.setActiveProg()
         break
       case 'vacuum':
@@ -236,7 +216,6 @@ export default Vue.extend({
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },
   beforeDestroy() {
-    //clearInterval(this.interval)
     clearInterval(this.intervalMainMenu)
   },
 
@@ -284,12 +263,11 @@ h4 {
   font-size: 1em;
   width: 100%;
 
-  position: fixed; /*  absolute; relative;*/
+  position: absolute; /*  absolute; relative;*/
   left: 20em;
-  bottom: 4em;
+  bottom: 11em;
 
   background: #121212;
-  /* border: solid darkcyan; */
 
   font-family: 'Plumb-Medium';
   font-weight: bold;

@@ -10,10 +10,13 @@
               @click="gotoHome('home')"
             >
               <div
-                class="button-title-long button-title-operator"
-                style="padding-left: 8rem;"
+                class="button-title-long button-title-home"
+                
               >
-                {{ `ДОМОЙ` }}
+                <!-- {{ `ДОМОЙ` }} -->
+                <!-- <i class="large material-icons">replay</i> -->
+                <i class="large material-icons">home</i>
+
               </div>
             </div>
             <div
@@ -22,10 +25,12 @@
               @click="gotoHome('home')"
             >
               <div
-                class="button-title-long button-title-operator"
-                style="padding-left: 8rem;"
+                class="button-title-long button-title-home"
+                
               >
-                {{ `ДОМОЙ` }}
+                <!-- {{ `ДОМОЙ` }} -->
+                <!-- <i class="large material-icons">replay</i> -->
+                <i class="large material-icons">home</i>
               </div>
             </div>
           </div>
@@ -152,10 +157,10 @@ export default {
         this.isDown.home = false
         try {
           /* dev */
-          if (this.$route.name !== 'home') {
+          /* if (this.$route.name !== 'home') {
             this.$router.push('/')
-          }
-          // this.$router.push('/program')
+          } */
+          this.$router.push('/program')
           /* this.$router.push('/popup') */
 
         } catch (err) {}
@@ -275,6 +280,10 @@ export default {
   left: 0%;
   margin-left: 46rem;
   z-index: 1;
+}
+.button-title-home {
+  padding-top: 8px;
+  padding-left: 144px;
 }
 .button-title-operator {
   padding-top: 16px;

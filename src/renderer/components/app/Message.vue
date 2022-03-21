@@ -12,6 +12,7 @@
           `${parseFloat(getWetBalance / Math.pow(10, digits)).toFixed(digits)}`
         }}
       </div>
+
       <div v-if="this.getPanelType === 'vacuum' && !getIsMoneyToBonus">
         {{
           `${parseFloat(getDryBalance / Math.pow(10, digits)).toFixed(digits)}`
@@ -35,6 +36,7 @@
           }}
         </li>
       </ul>
+      
     </div>
   </div>
 </template>

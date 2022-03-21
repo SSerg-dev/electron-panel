@@ -109,6 +109,9 @@ export default Vue.extend({
         this.buttonLeft.background = 'white'
         this.buttonRight.background = 'white'
       }
+    },
+    getActiveProgram(flag) {
+      if (flag !== this.actives[this.activeNumber].name) this.clearDown()
     }
   },
   methods: {

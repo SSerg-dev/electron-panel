@@ -8,22 +8,15 @@
 
 export default {
   state: {
-
     storeMoneyOptions: {
       method: 'storage::store_money',
-      /* params: {
-        unit_id: 4,
-        type: 'cash',
-        sum: 4242,
-        detail: { coins_10: 1, coins_count: 1, sum_coins: 10 }
-      } */
       params: {
         // _unit_id – номер поста (0-7)
-        unit_id: 4,
+        unit_id: 1,
         // _money_type – cash, card, service, bonus
         type: 'cash',
         // _sum – сумма зачисления
-        sum: 4242,
+        sum: 0,
         // nl::json – структура доп. данных
         detail: {
           // сумма зачисления в монетах
@@ -31,12 +24,12 @@ export default {
           // общее количество монет
           coins_count: 0,
           // номинал монеты
-          coins_1: 1,  
+          coins_1: 1,
           coins_2: 2,
           coins_5: 5,
           coins_10: 10,
           // сумма зачисления в купюрах
-          sum_bills: 300,
+          sum_bills: 0,
           // количество купюр наминала 10р
           bills_10: 0,
           // количество купюр наминала 50
@@ -53,19 +46,13 @@ export default {
     /* dev */
     storeDryMoneyOptions: {
       method: 'storage::store_money',
-      /* params: {
-        unit_id: 4,
-        type: 'cash',
-        sum: 4242,
-        detail: { coins_10: 1, coins_count: 1, sum_coins: 10 }
-      } */
       params: {
         // _unit_id – номер поста (0-7)
-        unit_id: 4,
+        unit_id: 1,
         // _money_type – cash, card, service, bonus
         type: 'cash',
         // _sum – сумма зачисления
-        sum: 4141,
+        sum: 2,
         // nl::json – структура доп. данных
         detail: {
           // сумма зачисления в монетах
@@ -73,7 +60,7 @@ export default {
           // общее количество монет
           coins_count: 0,
           // номинал монеты
-          coins_1: 1,  
+          coins_1: 1,
           coins_2: 2,
           coins_5: 5,
           coins_10: 10,
@@ -95,11 +82,11 @@ export default {
     /*     */
     collectOptions: {
       method: 'storage::collect',
-      params: { unit_id: 4, user: 'Sergei' }
+      params: { unit_id: 1, user: 'Sergei' }
     },
     readCashOptions: {
       method: 'storage::cash.read',
-      params: { unit_id: 4 }
+      params: { unit_id: 1 }
     },
     // ping
     pingOptions: {
@@ -123,7 +110,7 @@ export default {
     /* dev */
     createReceipt: {
       method: 'kkt::receipt.create',
-      params: { unit_id: 4, sum: 10, cash: false }
+      params: { unit_id: 1, sum: 2, cash: false }
     },
     readReceipt: {
       method: 'kkt::receipt.read',
@@ -138,24 +125,30 @@ export default {
       method: 'bonus::login',
       // params: { phone: '+79627067778', pin: '111111' }
       params: { phone: '', pin: '' }
-
     },
     getQr: {
-      method: 'bonus::qr.get',
-    }, 
+      method: 'bonus::qr.get'
+    },
     appendBonus: {
       method: 'bonus::money.append',
       //params: { "phone":"+79627067778","sum":10,"cash":true,"order":"12" }
-      params: { "phone":"","sum":0,"cash":true,"order":"" }
+      params: { phone: '', sum: 0, cash: true, order: '' }
     },
     // completeWash
     completeWash: {
       method: 'bonus::wash.complete',
-      params: {"order":"11","programs":{"program_id":11,"program_name":"wheel","program_quantity":0.2}}
+      params: {
+        order: '11',
+        programs: {
+          program_id: 11,
+          program_name: 'wheel',
+          program_quantity: 0.2
+        }
+      }
     },
 
     isBonusMoney: {
-      payBonusMoney: false, 
+      payBonusMoney: false,
       appendBonusMoney: false,
       // spend money
       spendBonusMoney: false
@@ -171,20 +164,19 @@ export default {
     },
     isMoneyToBonus: false,
     MoneyToBonus: 0
-     
   }, // end state
   // Options
   //actions: {},
   getters: {
     // dev
     getIsReceiptRead(state) {
-      return state.isReceipt.read  
+      return state.isReceipt.read
     },
     getIsReceiptCreate(state) {
-      return state.isReceipt.create  
+      return state.isReceipt.create
     },
     getIsReceiptPrint(state) {
-      return state.isReceipt.print  
+      return state.isReceipt.print
     },
     getIsMoneyToBonus(state) {
       return state.isMoneyToBonus
@@ -222,7 +214,7 @@ export default {
     getIsSpendBonusMoney(state) {
       return state.isBonusMoney.spendBonusMoney
     },
-    // 
+    //
     getIsPayCardMoney(state) {
       return state.isCardMoney
     },
@@ -267,7 +259,7 @@ export default {
     // completeWash
     getCompleteWash(state) {
       return state.completeWash
-    },
+    }
 
     // ----
     /* getPanelMoneyOptions(state) {
@@ -289,13 +281,13 @@ export default {
   mutations: {
     /* dev */
     setIsReceiptRead(state, read) {
-      state.isReceipt.read = read 
+      state.isReceipt.read = read
     },
     setIsReceiptCreate(state, create) {
-      state.isReceipt.create = create  
+      state.isReceipt.create = create
     },
     setIsReceiptPrint(state, print) {
-      state.isReceipt.print = print 
+      state.isReceipt.print = print
     },
     setIsMoneyToBonus(state, isMoney) {
       state.isMoneyToBonus = isMoney
@@ -309,11 +301,11 @@ export default {
     },
     setLoginBonusPassword(state, password) {
       state.loginBonus.params.pin = password
-    },    
+    },
     setIsLoginSettingPassword(state, isLoginSetting) {
       state.isLoginSettingPassword = isLoginSetting
     },
-    
+
     setIsPayBonusMoney(state, isPay) {
       state.isBonusMoney.payBonusMoney = isPay
     },
@@ -336,8 +328,8 @@ export default {
     },
     setIsPing(state, isPing) {
       state.isPing = isPing
-    },
-    
+    }
+
     /* setPanelMoneyNumber(state, unit_id) {
       state.options.params.unit_id = unit_id
     },

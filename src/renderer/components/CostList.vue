@@ -1,15 +1,33 @@
 <template>
   <div>
-    <div class="list-title">
-      <div class="col s4">Программа</div>
-      <div class="col ">цена за 1 мин</div>
-      <div class="col ">
+
+    <!-- <p align="center">{{ `${this.messages[3]}` }}</p> -->
+    <div class="cost-title">
+       <p align="center">{{ `Цена за одну минуту` }}</p>
+    </div>
+    <div class="row list-title">
+      <div class="col s9">{{ `Программа` }}</div>
+      <!-- <div class="col ">цена за 1 мин</div> -->
+      <div class="col s3">
       {{ this.emoji }}
       {{ this.currency }}
-      {{ this.symbol }}
+      <!-- {{ this.symbol }} -->
       </div>
     </div>
 
+    <!-- <div class="list-title">
+      <div class="row">
+        <div class="col s9">Программа</div>
+        <div class="col s1">
+          {{ this.emoji }}
+        </div>
+        <div class="col s2">
+          {{ this.currency }}
+        </div>
+      </div>
+    </div> -->
+
+    <!-- <p align="center">{{ `${this.messages[0]}` }}</p> -->
     <ul>
       <CostItem v-for="(cost, index) in costs" :cost="cost" :key="index" />
     </ul>
@@ -30,7 +48,7 @@ export default Vue.extend({
     currency: '',
     symbol: '',
     currencies: []
-  }),    
+  }),
 
   components: {
     CostItem
@@ -40,17 +58,14 @@ export default Vue.extend({
       getDefaultCurrency: 'getDefaultCurrency',
       getLanguageNatives: 'getLanguageNatives',
       getInitCurrency: 'getInitCurrency'
-
     })
   },
-  mounted() {
-  },
+  mounted() {},
   created() {
     this.initCurrency()
   },
   methods: {
     initCurrency() {
-
       const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
       this.current = id
       this.select = title
@@ -59,23 +74,33 @@ export default Vue.extend({
       this.currency = currency
       this.symbol = symbol
       /*     */
-    },
+    }
   }
 })
 </script>
 
 <style scoped>
-
+.cost-title {
+  position: absolute;
+  left: 30%;
+  top:15%;
+  color: white;
+  font-size: 3.5em;
+  z-index: 1000;
+}
 .list-title {
   width: 92%;
+  height: 80%;
   margin-left: -0.4em;
-  margin-bottom: 1.8em;
-  padding-left: 0.8em;
+  margin-bottom: 0em;
+  padding-left: 0.6em;
+  padding-top: 0.1em;
   font-size: 3.5em;
   color: white;
-  border: 1px solid;
+  border: 2px solid;
+  border-radius: 0.4em;
   border-color: #00b9e3;
-  
+  /* background: yellow; */
 }
 
 ul {
@@ -88,7 +113,7 @@ ul li {
   background: #121212;
 }
 ul li:nth-child(even) {
-  color:  white;/* #00b9e3; */
+  color: white; /* #00b9e3; */
   background: #212121;
 }
 

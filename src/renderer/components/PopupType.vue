@@ -16,9 +16,9 @@
           </p>
         </div>
 
-        <div v-if="this.getIsActiveProgramKit() && !isStop" class="active">
+        <!-- <div v-if="this.getIsActiveProgramKit() && !isStop" class="active">
           <PopupTypeActive :actives="actives" />
-        </div>
+        </div> -->
       </section>
     </div>
   </div>
@@ -68,7 +68,8 @@ export default Vue.extend({
           this.messageIndex = 0
         } else {
           this.isStop = false
-          if (this.$route.name !== 'program') this.$router.push('/program')
+          /* if (this.$route.name !== 'program') this.$router.push('/program') */
+          if (this.$route.name !== 'home') this.$router.push('/')
         }
       } catch (err) {}
     }
@@ -118,7 +119,7 @@ export default Vue.extend({
       try {
         this.intervalPopupMenu = setInterval(() => {
           if (--seconds <= 0) {
-            this.$router.push('/program')
+            this.$router.push('/')
             return
           }
         }, this.delay)

@@ -53,23 +53,27 @@
               { 'card-content white-text': this.isDown.bonus }
             ]"
           >
-            <div align="center" style="font-size: 0.42em;">
-              <ul>
-                <li>{{ this.currency }} {{ this.symbol }}</li>
-                <li>{{ `⬇️` }}</li>
-                <li style="font-size: 2em;">{{ `🎁` }}</li>
+            <div align="center">
+              <ul style="font-size: 0.6em; padding-top: 0em;">
+                <li>{{ this.currency }}</li>
+                <li>
+                  <i class="medium material-icons">arrow_downward</i>
+                </li>
+                <!-- ₿  -->
+                <li> 
+                  <div style="width: 1.8em; border: solid 6px ; border-radius: 50%" >
+                  {{ `₿` }}  
+                  </div>
+                  </li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div
-          v-if="this.isVisibleWashTableBonus"
-          class="savemoney"
-        >
+        <div v-if="this.isVisibleWashTableBonus" class="savemoney">
           <WashTableBonus :actives="actives" />
+          
         </div>
-
         <div v-else :key="getWetProgShow">
           <table border="0" width="100%" cellpadding="0" cellspacing="0">
             <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
@@ -209,7 +213,6 @@ export default {
     isVisible: false,
     isVisibleWashTableBonus: false,
 
-
     client: 'fetch',
     url: 'https://192.168.1.3/',
     storage: null,
@@ -269,7 +272,7 @@ export default {
 
   watch: {
     getWetBalance(flag) {
-      console.log('getWetBalance', flag)
+      // console.log('getWetBalance', flag)
     },
 
     getIsReceiptRead(flag) {
@@ -289,7 +292,10 @@ export default {
         this.isVisibleWashTableBonus = false
         this.buttonBonus.hide()
       }
-      
+    },
+    getWetProgShow(flag) {
+      // console.log('getWetProgShow', flag, this.actives[14])
+
     }
   },
   computed: {
@@ -398,7 +404,7 @@ export default {
     },
     saveMoney() {
       if (this.getWetStopFreeCount >= 0) {
-        this.isVisibleWashTableBonus = true  
+        this.isVisibleWashTableBonus = true
 
         this.setIsMoneyToBonus(true)
         this.setMoneyToBonus(this.getWetBalance)
@@ -520,16 +526,13 @@ export default {
   },
   mounted() {
     this.storage = new Storage(this.client, this.url)
-    //this.initial()
-    this.setup()
 
     if (!this.isVisible) {
       this.timeoutDelay = setTimeout(() => {
         this.isVisible = true
-        
       }, this.delay)
     }
-    
+    this.setup()
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
@@ -580,6 +583,9 @@ tr {
   padding-right: 0px;
 
   float: left;
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-between; */
 }
 td {
   padding-top: 0px;
@@ -590,7 +596,7 @@ td {
   width: 32em;
   height: 7em;
 
-  float: left;
+  /* float: left; */
 }
 
 .price {

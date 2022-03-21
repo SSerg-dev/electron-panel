@@ -9,8 +9,8 @@
           class="card white waves-effect pay-end-bonus"
           style="
                   
-                  width: 945px;
-                  height: 320px;
+                  width: 66em;
+                  height: 22em;
                   margin-left: -8.0em;
                   margin-bottom: 16em;
 
@@ -35,21 +35,11 @@
 
       <li v-if="this.IsWetBalance === false">
         <div
-          class="card white waves-effect pay-end-bonus"
-          style="
-                  
-                  width: 945px;
-                  height: 220px;
-                  margin-left: -8.0em;
-                  margin-top: -17em;
-
-                  border: solid 6px #00B9E3; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #00b9e3;
-                  "
+          class="card grey pay-input"
+          
         >
           <div
-            class="card-content black-text  noselect"
+            class="card-content white-text  noselect"
             style="
                   font-size: 4em;
                   padding-right: 1.5em;
@@ -65,8 +55,8 @@
           class="card white waves-effect pay-end-bonus"
           style="
                   
-                  width: 945px;
-                  height: 220px;
+                  width: 66em;
+                  height: 14em;
                   margin-left: -8.0em;
                   margin-top: -17em;
 
@@ -80,7 +70,7 @@
             style="
                   font-size: 4em;
                   padding-right: 1.5em;
-                  padding-top: 1em;
+                  padding-top: 0.9em;
                   "
           >
             {{ 'ЗАВЕРШИТЬ ОПЛАТУ' }}
@@ -141,7 +131,7 @@ export default {
       getCashEnabler: 'getCashEnabler',
       getStoreMoneyOptions: 'getStoreMoneyOptions',
       getAppendBonus: 'getAppendBonus',
-      
+
       getCreateReceiptOptions: 'getCreateReceiptOptions',
       getReadReceiptOptions: 'getReadReceiptOptions',
       getPrintReceiptOptions: 'getPrintReceiptOptions',
@@ -150,7 +140,6 @@ export default {
       getIsReceiptRead: 'getIsReceiptRead',
       getIsReceiptCreate: 'getIsReceiptCreate',
       getIsReceiptPrint: 'getIsReceiptPrint'
-
     }),
     ...mapMutations({
       //createCash: 'cash/createCash',
@@ -183,7 +172,7 @@ export default {
       }
     },
 
-// 01 readReceipt
+    // 01 readReceipt
 
     async readReceipt() {
       const method = methods[6]
@@ -204,7 +193,6 @@ export default {
         }
       }
       // console.log('++getIsReceiptRead', this.getIsReceiptRead())
-
     },
 
     // 02 createReceipt
@@ -224,7 +212,6 @@ export default {
         this.$message(`НЕ выполняется при запросе чека панелью`)
       }
       // console.log('++getIsReceiptCreate', this.getIsReceiptCreate())
-      
     },
 
     // 03 printReceipt
@@ -371,6 +358,17 @@ export default {
   margin-top: -20rem;
   margin-bottom: 10rem;
 } */
+.pay-input {
+  width: 66em;
+  height: 14em;
+  margin-left: -9em;
+  margin-top: -17em;
+
+  border: solid 2px white;
+  border-radius: 1em;
+  box-shadow: 0px 10px 20px #eee;
+  
+}
 .pay-end-bonus {
   background-color: black;
   margin-left: -10rem;

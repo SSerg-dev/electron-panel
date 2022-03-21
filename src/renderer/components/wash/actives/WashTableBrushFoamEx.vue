@@ -148,6 +148,9 @@ export default Vue.extend({
       if (parseInt(flag) === 0) {
         this.clearDown()
       }
+    },
+    getActiveProgram(flag) {
+      if (flag !== this.actives[this.activeNumber].name) this.clearDown()
     }
   },
   methods: {
@@ -339,8 +342,8 @@ export default Vue.extend({
           break
 
         case 'right_color':
-          this._upGreenOptions.width = '58em'
-          this._downGreenOptions.width = '58em'
+          this._upGreenOptions.width = '59em'
+          this._downGreenOptions.width = '59em'
           this.buttonLeft.show()
           this.buttonCenter.show()
           this.flex()
@@ -348,8 +351,8 @@ export default Vue.extend({
           break
 
         case 'right_x2':
-          this._upGreenOptions.width = '58em'
-          this._downGreenOptions.width = '58em'
+          this._upGreenOptions.width = '59em'
+          this._downGreenOptions.width = '59em'
           this.buttonLeft.show()
           this.buttonRight.show()
           this.flex()
@@ -437,7 +440,7 @@ tr,
 td {
   border: none;
   padding-top: 0.5em;
-  padding-right: 15px;
+  padding-right: 6px;
 }
 
 .button-content-style {

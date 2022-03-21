@@ -1,15 +1,10 @@
 <template>
   <div>
     
-    <section>
-      <!-- dev -->
-      
-      <!-- <div v-if="this.getPanelType === 'wash'">
-        <ProgramTable :actives="actives" :delay="delay" />
-      </div> --> 
-
-      <div v-if="this.getPanelType === 'wash'">
-        <WashTable :actives="actives" :delay="delay" />
+    <!-- :key="this.seconds" -->
+    <section >
+      <div v-if="this.getPanelType === 'wash'" >
+        <WashTable :actives="actives" :delay="delay"/>
       </div>
 
       <div v-if="this.getPanelType === 'vacuum'">
@@ -37,15 +32,12 @@ export default Vue.extend({
   data() {
     return {
       actives: [],
-      /* dev */
       activesVacuum: [],
-
       delay: 1000,
-
+      seconds: 0,
       activeProg: [],
       showProg: [],
       interval: null
-      //status: ''
     }
   },
 
@@ -57,11 +49,9 @@ export default Vue.extend({
       getPanelType: 'getPanelType'
     })
   },
-  /* dev */
   watch: {
     getParamsChange(flag) {
       const actives = this.setActiveProg()
-      // console.log('++actives', actives[7])
     }
 
   },
@@ -89,14 +79,14 @@ export default Vue.extend({
         .join('')
         .slice(1) 
 
-      //console.log('this.getWetProgStatus-->', this.getWetProgStatus)
-      //console.log('--this.activeProg-->', this.activeProg)
-      //console.log('++this.activeProg.length---->', this.activeProg.length)
-      //console.log('--------------------------')
-      //console.log('this.getWetProgShow-->', this.getWetProgShow)
-      //console.log('--this.showProg-->', this.showProg)
-      //console.log('++this.showProg.length---->', this.showProg.length)
-      //console.log('==========================')
+      // console.log('this.getWetProgStatus-->', this.getWetProgStatus)
+      // console.log('--this.activeProg-->', this.activeProg)
+      // console.log('++this.activeProg.length---->', this.activeProg.length)
+      // console.log('--------------------------')
+      // console.log('this.getWetProgShow-->', this.getWetProgShow)
+      // console.log('--this.showProg-->', this.showProg)
+      // console.log('++this.showProg.length---->', this.showProg.length)
+      // console.log('==========================')
       /*     */
 
       for (let i = 0; i <= this.activeProg.length; i++) {
@@ -137,30 +127,39 @@ export default Vue.extend({
     ...mapGetters({
       getPrograms: 'getPrograms',
       getProgramsVacuum: 'getProgramsVacuum'
-    })
-  },
+    }),
+    
+    /* init(seconds) {
+      this.seconds = seconds 
+      this.intervalMainMenu = setInterval(() => {
+        if (--this.seconds === 0 ) {
+          console.log('this.seconds', this.seconds)
+          
+          return
+        }
+      }, 1000)
+      console.log('seconds', seconds)
+    } */
+
+  }, // end methods
 
   created() {
     this.actives = this.getPrograms()
-    // console.log('!!this.actives', this.actives[7])
-    /* dev */
     this.activesVacuum = this.getProgramsVacuum() 
   },
   mounted() {
-    
     this.setRouter('/program')
-    /* dev */
     this.setActiveProg()
+
+    // this.init(2)
   },
   beforeDestroy() {
     clearInterval(this.interval)
   },
 
   components: {
-    // ProgramTable,
     VacuumTable,
     WashTable,
-    // Popup
   }
 })
 </script>

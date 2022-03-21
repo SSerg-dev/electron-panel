@@ -117,6 +117,9 @@ export default Vue.extend({
         this.clearDown()
       }
     },
+    getActiveProgram(flag) {
+      if (flag !== this.actives[this.activeNumber].name) this.clearDown()
+    }
   },
   methods: {
     ...mapGetters({

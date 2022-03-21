@@ -3,12 +3,12 @@
     <section>
       <div class="row">
 
-        <!-- <div>
+        <div v-if="!getIsMoneyToBonus">
           <PopupType :actives="actives" />
-        </div> -->
+        </div>
 
         <!-- <div v-if="!getIsMoneyToBonus"> -->
-        <div>  
+        <div v-if="getIsMoneyToBonus">  
           <PopupBonus :actives="actives" />
         </div>
 
@@ -81,8 +81,6 @@ export default Vue.extend({
     this.actives = this.getPrograms()
   },
   mounted() {
-    console.log('++Popup')
-    
     this.setRouter('/popup')
   },
   components: {

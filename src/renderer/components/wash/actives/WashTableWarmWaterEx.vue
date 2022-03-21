@@ -116,6 +116,9 @@ export default Vue.extend({
       if (parseInt(flag) === 0) {
         this.clearDown()
       }
+    },
+    getActiveProgram(flag) {
+      if (flag !== this.actives[this.activeNumber].name) this.clearDown()
     }
   },
   methods: {

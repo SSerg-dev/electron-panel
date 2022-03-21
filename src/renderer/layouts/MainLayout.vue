@@ -22,19 +22,11 @@
         <router-view />
       </div>
     </main>
-
-    <!-- <div
-      v-if="
-        this.$route.name !== 'cost' &&
-          this.$route.name != 'language' &&
-          this.$route.name != 'setting' &&
-          this.$route.name != 'popup'
-      "
-      class="footer"
-    > -->
+    
+    <!-- this.$route.name !== 'cost' && -->
     <div
       v-if="
-        this.$route.name !== 'cost' &&
+          
           this.$route.name != 'language' &&
           this.$route.name != 'setting' 
       "

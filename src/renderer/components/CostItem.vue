@@ -21,7 +21,7 @@
       <div
         v-if="cost.priceTurbo === +0"
         class="col s2"
-        style="padding-left: 1.05em"
+        style="padding-left: 1.3em"
       >
         {{ `${cost.price}` }}
       </div>
@@ -101,7 +101,7 @@ li {
 
 .description {
   font-family: 'Plumb-Medium';
-  font-size: 4em;
+  font-size: 3.8em;
   font-weight: bold;
 }
 </style>
