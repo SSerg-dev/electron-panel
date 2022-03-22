@@ -275,13 +275,13 @@ export default Vue.extend({
           this.flex()
           break
         case 'leftWarm':
-          this._upStandardOptions.width = '65em'
-          this._downStandardOptions.width = '65em'
+          this._upStandardOptions.width = '67em'
+          this._downStandardOptions.width = '67em'
           this.buttonRight.hide()
           break
         case 'rightWarm':
-          this._upStandardOptions.width = '58em'
-          this._downStandardOptions.width = '58em'
+          this._upStandardOptions.width = '59.5em'
+          this._downStandardOptions.width = '59.5em'
           this.buttonRight.show()
           this.flex()
           break

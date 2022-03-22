@@ -59,12 +59,13 @@
                 <li>
                   <i class="medium material-icons">arrow_downward</i>
                 </li>
-                <!-- ₿  -->
-                <li> 
-                  <div style="width: 1.8em; border: solid 6px ; border-radius: 50%" >
-                  {{ `₿` }}  
+                <li>
+                  <div
+                    style="width: 1.8em; border: solid 6px ; border-radius: 50%"
+                  >
+                    {{ `₿` }}
                   </div>
-                  </li>
+                </li>
               </ul>
             </div>
           </div>
@@ -72,7 +73,6 @@
 
         <div v-if="this.isVisibleWashTableBonus" class="savemoney">
           <WashTableBonus :actives="actives" />
-          
         </div>
         <div v-else :key="getWetProgShow">
           <table border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -180,6 +180,7 @@ import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import Message from '@/components/app/Message'
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
+import sleep from '@/utils/sleep'
 
 import { Database } from '@/storage/database.js'
 import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
@@ -201,12 +202,14 @@ import WashTableWasher from '@/components/wash/actives/WashTableWasher'
 import WashTableTurboDryer from '@/components/wash/actives/WashTableTurboDryer'
 import WashTableDegrease from '@/components/wash/actives/WashTableDegrease'
 import WashTableDisinfection from '@/components/wash/actives/WashTableDisinfection'
-
 import WashTableBonus from '@/components/wash/WashTableBonus'
 
 export default {
   data: () => ({
     popupDelay: 2000,
+    intervalFirstTimer: null,
+    intervalSecondTimer: null,
+    intervalThirdTimer: null,
 
     name: 'program-table',
     timeoutDelay: null,
@@ -288,6 +291,8 @@ export default {
       if (flag) {
         this.buttonBonus.show()
         this.flex()
+        /* dev */
+        this.setTimer('first', 42)
       } else {
         this.isVisibleWashTableBonus = false
         this.buttonBonus.hide()
@@ -295,7 +300,6 @@ export default {
     },
     getWetProgShow(flag) {
       // console.log('getWetProgShow', flag, this.actives[14])
-
     }
   },
   computed: {
@@ -313,6 +317,7 @@ export default {
       getIsReceiptPrint: 'getIsReceiptPrint',
       getIsMoneyToBonus: 'getIsMoneyToBonus',
       getWetStopFreeCount: 'getWetStopFreeCount',
+      getSecondsBonusTimer: 'getSecondsBonusTimer',
 
       getInitCurrency: 'getInitCurrency',
       getDefaultCurrency: 'getDefaultCurrency'
@@ -331,7 +336,8 @@ export default {
       setIsReceiptPrint: 'setIsReceiptPrint',
 
       setIsMoneyToBonus: 'setIsMoneyToBonus',
-      setMoneyToBonus: 'setMoneyToBonus'
+      setMoneyToBonus: 'setMoneyToBonus',
+      setSecondsBonusTimer: 'setSecondsBonusTimer'
     }),
     ...mapGetters({
       getPrintReceiptOptions: 'getPrintReceiptOptions'
@@ -522,8 +528,57 @@ export default {
       this.buttonBonus.display = 'flex'
       this.buttonBonus.alignItems = 'center'
       this.buttonBonus.justifyContent = 'center'
+    },
+
+    runFirstTimer(seconds) {
+      this.intervalFirstTimer = setInterval(() => {
+        // todo
+        // console.log('01 seconds-->', seconds)
+        this.setSecondsBonusTimer(seconds)
+        if (--seconds < 0) {
+          clearInterval(this.intervalFirstTimer)
+          this.setSecondsBonusTimer(0)
+          return
+        }
+      }, 1000)
+      return
+    },
+    runSecondTimer(seconds) {
+      this.intervalSecondTimer = setInterval(() => {
+        // todo
+        if (--seconds < 0) {
+          clearInterval(this.intervalSecondTimer)
+        }
+      }, 1000)
+      return
+    },
+    runThirdTimer(seconds) {
+      this.intervalThirdTimer = setInterval(() => {
+        // todo
+        if (--seconds < 0) {
+          clearInterval(this.intervalThirdTimer)
+        }
+      }, 1000)
+      return
+    },
+
+    setTimer(type, seconds) {
+      switch (type) {
+        case 'first':
+          this.runFirstTimer(seconds)
+          break
+        case 'second':
+          this.runSecondTimer(seconds)
+          break
+        case 'third':
+          this.runThirdTimer(seconds)
+          break
+
+        default:
+          break
+      }
     }
-  },
+  }, // end methods
   mounted() {
     this.storage = new Storage(this.client, this.url)
 
@@ -533,11 +588,24 @@ export default {
       }, this.delay)
     }
     this.setup()
+
+    // this.setTimer('first', 4)
+    // this.setTimer('second', 6)
+    // this.setTimer('third', 8)
+    // setSecondsBonusTimer
+    // console.log('getSecondsBonusTimer-->', this.getSecondsBonusTimer)
+    // console.log('setSecondsBonusTimer-->', this.setSecondsBonusTimer(42))
+    // console.log('getSecondsBonusTimer-->', this.getSecondsBonusTimer)
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutPopup)
     clearTimeout(this.timeoutSetUp)
+
+    clearInterval(this.intervalFirstTimer)
+    clearInterval(this.intervalSecondTimer)
+    clearInterval(this.intervalThirdTimer)
+
     this.setIsReceiptRead(false)
     this.setIsMoneyToBonus(false)
   },

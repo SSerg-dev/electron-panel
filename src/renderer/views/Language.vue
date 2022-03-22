@@ -394,7 +394,7 @@ th {
   font-size: 1em;
   width: 100%;
   position: fixed;
-  left: 15em;
+  left: 22em;
   bottom: 16em;
   background: #121212;
   font-family: 'Plumb-Medium';

@@ -249,14 +249,12 @@ export default {
       const method = methods[0]
       const type = types[0]
 
-      //console.log('payCashMoney')
+      // console.log('payCashMoney')
 
       const storage = new Storage(this.client, this.url)
       this.options = this.getStoreMoneyOptions()
       const response = await this.storage.getClient(method, this.options, type)
 
-      /* dev */
-      //console.log('++storeMoney-->', typeof response)
       if (response === undefined) {
         this.$router.push('/program')
         this.$message(`Связь с connect недоступна!!!`)

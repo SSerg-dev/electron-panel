@@ -264,7 +264,7 @@ h4 {
   width: 100%;
 
   position: absolute; /*  absolute; relative;*/
-  left: 20em;
+  left: 16em;
   bottom: 11em;
 
   background: #121212;

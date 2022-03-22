@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="page-title">
-      <!-- <div v-if="this.getPanelType === 'wash' && !getIsMoneyToBonus"> -->
       <div
         v-if="
           this.getPanelType === 'wash' &&
@@ -19,24 +18,26 @@
         }}
       </div>
 
+      <!-- dev -->
       <ul v-if="getIsMoneyToBonus && getMoneyToBonus > 0">
-        <li style="color: red">
-          {{
+        <li class="counter">
+          <!-- {{ '44' }} -->
+          <!-- {{
             `${parseFloat(getWetStopFreeCount / Math.pow(10, digits)).toFixed(
               digits
-            )}  `
-          }}
+            )}`
+          }} -->
+          {{ `${this.getSecondsBonusTimer}` }}
         </li>
-        <li style="color: red;">{{ ` : ` }}</li>
-        <li style="color: yellow">
+        <li class="bonus">
+          <!-- {{'999'}} -->
           {{
-            `${parseFloat(getMoneyToBonus / Math.pow(10, digits)).toFixed(
+            `${parseFloat(this.getMoneyToBonus / Math.pow(10, digits)).toFixed(
               digits
             )}`
           }}
         </li>
       </ul>
-      
     </div>
   </div>
 </template>
@@ -73,7 +74,8 @@ export default Vue.extend({
       getFixedCurrency: 'getFixedCurrency',
       getIsMoneyToBonus: 'getIsMoneyToBonus',
       getMoneyToBonus: 'getMoneyToBonus',
-      getWetStopFreeCount: 'getWetStopFreeCount'
+      getWetStopFreeCount: 'getWetStopFreeCount',
+      getSecondsBonusTimer: 'getSecondsBonusTimer'
     }),
     ...mapMutations({
       setWetBalance: 'setWetBalance',
@@ -94,6 +96,9 @@ export default Vue.extend({
     },
     getFixedCurrency(flag) {
       this.digits = flag
+    },
+    getMoneyToBonus(flag) {
+      console.log('getMoneyToBonus', flag)
     }
   },
 
@@ -124,11 +129,23 @@ export default Vue.extend({
   justify-content: center;
 }
 ul {
+  width: 4em;
+  height: 1.6em;
+  /* background: greenyellow; */
   list-style: none;
   margin: 0;
-  padding-left: 0;
-  padding-top: 0.3em;
-  font-size: 0.8em;
+  padding-left: 0em;
+  padding-top: 0.08em /* 0.3em */;
+  font-size: 1em /* 0.8em */;
   display: flex;
+}
+.counter {
+  width: 1.2em;
+  color: red;
+}
+.bonus {
+  padding-top: 0.25em;
+  color: yellow;
+  font-size: 0.6em;
 }
 </style>

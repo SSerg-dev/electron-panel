@@ -31,6 +31,7 @@ export default new Vuex.Store({
     //secondsGotoProgramMenu: 6,
 
     secondsStatusTimer: 0,
+    secondsBonusTimer: 0,
 
     isConfig: false,
     //postNumber: 5,
@@ -447,7 +448,6 @@ export default new Vuex.Store({
     getIsActiveProgramKit(state) {
       return state.isActiveProgramKit
     },
-    /* dev */
     getIsCardMoney(state) {
       return state.isCardMoney
     },
@@ -456,6 +456,10 @@ export default new Vuex.Store({
     },
     getIsBonusMoney(state) {
       return state.isBonusMoney
+    },
+    /* dev */
+    getSecondsBonusTimer(state) {
+      return state.secondsBonusTimer
     },
 
     getActiveProgramNumber(state) {
@@ -619,6 +623,10 @@ export default new Vuex.Store({
     setIsBonusMoney(state, isBonusMoney) {
       state.isBonusMoney = isBonusMoney
     },
+    setSecondsBonusTimer(state, secondsBonusTimer) {
+      state.secondsBonusTimer = secondsBonusTimer
+    },
+
 
     setWetZeroMoney(state, zeroMoney) {
       state.parameters.zeroMoney = zeroMoney

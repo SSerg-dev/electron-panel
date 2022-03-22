@@ -14,8 +14,8 @@
                 
               >
                 <!-- {{ `ДОМОЙ` }} -->
-                <!-- <i class="large material-icons">replay</i> -->
-                <i class="large material-icons">home</i>
+                <!-- home -->
+                <i class="large material-icons">keyboard_backspace</i>
 
               </div>
             </div>
@@ -29,8 +29,7 @@
                 
               >
                 <!-- {{ `ДОМОЙ` }} -->
-                <!-- <i class="large material-icons">replay</i> -->
-                <i class="large material-icons">home</i>
+                <i class="large material-icons">keyboard_backspace</i>
               </div>
             </div>
           </div>
