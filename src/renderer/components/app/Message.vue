@@ -1,43 +1,56 @@
 <template>
   <div>
     <div class="page-title">
-      <div
-        v-if="
-          this.getPanelType === 'wash' &&
-            !(getIsMoneyToBonus && getMoneyToBonus > 0)
-        "
-      >
-        {{
-          `${parseFloat(getWetBalance / Math.pow(10, digits)).toFixed(digits)}`
-        }}
-      </div>
 
-      <div v-if="this.getPanelType === 'vacuum' && !getIsMoneyToBonus">
-        {{
-          `${parseFloat(getDryBalance / Math.pow(10, digits)).toFixed(digits)}`
-        }}
-      </div>
+      <!-- wash type -->
+      <div v-if="this.getPanelType === 'wash'">
 
-      <!-- dev -->
-      <ul v-if="getIsMoneyToBonus && getMoneyToBonus > 0">
-        <li class="counter">
-          <!-- {{ '44' }} -->
-          <!-- {{
-            `${parseFloat(getWetStopFreeCount / Math.pow(10, digits)).toFixed(
-              digits
-            )}`
-          }} -->
-          {{ `${this.getSecondsBonusTimer}` }}
-        </li>
-        <li class="bonus">
-          <!-- {{'999'}} -->
+        <div v-if="getWetBalance >= 0 && !getIsMoneyToBonus">
           {{
-            `${parseFloat(this.getMoneyToBonus / Math.pow(10, digits)).toFixed(
+            `${parseFloat(getWetBalance / Math.pow(10, digits)).toFixed(
               digits
             )}`
           }}
-        </li>
-      </ul>
+        </div>
+
+
+        <!-- bonus timer -->                                                      
+        <div v-if="getIsMoneyToBonus && getMoneyToBonus > 0">  
+          <ul>
+            <li class="counter">
+              {{ `${this.timerSeconds}` }}
+              <!-- {{ '99' }} -->
+            </li>
+            <li class="separator">:</li>
+            <li class="bonus">
+              {{
+                `${parseFloat(
+                  this.getMoneyToBonus / Math.pow(10, digits)
+                ).toFixed(digits)}`
+              }}
+              <!-- {{ '999' }} -->
+            </li>
+          </ul>
+        </div>
+
+
+        </div>
+
+      </div>
+      <!-- end wash -->
+
+      <!-- vacuum type -->
+      <div v-if="this.getPanelType === 'vacuum'">
+        <div v-if="!getIsMoneyToBonus">
+          {{
+            `${parseFloat(getDryBalance / Math.pow(10, digits)).toFixed(
+              digits
+            )}`
+          }}
+        </div>
+      </div>
+      <!-- end vacuum -->
+
     </div>
   </div>
 </template>
@@ -54,7 +67,8 @@ export default Vue.extend({
       type: '',
       value: 0
     },
-    digits: 0
+    digits: 0,
+    timerSeconds: 0
   }),
 
   props: {
@@ -75,7 +89,9 @@ export default Vue.extend({
       getIsMoneyToBonus: 'getIsMoneyToBonus',
       getMoneyToBonus: 'getMoneyToBonus',
       getWetStopFreeCount: 'getWetStopFreeCount',
-      getSecondsBonusTimer: 'getSecondsBonusTimer'
+      getSecondsBonusTimer: 'getSecondsBonusTimer',
+      getIsFirstTimer: 'getIsFirstTimer'
+
     }),
     ...mapMutations({
       setWetBalance: 'setWetBalance',
@@ -85,39 +101,37 @@ export default Vue.extend({
   watch: {
     /* dev */
     getWetBalance(flag) {
-      // if(flag === '0')
-      //   this.setWetBalance(0)
       console.log('Message getWetBalance-->', this.getWetBalance)
     },
     getDryBalance(flag) {
-      // if(flag === '0')
-      //   this.setDryBalance(0)
       // console.log('Message getDryBalance-->', this.getDryBalance)
     },
     getFixedCurrency(flag) {
       this.digits = flag
     },
     getMoneyToBonus(flag) {
-      console.log('getMoneyToBonus', flag)
+      // console.log('getMoneyToBonus', flag)
+    },
+    getSecondsBonusTimer(flag) {
+      if (flag >= 0) this.timerSeconds = flag
     }
   },
 
-  mounted() {
-    // console.log('getPanelType-->', this.getPanelType)
-  },
+  mounted() {},
   created() {
-    // console.log('Message-->getFixedCurrency-->', this.getFixedCurrency)
-    // console.log('typeof  this.getFixedCurrency-->', typeof this.getFixedCurrency)
-
-    if (parseInt(this.getFixedCurrency) > 0) this.digits = this.getFixedCurrency
+    if (parseInt(this.getFixedCurrency) > 0) {
+      this.digits = this.getFixedCurrency
+    }
   }
 })
 </script>
 
 <style scoped>
 .page-title {
+  /* background: greenyellow; */
   padding-top: 0.02em;
-  width: 530px;
+  padding-right: 2.5em;
+  width: 4em /* 530px */;
 
   color: white;
   font-size: 23em;
@@ -134,18 +148,32 @@ ul {
   /* background: greenyellow; */
   list-style: none;
   margin: 0;
-  padding-left: 0em;
-  padding-top: 0.08em /* 0.3em */;
+  padding-left: 0.95em;
+  padding-top: 0.02em /* 0.3em */;
   font-size: 1em /* 0.8em */;
   display: flex;
 }
 .counter {
   width: 1.2em;
   color: red;
+  /* dev */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.separator {
+  color: red;
+  padding-left: 0em;
+  opacity: 0;
 }
 .bonus {
-  padding-top: 0.25em;
+  padding-top: 0.24em;
+  padding-left: 0em;
   color: yellow;
   font-size: 0.6em;
+  /* dev */
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
 }
 </style>

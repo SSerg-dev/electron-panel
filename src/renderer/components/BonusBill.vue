@@ -465,7 +465,7 @@ export default {
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
-    this.setIsMoneyToBonus(false)
+    // this.setIsMoneyToBonus(false)
     // this.setMoneyToBonus(0)
 
   },

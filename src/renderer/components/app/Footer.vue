@@ -9,14 +9,10 @@
               style="background-image:url('./imgs/operator/home-down.png'); width: 401px; height: 106px"
               @click="gotoHome('home')"
             >
-              <div
-                class="button-title-long button-title-home"
-                
-              >
+              <div class="button-title-long button-title-home">
                 <!-- {{ `ДОМОЙ` }} -->
                 <!-- home -->
                 <i class="large material-icons">keyboard_backspace</i>
-
               </div>
             </div>
             <div
@@ -24,10 +20,7 @@
               style="background-image:url('./imgs/operator/home-up.png'); width: 401px; height: 106px"
               @click="gotoHome('home')"
             >
-              <div
-                class="button-title-long button-title-home"
-                
-              >
+              <div class="button-title-long button-title-home">
                 <!-- {{ `ДОМОЙ` }} -->
                 <i class="large material-icons">keyboard_backspace</i>
               </div>
@@ -114,35 +107,34 @@ export default {
       getIsFooter: 'getIsFooter',
       getWetStopFreeCount: 'getWetStopFreeCount',
       getIsMoneyToBonus: 'getIsMoneyToBonus',
-      getMoneyToBonus: 'getMoneyToBonus'
+      getMoneyToBonus: 'getMoneyToBonus',
+      getSecondsBonusTimer: 'getSecondsBonusTimer'
     })
   },
   watch: {
     getWetStopFreeCount(flag) {
-      try { 
+      try {
         /* dev */
-        // if (parseInt(flag) > 0 && this.$route.name !== 'popup')
-        //   this.$router.push('/popup')
-
-        if (parseInt(flag) > 0) {
-          this.setIsMoneyToBonus(true) 
-        } 
-        else {
-          this.setIsMoneyToBonus(false)
+        console.log('++this.getMoneyToBonus', +this.getMoneyToBonus)
+        
+        if (parseInt(flag) > 0 && +this.getMoneyToBonus === 0) {
+          this.setMoneyToBonus(this.getWetBalance)
+          this.setIsMoneyToBonus(true)
         }
+
       } catch (err) {}
     }
   },
   mounted() {
-    this.setIsMoneyToBonus(false)
-    this.setMoneyToBonus(0)
+    // this.setIsMoneyToBonus(false)
+    // this.setMoneyToBonus(0)
   },
 
   methods: {
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setIsMoneyToBonus: 'setIsMoneyToBonus',
-      setMoneyToBonus: 'setMoneyToBonus' 
+      setMoneyToBonus: 'setMoneyToBonus'
     }),
     ...mapGetters({}),
     ...mapActions({
@@ -161,7 +153,6 @@ export default {
           } */
           this.$router.push('/program')
           /* this.$router.push('/popup') */
-
         } catch (err) {}
       }, this.delay)
     },

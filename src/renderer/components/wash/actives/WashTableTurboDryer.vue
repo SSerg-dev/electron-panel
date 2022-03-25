@@ -198,19 +198,21 @@ export default Vue.extend({
         this.visibleVacuum === 0
       ) {
         this.restore('right')
-      } else if (
+      } 
+      /* else if (
         this.visibleVacuum === 'none' &&
         this.visibleAir === 'none' &&
         this.visibleWasher !== 'none'
       ) {
         this.restore('combo')
-      } else if (
+      } */ 
+      /* else if (
         this.visibleVacuum === 'none' &&
         this.visibleAir === 'none' &&
         this.visibleWasher === 'none'
       ) {
         this.restore('last')
-      }
+      } */
     }, // end initial()
 
     restore(type) {
@@ -224,8 +226,8 @@ export default Vue.extend({
           break
         case 'right':
         case 'last':
-          this._upDryOptions.width = '67em'
-          this._downDryOptions.width = '67em'
+          this._upDryOptions.width = '33em'//'67em'
+          this._downDryOptions.width = '33em'//'67em'
           this.buttonLeft.show()
           this.flex()
           break
@@ -268,9 +270,9 @@ export default Vue.extend({
     // Vacuum
     this.visibleVacuum = this.actives[this.activeVacuumNumber].display
     // Air
-    this.visibleAir = this.actives[this.activeAirNumber].display
+    // this.visibleAir = this.actives[this.activeAirNumber].display
     // Washer
-    this.visibleWasher = this.actives[this.activeWasherNumber].display
+    // this.visibleWasher = this.actives[this.activeWasherNumber].display
 
     this.setup()
   }

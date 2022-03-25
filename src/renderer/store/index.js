@@ -33,6 +33,10 @@ export default new Vuex.Store({
     secondsStatusTimer: 0,
     secondsBonusTimer: 0,
 
+    isFirstTimer: true,
+    isSecondTimer: true,
+    isThirdTimer: true,
+
     isConfig: false,
     //postNumber: 5,
     activeProgram: '',
@@ -457,10 +461,20 @@ export default new Vuex.Store({
     getIsBonusMoney(state) {
       return state.isBonusMoney
     },
-    /* dev */
     getSecondsBonusTimer(state) {
       return state.secondsBonusTimer
     },
+    /* dev */
+    getIsFirstTimer(state) {
+      return state.isFirstTimer
+    },
+    getIsSecondTimer(state) {
+      return state.isSecondTimer
+    },
+    getIsThirdTimer(state) {
+      return state.isThirdTimer
+    },
+
 
     getActiveProgramNumber(state) {
       console.log('state.activeProgramNumber-->', state.activeProgramNumber)
@@ -603,22 +617,18 @@ export default new Vuex.Store({
       state.activeProgram = activeProgram
       //console.log('state.activeProgram-->', state.activeProgram)
     },
-    /* dev */
     setActiveProgramKit(state, activeProgramKit) {
       state.activeProgramKit = activeProgramKit
       // console.log('state.activeProgramKit-->', state.activeProgramKit)
     },
-    // isActiveProgramKit
     setIsActiveProgramKit(state, isActiveProgramKit) {
       state.isActiveProgramKit = isActiveProgramKit
     },
-    /* dev */
     setIsCardMoney(state, isCardMoney) {
       state.isCardMoney = isCardMoney
     },
     setCardMoney(state, cardMoney) {
       state.cardMoney = cardMoney
-      // console.log('++state.cardMoney-->', state.cardMoney)
     },
     setIsBonusMoney(state, isBonusMoney) {
       state.isBonusMoney = isBonusMoney
@@ -626,7 +636,16 @@ export default new Vuex.Store({
     setSecondsBonusTimer(state, secondsBonusTimer) {
       state.secondsBonusTimer = secondsBonusTimer
     },
-
+    /* dev */
+    setIsFirstTimer(state, isFirstTimer) {
+      state.isFirstTimer = isFirstTimer
+    },
+    setIsSecondTimer(state, isSecondTimer) {
+      state.isSecondTimer = isSecondTimer
+    },
+    setIsThirdTimer(state, isThirdTimer) {
+      state.isThirdTimer = isThirdTimer
+    },
 
     setWetZeroMoney(state, zeroMoney) {
       state.parameters.zeroMoney = zeroMoney

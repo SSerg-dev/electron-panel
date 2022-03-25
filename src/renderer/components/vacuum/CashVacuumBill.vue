@@ -207,6 +207,7 @@ export default {
         this.setCashEnabler(true)
         this.setIsAppendBonusMoney(false)
         this.setIsPayBonusMoney(true)
+        this.$router.push('/program')
       } else if (program === 'payBonus') {
         this.setIsAppendBonusMoney(true)
         this.setIsPayBonusMoney(false)

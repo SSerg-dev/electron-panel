@@ -109,6 +109,8 @@ export default {
   }),
   mounted() {
     this.storage = new Storage(this.client, this.url)
+    this.setIsMoneyToBonus(false)
+
   },
   computed: {
     ...mapGetters({
@@ -139,8 +141,9 @@ export default {
       /* dev */
       getIsReceiptRead: 'getIsReceiptRead',
       getIsReceiptCreate: 'getIsReceiptCreate',
-      getIsReceiptPrint: 'getIsReceiptPrint'
-    }),
+      getIsReceiptPrint: 'getIsReceiptPrint',
+
+          }),
     ...mapMutations({
       //createCash: 'cash/createCash',
       setCashEnabler: 'setCashEnabler',
@@ -149,13 +152,17 @@ export default {
 
       setIsReceiptRead: 'setIsReceiptRead',
       setIsReceiptCreate: 'setIsReceiptCreate',
-      setIsReceiptPrint: 'setIsReceiptPrint'
+      setIsReceiptPrint: 'setIsReceiptPrint',
+
+      setIsMoneyToBonus: 'setIsMoneyToBonus'
+
+
     }),
     ...mapActions({
       updateWetMoney: 'updateWetMoney'
     }),
-
-    payUp(program) {
+    
+    payUp(program) {  
       this.setDown(program)
       /* dev */
       this.doReceipt()
@@ -165,6 +172,7 @@ export default {
         this.setCashEnabler(true)
         this.setIsAppendBonusMoney(false)
         this.setIsPayBonusMoney(true)
+        this.$router.push('/program')
       } else if (program === 'payBonus') {
         this.setIsAppendBonusMoney(true)
         this.setIsPayBonusMoney(false)
@@ -253,6 +261,7 @@ export default {
 
       const storage = new Storage(this.client, this.url)
       this.options = this.getStoreMoneyOptions()
+
       const response = await this.storage.getClient(method, this.options, type)
 
       if (response === undefined) {

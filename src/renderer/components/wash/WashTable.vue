@@ -19,7 +19,22 @@
               { 'card-content white-text': this.isDown.price }
             ]"
           >
-            {{ `📄` }}
+            <!-- style="content:'\1f4c2'; filter: hue-rotate(180deg) brightness(1.5); margin-right:4px;" -->
+            <svg>
+              <filter id="color">
+                <feColorMatrix
+                  type="matrix"
+                  values="
+                  1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                  0 0 0 1 0"
+                />
+              </filter>
+            </svg>
+            <div class="emoji">
+              {{ `📄` }}
+            </div>
           </div>
         </div>
 
@@ -210,6 +225,7 @@ export default {
     intervalFirstTimer: null,
     intervalSecondTimer: null,
     intervalThirdTimer: null,
+    seconds: 0,
 
     name: 'program-table',
     timeoutDelay: null,
@@ -279,7 +295,7 @@ export default {
     },
 
     getIsReceiptRead(flag) {
-      console.log('getIsReceiptRead', flag)
+      // console.log('getIsReceiptRead', flag)
       // if (flag) {
       //   this.buttonReceipt.show()
       //   this.flex()
@@ -292,7 +308,7 @@ export default {
         this.buttonBonus.show()
         this.flex()
         /* dev */
-        this.setTimer('first', 42)
+        this.setTimer('first', 15)
       } else {
         this.isVisibleWashTableBonus = false
         this.buttonBonus.hide()
@@ -300,6 +316,16 @@ export default {
     },
     getWetProgShow(flag) {
       // console.log('getWetProgShow', flag, this.actives[14])
+    },
+    seconds(flag) {
+      console.log('++this.seconds-->flag--> ', flag)
+      // console.log('this.getIsFirstTimer-->', this.getIsFirstTimer)
+      
+      if (flag < 0 || !this.getIsFirstTimer) {
+        this.setMoneyToBonus(0)
+        this.setIsMoneyToBonus(false)
+        clearInterval(this.intervalFirstTimer)
+      }
     }
   },
   computed: {
@@ -318,6 +344,7 @@ export default {
       getIsMoneyToBonus: 'getIsMoneyToBonus',
       getWetStopFreeCount: 'getWetStopFreeCount',
       getSecondsBonusTimer: 'getSecondsBonusTimer',
+      getIsFirstTimer: 'getIsFirstTimer',
 
       getInitCurrency: 'getInitCurrency',
       getDefaultCurrency: 'getDefaultCurrency'
@@ -411,10 +438,6 @@ export default {
     saveMoney() {
       if (this.getWetStopFreeCount >= 0) {
         this.isVisibleWashTableBonus = true
-
-        this.setIsMoneyToBonus(true)
-        this.setMoneyToBonus(this.getWetBalance)
-        /* dev */
         // this.$router.push('/bonus')
       }
     },
@@ -446,9 +469,6 @@ export default {
       this.buttonBonus.background = 'rgb(255, 255, 255)'
     },
     setup() {
-      /* dev */
-      this.setIsMoneyToBonus(false)
-      this.setMoneyToBonus(0)
       this.initCurrency()
       this.initial()
     },
@@ -508,7 +528,6 @@ export default {
 
       if (!+this.getWetBalance > 0) this.buttonPrice.hide()
       if (!this.getIsReceiptRead) this.buttonReceipt.hide()
-      /* dev */
       if (!this.getIsMoneyToBonus) this.buttonBonus.hide()
 
       // end classes instances
@@ -533,15 +552,9 @@ export default {
     runFirstTimer(seconds) {
       this.intervalFirstTimer = setInterval(() => {
         // todo
-        // console.log('01 seconds-->', seconds)
-        this.setSecondsBonusTimer(seconds)
-        if (--seconds < 0) {
-          clearInterval(this.intervalFirstTimer)
-          this.setSecondsBonusTimer(0)
-          return
-        }
+        this.seconds = seconds--
+        this.setSecondsBonusTimer(seconds) 
       }, 1000)
-      return
     },
     runSecondTimer(seconds) {
       this.intervalSecondTimer = setInterval(() => {
@@ -589,13 +602,6 @@ export default {
     }
     this.setup()
 
-    // this.setTimer('first', 4)
-    // this.setTimer('second', 6)
-    // this.setTimer('third', 8)
-    // setSecondsBonusTimer
-    // console.log('getSecondsBonusTimer-->', this.getSecondsBonusTimer)
-    // console.log('setSecondsBonusTimer-->', this.setSecondsBonusTimer(42))
-    // console.log('getSecondsBonusTimer-->', this.getSecondsBonusTimer)
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
@@ -697,5 +703,14 @@ td {
   /* display: flex;
   align-items: center;
   justify-content: center; */
+}
+/* dev */
+svg {
+  display: none;
+}
+
+.emoji {
+  -webkit-filter: url(#color);
+  filter: url(#color);
 }
 </style>

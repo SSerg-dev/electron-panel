@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--  foam -->
-    <!-- ЩЕТКА + ПЕНА -->
+    <!-- ПЕНА -->
     <td>
       <div
         @click="setProgram('foam')"
@@ -20,7 +20,7 @@
       </div>
     </td>
 
-    <!-- ЩЕТКА center-->
+    <!-- ПЕНА center-->
     <td>
       <div
         @click="setProgram('foam_color')"
@@ -41,7 +41,7 @@
       </div>
     </td>
 
-    <!-- ЩЕТКА X2-->
+    <!-- ПЕНА X2-->
     <td>
       <div
         @click="setProgram('foam_x2')"

@@ -911,7 +911,6 @@ export default {
           this.setCardMoney(card)
           this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)
           this.$router.push('/status')
-          //this.$router.push('/program')
         }
 
         if (this.getIsBonusMoney && this.getIsCardMoney) {
@@ -919,8 +918,6 @@ export default {
           this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
           this.$router.push('/program')
         }
-
-        // this.$router.push('/program')
 
         this.display = this.title = this.body = '0'
       } else this.$message(`Введите правильную сумму`)

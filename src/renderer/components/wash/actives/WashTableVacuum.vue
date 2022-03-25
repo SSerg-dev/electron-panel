@@ -204,8 +204,8 @@ export default Vue.extend({
           this.flex()
           break
         case 'right':
-          this._upDryOptions.width = '67em'
-          this._downDryOptions.width = '67em'
+          this._upDryOptions.width = '33em'//'67em'
+          this._downDryOptions.width = '33em'//'67em'
           this.buttonLeft.show()
           this.flex()
           break

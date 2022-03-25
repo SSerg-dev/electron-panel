@@ -148,7 +148,8 @@ export default {
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
-      getWetStopFreeCount: 'getWetStopFreeCount'
+      getWetStopFreeCount: 'getWetStopFreeCount',
+      getIsFirstTimer: 'getIsFirstTimer'
     })
   },
 
@@ -175,7 +176,9 @@ export default {
       setIsActiveProgramKit: 'setIsActiveProgramKit',
 
       setIsMoneyToBonus: 'setIsMoneyToBonus',
-      setMoneyToBonus: 'setMoneyToBonus'
+      setMoneyToBonus: 'setMoneyToBonus',
+      setIsFirstTimer: 'setIsFirstTimer',
+      setSecondsBonusTimer: 'setSecondsBonusTimer'
     }),
     setProgram(program) {
       this.active = program
@@ -228,17 +231,20 @@ export default {
 
         case 'no':
           console.log('++no')  
+          this.setIsFirstTimer(false)
+          this.setSecondsBonusTimer(0)
 
-          this.setMoneyToBonus(0)
+          /* dev */
           this.setIsMoneyToBonus(false)
+          this.setMoneyToBonus(0)
 
           this.setButtonStyle(this._downRedOptions)
           this.isDown.no = true
-          this.timeoutDelay = setTimeout(() => {
+          /* this.timeoutDelay = setTimeout(() => {
             try {
-              // this.$router.push('/program')
+              this.$router.push('/program')
             } catch (err) {}
-          }, this.delay = 500)
+          }, this.delay = 500) */
           
           break
 
