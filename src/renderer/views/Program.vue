@@ -148,6 +148,7 @@ export default Vue.extend({
     this.activesVacuum = this.getProgramsVacuum() 
   },
   mounted() {
+    /* dev */
     this.setRouter('/program')
     this.setActiveProg()
 

@@ -149,7 +149,10 @@ export default {
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
       getWetStopFreeCount: 'getWetStopFreeCount',
-      getIsFirstTimer: 'getIsFirstTimer'
+      getIsFirstTimer: 'getIsFirstTimer',
+      getIsMoneyToBonusNo: 'getIsMoneyToBonusNo',
+
+      getSecondsFirstTimer: 'getSecondsFirstTimer'
     })
   },
 
@@ -177,8 +180,11 @@ export default {
 
       setIsMoneyToBonus: 'setIsMoneyToBonus',
       setMoneyToBonus: 'setMoneyToBonus',
+      
+      setIsMoneyToBonusNo: 'setIsMoneyToBonusNo',
       setIsFirstTimer: 'setIsFirstTimer',
-      setSecondsBonusTimer: 'setSecondsBonusTimer'
+      setSecondsBonusTimer: 'setSecondsBonusTimer',
+      setSecondsFirstTimer: 'setSecondsFirstTimer'
     }),
     setProgram(program) {
       this.active = program
@@ -201,12 +207,10 @@ export default {
     },
 
     saveMoney() {
-      if (this.getWetStopFreeCount >= 0) {
-        // this.isVisibleWashTableBonus = true  
-
-        this.setIsMoneyToBonus(true)
+      /* if (this.getWetStopFreeCount >= 0) { */
+      if (this.getIsFirstTimer) {
         this.setMoneyToBonus(this.getWetBalance)
-        
+        // this.setIsMoneyToBonus(true)
       }
     },
     setDown(program) {
@@ -231,20 +235,26 @@ export default {
 
         case 'no':
           console.log('++no')  
-          this.setIsFirstTimer(false)
-          this.setSecondsBonusTimer(0)
-
-          /* dev */
+          
           this.setIsMoneyToBonus(false)
           this.setMoneyToBonus(0)
 
+          this.setIsMoneyToBonusNo(true)
+  
+          this.setIsFirstTimer(false)
+          
+          // console.log('getSecondsFirstTimer', this.getSecondsFirstTimer)
+          // this.setSecondsFirstTimer(42)
+          // console.log('getSecondsFirstTimer', this.getSecondsFirstTimer)
+          
           this.setButtonStyle(this._downRedOptions)
           this.isDown.no = true
-          /* this.timeoutDelay = setTimeout(() => {
+
+          this.timeoutDelay = setTimeout(() => {
             try {
-              this.$router.push('/program')
+              this.$router.push('/')
             } catch (err) {}
-          }, this.delay = 500) */
+          }, this.delay = 500)
           
           break
 
@@ -387,12 +397,15 @@ export default {
 
   created() {},
   mounted() {
+    
     this.setup()
   },
 
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutPopup)
+    /* dev */
+    this.setIsMoneyToBonusNo(false)
   },
 
   components: {}

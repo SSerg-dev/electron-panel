@@ -360,8 +360,8 @@ export default Vue.extend({
           break
 
         case 'right_color_x2':
-          this._upGreenOptions.width = '51em'
-          this._downGreenOptions.width = '51em'
+          this._upGreenOptions.width = '52em'
+          this._downGreenOptions.width = '52em'
           this.buttonLeft.show()
           this.buttonCenter.show()
           this.buttonRight.show()

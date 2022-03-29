@@ -574,8 +574,7 @@ export default {
           /* ??? how match */
           this.$message(`Вам насчислены бонусы`)
           this.setIsAppendBonusMoney(false)
-          this.$router.push('/program')
-          //this.$router.push('/')
+          if (this.$route.name !== 'program') this.$router.push('/program')
         } else {
           this.$message(`Ошибка:  ${response.error}`)
         }

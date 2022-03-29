@@ -37,6 +37,10 @@ export default new Vuex.Store({
     isSecondTimer: true,
     isThirdTimer: true,
 
+    secondsFirstTimer: 15,
+    secondsSecondTimer: 20,
+    secondsThirdTimer: 30,
+
     isConfig: false,
     //postNumber: 5,
     activeProgram: '',
@@ -475,6 +479,16 @@ export default new Vuex.Store({
       return state.isThirdTimer
     },
 
+    getSecondsFirstTimer(state) {
+      return state.secondsFirstTimer
+    },
+    getSecondsSecondTimer(state) {
+      return state.secondsSecondTimer
+    },
+    getSecondsThirdTimer(state) {
+      return state.secondsThirdTimer
+    },
+
 
     getActiveProgramNumber(state) {
       console.log('state.activeProgramNumber-->', state.activeProgramNumber)
@@ -645,6 +659,16 @@ export default new Vuex.Store({
     },
     setIsThirdTimer(state, isThirdTimer) {
       state.isThirdTimer = isThirdTimer
+    },
+    
+    setSecondsFirstTimer(state, secondsFirstTimer) {
+      state.secondsFirstTimer = secondsFirstTimer
+    },
+    setSecondsSecondTimer(state, secondsSecondTimer) {
+      state.secondsSecondTimer = secondsSecondTimer
+    },
+    setSecondsThirdTimer(state, secondsThirdTimer) {
+      state.secondsThirdTimer = secondsThirdTimer
     },
 
     setWetZeroMoney(state, zeroMoney) {

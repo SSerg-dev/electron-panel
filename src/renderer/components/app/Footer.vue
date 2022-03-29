@@ -107,27 +107,40 @@ export default {
       getIsFooter: 'getIsFooter',
       getWetStopFreeCount: 'getWetStopFreeCount',
       getIsMoneyToBonus: 'getIsMoneyToBonus',
+
+      getIsMoneyToBonusNo: 'getIsMoneyToBonusNo',
       getMoneyToBonus: 'getMoneyToBonus',
-      getSecondsBonusTimer: 'getSecondsBonusTimer'
+      getSecondsBonusTimer: 'getSecondsBonusTimer',
+      getIsFirstTimer: 'getIsFirstTimer'
     })
   },
   watch: {
     getWetStopFreeCount(flag) {
       try {
-        /* dev */
-        console.log('++this.getMoneyToBonus', +this.getMoneyToBonus)
-        
-        if (parseInt(flag) > 0 && +this.getMoneyToBonus === 0) {
+        if (
+          parseInt(flag) > 0 &&
+          +this.getMoneyToBonus === 0 
+          && this.getIsFirstTimer
+        ) {
           this.setMoneyToBonus(this.getWetBalance)
           this.setIsMoneyToBonus(true)
+          console.log('++ Footer-->this.getIsMoneyToBonusNo', this.getIsMoneyToBonusNo)
+          
         }
-
       } catch (err) {}
     }
+    /* getSecondsBonusTimer (flag) {
+      try {
+        if (parseInt(flag) > 0 && +this.getMoneyToBonus === 0 && this.getIsFirstTimer) {
+          this.setMoneyToBonus(this.getWetBalance)
+          this.setIsMoneyToBonus(true)  
+        } 
+      } catch (err) {} 
+    } */
   },
   mounted() {
-    // this.setIsMoneyToBonus(false)
-    // this.setMoneyToBonus(0)
+    this.setIsMoneyToBonus(false)
+    this.setMoneyToBonus(0)
   },
 
   methods: {
@@ -151,7 +164,8 @@ export default {
           /* if (this.$route.name !== 'home') {
             this.$router.push('/')
           } */
-          this.$router.push('/program')
+          if (this.$route.name !== 'program') this.$router.push('/program')
+          // this.$router.push('/program')
           /* this.$router.push('/popup') */
         } catch (err) {}
       }, this.delay)

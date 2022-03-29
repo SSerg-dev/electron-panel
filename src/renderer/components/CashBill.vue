@@ -34,10 +34,7 @@
       </li>
 
       <li v-if="this.IsWetBalance === false">
-        <div
-          class="card grey pay-input"
-          
-        >
+        <div class="card grey pay-input">
           <div
             class="card-content white-text  noselect"
             style="
@@ -110,7 +107,6 @@ export default {
   mounted() {
     this.storage = new Storage(this.client, this.url)
     this.setIsMoneyToBonus(false)
-
   },
   computed: {
     ...mapGetters({
@@ -141,9 +137,8 @@ export default {
       /* dev */
       getIsReceiptRead: 'getIsReceiptRead',
       getIsReceiptCreate: 'getIsReceiptCreate',
-      getIsReceiptPrint: 'getIsReceiptPrint',
-
-          }),
+      getIsReceiptPrint: 'getIsReceiptPrint'
+    }),
     ...mapMutations({
       //createCash: 'cash/createCash',
       setCashEnabler: 'setCashEnabler',
@@ -155,14 +150,12 @@ export default {
       setIsReceiptPrint: 'setIsReceiptPrint',
 
       setIsMoneyToBonus: 'setIsMoneyToBonus'
-
-
     }),
     ...mapActions({
       updateWetMoney: 'updateWetMoney'
     }),
-    
-    payUp(program) {  
+
+    payUp(program) {
       this.setDown(program)
       /* dev */
       this.doReceipt()
@@ -172,7 +165,8 @@ export default {
         this.setCashEnabler(true)
         this.setIsAppendBonusMoney(false)
         this.setIsPayBonusMoney(true)
-        this.$router.push('/program')
+        /* this.$router.push('/program') */
+        if (this.$route.name !== 'program') this.$router.push('/program')
       } else if (program === 'payBonus') {
         this.setIsAppendBonusMoney(true)
         this.setIsPayBonusMoney(false)
@@ -265,13 +259,14 @@ export default {
       const response = await this.storage.getClient(method, this.options, type)
 
       if (response === undefined) {
-        this.$router.push('/program')
+        if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(`Связь с connect недоступна!!!`)
         return
       }
       /* dev vacuum */
       if (+response.result === 0 && +this.getWetBalance > 0) {
-        this.$router.push('/program')
+        if (this.$route.name !== 'program') this.$router.push('/program')
+        // this.$router.push('/program')
         this.$message(
           `Оплата наличными прошла успешно, внесенная сумма:  ${+this
             .getWetBalance} ₽`
@@ -292,31 +287,7 @@ export default {
       if (+response.result === 0) {
         this.$message(`Бонусы зачислены успешно`)
       }
-
-      /* let response
-      if (this.phone.length === this.phoneParseLength) {
-        if (this.IsWetBalance) {
-          response = await this.storage.getClient(method, this.options, type)
-          if (+response.result === 0) {
-            this.$message(
-              `Вам насчислены бонусы в сумме:  ${+this.getWetBalance}
-               ₽ , они зачислены на Ваш бонусный счет`
-            )
-            this.$router.push('/program')
-          } else this.$message(`Ошибка оплаты Вашего бонусного счета`)
-        } else {
-          this.$message('Внесите минимальную сумму (10 руб.)')
-          this.$router.push('/bonus')
-        }
-      } else {
-        this.$message(`Введите правильно номер мобильного телефона`)
-      } */
-      //----
     },
-    //----------
-
-    //----------
-
     setEnabler() {
       this.getCashEnabler === true
         ? (this.cash_enabler = false)
@@ -374,7 +345,6 @@ export default {
   border: solid 2px white;
   border-radius: 1em;
   box-shadow: 0px 10px 20px #eee;
-  
 }
 .pay-end-bonus {
   background-color: black;

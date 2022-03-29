@@ -1,10 +1,9 @@
 <template>
   <div>
     <div class="page-title">
-
       <!-- wash type -->
       <div v-if="this.getPanelType === 'wash'">
-
+        <!--  || getIsMoneyToBonusNo -->
         <div v-if="getWetBalance >= 0 && !getIsMoneyToBonus">
           {{
             `${parseFloat(getWetBalance / Math.pow(10, digits)).toFixed(
@@ -13,9 +12,10 @@
           }}
         </div>
 
-
-        <!-- bonus timer -->                                                      
-        <div v-if="getIsMoneyToBonus && getMoneyToBonus > 0">  
+        <!-- bonus timer -->
+        <!-- <div v-if="getIsMoneyToBonus && getMoneyToBonus > 0"> -->
+        <!-- <div v-if="getIsMoneyToBonus && !getIsMoneyToBonusNo"> -->
+        <div v-if="getIsMoneyToBonus">    
           <ul>
             <li class="counter">
               {{ `${this.timerSeconds}` }}
@@ -32,26 +32,20 @@
             </li>
           </ul>
         </div>
-
-
-        </div>
-
+        
       </div>
-      <!-- end wash -->
-
-      <!-- vacuum type -->
-      <div v-if="this.getPanelType === 'vacuum'">
-        <div v-if="!getIsMoneyToBonus">
-          {{
-            `${parseFloat(getDryBalance / Math.pow(10, digits)).toFixed(
-              digits
-            )}`
-          }}
-        </div>
-      </div>
-      <!-- end vacuum -->
-
     </div>
+    <!-- end wash -->
+
+    <!-- vacuum type -->
+    <div v-if="this.getPanelType === 'vacuum'">
+      <div v-if="!getIsMoneyToBonus">
+        {{
+          `${parseFloat(getDryBalance / Math.pow(10, digits)).toFixed(digits)}`
+        }}
+      </div>
+    </div>
+    <!-- end vacuum -->
   </div>
 </template>
 
@@ -90,8 +84,8 @@ export default Vue.extend({
       getMoneyToBonus: 'getMoneyToBonus',
       getWetStopFreeCount: 'getWetStopFreeCount',
       getSecondsBonusTimer: 'getSecondsBonusTimer',
-      getIsFirstTimer: 'getIsFirstTimer'
-
+      getIsFirstTimer: 'getIsFirstTimer',
+      getIsMoneyToBonusNo: 'getIsMoneyToBonusNo'
     }),
     ...mapMutations({
       setWetBalance: 'setWetBalance',
@@ -102,6 +96,8 @@ export default Vue.extend({
     /* dev */
     getWetBalance(flag) {
       console.log('Message getWetBalance-->', this.getWetBalance)
+      if (+flag === 0)
+        this.$router.push('/')
     },
     getDryBalance(flag) {
       // console.log('Message getDryBalance-->', this.getDryBalance)

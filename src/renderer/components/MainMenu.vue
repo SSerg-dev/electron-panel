@@ -71,6 +71,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getWetBalance: 'getWetBalance',
+      getMoneyToBonus: 'getMoneyToBonus',
       getIsPing: 'getIsPing'
     })
   },
@@ -81,7 +82,7 @@ export default Vue.extend({
 
       /* dev */
       //console.log('value-->', value)
-      if(value > 0) 
+      if(value > 0 && this.getMoneyToBonus === 0 ) 
         this.$router.push('/cash')
     }
   },

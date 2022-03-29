@@ -78,7 +78,8 @@ export default Vue.extend({
     if (this.$route.name !== 'program') {
       this.timeoutDelay = setTimeout(() => {
         try {
-          this.$router.push('/program')
+          // this.$router.push('/program')
+          if (this.$route.name !== 'program') this.$router.push('/program')
         } catch (err) {}
       }, this.delay)
     }

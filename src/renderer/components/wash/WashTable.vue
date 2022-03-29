@@ -89,97 +89,146 @@
         <div v-if="this.isVisibleWashTableBonus" class="savemoney">
           <WashTableBonus :actives="actives" />
         </div>
+
         <div v-else :key="getWetProgShow">
           <table border="0" width="100%" cellpadding="0" cellspacing="0">
             <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
               <!-- 0 -->
               <!-- ОБЕЗЖИРИВАНИЕ degrease -->
-              <tr v-if="this.actives[27].display !== 'none'">
+              <tr
+                v-if="this.actives[27].display !== 'none'"
+                :key="this.keys.keyDegrease"
+              >
                 <WashTableDegrease :actives="actives" />
               </tr>
 
               <!-- 1 -->
               <!-- ДИСКИ -->
-              <tr v-if="this.actives[14].display !== 'none'">
+              <tr
+                v-if="this.actives[14].display !== 'none'"
+                :key="this.keys.keyDiskEx"
+              >
                 <WashTableDiskEx :actives="actives" />
               </tr>
 
               <!-- 2 -->
               <!-- АНТИМОСКИТ -->
-              <tr v-if="this.actives[15].display !== 'none'">
+              <tr
+                v-if="this.actives[15].display !== 'none'"
+                :key="this.keys.keyMosquitoEx"
+              >
                 <WashTableMosquitoEx :actives="actives" />
               </tr>
 
               <!-- 3 -->
               <!-- ШАМПУНЬ shampoo -->
-              <tr v-if="this.actives[0].display !== 'none'">
+              <tr
+                v-if="this.actives[0].display !== 'none'"
+                :key="this.keys.keyShampooEx"
+              >
                 <WashTableShampooEx :actives="actives" />
               </tr>
 
               <!-- 4 -->
               <!-- ЩЕТКА + ПЕНА -->
-              <tr v-if="this.actives[13].display !== 'none'">
+              <tr
+                v-if="this.actives[13].display !== 'none'"
+                :key="this.keys.keyBrushFoamEx"
+              >
                 <WashTableBrushFoamEx :actives="actives" />
               </tr>
 
               <!-- 5 -->
               <!-- ПЕНА -->
-              <tr v-if="this.actives[5].display !== 'none'">
+              <tr
+                v-if="this.actives[5].display !== 'none'"
+                :key="this.keys.keyFoamEx"
+              >
                 <WashTableFoamEx :actives="actives" />
               </tr>
 
               <!-- 6 -->
               <!-- ВОДА + ШАМПУНЬ -->
-              <tr v-if="this.actives[1].display !== 'none'">
+              <tr
+                v-if="this.actives[1].display !== 'none'"
+                :key="this.keys.keyWaterShampooEx"
+              >
                 <WashTableWaterShampooEx :actives="actives" />
               </tr>
 
               <!-- 7 -->
               <!-- ХОЛОДНАЯ ВОДА coldWater -->
-              <tr v-if="this.actives[2].display !== 'none'">
+              <tr
+                v-if="this.actives[2].display !== 'none'"
+                :key="this.keys.keyColdWaterEx"
+              >
                 <WashTableColdWaterEx :actives="actives" />
               </tr>
 
               <!-- 8 -->
               <!-- ТЕПЛАЯ ВОДА warmWater -->
-              <tr v-if="this.actives[11].display !== 'none'">
+              <tr
+                v-if="this.actives[11].display !== 'none'"
+                :key="this.keys.keyWarmWaterEx"
+              >
                 <WashTableWarmWaterEx :actives="actives" />
               </tr>
 
               <!-- 9 -->
               <!-- ВОСК И ЗАЩИТА waxProtection -->
-              <tr v-if="this.actives[3].display !== 'none'">
+              <tr
+                v-if="this.actives[3].display !== 'none'"
+                :key="this.keys.keyWaxProtectionEx"
+              >
                 <WashTableWaxProtectionEx :actives="actives" />
               </tr>
 
               <!-- 10 -->
               <!-- СУШКА И БЛЕСК dryShine-->
-              <tr v-if="this.actives[4].display !== 'none'">
+              <tr
+                v-if="this.actives[4].display !== 'none'"
+                :key="this.keys.keyDryShineEx"
+              >
                 <WashTableDryShineEx :actives="actives" />
               </tr>
 
               <!-- 11 -->
               <!-- ДЕЗИНФЕКЦИЯ disinfection -->
-              <tr v-if="this.actives[28].display !== 'none'">
+              <tr
+                v-if="this.actives[28].display !== 'none'"
+                :key="this.keys.keyDisinfection"
+              >
                 <WashTableDisinfection :actives="actives" />
               </tr>
 
               <!-- dry group -->
               <!-- vacuum air washer turboDryer -->
 
-              <tr v-if="this.actives[16].display !== 'none'">
+              <tr
+                v-if="this.actives[16].display !== 'none'"
+                :key="this.keys.keyVacuum"
+              >
                 <WashTableVacuum :actives="actives" />
               </tr>
 
-              <tr v-if="this.actives[26].display !== 'none'">
+              <tr
+                v-if="this.actives[26].display !== 'none'"
+                :key="this.keys.keyTurboDryer"
+              >
                 <WashTableTurboDryer :actives="actives" />
               </tr>
 
-              <tr v-if="this.actives[17].display !== 'none'">
+              <tr
+                v-if="this.actives[17].display !== 'none'"
+                :key="this.keys.keyAir"
+              >
                 <WashTableAir :actives="actives" />
               </tr>
 
-              <tr v-if="this.actives[18].display !== 'none'">
+              <tr
+                v-if="this.actives[18].display !== 'none'"
+                :key="this.keys.keyWasher"
+              >
                 <WashTableWasher :actives="actives" />
               </tr>
             </tbody>
@@ -231,6 +280,27 @@ export default {
     timeoutDelay: null,
     isVisible: false,
     isVisibleWashTableBonus: false,
+
+    /*  */
+    keys: {
+      keyDegrease: 1,
+      keyDiskEx: 2,
+      keyMosquitoEx: 3,
+      keyShampooEx: 4,
+      keyBrushFoamEx: 5,
+      keyFoamEx: 6,
+      keyWaterShampooEx: 7,
+      keyColdWaterEx: 8,
+      keyWarmWaterEx: 9,
+      keyWaxProtectionEx: 10,
+      keyDryShineEx: 11,
+      keyDisinfection: 12,
+
+      keyVacuum: 13,
+      keyTurboDryer: 14,
+      keyAir: 15,
+      keyWasher: 16
+    },
 
     client: 'fetch',
     url: 'https://192.168.1.3/',
@@ -303,14 +373,17 @@ export default {
     },
 
     getIsMoneyToBonus(flag) {
-      console.log('getIsMoneyToBonus', flag)
+      console.log('++getIsMoneyToBonus', flag)
       if (flag) {
         this.buttonBonus.show()
         this.flex()
-        /* dev */
+        this.setMoneyToBonus(this.getWetBalance)
+
+        /* dev getSecondsFirstTimer */
         this.setTimer('first', 15)
+        // this.setTimer('first', 15)
+
       } else {
-        this.isVisibleWashTableBonus = false
         this.buttonBonus.hide()
       }
     },
@@ -320,12 +393,40 @@ export default {
     seconds(flag) {
       console.log('++this.seconds-->flag--> ', flag)
       // console.log('this.getIsFirstTimer-->', this.getIsFirstTimer)
-      
+
       if (flag < 0 || !this.getIsFirstTimer) {
         this.setMoneyToBonus(0)
         this.setIsMoneyToBonus(false)
         clearInterval(this.intervalFirstTimer)
       }
+    },
+    getWetStopFreeCount(flag) {
+      if (flag > 0) {
+        /* dev */
+        // this.isVisibleWashTableBonus = true
+        this.buttonBonus.show()
+        this.flex()
+      } else {
+        /* dev */
+        // this.isVisibleWashTableBonus = false
+        this.buttonBonus.hide()
+      }
+    },
+    getSecondsBonusTimer(flag) {
+      if (flag > 0) {
+        /* dev */
+        this.setIsMoneyToBonus(true)
+
+        this.buttonBonus.show()
+        this.flex()
+      } else {
+        this.setIsMoneyToBonus(false)
+        this.buttonBonus.hide()
+      }
+    },
+    getIsMoneyToBonusNo(flag) {
+      if (flag) this.isVisibleWashTableBonus = false
+      // else this.isVisibleWashTableBonus = true
     }
   },
   computed: {
@@ -345,6 +446,8 @@ export default {
       getWetStopFreeCount: 'getWetStopFreeCount',
       getSecondsBonusTimer: 'getSecondsBonusTimer',
       getIsFirstTimer: 'getIsFirstTimer',
+      getIsMoneyToBonusNo: 'getIsMoneyToBonusNo',
+      getSecondsFirstTimer: 'getSecondsFirstTimer',
 
       getInitCurrency: 'getInitCurrency',
       getDefaultCurrency: 'getDefaultCurrency'
@@ -364,7 +467,8 @@ export default {
 
       setIsMoneyToBonus: 'setIsMoneyToBonus',
       setMoneyToBonus: 'setMoneyToBonus',
-      setSecondsBonusTimer: 'setSecondsBonusTimer'
+      setSecondsBonusTimer: 'setSecondsBonusTimer',
+      setIsFirstTimer: 'setIsFirstTimer'
     }),
     ...mapGetters({
       getPrintReceiptOptions: 'getPrintReceiptOptions'
@@ -436,9 +540,10 @@ export default {
       }, 500)
     },
     saveMoney() {
+      /* dev */
       if (this.getWetStopFreeCount >= 0) {
+        /* if (this.getSecondsBonusTimer >= 0) { */
         this.isVisibleWashTableBonus = true
-        // this.$router.push('/bonus')
       }
     },
     // printReceipt
@@ -553,8 +658,10 @@ export default {
       this.intervalFirstTimer = setInterval(() => {
         // todo
         this.seconds = seconds--
-        this.setSecondsBonusTimer(seconds) 
+        this.setSecondsBonusTimer(seconds)
       }, 1000)
+      // reset timer
+      this.setIsFirstTimer(true)
     },
     runSecondTimer(seconds) {
       this.intervalSecondTimer = setInterval(() => {
@@ -590,6 +697,15 @@ export default {
         default:
           break
       }
+    },
+    setKeys() {
+      this.keys = Object.fromEntries(
+        Object.entries(this.keys).map(([key, value], index) => [
+          key,
+          (index + 1) * 10
+        ])
+      )
+      // console.log('this.keys-->', this.keys)
     }
   }, // end methods
   mounted() {
@@ -598,10 +714,11 @@ export default {
     if (!this.isVisible) {
       this.timeoutDelay = setTimeout(() => {
         this.isVisible = true
-      }, this.delay)
+        // rerender after 1 sec.
+        this.setKeys()
+      }, (this.delay = 1000))
     }
     this.setup()
-
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)

@@ -916,7 +916,10 @@ export default {
         if (this.getIsBonusMoney && this.getIsCardMoney) {
           this.updateWetMoney(card)
           this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
-          this.$router.push('/program')
+          /* this.$router.push('/program') */
+          if (this.$route.name !== 'program') this.$router.push('/program')
+          //this.$router.push('/')
+
         }
 
         this.display = this.title = this.body = '0'

@@ -2,9 +2,13 @@
   <div>
     <div v-if="this.messageIndex > -1" class="message">
       {{ `${this.messages[this.messageIndex]}` }}
-      <div v-if="getWetStopFreeCount > 0" style="font-size: 2em">
+      <!-- <div v-if="getWetStopFreeCount > 0" style="font-size: 2em">
         {{ ` ${getWetStopFreeCount}` }}
+      </div> -->
+      <div v-if="getSecondsBonusTimer > 0" style="font-size: 2em">
+        {{ ` ${ getSecondsBonusTimer }` }}
       </div>
+
     </div>
 
     <div class="locate">
@@ -16,9 +20,6 @@
           </p>
         </div>
 
-        <!-- <div v-if="this.getIsActiveProgramKit() && !isStop" class="active">
-          <PopupTypeActive :actives="actives" />
-        </div> -->
       </section>
     </div>
   </div>
@@ -38,7 +39,6 @@ export default Vue.extend({
     isStop: false,
     isOperator: false,
     messages: [
-      /* `КНОПКА СТОП ОСТАНАВЛИВАЕТ ДВИГАТЕЛЬ`, */
       `БЕСПЛАТНЫЙ СТОП`,
       `ВЫЗОВ ОТПРАВЛЕН, ОЖИДАЙТЕ`,
       ''
@@ -57,18 +57,31 @@ export default Vue.extend({
       getSecondsGotoPopupMenu: 'getSecondsGotoPopupMenu',
       getPanelType: 'getPanelType',
       getWetStopFreeCount: 'getWetStopFreeCount',
-      getWetSpend: 'getWetSpend'
+      getWetSpend: 'getWetSpend',
+      getSecondsBonusTimer: 'getSecondsBonusTimer'
     })
   },
   watch: {
-    getWetStopFreeCount(flag) {
+    
+    /* getWetStopFreeCount(flag) {
       try {
         if (parseInt(flag) > 0) {
           this.isStop = true
           this.messageIndex = 0
         } else {
           this.isStop = false
-          /* if (this.$route.name !== 'program') this.$router.push('/program') */
+          if (this.$route.name !== 'home') this.$router.push('/')
+        }
+      } catch (err) {}
+    }, */
+
+    getSecondsBonusTimer (flag) {
+      try {
+        if (parseInt(flag) > 0) {
+          this.isStop = true
+          this.messageIndex = 0
+        } else {
+          this.isStop = false
           if (this.$route.name !== 'home') this.$router.push('/')
         }
       } catch (err) {}
