@@ -108,7 +108,7 @@ export default Vue.extend({
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getWetBalance: 'getWetBalance',
+      getWetBalance: 'getWetBalance'
     })
   },
   watch: {
@@ -118,7 +118,11 @@ export default Vue.extend({
       }
     },
     getActiveProgram(flag) {
-      if (flag !== this.actives[this.activeNumber].name) this.clearDown()
+      if (
+        flag !== this.actives[this.activeNumber].name &&
+        flag !== this.actives[this.activeNumber_x2].name
+      )
+        this.clearDown()
     }
   },
   methods: {
@@ -260,7 +264,6 @@ export default Vue.extend({
     }, // end initial()
 
     restore(type) {
-
       switch (type) {
         case 'left':
           this._upStandardOptions.width = '32em'

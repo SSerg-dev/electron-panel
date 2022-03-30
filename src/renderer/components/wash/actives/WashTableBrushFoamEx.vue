@@ -150,7 +150,12 @@ export default Vue.extend({
       }
     },
     getActiveProgram(flag) {
-      if (flag !== this.actives[this.activeNumber].name) this.clearDown()
+      if (
+        flag !== this.actives[this.activeNumber].name &&
+        flag !== this.actives[this.activeNumber_color].name &&
+        flag !== this.actives[this.activeNumber_x2].name
+      )
+        this.clearDown()
     }
   },
   methods: {

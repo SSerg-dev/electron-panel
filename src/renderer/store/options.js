@@ -164,8 +164,8 @@ export default {
     },
     isMoneyToBonus: false,
     MoneyToBonus: 0,
-    /* setIsMoneyToBonus */
-    isMoneyToBonusNo: false
+    isMoneyToBonusNo: false,
+    isMoneyToBonusYes: false,
 
   }, // end state
   // Options
@@ -186,6 +186,9 @@ export default {
     },
     getIsMoneyToBonusNo(state) {
       return state.isMoneyToBonusNo
+    },
+    getIsMoneyToBonusYes(state) {
+      return state.isMoneyToBonusYes
     },
     getMoneyToBonus(state) {
       return state.MoneyToBonus
@@ -301,6 +304,9 @@ export default {
 
     setIsMoneyToBonusNo(state, isNo) {
       state.isMoneyToBonusNo = isNo
+    },
+    setIsMoneyToBonusYes(state, isYes) {
+      state.isMoneyToBonusYes = isYes
     },
 
     setMoneyToBonus(state, money) {

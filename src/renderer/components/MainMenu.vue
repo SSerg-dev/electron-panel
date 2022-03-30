@@ -77,23 +77,36 @@ export default Vue.extend({
   },
   watch: {
     getWetBalance(value) {
-      // console.log('++ getDirectCash-->watch value-->', value, this.isDirectCash)
-      //if (this.isDirectCash === 1)
-
-      /* dev */
-      //console.log('value-->', value)
-      if(value > 0 && this.getMoneyToBonus === 0 ) 
+      if(value > 0 && this.getMoneyToBonus === 0 ) {
+        /* dev */
+        // this.setIsMoneyToBonusYes(false)
+        this.setIsMoneyToBonus(false)
         this.$router.push('/cash')
+      }
+        
     }
   },
 
   mounted() {
+    
+    // initial timers
+    /* dev */
+    this.setIsFirstTimer(true)
+    this.setSecondsFirstTimer(15)
+
+    this.setIsMoneyToBonusYes(false)
+    this.setMoneyToBonus(0)
+    // setIsMoneyToBonus
+    this.setIsMoneyToBonus(false)
+    
+
+
+
     this.isDirectCash = this.getDirectCash()
 
     if (this.isDirectCash === 1) {
       this.timeoutDelay = setTimeout(() => {
         this.setEnabler()
-        //console.log('++this.setEnabler()--> one')
       }, this.delay)
     }
   },
@@ -101,21 +114,26 @@ export default Vue.extend({
     clearTimeout(this.timeoutDelay)
   },
   created() {
-    // console.log('++created type-->', this.type)
   },
 
   methods: {
     ...mapGetters({
       getCashEnabler: 'getCashEnabler',
       getIsPayCardMoney: 'getIsPayCardMoney',
-      getDirectCash: 'getDirectCash'
+      getDirectCash: 'getDirectCash',
+      getSecondsFirstTimer: 'getSecondsFirstTimer'
     }),
     ...mapMutations({
       setCashEnabler: 'setCashEnabler',
       setIsConfig: 'setIsConfig',
       setIsPayBonusMoney: 'setIsPayBonusMoney',
       setIsAppendBonusMoney: 'setIsAppendBonusMoney',
-      setIsPayCardMoney: 'setIsPayCardMoney'
+      setIsPayCardMoney: 'setIsPayCardMoney',
+      setIsFirstTimer: 'setIsFirstTimer',
+      setSecondsFirstTimer: 'setSecondsFirstTimer',
+      setIsMoneyToBonusYes: 'setIsMoneyToBonusYes',
+      setMoneyToBonus: 'setMoneyToBonus',
+      setIsMoneyToBonus: 'setIsMoneyToBonus'
     }),
 
     payUp(program) {

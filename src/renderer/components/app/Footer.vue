@@ -117,30 +117,42 @@ export default {
   watch: {
     getWetStopFreeCount(flag) {
       try {
+        console.log(
+          'Footer-->flag-->+this.getMoneyToBonus-->this.getIsFirstTimer',
+          flag,
+          +this.getMoneyToBonus,
+          this.getIsFirstTimer,
+          this.$route.name
+        )
         if (
           parseInt(flag) > 0 &&
-          +this.getMoneyToBonus === 0 
-          && this.getIsFirstTimer
+          +this.getMoneyToBonus === 0 &&
+          this.getIsFirstTimer
         ) {
           this.setMoneyToBonus(this.getWetBalance)
           this.setIsMoneyToBonus(true)
-          console.log('++ Footer-->this.getIsMoneyToBonusNo', this.getIsMoneyToBonusNo)
-          
+          /* dev */
+          console.log('Footer-->this.getIsMoneyToBonus', this.getIsMoneyToBonus)
         }
       } catch (err) {}
     }
-    /* getSecondsBonusTimer (flag) {
+    /* dev */
+    /* getSecondsBonusTimer(flag) {
       try {
-        if (parseInt(flag) > 0 && +this.getMoneyToBonus === 0 && this.getIsFirstTimer) {
+        if (
+          parseInt(flag) > 0 &&
+          +this.getMoneyToBonus === 0 &&
+          this.getIsFirstTimer
+        ) {
           this.setMoneyToBonus(this.getWetBalance)
-          this.setIsMoneyToBonus(true)  
-        } 
-      } catch (err) {} 
+          this.setIsMoneyToBonus(true)
+        }
+      } catch (err) {}
     } */
   },
   mounted() {
-    this.setIsMoneyToBonus(false)
-    this.setMoneyToBonus(0)
+    // this.setIsMoneyToBonus(false)
+    // this.setMoneyToBonus(0)
   },
 
   methods: {
@@ -161,10 +173,10 @@ export default {
         this.isDown.home = false
         try {
           /* dev */
-          /* if (this.$route.name !== 'home') {
+          if (this.$route.name !== 'home') {
             this.$router.push('/')
-          } */
-          if (this.$route.name !== 'program') this.$router.push('/program')
+          }
+          // if (this.$route.name !== 'program') this.$router.push('/program')
           // this.$router.push('/program')
           /* this.$router.push('/popup') */
         } catch (err) {}

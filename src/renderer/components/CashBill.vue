@@ -106,7 +106,7 @@ export default {
   }),
   mounted() {
     this.storage = new Storage(this.client, this.url)
-    this.setIsMoneyToBonus(false)
+    // this.setIsMoneyToBonus(false)
   },
   computed: {
     ...mapGetters({

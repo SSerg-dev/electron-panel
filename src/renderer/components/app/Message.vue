@@ -3,8 +3,27 @@
     <div class="page-title">
       <!-- wash type -->
       <div v-if="this.getPanelType === 'wash'">
-        <!--  || getIsMoneyToBonusNo -->
-        <div v-if="getWetBalance >= 0 && !getIsMoneyToBonus">
+        <!-- show Wet Balance-->
+        <!-- getWetBalance >= 0 && !getIsMoneyToBonus && !getIsMoneyToBonusYes -->
+        <!-- <div
+          v-if="
+            (getWetBalance >= 0 &&
+              !getIsMoneyToBonus &&
+              !getIsMoneyToBonusYes) ||
+              this.$route.name === 'cash' ||
+              (this.timerSeconds === 0 && this.$route.name === 'program')
+
+          "
+        > -->
+        <div
+          v-if="
+            (getWetBalance >= 0 &&
+              !getIsMoneyToBonus &&
+              !getIsMoneyToBonusYes) ||
+              this.$route.name === 'cash' ||
+              (this.$route.name === 'program' && !getIsMoneyToBonus) // ??
+          "
+        >
           {{
             `${parseFloat(getWetBalance / Math.pow(10, digits)).toFixed(
               digits
@@ -12,10 +31,24 @@
           }}
         </div>
 
+        <div v-if="getIsMoneyToBonusYes" style="color: yellow;">
+          {{
+            `${parseFloat(getMoneyToBonus / Math.pow(10, digits)).toFixed(
+              digits
+            )}`
+          }}
+        </div>
+
         <!-- bonus timer -->
         <!-- <div v-if="getIsMoneyToBonus && getMoneyToBonus > 0"> -->
-        <!-- <div v-if="getIsMoneyToBonus && !getIsMoneyToBonusNo"> -->
-        <div v-if="getIsMoneyToBonus">    
+        <div
+          v-if="
+            getIsMoneyToBonus &&
+              this.$route.name !== 'bonus' &&
+              this.$route.name !== 'cash' &&
+              this.timerSeconds > 0
+          "
+        >
           <ul>
             <li class="counter">
               {{ `${this.timerSeconds}` }}
@@ -32,7 +65,6 @@
             </li>
           </ul>
         </div>
-        
       </div>
     </div>
     <!-- end wash -->
@@ -85,7 +117,9 @@ export default Vue.extend({
       getWetStopFreeCount: 'getWetStopFreeCount',
       getSecondsBonusTimer: 'getSecondsBonusTimer',
       getIsFirstTimer: 'getIsFirstTimer',
-      getIsMoneyToBonusNo: 'getIsMoneyToBonusNo'
+      getIsMoneyToBonusNo: 'getIsMoneyToBonusNo',
+      getIsMoneyToBonusYes: 'getIsMoneyToBonusYes',
+      getMoneyToBonus: 'getMoneyToBonus'
     }),
     ...mapMutations({
       setWetBalance: 'setWetBalance',
@@ -96,8 +130,9 @@ export default Vue.extend({
     /* dev */
     getWetBalance(flag) {
       console.log('Message getWetBalance-->', this.getWetBalance)
-      if (+flag === 0)
-        this.$router.push('/')
+      /* dev */
+      /* if (+flag === 0) this.$router.push('/') */
+      if (+flag === 0 && !this.getIsMoneyToBonusYes) this.$router.push('/')
     },
     getDryBalance(flag) {
       // console.log('Message getDryBalance-->', this.getDryBalance)
@@ -106,7 +141,7 @@ export default Vue.extend({
       this.digits = flag
     },
     getMoneyToBonus(flag) {
-      // console.log('getMoneyToBonus', flag)
+      console.log('Message-->getMoneyToBonus-->', flag)
     },
     getSecondsBonusTimer(flag) {
       if (flag >= 0) this.timerSeconds = flag

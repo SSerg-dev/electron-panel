@@ -151,6 +151,7 @@ export default {
       getWetStopFreeCount: 'getWetStopFreeCount',
       getIsFirstTimer: 'getIsFirstTimer',
       getIsMoneyToBonusNo: 'getIsMoneyToBonusNo',
+      getIsMoneyToBonusYes: 'getIsMoneyToBonusYes',
 
       getSecondsFirstTimer: 'getSecondsFirstTimer'
     })
@@ -182,6 +183,7 @@ export default {
       setMoneyToBonus: 'setMoneyToBonus',
       
       setIsMoneyToBonusNo: 'setIsMoneyToBonusNo',
+      setIsMoneyToBonusYes: 'setIsMoneyToBonusYes',
       setIsFirstTimer: 'setIsFirstTimer',
       setSecondsBonusTimer: 'setSecondsBonusTimer',
       setSecondsFirstTimer: 'setSecondsFirstTimer'
@@ -220,7 +222,11 @@ export default {
 
         case 'yes':
           console.log('++yes')
-          // this.updateWetZeroMoney(true)
+          /* dev */
+          /* stop current program */
+          this.updateWetZeroMoney(true)
+
+          this.setIsMoneyToBonusYes(true)
           this.saveMoney()
 
           this.setButtonStyle(this._downGreenOptions)
@@ -237,15 +243,11 @@ export default {
           console.log('++no')  
           
           this.setIsMoneyToBonus(false)
-          this.setMoneyToBonus(0)
+          // this.setMoneyToBonus(0)
 
           this.setIsMoneyToBonusNo(true)
-  
           this.setIsFirstTimer(false)
-          
-          // console.log('getSecondsFirstTimer', this.getSecondsFirstTimer)
-          // this.setSecondsFirstTimer(42)
-          // console.log('getSecondsFirstTimer', this.getSecondsFirstTimer)
+          this.setSecondsFirstTimer(0)
           
           this.setButtonStyle(this._downRedOptions)
           this.isDown.no = true
@@ -397,15 +399,18 @@ export default {
 
   created() {},
   mounted() {
-    
+    // this.setIsFirstTimer(true)
     this.setup()
   },
 
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutPopup)
+    
     /* dev */
     this.setIsMoneyToBonusNo(false)
+    // this.setIsMoneyToBonusYes(false)
+
   },
 
   components: {}

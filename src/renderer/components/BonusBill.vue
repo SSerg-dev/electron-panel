@@ -608,7 +608,7 @@ export default {
         if (+response.result === 0) {
           /* dev */
           this.updateWetZeroMoney(true)
-          this.setIsMoneyToBonus(false)
+          // this.setIsMoneyToBonus(false)
 
           this.$message(`Ваш остаток ${this.getMoneyToBonus} сохранен бонусами`)
           this.setIsAppendBonusMoney(false)

@@ -118,7 +118,11 @@ export default Vue.extend({
       }
     },
     getActiveProgram(flag) {
-      if (flag !== this.actives[this.activeNumber].name) this.clearDown()
+      if (
+        flag !== this.actives[this.activeNumber].name &&
+        flag !== this.actives[this.activeNumber_turbo].name
+      )
+        this.clearDown()
     }
   },
   methods: {
@@ -244,7 +248,7 @@ export default Vue.extend({
       this._upTurboOptions = { ...upTurboOptions }
       this._downTurboOptions = { ...downTurboOptions }
       // end clone
-      
+
       if (this.visibleDryShine === 'block') {
         if (this.visible_turbo === 'none') {
           this.restore('left')
@@ -258,7 +262,6 @@ export default Vue.extend({
           this.restore('rightDryShine')
         }
       }
-
     }, // end initial()
 
     restore(type) {
@@ -307,7 +310,6 @@ export default Vue.extend({
     },
 
     setButtonStyle(options) {
-
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
         this.buttonLeft.border = options.border
@@ -327,7 +329,6 @@ export default Vue.extend({
 
         this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
-
     }
   }, // end methods
 
@@ -345,7 +346,9 @@ export default Vue.extend({
 
     // neighbor DryShine
     this.visibleDryShine = this.actives[this.activeDryShineNumber].display
-    this.visibleDryShine_turbo = this.actives[this.activeDryShineNumber_turbo].display
+    this.visibleDryShine_turbo = this.actives[
+      this.activeDryShineNumber_turbo
+    ].display
 
     this.setup()
   }

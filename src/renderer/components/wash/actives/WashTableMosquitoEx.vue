@@ -84,7 +84,7 @@ export default Vue.extend({
     visibleDisk_x2: '',
     activeDiskNumber: 14,
     activeDiskNumber_x2: 24,
-    
+
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -117,7 +117,11 @@ export default Vue.extend({
       }
     },
     getActiveProgram(flag) {
-      if (flag !== this.actives[this.activeNumber].name) this.clearDown()
+      if (
+        flag !== this.actives[this.activeNumber].name &&
+        flag !== this.actives[this.activeNumber_x2].name
+      )
+        this.clearDown()
     }
   },
   methods: {
@@ -207,7 +211,7 @@ export default Vue.extend({
     },
     initial() {
       // classes instances
-      
+
       /* left button */
       this.buttonLeft = new Button({
         selector: '#button-left-mosquito',
@@ -256,11 +260,9 @@ export default Vue.extend({
           this.restore('rightDisk')
         }
       }
-
     }, // end initial()
 
     restore(type) {
-
       switch (type) {
         case 'left':
           this._upStandardOptions.width = '32em'
@@ -306,7 +308,6 @@ export default Vue.extend({
     },
 
     setButtonStyle(options) {
-
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
         this.buttonLeft.border = options.border
@@ -326,7 +327,6 @@ export default Vue.extend({
 
         this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
-
     }
   }, // end methods
 
@@ -338,7 +338,6 @@ export default Vue.extend({
     this.getKits()
   },
   mounted() {
-
     // native
     this.visible = this.actives[this.activeNumber].display
     this.visible_x2 = this.actives[this.activeNumber_x2].display

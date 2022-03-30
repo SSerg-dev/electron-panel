@@ -94,7 +94,7 @@ export default Vue.extend({
 
     isDown: {
       dryShine: false,
-      dryShine_turbo: false 
+      dryShine_turbo: false
     }
   }),
   props: {
@@ -118,7 +118,11 @@ export default Vue.extend({
       }
     },
     getActiveProgram(flag) {
-      if (flag !== this.actives[this.activeNumber].name) this.clearDown()
+      if (
+        flag !== this.actives[this.activeNumber].name &&
+        flag !== this.actives[this.activeNumber_turbo].name
+      )
+        this.clearDown()
     }
   },
   methods: {
@@ -237,7 +241,7 @@ export default Vue.extend({
         justifyContent: 'center'
       })
       // end classes
-      
+
       // clone
       this._upStandardOptions = { ...upStandardOptions }
       this._downStandardOptions = { ...downStandardOptions }
@@ -258,7 +262,6 @@ export default Vue.extend({
           this.restore('rightWax')
         }
       }
-
     }, // end initial()
 
     restore(type) {
@@ -307,7 +310,6 @@ export default Vue.extend({
     },
 
     setButtonStyle(options) {
-
       if (options.type === 'left') {
         this.buttonLeft.background = options.background
         this.buttonLeft.border = options.border

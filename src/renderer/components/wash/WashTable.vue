@@ -378,11 +378,7 @@ export default {
         this.buttonBonus.show()
         this.flex()
         this.setMoneyToBonus(this.getWetBalance)
-
-        /* dev getSecondsFirstTimer */
-        this.setTimer('first', 15)
-        // this.setTimer('first', 15)
-
+        this.setTimer('first', this.getSecondsFirstTimer)
       } else {
         this.buttonBonus.hide()
       }
@@ -395,33 +391,28 @@ export default {
       // console.log('this.getIsFirstTimer-->', this.getIsFirstTimer)
 
       if (flag < 0 || !this.getIsFirstTimer) {
-        this.setMoneyToBonus(0)
+        // this.setMoneyToBonus(0)
         this.setIsMoneyToBonus(false)
         clearInterval(this.intervalFirstTimer)
-      }
+      } 
     },
     getWetStopFreeCount(flag) {
       if (flag > 0) {
-        /* dev */
-        // this.isVisibleWashTableBonus = true
         this.buttonBonus.show()
         this.flex()
       } else {
-        /* dev */
-        // this.isVisibleWashTableBonus = false
         this.buttonBonus.hide()
       }
     },
     getSecondsBonusTimer(flag) {
       if (flag > 0) {
         /* dev */
-        this.setIsMoneyToBonus(true)
-
-        this.buttonBonus.show()
-        this.flex()
+        // this.setIsMoneyToBonus(true)
+        // this.buttonBonus.show()
+        // this.flex()
       } else {
-        this.setIsMoneyToBonus(false)
-        this.buttonBonus.hide()
+        // this.setIsMoneyToBonus(false)
+        // this.buttonBonus.hide()
       }
     },
     getIsMoneyToBonusNo(flag) {
@@ -730,7 +721,7 @@ export default {
     clearInterval(this.intervalThirdTimer)
 
     this.setIsReceiptRead(false)
-    this.setIsMoneyToBonus(false)
+    // this.setIsMoneyToBonus(false)
   },
   created() {
     // this.initial()
