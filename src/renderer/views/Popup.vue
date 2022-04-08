@@ -2,13 +2,12 @@
   <div class="locate">
     <section>
       <div class="row">
-
-        <div v-if="!getIsMoneyToBonus">
+        
+        <div v-if="!getIsMoneyToBonus ">
           <PopupType :actives="actives" />
         </div>
 
-        <!-- <div v-if="!getIsMoneyToBonus"> -->
-        <div v-if="getIsMoneyToBonus">  
+        <div v-if="getIsMoneyToBonus || getMoneyToBonus > 0">
           <PopupBonus :actives="actives" />
         </div>
 
@@ -39,7 +38,8 @@ export default Vue.extend({
       getWetProgStatus: 'getWetProgStatus',
       getWetProgShow: 'getWetProgShow',
       getParamsChange: 'getParamsChange',
-      getIsMoneyToBonus: 'getIsMoneyToBonus'
+      getIsMoneyToBonus: 'getIsMoneyToBonus',
+      getMoneyToBonus: 'getMoneyToBonus'
     })
   },
   methods: {
@@ -49,7 +49,8 @@ export default Vue.extend({
     }),
 
     ...mapMutations({
-      setRouter: 'setRouter'
+      setRouter: 'setRouter',
+      // setIsMoneyToBonus: 'setIsMoneyToBonus'
     }),
 
     getActiveProgBit() {
@@ -82,6 +83,9 @@ export default Vue.extend({
   },
   mounted() {
     this.setRouter('/popup')
+  },
+  beforeDestroy() {
+    // this.setIsMoneyToBonus(false)
   },
   components: {
     PopupType,

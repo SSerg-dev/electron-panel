@@ -2,7 +2,9 @@
   <div v-if="getIsFooter">
     <div class="footer-panel white-text ">
       <div class="row">
-        <div class="col s4">
+        <!-- {{ `ДОМОЙ` }} -->
+        <!-- home keyboard_backspace -->
+        <!-- <div class="col s4">
           <div class="home">
             <div
               v-if="this.isDown.home === false"
@@ -10,9 +12,7 @@
               @click="gotoHome('home')"
             >
               <div class="button-title-long button-title-home">
-                <!-- {{ `ДОМОЙ` }} -->
-                <!-- home -->
-                <i class="large material-icons">keyboard_backspace</i>
+                <i class="large material-icons">home</i>
               </div>
             </div>
             <div
@@ -21,14 +21,17 @@
               @click="gotoHome('home')"
             >
               <div class="button-title-long button-title-home">
-                <!-- {{ `ДОМОЙ` }} -->
-                <i class="large material-icons">keyboard_backspace</i>
+                <i class="large material-icons">home</i>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="col s4">
+        <div  class="col s4"
+        v-if="
+          this.$route.name === 'program' 
+        "
+        >
           <div class="stop" style="z-index: 0;">
             <div
               v-if="this.isDown.stop === false"
@@ -117,13 +120,13 @@ export default {
   watch: {
     getWetStopFreeCount(flag) {
       try {
-        console.log(
+        /* console.log(
           'Footer-->flag-->+this.getMoneyToBonus-->this.getIsFirstTimer',
           flag,
           +this.getMoneyToBonus,
           this.getIsFirstTimer,
           this.$route.name
-        )
+        ) */
         if (
           parseInt(flag) > 0 &&
           +this.getMoneyToBonus === 0 &&
@@ -131,8 +134,6 @@ export default {
         ) {
           this.setMoneyToBonus(this.getWetBalance)
           this.setIsMoneyToBonus(true)
-          /* dev */
-          console.log('Footer-->this.getIsMoneyToBonus', this.getIsMoneyToBonus)
         }
       } catch (err) {}
     }
@@ -173,12 +174,8 @@ export default {
         this.isDown.home = false
         try {
           /* dev */
-          if (this.$route.name !== 'home') {
-            this.$router.push('/')
-          }
+          if (this.$route.name !== 'home') this.$router.push('/')
           // if (this.$route.name !== 'program') this.$router.push('/program')
-          // this.$router.push('/program')
-          /* this.$router.push('/popup') */
         } catch (err) {}
       }, this.delay)
     },
@@ -216,7 +213,7 @@ export default {
           try {
             this.$router.push('/popup')
           } catch (err) {}
-        }, this.delay)
+        }, (this.delay = 400))
       }
     },
     setDown(program) {
@@ -226,13 +223,13 @@ export default {
           this.isDown.stop = true
           this.timeoutDelay = setTimeout(() => {
             this.isDown.stop = false
-          }, this.delay)
+          }, (this.delay = 400))
           break
         case 'operator':
           this.isDown.operator = true
           this.timeoutDelay = setTimeout(() => {
             this.isDown.operator = false
-          }, this.delay)
+          }, (this.delay = 400))
         default:
           break
       }
@@ -252,13 +249,20 @@ export default {
 
 <style scoped>
 .footer-panel {
-  height: 106px;
+  height:  106px;
   width: 100%;
   position: fixed;
   left: 0em;
   bottom: -0.2em;
-  opacity: 1; /* 0.5 */
-  background: #121212;
+  opacity: 1; 
+  /* #121212 */
+  background: linear-gradient(180deg, #505CAD 1.62%, #5B68BB 100%);;
+  
+}
+.row {
+  position: fixed;
+  left: 0.8em;
+  
 }
 
 .button-title-long {

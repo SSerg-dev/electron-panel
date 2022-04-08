@@ -2,12 +2,10 @@
   <div>
     <div v-if="this.messageIndex > -1" class="message">
       {{ `${this.messages[this.messageIndex]}` }}
-      <!-- <div v-if="getWetStopFreeCount > 0" style="font-size: 2em">
-        {{ ` ${getWetStopFreeCount}` }}
-      </div> -->
-      <div v-if="getSecondsBonusTimer > 0" style="font-size: 2em">
+
+      <!-- <div v-if="getSecondsBonusTimer > 0" style="font-size: 2em">
         {{ ` ${ getSecondsBonusTimer }` }}
-      </div>
+      </div> -->
 
     </div>
 

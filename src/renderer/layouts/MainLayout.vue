@@ -1,35 +1,14 @@
 <template>
   <div class="app-main-layout">
     <Navbar @click="isOpen = !isOpen" />
-    <!-- <button class="btn">TEST</button> -->
     <main class="app-content" :class="{ full: !isOpen }">
-     
-      <!-- <Snowf
-        :amount="500"
-        :size="5"
-        :speed="1.5"
-        :wind="0"
-        :opacity="0.8"
-        :swing="1"
-        :image="null"
-        :zIndex="null"
-        :resize="true"
-        color="#fff"
-      /> -->
-
-      <!--     -->
       <div class="app-page">
         <router-view />
       </div>
     </main>
-    
-    <!-- this.$route.name !== 'cost' && -->
+
     <div
-      v-if="
-          
-          this.$route.name != 'language' &&
-          this.$route.name != 'setting' 
-      "
+      v-if="this.$route.name != 'language' && this.$route.name != 'setting'"
       class="footer"
     >
       <Footer />
@@ -45,7 +24,6 @@ import Footer from '@/components/app/Footer'
 import { mapGetters, mapMutations } from 'vuex'
 import { setInterval, clearInterval } from 'timers'
 
-// dev methods
 import { Database } from '@/storage/database.js'
 import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
 import { Storage } from '@/storage/index.js'
@@ -60,7 +38,7 @@ export default Vue.extend({
     // dev
     client: 'fetch',
     url: 'https://192.168.1.3/',
-    // url: 'https://192.168.1.1/',
+    urlBD: 'https://192.168.1.2/',
     storage: null,
     options: {}
   }),
@@ -75,21 +53,12 @@ export default Vue.extend({
 
   methods: {
     ...mapGetters({
-      // dev
       getPingOptions: 'getPingOptions',
       getCompleteWash: 'getCompleteWash',
 
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getIsPing: 'getIsPing'
-
-      // end dev
     }),
-
-    /* const response = await axios.get('https://192.168.1.3/')
-      if (response.status === 200) {
-        console.log('success')
-        this.setIsPing(true)
-      } */
 
     async ping() {
       const method = methods[3]
@@ -116,17 +85,18 @@ export default Vue.extend({
       const method = methods[12]
       const type = types[5]
 
-      this.options = this.getPingOptions()
+      // this.options = this.getPingOptions()
+      // const response = await this.storage.getClient(method, this.options, type)
 
-      const response = await this.storage.getClient(method, this.options, type)
-      if (+response.status === 200) {
-        this.setIsPing(true)
-        this.$message(`ping ${this.url} выполнен успешно`)
-      } else {
-        this.setIsPing(false)
-        this.$message(`ping ${this.url} недоступен`)
-      }
-      this.$message(`ping ${this.getIsPing()}`)
+      // console.log('++response',typeof response)
+
+      // if (+response.status === 200) {
+      //   this.setIsPing(true)
+      //   this.$message(`ping ${this.url} ++выполнен успешно`)
+      // } else {
+      //   this.setIsPing(false)
+      //   this.$message(`ping ${this.url} недоступен`)
+      // }
     },
 
     async completeWash() {
@@ -160,9 +130,8 @@ export default Vue.extend({
 
     this.intervalPing = setInterval(() => {
       this.ping()
-      //this.pingUrl()
+      this.pingUrl()
       // this.completeWash()
-      //console.log('this.getDefaultPanelNumber-->', this.getDefaultPanelNumber())
     }, 1000)
     //},
   },
@@ -188,5 +157,4 @@ export default Vue.extend({
   /* background-color: yellow */
   /* background-color: black */
 }
-
 </style>

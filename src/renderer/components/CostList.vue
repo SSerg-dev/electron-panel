@@ -6,13 +6,16 @@
        <p align="center">{{ `Цена за одну минуту` }}</p>
     </div>
     <div class="row list-title">
-      <div class="col s9">{{ `Программа` }}</div>
+      <div class="col s7">{{ `Программа` }}</div>
       <!-- <div class="col ">цена за 1 мин</div> -->
-      <div class="col s3">
-      {{ this.emoji }}
+      
+      <div class="col s3" align="center">
       {{ this.currency }}
-      <!-- {{ this.symbol }} -->
       </div>
+      <div class="col s2" align="center">
+        {{ this.emoji }}
+      </div>
+
     </div>
 
     <!-- <div class="list-title">
@@ -91,7 +94,7 @@ export default Vue.extend({
 .list-title {
   width: 92%;
   height: 80%;
-  margin-left: -0.4em;
+  margin-left: -0.5em;
   margin-bottom: 0em;
   padding-left: 0.6em;
   padding-top: 0.1em;

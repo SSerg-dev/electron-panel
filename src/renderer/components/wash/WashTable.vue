@@ -506,7 +506,9 @@ export default {
       }, this.popupDelay)
     },
     setDown(program) {
-      //this.clearDown()
+      
+      this.clearDown()
+      
       switch (program) {
         case 'washer':
           this.isDown.washer = true

@@ -18,7 +18,7 @@
               <td>
                 <!-- style="border: solid 3px #00B9E3;" -->
                 <button
-                  class="btn waves-effect waves-light white-text button-setting"
+                  class="btn waves-effect waves-light black-text button-setting"
                   type="submit"
                   @click="setService('ten')"
                 >
@@ -29,7 +29,7 @@
               <td>
                 <button
                   
-                  class="btn waves-effect waves-light  white-text button-setting"
+                  class="btn waves-effect waves-light  black-text button-setting"
                   type="submit"
                   @click="setService('balance')"
                 >
@@ -42,7 +42,7 @@
             <tr>
               <td>
                 <button
-                  class="btn waves-effect waves-light white-text button-setting"
+                  class="btn waves-effect waves-light black-text button-setting"
                   type="submit"
                   @click="setService('door')"
                 >
@@ -53,7 +53,7 @@
 
               <td>
                 <button
-                  class="btn waves-effect waves-light white-text button-setting"
+                  class="btn waves-effect waves-light black-text button-setting"
                   type="submit"
                   @click="setService('reboot')"
                 >
@@ -138,13 +138,22 @@ td {
 button {
   width: 220px;
 }
-.button-setting {
+/* .button-setting {
   height: 2em;
-  /* border: solid 3px #00b9e3; */
   border: solid 1px white;
   font-size: 1.5em;
   border-radius: 2em;
   background-color: #00b9e3;
+} */
+.button-setting {
+  height: 2em;
+  border: solid 2px #00b9e3;
+  font-weight: 500;
+  font-size: 1.5em;
+
+  border-radius: 2em;
+  background-color: #e0e0e0;
 }
+
 
 </style>

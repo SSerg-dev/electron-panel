@@ -26,7 +26,7 @@ export default new Vuex.Store({
     info: { name: '', locale: 'ru-RU' },
     cash_enabler: false,
     busyPanel: false,
-    secondsGotoMainMenu: 442,
+    secondsGotoMainMenu: 442 /* 42 */,
     secondsGotoPopupMenu: 2,
     //secondsGotoProgramMenu: 6,
 
@@ -110,7 +110,8 @@ export default new Vuex.Store({
       panelMoney: '0',
       stopFreeCount: '0',
       spend: '',
-      zeroMoney: ''
+      zeroMoney: '',
+      order: ''
     },
 
     dryParameters: {
@@ -118,7 +119,8 @@ export default new Vuex.Store({
       progShowMask: '' /* all 126, 0 */,
       progStatusMask: '',
       busy: '',
-      panelMoney: '0'
+      panelMoney: '0',
+      order: ''
     },
     globalParameters: {
       fixedCurrency: ''
@@ -306,7 +308,7 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
-    
+
     updateWetZeroMoney({ getters }, zeroMoney) {
       try {
         ipcRenderer.send(
@@ -321,10 +323,8 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
-   
 
     // end Платежи ----------------------
-
 
     // end Wet actions ==================
 
@@ -400,6 +400,9 @@ export default new Vuex.Store({
     getWetZeroMoney(state) {
       return state.parameters.zeroMoney
     },
+    getWetOrder(state) {
+      return state.parameters.order
+    },
 
     // DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Список всех Dry программ
@@ -420,6 +423,9 @@ export default new Vuex.Store({
       // ::AsGlobalPV:gFixedCurrency.digits
       return state.globalParameters.fixedCurrency
       // return 2
+    },
+    getDryOrder(state) {
+      return state.dryParameters.order
     },
 
     // END DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -489,7 +495,6 @@ export default new Vuex.Store({
       return state.secondsThirdTimer
     },
 
-
     getActiveProgramNumber(state) {
       console.log('state.activeProgramNumber-->', state.activeProgramNumber)
       return state.activeProgramNumber
@@ -522,8 +527,8 @@ export default new Vuex.Store({
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
       )
-      //  console.log('----------------------------------------------------------')
-      //  console.log('from B&D -->',parameter.title, displayName, parameter.value)
+      // console.log('----------------------------------------------------------')
+      // console.log('from B&D -->',parameter.title, displayName, parameter.value)
 
       // console.log('++displayName-->', displayName)
       // console.log('++parameter.value-->', parameter.value)
@@ -555,6 +560,10 @@ export default new Vuex.Store({
           break
         case 'cmdZeroMoney':
           state.parameters.cmdZeroMoney = parameter.value
+          break
+        case 'order':
+          state.parameters.order = parameter.value
+          // console.log('++++state.parameters.order-->', state.parameters.order)
           break
 
         default:
@@ -589,6 +598,10 @@ export default new Vuex.Store({
           break
         case 'digits':
           state.globalParameters.fixedCurrency = parameter.value
+          break
+        case 'order':
+          state.dryParameters.order = parameter.value
+          // console.log('++++state.dryParameters.order-->', state.dryParameters.order)
           break
 
         default:
@@ -660,7 +673,7 @@ export default new Vuex.Store({
     setIsThirdTimer(state, isThirdTimer) {
       state.isThirdTimer = isThirdTimer
     },
-    
+
     setSecondsFirstTimer(state, secondsFirstTimer) {
       state.secondsFirstTimer = secondsFirstTimer
     },

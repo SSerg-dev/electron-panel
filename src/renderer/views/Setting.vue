@@ -574,8 +574,12 @@
               </td>
             </tr>
             <!-- row 08 -->
-
-            <tr v-if="isAcceptorInstalled" style="margin-top: -4em;">
+            <tr style="margin-top: -4em;"
+            :class="[
+            { 'first-opacity': isAcceptorInstalled },
+            { 'second-opacity': !isAcceptorInstalled }
+            ]"
+            >
               <td style="width: 520px;">
                 <div>
                   <SettingPaymentAcceptor />
@@ -587,6 +591,7 @@
                 </div>
               </td>
             </tr>
+
 
             <!-- row 09 -->
             <tr style="margin-top: 3em;">
@@ -623,7 +628,12 @@
               </td>
             </tr>
             <!-- row 10 -->
-            <tr v-if="isCoinAcceptorInstalled" style="margin-top: -4em;">
+            <tr style="margin-top: -4em;"
+            :class="[
+            { 'first-opacity': isCoinAcceptorInstalled },
+            { 'second-opacity': !isCoinAcceptorInstalled }
+            ]"
+            >
               <td style="width: 520px;">
                 <div>
                   <SettingCoinAcceptor />
@@ -669,8 +679,11 @@
 
             <!-- row 12 -->
             <tr
-              v-if="isCoinAcceptorInstalled"
               style="margin-top: -2em; margin-left: 10px;"
+              :class="[
+            { 'first-opacity': isTerminalInstalled },
+            { 'second-opacity': !isTerminalInstalled }
+            ]"
             >
               <td style="width: 1020px;">
                 <div>
@@ -1182,5 +1195,11 @@ td {
   border-style: solid;
   border-color: white;
   /* float: left; */
+}
+.first-opacity {
+  opacity: 1;
+}
+.second-opacity {
+  opacity: 0.4;
 }
 </style>

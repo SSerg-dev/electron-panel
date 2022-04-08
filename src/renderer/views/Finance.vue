@@ -45,7 +45,7 @@
           </router-link>
         </div>
         <!-- dev -->
-        <div class="col ">
+        <!-- <div class="col ">
           <router-link to="/finance">
             <button
               class="btn waves-effect waves-light lighten-3 white-text button-setting"
@@ -63,7 +63,7 @@
 
             </button>
           </router-link>
-        </div>
+        </div> -->
         <!--     -->
 
       </div>
@@ -243,7 +243,7 @@ export default Vue.extend({
   width: 30em;
 }
 .button-group {
-  padding-left: 7em;
+  padding-left: 16em;
 }
 .button-setting {
   margin-top: 0em;

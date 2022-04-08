@@ -53,7 +53,7 @@ export default Vue.extend({
       'ALLES BONUS'
     ],
     messageIndex: -1,
-    delay: 13000,
+    delay: 4000,
     timeoutDelay: null
   }),
   props: {
@@ -70,19 +70,20 @@ export default Vue.extend({
   },
   watch: {},
   methods: {
-    ...mapMutations({}),
+    ...mapMutations({
+      
+    }),
     ...mapGetters({}),
     setup() {}
   },
   mounted() {
-    if (this.$route.name !== 'program') {
       this.timeoutDelay = setTimeout(() => {
         try {
-          // this.$router.push('/program')
-          if (this.$route.name !== 'program') this.$router.push('/program')
+          // if (this.$route.name !== 'program') this.$router.push('/program')
+          this.$router.push('/')
         } catch (err) {}
       }, this.delay)
-    }
+    
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)

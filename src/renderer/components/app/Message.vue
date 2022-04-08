@@ -1,27 +1,17 @@
 <template>
   <div>
     <div class="page-title">
+
       <!-- wash type -->
       <div v-if="this.getPanelType === 'wash'">
         <!-- show Wet Balance-->
-        <!-- getWetBalance >= 0 && !getIsMoneyToBonus && !getIsMoneyToBonusYes -->
-        <!-- <div
-          v-if="
-            (getWetBalance >= 0 &&
-              !getIsMoneyToBonus &&
-              !getIsMoneyToBonusYes) ||
-              this.$route.name === 'cash' ||
-              (this.timerSeconds === 0 && this.$route.name === 'program')
-
-          "
-        > -->
         <div
           v-if="
             (getWetBalance >= 0 &&
               !getIsMoneyToBonus &&
               !getIsMoneyToBonusYes) ||
               this.$route.name === 'cash' ||
-              (this.$route.name === 'program' && !getIsMoneyToBonus) // ??
+              (this.$route.name === 'program' && !getIsMoneyToBonus)
           "
         >
           {{
@@ -31,7 +21,7 @@
           }}
         </div>
 
-        <div v-if="getIsMoneyToBonusYes" style="color: yellow;">
+        <div v-else-if="getIsMoneyToBonusYes" style="color: yellow;">
           {{
             `${parseFloat(getMoneyToBonus / Math.pow(10, digits)).toFixed(
               digits
@@ -40,9 +30,8 @@
         </div>
 
         <!-- bonus timer -->
-        <!-- <div v-if="getIsMoneyToBonus && getMoneyToBonus > 0"> -->
         <div
-          v-if="
+          v-else-if="
             getIsMoneyToBonus &&
               this.$route.name !== 'bonus' &&
               this.$route.name !== 'cash' &&
@@ -130,8 +119,6 @@ export default Vue.extend({
     /* dev */
     getWetBalance(flag) {
       console.log('Message getWetBalance-->', this.getWetBalance)
-      /* dev */
-      /* if (+flag === 0) this.$router.push('/') */
       if (+flag === 0 && !this.getIsMoneyToBonusYes) this.$router.push('/')
     },
     getDryBalance(flag) {
@@ -159,16 +146,14 @@ export default Vue.extend({
 
 <style scoped>
 .page-title {
-  /* background: greenyellow; */
   padding-top: 0.02em;
   padding-right: 2.5em;
-  width: 4em /* 530px */;
+  width: 4em;
 
   color: white;
   font-size: 23em;
   font-weight: normal;
 
-  /* dev */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -176,18 +161,16 @@ export default Vue.extend({
 ul {
   width: 4em;
   height: 1.6em;
-  /* background: greenyellow; */
   list-style: none;
   margin: 0;
   padding-left: 0.95em;
-  padding-top: 0.02em /* 0.3em */;
-  font-size: 1em /* 0.8em */;
+  padding-top: 0.02em ;
+  font-size: 1em;
   display: flex;
 }
 .counter {
   width: 1.2em;
   color: red;
-  /* dev */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -202,7 +185,6 @@ ul {
   padding-left: 0em;
   color: yellow;
   font-size: 0.6em;
-  /* dev */
   display: flex;
   /* align-items: center; */
   justify-content: center;

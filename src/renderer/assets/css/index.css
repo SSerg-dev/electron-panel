@@ -263,4 +263,32 @@
 .switch label input[type=checkbox]:checked+.lever {
   background-color: #b3e5fc ;
 }
- 
+/* 01 dev */
+.select-dropdown.dropdown-content li.selected {
+  background-color: #b3e5fc;
+}
+/* 02 dev */
+.select-wrapper input.select-dropdown {
+  position: relative;
+  cursor: pointer;
+  background-color: #b3e5fc;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  outline: none;
+  height: 3rem;
+  line-height: 3rem;
+  width: 100%;
+  font-size: 24px;
+  margin: 0 0 8px 0;
+  padding: 0;
+  display: block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 1;
+} 
+/* 03 toast */
+.toast {
+  font-size: 2em;
+} 

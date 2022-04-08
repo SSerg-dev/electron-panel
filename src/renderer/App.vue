@@ -13,6 +13,7 @@ import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 import EmptyLayout from '@/layouts/EmptyLayout'
 import MainLayout from '@/layouts/MainLayout'
+import sleep from '@/utils/sleep'
 
 import { ipcRenderer } from 'electron'
 
@@ -52,23 +53,21 @@ export default Vue.extend({
     ...mapMutations({
       setConfig: 'setConfig',
       setWetBalance: 'setWetBalance',
-      setDryBalance: 'setDryBalance' 
+      setDryBalance: 'setDryBalance'
     }),
     /*  */
     clear(flag) {
       this.updateClearBalance()
       switch (flag) {
-            case 'wash':
-              this.setWetBalance(0)
-              break
-            case 'vacuum':
-              this.setDryBalance(0)
-              break
-            default:
-              break
-          }
-      
-      
+        case 'wash':
+          this.setWetBalance(0)
+          break
+        case 'vacuum':
+          this.setDryBalance(0)
+          break
+        default:
+          break
+      }
     },
 
     /*  */
@@ -98,22 +97,33 @@ export default Vue.extend({
             value: tag.value
           }
 
-          
           if (parameter.title !== `::AsGlobalPV:DateTime.Time`) {
-          
-          const type = this.getPanelType
-          switch (type) {
-            case 'wash':
-              // console.log('parameter-->', parameter)
-              this.setParameters(parameter)
-              break
-            case 'vacuum':
-              this.setDryParameters(parameter)
-              break
-            default:
-              break
+            const type = this.getPanelType
+            switch (type) {
+              case 'wash':
+                // console.log('parameter-->', parameter)
+                this.setParameters(parameter)
+                break
+              case 'vacuum':
+                this.setDryParameters(parameter)
+                break
+              default:
+                break
+            }
           }
-          }
+          /* dev */
+          /* else {
+            let date, timestamp, start, end
+            date = timestamp = start = end = 0
+            date = new Date(new Date().toDateString() + ' ' + parameter.value)
+            timestamp = date.getTime()
+            start = timestamp
+            sleep(1000).then(() => {
+              end = timestamp
+            })
+            if (end > start) console.log('++++timestamp-->', start, end)
+          } */
+
         } catch (err) {
           console.warn('App.vue setup() error:', err)
         }
@@ -171,7 +181,6 @@ export default Vue.extend({
       setHumidity: 'setHumidity',
       setTemperature: 'setTemperature',
       setDryParameters: 'setDryParameters'
-      
     }),
     ...mapGetters({
       // getPanelType: 'getPanelType'

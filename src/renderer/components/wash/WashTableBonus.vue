@@ -3,6 +3,7 @@
     <form @submit.prevent="">
       <div class="form">
         <table style="margin-left: 1em; margin-top: 8em;">
+        <!-- <table style="margin-left: 1em; margin-top: 0em;"> -->  
           <tbody>
             <!-- row 01 -->
             <tr class="info-title">
@@ -13,8 +14,15 @@
               </td>
             </tr>
 
+            <!-- <tr class="counter">
+              <td colspan="2" style="height: 1em; padding-right: 0.1em;">
+                <p align="center">{{ `${this.timerSeconds}` }}</p>
+              </td>
+            </tr> -->
+
             <!-- row 02 -->
             <tr class="button-group">
+
               <!-- left -->
               <td
                 style="padding-left: 4.8em; padding-top: 2em; padding-bottom: 1em;"
@@ -36,7 +44,6 @@
               </td>
 
               <!-- right -->
-
               <td
                 style="padding-right: 2em; padding-top: 2em; padding-bottom: 1em;"
               >
@@ -107,9 +114,10 @@ export default {
     buttonRight: null,
 
     active: '',
-    delay: 2000,
+    delay: 1000,
     timeoutDelay: null,
     timeoutPopup: null,
+    timerSeconds: 0,
 
     isDown: {
       yes: false,
@@ -149,6 +157,7 @@ export default {
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
       getWetStopFreeCount: 'getWetStopFreeCount',
+      getSecondsBonusTimer: 'getSecondsBonusTimer',
       getIsFirstTimer: 'getIsFirstTimer',
       getIsMoneyToBonusNo: 'getIsMoneyToBonusNo',
       getIsMoneyToBonusYes: 'getIsMoneyToBonusYes',
@@ -162,6 +171,9 @@ export default {
       if (parseInt(flag) === 0) {
         this.clearDown()
       }
+    },
+    getSecondsBonusTimer(flag) {
+      if (flag >= 0) this.timerSeconds = flag
     }
   },
 
@@ -181,6 +193,7 @@ export default {
 
       setIsMoneyToBonus: 'setIsMoneyToBonus',
       setMoneyToBonus: 'setMoneyToBonus',
+      setIsAppendBonusMoney: 'setIsAppendBonusMoney',
       
       setIsMoneyToBonusNo: 'setIsMoneyToBonusNo',
       setIsMoneyToBonusYes: 'setIsMoneyToBonusYes',
@@ -194,13 +207,6 @@ export default {
       this.setActiveProgram(this.active)
       this.setDown(this.active)
 
-      /* this.updateStartProgram([
-        this.getPanelType,
-        this.getDefaultPanelNumber,
-        this.getActiveProgram,
-        this.getWetBalance
-      ]) */
-
       if (parseInt(this.getWetBalance) > 0) {
         this.timeoutPopup = setTimeout(() => {
           // this.$router.push('/popup')
@@ -212,7 +218,9 @@ export default {
       /* if (this.getWetStopFreeCount >= 0) { */
       if (this.getIsFirstTimer) {
         this.setMoneyToBonus(this.getWetBalance)
-        // this.setIsMoneyToBonus(true)
+        this.setIsAppendBonusMoney(true)
+        /* dev */
+        this.setIsMoneyToBonus(false)
       }
     },
     setDown(program) {
@@ -235,7 +243,7 @@ export default {
             try {
               this.$router.push('/bonus')
             } catch (err) {}
-          }, this.delay = 500)
+          }, this.delay)
           
           break
 
@@ -256,7 +264,7 @@ export default {
             try {
               this.$router.push('/')
             } catch (err) {}
-          }, this.delay = 500)
+          }, this.delay)
           
           break
 
@@ -436,8 +444,9 @@ export default {
 table,
 tr,
 td {
-  border: none;
+  border: /* solid */ none;
   border-color: white;
+  text-align: center;
 }
 .info-title {
   height: 1em;
@@ -470,5 +479,13 @@ td {
 .locate {
   position: relative;
   text-align: center;
+}
+.counter {
+  line-height: 1em;
+  color: red;
+
+  font-weight: normal;
+  font-family: 'Plumb-Medium';
+  font-size: 24em; 
 }
 </style>

@@ -51,22 +51,17 @@
             <!-- row 01 -->
             <tr>
               <td colspan="4" class="display">
-                
-                <!-- <div v-if="this.currency === 'RUB'">
-                  {{ new Intl.NumberFormat('ru').format(display) }}
+                <div
+                style="font-size: 1em;"
+                >
+                {{ parseFloat(display).toFixed(this.digits) }}
                 </div>
-                <div v-else>
-                  {{ new Intl.NumberFormat('en').format(display) }}
-                </div> -->
-
-                <!-- style="background: linear-gradient(to bottom right, rgb(81,210,166), rgb(0,185,228),rgb(255,63,155)); border-radius: 0.1em;" -->
-                <div>{{ parseFloat(display).toFixed(2) }}</div>
               </td>
               <td colspan="1" class="white-text currency">
                 <div align="center" style="font-size: 1em;">
                   <p>{{ this.emoji }}</p>
                   {{ this.currency }}
-                  {{ this.symbol }}
+                  <!-- {{ this.symbol }} -->
                 </div>
               </td>
             </tr>
@@ -716,6 +711,7 @@ export default {
     length: 0,
     title: '',
     body: '',
+    digits: 0,
 
     /* dev */
     isCardRow: false,
@@ -756,6 +752,7 @@ export default {
       getInitCurrency: 'getInitCurrency',
       getDefaultCurrency: 'getDefaultCurrency',
       getLanguageNatives: 'getLanguageNatives',
+      getFixedCurrency: 'getFixedCurrency',
       /* dev */
       getPaymentLimitMin: 'getPaymentLimitMin',
       getPaymentLimitMax: 'getPaymentLimitMax',
@@ -811,6 +808,11 @@ export default {
       }
     }
   },
+  watch: {
+    getFixedCurrency(flag) {
+      this.digits = flag
+    },
+  },
   mounted() {
     this.setup()
 
@@ -821,6 +823,9 @@ export default {
   created() {
     //this.setup()
     this.initCurrency()
+    if (parseInt(this.getFixedCurrency) > 0) {
+      this.digits = this.getFixedCurrency
+    }
   },
 
   beforeDestroy() {
@@ -880,7 +885,7 @@ export default {
       }
     },
     setup() {
-      this.display = this.amount = this.getPaymentLimitMin
+      this.display = this.amount = 0 //this.getPaymentLimitMin
       this.overlay()
     },
     ...mapGetters({
@@ -919,7 +924,6 @@ export default {
           /* this.$router.push('/program') */
           if (this.$route.name !== 'program') this.$router.push('/program')
           //this.$router.push('/')
-
         }
 
         this.display = this.title = this.body = '0'

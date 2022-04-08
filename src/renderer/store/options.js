@@ -110,15 +110,16 @@ export default {
     /* dev */
     createReceipt: {
       method: 'kkt::receipt.create',
+      /* params: { unit_id: 1, sum: 2, cash: '' } */
       params: { unit_id: 1, sum: 2, cash: false }
     },
     readReceipt: {
       method: 'kkt::receipt.read',
-      params: { id: 2 }
+      params: { id: 1 }
     },
     printReceipt: {
       method: 'kkt::receipt.print',
-      params: { fd: 2 }
+      params: { id: 1 }
     },
     /*     */
     loginBonus: {
@@ -134,18 +135,22 @@ export default {
       //params: { "phone":"+79627067778","sum":10,"cash":true,"order":"12" }
       params: { phone: '', sum: 0, cash: true, order: '' }
     },
-    // completeWash
+    chargeBonus: {
+      method: 'bonus::charge',
+      params: { phone: '', sum: 0, cash: true, order: '' }
+    },
     completeWash: {
       method: 'bonus::wash.complete',
       params: {
-        order: '11',
+        order: '', //'W220220405142853',
         programs: {
-          program_id: 11,
-          program_name: 'wheel',
-          program_quantity: 0.2
+          program_id: 0, //15,
+          program_name: '', //'Мойка дисков',
+          program_quantity: 0 //0.36666666666666664
         }
       }
     },
+    // end methods options
 
     isBonusMoney: {
       payBonusMoney: false,
@@ -165,8 +170,7 @@ export default {
     isMoneyToBonus: false,
     MoneyToBonus: 0,
     isMoneyToBonusNo: false,
-    isMoneyToBonusYes: false,
-
+    isMoneyToBonusYes: false
   }, // end state
   // Options
   //actions: {},
@@ -265,7 +269,14 @@ export default {
     getAppendBonus(state) {
       return state.appendBonus
     },
+    getChargeBonus(state) {
+      return state.chargeBonus
+    },
     // completeWash
+    getCompleteWash(state) {
+      return state.completeWash
+    },
+
     getCompleteWash(state) {
       return state.completeWash
     }
@@ -326,10 +337,16 @@ export default {
     setIsPayBonusMoney(state, isPay) {
       state.isBonusMoney.payBonusMoney = isPay
     },
-    // dev
     setAppendBonus(state, options) {
       state.appendBonus.params = options
-      //console.log('options-->this.options-->', JSON.stringify(state.appendBonus.params))
+    },
+    // dev
+    setChargeBonus(state, options) {
+      state.chargeBonus.params = options
+    },
+    // completeWash
+    setCompleteWash(state, options) {
+      state.completeWash.params = options
     },
 
     setIsAppendBonusMoney(state, isAppend) {

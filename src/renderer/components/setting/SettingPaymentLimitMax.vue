@@ -52,7 +52,7 @@
               id="slider"
               name="slider"
               type="range"
-              min="20"
+              min="50"
               max="500"
               step="5"
               ref="slider"

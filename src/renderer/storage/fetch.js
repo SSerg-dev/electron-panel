@@ -14,6 +14,7 @@ const methods = [
   'appendBonus', // выполняется панелью для зачисления бонусов клиенту
   'completeWash', // выполняется панелью после  окончания мойки клиентом
   'pingUrl', // выполняется панелью ping Url
+  'chargeBonus', // выполняется панелью для изменения суммы бонусов на облаке
 ]
 
 const types = ['cash', 'card', 'bonus', 'service', 'common', 'ping', 'finance']
@@ -36,24 +37,26 @@ class Fetch {
       /* case 'service':
         response = await this.serviceRequest(url, options)
         break */
-        /* dev */
-        case 'finance':
+      /* dev */
+      case 'finance':
         response = await this.financeRequest(url, options)
         break
-        case 'common':
+      case 'common':
         response = await this.commonRequest(url, options)
         break
-        case 'ping':
-        response = await this.pingUrl(url, options)
+      case 'ping':
+        // ping B&D
+        response = await this.pingUrl(
+          (url = 'https://192.168.1.2:4840'),
+          options
+        )
         break
 
       default:
-        // alert('pay method not exist')
+      // alert('pay method not exist')
     }
 
     return response
-
-
   } // end request
 
   // methods
@@ -62,7 +65,7 @@ class Fetch {
     let res
 
     //console.log('method-->', JSON.stringify(body.method))
-    
+
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
     })
@@ -78,12 +81,12 @@ class Fetch {
 
     return this.res
   } // end cashRequest
-  
+
   async bonusRequest(url, body) {
     let res
 
     //console.log('method-->', JSON.stringify(body.method))
-    
+
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
     })
@@ -98,13 +101,13 @@ class Fetch {
       })
 
     return this.res
-  } // end bonusRequest
+  } // end bonusReques
 
   /* dev */
   async financeRequest(url, body) {
     let res
     //console.log('financeRequest method-->', JSON.stringify(body.method))
-    
+
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
     })
@@ -118,16 +121,12 @@ class Fetch {
         console.log('Axios request failed:', JSON.stringify(e))
       })
 
-
     return this.res
   } // end financeRequest
   /*     */
 
   async commonRequest(url, body) {
     let res
-    /* dev */
-    // console.log('method-->', JSON.stringify(body.method))
-    
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
     })
@@ -135,8 +134,6 @@ class Fetch {
       .post(url, body, { httpsAgent }, { timeout: 2000 })
       .then(res => {
         this.res = res.data
-        /* dev */
-        //console.log('Returned data:', JSON.stringify(res.data))
       })
       .catch(e => {
         console.log('Axios request failed:', JSON.stringify(e))
@@ -146,11 +143,14 @@ class Fetch {
   } // end commonRequest
 
   async pingUrl(url, body) {
-      return await axios.get(url)
-  } // end commonRequest
+    let start = Date.now()
+    try {
+      await fetch(url)
+    } catch (err) {}
+    return Date.now() - start
+  }
+    
 
-
-  
 } // end class Fetch
 
 class FetchClient {
