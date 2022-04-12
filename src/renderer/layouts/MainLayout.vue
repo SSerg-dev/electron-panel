@@ -99,7 +99,8 @@ export default Vue.extend({
       // }
     },
 
-    async completeWash() {
+    /* dev */
+    /* async completeWash() {
       const method = methods[11]
       const type = types[4]
 
@@ -116,7 +117,8 @@ export default Vue.extend({
             response.result
           }`
         )
-    },
+    }, */
+
     ...mapMutations({
       setIsPing: 'setIsPing'
     })
@@ -130,7 +132,7 @@ export default Vue.extend({
 
     this.intervalPing = setInterval(() => {
       this.ping()
-      this.pingUrl()
+      // this.pingUrl()
       // this.completeWash()
     }, 1000)
     //},

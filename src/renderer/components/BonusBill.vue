@@ -472,7 +472,9 @@ export default {
       getVacuumNumber: 'getVacuumNumber',
       getPanelType: 'getPanelType',
       getWetOrder: 'getWetOrder',
-      getDryOrder: 'getDryOrder'
+      getDryOrder: 'getDryOrder',
+
+      getWetBusyPanel: 'getWetBusyPanel'
     }),
     IsWetBalance: {
       get: function() {
@@ -482,10 +484,13 @@ export default {
       }
     }
   },
+  watch: {},
   methods: {
     ...mapGetters({
       getLoginBonusOptions: 'getLoginBonusOptions',
       getAppendBonus: 'getAppendBonus',
+      getStoreMoneyOptions: 'getStoreMoneyOptions',
+
       getChargeBonus: 'getChargeBonus',
       getCompleteWash: 'getCompleteWash',
 
@@ -587,15 +592,15 @@ export default {
       console.log('++program-->', program, this.getMoneyToBonus)
       // if (this.getIsMoneyToBonus) this.saveBonusMoney()
 
-      
       if (
         this.getIsAppendBonusMoney() &&
         program === 'append' &&
         !this.getIsMoneyToBonus
       ) {
-      
         /* dev */
-        this.appendBonusMoney()
+        // this.appendBonusMoney()
+
+        this.payStoreMoney()
 
         // this.chargeBonusMoney()
 
@@ -626,6 +631,7 @@ export default {
       const type = types[4]
 
       this.options = this.getAppendBonus()
+
       this.getMoneyToBonus === 0
         ? (this.sum = this.getWetBalance)
         : (this.sum = this.getMoneyToBonus)
@@ -641,15 +647,19 @@ export default {
       this.setAppendBonus(this.options.params)
       this.options = this.getAppendBonus()
       console.log(
-        'appendBonusMoney-->options-->this.options-->',
+        '++appendBonusMoney-->options-->this.options-->',
         JSON.stringify(this.options)
       )
 
-      let response
+      // let response
       if (this.phone.length === this.phoneParseLength) {
-        response = await this.storage.getClient(method, this.options, type)
+        const response = await this.storage.getClient(
+          method,
+          this.options,
+          type
+        )
         if (+response.result === 0) {
-          this.$message(`Вам начислено ${this.options.params.sum} бонуса(ов) `)
+          this.$message(`Вам начислено appendBonusMoney ${this.options.params.sum} бонуса(ов) `)
           this.setIsAppendBonusMoney(false)
           if (this.$route.name !== 'program') this.$router.push('/program')
         } else {
@@ -691,9 +701,7 @@ export default {
       let response
       response = await this.storage.getClient(method, this.options, type)
       if (+response.result === 0) {
-        this.$message(
-          `У Вас СПИСАНО ${this.options.params.sum} бонуса(ов) `
-        )
+        this.$message(`У Вас СПИСАНО ${this.options.params.sum} бонуса(ов) `)
         // this.setIsAppendBonusMoney(false)
         // if (this.$route.name !== 'program') this.$router.push('/program')
       } else {
@@ -702,6 +710,7 @@ export default {
     },
     // ----------------------------------
     // ЗАВЕРШИТЬ МОЙКУ
+    /* dev */
     async completeWash() {
       console.log('++completeWash')
 
@@ -711,23 +720,85 @@ export default {
       this.options = this.getCompleteWash()
       this.options.params.order = this.order
 
-      // this.options.params.programs.program_id = 15
-      // this.options.params.programs.program_name = 'Мойка дисков'
-      // this.options.params.programs.program_quantity = 0
+      this.options.params.programs.program_id = 15
+      this.options.params.programs.program_name = 'Мойка дисков'
+      this.options.params.programs.program_quantity = 0.222222
 
       this.setCompleteWash(this.options.params)
       this.options = this.getCompleteWash()
-      console.log(
-        'completeWash options-->this.options-->',
-        JSON.stringify(this.options)
-      )
+      // console.log(
+      //   'completeWash options-->this.options-->',
+      //   JSON.stringify(this.options)
+      // )
+
+      const opt = {
+        method: 'bonus::wash.complete',
+        params: {
+          order: 'W220220411162842',
+          programs: [
+            {
+              program_id: 15,
+              program_name: 'Мойка дисков',
+              program_quantity: 0.9333333333333333
+            }
+          ]
+        }
+      }
+
       let response
-      response = await this.storage.getClient(method, this.options, type)
+      response = await this.storage.getClient(
+        method,
+        opt /* this.options */,
+        type
+      )
+      console.log('bonus::wash.complete-->response-->', response)
+
       if (+response.result === 0) {
-        this.$message(`Программа мойки закончена успешно`)
+        this.$message(`++Программа мойки закончена успешно`)
         if (this.$route.name !== 'program') this.$router.push('/program')
       } else {
         this.$message(`Ошибка:  ${response.error}`)
+      }
+    },
+    // ----------------------------------
+    /* dev */
+    async payStoreMoney() {
+      // console.log('++payStoreMoney')
+
+      const method = methods[0]
+      const type = types[0]
+
+      this.options = this.getStoreMoneyOptions()
+
+      this.getMoneyToBonus === 0
+        ? (this.sum = this.getWetBalance)
+        : (this.sum = this.getMoneyToBonus)
+      
+      this.options.params.unit_id = this.getDefaultPanelNumber - 1
+      this.options.params.type = 'cash'
+      this.options.params.sum = +this.sum
+
+      console.log(
+        '++payStoreMoney-->options-->this.options-->',
+        JSON.stringify(this.options)
+      )
+
+      const response = await this.storage.getClient(method, this.options, type)
+
+      if (response === undefined) {
+        if (this.$route.name !== 'program') this.$router.push('/program')
+        this.$message(`Связь с connect недоступна!!!`)
+        return
+      }
+      /* dev vacuum */
+      if (+response.result === 0 && +this.getWetBalance > 0) {
+        if (this.$route.name !== 'program') this.$router.push('/program')
+        this.$message(
+          `На бонусную систему connect payStoreMoney зачислено ${+this.options.params.sum} `
+        )
+      } else {
+        this.$error('payCashMoney $error')
+        //this.$message(`Оплата наличными не прошла`)
       }
     },
 

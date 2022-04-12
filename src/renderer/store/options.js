@@ -27,7 +27,7 @@ export default {
           coins_1: 1,
           coins_2: 2,
           coins_5: 5,
-          coins_10: 10,
+          coins_10: 1,
           // сумма зачисления в купюрах
           sum_bills: 0,
           // количество купюр наминала 10р
@@ -132,7 +132,6 @@ export default {
     },
     appendBonus: {
       method: 'bonus::money.append',
-      //params: { "phone":"+79627067778","sum":10,"cash":true,"order":"12" }
       params: { phone: '', sum: 0, cash: true, order: '' }
     },
     chargeBonus: {

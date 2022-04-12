@@ -245,36 +245,36 @@ export default {
       this.readReceipt()
       this.createReceipt()
       // this.printReceipt()
+
+      /* dev */
+      this.payCashMoney()
     },
 
     async payCashMoney() {
-      const method = methods[0]
-      const type = types[0]
+      console.log('++payCashMoney')
+      /* dev */
+      // const method = methods[0]
+      // const type = types[0]
 
-      // console.log('payCashMoney')
+      // const storage = new Storage(this.client, this.url)
+      // this.options = this.getStoreMoneyOptions()
 
-      const storage = new Storage(this.client, this.url)
-      this.options = this.getStoreMoneyOptions()
+      // const response = await this.storage.getClient(method, this.options, type)
 
-      const response = await this.storage.getClient(method, this.options, type)
-
-      if (response === undefined) {
-        if (this.$route.name !== 'program') this.$router.push('/program')
-        this.$message(`Связь с connect недоступна!!!`)
-        return
-      }
-      /* dev vacuum */
-      if (+response.result === 0 && +this.getWetBalance > 0) {
-        if (this.$route.name !== 'program') this.$router.push('/program')
-        // this.$router.push('/program')
-        this.$message(
-          `Оплата наличными прошла успешно, внесенная сумма:  ${+this
-            .getWetBalance} ₽`
-        )
-      } else {
-        this.$error('payCashMoney $error')
-        //this.$message(`Оплата наличными не прошла`)
-      }
+      // if (response === undefined) {
+      //   if (this.$route.name !== 'program') this.$router.push('/program')
+      //   this.$message(`Связь с connect недоступна!!!`)
+      //   return
+      // }
+      // if (+response.result === 0 && +this.getWetBalance > 0) {
+      //   if (this.$route.name !== 'program') this.$router.push('/program')
+      //   this.$message(
+      //     `Оплата наличными прошла успешно, внесенная сумма:  ${+this
+      //       .getWetBalance} ₽`
+      //   )
+      // } else {
+      //   this.$error('payCashMoney $error')
+      // }
     },
     async appendBonusMoney() {
       console.log('!!!CashBill-->appendBonusMoney-->', methods[10])
