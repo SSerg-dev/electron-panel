@@ -2,7 +2,8 @@
   <div>
     <section>
       <div class="info-title">
-        <h3 v-if="getIsPayBonusMoney && !getIsMoneyToBonus">
+
+        <!-- <h3 v-if="getIsPayBonusMoney && !getIsMoneyToBonus">
           <p align="center">
             {{ `${this.messages[0]}` }}
           </p>
@@ -16,7 +17,25 @@
           <p align="center">
             {{ `${this.messages[2]}` }}
           </p>
+        </h3> -->
+
+        <h3 v-if="!getIsPayBonusMoney && !getIsMoneyToBonus">
+          <p align="center">
+            {{ `${this.messages[0]}` }}
+          </p>
         </h3>
+        <h3 v-else-if="getIsAppendBonusMoney && !getIsMoneyToBonus">
+          <p align="center">
+            {{ `${this.messages[1]}` }}
+          </p>
+        </h3>
+        <h3 v-else-if="getIsPayBonusMoney && getIsMoneyToBonus">
+          <p align="center">
+            {{ `${this.messages[2]}` }}
+          </p>
+        </h3>
+
+        
       </div>
 
       <form @submit.prevent="" novalidate>
@@ -448,6 +467,8 @@ export default {
     
   },
   mounted() {
+    console.log('getIsPayBonusMoney--> getIsAppendBonusMoney-->', this.getIsPayBonusMoney(), this.getIsAppendBonusMoney() )
+
     this.order = this.createOrder()
     this.actives = this.getPrograms()
 
@@ -480,7 +501,8 @@ export default {
       getDryOrder: 'getDryOrder',
 
       getWetBusyPanel: 'getWetBusyPanel',
-      getActiveProgram: 'getActiveProgram'
+      getActiveProgram: 'getActiveProgram',
+      getActiveProgramNumber: 'getActiveProgramNumber'
     }),
     IsWetBalance: {
       get: function() {
@@ -590,12 +612,25 @@ export default {
 
       return result
     },
+    // ----------------------------------
+    getIsPhoneNumber() {
+      if (this.phone.length === this.phoneParseLength) {
+        return true  
+      } else {
+        this.$message(`Введите правильно номер мобильного телефона`)
+        return false
+      }
+    },
+    
+    // ----------------------------------
 
     payUp(program) {
+
       // ЗАЧИСЛИТЬ
+      // check phone number
+      if (!this.getIsPhoneNumber()) return
       // --------------------------------
       console.log('++program-->', program, this.getMoneyToBonus)
-      // if (this.getIsMoneyToBonus) this.saveBonusMoney()
       if (
         this.getIsAppendBonusMoney() &&
         program === 'append' &&
@@ -719,7 +754,7 @@ export default {
     // ЗАВЕРШИТЬ МОЙКУ
     /* dev */
     async completeWash() {
-      console.log('++completeWash')
+      console.log('++completeWash-->', this.getActiveProgram, this.getActiveProgramNumber)
 
       const method = methods[11]
       const type = types[4]
@@ -728,8 +763,8 @@ export default {
       this.options.params.order = this.order
 
       /* dev */
-      // this.setActiveProgram
-      // this.setActiveProgramNumber
+      // this.getActiveProgram
+      // this.getActiveProgramNumber
 
 
       this.options.params.programs[0].program_id = 15 // this.getActiveProgram

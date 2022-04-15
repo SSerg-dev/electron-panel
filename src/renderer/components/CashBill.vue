@@ -1,6 +1,6 @@
 <template>
   <div class="page-title">
-    <ul style="margin-top: 18em;">
+    <ul style="margin-top: 18em">
       <li
         v-if="this.IsWetBalance === true && this.getIsPing"
         @click="payUp('payBonus')"
@@ -8,25 +8,24 @@
         <div
           class="card white waves-effect pay-end-bonus"
           style="
-                  
-                  width: 66em;
-                  height: 22em;
-                  margin-left: -8.0em;
-                  margin-bottom: 16em;
+            width: 66em;
+            height: 22em;
+            margin-left: -8em;
+            margin-bottom: 16em;
 
-                  border: solid 6px #7FE409; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #7FE409;
-                  "
+            border: solid 6px #7fe409;
+            border-radius: 4em;
+            box-shadow: 0px 10px 20px #7fe409;
+          "
         >
           <div
-            class="card-content black-text  noselect"
+            class="card-content black-text noselect"
             style="
-                  font-size: 4em;
-                  padding-right: 1.1em;
-                  padding-left: 1.1em;
-                  padding-top: 1.4em;
-                  "
+              font-size: 4em;
+              padding-right: 1.1em;
+              padding-left: 1.1em;
+              padding-top: 1.4em;
+            "
           >
             {{ 'ВЕРНУТЬ БОНУСАМИ ДО 30% И ЗАВЕРШИТЬ ОПЛАТУ' }}
           </div>
@@ -36,12 +35,8 @@
       <li v-if="this.IsWetBalance === false">
         <div class="card grey pay-input">
           <div
-            class="card-content white-text  noselect"
-            style="
-                  font-size: 4em;
-                  padding-right: 1.5em;
-                  padding-top: 1em;
-                  "
+            class="card-content white-text noselect"
+            style="font-size: 4em; padding-right: 1.5em; padding-top: 1em"
           >
             {{ 'ВНЕСИТЕ ОПЛАТУ' }}
           </div>
@@ -51,24 +46,19 @@
         <div
           class="card white waves-effect pay-end-bonus"
           style="
-                  
-                  width: 66em;
-                  height: 14em;
-                  margin-left: -8.0em;
-                  margin-top: -17em;
+            width: 66em;
+            height: 14em;
+            margin-left: -8em;
+            margin-top: -17em;
 
-                  border: solid 6px red; 
-                  border-radius: 4em;
-                  box-shadow: 0px 13px 20px red;
-                  "
+            border: solid 6px red;
+            border-radius: 4em;
+            box-shadow: 0px 13px 20px red;
+          "
         >
           <div
-            class="card-content black-text  noselect"
-            style="
-                  font-size: 4em;
-                  padding-right: 1.5em;
-                  padding-top: 0.9em;
-                  "
+            class="card-content black-text noselect"
+            style="font-size: 4em; padding-right: 1.5em; padding-top: 0.9em"
           >
             {{ 'ЗАВЕРШИТЬ ОПЛАТУ' }}
           </div>
@@ -159,15 +149,16 @@ export default {
       this.setDown(program)
       /* dev */
       this.doReceipt()
-
+      // payEnd
       if (program === 'payEnd') {
         this.payCashMoney()
         this.setCashEnabler(true)
         this.setIsAppendBonusMoney(false)
         this.setIsPayBonusMoney(true)
-        /* this.$router.push('/program') */
         if (this.$route.name !== 'program') this.$router.push('/program')
-      } else if (program === 'payBonus') {
+      } 
+      // payBonus
+      else if (program === 'payBonus') {
         this.setIsAppendBonusMoney(true)
         this.setIsPayBonusMoney(false)
         this.$router.push('/bonus')

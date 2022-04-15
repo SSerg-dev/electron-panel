@@ -1,3 +1,5 @@
+import { ipcRenderer } from 'electron'
+
 export default {
   // state
   state: {
@@ -6,7 +8,7 @@ export default {
     temperature: '',
     humidity: '',
     serviceBalance: 0,
-    increment: 0,
+    increment: 10,
     // panel type,
     vacuum: 1,
     vacuumNumber: 1,
@@ -17,7 +19,7 @@ export default {
   // getters
   getters: {
     getPaymentLimitMin(state) {
-      return  state.config.bank_terminal.min_sum
+      return state.config.bank_terminal.min_sum
     },
     getPaymentLimitMax(state) {
       return state.config.bank_terminal.max_sum
@@ -32,14 +34,16 @@ export default {
       const currencies = getters.getLanguageNatives.filter(
         c => c.currency !== 'EUR'
       )
-      if (getters.getLanguageNatives.filter(c => c.currency === 'EUR').length > 0)
+      if (
+        getters.getLanguageNatives.filter(c => c.currency === 'EUR').length > 0
+      )
         currencies.push({
           id: 999,
           title: 'EUR',
           key: 'EUR',
           emoji: '🇪🇺',
           currency: 'EUR',
-          symbol: '€',
+          symbol: '€'
         })
 
       const defaultCurrency = getters.getDefaultCurrency
@@ -47,10 +51,10 @@ export default {
 
       const result = currencies[index]
       //console.log('result-->', JSON.stringify(result))
-      
+
       return result
     },
-    
+
     /* dev */
     getCnw(state) {
       return state.config.ui.CNW
@@ -135,7 +139,7 @@ export default {
       //return state.parameters.panelMoney
     },
     getIncrement(state) {
-      return state.increment 
+      return state.increment
     }
   }, // end getters
 
@@ -183,22 +187,22 @@ export default {
     setAcceptorInstalled(state, flag) {
       state.config.bill_validator.installed = flag
     },
-    
+
     setDefaultBiils(state, bills) {
       state.config.bill_validator.enable_bills = bills
     },
     setDefaultTerminalType(state, hardware) {
-      state.config.bank_terminal.hardware = hardware 
+      state.config.bank_terminal.hardware = hardware
     },
     setTerminalInstalled(state, flag) {
       state.config.bank_terminal.installed = flag
     },
     /*     */
     setPaymentLimitMin(state, min) {
-      state.config.bank_terminal.min_sum = min
+      if (typeof min !== undefined) state.config.bank_terminal.min_sum = min
     },
     setPaymentLimitMax(state, max) {
-      state.config.bank_terminal.max_sum = max
+      if (typeof max !== undefined) state.config.bank_terminal.max_sum = max
     },
     /* dev */
     setCoinTokens(state, payload) {
@@ -206,14 +210,14 @@ export default {
     },
 
     setDefaultPanelNumber(state, index) {
-      state.config.index = index 
+      state.config.index = index
     },
     setVacuumNumber(state, vacuumNumber) {
       state.vacuumNumber = vacuumNumber
     },
     /* dev */
     setVacuum(state, vacuum) {
-      return state.vacuum = vacuum
+      return (state.vacuum = vacuum)
     },
 
     setVacuumPayment(state, payment) {
@@ -224,7 +228,7 @@ export default {
       // console.log('state.serviceBalance-->', state.serviceBalance)
     },
     setIncrement(state) {
-      state.increment = 100
+      state.increment = 10
     },
     // dev
     setHumidity(state, humidity) {
@@ -274,7 +278,7 @@ export default {
 
       let newBalance =
         parseInt(getters.getServiceBalance) + parseInt(getters.getIncrement)
-      //console.log('newBalance-->', newBalance)
+      // console.log('newBalance-->', newBalance)
       commit('setServiceBalance', newBalance)
       try {
         ipcRenderer.send(

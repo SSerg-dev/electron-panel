@@ -22,13 +22,15 @@
                   type="submit"
                   @click="setService('ten')"
                 >
-                  {{ `+100` }}
+                  <div >
+                    {{ `+ ${getIncrement}` }}
+                  </div>
+
                   <i class="material-icons right"></i>
                 </button>
               </td>
               <td>
                 <button
-                  
                   class="btn waves-effect waves-light  black-text button-setting"
                   type="submit"
                   @click="setService('balance')"
@@ -82,7 +84,8 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getWetBalance: 'getWetBalance',
-      getServiceBalance: 'getServiceBalance'
+      getServiceBalance: 'getServiceBalance',
+      getIncrement: 'getIncrement'
     })
   },
   methods: {
@@ -93,9 +96,7 @@ export default Vue.extend({
       updateReboot: 'updateReboot'
     }),
 
-    ...mapMutations({
-
-    }),
+    ...mapMutations({}),
 
     setService(service) {
       switch (service) {
@@ -154,6 +155,4 @@ button {
   border-radius: 2em;
   background-color: #e0e0e0;
 }
-
-
 </style>

@@ -452,7 +452,7 @@ export default {
       getLoginBonusPassword: 'getLoginBonusPassword',
       getLoginBonusPhone: 'getLoginBonusPhone',
       getLoginSettingPassword: 'getLoginSettingPassword',
-      getIsPayBonusMoney: 'getIsPayBonusMoney',
+      // getIsPayBonusMoney: 'getIsPayBonusMoney',
       getIsLoginSettingPassword: 'getIsLoginSettingPassword'
     }),
     ...mapMutations({
