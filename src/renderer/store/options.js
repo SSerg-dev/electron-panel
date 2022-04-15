@@ -142,11 +142,11 @@ export default {
       method: 'bonus::wash.complete',
       params: {
         order: '', //'W220220405142853',
-        programs: {
+        programs: [{
           program_id: 0, //15,
           program_name: '', //'Мойка дисков',
           program_quantity: 0 //0.36666666666666664
-        }
+        }]
       }
     },
     // end methods options
@@ -275,10 +275,6 @@ export default {
     getCompleteWash(state) {
       return state.completeWash
     },
-
-    getCompleteWash(state) {
-      return state.completeWash
-    }
 
     // ----
     /* getPanelMoneyOptions(state) {

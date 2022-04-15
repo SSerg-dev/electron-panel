@@ -38,7 +38,8 @@
               {{ `${this.firstname}` }}
             </p>
             <p align="center" style="font-size: 140px;">
-              {{ this.balance }}
+              <!-- {{ this.balance }} -->
+              {{ parseFloat(this.balance).toFixed(this.digits) }}
             </p>
             <p align="center">
               {{ `${this.messages[1]}` }}
@@ -54,7 +55,7 @@
                 <div
                 style="font-size: 1em;"
                 >
-                {{ parseFloat(display).toFixed(this.digits) }}
+                {{ parseFloat(this.display).toFixed(this.digits) }}
                 </div>
               </td>
               <td colspan="1" class="white-text currency">
@@ -982,8 +983,8 @@ export default {
         if (this.amount + parseInt(num) <= 1000) this.amount = parseInt(num)
       }
       /* dev */
-      if (this.balance > 0 && this.amount > this.balance)
-        this.amount = this.balance
+      // if (this.balance > 0 && this.amount > this.balance)
+      //   this.amount = this.balance
 
       if (this.amount < 0) this.amount = 0
 

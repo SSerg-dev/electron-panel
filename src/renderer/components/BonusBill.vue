@@ -421,6 +421,7 @@ export default {
     sum: 0,
     cash: true,
     order: '',
+    actives: [],
 
     client: 'fetch',
     url: 'https://192.168.1.3/',
@@ -443,8 +444,12 @@ export default {
     delay: 1000,
     timeoutDelay: null
   }),
+  created() {
+    
+  },
   mounted() {
     this.order = this.createOrder()
+    this.actives = this.getPrograms()
 
     this.storage = new Storage(this.client, this.url)
     this.setIsLoginSettingPassword(false)
@@ -474,7 +479,8 @@ export default {
       getWetOrder: 'getWetOrder',
       getDryOrder: 'getDryOrder',
 
-      getWetBusyPanel: 'getWetBusyPanel'
+      getWetBusyPanel: 'getWetBusyPanel',
+      getActiveProgram: 'getActiveProgram'
     }),
     IsWetBalance: {
       get: function() {
@@ -493,6 +499,7 @@ export default {
 
       getChargeBonus: 'getChargeBonus',
       getCompleteWash: 'getCompleteWash',
+      getPrograms: 'getPrograms',
 
       getIsPayBonusMoney: 'getIsPayBonusMoney',
       getIsAppendBonusMoney: 'getIsAppendBonusMoney',
@@ -557,8 +564,6 @@ export default {
       return result
     },
     // ----------------------------------
-    // 'SN0000000001 W220220405112942'
-    //            my W220220406120834
     createOrder() {
       const type = this.getPanelType
       const date = this.dateFilter(new Date())
@@ -591,20 +596,19 @@ export default {
       // --------------------------------
       console.log('++program-->', program, this.getMoneyToBonus)
       // if (this.getIsMoneyToBonus) this.saveBonusMoney()
-
       if (
         this.getIsAppendBonusMoney() &&
         program === 'append' &&
         !this.getIsMoneyToBonus
       ) {
         /* dev */
-        // this.appendBonusMoney()
+        this.appendBonusMoney()
 
         this.payStoreMoney()
 
         // this.chargeBonusMoney()
 
-        // this.completeWash()
+        this.completeWash()
       }
       // --------------------------------
       if (this.getMoneyToBonus > 0 && program === 'append') {
@@ -659,7 +663,9 @@ export default {
           type
         )
         if (+response.result === 0) {
-          this.$message(`Вам начислено appendBonusMoney ${this.options.params.sum} бонуса(ов) `)
+          this.$message(
+            `Вам начислено appendBonusMoney ${this.options.params.sum} бонуса(ов) `
+          )
           this.setIsAppendBonusMoney(false)
           if (this.$route.name !== 'program') this.$router.push('/program')
         } else {
@@ -680,7 +686,8 @@ export default {
 
       this.options = this.getChargeBonus()
       this.getMoneyToBonus === 0
-        ? (this.sum = 1) /* this.getWetBalance */
+        ? /* dev */
+          (this.sum = 1) /* this.getWetBalance */
         : (this.sum = this.getMoneyToBonus)
 
       this.options.params.phone = (this.code + this.totString).replace(
@@ -720,37 +727,23 @@ export default {
       this.options = this.getCompleteWash()
       this.options.params.order = this.order
 
-      this.options.params.programs.program_id = 15
-      this.options.params.programs.program_name = 'Мойка дисков'
-      this.options.params.programs.program_quantity = 0.222222
+      /* dev */
+      // this.setActiveProgram
+      // this.setActiveProgramNumber
+
+
+      this.options.params.programs[0].program_id = 15 // this.getActiveProgram
+      this.options.params.programs[0].program_name = 'Мойка дисков' // this.actives[ this.getActiveProgram].title
+      this.options.params.programs[0].program_quantity = 0.42
 
       this.setCompleteWash(this.options.params)
       this.options = this.getCompleteWash()
-      // console.log(
-      //   'completeWash options-->this.options-->',
-      //   JSON.stringify(this.options)
-      // )
-
-      const opt = {
-        method: 'bonus::wash.complete',
-        params: {
-          order: 'W220220411162842',
-          programs: [
-            {
-              program_id: 15,
-              program_name: 'Мойка дисков',
-              program_quantity: 0.9333333333333333
-            }
-          ]
-        }
-      }
-
-      let response
-      response = await this.storage.getClient(
-        method,
-        opt /* this.options */,
-        type
+      console.log(
+        'completeWash options-->this.options-->',
+        JSON.stringify(this.options)
       )
+      let response
+      response = await this.storage.getClient(method, this.options, type)
       console.log('bonus::wash.complete-->response-->', response)
 
       if (+response.result === 0) {
@@ -773,7 +766,7 @@ export default {
       this.getMoneyToBonus === 0
         ? (this.sum = this.getWetBalance)
         : (this.sum = this.getMoneyToBonus)
-      
+
       this.options.params.unit_id = this.getDefaultPanelNumber - 1
       this.options.params.type = 'cash'
       this.options.params.sum = +this.sum
@@ -794,7 +787,8 @@ export default {
       if (+response.result === 0 && +this.getWetBalance > 0) {
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(
-          `На бонусную систему connect payStoreMoney зачислено ${+this.options.params.sum} `
+          `На бонусную систему connect payStoreMoney зачислено ${+this.options
+            .params.sum} `
         )
       } else {
         this.$error('payCashMoney $error')
