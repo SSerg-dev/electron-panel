@@ -111,7 +111,8 @@ export default new Vuex.Store({
       stopFreeCount: '0',
       spend: '',
       zeroMoney: '',
-      order: ''
+      order: '',
+      paidBonus: ''
     },
 
     dryParameters: {
@@ -371,6 +372,9 @@ export default new Vuex.Store({
     getWetBalance(state) {
       return state.parameters.panelMoney
     },
+    getWetPaidBonus(state) {
+      return state.parameters.paidBonus
+    },
     // end Платежи ------------------------------------------------------------
 
     getWetBusyPanel(state) {
@@ -563,7 +567,13 @@ export default new Vuex.Store({
           break
         case 'order':
           state.parameters.order = parameter.value
-          // console.log('++++state.parameters.order-->', state.parameters.order)
+          break
+        case 'paidBonus':
+          state.parameters.paidBonus = parameter.value
+          // console.log(
+          //   '++++state.parameters.paidBonus-->',
+          //   state.parameters.paidBonus
+          // )
           break
 
         default:

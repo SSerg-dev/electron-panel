@@ -2,40 +2,33 @@
   <div>
     <section>
       <div class="info-title">
-
-        <!-- <h3 v-if="getIsPayBonusMoney && !getIsMoneyToBonus">
+        <h3
+          v-if="
+            this.getIsPayBonusMoney() &&
+              !this.getIsAppendBonusMoney() &&
+              !getIsMoneyToBonus
+          "
+        >
           <p align="center">
             {{ `${this.messages[0]}` }}
           </p>
         </h3>
-        <h3 v-else-if="getIsAppendBonusMoney && !getIsMoneyToBonus">
+        <h3
+          v-else-if="
+            !this.getIsPayBonusMoney() &&
+              this.getIsAppendBonusMoney() &&
+              !getIsMoneyToBonus
+          "
+        >
           <p align="center">
             {{ `${this.messages[1]}` }}
           </p>
         </h3>
-        <h3 v-else-if="getIsMoneyToBonus">
-          <p align="center">
-            {{ `${this.messages[2]}` }}
-          </p>
-        </h3> -->
-
-        <h3 v-if="!getIsPayBonusMoney && !getIsMoneyToBonus">
-          <p align="center">
-            {{ `${this.messages[0]}` }}
-          </p>
-        </h3>
-        <h3 v-else-if="getIsAppendBonusMoney && !getIsMoneyToBonus">
-          <p align="center">
-            {{ `${this.messages[1]}` }}
-          </p>
-        </h3>
-        <h3 v-else-if="getIsPayBonusMoney && getIsMoneyToBonus">
+        <h3 v-else-if="getMoneyToBonus && getIsMoneyToBonus">
           <p align="center">
             {{ `${this.messages[2]}` }}
           </p>
         </h3>
-
-        
       </div>
 
       <form @submit.prevent="" novalidate>
@@ -453,9 +446,9 @@ export default {
     messages: [
       `Для входа в систему введите номер телефона
        или отсканируйте QR код`,
-      `Для зачисления бонусов, 
+      `Для зачисления бонусов,
        введите номер телефона`,
-      `Нажимая "Зачислить", Вы даете свое согласие на отправку 
+      `Нажимая "Зачислить", Вы даете свое согласие на отправку
       Вам СМС-сообщения и обработку персональных данных,
       согласно условиям, размещенным на сайте: www.alles-bonus.com`
     ],
@@ -463,13 +456,11 @@ export default {
     delay: 1000,
     timeoutDelay: null
   }),
-  created() {
-    
-  },
+  created() {},
   mounted() {
-    console.log('getIsPayBonusMoney--> getIsAppendBonusMoney-->', this.getIsPayBonusMoney(), this.getIsAppendBonusMoney() )
-
     this.order = this.createOrder()
+    this.setCompleteWashOrder(this.order)
+
     this.actives = this.getPrograms()
 
     this.storage = new Storage(this.client, this.url)
@@ -525,7 +516,10 @@ export default {
 
       getIsPayBonusMoney: 'getIsPayBonusMoney',
       getIsAppendBonusMoney: 'getIsAppendBonusMoney',
-      getLoginBonusPhone: 'getLoginBonusPhone'
+      getLoginBonusPhone: 'getLoginBonusPhone',
+      getCompleteWash: 'getCompleteWash',
+
+      getChargeBonus: 'getChargeBonus'
     }),
     ...mapMutations({
       setIsPayBonusMoney: 'setIsPayBonusMoney',
@@ -540,7 +534,9 @@ export default {
       setRouter: 'setRouter',
       setIsMoneyToBonus: 'setIsMoneyToBonus',
       setMoneyToBonus: 'setMoneyToBonus',
-      setWetZeroMoney: 'setWetZeroMoney'
+      setWetZeroMoney: 'setWetZeroMoney',
+
+      setCompleteWashOrder: 'setCompleteWashOrder'
     }),
     ...mapActions({
       updateWetBonusMoney: 'updateWetBonusMoney',
@@ -550,8 +546,7 @@ export default {
     emitClick(program) {
       EventBus.$emit('submitBonusBill', program)
     },
-    /* dev */
-    // ----------------------------------
+
     dateFilter(value, format = 'datetime') {
       const options = {}
 
@@ -585,7 +580,6 @@ export default {
 
       return result
     },
-    // ----------------------------------
     createOrder() {
       const type = this.getPanelType
       const date = this.dateFilter(new Date())
@@ -612,25 +606,18 @@ export default {
 
       return result
     },
-    // ----------------------------------
     getIsPhoneNumber() {
       if (this.phone.length === this.phoneParseLength) {
-        return true  
+        return true
       } else {
         this.$message(`Введите правильно номер мобильного телефона`)
         return false
       }
     },
-    
-    // ----------------------------------
-
     payUp(program) {
-
       // ЗАЧИСЛИТЬ
       // check phone number
       if (!this.getIsPhoneNumber()) return
-      // --------------------------------
-      console.log('++program-->', program, this.getMoneyToBonus)
       if (
         this.getIsAppendBonusMoney() &&
         program === 'append' &&
@@ -643,7 +630,7 @@ export default {
 
         // this.chargeBonusMoney()
 
-        this.completeWash()
+        // this.completeWash()
       }
       // --------------------------------
       if (this.getMoneyToBonus > 0 && program === 'append') {
@@ -710,86 +697,6 @@ export default {
         this.$message(`Введите правильно номер мобильного телефона`)
       }
     },
-    // ----------------------------------
-    // СПИСАТЬ БОНУСЫ ИЗ ОБЛАКА
-    // ----------------------------------
-    async chargeBonusMoney() {
-      console.log('++chargeBonusMoney')
-
-      const method = methods[13]
-      const type = types[4]
-
-      this.options = this.getChargeBonus()
-      this.getMoneyToBonus === 0
-        ? /* dev */
-          (this.sum = 1) /* this.getWetBalance */
-        : (this.sum = this.getMoneyToBonus)
-
-      this.options.params.phone = (this.code + this.totString).replace(
-        /\s+/g,
-        ''
-      )
-      this.options.params.sum = +this.sum
-      this.options.params.cash = this.cash
-      this.options.params.order = this.order
-
-      this.setChargeBonus(this.options.params)
-      this.options = this.getChargeBonus()
-      console.log(
-        'chargeBonusMoney options-->this.options-->',
-        JSON.stringify(this.options)
-      )
-
-      let response
-      response = await this.storage.getClient(method, this.options, type)
-      if (+response.result === 0) {
-        this.$message(`У Вас СПИСАНО ${this.options.params.sum} бонуса(ов) `)
-        // this.setIsAppendBonusMoney(false)
-        // if (this.$route.name !== 'program') this.$router.push('/program')
-      } else {
-        this.$message(`Ошибка:  ${response.error}`)
-      }
-    },
-    // ----------------------------------
-    // ЗАВЕРШИТЬ МОЙКУ
-    /* dev */
-    async completeWash() {
-      console.log('++completeWash-->', this.getActiveProgram, this.getActiveProgramNumber)
-
-      const method = methods[11]
-      const type = types[4]
-
-      this.options = this.getCompleteWash()
-      this.options.params.order = this.order
-
-      /* dev */
-      // this.getActiveProgram
-      // this.getActiveProgramNumber
-
-
-      this.options.params.programs[0].program_id = 15 // this.getActiveProgram
-      this.options.params.programs[0].program_name = 'Мойка дисков' // this.actives[ this.getActiveProgram].title
-      this.options.params.programs[0].program_quantity = 0.42
-
-      this.setCompleteWash(this.options.params)
-      this.options = this.getCompleteWash()
-      console.log(
-        'completeWash options-->this.options-->',
-        JSON.stringify(this.options)
-      )
-      let response
-      response = await this.storage.getClient(method, this.options, type)
-      console.log('bonus::wash.complete-->response-->', response)
-
-      if (+response.result === 0) {
-        this.$message(`++Программа мойки закончена успешно`)
-        if (this.$route.name !== 'program') this.$router.push('/program')
-      } else {
-        this.$message(`Ошибка:  ${response.error}`)
-      }
-    },
-    // ----------------------------------
-    /* dev */
     async payStoreMoney() {
       // console.log('++payStoreMoney')
 
@@ -822,8 +729,8 @@ export default {
       if (+response.result === 0 && +this.getWetBalance > 0) {
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(
-          `На бонусную систему connect payStoreMoney зачислено ${+this.options
-            .params.sum} `
+          `На бонусную систему connect payStoreMoney зачислено ${+this
+            .getWetBalance} `
         )
       } else {
         this.$error('payCashMoney $error')
@@ -836,13 +743,11 @@ export default {
     // ЗАЧИСЛИТЬ БОНУСЫ ПОСЛЕ НАЖАТИЯ СТОП И СОХРАНИТЬ ПРОГРАММЫ
     // --------------------------------
     async saveBonusMoney() {
-      /* dev */
-      console.log('++saveBonusMoney')
-      // debugger
+      // console.log('++saveBonusMoney')
 
       const method = methods[10]
       const type = types[4]
-      // options = params: { "phone":"","sum":0,"cash":true,"order":"" }
+
       this.options = this.getAppendBonus()
       this.sum = +this.getMoneyToBonus
 
@@ -853,13 +758,11 @@ export default {
 
       this.setAppendBonus(this.options.params)
       this.options = this.getAppendBonus()
-      // console.log('++options-->this.options-->', JSON.stringify(this.options))
 
       let response
       if (this.phone.length === this.phoneParseLength) {
         response = await this.storage.getClient(method, this.options, type)
         if (+response.result === 0) {
-          /* dev */
           this.updateWetZeroMoney(true)
           // this.setIsMoneyToBonus(false)
 
@@ -885,7 +788,11 @@ export default {
       if (this.phone.length === this.phoneParseLength) {
         this.phoneNotParse = this.phone.replace(/[^+0-9]/g, '')
         this.setLoginBonusPhone(this.phoneNotParse)
-        console.log('this.phoneNotParse', this.phoneNotParse)
+        
+        this.options = this.getChargeBonus()
+        this.options.params.phone = this.phoneNotParse
+        this.setChargeBonus(this.options.params)
+
         this.$router.push('/password')
       } else {
         this.$message(`Введите правильно номер мобильного телефона`)

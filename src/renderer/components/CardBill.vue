@@ -754,11 +754,13 @@ export default {
       getDefaultCurrency: 'getDefaultCurrency',
       getLanguageNatives: 'getLanguageNatives',
       getFixedCurrency: 'getFixedCurrency',
-      /* dev */
+
       getPaymentLimitMin: 'getPaymentLimitMin',
       getPaymentLimitMax: 'getPaymentLimitMax',
       getIsCardMoney: 'getIsCardMoney',
-      getIsBonusMoney: 'getIsBonusMoney'
+      getIsBonusMoney: 'getIsBonusMoney',
+      
+      getWetPaidBonus: 'getWetPaidBonus'
     }),
 
     isMinBlinking: {
@@ -903,7 +905,8 @@ export default {
       setCardMoney: 'setCardMoney'
     }),
     ...mapActions({
-      updateWetMoney: 'updateWetMoney'
+      updateWetMoney: 'updateWetMoney',
+      updateWetBonusMoney: 'updateWetBonusMoney'
     }),
 
     payUp() {
@@ -920,11 +923,13 @@ export default {
         }
 
         if (this.getIsBonusMoney && this.getIsCardMoney) {
-          this.updateWetMoney(card)
+          /* dev */
+          // this.updateWetMoney(card)
+          this.updateWetBonusMoney(card)
+          // console.log('getWetPaidBonus-->', this.getWetPaidBonus)
+
           this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
-          /* this.$router.push('/program') */
           if (this.$route.name !== 'program') this.$router.push('/program')
-          //this.$router.push('/')
         }
 
         this.display = this.title = this.body = '0'

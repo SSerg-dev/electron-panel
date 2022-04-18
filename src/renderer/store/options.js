@@ -141,11 +141,11 @@ export default {
     completeWash: {
       method: 'bonus::wash.complete',
       params: {
-        order: '', //'W220220405142853',
+        order: '', 
         programs: [{
-          program_id: 0, //15,
-          program_name: '', //'Мойка дисков',
-          program_quantity: 0 //0.36666666666666664
+          program_id: 0, 
+          program_name: '', 
+          program_quantity: 0 
         }]
       }
     },
@@ -226,18 +226,15 @@ export default {
     getIsSpendBonusMoney(state) {
       return state.isBonusMoney.spendBonusMoney
     },
-    //
     getIsPayCardMoney(state) {
       return state.isCardMoney
     },
     getStoreMoneyOptions(state) {
       return state.storeMoneyOptions
     },
-    /* dev */
     getDryStoreMoneyOptions(state) {
       return state.storeDryMoneyOptions
     },
-
     getCollectOptions(state) {
       return state.collectOptions
     },
@@ -271,12 +268,10 @@ export default {
     getChargeBonus(state) {
       return state.chargeBonus
     },
-    // completeWash
     getCompleteWash(state) {
       return state.completeWash
     },
 
-    // ----
     /* getPanelMoneyOptions(state) {
       return state.options
     },
@@ -294,7 +289,6 @@ export default {
     } */
   },
   mutations: {
-    /* dev */
     setIsReceiptRead(state, read) {
       state.isReceipt.read = read
     },
@@ -314,11 +308,9 @@ export default {
     setIsMoneyToBonusYes(state, isYes) {
       state.isMoneyToBonusYes = isYes
     },
-
     setMoneyToBonus(state, money) {
       state.MoneyToBonus = money
     },
-
     setLoginBonusPhone(state, phone) {
       state.loginBonus.params.phone = phone
     },
@@ -335,23 +327,22 @@ export default {
     setAppendBonus(state, options) {
       state.appendBonus.params = options
     },
-    // dev
     setChargeBonus(state, options) {
       state.chargeBonus.params = options
     },
-    // completeWash
     setCompleteWash(state, options) {
       state.completeWash.params = options
+    },
+    setCompleteWashOrder(state, order) {
+      state.completeWash.params.order = order
     },
 
     setIsAppendBonusMoney(state, isAppend) {
       state.isBonusMoney.appendBonusMoney = isAppend
     },
-    // spendBonusMoney
     setIsSpendBonusMoney(state, isSpend) {
       state.isBonusMoney.spendBonusMoney = isSpend
     },
-    // isCardMoney
     setIsPayCardMoney(state, isCard) {
       state.isCardMoney = isCard
     },

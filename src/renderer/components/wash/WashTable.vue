@@ -306,6 +306,7 @@ export default {
     url: 'https://192.168.1.3/',
     storage: null,
     options: {},
+    order: '',
 
     active: '',
     timeoutPopup: null,
@@ -361,7 +362,13 @@ export default {
 
   watch: {
     getWetBalance(flag) {
-      // console.log('getWetBalance', flag)
+      // console.log('getWetBalance-->', flag)
+      if (+flag === 0) {
+        this.completeWash()
+        if (this.getWetPaidBonus > 0) {
+          this.chargeBonusMoney()
+        } 
+      }
     },
 
     getIsReceiptRead(flag) {
@@ -394,7 +401,7 @@ export default {
         // this.setMoneyToBonus(0)
         this.setIsMoneyToBonus(false)
         clearInterval(this.intervalFirstTimer)
-      } 
+      }
     },
     getWetStopFreeCount(flag) {
       if (flag > 0) {
@@ -425,6 +432,8 @@ export default {
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
+      getActiveProgramNumber: 'getActiveProgramNumber',
+
       getWetBalance: 'getWetBalance',
 
       getWetProgStatus: 'getWetProgStatus',
@@ -441,7 +450,9 @@ export default {
       getSecondsFirstTimer: 'getSecondsFirstTimer',
 
       getInitCurrency: 'getInitCurrency',
-      getDefaultCurrency: 'getDefaultCurrency'
+      getDefaultCurrency: 'getDefaultCurrency',
+
+      getWetPaidBonus: 'getWetPaidBonus'
     })
   },
 
@@ -459,10 +470,18 @@ export default {
       setIsMoneyToBonus: 'setIsMoneyToBonus',
       setMoneyToBonus: 'setMoneyToBonus',
       setSecondsBonusTimer: 'setSecondsBonusTimer',
-      setIsFirstTimer: 'setIsFirstTimer'
+      setIsFirstTimer: 'setIsFirstTimer',
+
+      setCompleteWash: 'setCompleteWash',
+      setChargeBonus: 'setChargeBonus'
     }),
     ...mapGetters({
-      getPrintReceiptOptions: 'getPrintReceiptOptions'
+      getPrintReceiptOptions: 'getPrintReceiptOptions',
+      getCompleteWash: 'getCompleteWash',
+      getChargeBonus: 'getChargeBonus',
+
+      getLoginBonusPhone: 'getLoginBonusPhone'
+
       // getIsReceiptPrint: 'getIsReceiptPrint'
     }),
     setProgram(program) {
@@ -506,9 +525,8 @@ export default {
       }, this.popupDelay)
     },
     setDown(program) {
-      
       this.clearDown()
-      
+
       switch (program) {
         case 'washer':
           this.isDown.washer = true
@@ -557,6 +575,71 @@ export default {
       }
       console.log('++ WashTable-->getIsReceiptPrint-->', this.getIsReceiptPrint)
     },
+    // ----------------------------------
+    // ЗАВЕРШИТЬ МОЙКУ
+
+    async completeWash() {
+      console.log('++completeWash-->')
+
+      const method = methods[11]
+      const type = types[4]
+
+      this.options = this.getCompleteWash()
+      this.options.params.order = this.order
+
+      this.options.params.programs[0].program_id = this.getActiveProgramNumber
+      this.options.params.programs[0].program_name = this.actives[
+        this.getActiveProgramNumber - 1
+      ].title
+      /* dev */
+      this.options.params.programs[0].program_quantity = 0.42
+
+      this.setCompleteWash(this.options.params)
+      this.options = this.getCompleteWash()
+      // console.log(
+      //   'completeWash options-->this.options-->',
+      //   JSON.stringify(this.options)
+      // )
+      let response
+      response = await this.storage.getClient(method, this.options, type)
+      // console.log('bonus::wash.complete-->response-->', response)
+
+      if (+response.result === 0) {
+        this.$message(`Программа мойки закончена успешно`)
+        if (this.$route.name !== 'program') this.$router.push('/program')
+      } else {
+        this.$message(`Ошибка:  ${response.error}`)
+      }
+    },
+    // ----------------------------------
+        // СПИСАТЬ БОНУСЫ ИЗ ОБЛАКА
+    // ----------------------------------
+    async chargeBonusMoney() {
+      console.log('++chargeBonusMoney')
+
+      const method = methods[13]
+      const type = types[4]
+
+      this.options = this.getChargeBonus()
+      this.sum = this.getWetPaidBonus
+
+      this.options.params.sum = +this.sum
+      this.options.params.cash = this.cash
+      this.options.params.order = this.order
+
+      this.setChargeBonus(this.options.params)
+      this.options = this.getChargeBonus()
+
+      let response
+      response = await this.storage.getClient(method, this.options, type)
+      if (+response.result === 0) {
+        this.$message(`У Вас СПИСАНО ${this.options.params.sum} бонуса(ов) `)
+      } else {
+        this.$message(`Ошибка:  ${response.error}`)
+      }
+    },
+    // ----------------------------------
+
 
     clearDown() {
       this.isDown = Object.fromEntries(
@@ -703,6 +786,7 @@ export default {
   }, // end methods
   mounted() {
     this.storage = new Storage(this.client, this.url)
+    this.order = this.getCompleteWash().params.order
 
     if (!this.isVisible) {
       this.timeoutDelay = setTimeout(() => {
