@@ -280,8 +280,8 @@
             <Paginate
               :page-count="4"
               :click-handler="pageChangeHandler"
-              :prev-text="''"
-              :next-text="''"
+              :prev-text="'<'"
+              :next-text="'>'"
               :container-class="'pagination'"
             />
           </div>
@@ -394,7 +394,7 @@ th {
   font-size: 1em;
   width: 100%;
   position: fixed;
-  left: 22em;
+  left: 20em;
   bottom: 16em;
   background: #121212;
   font-family: 'Plumb-Medium';

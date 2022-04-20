@@ -42,7 +42,8 @@ export default Vue.extend({
       ''
     ],
     messageIndex: -1,
-    delay: 0
+    delay: 1000,
+    seconds: 4
   }),
   props: {
     actives: {
@@ -98,11 +99,6 @@ export default Vue.extend({
     }),
     setup() {
       this.activeProgram = this.getActiveProgram()
-      this.activeProgramKit = this.getActiveProgramKit()
-      if (!this.getIsActiveProgramKit()) {
-        this.setIsActiveProgramKit(false)
-        this.delay = 1000
-
         // footer
         if (this.activeProgram === 'stop') {
           this.isStop = true
@@ -116,13 +112,6 @@ export default Vue.extend({
           this.isTurbo = true
           this.messageIndex = 2
         }
-      }
-      
-      if (this.getIsActiveProgramKit()) {
-        // x2, turbo, color,
-        //this.setIsActiveProgramKit(true)
-        this.delay = 1000000
-      }
       
     },
 
@@ -140,15 +129,10 @@ export default Vue.extend({
     }
   },
   mounted() {
-    // console.log('PopupType actives-->', this.actives[24])
-
     this.setup()
-    if (parseInt(this.getWetStopFreeCount) === 0) {
-      this.gotoProgramMenu(this.getSecondsGotoPopupMenu)
-    }
+    this.gotoProgramMenu(this.seconds)
   },
   beforeDestroy() {
-    this.setIsActiveProgramKit(false)
     clearInterval(this.intervalPopupMenu)
   },
   components: {

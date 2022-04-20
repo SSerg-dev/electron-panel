@@ -734,6 +734,7 @@ export default {
     url: 'https://192.168.1.3/',
     storage: null,
     options: {},
+    payType: '',
 
     balance: '',
     firstname: '',
@@ -909,25 +910,33 @@ export default {
       updateWetBonusMoney: 'updateWetBonusMoney'
     }),
 
-    payUp() {
+    payUp(program) {
+
+      /* switch (program) {
+        case 'append' :
+          console.log('append')
+          break
+        case 'noappend' :
+          break
+        default:
+          break  
+      } */
+
       const card = this.amount
       if (
         this.amount >= this.getPaymentLimitMin &&
         this.amount <= this.getPaymentLimitMax
       ) {
+        // payCard
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
           this.emitCardMoney(card)
           this.setCardMoney(card)
           this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)
           this.$router.push('/status')
         }
-
+        // payBonus
         if (this.getIsBonusMoney && this.getIsCardMoney) {
-          /* dev */
-          // this.updateWetMoney(card)
           this.updateWetBonusMoney(card)
-          // console.log('getWetPaidBonus-->', this.getWetPaidBonus)
-
           this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
           if (this.$route.name !== 'program') this.$router.push('/program')
         }
@@ -944,13 +953,17 @@ export default {
 
       let response
       this.options = this.getLoginBonusOptions()
+      
+      this.options.params.pin.length > 0
+      ? this.payType = 'bonus'
+      : this.payType = 'card'
 
       if (this.options.params.pin.length > 0) {
         let response = await this.storage.getClient(method, this.options, type)
         if (+response.result === 0) {
-          /* this.$message(
-            `Уважаемый ${response.profile.firstname} ${response.profile.lastname} на Вашем бонусном счету ${response.profile.b_balance} ₽ `
-          ) */
+          // this.$message(
+          //   `Уважаемый ${response.profile.firstname} ${response.profile.lastname} на Вашем бонусном счету ${response.profile.b_balance} ₽ `
+          // )
           this.balance = response.profile.b_balance
           this.firstname = response.profile.firstname
           this.lastname = response.profile.lastname

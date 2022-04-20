@@ -220,6 +220,24 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
+    // card
+    updateDryCardMoney({ getters }, card) {
+      console.log('Card update-->', card)
+      try {
+        ipcRenderer.send(
+          'OPCUA',
+          JSON.stringify({
+            node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
+              1}].paidCard`,
+            value: card
+          })
+        )
+      } catch (e) {
+        console.warn('Error:', e.message)
+      }
+    },
+
+
     // end Платежи ----------------------
     // end Dry actions ==================
 
@@ -309,6 +327,25 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
+    // card
+    updateWetCardMoney({ getters }, card) {
+      console.log('Card update-->', card)
+      try {
+        ipcRenderer.send(
+          'OPCUA',
+          JSON.stringify({
+            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
+              1}].paidCard`,
+            value: card
+          })
+        )
+      } catch (e) {
+        console.warn('Error:', e.message)
+      }
+    },
+
+
+
 
     updateWetZeroMoney({ getters }, zeroMoney) {
       try {

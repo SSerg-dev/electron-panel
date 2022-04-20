@@ -32,7 +32,7 @@
         </li>
 
         <!-- 4 -->
-        <li v-if="getIsPing" class="collection-item" @click="payUp('card')">
+        <li v-if="getIsPing && getTerminalInstalled" class="collection-item" @click="payUp('card')">
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               💳 {{ 'BANK_CARD' | localize }}
@@ -73,7 +73,8 @@ export default Vue.extend({
     ...mapGetters({
       getWetBalance: 'getWetBalance',
       getMoneyToBonus: 'getMoneyToBonus',
-      getIsPing: 'getIsPing'
+      getIsPing: 'getIsPing',
+      getTerminalInstalled: 'getTerminalInstalled'
     })
   },
   watch: {
@@ -99,6 +100,7 @@ export default Vue.extend({
     this.setMoneyToBonus(0)
     // setIsMoneyToBonus
     this.setIsMoneyToBonus(false)
+
     
 
 
@@ -123,6 +125,7 @@ export default Vue.extend({
       getIsPayCardMoney: 'getIsPayCardMoney',
       getDirectCash: 'getDirectCash',
       getSecondsFirstTimer: 'getSecondsFirstTimer'
+      
     }),
     ...mapMutations({
       setCashEnabler: 'setCashEnabler',

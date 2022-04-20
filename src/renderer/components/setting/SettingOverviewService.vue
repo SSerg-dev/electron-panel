@@ -80,7 +80,9 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default Vue.extend({
   name: 'setting-overview-service',
   data: () => ({}),
-  mounted() {},
+  mounted() {
+    this.setService('balance')
+  },
   computed: {
     ...mapGetters({
       getWetBalance: 'getWetBalance',

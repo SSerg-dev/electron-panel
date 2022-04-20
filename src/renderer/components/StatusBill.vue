@@ -86,11 +86,17 @@ export default Vue.extend({
           this.cardMessageIndex = 3
           this.setStatusBillMessagesIndex(this.cardMessageIndex)
 
+          /* dev */
           this.updateWetMoney(this.observer.state)
 
           this.$message(`Операция одобрена, сумма:  ${this.observer.state}`)
           this.sleep(this.sleepMs)
           seconds = 0
+          /* dev */
+          this.setCardBonusState()
+          // this.$router.push('/bonus')
+          this.$router.push('/cash')
+          
         }
 
         if (!(typeof this.observer.state === 'number') && this.card > 0) {
@@ -98,27 +104,24 @@ export default Vue.extend({
           this.cardMessageIndex = 4
           this.setStatusBillMessagesIndex(this.cardMessageIndex) 
           
-          /* dev */
-          // const container = document.getElementById('message')
-          // const content = container.innerHTML
-          // container.innerHTML = content
-          // this.$forceUpdate()
-
-          // this.isShow = true
-
-          // emit
           
           this.$message(`Операция отклонена`)
           this.sleep(this.sleepMs)
           this.$router.push('/')
         }
         
-
-        if (--seconds < 0 && this.$route.name !== 'program') {
-          this.$router.push('/program')
-        }
+        /* dev */  
+        // if (--seconds < 0 && this.$route.name !== 'program') {
+        //   this.$router.push('/program')
+        // }
       }, 1000)
     },
+    /* dev */
+     setCardBonusState() {
+       this.setIsPayBonusMoney(false)
+       this.setIsAppendBonusMoney(true)
+     },
+
 
     ...mapActions({
       fetchStatus: 'fetchStatus',
@@ -127,7 +130,9 @@ export default Vue.extend({
     ...mapMutations({
       setStatusBill: 'setStatusBill',
       setStatusBillMessagesIndex: 'setStatusBillMessagesIndex',
-      setCardMoney: 'setCardMoney'
+      setCardMoney: 'setCardMoney',
+      setIsPayBonusMoney: 'setIsPayBonusMoney',
+      setIsAppendBonusMoney: 'setIsAppendBonusMoney'
     }),
     ...mapGetters({
       getCardMoney: 'getCardMoney'

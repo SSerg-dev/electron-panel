@@ -606,7 +606,7 @@ export default {
 
       if (+response.result === 0) {
         this.$message(`Программа мойки закончена успешно`)
-        if (this.$route.name !== 'program') this.$router.push('/program')
+        if (this.$route.name !== 'home') this.$router.push('/')
       } else {
         this.$message(`Ошибка:  ${response.error}`)
       }
@@ -634,6 +634,8 @@ export default {
       response = await this.storage.getClient(method, this.options, type)
       if (+response.result === 0) {
         this.$message(`У Вас СПИСАНО ${this.options.params.sum} бонуса(ов) `)
+        this.$router.push('/')
+
       } else {
         this.$message(`Ошибка:  ${response.error}`)
       }
