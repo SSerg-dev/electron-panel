@@ -4,9 +4,8 @@
       <div align="center" class="page-title">
         <div class="info-title" style="margin-bottom: 4em;">
           <h3>
-            
             <div id="message" align="center">
-              {{ ` ${ getStatusBillMessages } ` }}
+              {{ ` ${getStatusBillMessages} ` }}
             </div>
             <!-- <input v-model="isShow" v-if="isShow"> -->
             <!-- <div v-if="isShow" align="center">
@@ -14,7 +13,7 @@
             </div> -->
 
             <div
-              v-if="this.seconds > 0"
+              v-if="this.seconds >= 0"
               align="center"
               style="font-size: 2em; padding-top: 2em;"
             >
@@ -26,6 +25,15 @@
         <div>
           <img src="/imgs/arrow/arrow.png" />
         </div>
+
+        <!-- <div class="progress">
+          <div class="determinate" style="width: 70%"></div>
+        </div> -->
+
+        <!-- <div class="progress">
+          <div class="indeterminate"></div>
+        </div> -->
+
       </div>
     </section>
   </div>
@@ -56,6 +64,10 @@ export default Vue.extend({
       getSecondsGotoProgramMenu: 'getSecondsGotoProgramMenu',
       getStatusBill: 'getStatusBill',
       getStatusBillMessages: 'getStatusBillMessages'
+      /* dev */
+      // width() {
+      //   return `${this.seconds}%`
+      // },
     })
   },
   watch: {
@@ -65,9 +77,7 @@ export default Vue.extend({
   },
 
   methods: {
-    
     sleep(ms) {
-      
       const date = Date.now()
       let currentDate = null
       do {
@@ -75,54 +85,36 @@ export default Vue.extend({
       } while (currentDate - date < ms)
     },
     gotoMainMenu(seconds) {
-
       this.intervalMainMenu = setInterval(() => {
-        this.seconds = seconds
-        
+        this.seconds = seconds--
         this.observer = Observer.item
-        
+
         if (this.observer.state > 0 && this.observer.state === this.card) {
           console.log('Операция одобрена, сумма:', this.observer.state)
           this.cardMessageIndex = 3
           this.setStatusBillMessagesIndex(this.cardMessageIndex)
-
-          /* dev */
           this.updateWetMoney(this.observer.state)
-
           this.$message(`Операция одобрена, сумма:  ${this.observer.state}`)
           this.sleep(this.sleepMs)
           seconds = 0
-          /* dev */
           this.setCardBonusState()
-          // this.$router.push('/bonus')
           this.$router.push('/cash')
-          
         }
 
         if (!(typeof this.observer.state === 'number') && this.card > 0) {
-          
           this.cardMessageIndex = 4
-          this.setStatusBillMessagesIndex(this.cardMessageIndex) 
-          
-          
+          this.setStatusBillMessagesIndex(this.cardMessageIndex)
+
           this.$message(`Операция отклонена`)
           this.sleep(this.sleepMs)
           this.$router.push('/')
         }
-        
-        /* dev */  
-        // if (--seconds < 0 && this.$route.name !== 'program') {
-        //   this.$router.push('/program')
-        // }
       }, 1000)
     },
-    /* dev */
-     setCardBonusState() {
-       this.setIsPayBonusMoney(false)
-       this.setIsAppendBonusMoney(true)
-     },
-
-
+    setCardBonusState() {
+      this.setIsPayBonusMoney(false)
+      this.setIsAppendBonusMoney(true)
+    },
     ...mapActions({
       fetchStatus: 'fetchStatus',
       updateWetMoney: 'updateWetMoney'
@@ -130,9 +122,9 @@ export default Vue.extend({
     ...mapMutations({
       setStatusBill: 'setStatusBill',
       setStatusBillMessagesIndex: 'setStatusBillMessagesIndex',
-      setCardMoney: 'setCardMoney',
       setIsPayBonusMoney: 'setIsPayBonusMoney',
-      setIsAppendBonusMoney: 'setIsAppendBonusMoney'
+      setIsAppendBonusMoney: 'setIsAppendBonusMoney',
+      setCardMoney: 'setCardMoney'
     }),
     ...mapGetters({
       getCardMoney: 'getCardMoney'
@@ -198,4 +190,12 @@ export default Vue.extend({
 /* [v-cloak] {
   display: none;
 } */
+.progress .determinate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #40c4ff;
+  transition: width 0.3s linear;
+}
 </style>

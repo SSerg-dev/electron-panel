@@ -54,7 +54,7 @@
               type="range"
               min="50"
               max="500"
-              step="5"
+              step="50"
               ref="slider"
               v-model="current"
             />
@@ -78,9 +78,9 @@ export default Vue.extend({
     amount: 0,
     amountString: '',
     display: 0,
-    min: 42,
-    max: 542,
-    step: 10
+    min: 50,
+    max: 500,
+    step: 50
   }),
   mounted() {
     this.setNumber(this.amount.toString())
@@ -111,7 +111,9 @@ export default Vue.extend({
   },
   watch: {
     current(num) {
+      // console.log('max-->', this.min, this.max, num)
       this.amount = parseInt(num)
+
       if (this.amount < this.min) this.amount = this.min
       if (this.amount > this.max) this.amount = this.max
       this.amountString = this.amount.toString()

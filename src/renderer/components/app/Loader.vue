@@ -1,6 +1,6 @@
 <template>
   <div class="app-loader">
-    <div class="preloader-wrapper active">
+    <div class="preloader-wrapper big active">
       <div class="spinner-layer" :class="color">
         <div class="circle-clipper left">
           <div class="circle"></div>

@@ -7,7 +7,6 @@
         </div>
       </router-link>
 
-      <!-- dev -->
       <div v-if="this.balance < 1" class="message">
         <h3>
           <p align="center">
@@ -72,10 +71,7 @@ export default Vue.extend({
         }
         bankTerminal.connect(options)
         const item = bankTerminal.terminalItem
-
-        /* dev */
         const stream$ = item
-        
         const observer = bankTerminal.observerItem
         stream$.subscribe(observer)
         
@@ -98,15 +94,12 @@ export default Vue.extend({
       const amount = this.card
       item.pay(amount)
       item.sendFINAL()
-      /* dev */
       // this.updateWetMoney(this.card)
       
     },
     flowSequencePax(item) {
       console.log('++flowSequencePax')
       const amount = this.card
-
-      
     },
 
     submitBonusHandler(balance) {
@@ -129,7 +122,6 @@ export default Vue.extend({
           this.getWetBusyPanel === 'false' &&
           this.$route.name !== 'home'
         ) {
-          // console.log('seconds-->', seconds)
           this.$router.push('/')
         }
       }, 1000)
@@ -145,10 +137,7 @@ export default Vue.extend({
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },
   beforeDestroy() {
-    /* dev */
     // this.setIsCardMoney(false)
-    // console.log('false++getIsCardMoney-->', this.getIsCardMoney)
-  
     clearInterval(this.intervalMainMenu)
   },
   components: {

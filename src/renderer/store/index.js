@@ -228,7 +228,7 @@ export default new Vuex.Store({
           'OPCUA',
           JSON.stringify({
             node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
-              1}].paidCard`,
+              1}].paidMoneyCard`,
             value: card
           })
         )
@@ -335,7 +335,7 @@ export default new Vuex.Store({
           'OPCUA',
           JSON.stringify({
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
-              1}].paidCard`,
+              1}].paidMoneyCard`,
             value: card
           })
         )

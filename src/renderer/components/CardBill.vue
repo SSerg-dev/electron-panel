@@ -52,10 +52,8 @@
             <!-- row 01 -->
             <tr>
               <td colspan="4" class="display">
-                <div
-                style="font-size: 1em;"
-                >
-                {{ parseFloat(this.display).toFixed(this.digits) }}
+                <div style="font-size: 1em; color: yellow">
+                  {{ parseFloat(this.display).toFixed(this.digits) }}
                 </div>
               </td>
               <td colspan="1" class="white-text currency">
@@ -206,7 +204,8 @@
                   padding-top: 1.4rem;
                   "
                   >
-                    {{ `Max ${getPaymentLimitMax}` }}
+                    <!-- {{ `Max ${getPaymentLimitMax}` }} -->
+                    {{ `Max ${parseFloat(getPaymentLimitMax).toFixed(this.digits)}` }}
                   </div>
 
                   <div
@@ -218,7 +217,7 @@
                   padding-top: 1.4rem;
                   "
                   >
-                    {{ `Max ${getPaymentLimitMax}` }}
+                    {{ `Max ${parseFloat(getPaymentLimitMax).toFixed(this.digits)}` }}
                   </div>
                 </div>
               </td>
@@ -760,7 +759,7 @@ export default {
       getPaymentLimitMax: 'getPaymentLimitMax',
       getIsCardMoney: 'getIsCardMoney',
       getIsBonusMoney: 'getIsBonusMoney',
-      
+
       getWetPaidBonus: 'getWetPaidBonus'
     }),
 
@@ -775,7 +774,7 @@ export default {
           index = 1
           this.isMin = false
         }
-        //if (index === 0) this.$message('Сумма меньше минимальной')
+        // if (index === 0) this.$message('Сумма меньше минимальной')
         flags.modeBlink = function(index) {
           return flags[index]
         }
@@ -815,7 +814,7 @@ export default {
   watch: {
     getFixedCurrency(flag) {
       this.digits = flag
-    },
+    }
   },
   mounted() {
     this.setup()
@@ -889,7 +888,7 @@ export default {
       }
     },
     setup() {
-      this.display = this.amount = 0 //this.getPaymentLimitMin
+      this.display = this.amount = /*0*/ this.getPaymentLimitMin
       this.overlay()
     },
     ...mapGetters({
@@ -903,7 +902,8 @@ export default {
       setLoginBonusPassword: 'setLoginBonusPassword',
       setIsCardMoney: 'setIsCardMoney',
       setIsBonusMoney: 'setIsBonusMoney',
-      setCardMoney: 'setCardMoney'
+      setCardMoney: 'setCardMoney',
+      setPaymentLimitMax: 'setPaymentLimitMax'
     }),
     ...mapActions({
       updateWetMoney: 'updateWetMoney',
@@ -911,7 +911,6 @@ export default {
     }),
 
     payUp(program) {
-
       /* switch (program) {
         case 'append' :
           console.log('append')
@@ -924,6 +923,7 @@ export default {
 
       const card = this.amount
       if (
+        this.amount > 0 &&
         this.amount >= this.getPaymentLimitMin &&
         this.amount <= this.getPaymentLimitMax
       ) {
@@ -953,26 +953,23 @@ export default {
 
       let response
       this.options = this.getLoginBonusOptions()
-      
+
       this.options.params.pin.length > 0
-      ? this.payType = 'bonus'
-      : this.payType = 'card'
+        ? (this.payType = 'bonus')
+        : (this.payType = 'card')
 
       if (this.options.params.pin.length > 0) {
         let response = await this.storage.getClient(method, this.options, type)
         if (+response.result === 0) {
-          // this.$message(
-          //   `Уважаемый ${response.profile.firstname} ${response.profile.lastname} на Вашем бонусном счету ${response.profile.b_balance} ₽ `
-          // )
           this.balance = response.profile.b_balance
           this.firstname = response.profile.firstname
           this.lastname = response.profile.lastname
           this.messageIndex = 0
+          /* dev */
+          if (this.balance > 0) this.setPaymentLimitMax(this.balance)
 
           this.emitBonusMoney(this.balance)
-          /* dev */
           this.changeRowOfTable(this.balance)
-          //this.setNumber(this.balance)
 
           // clear
           this.setLoginBonusPhone('')
@@ -985,14 +982,10 @@ export default {
     },
 
     setNumber(num, fixed) {
-      //console.log('fixed-->', fixed)
-
       if (num >= 10 || num == -10) {
         if (this.amount + parseInt(num) <= 1000) this.amount += parseInt(num)
       }
-
       if (num < 10 && num != -10 && this.amount < 100) {
-        //if(this.amountString.length < 3)
         this.amountString = this.amount.toString() + num.toString()
         this.amount = parseInt(this.amountString)
       }
@@ -1000,17 +993,9 @@ export default {
         this.amount = 0
         if (this.amount + parseInt(num) <= 1000) this.amount = parseInt(num)
       }
-      /* dev */
-      // if (this.balance > 0 && this.amount > this.balance)
-      //   this.amount = this.balance
-
-      if (this.amount < 0) this.amount = 0
-
       this.amountString = this.amount.toString()
       this.display = this.amountString
     },
-
-    /* deposit() {}, */
 
     backspace() {
       let res = this.amountString.substring(0, this.amountString.length - 1)
@@ -1029,16 +1014,14 @@ export default {
 <style scoped>
 .currency {
   padding-left: 1em;
-  /* background: yellow; */
   font-size: 3em;
 }
 .display {
   width: 0em;
   margin-top: 0em;
   margin-left: 0em;
-  text-decoration: none; /* underline; */
+  text-decoration: none;
   color: #ffffff;
-  /* background: yellow; */
   font-size: 10em;
   line-height: 1em;
   z-index: 1;

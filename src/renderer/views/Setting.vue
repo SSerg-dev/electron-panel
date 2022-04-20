@@ -44,14 +44,12 @@
         class="col s8 black"
         style="box-shadow: 10px 10px 10px #00b9e3;"
       >
-      <!-- Обзор -->
+        <!-- Обзор -->
         <div>
           <h2 class="white-text page-subtitle">Обзор</h2>
           <br />
           <div class="row panel">
-            <div class="page-title white-text" style="padding-left: 1em;">
-              
-            </div>
+            <div class="page-title white-text" style="padding-left: 1em;"></div>
             <SettingOverviewService />
             <SettingOverviewCommon />
           </div>
@@ -351,7 +349,6 @@
               <!-- end row -->
               <!-- row 03 -->
               <tr style="margin-top: -0.5em;">
-                
                 <td style="width: 1040px">
                   <div
                     class="card black lighten-3"
@@ -394,8 +391,8 @@
             </tbody>
           </table>
           <div style="margin-top: -0.6em;">
-          <hr />
-        </div>
+            <hr />
+          </div>
           <!-- end table -->
         </div>
         <!-- end Экран -->
@@ -474,7 +471,6 @@
                       >
                     </div>
                   </div>
-
                 </div>
               </td>
             </tr>
@@ -555,7 +551,7 @@
                       border-radius: 2rem;
                     "
                 >
-                  <div class="card-content white-text"> 
+                  <div class="card-content white-text">
                     <div class="switch">
                       <label>
                         <input type="checkbox" v-model="isAcceptorInstalled" />
@@ -574,11 +570,12 @@
               </td>
             </tr>
             <!-- row 08 -->
-            <tr style="margin-top: -4em;"
-            :class="[
-            { 'first-opacity': isAcceptorInstalled },
-            { 'second-opacity': !isAcceptorInstalled }
-            ]"
+            <tr
+              style="margin-top: -4em;"
+              :class="[
+                { 'first-opacity': isAcceptorInstalled },
+                { 'second-opacity': !isAcceptorInstalled }
+              ]"
             >
               <td style="width: 520px;">
                 <div>
@@ -591,7 +588,6 @@
                 </div>
               </td>
             </tr>
-
 
             <!-- row 09 -->
             <tr style="margin-top: 3em;">
@@ -628,11 +624,12 @@
               </td>
             </tr>
             <!-- row 10 -->
-            <tr style="margin-top: -4em;"
-            :class="[
-            { 'first-opacity': isCoinAcceptorInstalled },
-            { 'second-opacity': !isCoinAcceptorInstalled }
-            ]"
+            <tr
+              style="margin-top: -4em;"
+              :class="[
+                { 'first-opacity': isCoinAcceptorInstalled },
+                { 'second-opacity': !isCoinAcceptorInstalled }
+              ]"
             >
               <td style="width: 520px;">
                 <div>
@@ -677,36 +674,37 @@
               </td>
             </tr>
 
-            <!-- row 12 -->
-            <tr
-              style="margin-top: -2em; margin-left: 10px;"
-              :class="[
-            { 'first-opacity': isTerminalInstalled },
-            { 'second-opacity': !isTerminalInstalled }
-            ]"
+            <div
+            :class="[
+                  { 'first-opacity': isTerminalInstalled },
+                  { 'second-opacity': !isTerminalInstalled }
+                ]"
             >
-              <td style="width: 1020px;">
-                <div>
-                  <SettingPaymentTerminalType />
-                </div>
-              </td>
-            </tr>
+              <!-- row 12 -->
+              <tr
+                style="margin-top: -2em; margin-left: 10px;"
+              >
+                <td style="width: 1020px;">
+                  <div>
+                    <SettingPaymentTerminalType />
+                  </div>
+                </td>
+              </tr>
+              <!-- row 13 -->
+              <tr style="margin-top: 2.8em; margin-left: 0px;">
+                <td>
+                  <div>
+                    <SettingPaymentLimit />
+                  </div>
+                </td>
+              </tr>
+            </div>
 
-            <!-- SettingPaymentToken -->
-            <!-- row 13 -->
-            <tr style="margin-top: 2.5em; margin-left: 0px;">
+            <!-- row 14 -->
+            <tr style="margin-top: 3.7em; margin-left: 0px;">
               <td>
                 <div>
                   <SettingPaymentToken />
-                </div>
-              </td>
-            </tr>
-
-            <!-- row 14 -->
-            <tr style="margin-top: 2.5em; margin-left: 0px;">
-              <td>
-                <div>
-                  <SettingPaymentLimit />
                 </div>
               </td>
             </tr>
@@ -737,15 +735,13 @@
           <tbody>
             <!-- row 01 -->
             <tr style="margin-top: 2em;">
-              
-              
               <td style="width: 1040px;">
                 <div>
                   <SettingLanguageSelect />
                 </div>
               </td>
-
-            </tr>Payment
+            </tr>
+            Payment
           </tbody>
         </table>
         <div style="margin-top: 4em;">
@@ -754,7 +750,6 @@
 
         <div></div>
 
-        
         <!--     -->
       </div>
 
@@ -835,7 +830,6 @@
           </button>
         </div>
       </div>
-
     </form>
     <!-- <a name="bottom"></a> -->
   </div>
@@ -857,8 +851,6 @@ import SettingPaymentBill from '@/components/setting/SettingPaymentBill'
 import SettingCoinBill from '@/components/setting/SettingCoinBill'
 import SettingLanguageSelect from '@/components/setting/SettingLanguageSelect'
 
-
-
 import SettingPaymentTerminalType from '@/components/setting/SettingPaymentTerminalType'
 import SettingPaymentLimit from '@/components/setting/SettingPaymentLimit'
 import SettingPaymentLimitMin from '@/components/setting/SettingPaymentLimitMin'
@@ -879,7 +871,6 @@ import SettingScreenAssignItem from '@/components/setting/SettingScreenAssignIte
 import cost from '../store/cost'
 import EventBus from '@/bus/EventBus'
 
-
 export default Vue.extend({
   name: 'setting',
   data: () => ({
@@ -891,7 +882,7 @@ export default Vue.extend({
     isChangeProgramFirst: true,
     isChangeProgramSecond: true,
     isCnw: true,
-    isCursor: true,     
+    isCursor: true,
 
     changeItemIds: [1, 2],
     assignItemIds: [1],
@@ -917,13 +908,12 @@ export default Vue.extend({
     SettingPaymentLanguage,
     SettingPaymentCurrency,
     SettingPaymentAcceptor,
-    
+
     SettingCoinAcceptor,
     SettingPaymentBill,
     SettingCoinBill,
     /* dev */
     SettingLanguageSelect,
-    
 
     SettingPaymentTerminalType,
     SettingPaymentLimit,
@@ -953,18 +943,16 @@ export default Vue.extend({
     ...mapActions({
       updateConfig: 'updateConfig'
     }),
-    submitHandler(options) {  
+    submitHandler(options) {
       const selected = JSON.stringify(options.selected)
       const current = JSON.stringify(options.current)
       //this.setLanguage(selected, current)
-      
     },
     /* dev */
-        setLanguage() {
-      },
-    ...mapGetters ({
-      getConfig: 'getConfig' 
-    }),  
+    setLanguage() {},
+    ...mapGetters({
+      getConfig: 'getConfig'
+    }),
     ...mapMutations({
       setRouter: 'setRouter',
       setLanguageNatives: 'setLanguageNatives',
@@ -976,10 +964,7 @@ export default Vue.extend({
       setDirectCash: 'setDirectCash',
       setCursor: 'setCursor',
       setPayScreenMain: 'setPayScreenMain',
-      setCnw: 'setCnw' 
-
-
-      
+      setCnw: 'setCnw'
     }),
     setDown() {
       this.isDown = !this.isDown
@@ -1012,7 +997,6 @@ export default Vue.extend({
       // this.$router.push('/setting')
     },
     ...mapGetters({
-      
       getTerminalInstalled: 'getTerminalInstalled',
 
       getCoinInstalled: 'getCoinInstalled',
@@ -1020,7 +1004,6 @@ export default Vue.extend({
       getCursor: 'getCursor',
       getPayScreenMain: 'getPayScreenMain',
       getCnw: 'getCnw'
-
     })
   },
   computed: {
@@ -1048,7 +1031,7 @@ export default Vue.extend({
     isDirectCash(flag) {
       //console.log('isDirectCash-->', flag)
       this.setDirectCash(flag)
-    }, 
+    },
     isTerminalInstalled(flag) {
       // console.log('isTerminalInstalled-->', flag)
       this.setTerminalInstalled(flag)
@@ -1061,9 +1044,7 @@ export default Vue.extend({
     isCoinAcceptorInstalled(flag) {
       //console.log('isCoinAcceptorInstalled-->', flag)
       this.setCoinAcceptorInstalled(flag)
-    },
-    
-
+    }
   },
   created() {
     this.isPayScreenMain = this.getPayScreenMain()
@@ -1200,6 +1181,6 @@ td {
   opacity: 1;
 }
 .second-opacity {
-  opacity: 0.4;
+  opacity: 0.2;
 }
 </style>

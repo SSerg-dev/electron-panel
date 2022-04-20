@@ -12,7 +12,6 @@
     >
       <div class="card-content black-text">
         <div class="row" style="margin-top: -0.8em;">
-
           <div class="col s5" style="padding-top: 0.5em;">
             <div style="margin-left: -1em" class="display">
               {{ `Минимальный` }}
@@ -37,7 +36,7 @@
 
           <div class="col s2">
             <button
-              class="btn waves-effect waves-light lighten-3 white-text button-setting" 
+              class="btn waves-effect waves-light lighten-3 white-text button-setting"
               type="submit"
               @click="setNumber('+1')"
             >
@@ -52,9 +51,9 @@
               id="slider"
               name="slider"
               type="range"
-              min="1"
+              min="10"
               max="50"
-              step="5"
+              step="10"
               ref="slider"
               v-model="current"
             />
@@ -78,13 +77,12 @@ export default Vue.extend({
     amount: 0,
     amountString: '',
     display: 0,
-    min: 42,
-    max: 542,
+    min: 50,
+    max: 500,
     step: 10
   }),
   mounted() {
-    //console.log('this.amount-->', this.amount)
-    //this.setNumber(this.amount.toString())
+    this.setNumber(this.amount.toString())
   },
   methods: {
     setNumber(num) {
@@ -112,7 +110,9 @@ export default Vue.extend({
   },
   watch: {
     current(num) {
+      // console.log('min-->', this.min, this.max, num)
       this.amount = parseInt(num)
+
       if (this.amount < this.min) this.amount = this.min
       if (this.amount > this.max) this.amount = this.max
       this.amountString = this.amount.toString()
@@ -123,24 +123,17 @@ export default Vue.extend({
     }
   },
   created() {
-
     const paymentLimitMin = this.getPaymentLimitMin
     this.min = paymentLimitMin
-    //console.log('paymentLimitMin-->', paymentLimitMin)
+    /* dev */
+    const paymentLimitMax = this.getPaymentLimitMax / 10
+    this.max = paymentLimitMax
 
-    const paymentLimitMax = this.getPaymentLimitMax
-    this.max = paymentLimitMax 
-    
     this.amount = paymentLimitMin
     this.display = this.amount.toString()
-
-
-  },
-
+  }
 })
-
 </script>
-
 
 <style scoped>
 .display {

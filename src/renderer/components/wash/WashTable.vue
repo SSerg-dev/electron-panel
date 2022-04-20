@@ -481,7 +481,6 @@ export default {
       getChargeBonus: 'getChargeBonus',
 
       getLoginBonusPhone: 'getLoginBonusPhone'
-
       // getIsReceiptPrint: 'getIsReceiptPrint'
     }),
     setProgram(program) {
@@ -499,7 +498,6 @@ export default {
         this.setDown()
         return
       }
-
       if (program === 'savemoney') {
         this.isDown.bonus = true
         this.buttonBonus.background = 'rgb(64, 196, 255)'
@@ -641,8 +639,6 @@ export default {
       }
     },
     // ----------------------------------
-
-
     clearDown() {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])

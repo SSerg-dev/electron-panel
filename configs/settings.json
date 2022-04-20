@@ -3,7 +3,7 @@
         "hardware": "vendotek",
         "installed": true,
         "max_sum": 500,
-        "min_sum": 1
+        "min_sum": 0
     },
     "bill_validator": { 
         "denominations": {},

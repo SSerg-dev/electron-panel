@@ -539,7 +539,7 @@ export default {
       setCompleteWashOrder: 'setCompleteWashOrder'
     }),
     ...mapActions({
-      updateWetBonusMoney: 'updateWetBonusMoney',
+      // updateWetBonusMoney: 'updateWetBonusMoney',
       updateWetZeroMoney: 'updateWetZeroMoney'
     }),
 
@@ -788,7 +788,7 @@ export default {
       if (this.phone.length === this.phoneParseLength) {
         this.phoneNotParse = this.phone.replace(/[^+0-9]/g, '')
         this.setLoginBonusPhone(this.phoneNotParse)
-        
+
         this.options = this.getChargeBonus()
         this.options.params.phone = this.phoneNotParse
         this.setChargeBonus(this.options.params)
