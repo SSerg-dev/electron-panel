@@ -15,7 +15,7 @@
             <div
               v-if="this.seconds >= 0"
               align="center"
-              style="font-size: 2em; padding-top: 2em;"
+              style="font-size: 2em; padding-top: 2em; padding-left: 0.5em;"
             >
               {{ `${this.seconds}` }}
             </div>
@@ -26,13 +26,19 @@
           <img src="/imgs/arrow/arrow.png" />
         </div>
 
-        <!-- <div class="progress">
-          <div class="determinate" style="width: 70%"></div>
-        </div> -->
-
-        <!-- <div class="progress">
-          <div class="indeterminate"></div>
-        </div> -->
+        <div v-if="loading">
+          <loader
+            object="#33ddff"
+            color1="#ffffff"
+            color2="#3217fd"
+            size="20"
+            speed="2"
+            bg="#343a40"
+            objectbg="#999793"
+            opacity="0"
+            name="dots"
+          ></loader>
+        </div>
 
       </div>
     </section>
@@ -49,6 +55,8 @@ const Observer = require('../services/BCNetService/Types/Observer.js')
 export default Vue.extend({
   name: 'setting-panel-type',
   data: () => ({
+    loading: true,
+
     intervalMainMenu: null,
     seconds: 42,
     cardMessageIndex: -1,

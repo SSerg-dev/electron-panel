@@ -27,23 +27,39 @@
     "
     >
       <form @submit.prevent="">
-        <div v-if="getIsPayCardMoney()" align="center" class="page-title">
-          <div
-            v-if="this.messageIndex > -1"
-            class="info-title noselect"
-            style="margin-bottom: 4em; "
-          >
-            <p align="center">
-              {{ `${this.messages[0]}` }}
-              {{ `${this.firstname}` }}
-            </p>
-            <p align="center" style="font-size: 140px;">
-              <!-- {{ this.balance }} -->
-              {{ parseFloat(this.balance).toFixed(this.digits) }}
-            </p>
-            <p align="center">
-              {{ `${this.messages[1]}` }}
-            </p>
+
+        <div v-if="loading">
+          <loader
+            object="#33ddff"
+            color1="#ffffff"
+            color2="#3217fd"
+            size="10"
+            speed="2"
+            bg="#343a40"
+            objectbg="#999793"
+            opacity="80"
+            name="box"
+          ></loader>
+        </div>
+
+        <div v-else>
+          <div v-if="getIsPayCardMoney()" align="center" class="page-title">
+            <div
+              v-if="this.messageIndex > -1"
+              class="info-title noselect"
+              style="margin-bottom: 4em; "
+            >
+              <p align="center">
+                {{ `${this.messages[0]}` }}
+                {{ `${this.firstname}` }}
+              </p>
+              <p align="center" style="font-size: 140px;">
+                {{ parseFloat(this.balance).toFixed(this.digits) }}
+              </p>
+              <p align="center">
+                {{ `${this.messages[1]}` }}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -205,7 +221,11 @@
                   "
                   >
                     <!-- {{ `Max ${getPaymentLimitMax}` }} -->
-                    {{ `Max ${parseFloat(getPaymentLimitMax).toFixed(this.digits)}` }}
+                    {{
+                      `Max ${parseFloat(getPaymentLimitMax).toFixed(
+                        this.digits
+                      )}`
+                    }}
                   </div>
 
                   <div
@@ -217,7 +237,11 @@
                   padding-top: 1.4rem;
                   "
                   >
-                    {{ `Max ${parseFloat(getPaymentLimitMax).toFixed(this.digits)}` }}
+                    {{
+                      `Max ${parseFloat(getPaymentLimitMax).toFixed(
+                        this.digits
+                      )}`
+                    }}
                   </div>
                 </div>
               </td>
@@ -515,7 +539,7 @@
                   border: solid 6px #00B9E3; 
                   border-radius: 2.5em;
                   box-shadow: 0px 6px 10px #00b9e3;
-                  
+                  opacity: 1;
                   "
                 >
                   <div
@@ -671,7 +695,7 @@
                   border: solid 6px #00B9E3; 
                   border-radius: 2.5em;
                   box-shadow: 0px 6px 10px #00b9e3;
-                  opacity: 0.4;
+                  opacity: 0.2;
                   "
                 >
                   <div
@@ -705,6 +729,8 @@ import EventBus from '@/bus/EventBus'
 
 export default {
   data: () => ({
+    loading: false,
+
     amount: 0,
     amountString: '',
     display: 0,
@@ -713,7 +739,6 @@ export default {
     body: '',
     digits: 0,
 
-    /* dev */
     isCardRow: false,
     isBonusRow: false,
 
@@ -735,6 +760,7 @@ export default {
     options: {},
     payType: '',
 
+    cardLimitMax: 0,
     balance: '',
     firstname: '',
     lastname: '',
@@ -817,6 +843,9 @@ export default {
     }
   },
   mounted() {
+    // if (!this.options.params.pin.length > 0) {
+    //   this.loading = false
+    // }
     this.setup()
 
     this.storage = new Storage(this.client, this.url)
@@ -834,6 +863,7 @@ export default {
   beforeDestroy() {
     this.setIsCardMoney(false)
     this.setIsBonusMoney(false)
+    this.setPaymentLimitMax(this.cardLimitMax)
 
     clearTimeout(this.timeoutMinDelay)
     clearTimeout(this.timeoutMaxDelay)
@@ -845,6 +875,7 @@ export default {
     },
     /* dev */
     emitCardMoney(card) {
+      
       EventBus.$emit('submitCardMoney', card)
     },
     changeRowOfTable(balance) {
@@ -889,6 +920,7 @@ export default {
     },
     setup() {
       this.display = this.amount = /*0*/ this.getPaymentLimitMin
+      this.cardLimitMax = this.getPaymentLimitMax
       this.overlay()
     },
     ...mapGetters({
@@ -918,7 +950,7 @@ export default {
         case 'noappend' :
           break
         default:
-          break  
+          break
       } */
 
       const card = this.amount
@@ -928,7 +960,7 @@ export default {
         this.amount <= this.getPaymentLimitMax
       ) {
         // payCard
-        if (this.getIsCardMoney && !this.getIsBonusMoney) {
+        if (this.getIsCardMoney && !this.getIsBonusMoney) {          
           this.emitCardMoney(card)
           this.setCardMoney(card)
           this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)
@@ -959,15 +991,18 @@ export default {
         : (this.payType = 'card')
 
       if (this.options.params.pin.length > 0) {
+        this.loading = true
+
         let response = await this.storage.getClient(method, this.options, type)
         if (+response.result === 0) {
+          this.loading = false  
+          
           this.balance = response.profile.b_balance
           this.firstname = response.profile.firstname
           this.lastname = response.profile.lastname
           this.messageIndex = 0
-          /* dev */
+          
           if (this.balance > 0) this.setPaymentLimitMax(this.balance)
-
           this.emitBonusMoney(this.balance)
           this.changeRowOfTable(this.balance)
 
@@ -982,10 +1017,7 @@ export default {
     },
 
     setNumber(num, fixed) {
-      if (num >= 10 || num == -10) {
-        if (this.amount + parseInt(num) <= 1000) this.amount += parseInt(num)
-      }
-      if (num < 10 && num != -10 && this.amount < 100) {
+      if (num < 10 && this.amount < this.getPaymentLimitMax) {
         this.amountString = this.amount.toString() + num.toString()
         this.amount = parseInt(this.amountString)
       }
@@ -993,11 +1025,18 @@ export default {
         this.amount = 0
         if (this.amount + parseInt(num) <= 1000) this.amount = parseInt(num)
       }
+
+      if (this.amount > this.getPaymentLimitMax) {
+        this.amount = this.getPaymentLimitMax
+      }
       this.amountString = this.amount.toString()
       this.display = this.amountString
     },
 
     backspace() {
+      /* dev */
+      this.amountString = this.amount.toString()
+
       let res = this.amountString.substring(0, this.amountString.length - 1)
       this.display = this.amountString = res
       this.amount = parseInt(res)
@@ -1144,4 +1183,9 @@ td {
   -webkit-animation: pulsate 1.2s linear infinite;
   animation: pulsate 1.2s linear infinite;
 }
+/* .loader {
+  margin-left: 30em;
+  margin-top: 0em;
+  width: 4.5em;
+} */
 </style>

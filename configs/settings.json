@@ -2,7 +2,7 @@
     "bank_terminal": {
         "hardware": "vendotek",
         "installed": true,
-        "max_sum": 500,
+        "max_sum": 450,
         "min_sum": 0
     },
     "bill_validator": { 
@@ -35,10 +35,10 @@
     "countries" : ["RU", "UA", "BY" ,"LV", "LT", "EE"],
     "country" : "RU",
     "__commentCurrency": "add default currency",
-    "currency": "EUR",
+    "currency": "RUB",
     "index": 2,
     "languages": {
-        "default": "EE",
+        "default": "RU",
         "panel": [
             0,
             1,

@@ -1,39 +1,30 @@
 <template>
+  <section>
+    <div v-if="this.getPanelType === 'wash'">
+      <Wash />
+    </div>
 
-    <section>
-      
-      <div v-if="this.getPanelType === 'wash'">
-        <Wash />
-      </div>
-      
-       <div v-if="this.getPanelType === 'vacuum'">
-         <Vacuum />
-       </div>
-
-    </section>
-
+    <div v-if="this.getPanelType === 'vacuum'">
+      <Vacuum />
+    </div>
+  </section>
 </template>
 
-<script >
+<script>
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 
 import Wash from '@/components/wash/Wash'
 import Vacuum from '@/components/vacuum/Vacuum'
 
-//import Loader from '@/components/app/Loader'
-
-//import messages from '@/utils/messages'
-
 export default Vue.extend({
   name: 'home',
-  data: () => ({
-    loading: true
-  }),
+  data: () => ({}),
 
   components: {
     Wash,
-    Vacuum
+    Vacuum,
+    // loader
   },
 
   methods: {
@@ -48,11 +39,8 @@ export default Vue.extend({
   },
   mounted() {
     this.setRouter('/')
-  },
+  }
 })
 </script>
 
-<style scoped>
-</style>
-
-
+<style scoped></style>

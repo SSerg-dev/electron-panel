@@ -6,7 +6,9 @@ import router from './router'
 import store from './store'
 import dateFilter from '@/filters/date.filter'
 import messagePlugin from '@/utils/message.plugin'
-import Loader from '@/components/app/Loader'
+// import Loader from '@/components/app/Loader'
+import loader from "vue-ui-preloader"
+
 import localizeFilter from '@/filters/localize.filter'
 
 import 'materialize-css/dist/js/materialize.min'
@@ -17,9 +19,12 @@ console.log = remote.require("electron-log").log
 Vue.config.productionTip = false
 
 Vue.use(messagePlugin)
+Vue.use(loader)
 Vue.filter('date', dateFilter)
 Vue.filter('localize', localizeFilter)
-Vue.component('Loader', Loader)
+// Vue.component('Loader', Loader)
+
+
 Vue.component('Paginate', Paginate)
 
 new Vue({
