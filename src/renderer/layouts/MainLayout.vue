@@ -8,7 +8,10 @@
     </main>
 
     <div
-      v-if="this.$route.name != 'language' && this.$route.name != 'setting'"
+      v-if="
+        !getIsPingUrl &&
+          this.$route.name != 'language' && this.$route.name != 'setting'
+      "
       class="footer"
     >
       <Footer />
@@ -38,7 +41,7 @@ export default Vue.extend({
     // dev
     client: 'fetch',
     url: 'https://192.168.1.3/',
-    urlBD: 'https://192.168.1.2/',
+    urlController: 'https://192.168.1.2:4840',
     storage: null,
     options: {}
   }),
@@ -47,7 +50,8 @@ export default Vue.extend({
     ...mapGetters({
       //getDefaultPanelNumber: 'getDefaultPanelNumber',
       //getWetBusyPanel: 'getWetBusyPanel',
-      getPanelType: 'getPanelType'
+      getPanelType: 'getPanelType',
+      getIsPingUrl: 'getIsPingUrl'
     })
   },
 
@@ -57,7 +61,7 @@ export default Vue.extend({
       getCompleteWash: 'getCompleteWash',
 
       getDefaultPanelNumber: 'getDefaultPanelNumber',
-      getIsPing: 'getIsPing'
+      getIsPing: 'getIsPing',
     }),
 
     async ping() {
@@ -65,11 +69,10 @@ export default Vue.extend({
       const type = types[4]
 
       this.options = this.getPingOptions()
-      // console.log('!!this.options-->', this.options)
+      // console.log('ping this.options-->', this.options)
 
       const response = await this.storage.getClient(method, this.options, type)
 
-      // console.log('+response.result-->', typeof response)
       if (response === undefined) {
         this.setIsPing(false)
         // this.$message(`ping ${this.url} недоступен`)
@@ -79,63 +82,46 @@ export default Vue.extend({
         this.setIsPing(true)
         // this.$message(`ping ${this.url} выполнен успешно`)
       }
-      //this.$message(`ping ${this.getIsPing()}`)
     },
     async pingUrl() {
       const method = methods[12]
       const type = types[5]
 
-      // this.options = this.getPingOptions()
-      // const response = await this.storage.getClient(method, this.options, type)
+      this.options = this.getPingOptions()
+      // console.log('pingUrl this.options-->', method, this.options, type)
 
-      // console.log('++response',typeof response)
+      /* dev */
+      const response = await this.storage.getClient(method, this.options, type)
 
-      // if (+response.status === 200) {
-      //   this.setIsPing(true)
-      //   this.$message(`ping ${this.url} ++выполнен успешно`)
-      // } else {
-      //   this.setIsPing(false)
-      //   this.$message(`ping ${this.url} недоступен`)
-      // }
+      // if (typeof response === 'number') {
+
+      if (response < 1000) {
+        this.setIsPingUrl(true)
+        // this.$message(`ping ${this.urlController} выполнен успешно`)
+      } else {
+        this.setIsPingUrl(false)
+        // this.$message(`ping ${this.urlController} недоступен`)
+      }
     },
 
-    /* dev */
-    /* async completeWash() {
-      const method = methods[11]
-      const type = types[4]
-
-      this.options = this.getCompleteWash()
-
-      const response = await this.storage.getClient(method, this.options, type)
-      if (+response.result === 0)
-        this.$message(
-          `Мойка на посту № ${this.getDefaultPanelNumber()} завершена успешно`
-        )
-      else
-        this.$message(
-          `Мойка на посту № ${this.getDefaultPanelNumber()} завершена с ошибкой ${
-            response.result
-          }`
-        )
-    }, */
-
     ...mapMutations({
-      setIsPing: 'setIsPing'
+      setIsPing: 'setIsPing',
+      setIsPingUrl: 'setIsPingUrl'
     })
   },
   created() {
     //console.log('!!++this.getPanelType-->', this.getPanelType)
+    this.getIsPingUrl = true
   },
 
   async mounted() {
     this.storage = new Storage(this.client, this.url)
+    
 
     this.intervalPing = setInterval(() => {
       this.ping()
-      // this.pingUrl()
-      // this.completeWash()
-    }, 1000)
-    //},
+      this.pingUrl()
+    }, 2000)
   },
   beforeDestroy() {
     clearInterval(this.intervalPing)
@@ -156,7 +142,5 @@ export default Vue.extend({
 <style>
 .app-main-layout {
   background-color: #121212;
-  /* background-color: yellow */
-  /* background-color: black */
 }
 </style>

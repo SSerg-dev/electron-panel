@@ -1,11 +1,19 @@
 <template>
   <section>
-    <div v-if="this.getPanelType === 'wash'">
-      <Wash />
-    </div>
+    <div >
 
-    <div v-if="this.getPanelType === 'vacuum'">
-      <Vacuum />
+      <div v-if="this.getPanelType === 'wash' && getIsPingUrl">
+        <Wash />
+      </div>
+
+      <div v-if="this.getPanelType === 'vacuum' && getIsPingUrl">
+        <Vacuum />
+      </div>
+
+      <div v-if="!getIsPingUrl" style="color: red; font-size: 5em; margin-top: 10em;">
+        <p align="center">{{ `Ошибка: нет связи с мойкой` }}</p>
+      </div>
+
     </div>
   </section>
 </template>
@@ -23,22 +31,26 @@ export default Vue.extend({
 
   components: {
     Wash,
-    Vacuum,
+    Vacuum
     // loader
   },
 
   methods: {
     ...mapMutations({
-      setRouter: 'setRouter'
+      setRouter: 'setRouter',
+      setIsPingUrl: 'setIsPingUrl'
     })
   },
   computed: {
     ...mapGetters({
-      getPanelType: 'getPanelType'
+      getPanelType: 'getPanelType',
+      getIsPingUrl: 'getIsPingUrl'
     })
   },
   mounted() {
     this.setRouter('/')
+    // this.setIsPingUrl(true)
+
   }
 })
 </script>

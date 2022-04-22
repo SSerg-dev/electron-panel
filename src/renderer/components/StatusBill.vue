@@ -58,7 +58,7 @@ export default Vue.extend({
     loading: true,
 
     intervalMainMenu: null,
-    seconds: 42,
+    seconds: 60,
     cardMessageIndex: -1,
     card: 0,
     terminal: null,
@@ -80,7 +80,7 @@ export default Vue.extend({
   },
   watch: {
     getStatusBillMessages(flag) {
-      console.log('getStatusBillMessages flag-->', flag)
+      // console.log('getStatusBillMessages flag-->', flag)
     }
   },
 

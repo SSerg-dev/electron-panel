@@ -14,7 +14,7 @@ const methods = [
   'appendBonus', // выполняется панелью для зачисления бонусов клиенту
   'completeWash', // выполняется панелью после  окончания мойки клиентом
   'pingUrl', // выполняется панелью ping Url
-  'chargeBonus', // выполняется панелью для изменения суммы бонусов на облаке
+  'chargeBonus' // выполняется панелью для изменения суммы бонусов на облаке
 ]
 
 const types = ['cash', 'card', 'bonus', 'service', 'common', 'ping', 'finance']
@@ -45,7 +45,6 @@ class Fetch {
         response = await this.commonRequest(url, options)
         break
       case 'ping':
-        // ping B&D
         response = await this.pingUrl(
           (url = 'https://192.168.1.2:4840'),
           options
@@ -144,13 +143,16 @@ class Fetch {
 
   async pingUrl(url, body) {
     let start = Date.now()
+
+    /* dev */
     try {
       await fetch(url)
-    } catch (err) {}
+    } catch (err) {
+      // console.log('fetch-->', err)
+    }
+
     return Date.now() - start
   }
-    
-
 } // end class Fetch
 
 class FetchClient {

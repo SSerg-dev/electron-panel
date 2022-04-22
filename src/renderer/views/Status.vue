@@ -29,7 +29,6 @@ import StatusBill from '@/components/StatusBill'
 export default Vue.extend({
   date: () => ({
     intervalMainMenu: null
-    // seconds: 42
   }),
   computed: {
     ...mapGetters({

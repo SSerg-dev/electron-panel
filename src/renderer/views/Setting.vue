@@ -81,7 +81,7 @@
                 </td>
               </tr>
               <!-- row 03 -->
-              <tr style="margin-top: 0.5em;">
+              <tr style="margin-top: 0.5em; opacity: 0.2">
                 <td style="border: none; width: 360px; height: 80px;">
                   <div
                     class="card grey lighten-3"
@@ -145,7 +145,7 @@
                 </td>
               </tr>
               <!-- row 04 -->
-              <tr style="margin-top: 0.8em;">
+              <tr style="margin-top: 0.8em; opacity: 0.2">
                 <td style="border: none; width: 360px; height: 80px">
                   <div
                     class="card grey lighten-3"
@@ -213,7 +213,7 @@
                 </td>
               </tr>
               <!-- row 05 -->
-              <tr style="margin-top: 0.8em;">
+              <tr style="margin-top: 0.8em; opacity: 0.2">
                 <td style="border: none; width: 360px; height: 80px">
                   <div
                     class="card grey lighten-3"

@@ -849,7 +849,6 @@ export default {
     this.setup()
 
     this.storage = new Storage(this.client, this.url)
-    // console.log('this.firstname-->', this.firstname)
     this.payBonusMoney()
   },
   created() {
@@ -910,10 +909,8 @@ export default {
           evt.clientX < this.maxX &&
           evt.clientY < this.maxY
         ) {
-          //console.log('inside overlay-->', evt.clientX, evt.clientY)
           return
         } else {
-          //console.log('outside overlay-->', evt.clientX, evt.clientY)
           this.$router.push('/')
         }
       }
@@ -945,7 +942,6 @@ export default {
     payUp(program) {
       /* switch (program) {
         case 'append' :
-          console.log('append')
           break
         case 'noappend' :
           break

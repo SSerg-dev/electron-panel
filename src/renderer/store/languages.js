@@ -14,7 +14,9 @@ export default {
       lt: ['Lithuanian', 'Lietuvių'],
       lv: ['Latvian', 'Latviešu'],
       et: ['Estonian', 'Eesti'],
+      
       /* dev */
+
       pl: ['Polish', 'Polski'],
       en: ['English', 'English'],
       kk: ['Kazakh', 'Қазақша'],

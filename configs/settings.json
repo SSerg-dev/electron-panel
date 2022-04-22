@@ -32,7 +32,7 @@
         "type": "CCTALK1"
     },
     "__commentCountries": "add available countries",
-    "countries" : ["RU", "UA", "BY" ,"LV", "LT", "EE"],
+    "countries" : ["RU", "US", "DE"],
     "country" : "RU",
     "__commentCurrency": "add default currency",
     "currency": "RUB",
@@ -85,7 +85,7 @@
             42,
             43
         ],
-        "syspanel": "UA" 
+        "syspanel": "US" 
     },
     "log_path": "/var/log",
     "type":  "wash",

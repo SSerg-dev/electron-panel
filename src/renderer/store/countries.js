@@ -83,7 +83,6 @@ export default {
     country: {},
     languageIds: [],
 
-
     allCountries: {
       /* dev */
       RU: {
@@ -125,11 +124,11 @@ export default {
           'sah',
           'nog'
         ],
-        emoji: '🇷🇺', 
+        emoji: '🇷🇺',
         emojiU: 'U+1F1F7 U+1F1FA'
       },
 
-      UA: {
+      /* UA: {
         name: 'Ukraine',
         native: 'Україна',
         phone: '380',
@@ -145,8 +144,9 @@ export default {
         languages: ['uk', 'ru-UA', 'rom', 'pl', 'hu'],
         emoji: '🇺🇦',
         emojiU: 'U+1F1FA U+1F1E6'
-      },
-      BY: {
+      }, */
+      
+      /* BY: {
         name: 'Belarus',
         native: 'Белару́сь',
         phone: '375',
@@ -162,8 +162,9 @@ export default {
         languages: ['be', 'ru'],
         emoji: '🇧🇾',
         emojiU: 'U+1F1E7 U+1F1FE'
-      },
-      LT: {
+      }, */
+
+      /* LT: {
         name: 'Lithuania',
         native: 'Lietuva',
         phone: '370',
@@ -179,8 +180,9 @@ export default {
         languages: ['lt', 'ru', 'pl'],
         emoji: '🇱🇹',
         emojiU: 'U+1F1F1 U+1F1F9'
-      },
-      LV: {
+      }, */
+
+      /* LV: {
         name: 'Latvia',
         native: 'Latvija',
         phone: '371',
@@ -196,8 +198,9 @@ export default {
         languages: ['lv', 'ru', 'lt'],
         emoji: '🇱🇻',
         emojiU: 'U+1F1F1 U+1F1FB'
-      },
-      EE: {
+      }, */
+
+      /* EE: {
         name: 'Estonia',
         native: 'Eesti',
         phone: '372',
@@ -213,9 +216,11 @@ export default {
         languages: ['et', 'ru'],
         emoji: '🇪🇪',
         emojiU: 'U+1F1EA U+1F1EA'
-      },
+      }, */
+      
       /* dev */
-      PL: {
+
+      /* PL: {
         name: 'Poland',
         native: 'Polska',
         phone: '48',
@@ -231,7 +236,7 @@ export default {
         languages: ['pl'],
         emoji: '🇵🇱',
         emojiU: 'U+1F1F5 U+1F1F1'
-      },
+      }, */
       US: {
         name: 'United States',
         native: 'United States',
@@ -245,12 +250,12 @@ export default {
           name: 'US Dollar',
           minor_unit: '2'
         },
-        //languages: ['en-US', 'es-US', 'haw', 'fr'],
         languages: ['en', 'es-US', 'haw', 'fr'],
         emoji: '🇺🇸',
         emojiU: 'U+1F1FA U+1F1F8'
       },
-      KZ: {
+
+      /* KZ: {
         name: 'Kazakhstan',
         native: 'Қазақстан',
         phone: '76,77',
@@ -266,7 +271,8 @@ export default {
         languages: ['kk', 'ru'],
         emoji: '🇰🇿',
         emojiU: 'U+1F1F0 U+1F1FF'
-      },
+      }, */
+
       DE: {
         name: 'Germany',
         native: 'Deutschland',
@@ -284,7 +290,8 @@ export default {
         emoji: '🇩🇪',
         emojiU: 'U+1F1E9 U+1F1EA'
       },
-      FR: {
+
+      /* FR: {
         name: 'France',
         native: 'France',
         phone: '33',
@@ -297,7 +304,6 @@ export default {
           name: 'Euro',
           minor_unit: '2'
         },
-        //languages: ['fr-FR', 'frp', 'br', 'co', 'ca', 'eu', 'oc'],
         languages: ['fr', 'frp', 'br', 'co', 'ca', 'eu', 'oc'],
         emoji: '🇫🇷',
         emojiU: 'U+1F1EB U+1F1F7'
@@ -315,7 +321,6 @@ export default {
           name: 'Turkish Lira',
           minor_unit: '2'
         },
-        // languages: ['tr-TR', 'ku', 'diq', 'az', 'av'],
         languages: ['tr', 'ku', 'diq', 'az', 'av'],
         emoji: '🇹🇷',
         emojiU: 'U+1F1F9 U+1F1F7'
@@ -351,7 +356,6 @@ export default {
           name: 'Euro',
           minor_unit: '2'
         },
-        // languages: ['nl-BE', 'fr-BE', 'de-BE'],
         languages: ['nl', 'fr-BE', 'de-BE'],
         emoji: '🇧🇪',
         emojiU: 'U+1F1E7 U+1F1EA'
@@ -369,7 +373,6 @@ export default {
           name: 'Euro',
           minor_unit: '2'
         },
-        //languages: ['fi-FI', 'sv-FI', 'smn'],
         languages: ['fi', 'sv-FI', 'smn'],
         emoji: '🇫🇮',
         emojiU: 'U+1F1EB U+1F1EE'
@@ -472,7 +475,6 @@ export default {
           name: 'Euro',
           minor_unit: '2'
         },
-        // languages: ['el-GR', 'en', 'fr'],
         languages: ['el', 'en', 'fr'],
         emoji: '🇬🇷',
         emojiU: 'U+1F1EC U+1F1F7'
@@ -490,7 +492,6 @@ export default {
           name: 'Danish Krone',
           minor_unit: '2'
         },
-        //languages: ['da-DK', 'en', 'fo', 'de-DK'],
         languages: ['da', 'en', 'fo', 'de-DK'],
         emoji: '🇩🇰',
         emojiU: 'U+1F1E9 U+1F1F0'
@@ -525,11 +526,14 @@ export default {
           name: 'Swedish Krona',
           minor_unit: '2'
         },
-        // languages: ['sv-SE', 'se', 'sma', 'fi-SE'],
         languages: ['sv', 'se', 'sma', 'fi-SE'],
         emoji: '🇸🇪',
         emojiU: 'U+1F1F8 U+1F1EA'
       },
+      */
+
+      /* dev */
+      
       /* PT: {
         name: 'Portugal',
         native: 'Portugal',
@@ -572,31 +576,27 @@ export default {
   } /* end state */,
   actions: {},
   getters: {
-    
     getAllLanguageNatives(state, getters) {
       const all = state.allCountries
       const natives = []
       let language = null
 
-        Object.keys(all).forEach((keyAll, index) => {
-          
-            const keyLang = all[keyAll].languages[0]
-            language = getters.getLanguageItem(keyLang.toLowerCase())
-            const emoji = all[keyAll].emoji
-            const currency = all[keyAll].currency.alphabetic_code
-            const symbol = all[keyAll].currency.symbol
-            natives.push({
-              id: index + 1,
-              title: language,
-              key: keyAll,
-              emoji: emoji,
-              currency: currency,
-              symbol: symbol,
-              selected: false
-
-            })
-          
+      Object.keys(all).forEach((keyAll, index) => {
+        const keyLang = all[keyAll].languages[0]
+        language = getters.getLanguageItem(keyLang.toLowerCase())
+        const emoji = all[keyAll].emoji
+        const currency = all[keyAll].currency.alphabetic_code
+        const symbol = all[keyAll].currency.symbol
+        natives.push({
+          id: index + 1,
+          title: language,
+          key: keyAll,
+          emoji: emoji,
+          currency: currency,
+          symbol: symbol,
+          selected: false
         })
+      })
 
       return natives
     },
@@ -628,7 +628,6 @@ export default {
               currency: currency,
               symbol: symbol,
               selected: false
-
             })
           }
         })
@@ -637,12 +636,9 @@ export default {
       return natives
     },
 
-
     getLanguageIds(state) {
       return state.languageIds
-    },
-    
-    
+    }
   }, // end getters
 
   mutations: {
@@ -658,15 +654,13 @@ export default {
     },
     setLanguageNatives(state, selected) {
       state.countries = selected
-      //state.countries = ['LT', 'LV', 'EE', ] 
+      //state.countries = ['LT', 'LV', 'EE', ]
       //console.log('++state.countries-->', state.countries)
-
     },
     setLanguageIds(state, languageIds) {
       state.languageIds = languageIds
       //console.log('!!++state.languageIds-->', state.languageIds)
-    },
-    
+    }
   }, // end mutation
 
   modules: {}

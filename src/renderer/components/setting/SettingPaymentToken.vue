@@ -26,11 +26,11 @@
           <div class="col s2">
             <!-- <span class="card-title">Жетоны (RUB):</span> -->
             <span class="card-title">Жетоны:</span>
-            <div style="font-size: 1.35em; margin-left: 0em;"> 
-          {{ this.emoji }}
-          {{ this.currency }}
-          {{ this.symbol }}
-          </div>
+            <div style="font-size: 1.35em; margin-left: 0em;">
+              {{ this.emoji }}
+              {{ this.currency }}
+              {{ this.symbol }}
+            </div>
           </div>
           <div class="col s3" style="margin-left: -4em;">
             <div>
@@ -39,12 +39,12 @@
           </div>
           <div class="col s3" style="margin-left: 3em;">
             <div>
-              <SettingPaymentTokenItem  :token="secondToken" />
+              <SettingPaymentTokenItem :token="secondToken" />
             </div>
           </div>
           <div class="col s3" style="margin-left: 3em;">
             <div>
-              <SettingPaymentTokenItem  :token="thirdToken"/>
+              <SettingPaymentTokenItem :token="thirdToken" />
             </div>
           </div>
         </div>
@@ -81,16 +81,19 @@ export default Vue.extend({
   },
   methods: {
     initCurrency() {
-      /* dev */
+      
       const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
-      this.current = id
-      this.select = title
+      if (id) {
+        this.current = id
+        this.select = title
 
-      this.emoji = emoji
-      this.currency = currency
-      this.symbol = symbol
-      /*     */
-      },
+        this.emoji = emoji
+        this.currency = currency
+        this.symbol = symbol
+      }
+
+      
+    }
   },
   created() {
     this.initCurrency()

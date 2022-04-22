@@ -159,6 +159,7 @@ export default {
     },
     isCardMoney: false,
     isPing: false,
+    isPingUrl: false, 
     loginSettingPassword: '5',
     isLoginSettingPassword: false,
     isReceipt: {
@@ -216,6 +217,10 @@ export default {
     getIsPing(state) {
       return state.isPing
     },
+    getIsPingUrl(state) {
+      return state.isPingUrl
+    },
+
     getIsPayBonusMoney(state) {
       return state.isBonusMoney.payBonusMoney
     },
@@ -348,8 +353,10 @@ export default {
     },
     setIsPing(state, isPing) {
       state.isPing = isPing
+    },
+    setIsPingUrl(state, isPingUrl) {
+      state.isPingUrl = isPingUrl
     }
-
     /* setPanelMoneyNumber(state, unit_id) {
       state.options.params.unit_id = unit_id
     },
