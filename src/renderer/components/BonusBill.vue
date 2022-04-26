@@ -1,137 +1,74 @@
 <template>
   <div>
-    <section>
-      <div class="info-title">
-        <h3
-          v-if="
-            this.getIsPayBonusMoney() &&
-              !this.getIsAppendBonusMoney() &&
-              !getIsMoneyToBonus
-          "
-        >
-          <p align="center">
-            {{ `${this.messages[0]}` }}
-          </p>
-        </h3>
-        <h3
-          v-else-if="
-            !this.getIsPayBonusMoney() &&
-              this.getIsAppendBonusMoney() &&
-              !getIsMoneyToBonus
-          "
-        >
-          <p align="center">
-            {{ `${this.messages[1]}` }}
-          </p>
-        </h3>
-        <h3 v-else-if="getMoneyToBonus && getIsMoneyToBonus">
-          <p align="center">
-            {{ `${this.messages[2]}` }}
-          </p>
-        </h3>
-      </div>
+    <div v-if="loading">
+      <loader
+        object="#33ddff"
+        color1="#ffffff"
+        color2="#3217fd"
+        size="10"
+        speed="2"
+        bg="#343a40"
+        objectbg="#999793"
+        opacity="80"
+        name="box"
+      ></loader>
+    </div>
 
-      <form @submit.prevent="" novalidate>
-        <div class="imgs">
-          <div class="display" style="padding-left: 4em">
-            <input
-              type="tel"
-              class="phone"
-              v-model="phone"
-              autocomplete="tel"
-              required
-              style="font-size: 7.2rem; height: 8rem; border-bottom: 4px solid #fff; padding-left: 0em"
-            />
-          </div>
+    <div v-else>
+      <section>
+        <div class="info-title">
+          <h3
+            v-if="
+              this.getIsPayBonusMoney() &&
+                !this.getIsAppendBonusMoney() &&
+                !getIsMoneyToBonus
+            "
+          >
+            <p align="center">
+              {{ `${this.messages[0]}` }}
+            </p>
+          </h3>
+          <h3
+            v-else-if="
+              !this.getIsPayBonusMoney() &&
+                this.getIsAppendBonusMoney() &&
+                !getIsMoneyToBonus
+            "
+          >
+            <p align="center">
+              {{ `${this.messages[1]}` }}
+            </p>
+          </h3>
+          <h3 v-else-if="getMoneyToBonus && getIsMoneyToBonus">
+            <p align="center">
+              {{ `${this.messages[2]}` }}
+            </p>
+          </h3>
+        </div>
 
-          <div class="row" style="padding-top: 10em;">
-            <div class="col s6 num">
-              <table>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div
-                        @click="setNumber('1')"
-                        class="card white waves-effect"
-                        style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
-                  "
-                      >
-                        <div
-                          class="card-content black-text"
-                          style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
-                        >
-                          1
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div
-                        @click="setNumber('2')"
-                        class="card white waves-effect"
-                        style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
-                  "
-                      >
-                        <div
-                          class="card-content black-text"
-                          style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
-                        >
-                          2
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div
-                        @click="setNumber('3')"
-                        class="card white waves-effect"
-                        style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
-                  "
-                      >
-                        <div
-                          class="card-content black-text"
-                          style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
-                        >
-                          3
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
+        <form @submit.prevent="" novalidate>
+          <div class="imgs">
+            <div class="display" style="padding-left: 4em">
+              <input
+                type="tel"
+                class="phone"
+                v-model="phone"
+                autocomplete="tel"
+                required
+                style="font-size: 7.2rem; height: 8rem; border-bottom: 4px solid #fff; padding-left: 0em"
+              />
+            </div>
 
-                  <tr>
-                    <td>
-                      <div
-                        @click="setNumber('4')"
-                        class="card white waves-effect"
-                        style="
+            <div class="row" style="padding-top: 10em;">
+              <div class="col s6 num">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div
+                          @click="setNumber('1')"
+                          class="card white waves-effect"
+                          style="
                   width: 125px;
                   height: 120px; 
                   border: solid 6px #00B9E3; 
@@ -139,24 +76,24 @@
                   box-shadow: 0px 6px 10px #00b9e3;
                   
                   "
-                      >
-                        <div
-                          class="card-content black-text"
-                          style="
+                        >
+                          <div
+                            class="card-content black-text"
+                            style="
                   font-size: 5.2rem;
                   padding-left: 2.5rem;
                   padding-top: 0em;
                   "
-                        >
-                          4
+                          >
+                            1
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div
-                        @click="setNumber('5')"
-                        class="card white waves-effect"
-                        style="
+                      </td>
+                      <td>
+                        <div
+                          @click="setNumber('2')"
+                          class="card white waves-effect"
+                          style="
                   width: 125px;
                   height: 120px; 
                   border: solid 6px #00B9E3; 
@@ -164,24 +101,24 @@
                   box-shadow: 0px 6px 10px #00b9e3;
                   
                   "
-                      >
-                        <div
-                          class="card-content black-text"
-                          style="
+                        >
+                          <div
+                            class="card-content black-text"
+                            style="
                   font-size: 5.2rem;
                   padding-left: 2.5rem;
                   padding-top: 0em;
                   "
-                        >
-                          5
+                          >
+                            2
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div
-                        @click="setNumber('6')"
-                        class="card white waves-effect"
-                        style="
+                      </td>
+                      <td>
+                        <div
+                          @click="setNumber('3')"
+                          class="card white waves-effect"
+                          style="
                   width: 125px;
                   height: 120px; 
                   border: solid 6px #00B9E3; 
@@ -189,27 +126,27 @@
                   box-shadow: 0px 6px 10px #00b9e3;
                   
                   "
-                      >
-                        <div
-                          class="card-content black-text"
-                          style="
+                        >
+                          <div
+                            class="card-content black-text"
+                            style="
                   font-size: 5.2rem;
                   padding-left: 2.5rem;
                   padding-top: 0em;
                   "
-                        >
-                          6
+                          >
+                            3
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <td>
-                      <div
-                        @click="setNumber('7')"
-                        class="card white waves-effect"
-                        style="
+                    <tr>
+                      <td>
+                        <div
+                          @click="setNumber('4')"
+                          class="card white waves-effect"
+                          style="
                   width: 125px;
                   height: 120px; 
                   border: solid 6px #00B9E3; 
@@ -217,24 +154,24 @@
                   box-shadow: 0px 6px 10px #00b9e3;
                   
                   "
-                      >
-                        <div
-                          class="card-content black-text"
-                          style="
+                        >
+                          <div
+                            class="card-content black-text"
+                            style="
                   font-size: 5.2rem;
                   padding-left: 2.5rem;
                   padding-top: 0em;
                   "
-                        >
-                          7
+                          >
+                            4
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div
-                        @click="setNumber('8')"
-                        class="card white waves-effect"
-                        style="
+                      </td>
+                      <td>
+                        <div
+                          @click="setNumber('5')"
+                          class="card white waves-effect"
+                          style="
                   width: 125px;
                   height: 120px; 
                   border: solid 6px #00B9E3; 
@@ -242,24 +179,24 @@
                   box-shadow: 0px 6px 10px #00b9e3;
                   
                   "
-                      >
-                        <div
-                          class="card-content black-text"
-                          style="
+                        >
+                          <div
+                            class="card-content black-text"
+                            style="
                   font-size: 5.2rem;
                   padding-left: 2.5rem;
                   padding-top: 0em;
                   "
-                        >
-                          8
+                          >
+                            5
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div
-                        @click="setNumber('9')"
-                        class="card white waves-effect"
-                        style="
+                      </td>
+                      <td>
+                        <div
+                          @click="setNumber('6')"
+                          class="card white waves-effect"
+                          style="
                   width: 125px;
                   height: 120px; 
                   border: solid 6px #00B9E3; 
@@ -267,27 +204,27 @@
                   box-shadow: 0px 6px 10px #00b9e3;
                   
                   "
-                      >
-                        <div
-                          class="card-content black-text"
-                          style="
+                        >
+                          <div
+                            class="card-content black-text"
+                            style="
                   font-size: 5.2rem;
                   padding-left: 2.5rem;
                   padding-top: 0em;
                   "
-                        >
-                          9
+                          >
+                            6
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <td>
-                      <div
-                        @click="setNumber('0')"
-                        class="card white waves-effect"
-                        style="
+                    <tr>
+                      <td>
+                        <div
+                          @click="setNumber('7')"
+                          class="card white waves-effect"
+                          style="
                   width: 125px;
                   height: 120px; 
                   border: solid 6px #00B9E3; 
@@ -295,24 +232,102 @@
                   box-shadow: 0px 6px 10px #00b9e3;
                   
                   "
-                      >
-                        <div
-                          class="card-content black-text"
-                          style="
+                        >
+                          <div
+                            class="card-content black-text"
+                            style="
                   font-size: 5.2rem;
                   padding-left: 2.5rem;
                   padding-top: 0em;
                   "
-                        >
-                          0
+                          >
+                            7
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div
-                        @click="backspace"
-                        class="card white waves-effect"
-                        style="
+                      </td>
+                      <td>
+                        <div
+                          @click="setNumber('8')"
+                          class="card white waves-effect"
+                          style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                        >
+                          <div
+                            class="card-content black-text"
+                            style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                          >
+                            8
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div
+                          @click="setNumber('9')"
+                          class="card white waves-effect"
+                          style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                        >
+                          <div
+                            class="card-content black-text"
+                            style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                          >
+                            9
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div
+                          @click="setNumber('0')"
+                          class="card white waves-effect"
+                          style="
+                  width: 125px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                        >
+                          <div
+                            class="card-content black-text"
+                            style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                          >
+                            0
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div
+                          @click="backspace"
+                          class="card white waves-effect"
+                          style="
                   width: 125px;
                   height: 120px; 
                   border: solid 6px red; 
@@ -320,29 +335,29 @@
                   box-shadow: 0px 6px 10px red;
                   
                   "
-                      >
-                        <div
-                          class="card-content black-text"
-                          style="
+                        >
+                          <div
+                            class="card-content black-text"
+                            style="
                   font-size: 4.2rem;
                   padding-left: 1.8rem;
                   padding-top: 1rem;
                   "
-                        >
-                          <!-- del -->
-                          <i class="medium material-icons">backspace</i>
+                          >
+                            <!-- del -->
+                            <i class="medium material-icons">backspace</i>
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
 
-                  <!-- ЗАЧИСЛИТЬ -->
-                  <tr v-if="this.getIsAppendBonusMoney()">
-                    <td colspan="3">
-                      <div
-                        @click="payUp('append')"
-                        class="card white waves-effect"
-                        style="
+                    <!-- ЗАЧИСЛИТЬ -->
+                    <tr v-if="this.getIsAppendBonusMoney()">
+                      <td colspan="3">
+                        <div
+                          @click="payUp('append')"
+                          class="card white waves-effect"
+                          style="
                         margin-top: 4em;
                         width: 420px;
                         height: 120px; 
@@ -350,28 +365,28 @@
                         border-radius: 2.5em;
                         box-shadow: 0px 6px 10px #00b9e3;
                         "
-                      >
-                        <div
-                          class="card-content black-text"
-                          style="
+                        >
+                          <div
+                            class="card-content black-text"
+                            style="
                         font-size: 3.5em;
                         padding-left: 4rem;
                         padding-top: 0.3em;
                         "
-                        >
-                          {{ `ЗАЧИСЛИТЬ` }}
+                          >
+                            {{ `ЗАЧИСЛИТЬ` }}
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
 
-                  <!-- ПОДТВЕРДИТЬ -->
-                  <tr v-else>
-                    <td colspan="3">
-                      <div
-                        @click="payUp('confirm')"
-                        class="card white waves-effect"
-                        style="
+                    <!-- ПОДТВЕРДИТЬ -->
+                    <tr v-else>
+                      <td colspan="3">
+                        <div
+                          @click="payUp('confirm')"
+                          class="card white waves-effect"
+                          style="
                   margin-top: 4em;      
                   width: 420px;
                   height: 120px; 
@@ -380,32 +395,33 @@
                   box-shadow: 0px 6px 10px #00b9e3;
                   
                   "
-                      >
-                        <div
-                          class="card-content black-text"
-                          style="
+                        >
+                          <div
+                            class="card-content black-text"
+                            style="
                   font-size: 3.5em;
                   padding-left: 1.8rem;
                   padding-top: 0.3em;
                   "
-                        >
-                          {{ `ПОДТВЕРДИТЬ` }}
+                          >
+                            {{ `ПОДТВЕРДИТЬ` }}
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
 
-                  <!--     -->
-                </tbody>
-              </table>
-            </div>
-            <div>
-              <BonusBillQr />
+                    <!--     -->
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <BonusBillQr />
+              </div>
             </div>
           </div>
-        </div>
-      </form>
-    </section>
+        </form>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -423,6 +439,8 @@ import { result } from 'lodash'
 export default {
   name: 'bonus-bill',
   data: () => ({
+    loading: false,
+
     phone: '',
     phoneNotParse: '',
     phoneLength: 10,
@@ -471,6 +489,8 @@ export default {
       this.setIsAppendBonusMoney(true)
       this.setIsPayBonusMoney(false)
     }
+
+
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
@@ -493,7 +513,10 @@ export default {
 
       getWetBusyPanel: 'getWetBusyPanel',
       getActiveProgram: 'getActiveProgram',
-      getActiveProgramNumber: 'getActiveProgramNumber'
+      getActiveProgramNumber: 'getActiveProgramNumber',
+
+      getProfile: 'getProfile'
+
     }),
     IsWetBalance: {
       get: function() {
@@ -503,7 +526,11 @@ export default {
       }
     }
   },
-  watch: {},
+  /* watch: {
+    getProfile(flag) {
+      console.log('getProfile(flag)', flag)
+    }
+  }, */
   methods: {
     ...mapGetters({
       getLoginBonusOptions: 'getLoginBonusOptions',
@@ -516,7 +543,7 @@ export default {
 
       getIsPayBonusMoney: 'getIsPayBonusMoney',
       getIsAppendBonusMoney: 'getIsAppendBonusMoney',
-      getLoginBonusPhone: 'getLoginBonusPhone',
+      // getLoginBonusPhone: 'getLoginBonusPhone',
       getCompleteWash: 'getCompleteWash',
 
       getChargeBonus: 'getChargeBonus'

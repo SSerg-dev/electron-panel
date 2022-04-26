@@ -13,6 +13,7 @@ import {
 } from './utils'
 import OPCUAService from './services/OPCUAService'
 import GPIOService from './services/GPIOService'
+import RedisService from './services/RedisService'
 import BillValidatorController from './controllers/BillValidatorController'
 import CoinAcceptorController from './controllers/CoinAcceptorController'
 import BankTerminalController from './controllers/BankTerminalController'
@@ -80,6 +81,9 @@ GPIO.on('humidity', value => {
   log(TAG, 'Panel humidity change =>', value)
   sendEventToView(mainWindow, 'humidity', value)
 })
+/* ----------------------------------------------------------------------- */
+/* dev */
+const Redis = new RedisService()
 
 /* ----------------------------------------------------------------------- */
 /* */
@@ -264,6 +268,24 @@ ipcMain.on('OPCUA', async (evt, data) => {
     log(TAG, 'Send data to R&B Error:', err)
   }
 })
+
+/* dev */
+/* ipcMain.on('redis', (evt, data) => {
+  log(TAG, 'Data from renderer', 'Send data from redis')
+  Redis.sendRedisData()
+
+  
+  ipcMain.on('asynchronous-message', (event, arg) => {
+    console.log(arg) // prints "ping"
+    event.reply('asynchronous-reply', 'pong')
+  })
+  
+  ipcMain.on('synchronous-message', (event, arg) => {
+    console.log(arg) // prints "ping"
+    event.returnValue = 'pong'
+  })
+
+}) */
 
 /* ----------------------------------------------------------------------- */
 /* */

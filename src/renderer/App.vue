@@ -123,7 +123,6 @@ export default Vue.extend({
             })
             if (end > start) console.log('++++timestamp-->', start, end)
           } */
-
         } catch (err) {
           console.warn('App.vue setup() error:', err)
         }
@@ -144,11 +143,6 @@ export default Vue.extend({
             break
         }
       })
-
-      /* ipcRenderer.on('coin', (event, args) => {
-        self.updateCoinBalance(args)
-      }) */
-
       ipcRenderer.on('banknot', (event, args) => {
         const type = this.getPanelType
         switch (type) {
@@ -162,11 +156,6 @@ export default Vue.extend({
             break
         }
       })
-
-      /* ipcRenderer.on('banknot', (event, args) => {
-        self.updateBanknoteBalance(args)
-      }) */
-
       ipcRenderer.on('humidity', (event, args) => {
         this.setHumidity(args)
       })
@@ -174,6 +163,13 @@ export default Vue.extend({
       ipcRenderer.on('temperature', (event, args) => {
         this.setTemperature(args)
       })
+      /* dev */
+      /* console.log(ipcRenderer.sendSync('synchronous-message', 'ping')) // prints "pong"
+      ipcRenderer.on('asynchronous-reply', (event, arg) => {
+        console.log(arg) // prints "pong"
+      })
+      ipcRenderer.send('asynchronous-message', 'ping') */
+      /*     */
     },
 
     ...mapMutations({

@@ -7,9 +7,10 @@
       </div>
     </main>
 
+    <!-- !getIsPingUrl && -->
     <div
       v-if="
-        !getIsPingUrl &&
+        
           this.$route.name != 'language' && this.$route.name != 'setting'
       "
       class="footer"

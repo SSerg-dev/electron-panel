@@ -7,6 +7,7 @@
         </div>
       </router-link>
 
+      
       <div v-if="this.balance < 1" class="message">
         <h3>
           <p align="center">
@@ -15,6 +16,7 @@
           
         </h3>
       </div>
+
     </div>
 
     <section>

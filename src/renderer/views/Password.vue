@@ -450,7 +450,7 @@ export default {
     },
     ...mapGetters({
       getLoginBonusPassword: 'getLoginBonusPassword',
-      getLoginBonusPhone: 'getLoginBonusPhone',
+      // getLoginBonusPhone: 'getLoginBonusPhone',
       getLoginSettingPassword: 'getLoginSettingPassword',
       // getIsPayBonusMoney: 'getIsPayBonusMoney',
       getIsLoginSettingPassword: 'getIsLoginSettingPassword'

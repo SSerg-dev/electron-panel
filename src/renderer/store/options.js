@@ -149,6 +149,12 @@ export default {
         }]
       }
     },
+    /* dev */
+    checkBonusQr: {
+      method: 'bonus::qr.check',
+      params: { qr: ''}
+    },
+
     // end methods options
 
     isBonusMoney: {
@@ -168,9 +174,19 @@ export default {
       print: false
     },
     isMoneyToBonus: false,
-    MoneyToBonus: 0,
+    moneyToBonus: 0,
     isMoneyToBonusNo: false,
-    isMoneyToBonusYes: false
+    isMoneyToBonusYes: false,
+    // isQrAuthorization: false,
+    // MoneyToBonus
+    profile: {
+      isQrAuthorization: false,
+      isPhoneAuthorization: false,
+      balance: 0,
+      firstname: '',
+      lastname: ''
+    }
+
   }, // end state
   // Options
   //actions: {},
@@ -195,7 +211,7 @@ export default {
       return state.isMoneyToBonusYes
     },
     getMoneyToBonus(state) {
-      return state.MoneyToBonus
+      return state.moneyToBonus
     },
 
     getLoginSettingPassword(state) {
@@ -276,6 +292,12 @@ export default {
     getCompleteWash(state) {
       return state.completeWash
     },
+    getCheckBonusQr(state) {
+      return state.checkBonusQr
+    },
+    getProfile(state) {
+      return state.profile
+    }
 
     /* getPanelMoneyOptions(state) {
       return state.options
@@ -314,7 +336,7 @@ export default {
       state.isMoneyToBonusYes = isYes
     },
     setMoneyToBonus(state, money) {
-      state.MoneyToBonus = money
+      state.moneyToBonus = money
     },
     setLoginBonusPhone(state, phone) {
       state.loginBonus.params.phone = phone
@@ -356,7 +378,11 @@ export default {
     },
     setIsPingUrl(state, isPingUrl) {
       state.isPingUrl = isPingUrl
+    },
+    setProfile(state, profile) {
+      state.profile = profile
     }
+
     /* setPanelMoneyNumber(state, unit_id) {
       state.options.params.unit_id = unit_id
     },

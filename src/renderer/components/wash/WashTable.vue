@@ -480,7 +480,7 @@ export default {
       getCompleteWash: 'getCompleteWash',
       getChargeBonus: 'getChargeBonus',
 
-      getLoginBonusPhone: 'getLoginBonusPhone'
+      // getLoginBonusPhone: 'getLoginBonusPhone'
       // getIsReceiptPrint: 'getIsReceiptPrint'
     }),
     setProgram(program) {

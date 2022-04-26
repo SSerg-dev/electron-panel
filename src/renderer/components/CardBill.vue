@@ -27,7 +27,6 @@
     "
     >
       <form @submit.prevent="">
-
         <div v-if="loading">
           <loader
             object="#33ddff"
@@ -43,6 +42,7 @@
         </div>
 
         <div v-else>
+          <!--  || isQrAuthorization -->
           <div v-if="getIsPayCardMoney()" align="center" class="page-title">
             <div
               v-if="this.messageIndex > -1"
@@ -726,10 +726,12 @@ import { Database } from '@/storage/database.js'
 import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
 import { Storage } from '@/storage/index.js'
 import EventBus from '@/bus/EventBus'
+import { profile } from 'console'
 
 export default {
   data: () => ({
     loading: false,
+    isQrAuthorization: false,
 
     amount: 0,
     amountString: '',
@@ -786,7 +788,8 @@ export default {
       getIsCardMoney: 'getIsCardMoney',
       getIsBonusMoney: 'getIsBonusMoney',
 
-      getWetPaidBonus: 'getWetPaidBonus'
+      getWetPaidBonus: 'getWetPaidBonus',
+      getProfile: 'getProfile'
     }),
 
     isMinBlinking: {
@@ -843,13 +846,34 @@ export default {
     }
   },
   mounted() {
-    // if (!this.options.params.pin.length > 0) {
-    //   this.loading = false
-    // }
     this.setup()
 
     this.storage = new Storage(this.client, this.url)
+
+    // console.log('this.getProfile-->', this.getProfile)
+    const {
+      isQrAuthorization,
+      isPhoneAuthorization,
+      balance,
+      firstname,
+      lastname
+    } = this.getProfile
+
+    /* dev */
     this.payBonusMoney()
+    
+    // if (!isQrAuthorization) {
+    //   this.payBonusMoney()
+    // }
+
+    /* dev */
+    if (isQrAuthorization) {
+      this.setPaymentLimitMax(balance)
+
+      this.isQrAuthorization = isQrAuthorization
+      this.balance = balance
+      this.firstname = firstname
+    }
   },
   created() {
     //this.setup()
@@ -872,11 +896,15 @@ export default {
     emitBonusMoney(balance) {
       EventBus.$emit('submitBonusMoney', balance)
     },
-    /* dev */
     emitCardMoney(card) {
-      
       EventBus.$emit('submitCardMoney', card)
     },
+    /* dev */
+    // submitBonusQrHandler(profile) {
+    //   this.profile = profile
+    //   console.log('++submitBonusQrHandler(profile)-->', profile )
+    // },
+
     changeRowOfTable(balance) {
       if (balance < 1) {
         this.isCardRow = true
@@ -956,7 +984,7 @@ export default {
         this.amount <= this.getPaymentLimitMax
       ) {
         // payCard
-        if (this.getIsCardMoney && !this.getIsBonusMoney) {          
+        if (this.getIsCardMoney && !this.getIsBonusMoney) {
           this.emitCardMoney(card)
           this.setCardMoney(card)
           this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)
@@ -991,13 +1019,13 @@ export default {
 
         let response = await this.storage.getClient(method, this.options, type)
         if (+response.result === 0) {
-          this.loading = false  
-          
+          this.loading = false
+
           this.balance = response.profile.b_balance
           this.firstname = response.profile.firstname
           this.lastname = response.profile.lastname
           this.messageIndex = 0
-          
+
           if (this.balance > 0) this.setPaymentLimitMax(this.balance)
           this.emitBonusMoney(this.balance)
           this.changeRowOfTable(this.balance)

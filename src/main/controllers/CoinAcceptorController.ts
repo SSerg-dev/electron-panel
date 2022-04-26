@@ -83,7 +83,7 @@ class CoinAcceptorController extends EventEmitter {
 			let table = this.device.getCoinTable //await this.device.getCoinInfo()
 			//await this.device.setCoinInfo(table, bills)
 			//table = await this.device.getCoinInfo()
-			log(TAG, "Table of bills:", JSON.stringify(table))
+			log(TAG, "++Table of bills:", JSON.stringify(table))
 
 			this.poll(this.device)
 		})

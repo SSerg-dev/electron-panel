@@ -14,10 +14,20 @@ const methods = [
   'appendBonus', // выполняется панелью для зачисления бонусов клиенту
   'completeWash', // выполняется панелью после  окончания мойки клиентом
   'pingUrl', // выполняется панелью ping Url
-  'chargeBonus' // выполняется панелью для изменения суммы бонусов на облаке
+  'chargeBonus', // выполняется панелью для изменения суммы бонусов на облаке
+  'checkBonusQr' // выполняется при авторизации Qr code
 ]
 
-const types = ['cash', 'card', 'bonus', 'service', 'common', 'ping', 'finance']
+const types = [
+  'cash',
+  'card',
+  'bonus',
+  'service',
+  'common',
+  'ping',
+  'finance',
+  'qr'
+]
 
 class Fetch {
   async request(url, options, type) {
@@ -49,6 +59,9 @@ class Fetch {
           (url = 'https://192.168.1.2:4840'),
           options
         )
+        break
+      case 'qr':
+        response = await this.commonRequest(url, options)
         break
 
       default:
