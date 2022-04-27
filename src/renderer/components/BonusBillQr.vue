@@ -33,18 +33,20 @@ export default {
   name: 'bonus-bill-qr',
 
   data: () => ({
-    
     qr: '',
     client: 'fetch',
     url: 'https://192.168.1.3/',
     storage: null,
     options: {},
     intervalCheckBonusQr: null,
+    isCheckBonusQr: false,
 
     /* dev */
     profile: {
       isQrAuthorization: false,
       isPhoneAuthorization: false,
+      isCashAuthorization: false,
+      phone: '',
       balance: 0,
       firstname: '',
       lastname: ''
@@ -52,10 +54,9 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      getDefaultPanelNumber: 'getDefaultPanelNumber'
-      
+      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getIsAppendBonusMoney: 'getIsAppendBonusMoney'
     })
-
   },
   methods: {
     ...mapGetters({
@@ -88,26 +89,49 @@ export default {
       this.options.params.qr = this.qr
 
       const response = await this.storage.getClient(method, this.options, type)
+      // console.log('checkBonusQr() response -->', response )
 
       if (+response.result === 0) {
-        if (+response.profile?.b_balance > 0 && response.profile.firstname !== null) {
+        if (
+          +response.profile?.b_balance > 0 &&
+          response.profile.firstname !== null
+        ) {
+          this.profile.isQrAuthorization = true
+          this.profile.isPhoneAuthorization = false
+          this.profile.isCashAuthorization = false
 
-          this.profile.isQrAuthorization = true,
-          this.profile.isPhoneAuthorization = false,
-
+          this.profile.phone = response.profile.phone
           this.profile.balance = response.profile.b_balance
           this.profile.firstname = response.profile.firstname
           this.profile.lastname = response.profile.lastname
           this.setProfile(this.profile)
-          
+
           clearInterval(this.intervalCheckBonusQr)
-          if (this.$route.name !== 'card') this.$router.push('/card')
 
+          // Пополнить бонусы
+          if (this.getIsAppendBonusMoney) {
+            this.profile.isCashAuthorization = true
+            this.setProfile(this.profile)
 
+            if (!this.isCheckBonusQr) {
+              this.emitBonusQrMoney(this.profile.isCashAuthorization)
+              this.isCheckBonusQr = true
+            }
+
+            if (this.$route.name !== 'program') this.$router.push('/program')
+          }
+          // Заплатить бонусами
+          else {
+            if (this.$route.name !== 'card') this.$router.push('/card')
+          }
         }
       }
     },
-  },
+    /* dev */
+    emitBonusQrMoney(isCashAuthorization) {
+      EventBus.$emit('submitBonusQrMoney', isCashAuthorization)
+    }
+  }, // end methods
 
   mounted() {
     this.storage = new Storage(this.client, this.url)
@@ -115,6 +139,7 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.intervalCheckBonusQr)
+    this.isCheckBonusQr = false
   },
   components: {
     VueQrcode

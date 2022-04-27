@@ -731,7 +731,15 @@ import { profile } from 'console'
 export default {
   data: () => ({
     loading: false,
-    isQrAuthorization: false,
+
+    profile: {
+      isQrAuthorization: false,
+      isPhoneAuthorization: false,
+      isCashAuthorization: false,
+      balance: 0,
+      firstname: '',
+      lastname: ''
+    },
 
     amount: 0,
     amountString: '',
@@ -750,6 +758,8 @@ export default {
     delay: 2000,
     timeoutMinDelay: null,
     timeoutMaxDelay: null,
+    timeoutDelay: null,
+
 
     minX: 55,
     minY: 560,
@@ -854,25 +864,43 @@ export default {
     const {
       isQrAuthorization,
       isPhoneAuthorization,
+      isCashAuthorization,
       balance,
       firstname,
       lastname
     } = this.getProfile
 
-    /* dev */
-    this.payBonusMoney()
-    
-    // if (!isQrAuthorization) {
-    //   this.payBonusMoney()
-    // }
+    this.profile.isQrAuthorization = isQrAuthorization
+    this.profile.isPhoneAuthorization = isPhoneAuthorization
+    this.profile.isCashAuthorization = isCashAuthorization
+    this.profile.balance = balance
+    this.profile.firstname = firstname
+    this.profile.lastname = lastname
+
+    // console.log('this.profile-->', this.profile ) 
+
+    if (!this.profile.isQrAuthorization) {
+      this.profile.isPhoneAuthorization = true
+      this.setProfile(this.profile)
+
+      this.payBonusMoney()
+    }
 
     /* dev */
-    if (isQrAuthorization) {
-      this.setPaymentLimitMax(balance)
+    if (this.profile.isQrAuthorization) {
+      this.loading = true
+      
+      this.setPaymentLimitMax(this.profile.balance)
 
-      this.isQrAuthorization = isQrAuthorization
-      this.balance = balance
-      this.firstname = firstname
+      this.balance = this.profile.balance
+      this.firstname = this.profile.firstname
+      this.lastname = this.profile.lastname
+      this.messageIndex = 0
+
+      this.timeoutDelay =setTimeout(()=> {
+        this.loading = false  
+      }, this.delay )
+      
     }
   },
   created() {
@@ -890,6 +918,12 @@ export default {
 
     clearTimeout(this.timeoutMinDelay)
     clearTimeout(this.timeoutMaxDelay)
+    clearTimeout(this.timeoutDelay)
+
+    this.profile.isQrAuthorization = false
+    this.profile.isPhoneAuthorization = false
+    this.profile.isCashAuthorization = false
+    this.setProfile(this.profile)
   },
 
   methods: {
@@ -899,12 +933,6 @@ export default {
     emitCardMoney(card) {
       EventBus.$emit('submitCardMoney', card)
     },
-    /* dev */
-    // submitBonusQrHandler(profile) {
-    //   this.profile = profile
-    //   console.log('++submitBonusQrHandler(profile)-->', profile )
-    // },
-
     changeRowOfTable(balance) {
       if (balance < 1) {
         this.isCardRow = true
@@ -960,7 +988,8 @@ export default {
       setIsCardMoney: 'setIsCardMoney',
       setIsBonusMoney: 'setIsBonusMoney',
       setCardMoney: 'setCardMoney',
-      setPaymentLimitMax: 'setPaymentLimitMax'
+      setPaymentLimitMax: 'setPaymentLimitMax',
+      setProfile: 'setProfile'
     }),
     ...mapActions({
       updateWetMoney: 'updateWetMoney',

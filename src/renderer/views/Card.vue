@@ -7,16 +7,21 @@
         </div>
       </router-link>
 
-      
-      <div v-if="this.balance < 1" class="message">
+      <!-- <div v-if="this.balance < 1" class="message"> -->
+      <div
+        v-if="
+          this.balance < 1 &&
+            !this.profile.isQrAuthorization &&
+            !this.profile.isPhoneAuthorization
+        "
+        class="message"
+      >
         <h3>
           <p align="center">
             {{ `${this.messages[0]}` }}
           </p>
-          
         </h3>
       </div>
-
     </div>
 
     <section>
@@ -41,6 +46,15 @@ import { type } from 'os'
 export default Vue.extend({
   name: 'card',
   data: () => ({
+    profile: {
+      isQrAuthorization: false,
+      isPhoneAuthorization: false,
+      isCashAuthorization: false,
+      balance: 0,
+      firstname: '',
+      lastname: ''
+    },
+
     intervalMainMenu: null,
     messages: [`Введите сумму пополнения`, `Минимальная сумма 10 руб`],
     messageIndex: -1,
@@ -55,7 +69,8 @@ export default Vue.extend({
       getDefaultTerminalType: 'getDefaultTerminalType',
       getTerminalInstalled: 'getTerminalInstalled',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
-      getIsCardMoney: 'getIsCardMoney'
+      getIsCardMoney: 'getIsCardMoney',
+      getProfile: 'getProfile'
     })
   },
 
@@ -76,7 +91,7 @@ export default Vue.extend({
         const stream$ = item
         const observer = bankTerminal.observerItem
         stream$.subscribe(observer)
-        
+
         switch (options.type) {
           case 'vendotek':
             this.flowSequenceVendotek(item)
@@ -92,12 +107,10 @@ export default Vue.extend({
     },
 
     flowSequenceVendotek(item) {
-      
       const amount = this.card
       item.pay(amount)
       item.sendFINAL()
       // this.updateWetMoney(this.card)
-      
     },
     flowSequencePax(item) {
       console.log('++flowSequencePax')
@@ -107,7 +120,7 @@ export default Vue.extend({
     submitBonusHandler(balance) {
       this.balance = balance
     },
-    
+
     submitCardHandler(card) {
       this.card = card
       this.initBankTerminal()
@@ -130,13 +143,29 @@ export default Vue.extend({
     }
   },
   mounted() {
-    
     this.setRouter('/card')
     this.setIsCardMoney(true)
     EventBus.$on('submitBonusMoney', this.submitBonusHandler)
     EventBus.$on('submitCardMoney', this.submitCardHandler)
 
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
+
+    /* dev */
+    const {
+      isQrAuthorization,
+      isPhoneAuthorization,
+      isCashAuthorization,
+      balance,
+      firstname,
+      lastname
+    } = this.getProfile
+
+    this.profile.isQrAuthorization = isQrAuthorization
+    this.profile.isPhoneAuthorization = isPhoneAuthorization
+    this.profile.isCashAuthorization = isCashAuthorization
+    this.profile.balance = balance
+    this.profile.firstname = firstname
+    this.profile.lastname = lastname
   },
   beforeDestroy() {
     // this.setIsCardMoney(false)
@@ -160,10 +189,10 @@ export default Vue.extend({
 }
 .message {
   width: 800px;
-  position: absolute; 
+  position: absolute;
   margin-top: 8.5em;
   margin-left: 3.5em;
-  color:white; 
+  color: white;
   font-size: 2.5em;
   z-index: 1;
 }
@@ -171,5 +200,4 @@ export default Vue.extend({
   padding-top: 25em;
   padding-left: 4em;
 }
-
 </style>

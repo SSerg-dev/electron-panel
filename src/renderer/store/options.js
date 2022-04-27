@@ -182,6 +182,7 @@ export default {
     profile: {
       isQrAuthorization: false,
       isPhoneAuthorization: false,
+      isCashAuthorization: false,
       balance: 0,
       firstname: '',
       lastname: ''

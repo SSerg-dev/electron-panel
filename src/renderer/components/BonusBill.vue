@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="loading">
+    <!-- <div v-if="loading">
       <loader
         object="#33ddff"
         color1="#ffffff"
@@ -12,9 +12,9 @@
         opacity="80"
         name="box"
       ></loader>
-    </div>
+    </div> -->
 
-    <div v-else>
+    <div>
       <section>
         <div class="info-title">
           <h3
@@ -435,6 +435,7 @@ import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
 import { Storage } from '@/storage/index.js'
 import EventBus from '@/bus/EventBus'
 import { result } from 'lodash'
+import program from '../store/program'
 
 export default {
   name: 'bonus-bill',
@@ -489,8 +490,8 @@ export default {
       this.setIsAppendBonusMoney(true)
       this.setIsPayBonusMoney(false)
     }
-
-
+    // submitBonusQrMoney
+    EventBus.$on('submitBonusQrMoney', this.submitBonusQrHandler)
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
@@ -516,7 +517,6 @@ export default {
       getActiveProgramNumber: 'getActiveProgramNumber',
 
       getProfile: 'getProfile'
-
     }),
     IsWetBalance: {
       get: function() {
@@ -641,6 +641,14 @@ export default {
         return false
       }
     },
+    submitBonusQrHandler(isCashAuthorization) {
+      if (isCashAuthorization) {
+        /* dev */
+        this.appendBonusQrMoney()
+        this.payStoreMoney()
+
+      }
+    },
     payUp(program) {
       // ЗАЧИСЛИТЬ
       // check phone number
@@ -652,17 +660,13 @@ export default {
       ) {
         /* dev */
         this.appendBonusMoney()
-
         this.payStoreMoney()
-
-        // this.chargeBonusMoney()
-
-        // this.completeWash()
       }
       // --------------------------------
-      if (this.getMoneyToBonus > 0 && program === 'append') {
-        this.saveBonusMoney()
-      }
+      /* dev */
+      // if (this.getMoneyToBonus > 0 && program === 'append') {
+      //   this.saveBonusMoney()
+      // }
       // --------------------------------
       if (
         this.getIsPayBonusMoney() &&
@@ -673,6 +677,49 @@ export default {
       }
       // --------------------------------
       this.emitClick(program)
+    },
+
+    
+    // ЗАЧИСЛИТЬ ЧЕРЕЗ Qr code
+    // --------------------------------
+    async appendBonusQrMoney() {
+      console.log('++appendBonusMoney')
+
+      const method = methods[10]
+      const type = types[4]
+
+      this.options = this.getAppendBonus()
+
+      this.getMoneyToBonus === 0
+        ? (this.sum = this.getWetBalance)
+        : (this.sum = this.getMoneyToBonus)
+
+      const res = this.getProfile 
+      const prefix = '+'
+      
+      this.options.params.phone = prefix + res.phone
+      this.options.params.sum = +this.sum
+      this.options.params.cash = this.cash
+      this.options.params.order = this.order
+
+      this.setAppendBonus(this.options.params)
+      this.options = this.getAppendBonus()
+      console.log(
+        '++appendBonusMoney-->options-->this.options-->',
+        JSON.stringify(this.options)
+      )
+
+      const response = await this.storage.getClient(method, this.options, type)
+      if (+response.result === 0) {
+        this.$message(
+          `Вам начислено appendBonusQrMoney ${this.options.params.sum} бонуса(ов) `
+        )
+        this.setIsAppendBonusMoney(false)
+        if (this.$route.name !== 'program') this.$router.push('/program')
+      } else {
+        this.$message(`appendBonusQrMoney Ошибка:  ${response.error}`)
+      }
+
     },
 
     // ЗАЧИСЛИТЬ
@@ -752,7 +799,7 @@ export default {
         this.$message(`Связь с connect недоступна!!!`)
         return
       }
-      /* dev vacuum */
+      /* dev add vacuum */
       if (+response.result === 0 && +this.getWetBalance > 0) {
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(
