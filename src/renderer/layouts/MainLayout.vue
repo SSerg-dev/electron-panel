@@ -89,13 +89,7 @@ export default Vue.extend({
       const type = types[5]
 
       this.options = this.getPingOptions()
-      // console.log('pingUrl this.options-->', method, this.options, type)
-
-      /* dev */
       const response = await this.storage.getClient(method, this.options, type)
-
-      // if (typeof response === 'number') {
-
       if (response < 1000) {
         this.setIsPingUrl(true)
         // this.$message(`ping ${this.urlController} выполнен успешно`)
@@ -120,8 +114,9 @@ export default Vue.extend({
     
 
     this.intervalPing = setInterval(() => {
+      /* dev ping */
       this.ping()
-      this.pingUrl()
+      // this.pingUrl()
     }, 2000)
   },
   beforeDestroy() {

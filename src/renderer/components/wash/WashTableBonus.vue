@@ -262,7 +262,7 @@ export default {
 
           this.timeoutDelay = setTimeout(() => {
             try {
-              this.$router.push('/')
+              if (this.$route.name !== 'home') this.$router.push('/')
             } catch (err) {}
           }, this.delay)
           

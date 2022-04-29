@@ -736,6 +736,7 @@ export default {
       isQrAuthorization: false,
       isPhoneAuthorization: false,
       isCashAuthorization: false,
+      phone: '',
       balance: 0,
       firstname: '',
       lastname: ''
@@ -866,6 +867,7 @@ export default {
       isPhoneAuthorization,
       isCashAuthorization,
       balance,
+      phone,
       firstname,
       lastname
     } = this.getProfile
@@ -873,6 +875,7 @@ export default {
     this.profile.isQrAuthorization = isQrAuthorization
     this.profile.isPhoneAuthorization = isPhoneAuthorization
     this.profile.isCashAuthorization = isCashAuthorization
+    this.profile.phone = phone 
     this.profile.balance = balance
     this.profile.firstname = firstname
     this.profile.lastname = lastname
@@ -893,6 +896,7 @@ export default {
       this.setPaymentLimitMax(this.profile.balance)
 
       this.balance = this.profile.balance
+      this.phone = this.profile.phone
       this.firstname = this.profile.firstname
       this.lastname = this.profile.lastname
       this.messageIndex = 0

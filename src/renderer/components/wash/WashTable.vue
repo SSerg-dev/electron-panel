@@ -479,6 +479,7 @@ export default {
       getPrintReceiptOptions: 'getPrintReceiptOptions',
       getCompleteWash: 'getCompleteWash',
       getChargeBonus: 'getChargeBonus',
+      getProfile: 'getProfile'
 
       // getLoginBonusPhone: 'getLoginBonusPhone'
       // getIsReceiptPrint: 'getIsReceiptPrint'
@@ -594,13 +595,14 @@ export default {
 
       this.setCompleteWash(this.options.params)
       this.options = this.getCompleteWash()
+
       // console.log(
       //   'completeWash options-->this.options-->',
       //   JSON.stringify(this.options)
       // )
-      let response
-      response = await this.storage.getClient(method, this.options, type)
-      // console.log('bonus::wash.complete-->response-->', response)
+      // let response
+      const response = await this.storage.getClient(method, this.options, type)
+      console.log('bonus::wash.complete-->response-->', response)
 
       if (+response.result === 0) {
         this.$message(`Программа мойки закончена успешно`)
@@ -613,7 +615,7 @@ export default {
         // СПИСАТЬ БОНУСЫ ИЗ ОБЛАКА
     // ----------------------------------
     async chargeBonusMoney() {
-      console.log('++chargeBonusMoney')
+      // console.log('++chargeBonusMoney')
 
       const method = methods[13]
       const type = types[4]
@@ -625,14 +627,22 @@ export default {
       this.options.params.cash = this.cash
       this.options.params.order = this.order
 
+      const prefix = '+'
+      const profile = this.getProfile()
+      
+      this.options.params.phone = prefix + profile.phone 
+      
       this.setChargeBonus(this.options.params)
       this.options = this.getChargeBonus()
 
-      let response
-      response = await this.storage.getClient(method, this.options, type)
+      console.log(
+        '++chargeBonusMoney-->options-->this.options-->',
+        JSON.stringify(this.options)
+      )
+      const response = await this.storage.getClient(method, this.options, type)
       if (+response.result === 0) {
         this.$message(`У Вас СПИСАНО ${this.options.params.sum} бонуса(ов) `)
-        this.$router.push('/')
+        if (this.$route.name !== 'home') this.$router.push('/')
 
       } else {
         this.$message(`Ошибка:  ${response.error}`)
@@ -785,6 +795,7 @@ export default {
   mounted() {
     this.storage = new Storage(this.client, this.url)
     this.order = this.getCompleteWash().params.order
+    console.log('WashTable 789 this.order-->', this.order )
 
     if (!this.isVisible) {
       this.timeoutDelay = setTimeout(() => {

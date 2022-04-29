@@ -112,7 +112,8 @@ export default new Vuex.Store({
       spend: '',
       zeroMoney: '',
       order: '',
-      paidBonus: ''
+      paidBonus: '',
+      active: ''
     },
 
     dryParameters: {
@@ -121,7 +122,8 @@ export default new Vuex.Store({
       progStatusMask: '',
       busy: '',
       panelMoney: '0',
-      order: ''
+      order: '',
+      active: ''
     },
     globalParameters: {
       fixedCurrency: ''
@@ -237,7 +239,6 @@ export default new Vuex.Store({
       }
     },
 
-
     // end Платежи ----------------------
     // end Dry actions ==================
 
@@ -344,9 +345,6 @@ export default new Vuex.Store({
       }
     },
 
-
-
-
     updateWetZeroMoney({ getters }, zeroMoney) {
       try {
         ipcRenderer.send(
@@ -444,7 +442,9 @@ export default new Vuex.Store({
     getWetOrder(state) {
       return state.parameters.order
     },
-
+    getWetActive(state) {
+      return state.parameters.active
+    },
     // DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Список всех Dry программ
     getDryProgShow(state) {
@@ -467,6 +467,9 @@ export default new Vuex.Store({
     },
     getDryOrder(state) {
       return state.dryParameters.order
+    },
+    getDryActive(state) {
+      return state.parameters.active
     },
 
     // END DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -607,10 +610,9 @@ export default new Vuex.Store({
           break
         case 'paidBonus':
           state.parameters.paidBonus = parameter.value
-          // console.log(
-          //   '++++state.parameters.paidBonus-->',
-          //   state.parameters.paidBonus
-          // )
+          break
+        case 'active':
+          state.parameters.active = parameter.value
           break
 
         default:
@@ -648,7 +650,10 @@ export default new Vuex.Store({
           break
         case 'order':
           state.dryParameters.order = parameter.value
-          // console.log('++++state.dryParameters.order-->', state.dryParameters.order)
+          break
+        case 'active':
+          state.dryParameters.active = parameter.value
+
           break
 
         default:

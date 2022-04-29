@@ -19,6 +19,11 @@ import { ipcRenderer } from 'electron'
 
 export default Vue.extend({
   name: 'app',
+  data: () => ({
+    intervalControllerWork: null,
+    isControllerWork: false,
+    delay: 5000
+  }),
   computed: {
     layout() {
       return (this.$route.meta.layout || 'empty') + '-layout'
@@ -32,18 +37,9 @@ export default Vue.extend({
     })
   },
   watch: {
-    getDefaultPanelNumber(flag) {
-      // console.log('++watch getDefaultPanelNumber flag-->', flag)
-      // this.clear(flag)
-    },
-    getVacuumNumber(flag) {
-      // console.log('++watch getVacuumNumber flag-->', flag)
-      // this.clear(flag)
-    },
-    getPanelType(flag) {
-      // console.log('++watch getPanelType flag-->', flag)
-      // this.clear(flag)
-    }
+    getDefaultPanelNumber(flag) {},
+    getVacuumNumber(flag) {},
+    getPanelType(flag) {}
   },
   components: {
     EmptyLayout,
@@ -53,9 +49,17 @@ export default Vue.extend({
     ...mapMutations({
       setConfig: 'setConfig',
       setWetBalance: 'setWetBalance',
-      setDryBalance: 'setDryBalance'
+      setDryBalance: 'setDryBalance',
+      setIsPingUrl: 'setIsPingUrl'
     }),
     /*  */
+    checkControllerWork() {
+      this.intervalControllerWork = setInterval(() => {
+        if (this.isControllerWork === false) this.setIsPingUrl(false)
+        this.isControllerWork = false
+      }, this.delay)
+    },
+
     clear(flag) {
       this.updateClearBalance()
       switch (flag) {
@@ -69,8 +73,6 @@ export default Vue.extend({
           break
       }
     },
-
-    /*  */
 
     setup() {
       /*
@@ -110,19 +112,12 @@ export default Vue.extend({
               default:
                 break
             }
+          } else {
+            this.isControllerWork = true
+            this.setIsPingUrl(true)
+            // date = new Date(new Date().toDateString() + ' ' + parameter.value)
+            // start = date.getTime()
           }
-          /* dev */
-          /* else {
-            let date, timestamp, start, end
-            date = timestamp = start = end = 0
-            date = new Date(new Date().toDateString() + ' ' + parameter.value)
-            timestamp = date.getTime()
-            start = timestamp
-            sleep(1000).then(() => {
-              end = timestamp
-            })
-            if (end > start) console.log('++++timestamp-->', start, end)
-          } */
         } catch (err) {
           console.warn('App.vue setup() error:', err)
         }
@@ -194,11 +189,18 @@ export default Vue.extend({
   },
 
   mounted() {
-    //this.setup()
+    /* this.intervalControllerWork = setInterval(() => {
+      if (this.isControllerWork === false) this.setIsPingUrl(false)
+      this.isControllerWork = false
+    }, this.delay) */
+    this.checkControllerWork()
   },
   created() {
     this.setup()
     // this.setLanguageNatives(this.getConfig.countries)
+  },
+  beforeDestroy() {
+    clearInterval(this.intervalControllerWork)
   }
 })
 </script>

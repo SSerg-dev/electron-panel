@@ -19,6 +19,7 @@ export default {
         sum: 0,
         // nl::json – структура доп. данных
         detail: {
+          order: '', 
           // сумма зачисления в монетах
           sum_coins: 0,
           // общее количество монет
@@ -183,6 +184,7 @@ export default {
       isQrAuthorization: false,
       isPhoneAuthorization: false,
       isCashAuthorization: false,
+      phone: '',
       balance: 0,
       firstname: '',
       lastname: ''

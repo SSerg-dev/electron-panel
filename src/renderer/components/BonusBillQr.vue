@@ -105,6 +105,7 @@ export default {
           this.profile.firstname = response.profile.firstname
           this.profile.lastname = response.profile.lastname
           this.setProfile(this.profile)
+          // console.log('checkBonusQr() this.getProfile -->', this.getProfile() )
 
           clearInterval(this.intervalCheckBonusQr)
 
@@ -139,7 +140,7 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.intervalCheckBonusQr)
-    this.isCheckBonusQr = false
+    // this.isCheckBonusQr = false
   },
   components: {
     VueQrcode

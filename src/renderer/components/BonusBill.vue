@@ -607,10 +607,15 @@ export default {
 
       return result
     },
+    getRndInteger(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min
+    },
+
     createOrder() {
       const type = this.getPanelType
       const date = this.dateFilter(new Date())
-      let result, index, prefix
+      let result, index, prefix, suffix
+      suffix = this.getRndInteger(10000, 99999)
 
       switch (type) {
         case 'wash':
@@ -618,6 +623,7 @@ export default {
             prefix = 'W'
             index = this.getDefaultPanelNumber
             result = prefix + index + date
+            // result = prefix + index + date + '_' + suffix.toString()
           } else result = this.getWetOrder
           break
         case 'vacuum':
@@ -625,12 +631,13 @@ export default {
             prefix = 'V'
             index = this.getVacuumNumber
             result = prefix + index + date
+            // result = prefix + index + date + '_' + suffix.toString()
           } else result = this.getDryOrder
           break
         default:
           break
       }
-
+      
       return result
     },
     getIsPhoneNumber() {
@@ -646,7 +653,6 @@ export default {
         /* dev */
         this.appendBonusQrMoney()
         this.payStoreMoney()
-
       }
     },
     payUp(program) {
@@ -679,7 +685,6 @@ export default {
       this.emitClick(program)
     },
 
-    
     // ЗАЧИСЛИТЬ ЧЕРЕЗ Qr code
     // --------------------------------
     async appendBonusQrMoney() {
@@ -694,9 +699,9 @@ export default {
         ? (this.sum = this.getWetBalance)
         : (this.sum = this.getMoneyToBonus)
 
-      const res = this.getProfile 
+      const res = this.getProfile
       const prefix = '+'
-      
+
       this.options.params.phone = prefix + res.phone
       this.options.params.sum = +this.sum
       this.options.params.cash = this.cash
@@ -719,7 +724,6 @@ export default {
       } else {
         this.$message(`appendBonusQrMoney Ошибка:  ${response.error}`)
       }
-
     },
 
     // ЗАЧИСЛИТЬ
@@ -786,6 +790,9 @@ export default {
       this.options.params.unit_id = this.getDefaultPanelNumber - 1
       this.options.params.type = 'cash'
       this.options.params.sum = +this.sum
+      /* dev */
+      this.options.params.order = this.order  // = 'W220220428143549_17581'
+      // console.log('BonusBill 795 this.options.params.order-->', this.options.params.order)
 
       console.log(
         '++payStoreMoney-->options-->this.options-->',

@@ -1,19 +1,46 @@
 <template>
   <section>
-    <div >
-
-      <div v-if="this.getPanelType === 'wash' && getIsPingUrl">
+    <div>
+      <div
+        v-if="
+          this.getPanelType === 'wash' &&
+            getIsPingUrl &&
+            getWetActive === 'true'
+        "
+      >
         <Wash />
       </div>
 
-      <div v-if="this.getPanelType === 'vacuum' && getIsPingUrl">
+      <!-- <div
+        v-if="
+          this.getPanelType === 'vacuum' &&
+            getIsPingUrl &&
+            getWetActive === 'true'
+        "
+      >
+        <Vacuum />
+      </div> -->
+      <div
+        v-if="
+          this.getPanelType === 'vacuum'
+        "
+      >
         <Vacuum />
       </div>
 
-      <div v-if="!getIsPingUrl" style="color: red; font-size: 5em; margin-top: 10em;">
+      <div
+        v-if="!getIsPingUrl"
+        style="color: red; font-size: 5em; margin-top: 10em;"
+      >
         <p align="center">{{ `Ошибка: нет связи с мойкой` }}</p>
       </div>
 
+      <div
+        v-if="getWetActive === 'false'"
+        style="color: red; font-size: 5em; margin-top: 10em;"
+      >
+        <p align="center">{{ `ПОСТ ОТКЛЮЧЕН` }}</p>
+      </div>
     </div>
   </section>
 </template>
@@ -44,13 +71,12 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
-      getIsPingUrl: 'getIsPingUrl'
+      getIsPingUrl: 'getIsPingUrl',
+      getWetActive: 'getWetActive'
     })
   },
   mounted() {
     this.setRouter('/')
-    // this.setIsPingUrl(true)
-
   }
 })
 </script>

@@ -50,6 +50,7 @@ export default Vue.extend({
       isQrAuthorization: false,
       isPhoneAuthorization: false,
       isCashAuthorization: false,
+      phone: '',
       balance: 0,
       firstname: '',
       lastname: ''
@@ -155,6 +156,7 @@ export default Vue.extend({
       isQrAuthorization,
       isPhoneAuthorization,
       isCashAuthorization,
+      phone,
       balance,
       firstname,
       lastname
@@ -163,6 +165,7 @@ export default Vue.extend({
     this.profile.isQrAuthorization = isQrAuthorization
     this.profile.isPhoneAuthorization = isPhoneAuthorization
     this.profile.isCashAuthorization = isCashAuthorization
+    this.profile.phone = phone
     this.profile.balance = balance
     this.profile.firstname = firstname
     this.profile.lastname = lastname

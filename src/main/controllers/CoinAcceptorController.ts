@@ -83,7 +83,7 @@ class CoinAcceptorController extends EventEmitter {
 			let table = this.device.getCoinTable //await this.device.getCoinInfo()
 			//await this.device.setCoinInfo(table, bills)
 			//table = await this.device.getCoinInfo()
-			log(TAG, "++Table of bills:", JSON.stringify(table))
+			log(TAG, "Table of bills:", JSON.stringify(table))
 
 			this.poll(this.device)
 		})
@@ -106,12 +106,22 @@ class CoinAcceptorController extends EventEmitter {
 		device.on('accepted', (coin: number) => {
 			this.emit("accepted", coin)
 			log(TAG, 'Accepted coin:', coin)
+      /* dev */
+      this.setCoinOptions(coin)
+
 		});
 		device.on('enabler', (state: boolean) => {
 			log(TAG, 'Enabled:', state ? 'ON' : 'OFF')
 		})
 		device.statusTimerStart()
 	}
+  /* dev */
+  // let: number sum_coins
+  private setCoinOptions = (coin: number) => {
+    // log(TAG, 'add coin:', coin)
+    
+    
+  }
 }
 
 export default CoinAcceptorController
