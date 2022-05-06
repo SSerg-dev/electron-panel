@@ -43,6 +43,7 @@ export default Vue.extend({
   data: () => ({
     isDown: false,
     costs: [],
+    actives: [],
 
     progPrice: [],
     activeProg: [],
@@ -99,23 +100,23 @@ export default Vue.extend({
     },
 
     setActiveProg() {
+
       this.activeProg = [...this.getActiveProgBit()].reverse().join('')
 
       if (this.getWetProgPrice !== undefined) {
         this.progPrice = this.getWetProgPrice.toString().split(',')
       }
-      for (let i = 0; i <= this.activeProg.length; i++) {
+
+      for (let i = 0; i <= this.activeProg.length - 1; i++) {
         if (typeof this.costs[i].display !== undefined) {
           this.costs[i].display = this.activeProg.toString().slice(i, i + 1)
         }
+
         if (typeof this.progPrice !== undefined) {
-          // this.costs[i].price = this.progPrice[i + 1]?.toString()
-          /* dev */
           const priceIndex = this.costs[i].id - 1
           this.costs[i].price = this.progPrice[priceIndex]?.toString()
         }
       }
-
       this.setTurboItems(this.costs)
 
       return this.costs
@@ -176,7 +177,7 @@ export default Vue.extend({
       this.costs[index].priceTurbo = price.price
     },
     ...mapGetters({
-      getCosts: 'getCosts',
+      // getCosts: 'getCosts',
       getDryCosts: 'getDryCosts',
       getPrograms: 'getPrograms'
     })
@@ -189,12 +190,11 @@ export default Vue.extend({
       case 'wash':
         /* dev */
         // this.costs = this.getCosts()
-        const programs = this.getPrograms()
+        this.actives = [...this.getPrograms()]
 
-        this.costs = programs.sort((a, b) =>
+        this.costs = this.actives.sort((a, b) =>
           a.order > b.order ? 1 : b.order > a.order ? -1 : 0
         )
-
         this.setActiveProg()
         break
       case 'vacuum':
@@ -217,6 +217,7 @@ export default Vue.extend({
   },
   beforeDestroy() {
     clearInterval(this.intervalMainMenu)
+    // this.costs = this.getPrograms()
   },
 
   components: {

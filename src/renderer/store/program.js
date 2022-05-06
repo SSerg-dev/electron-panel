@@ -19,7 +19,7 @@ export default {
     actives: [
       {
         id: 2,
-        order: 100 /* 1 */,
+        order: 0.1 /* 1 */,
         title: 'ШАМПУНЬ',
         name: 'shampoo',
         price: 0,
@@ -34,7 +34,7 @@ export default {
       },
       {
         id: 3,
-        order: 100 /* 2 */,
+        order: 0.8 /* 2 */,
         title: 'ВОДА + ШАМПУНЬ',
         name: 'waterShampoo',
         price: 0,
@@ -49,7 +49,7 @@ export default {
       },
       {
         id: 4,
-        order: 100 /* 3 */,
+        order: 0.9 /* 3 */,
         title: 'ХОЛОДНАЯ',
         name: 'coldWater',
         price: 0,
@@ -95,7 +95,7 @@ export default {
       },
       {
         id: 7,
-        order: 100 /* 6 */,
+        order: 0.4 /* 6 */,
         title: 'ПЕНА',
         name: 'foam',
         price: 0,
@@ -187,7 +187,7 @@ export default {
       },
       {
         id: 13,
-        order: 100 /* 12 */,
+        order: 1.0 /* 12 */,
         title: 'ТЕПЛАЯ',
         name: 'warmWater',
         price: 0,
@@ -217,7 +217,7 @@ export default {
       },
       {
         id: 15,
-        order: 100 /* 14 */,
+        order: 0.6 /* 14 */,
         title: 'ЩЕТКА',
         name: 'brushFoam',
         price: 0,
@@ -233,7 +233,7 @@ export default {
 
       {
         id: 16,
-        order: 100 /* 15 */,
+        order: 0.2 /* 15 */,
         title: 'ДИСКИ',
         name: 'disk',
         price: 0,
@@ -248,7 +248,7 @@ export default {
       },
       {
         id: 17,
-        order: 100 /* 16 */,
+        order: 0.3 /* 16 */,
         title: 'МОСКИТ',
         name: 'mosquito',
         price: 0,
@@ -309,7 +309,7 @@ export default {
 
       {
         id: 21,
-        order: 100 /* 20 */,
+        order: 0.5 /* 20 */,
         title: 'ПЕНА ЦВЕТ',
         name: 'brushFoam_color',
         price: 0,
@@ -324,7 +324,7 @@ export default {
       }, // ext
       {
         id: 22,
-        order: 100 /* 21 */,
+        order: 0.7 /* 21 */,
         title: 'ЩЕТКА ЦВЕТ',
         name: 'brushFoam_color',
         price: 0,
@@ -476,6 +476,9 @@ export default {
   mutations: {
     setActiveProgNames(state, names) {
       state.activeProgNames = names
-    }
+    },
+    setPrograms(state, actives) {
+      state.actives = actives
+    },
   }
 }

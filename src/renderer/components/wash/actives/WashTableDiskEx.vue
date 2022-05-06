@@ -95,9 +95,10 @@ export default Vue.extend({
     isDown: {
       disk: false,
       disk_x2: false
-    }
+    },
   }),
   props: {
+    /* dev */
     actives: {
       required: true,
       type: Array
@@ -128,7 +129,9 @@ export default Vue.extend({
   methods: {
     ...mapGetters({
       getActiveProgramKit: 'getActiveProgramKit',
-      getIsActiveProgramKit: 'getIsActiveProgramKit'
+      getIsActiveProgramKit: 'getIsActiveProgramKit',
+      getPrograms: 'getPrograms'
+      
     }),
     ...mapActions({
       updateStartProgram: 'updateStartProgram'

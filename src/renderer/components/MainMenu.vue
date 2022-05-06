@@ -90,7 +90,6 @@ export default Vue.extend({
   },
 
   mounted() {
-    
     // initial timers
     /* dev */
     this.setIsFirstTimer(true)

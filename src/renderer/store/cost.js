@@ -1,7 +1,7 @@
 export default {
     state: { 
         costs: [
-            {
+/*             {
               id: 1,
               title: 'ШАМПУНЬ',
               name: 'shampoo',
@@ -39,7 +39,7 @@ export default {
             },
             {
               id: 5,
-              title: 'ОСМОС'/* 'СУШКА И БЛЕСК' */,
+              title: 'ОСМОС',
               name: 'dryShine',
               price: 0,
               priceTurbo: 0,
@@ -254,7 +254,7 @@ export default {
               priceTurbo: 0,
               mode: 'hide',
               display: '1'
-            }
+            } */
           ],
           /* ------------------------------ */
           dryCosts: [

@@ -268,6 +268,8 @@ import WashTableDegrease from '@/components/wash/actives/WashTableDegrease'
 import WashTableDisinfection from '@/components/wash/actives/WashTableDisinfection'
 import WashTableBonus from '@/components/wash/WashTableBonus'
 
+// import { dateFilter, getRndInteger, createOrder, log } from '@/utils/order.js'
+
 export default {
   data: () => ({
     popupDelay: 2000,
@@ -367,7 +369,7 @@ export default {
         this.completeWash()
         if (this.getWetPaidBonus > 0) {
           this.chargeBonusMoney()
-        } 
+        }
       }
     },
 
@@ -431,6 +433,8 @@ export default {
     ...mapGetters({
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getVacuumNumber: 'getVacuumNumber',
+
       getActiveProgram: 'getActiveProgram',
       getActiveProgramNumber: 'getActiveProgramNumber',
 
@@ -452,7 +456,10 @@ export default {
       getInitCurrency: 'getInitCurrency',
       getDefaultCurrency: 'getDefaultCurrency',
 
-      getWetPaidBonus: 'getWetPaidBonus'
+      getWetPaidBonus: 'getWetPaidBonus',
+
+      getWetOrder: 'getWetOrder',
+      getDryOrder: 'getDryOrder'
     })
   },
 
@@ -584,26 +591,29 @@ export default {
       const type = types[4]
 
       this.options = this.getCompleteWash()
+
+      if (!this.order) 
+        this.order =  this.createOrder() /* 'W220220504143549' */ 
+   
       this.options.params.order = this.order
 
       this.options.params.programs[0].program_id = this.getActiveProgramNumber
       this.options.params.programs[0].program_name = this.actives[
         this.getActiveProgramNumber - 1
       ].title
+      
       /* dev */
       this.options.params.programs[0].program_quantity = 0.42
 
       this.setCompleteWash(this.options.params)
       this.options = this.getCompleteWash()
 
-      // console.log(
-      //   'completeWash options-->this.options-->',
-      //   JSON.stringify(this.options)
-      // )
-      // let response
+      /* console.log(
+        'completeWash options-->this.options-->',
+        JSON.stringify(this.options)
+      ) */
       const response = await this.storage.getClient(method, this.options, type)
-      console.log('bonus::wash.complete-->response-->', response)
-
+      
       if (+response.result === 0) {
         this.$message(`Программа мойки закончена успешно`)
         if (this.$route.name !== 'home') this.$router.push('/')
@@ -612,7 +622,7 @@ export default {
       }
     },
     // ----------------------------------
-        // СПИСАТЬ БОНУСЫ ИЗ ОБЛАКА
+    // СПИСАТЬ БОНУСЫ ИЗ ОБЛАКА
     // ----------------------------------
     async chargeBonusMoney() {
       // console.log('++chargeBonusMoney')
@@ -629,9 +639,9 @@ export default {
 
       const prefix = '+'
       const profile = this.getProfile()
-      
-      this.options.params.phone = prefix + profile.phone 
-      
+
+      this.options.params.phone = prefix + profile.phone
+
       this.setChargeBonus(this.options.params)
       this.options = this.getChargeBonus()
 
@@ -643,7 +653,6 @@ export default {
       if (+response.result === 0) {
         this.$message(`У Вас СПИСАНО ${this.options.params.sum} бонуса(ов) `)
         if (this.$route.name !== 'home') this.$router.push('/')
-
       } else {
         this.$message(`Ошибка:  ${response.error}`)
       }
@@ -790,12 +799,90 @@ export default {
         ])
       )
       // console.log('this.keys-->', this.keys)
+    },
+    /* dev */
+    dateFilter(value, format = 'datetime') {
+      const options = {}
+
+      options.day = '2-digit'
+      options.month = '2-digit'
+      options.year = 'numeric'
+
+      options.hour = '2-digit'
+      options.minute = '2-digit'
+      options.second = '2-digit'
+
+      let year, month, day
+      let hour, minute, second
+
+      let result = new Intl.DateTimeFormat('ru-RU', options).format(
+        new Date(value)
+      )
+
+      year = result.slice(6, 10)
+      month = result.slice(3, 5)
+      day = result.slice(0, 2)
+
+      hour = result.slice(12, 14)
+      minute = result.slice(15, 17)
+      second = result.slice(18, 20)
+
+      if (format.includes('date')) result = year + month + day
+      if (format.includes('time')) result = hour + minute + second
+      if (format.includes('datetime'))
+        result = year + month + day + hour + minute + second
+
+      return result
+    },
+    getRndInteger(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min
+    },
+
+    createOrder() {
+      const type = this.getPanelType
+      const date = this.dateFilter(new Date())
+      let result, index, prefix, suffix
+      suffix = this.getRndInteger(10000, 99999)
+
+      switch (type) {
+        case 'wash':
+          if (this.getWetOrder === '') {
+            prefix = 'W'
+            index = this.getDefaultPanelNumber
+            result = prefix + index + date
+            // result = prefix + index + date + '_' + suffix.toString()
+          } else result = this.getWetOrder
+          break
+        case 'vacuum':
+          if (this.getDryOrder === '') {
+            prefix = 'V'
+            index = this.getVacuumNumber
+            result = prefix + index + date
+            // result = prefix + index + date + '_' + suffix.toString()
+          } else result = this.getDryOrder
+          break
+        default:
+          break
+      }
+
+      return result
     }
+
+    /*     */
   }, // end methods
   mounted() {
+    // if (!this.getCompleteWash().params.order) {
+    //   console.log(
+    //     'this.getCompleteWash().params.order-->',
+    //     this.getCompleteWash().params.order
+    //   )
+    //   this.order = this.createOrder()
+    // } else this.order = this.getCompleteWash().params.order
+
     this.storage = new Storage(this.client, this.url)
     this.order = this.getCompleteWash().params.order
-    console.log('WashTable 789 this.order-->', this.order )
+
+    // console.log('WashTable 884 this.order-->', this.order)
 
     if (!this.isVisible) {
       this.timeoutDelay = setTimeout(() => {
