@@ -32,16 +32,14 @@ export default Vue.extend({
   }),
   computed: {
     ...mapGetters({
-      getSecondsGotoMainMenu: 'getSecondsGotoMainMenu'
+      getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
+      getCardMoney: 'getCardMoney'
     })
   },
   methods: {
-    
     ...mapMutations({
       setRouter: 'setRouter'
-      
     })
-
   },
   mounted() {
     this.setRouter('/status')

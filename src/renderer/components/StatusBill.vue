@@ -39,7 +39,6 @@
             name="dots"
           ></loader>
         </div>
-
       </div>
     </section>
   </div>
@@ -72,15 +71,15 @@ export default Vue.extend({
       getSecondsGotoProgramMenu: 'getSecondsGotoProgramMenu',
       getStatusBill: 'getStatusBill',
       getStatusBillMessages: 'getStatusBillMessages'
-      /* dev */
-      // width() {
-      //   return `${this.seconds}%`
-      // },
     })
   },
   watch: {
-    getStatusBillMessages(flag) {
-      // console.log('getStatusBillMessages flag-->', flag)
+    getStatusBillMessages(flag) {},
+    seconds(flag) {
+      if (flag === 0) {
+        this.loading = false
+        this.$router.push('/')
+      }
     }
   },
 

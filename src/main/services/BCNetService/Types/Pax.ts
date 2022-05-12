@@ -4,6 +4,9 @@
  */
 
 import { EventEmitter } from 'events'
+
+import { ipcMain } from 'electron' 
+
 import {
   log,
   wait,
@@ -44,9 +47,15 @@ class Pax extends EventEmitter {
   // flowSequence -----------------------
   private flowSequence = async () => {
     this.connect()
+    
+    ipcMain.on('synchronous-message', (event, arg) => {
+      log(TAG, '$$ TS PAX', arg) // prints "ping"
+      event.returnValue = 'TS PAX pong'
+    })
+
 
     /* dev */
-    // this.device.getSaleRequest()
+    this.device.getSaleRequest()
     // this.device.getReconciliationRequest()
     // this.device.getCheckRequest()
     // this.device.sale()
@@ -61,9 +70,9 @@ class Pax extends EventEmitter {
     this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)
     try {
       await this.device.connect()
-      log(TAG, 'Connected at port', port)
+      log(TAG, '$$ Connected at port', port)
     } catch (err) {
-      log(TAG, 'Connected error', err)
+      log(TAG, '$$ Connected error', err)
       await this.device.disconnect()
       delete this.device
       // port_num = 10

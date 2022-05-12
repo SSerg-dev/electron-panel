@@ -34,28 +34,28 @@ function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min)) + min
 }
 
-function createOrder() {
-  const type = this.getPanelType
-  const date = this.dateFilter(new Date())
+function createOrder(type, wetOrder, dryOrder, panelNumber, vacuumNumber) {
+  // const type = this.getPanelType
+  const date = dateFilter(new Date())
   let result, index, prefix, suffix
-  suffix = this.getRndInteger(10000, 99999)
+  suffix = getRndInteger(10000, 99999)
 
   switch (type) {
     case 'wash':
-      if (this.getWetOrder === '') {
+      if (wetOrder === '') {
         prefix = 'W'
-        index = this.getDefaultPanelNumber
+        index = panelNumber
         result = prefix + index + date
         // result = prefix + index + date + '_' + suffix.toString()
-      } else result = this.getWetOrder
+      } else result = wetOrder
       break
     case 'vacuum':
-      if (this.getDryOrder === '') {
+      if (dryOrder === '') {
         prefix = 'V'
-        index = this.getVacuumNumber
+        index = vacuumNumber
         result = prefix + index + date
         // result = prefix + index + date + '_' + suffix.toString()
-      } else result = this.getDryOrder
+      } else result = dryOrder
       break
     default:
       break
@@ -63,10 +63,12 @@ function createOrder() {
 
   return result
 }
+
+
 function log(value) {
   console.log('log value-->', value)
 }
 
-export { dateFilter, getRndInteger, createOrder, log }
+export { dateFilter, getRndInteger, log }
 
-// import { dateFilter, getRndInteger, createOrder, log } from '@/utils/order.js'
+// import { dateFilter, getRndInteger, log } from '@/utils/order.js'

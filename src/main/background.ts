@@ -154,9 +154,9 @@ const idle = async (config: any) => {
       }
     }
   }
-  /* dev */
 
-  /* if (config.bank_terminal) {
+  /* dev */
+  if (config.bank_terminal) {
     const options = {
       type: config.bank_terminal.hardware,
       number: config.index,
@@ -173,7 +173,8 @@ const idle = async (config: any) => {
         isBankTerminalConnected && bankTerminal.stop()
       }
     }
-  } */
+  }
+  /*     */
 
   mConfig = config
 }
@@ -270,23 +271,13 @@ ipcMain.on('OPCUA', async (evt, data) => {
 })
 
 /* dev */
+// redis
 /* ipcMain.on('redis', (evt, data) => {
   log(TAG, 'Data from renderer', 'Send data from redis')
   Redis.sendRedisData()
-
-  
-  ipcMain.on('asynchronous-message', (event, arg) => {
-    console.log(arg) // prints "ping"
-    event.reply('asynchronous-reply', 'pong')
-  })
-  
-  ipcMain.on('synchronous-message', (event, arg) => {
-    console.log(arg) // prints "ping"
-    event.returnValue = 'pong'
-  })
-
 }) */
 
+/*     */
 /* ----------------------------------------------------------------------- */
 /* */
 app.commandLine.appendSwitch('ignore-certificate-errors', 'true')

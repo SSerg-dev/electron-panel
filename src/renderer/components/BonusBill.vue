@@ -1,18 +1,5 @@
 <template>
   <div>
-    <!-- <div v-if="loading">
-      <loader
-        object="#33ddff"
-        color1="#ffffff"
-        color2="#3217fd"
-        size="10"
-        speed="2"
-        bg="#343a40"
-        objectbg="#999793"
-        opacity="80"
-        name="box"
-      ></loader>
-    </div> -->
 
     <div>
       <section>
@@ -437,8 +424,11 @@ import EventBus from '@/bus/EventBus'
 import { result } from 'lodash'
 import program from '../store/program'
 
-// import { dateFilter, getRndInteger, createOrder } from '@/utils/order.js'
-
+import {
+  dateFilter,
+  getRndInteger,
+  /* createOrder, */ log
+} from '@/utils/order.js'
 
 export default {
   name: 'bonus-bill',
@@ -577,48 +567,20 @@ export default {
       EventBus.$emit('submitBonusBill', program)
     },
 
-    dateFilter(value, format = 'datetime') {
-      const options = {}
-
-      options.day = '2-digit'
-      options.month = '2-digit'
-      options.year = 'numeric'
-
-      options.hour = '2-digit'
-      options.minute = '2-digit'
-      options.second = '2-digit'
-
-      let year, month, day
-      let hour, minute, second
-
-      let result = new Intl.DateTimeFormat('ru-RU', options).format(
-        new Date(value)
-      )
-
-      year = result.slice(6, 10)
-      month = result.slice(3, 5)
-      day = result.slice(0, 2)
-
-      hour = result.slice(12, 14)
-      minute = result.slice(15, 17)
-      second = result.slice(18, 20)
-
-      if (format.includes('date')) result = year + month + day
-      if (format.includes('time')) result = hour + minute + second
-      if (format.includes('datetime'))
-        result = year + month + day + hour + minute + second
-
-      return result
-    },
-    getRndInteger(min, max) {
-      return Math.floor(Math.random() * (max - min)) + min
-    },
+    /* dev */
+    /* createOrder( 
+      type = this.getPanelType, 
+      wetOrder = this.getWetOrder, 
+      dryOrder = this.getDryOrder, 
+      panelNumber = this.getDefaultPanelNumber, 
+      vacuumNumber = this.getVacuumNumber)
+     */
 
     createOrder() {
       const type = this.getPanelType
-      const date = this.dateFilter(new Date())
+      const date = dateFilter(new Date())
       let result, index, prefix, suffix
-      suffix = this.getRndInteger(10000, 99999)
+      suffix = getRndInteger(10000, 99999)
 
       switch (type) {
         case 'wash':
@@ -640,7 +602,7 @@ export default {
         default:
           break
       }
-      
+
       return result
     },
     getIsPhoneNumber() {
@@ -793,9 +755,9 @@ export default {
       this.options.params.unit_id = this.getDefaultPanelNumber - 1
       this.options.params.type = 'cash'
       this.options.params.sum = +this.sum
-      /* dev */
-      this.options.params.order = this.order  // = 'W220220428143549_17581'
-      // console.log('BonusBill 795 this.options.params.order-->', this.options.params.order)
+
+      if (!this.order) this.order = this.createOrder() /* 'W220220504143549' */
+      this.options.params.order = this.order
 
       console.log(
         '++payStoreMoney-->options-->this.options-->',
@@ -817,7 +779,7 @@ export default {
             .getWetBalance} `
         )
       } else {
-        this.$error('payCashMoney $error')
+        // this.$error('payCashMoney $error')
         //this.$message(`Оплата наличными не прошла`)
       }
     },

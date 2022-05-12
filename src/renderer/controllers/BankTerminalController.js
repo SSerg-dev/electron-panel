@@ -40,6 +40,14 @@ class BankTerminalController extends EventEmitter {
 
         break
       case 'pax':
+        BCNet.Pax.connect({
+          //ip: ip,
+          // port: 42
+        })
+        this.terminal = BCNet.Pax.item
+        // initial observer
+        BCNet.Observer.initial()
+        this.observer = BCNet.Observer.item
         break
 
       default:

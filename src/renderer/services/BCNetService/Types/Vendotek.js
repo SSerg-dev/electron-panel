@@ -3,7 +3,6 @@ const EventEmitter = require('events')
 
 const Observer = require('./Observer.js')
 
-
 let Config = {
   ip: '',
   port: 0
@@ -40,23 +39,23 @@ class Vendotek extends EventEmitter {
 
   // methods
 
-  // observer methods 
+  // observer methods
   subscribe(observer) {
     this.observers.push(observer)
   }
   unsubscribe(observer) {
-    this.observers = this.observers.filter(obs => obs !== observer) 
+    this.observers = this.observers.filter(obs => obs !== observer)
   }
   fire(action) {
-    this.observers.forEach( observer => {
-      observer.update(action) 
+    this.observers.forEach(observer => {
+      observer.update(action)
     })
   }
   // end observer
 
   static connect(config) {
     // console.log('++config', config)
-    
+
     let item = new Vendotek(config)
     item.connecting = item.connect()
     // item.disconnecting = item.disconnect()
@@ -122,12 +121,12 @@ class Vendotek extends EventEmitter {
     }
 
     this.log('VENDOTEK Data received', JSON.stringify(params))
-    
+
     /* dev */
     this.responseBankInfo = params
     if (this.responseBankInfo.amount > 0) {
       this.subscribe(Observer.item)
-      this.fire({type: 'RESOLVE', payload: this.responseBankInfo.amount})
+      this.fire({ type: 'RESOLVE', payload: this.responseBankInfo.amount })
       this.unsubscribe(Observer.item)
     }
 
@@ -340,17 +339,14 @@ class Vendotek extends EventEmitter {
       setTimeout(() => {
         this.payProcess = false
         this.sendIDLE()
-        
-      
       }, 10000)
-      /* dev */
+
       this.subscribe(Observer.item)
-      this.fire({type: 'REJECT', payload: params.amount })
+      this.fire({ type: 'REJECT', payload: params.amount })
       this.unsubscribe(Observer.item)
       throw new Error(
         `Wrond paid. Expected ${amount}, but result ${params.amount}`
       )
-      
     }
 
     await this.sendIDLE()

@@ -27,7 +27,6 @@ class Observer {
         break
       case 'REJECT':
         this.state = action.payload
-        // console.log('--REJECT-->observer-->this.state', this.state)
         break
       case 'ADD':
         this.state += action.payload

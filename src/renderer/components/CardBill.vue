@@ -935,7 +935,7 @@ export default {
       EventBus.$emit('submitBonusMoney', balance)
     },
     emitCardMoney(card) {
-      EventBus.$emit('submitCardMoney', card)
+        EventBus.$emit('submitCardMoney', card)
     },
     changeRowOfTable(balance) {
       if (balance < 1) {

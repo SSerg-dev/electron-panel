@@ -89,6 +89,7 @@ export default Vue.extend({
         }
         bankTerminal.connect(options)
         const item = bankTerminal.terminalItem
+
         const stream$ = item
         const observer = bankTerminal.observerItem
         stream$.subscribe(observer)
@@ -97,9 +98,9 @@ export default Vue.extend({
           case 'vendotek':
             this.flowSequenceVendotek(item)
             break
-          // case 'pax':
-          //   this.flowSequencePax(item)
-          //   break
+          case 'pax':
+            this.flowSequencePax(item)
+            break
 
           default:
             break
@@ -113,9 +114,12 @@ export default Vue.extend({
       item.sendFINAL()
       // this.updateWetMoney(this.card)
     },
+    /* dev */
     flowSequencePax(item) {
-      console.log('++flowSequencePax')
+      // console.log('++flowSequencePax--this.card-->', this.card)
       const amount = this.card
+      item.pay(amount)
+      // item.sendFINAL()
     },
 
     submitBonusHandler(balance) {

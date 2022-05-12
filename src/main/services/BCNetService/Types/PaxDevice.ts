@@ -96,6 +96,7 @@ class PaxDevice extends EventEmitter {
       autoOpen: false
     }
     this.isSend = false
+
     /* Create comport driver.  */
     this.serial = new SerialPort(this.port, this.portOptions, err =>
       this.debug(err)
@@ -119,6 +120,7 @@ class PaxDevice extends EventEmitter {
     this.terminalId = TERMINAL_ID
     this.paxRequest = PaxRequest
     this.paxMessage = PaxMessage
+
   }
 
   // getters
@@ -155,25 +157,18 @@ class PaxDevice extends EventEmitter {
     if (!this.isOpen) {
       try {
         const response = await this.open()
+        // response--> true
       } catch (err) {
         throw err
       }
     }
     // device init --------------
-    try {
-      // await
-      /* Reset device. */
+    /* try {
       this.execute(this.commands.Reset)
-      /* Request device. */
-      // this.execute(this.commands.Request)
-
-      // await this.execute(this.commands.Ack)
-      // await this.execute(this.commands.Nak)
-
       return true
     } catch (err) {
       throw err
-    }
+    } */
   } // end connect
 
   disconnect = async () => {
@@ -393,38 +388,51 @@ class PaxDevice extends EventEmitter {
       this.paxRequest.mesgsLen += this.paxRequest.messages[index].mesLen
       this.paxRequest.mesgsData += this.paxRequest.messages[index].data
     })
-    
-    const requestLength = this.paxRequest.mesgsLen + this.paxRequest.messages.length * headSize
-     
+
+    const requestLength =
+      this.paxRequest.mesgsLen + this.paxRequest.messages.length * headSize
+
     const head = Buffer.concat([
       Buffer.from([this.paxRequest.stx]), // stx 1 byte
-      Buffer.from([requestLength.toString(base), '00']) // requestLength 2 byte 
+      Buffer.from([requestLength.toString(base), '00']) // requestLength 2 byte
     ])
-    
+
     const body = Buffer.concat([
       Buffer.from([this.paxRequest.messages[0].numField]), // field number 1 byte
       Buffer.from([this.paxRequest.messages[0].mesLen, '00']), // mesgsLen 2 byte
-      Buffer.from(this.str2hex(this.paxRequest.messages[0].data.toString(base))), // data variable byte
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[0].data.toString(base))
+      ), // data variable byte
 
       Buffer.from([this.paxRequest.messages[1].numField]),
       Buffer.from([this.paxRequest.messages[1].mesLen, '00']),
-      Buffer.from(this.str2hex(this.paxRequest.messages[1].data.toString(base))),
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[1].data.toString(base))
+      ),
 
       Buffer.from([this.paxRequest.messages[2].numField]),
       Buffer.from([this.paxRequest.messages[2].mesLen, '00']),
-      Buffer.from(this.str2hex(this.paxRequest.messages[2].data.toString(base))),
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[2].data.toString(base))
+      ),
 
       Buffer.from([this.paxRequest.messages[3].numField]),
       Buffer.from([this.paxRequest.messages[3].mesLen, '00']),
-      Buffer.from(this.str2hex(this.paxRequest.messages[3].data.toString(base))),
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[3].data.toString(base))
+      ),
 
       Buffer.from([this.paxRequest.messages[4].numField]),
       Buffer.from([this.paxRequest.messages[4].mesLen, '00']),
-      Buffer.from(this.str2hex(this.paxRequest.messages[4].data.toString(base))),
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[4].data.toString(base))
+      ),
 
       Buffer.from([this.paxRequest.messages[5].numField]),
       Buffer.from([this.paxRequest.messages[5].mesLen, '00']),
-      Buffer.from(this.str2hex(this.paxRequest.messages[5].data.toString(base))), // 00080951
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[5].data.toString(base))
+      ), // 00080951
 
       Buffer.from([this.paxRequest.messages[6].numField]),
       Buffer.from([this.paxRequest.messages[6].mesLen, '00']),
