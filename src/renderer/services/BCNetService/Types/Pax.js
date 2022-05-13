@@ -1,5 +1,4 @@
 const EventEmitter = require('events')
-// import { ipcRenderer } from 'electron'
 const { ipcRenderer } = require('electron')
 
 const Observer = require('./Observer.js')
@@ -28,7 +27,6 @@ class Pax extends EventEmitter {
     // observer
     this.observers = []
   }
-
   // getters
   get responseBankInfo() {
     return this.responseBank
@@ -63,21 +61,20 @@ class Pax extends EventEmitter {
 
     return item
   }
-
+  /* dev */
   async connect() {
-    // console.log('$$ Pax.js-->connect' )
     return true
   }
-
   async disconnect() {}
+  /*     */
 
   async pay(amount) {
     this.payProcess = true
     this.opNumber++
     /* dev */
-    let params = await this.sendPRODUCT(amount).catch(e => ({}))
+    let res = await this.sendPRODUCT(amount).catch(e => ({}))
 
-/*     if (params.amount != amount) {
+    /*     if (params.amount != amount) {
       this.subscribe(Observer.item)
       this.fire({ type: 'REJECT', payload: params.amount })
       this.unsubscribe(Observer.item)
@@ -89,33 +86,39 @@ class Pax extends EventEmitter {
       this.sendFINAL()
     } */
 
-    return params
+    return res
   }
   async sendPRODUCT(amount) {
-    let res = {}
-
-    // try {
-    //   res = await this.send({ amount })
-    // } catch (e) {}
-
-    // console.log('$$ Pax.js-->sendPRODUCT-->amount-->', amount)
-
-    console.log('$$ ---JS PAX -->', ipcRenderer.sendSync('synchronous-message', amount.toString()))
-
-    res.amount = 2
+    let res
+    try {
+      res = await this.send('PAY', { amount })
+    } catch (e) {
+      // if (e.message == 'Timeout response') this.sendABORT()
+      throw e
+    }
     return res
   }
   async sendFINAL() {
-    // console.log('$$ sendFINAL success')
     return this.send('FIN')
   }
   async sendABORT() {
     return this.send('ABR')
   }
-  async send(cmd) {
+  async send(cmd, params = {}) {
     let res = {}
+    switch (cmd) {
+      case 'PAY':
+        res = ipcRenderer.sendSync('amount-message', params.amount.toString())
+        break
+      case 'FIN':
+        break
+      case 'ABR':
+        break
+      default:
+        break
+    }
     return res
   }
-}
+} // end class Pax
 
 module.exports = Pax

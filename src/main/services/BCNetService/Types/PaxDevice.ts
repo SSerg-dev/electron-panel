@@ -281,36 +281,40 @@ class PaxDevice extends EventEmitter {
 
   getSaleRequest = (sum: number = 100, ern: number = 3) => {
     this.clear()
+    // console.log('$$ getSaleRequest', sum)
 
     this.paxRequest.messages[0] = this.createMessage(
       AMOUNT_FUNC,
       (sum * 100).toString()
     )
-    this.paxRequest.messages[1] = this.createMessage(
+
+    /* this.paxRequest.messages[1] = this.createMessage(
       CURRENCY_FUNC,
-      /* dev */
-      // this.currency
-      '643'
-    )
-    this.date = new Date()
+      '643'// this.currency
+    ) */
+
+    /* this.date = new Date()
     this.paxRequest.messages[2] = this.createMessage(
       TIMEDATE_FUNC,
       this.dateFilter(this.date)
-    )
-    this.paxRequest.messages[3] = this.createMessage(CODE_FUNC, '1')
-    this.paxRequest.messages[4] = this.createMessage(
+    ) */
+
+    /* this.paxRequest.messages[3] = this.createMessage(CODE_FUNC, '1') */
+    
+    /* this.paxRequest.messages[4] = this.createMessage(
       UNUMBER_FUNC,
       ern.toString()
-    )
-    this.paxRequest.messages[5] = this.createMessage(
+    ) */
+
+    /* this.paxRequest.messages[5] = this.createMessage(
       IDENT_FUNC,
       this.terminalId
-    )
-    /* dev */
-    this.paxRequest.messages[6] = this.createMessage(
+    ) */
+
+    /* this.paxRequest.messages[6] = this.createMessage(
       VUNAME_FUNC,
       'VM' + this.terminalId
-    )
+    ) */
 
     return this.getRequest()
   }
@@ -402,50 +406,52 @@ class PaxDevice extends EventEmitter {
       Buffer.from([this.paxRequest.messages[0].mesLen, '00']), // mesgsLen 2 byte
       Buffer.from(
         this.str2hex(this.paxRequest.messages[0].data.toString(base))
-      ), // data variable byte
+      ), 
 
-      Buffer.from([this.paxRequest.messages[1].numField]),
+      /* Buffer.from([this.paxRequest.messages[1].numField]),
       Buffer.from([this.paxRequest.messages[1].mesLen, '00']),
       Buffer.from(
         this.str2hex(this.paxRequest.messages[1].data.toString(base))
-      ),
+      ), */
 
-      Buffer.from([this.paxRequest.messages[2].numField]),
+      /* Buffer.from([this.paxRequest.messages[2].numField]),
       Buffer.from([this.paxRequest.messages[2].mesLen, '00']),
       Buffer.from(
         this.str2hex(this.paxRequest.messages[2].data.toString(base))
-      ),
+      ), */
 
-      Buffer.from([this.paxRequest.messages[3].numField]),
+      /* Buffer.from([this.paxRequest.messages[3].numField]),
       Buffer.from([this.paxRequest.messages[3].mesLen, '00']),
       Buffer.from(
         this.str2hex(this.paxRequest.messages[3].data.toString(base))
-      ),
+      ), */
 
-      Buffer.from([this.paxRequest.messages[4].numField]),
+      /* Buffer.from([this.paxRequest.messages[4].numField]),
       Buffer.from([this.paxRequest.messages[4].mesLen, '00']),
       Buffer.from(
         this.str2hex(this.paxRequest.messages[4].data.toString(base))
-      ),
+      ), */
 
-      Buffer.from([this.paxRequest.messages[5].numField]),
+      /* Buffer.from([this.paxRequest.messages[5].numField]),
       Buffer.from([this.paxRequest.messages[5].mesLen, '00']),
       Buffer.from(
         this.str2hex(this.paxRequest.messages[5].data.toString(base))
-      ), // 00080951
+      ), */        // 00080951
 
-      Buffer.from([this.paxRequest.messages[6].numField]),
+      /* Buffer.from([this.paxRequest.messages[6].numField]),
       Buffer.from([this.paxRequest.messages[6].mesLen, '00']),
-      Buffer.from(this.str2hex(this.paxRequest.messages[6].data.toString(base))) // VM00080951
+      Buffer.from(this.str2hex(this.paxRequest.messages[6].data.toString(base))) 
+       */             // VM00080951
     ])
 
     const result = Buffer.concat([head, body])
-    // console.log('--result-->', result)
+    const res = '02 3D 00 00 03 00 32 30 30 04 03 00 36 34 33 15 0E 00 32 30 32 32 30 35 31 33 31 36 35 34 30 37 19 01 00 31 1A 01 00 37 1B 08 00 30 30 33 32 32 33 34 36 59 0A 00 56 4D 30 30 30 38 30 39 35 31 6E B3'
+    console.log('$$ res-->', res) 
 
     return result
   }
 
-  /* dev */
+  /* dev */ 
   // ----------------------------------
   swap = (number: any, base: any = 16) => {
     let buf

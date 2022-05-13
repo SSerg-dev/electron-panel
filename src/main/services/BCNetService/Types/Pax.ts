@@ -5,7 +5,7 @@
 
 import { EventEmitter } from 'events'
 
-import { ipcMain } from 'electron' 
+import { ipcMain } from 'electron'
 
 import {
   log,
@@ -22,14 +22,29 @@ const TAG = 'PAX TERMINAL'
 const Currencies = ['RUS']
 class Pax extends EventEmitter {
   static instance: any
+  static exists: boolean
+
   device: any
   config: any
   bills: number[]
+  amount: number
+  isConnect: boolean
 
   constructor() {
     super()
     this.config = {}
     this.bills = []
+    this.amount = 0
+    this.isConnect = false
+
+    // let self = this
+
+    // singelton
+    if (Pax.exists) {
+      return Pax.instance
+    }
+    Pax.instance = this
+    Pax.exists = true
   }
 
   // methods
@@ -46,16 +61,20 @@ class Pax extends EventEmitter {
 
   // flowSequence -----------------------
   private flowSequence = async () => {
-    this.connect()
-    
-    ipcMain.on('synchronous-message', (event, arg) => {
-      log(TAG, '$$ TS PAX', arg) // prints "ping"
-      event.returnValue = 'TS PAX pong'
+    // this.connect()
+    // const self = this
+
+    ipcMain.on('amount-message', (event, amount) => {
+      this.amount = +amount
+      event.returnValue = 'OK'
+      if (this.amount > 0) {
+        this.connect()
+        this.device.getSaleRequest(this.amount)
+      }
     })
 
-
     /* dev */
-    this.device.getSaleRequest()
+    // this.device.getSaleRequest(42)
     // this.device.getReconciliationRequest()
     // this.device.getCheckRequest()
     // this.device.sale()
@@ -69,15 +88,19 @@ class Pax extends EventEmitter {
     // let port_num = 10
     this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)
     try {
-      await this.device.connect()
-      log(TAG, '$$ Connected at port', port)
+      if (!this.isConnect) {
+        await this.device.connect()
+        log(TAG, '$$ Connected at port', port)
+      }
+      this.isConnect = true
     } catch (err) {
       log(TAG, '$$ Connected error', err)
       await this.device.disconnect()
+      this.isConnect = false
       delete this.device
-      // port_num = 10
     }
   }
+  // private disconnect = async () => {}
 
   // test com port
   private getComPort() {
@@ -86,7 +109,6 @@ class Pax extends EventEmitter {
       if (err) {
         return console.log('Error: ', err.message)
       }
-      // console.log('++getComPort-->', port)
     })
     port.write('main screen turn on', function(err: any) {
       if (err) {
