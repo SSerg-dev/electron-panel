@@ -64,10 +64,12 @@ class PaxDevice extends EventEmitter {
   currency: string
   date: any
   terminalId: string
+  terminalType: string = 'VM00080951'
   paxRequest: any
   paxMessage: any
   dataLength: number = 0
   messageType: any = MessageType.request
+  ern: number = 11
 
   /**
    * PaxDevice constructor.
@@ -120,7 +122,6 @@ class PaxDevice extends EventEmitter {
     this.terminalId = TERMINAL_ID
     this.paxRequest = PaxRequest
     this.paxMessage = PaxMessage
-
   }
 
   // getters
@@ -276,48 +277,120 @@ class PaxDevice extends EventEmitter {
   createMessage = (code: any, message: string) => {
     code = this.toHex(code)
     this.paxMessage = new PaxMessage(code, message.length, message)
-    return new PaxMessage(code, message.length, message)
+    return this.paxMessage
   }
 
-  getSaleRequest = (sum: number = 100, ern: number = 3) => {
+  getSaleRequest = (sum: number = 100, ern: number) => {
     this.clear()
-    // console.log('$$ getSaleRequest', sum)
+    ++this.ern
 
     this.paxRequest.messages[0] = this.createMessage(
       AMOUNT_FUNC,
       (sum * 100).toString()
     )
 
-    /* this.paxRequest.messages[1] = this.createMessage(
+    this.paxRequest.messages[1] = this.createMessage(
       CURRENCY_FUNC,
-      '643'// this.currency
-    ) */
+      '643' // this.currency
+    )
 
-    /* this.date = new Date()
+    this.date = new Date()
     this.paxRequest.messages[2] = this.createMessage(
       TIMEDATE_FUNC,
       this.dateFilter(this.date)
-    ) */
+    )
 
-    /* this.paxRequest.messages[3] = this.createMessage(CODE_FUNC, '1') */
-    
-    /* this.paxRequest.messages[4] = this.createMessage(
+    this.paxRequest.messages[3] = this.createMessage(CODE_FUNC, '1')
+
+    this.paxRequest.messages[4] = this.createMessage(
       UNUMBER_FUNC,
-      ern.toString()
-    ) */
+      this.ern.toString()
+    )
 
-    /* this.paxRequest.messages[5] = this.createMessage(
+    this.paxRequest.messages[5] = this.createMessage(
       IDENT_FUNC,
       this.terminalId
-    ) */
+    )
 
-    /* this.paxRequest.messages[6] = this.createMessage(
+    this.paxRequest.messages[6] = this.createMessage(
       VUNAME_FUNC,
-      'VM' + this.terminalId
-    ) */
+      this.terminalType
+    )
 
     return this.getRequest()
   }
+
+  getRequest() {
+    const base = 10
+    const headSize = 3
+
+    this.paxRequest.stx = BCNet.STX_RES
+    this.paxRequest.mesgsLen = 0
+    this.paxRequest.mesgsData = ''
+
+    this.paxRequest.messages.forEach((item: any, index: number) => {
+      this.paxRequest.mesgsLen += this.paxRequest.messages[index].mesLen
+      this.paxRequest.mesgsData += this.paxRequest.messages[index].data
+    })
+    console.log('$$ this.paxRequest.messages', this.paxRequest.messages)
+
+
+    const requestLength =
+      this.paxRequest.mesgsLen + this.paxRequest.messages.length * headSize
+
+    const head = Buffer.concat([
+      Buffer.from([this.paxRequest.stx]), // stx 1 byte
+      Buffer.from([requestLength.toString(base), '00']) // requestLength 2 byte
+    ])
+
+    const body = Buffer.concat([
+      Buffer.from([this.paxRequest.messages[0].numField]), // field number 1 byte
+      Buffer.from([this.paxRequest.messages[0].mesLen, '00']), // mesgsLen 2 byte
+      Buffer.from(this.str2hex(this.paxRequest.messages[0].data.toString(base))),
+
+      Buffer.from([this.paxRequest.messages[1].numField]),
+      Buffer.from([this.paxRequest.messages[1].mesLen, '00']),
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[1].data.toString(base)) 
+      ),
+ 
+      Buffer.from([this.paxRequest.messages[2].numField]),
+      Buffer.from([this.paxRequest.messages[2].mesLen, '00']),
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[2].data.toString(base))
+      ),
+ 
+      Buffer.from([this.paxRequest.messages[3].numField]),
+      Buffer.from([this.paxRequest.messages[3].mesLen, '00']),
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[3].data.toString(base))  
+      ),
+
+      Buffer.from([this.paxRequest.messages[4].numField]),
+      Buffer.from([this.paxRequest.messages[4].mesLen, '00']),
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[4].data.toString(base))
+      ),
+
+      Buffer.from([this.paxRequest.messages[5].numField]),
+      Buffer.from([this.paxRequest.messages[5].mesLen, '00']),
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[5].data.toString(base))
+      ), 
+
+      Buffer.from([this.paxRequest.messages[6].numField]),
+      Buffer.from([this.paxRequest.messages[6].mesLen, '00']),
+      Buffer.from(this.str2hex(this.paxRequest.messages[6].data.toString(base))) 
+       // VM00080951
+    ])
+
+    const result = Buffer.concat([head, body]) 
+    // console.log('$$ result-->', result)
+
+    return result 
+  }
+
+
 
   getReconciliationRequest() {
     this.clear()
@@ -339,37 +412,7 @@ class PaxDevice extends EventEmitter {
     return this.getRequest()
   }
 
-  /* dev */
 
-  /* getRequest() {
-    this.dataLength = 5
-    this.paxRequest.messages.forEach((item: any, index: number) => {
-      this.dataLength += 3
-      this.dataLength += this.paxRequest.messages[index].mesLen
-    })
-    this.paxRequest.mesgsLen = this.dataLength - 5
-
-    this.paxRequest.stx = BCNet.STX_RES
-    let data: string =
-      this.paxRequest.stx +
-      (this.paxRequest.mesgsLen & 0xff).toString() +
-      (this.paxRequest.mesgsLen >> 8).toString()
-    console.log('request header data-->', data)
-
-    this.paxRequest.messages.forEach((item: any, index: number) => {
-      data += this.paxRequest.messages[index].numField.toString()
-      data += (this.paxRequest.messages[index].mesLen & 0xff).toString()
-      data += (this.paxRequest.messages[index].mesLen >> 8).toString()
-      data += this.paxRequest.messages[index].data.toString()
-    })
-
-    const crc16 = this._getCRC16(data, this.dataLength - 2)
-    data += crc16 & 0xff
-    data += crc16 >> 8 // ?
-
-    console.log('request header + body data-->', data)
-    return data
-  } */
 
   str2hex = (str: any) => {
     str = str.toString()
@@ -380,78 +423,7 @@ class PaxDevice extends EventEmitter {
     return hex
   }
 
-  getRequest() {
-    const base = 10
-    const headSize = 3
 
-    this.paxRequest.stx = BCNet.STX_RES
-    this.paxRequest.mesgsLen = 0
-    this.paxRequest.mesgsData = ''
-
-    this.paxRequest.messages.forEach((item: any, index: number) => {
-      this.paxRequest.mesgsLen += this.paxRequest.messages[index].mesLen
-      this.paxRequest.mesgsData += this.paxRequest.messages[index].data
-    })
-
-    const requestLength =
-      this.paxRequest.mesgsLen + this.paxRequest.messages.length * headSize
-
-    const head = Buffer.concat([
-      Buffer.from([this.paxRequest.stx]), // stx 1 byte
-      Buffer.from([requestLength.toString(base), '00']) // requestLength 2 byte
-    ])
-
-    const body = Buffer.concat([
-      Buffer.from([this.paxRequest.messages[0].numField]), // field number 1 byte
-      Buffer.from([this.paxRequest.messages[0].mesLen, '00']), // mesgsLen 2 byte
-      Buffer.from(
-        this.str2hex(this.paxRequest.messages[0].data.toString(base))
-      ), 
-
-      /* Buffer.from([this.paxRequest.messages[1].numField]),
-      Buffer.from([this.paxRequest.messages[1].mesLen, '00']),
-      Buffer.from(
-        this.str2hex(this.paxRequest.messages[1].data.toString(base))
-      ), */
-
-      /* Buffer.from([this.paxRequest.messages[2].numField]),
-      Buffer.from([this.paxRequest.messages[2].mesLen, '00']),
-      Buffer.from(
-        this.str2hex(this.paxRequest.messages[2].data.toString(base))
-      ), */
-
-      /* Buffer.from([this.paxRequest.messages[3].numField]),
-      Buffer.from([this.paxRequest.messages[3].mesLen, '00']),
-      Buffer.from(
-        this.str2hex(this.paxRequest.messages[3].data.toString(base))
-      ), */
-
-      /* Buffer.from([this.paxRequest.messages[4].numField]),
-      Buffer.from([this.paxRequest.messages[4].mesLen, '00']),
-      Buffer.from(
-        this.str2hex(this.paxRequest.messages[4].data.toString(base))
-      ), */
-
-      /* Buffer.from([this.paxRequest.messages[5].numField]),
-      Buffer.from([this.paxRequest.messages[5].mesLen, '00']),
-      Buffer.from(
-        this.str2hex(this.paxRequest.messages[5].data.toString(base))
-      ), */        // 00080951
-
-      /* Buffer.from([this.paxRequest.messages[6].numField]),
-      Buffer.from([this.paxRequest.messages[6].mesLen, '00']),
-      Buffer.from(this.str2hex(this.paxRequest.messages[6].data.toString(base))) 
-       */             // VM00080951
-    ])
-
-    const result = Buffer.concat([head, body])
-    const res = '02 3D 00 00 03 00 32 30 30 04 03 00 36 34 33 15 0E 00 32 30 32 32 30 35 31 33 31 36 35 34 30 37 19 01 00 31 1A 01 00 37 1B 08 00 30 30 33 32 32 33 34 36 59 0A 00 56 4D 30 30 30 38 30 39 35 31 6E B3'
-    console.log('$$ res-->', res) 
-
-    return result
-  }
-
-  /* dev */ 
   // ----------------------------------
   swap = (number: any, base: any = 16) => {
     let buf

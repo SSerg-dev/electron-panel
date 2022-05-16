@@ -69,7 +69,8 @@ class Pax extends EventEmitter {
       event.returnValue = 'OK'
       if (this.amount > 0) {
         this.connect()
-        this.device.getSaleRequest(this.amount)
+        const request = this.device.getSaleRequest(this.amount)  
+        console.log('$$ request', request)
       }
     })
 
