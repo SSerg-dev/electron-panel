@@ -60,16 +60,16 @@ class Command {
 
     /* dev */
     let sum = 1, ern = 1
-    /* dev */
-    let cmd = this.device.getSaleRequest(sum, ern)
-    // let cmd = this.device.getReconciliationRequest(sum, ern)
-    
+    //let cmd = this.device.getSaleRequest(sum, ern)
+    let cmd = Buffer.from('123')
+
     if (params.length) {
       cmd = Buffer.concat([cmd, params])
     }
     /* Assemble full packet data. */
-    let result = Buffer.concat([cmd, this.device.getCRC16(cmd)])
-  
+    // let result = Buffer.concat([cmd, this.device.getCRC16(cmd)])
+    let result = Buffer.concat([cmd])
+
     return  result
   }
 }

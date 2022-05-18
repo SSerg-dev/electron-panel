@@ -61,16 +61,19 @@ class Pax extends EventEmitter {
 
   // flowSequence -----------------------
   private flowSequence = async () => {
-    // this.connect()
+    this.connect()
     // const self = this
 
     ipcMain.on('amount-message', (event, amount) => {
       this.amount = +amount
       event.returnValue = 'OK'
       if (this.amount > 0) {
-        this.connect()
+        /* dev */
+
         const request = this.device.getSaleRequest(this.amount)  
-        console.log('$$ request', request)
+        this.device.send(request, 2000)
+
+        // console.log('$$ request2-->', request2)
       }
     })
 
@@ -85,7 +88,7 @@ class Pax extends EventEmitter {
 
   // connect to pax ---------------------
   private connect = async () => {
-    const { port, number, currency } = Pax.instance.config
+    const { port, number, currency } = Pax.instance.config 
     // let port_num = 10
     this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)
     try {

@@ -112,7 +112,7 @@ export default {
     createReceipt: {
       method: 'kkt::receipt.create',
       /* params: { unit_id: 1, sum: 2, cash: '' } */
-      params: { unit_id: 1, sum: 2, cash: false }
+      params: { unit_id: 1, sum: 0, cash: false }
     },
     readReceipt: {
       method: 'kkt::receipt.read',

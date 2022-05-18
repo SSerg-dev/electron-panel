@@ -7,7 +7,7 @@
 
 import { EventEmitter } from 'events'
 import SerialPort from 'serialport'
-import { ADR_CARD_READER, CRC_POLY, TERMINAL_ID } from '../Constants'
+import { ADR_CARD_READER, CRC_POLY_PAX, TERMINAL_ID } from '../Constants'
 import BCNetParser from '../BCNetParser'
 import CMDS from '../Commands'
 import { wait } from '../../../utils'
@@ -31,6 +31,7 @@ import {
 
 import { PaxRequest } from './PaxRequest'
 import { PaxMessage } from './PaxMessage'
+import { createContext } from 'vm'
 
 enum MessageType {
   sale,
@@ -164,12 +165,12 @@ class PaxDevice extends EventEmitter {
       }
     }
     // device init --------------
-    /* try {
-      this.execute(this.commands.Reset)
-      return true
-    } catch (err) {
-      throw err
-    } */
+    // try {
+    //   this.execute(this.commands.Reset)
+    //   return true
+    // } catch (err) {
+    //   throw err
+    // }
   } // end connect
 
   disconnect = async () => {
@@ -217,13 +218,21 @@ class PaxDevice extends EventEmitter {
   send = (request: Buffer, timeout: number = 1000) => {
     let self = this
     return new Promise<any>(async (resolve, reject) => {
+      
       // let timer: any = null
       // let timerHandler = () => {
       //     self.isSend = false
       //         reject(new Error('Request timeout.'))
       // }
-
-      self.serial.write(request)
+      
+      // const regular = /,/g
+      // const convData = request.toJSON().data.toString().replace(regular," ")
+      // console.log('$$ request', convData)
+      
+      console.log('$$ request', request)
+      const response = self.serial.write(request)
+      
+      console.log('$$ response', response)
 
       // timer = setTimeout(timerHandler, timeout = 10000)
     })
@@ -332,8 +341,7 @@ class PaxDevice extends EventEmitter {
       this.paxRequest.mesgsLen += this.paxRequest.messages[index].mesLen
       this.paxRequest.mesgsData += this.paxRequest.messages[index].data
     })
-    console.log('$$ this.paxRequest.messages', this.paxRequest.messages)
-
+    // console.log('$$ this.paxRequest.messages', this.paxRequest.messages)
 
     const requestLength =
       this.paxRequest.mesgsLen + this.paxRequest.messages.length * headSize
@@ -346,24 +354,26 @@ class PaxDevice extends EventEmitter {
     const body = Buffer.concat([
       Buffer.from([this.paxRequest.messages[0].numField]), // field number 1 byte
       Buffer.from([this.paxRequest.messages[0].mesLen, '00']), // mesgsLen 2 byte
-      Buffer.from(this.str2hex(this.paxRequest.messages[0].data.toString(base))),
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[0].data.toString(base))
+      ),
 
       Buffer.from([this.paxRequest.messages[1].numField]),
       Buffer.from([this.paxRequest.messages[1].mesLen, '00']),
       Buffer.from(
-        this.str2hex(this.paxRequest.messages[1].data.toString(base)) 
+        this.str2hex(this.paxRequest.messages[1].data.toString(base))
       ),
- 
+
       Buffer.from([this.paxRequest.messages[2].numField]),
       Buffer.from([this.paxRequest.messages[2].mesLen, '00']),
       Buffer.from(
         this.str2hex(this.paxRequest.messages[2].data.toString(base))
       ),
- 
+
       Buffer.from([this.paxRequest.messages[3].numField]),
       Buffer.from([this.paxRequest.messages[3].mesLen, '00']),
       Buffer.from(
-        this.str2hex(this.paxRequest.messages[3].data.toString(base))  
+        this.str2hex(this.paxRequest.messages[3].data.toString(base))
       ),
 
       Buffer.from([this.paxRequest.messages[4].numField]),
@@ -376,21 +386,77 @@ class PaxDevice extends EventEmitter {
       Buffer.from([this.paxRequest.messages[5].mesLen, '00']),
       Buffer.from(
         this.str2hex(this.paxRequest.messages[5].data.toString(base))
-      ), 
+      ),
 
+      // VM00080951
       Buffer.from([this.paxRequest.messages[6].numField]),
       Buffer.from([this.paxRequest.messages[6].mesLen, '00']),
-      Buffer.from(this.str2hex(this.paxRequest.messages[6].data.toString(base))) 
-       // VM00080951
+      Buffer.from(this.str2hex(this.paxRequest.messages[6].data.toString(base)))
     ])
+    // CRC 94 56
+    // let result = Buffer.concat([cmd, this.device.getCRC16(cmd)])
 
-    const result = Buffer.concat([head, body]) 
-    // console.log('$$ result-->', result)
+    /* 
+    Данные: 0x31,0x32,0x33
+    Результат 32431
+              7EAF
 
-    return result 
+    Данные: 0x31
+              Piter   Sergei
+    Результат 42368 
+              A580    00 07 
+              
+    */
+
+    let result
+    // result = Buffer.concat([head, body])
+    // const crc = Buffer.from(this.getCRC16(result))
+    // result = Buffer.concat([head, body, crc])
+    // console.log('$$ CRC 65 66 bytes', result[65].toString(16), result[66].toString(16))
+ 
+    const buff = Buffer.from('1') 
+    console.log('$$ buff', buff)  
+    console.log('$$ ++buff', this.getCRC16(buff)) 
+    
+    return result
   }
 
+  getCRC16 = (buffer: Buffer) => {
+    let CRC = 0
+    let buf = Buffer.alloc(2)
+    for (let i = 0; i < buffer.length; i++) {
+      CRC ^= buffer[i]
+      for (let j = 0; j < 8; j++) {
+        if (CRC & 0x0001) {
+          CRC >>= 1
+          CRC ^= CRC_POLY_PAX
+        } else CRC >>= 1
+      }
+    }
+    if (+CRC >= 0 && +CRC <= 65535) buf.writeUInt16BE(CRC, 0)
 
+    return Array.prototype.reverse.call(buf)
+  }
+
+  /* getCRC16(pBuf: any, lSize: number = 0) { 
+    let s: number
+    for (s = 0x0000; lSize > 0; lSize--, pBuf++) {
+      let b = pBuf
+      for (let j = 0; j < 8; j++) {
+        let x16 =
+          (b & 0x80 && s & 0x8000) || (!(b & 0x80) && !(s & 0x8000)) ? 0 : 1
+        let x15 = (x16 && s & 0x4000) || (!x16 && !(s & 0x4000)) ? 0 : 1
+        let x2 = (x16 && s & 0x0002) || (!x16 && !(s & 0x0002)) ? 0 : 1
+        s = s << 1
+        b = b << 1
+        s |= x16 ? 0x0001 : 0
+        s = x2 ? s | 0x0004 : s & 0xfffb
+        s = x15 ? s | 0x8000 : s & 0x7fff
+      }
+    }
+    s = (s << 8) + (s >> 8)
+    return s
+  } */
 
   getReconciliationRequest() {
     this.clear()
@@ -412,8 +478,6 @@ class PaxDevice extends EventEmitter {
     return this.getRequest()
   }
 
-
-
   str2hex = (str: any) => {
     str = str.toString()
     let hex = []
@@ -422,7 +486,6 @@ class PaxDevice extends EventEmitter {
     }
     return hex
   }
-
 
   // ----------------------------------
   swap = (number: any, base: any = 16) => {
@@ -454,7 +517,8 @@ class PaxDevice extends EventEmitter {
    * @param {Number} timeout The maximum time to complete this action.
    * @returns {Promise}
    */
-  waitStatus = (status: string, timeout: number = 1000) => {
+
+  /* waitStatus = (status: string, timeout: number = 1000) => {
     console.log('++waitStatus')
     let self = this
     return new Promise<any>((resolve, reject) => {
@@ -479,7 +543,9 @@ class PaxDevice extends EventEmitter {
         timer = setTimeout(timerHandler, timeout)
       }
     })
-  } // end waitStatus
+  } */
+
+  // end waitStatus
 
   /**
    * Waiting for the completion of the processing of the current command.
@@ -531,54 +597,38 @@ class PaxDevice extends EventEmitter {
         await wait(100)
 
         const response = await self.send(request, timeout)
+        // console.log('response', response)
         resolve(command.response(response))
       } catch (error) {
         reject(error)
       }
     })
   }
-  /**
-   * Calculation packet checksum.
-   *
-   * @param {Buffer} buffer Raw data for calculation.
-   * @returns {Number} Calculated checksum.
-   */
-  /* _getCRC16(pBuf: any, lSize: number = 0) {
-
-    let s: number
-    for (s = 0x0000; lSize > 0; lSize--, pBuf++) {
-      let b = pBuf
-      for (let j = 0; j < 8; j++) {
-        let x16 =
-          (b & 0x80 && s & 0x8000) || (!(b & 0x80) && !(s & 0x8000)) ? 0 : 1
-        let x15 = (x16 && s & 0x4000) || (!x16 && !(s & 0x4000)) ? 0 : 1
-        let x2 = (x16 && s & 0x0002) || (!x16 && !(s & 0x0002)) ? 0 : 1
-        s = s << 1
-        b = b << 1
-        s |= x16 ? 0x0001 : 0
-        s = x2 ? s | 0x0004 : s & 0xfffb
-        s = x15 ? s | 0x8000 : s & 0x7fff
-      }
-    }
-    s = (s << 8) + (s >> 8)
-    return s
-  } */
   // ------------------------------------
-  getCRC16 = (buffer: Buffer) => {
-    let CRC = 0
-    let buf = Buffer.alloc(2)
-    for (let i = 0; i < buffer.length; i++) {
-      CRC ^= buffer[i]
-      for (let j = 0; j < 8; j++) {
-        if (CRC & 0x0001) {
-          CRC >>= 1
-          CRC ^= CRC_POLY
-        } else CRC >>= 1
-      }
-    }
-    buf.writeUInt16BE(CRC, 0)
-    return Array.prototype.reverse.call(buf)
-  }
+  // origin
+  /* getCRC16(unsigned char *pBuf, int lSize)
+{
+   unsigned short s;
+   for(s=0x0000 ; lSize>0 ; lSize--,pBuf++)
+   {
+       unsigned char b = *pBuf;
+       for(int j=0 ; j<8 ; j++)
+       {
+           int x16 = (((b&0x80)&&(s&0x8000))||((!(b&0x80))&&(!(s&0x8000)))) ? 0 : 1;
+           int x15 = (((x16)&&(s&0x4000))||((!x16 )&&(!(s&0x4000)))) ? 0 : 1;
+           int x2 = (((x16)&&(s&0x0002))||((!x16)&&(!(s&0x0002)))) ? 0 : 1;
+           s = s << 1;
+           b = b << 1;
+           s |= (x16) ? 0x0001 : 0;
+           s = ( x2 ) ? s | 0x0004 : s & 0xfffb;
+           s = ( x15) ? s | 0x8000 : s & 0x7fff;
+       }
+   }
+   s= int(s<<8) + int(s>>8);
+   return s;
+} */
+
+  //-------------------------------------
 
   /**
    * Printing data to console.
