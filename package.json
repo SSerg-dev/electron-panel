@@ -27,6 +27,7 @@
     "chart.js": "2",
     "country-data-list": "^1.2.1",
     "date-fns": "^2.23.0",
+    "easy-crc": "^1.0.0",
     "electron-log": "^4.4.0",
     "lodash": "^4.17.21",
     "materialize-css": "^1.0.0-rc.2",

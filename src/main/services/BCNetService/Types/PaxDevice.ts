@@ -33,6 +33,8 @@ import { PaxRequest } from './PaxRequest'
 import { PaxMessage } from './PaxMessage'
 import { createContext } from 'vm'
 
+const { crc8, crc16, crc32 } = require('easy-crc')
+
 enum MessageType {
   sale,
   ack,
@@ -218,20 +220,16 @@ class PaxDevice extends EventEmitter {
   send = (request: Buffer, timeout: number = 1000) => {
     let self = this
     return new Promise<any>(async (resolve, reject) => {
-      
       // let timer: any = null
       // let timerHandler = () => {
       //     self.isSend = false
       //         reject(new Error('Request timeout.'))
       // }
-      
-      // const regular = /,/g
-      // const convData = request.toJSON().data.toString().replace(regular," ")
-      // console.log('$$ request', convData)
-      
+
+
       console.log('$$ request', request)
       const response = self.serial.write(request)
-      
+
       console.log('$$ response', response)
 
       // timer = setTimeout(timerHandler, timeout = 10000)
@@ -341,7 +339,6 @@ class PaxDevice extends EventEmitter {
       this.paxRequest.mesgsLen += this.paxRequest.messages[index].mesLen
       this.paxRequest.mesgsData += this.paxRequest.messages[index].data
     })
-    // console.log('$$ this.paxRequest.messages', this.paxRequest.messages)
 
     const requestLength =
       this.paxRequest.mesgsLen + this.paxRequest.messages.length * headSize
@@ -393,70 +390,41 @@ class PaxDevice extends EventEmitter {
       Buffer.from([this.paxRequest.messages[6].mesLen, '00']),
       Buffer.from(this.str2hex(this.paxRequest.messages[6].data.toString(base)))
     ])
-    // CRC 94 56
-    // let result = Buffer.concat([cmd, this.device.getCRC16(cmd)])
-
-    /* 
-    Данные: 0x31,0x32,0x33
-    Результат 32431
-              7EAF
-
-    Данные: 0x31
-              Piter   Sergei
-    Результат 42368 
-              A580    00 07 
-              
-    */
-
-    let result
-    // result = Buffer.concat([head, body])
-    // const crc = Buffer.from(this.getCRC16(result))
-    // result = Buffer.concat([head, body, crc])
-    // console.log('$$ CRC 65 66 bytes', result[65].toString(16), result[66].toString(16))
+    
+    // resultTest  crc = <Buffer 94 56>
+    // let resultTest
+    // resultTest = Buffer.from([ 0x02, 0x3E , 0x00 , 0x00 , 0x03 , 0x00 , 0x32 , 0x30 , 0x30 , 0x04 , 0x03 , 0x00 , 0x36 , 0x34 , 0x33 , 0x15 , 0x0E , 0x00 , 0x32 , 0x30 , 0x32 , 0x32 , 0x30 , 0x35 , 0x31 , 0x36 , 0x31 , 0x30 , 0x33 , 0x31 , 0x35 , 0x38 , 0x19 , 0x01 , 0x00 , 0x31 , 0x1A , 0x02 , 0x00 , 0x31 , 0x32 , 0x1B , 0x08 , 0x00 , 0x30 , 0x30 , 0x33 , 0x32 , 0x32 , 0x33 , 0x34 , 0x36 , 0x59 , 0x0A , 0x00 , 0x56 , 0x4D , 0x30 , 0x30 , 0x30 , 0x38 , 0x30 , 0x39 , 0x35 , 0x31])
+    
+    // resultTest = Buffer.from([ 0x02, 0x3E , 0x00 , 0x00 , 0x03 , 0x00 , 0x32 , 0x30 , 0x30 , 0x04 , 0x03 , 0x00 , 0x36 , 0x34 , 0x33 , 0x15 , 0x0E , 0x00 , 0x32 , 0x30 , 0x32 , 0x32 , 0x30 , 0x35 , 0x31 , 0x39 , 0x31 , 0x36 , 0x35 , 0x31 , 0x32 , 0x31 , 0x19 , 0x01 , 0x00 , 0x31 , 0x1A , 0x02 , 0x00 , 0x31 , 0x32 , 0x1B , 0x08 , 0x00 , 0x30 , 0x30 , 0x33 , 0x32 , 0x32 , 0x33 , 0x34 , 0x36 , 0x59 , 0x0A , 0x00 , 0x56 , 0x4D , 0x30 , 0x30 , 0x30 , 0x38 , 0x30 , 0x39 , 0x35 , 0x31])
+    // const crcTest = this.getCRC16(resultTest)
+    // console.log('$$ resultTest-->', resultTest, crcTest ) 
+    // return resultTest
  
-    const buff = Buffer.from('1') 
-    console.log('$$ buff', buff)  
-    console.log('$$ ++buff', this.getCRC16(buff)) 
+    // result
+    let result 
+    result = Buffer.concat([head, body]) 
+    const crc = this.getCRC16(result)
+    result = Buffer.concat([head, body, crc])
+    
+    // console.log('$$ crc start------------------------>')
+    // for (let i =0; i < result.length; i++ ) {
+    //   console.log( i, result[i].toString(16))
+    // } 
+
+    // console.log('$$ crc-->', crc)
+    // console.log('$$ result.length-->', result.length)
+    // console.log('$$ crc end-------------------------->')
     
     return result
   }
 
   getCRC16 = (buffer: Buffer) => {
-    let CRC = 0
-    let buf = Buffer.alloc(2)
-    for (let i = 0; i < buffer.length; i++) {
-      CRC ^= buffer[i]
-      for (let j = 0; j < 8; j++) {
-        if (CRC & 0x0001) {
-          CRC >>= 1
-          CRC ^= CRC_POLY_PAX
-        } else CRC >>= 1
-      }
-    }
-    if (+CRC >= 0 && +CRC <= 65535) buf.writeUInt16BE(CRC, 0)
+    const crc = crc16('BUYPASS', buffer) 
+    const result = Buffer.alloc(2)
+    result.writeUInt16BE(crc, 0) 
 
-    return Array.prototype.reverse.call(buf)
+    return result
   }
-
-  /* getCRC16(pBuf: any, lSize: number = 0) { 
-    let s: number
-    for (s = 0x0000; lSize > 0; lSize--, pBuf++) {
-      let b = pBuf
-      for (let j = 0; j < 8; j++) {
-        let x16 =
-          (b & 0x80 && s & 0x8000) || (!(b & 0x80) && !(s & 0x8000)) ? 0 : 1
-        let x15 = (x16 && s & 0x4000) || (!x16 && !(s & 0x4000)) ? 0 : 1
-        let x2 = (x16 && s & 0x0002) || (!x16 && !(s & 0x0002)) ? 0 : 1
-        s = s << 1
-        b = b << 1
-        s |= x16 ? 0x0001 : 0
-        s = x2 ? s | 0x0004 : s & 0xfffb
-        s = x15 ? s | 0x8000 : s & 0x7fff
-      }
-    }
-    s = (s << 8) + (s >> 8)
-    return s
-  } */
 
   getReconciliationRequest() {
     this.clear()
