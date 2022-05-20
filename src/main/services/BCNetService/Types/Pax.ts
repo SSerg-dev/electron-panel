@@ -67,14 +67,18 @@ class Pax extends EventEmitter {
     ipcMain.on('amount-message', (event, amount) => {
       this.amount = +amount
       event.returnValue = 'OK'
-      if (this.amount > 0) {
-        /* dev */
-
-        const request = this.device.getSaleRequest(this.amount)  
-        this.device.send(request, 2000)
-
-        // console.log('$$ request2-->', request2)
+      try {
+        if (this.amount > 0) {
+          const request = this.device.getSaleRequest(this.amount)  
+          const writeResponse = this.device.write(request, 2000)
+          const readResponse = this.device.read() 
+        }  
+      } 
+      catch (err) {
+        // throw err
+        console.log('Error', err)
       }
+      
     })
 
     /* dev */
@@ -107,7 +111,8 @@ class Pax extends EventEmitter {
   // private disconnect = async () => {}
 
   // test com port
-  private getComPort() {
+  
+  /* private getComPort() {
     const SerialPort = require('serialport')
     const port = new SerialPort('/dev/ttyPos0', function(err: any) {
       if (err) {
@@ -120,7 +125,7 @@ class Pax extends EventEmitter {
       }
       console.log('message written')
     })
-  }
+  } */
 
   // end methods
 } // end class Pax

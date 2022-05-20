@@ -73,6 +73,7 @@ class PaxDevice extends EventEmitter {
   dataLength: number = 0
   messageType: any = MessageType.request
   ern: number = 11
+  readResponse: any = 0
 
   /**
    * PaxDevice constructor.
@@ -226,15 +227,55 @@ class PaxDevice extends EventEmitter {
       //         reject(new Error('Request timeout.'))
       // }
 
-
-      console.log('$$ request', request)
+      // console.log('$$ request', request)
       const response = self.serial.write(request)
-
       console.log('$$ response', response)
 
       // timer = setTimeout(timerHandler, timeout = 10000)
     })
   }
+
+  // dev
+  // ------------------------------------
+  write = (request: Buffer, timeout: number = 1000) => {
+    let self = this
+    // console.log('$$ request', request)
+    const response = self.serial.write(request)
+    // console.log('$$ --write response', response)
+    return response
+  }
+  // ------------------------------------
+  read = (request: Buffer, timeout: number = 1000) => {
+    /* dev */
+    // this.connect()
+
+    let self = this
+    try {
+      self.serial.on('readable', () => {
+        self.readResponse = self.serial.read()
+        self.parseReadResponse(self.readResponse)
+      })
+    } catch (err) {
+      // throw err
+      console.log('Error', err)
+    }
+    return true
+  }
+  // ------------------------------------
+  // <Buffer 06> ACK
+  // <Buffer 02 05 00 19 02 00 32 31 a5 c2> WAIT
+  parseReadResponse(response: any) {
+    if (response[0] === 0x6) {
+      console.log('ACK', response[0])
+    } else if (response[0] === 0x2 && response[1] === 0x5) {
+      console.log('WAIT', response[0], response[1])
+    } else if (response[0] === 0x2 && response[1] !== 0x5) {
+      console.log('FIN', response[0], response[1])
+      /* dev */
+      // this.disconnect()
+    }
+  }
+  // ------------------------------------
 
   // end request & response methods -----
 
@@ -390,38 +431,38 @@ class PaxDevice extends EventEmitter {
       Buffer.from([this.paxRequest.messages[6].mesLen, '00']),
       Buffer.from(this.str2hex(this.paxRequest.messages[6].data.toString(base)))
     ])
-    
+
     // resultTest  crc = <Buffer 94 56>
     // let resultTest
     // resultTest = Buffer.from([ 0x02, 0x3E , 0x00 , 0x00 , 0x03 , 0x00 , 0x32 , 0x30 , 0x30 , 0x04 , 0x03 , 0x00 , 0x36 , 0x34 , 0x33 , 0x15 , 0x0E , 0x00 , 0x32 , 0x30 , 0x32 , 0x32 , 0x30 , 0x35 , 0x31 , 0x36 , 0x31 , 0x30 , 0x33 , 0x31 , 0x35 , 0x38 , 0x19 , 0x01 , 0x00 , 0x31 , 0x1A , 0x02 , 0x00 , 0x31 , 0x32 , 0x1B , 0x08 , 0x00 , 0x30 , 0x30 , 0x33 , 0x32 , 0x32 , 0x33 , 0x34 , 0x36 , 0x59 , 0x0A , 0x00 , 0x56 , 0x4D , 0x30 , 0x30 , 0x30 , 0x38 , 0x30 , 0x39 , 0x35 , 0x31])
-    
+
     // resultTest = Buffer.from([ 0x02, 0x3E , 0x00 , 0x00 , 0x03 , 0x00 , 0x32 , 0x30 , 0x30 , 0x04 , 0x03 , 0x00 , 0x36 , 0x34 , 0x33 , 0x15 , 0x0E , 0x00 , 0x32 , 0x30 , 0x32 , 0x32 , 0x30 , 0x35 , 0x31 , 0x39 , 0x31 , 0x36 , 0x35 , 0x31 , 0x32 , 0x31 , 0x19 , 0x01 , 0x00 , 0x31 , 0x1A , 0x02 , 0x00 , 0x31 , 0x32 , 0x1B , 0x08 , 0x00 , 0x30 , 0x30 , 0x33 , 0x32 , 0x32 , 0x33 , 0x34 , 0x36 , 0x59 , 0x0A , 0x00 , 0x56 , 0x4D , 0x30 , 0x30 , 0x30 , 0x38 , 0x30 , 0x39 , 0x35 , 0x31])
     // const crcTest = this.getCRC16(resultTest)
-    // console.log('$$ resultTest-->', resultTest, crcTest ) 
+    // console.log('$$ resultTest-->', resultTest, crcTest )
     // return resultTest
- 
+
     // result
-    let result 
-    result = Buffer.concat([head, body]) 
+    let result
+    result = Buffer.concat([head, body])
     const crc = this.getCRC16(result)
     result = Buffer.concat([head, body, crc])
-    
+
     // console.log('$$ crc start------------------------>')
     // for (let i =0; i < result.length; i++ ) {
     //   console.log( i, result[i].toString(16))
-    // } 
+    // }
 
     // console.log('$$ crc-->', crc)
     // console.log('$$ result.length-->', result.length)
     // console.log('$$ crc end-------------------------->')
-    
+
     return result
   }
 
   getCRC16 = (buffer: Buffer) => {
-    const crc = crc16('BUYPASS', buffer) 
+    const crc = crc16('BUYPASS', buffer)
     const result = Buffer.alloc(2)
-    result.writeUInt16BE(crc, 0) 
+    result.writeUInt16BE(crc, 0)
 
     return result
   }

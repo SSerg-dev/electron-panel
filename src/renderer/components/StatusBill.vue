@@ -57,7 +57,7 @@ export default Vue.extend({
     loading: true,
 
     intervalMainMenu: null,
-    seconds: 60,
+    seconds: 45,
     cardMessageIndex: -1,
     card: 0,
     terminal: null,
