@@ -190,7 +190,9 @@ class PaxDevice extends EventEmitter {
     return new Promise<any>((resolve, reject) => {
       if (self.serial.isOpen) {
         self.serial.close((error: any) => {
+          // dev
           if (error) {
+            console.log('$$ error close')
             reject(error)
           }
           resolve(true)
@@ -221,17 +223,17 @@ class PaxDevice extends EventEmitter {
   send = (request: Buffer, timeout: number = 1000) => {
     let self = this
     return new Promise<any>(async (resolve, reject) => {
-      // let timer: any = null
-      // let timerHandler = () => {
-      //     self.isSend = false
-      //         reject(new Error('Request timeout.'))
-      // }
+      let timer: any = null
+      let timerHandler = () => {
+          self.isSend = false
+              reject(new Error('Request timeout.'))
+      }
 
       // console.log('$$ request', request)
       const response = self.serial.write(request)
       console.log('$$ response', response)
 
-      // timer = setTimeout(timerHandler, timeout = 10000)
+      timer = setTimeout(timerHandler, timeout = 10000)
     })
   }
 
@@ -252,6 +254,7 @@ class PaxDevice extends EventEmitter {
     let self = this
     try {
       self.serial.on('readable', () => {
+      //  self.serial.on('data', () => {  
         self.readResponse = self.serial.read()
         self.parseReadResponse(self.readResponse)
       })
@@ -262,18 +265,40 @@ class PaxDevice extends EventEmitter {
     return true
   }
   // ------------------------------------
-  // <Buffer 06> ACK
-  // <Buffer 02 05 00 19 02 00 32 31 a5 c2> WAIT
+  // ACK       <Buffer 06>
+  // WAIT      <Buffer 02 05 00 19 02 00 32 31 a5 c2>
+  // FIN       <Buffer 02 9a 00 00 03 00 32 30 ...
   parseReadResponse(response: any) {
-    if (response[0] === 0x6) {
-      console.log('ACK', response[0])
-    } else if (response[0] === 0x2 && response[1] === 0x5) {
-      console.log('WAIT', response[0], response[1])
-    } else if (response[0] === 0x2 && response[1] !== 0x5) {
-      console.log('FIN', response[0], response[1])
-      /* dev */
-      // this.disconnect()
+    let self = this
+    let res
+    
+    const ack = Buffer.from([BCNet.ACK_RES])
+    const eot = Buffer.from([BCNet.EOT_RES])
+    const stx = Buffer.from([BCNet.STX_RES])
+
+    console.log('$$ ack eot stx', ack, eot, stx)
+    // console.log('$$ ack', ack, response[0], response[1])
+
+    if (response[0] === ack) {
+      // console.log('ACK', response[0], response)
+      // self.serial.write(ack)
+      
+    } 
+    // else if (response[0] === stx && response[1] === 0x5) {
+    //   console.log('WAIT', response[0], response[1], response)
+    //   self.serial.write(ack)
+    // } 
+    // else if (response[0] === stx && response[1] !== 0x5) {
+    // console.log('FIN', response[0], response[1], response)
+              // res = self.serial.write(eot)
+              // this.disconnect()
+    //}
+
+    if (self.serial) {
+      self.serial.write(ack)
     }
+    
+    
   }
   // ------------------------------------
 
@@ -614,30 +639,6 @@ class PaxDevice extends EventEmitter {
     })
   }
   // ------------------------------------
-  // origin
-  /* getCRC16(unsigned char *pBuf, int lSize)
-{
-   unsigned short s;
-   for(s=0x0000 ; lSize>0 ; lSize--,pBuf++)
-   {
-       unsigned char b = *pBuf;
-       for(int j=0 ; j<8 ; j++)
-       {
-           int x16 = (((b&0x80)&&(s&0x8000))||((!(b&0x80))&&(!(s&0x8000)))) ? 0 : 1;
-           int x15 = (((x16)&&(s&0x4000))||((!x16 )&&(!(s&0x4000)))) ? 0 : 1;
-           int x2 = (((x16)&&(s&0x0002))||((!x16)&&(!(s&0x0002)))) ? 0 : 1;
-           s = s << 1;
-           b = b << 1;
-           s |= (x16) ? 0x0001 : 0;
-           s = ( x2 ) ? s | 0x0004 : s & 0xfffb;
-           s = ( x15) ? s | 0x8000 : s & 0x7fff;
-       }
-   }
-   s= int(s<<8) + int(s>>8);
-   return s;
-} */
-
-  //-------------------------------------
 
   /**
    * Printing data to console.

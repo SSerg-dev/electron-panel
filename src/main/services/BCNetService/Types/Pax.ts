@@ -61,24 +61,32 @@ class Pax extends EventEmitter {
 
   // flowSequence -----------------------
   private flowSequence = async () => {
+    // const { port, number, currency } = Pax.instance.config
+    // this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)
+    // this.device.disconnect()
+    
     this.connect()
+
     // const self = this
 
     ipcMain.on('amount-message', (event, amount) => {
       this.amount = +amount
       event.returnValue = 'OK'
+      /* dev */
+      // console.log('$$ Pax amount-message', amount)
       try {
         if (this.amount > 0) {
-          const request = this.device.getSaleRequest(this.amount)  
+          const request = this.device.getSaleRequest(this.amount)
           const writeResponse = this.device.write(request, 2000)
-          const readResponse = this.device.read() 
-        }  
-      } 
-      catch (err) {
+          if (writeResponse) {
+            const readResponse = this.device.read()  
+            console.log('$$ readResponse', readResponse)
+          }
+        }
+      } catch (err) {
         // throw err
         console.log('Error', err)
       }
-      
     })
 
     /* dev */
@@ -92,9 +100,11 @@ class Pax extends EventEmitter {
 
   // connect to pax ---------------------
   private connect = async () => {
-    const { port, number, currency } = Pax.instance.config 
     // let port_num = 10
+    /* dev */
+    const { port, number, currency } = Pax.instance.config
     this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)
+
     try {
       if (!this.isConnect) {
         await this.device.connect()
@@ -111,7 +121,7 @@ class Pax extends EventEmitter {
   // private disconnect = async () => {}
 
   // test com port
-  
+
   /* private getComPort() {
     const SerialPort = require('serialport')
     const port = new SerialPort('/dev/ttyPos0', function(err: any) {

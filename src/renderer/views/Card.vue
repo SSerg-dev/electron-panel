@@ -99,6 +99,7 @@ export default Vue.extend({
             this.flowSequenceVendotek(item)
             break
           case 'pax':
+            console.log('$$ JS flowSequencePax')
             this.flowSequencePax(item)
             break
 

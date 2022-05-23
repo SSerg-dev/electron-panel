@@ -15,8 +15,8 @@ export const CRC_POLY_PAX = 0x8005
 export const ADR_CARD_READER = 0x04
 /* port */
 export const PAX_PORT = '/dev/ttyPos0' //  '/dev/ttyUSB2'
-export const TERMINAL_ID = '00322346'
-// export const TERMINAL_ID = '00311159'
+//export const TERMINAL_ID = '00322346'
+export const TERMINAL_ID = '00311159'
 
 // from Qt src -------------------------- 
 export const ACK_RES = 0x06
