@@ -32,6 +32,10 @@ import {
 import { PaxRequest } from './PaxRequest'
 import { PaxMessage } from './PaxMessage'
 import { createContext } from 'vm'
+import { setTimeout } from 'timers'
+
+import { ipcMain } from 'electron'
+// const { MessageChannelMain } = require('electron')
 
 const { crc8, crc16, crc32 } = require('easy-crc')
 
@@ -74,6 +78,7 @@ class PaxDevice extends EventEmitter {
   messageType: any = MessageType.request
   ern: number = 11
   readResponse: any = 0
+  amount: number = 0
 
   /**
    * PaxDevice constructor.
@@ -126,6 +131,11 @@ class PaxDevice extends EventEmitter {
     this.terminalId = TERMINAL_ID
     this.paxRequest = PaxRequest
     this.paxMessage = PaxMessage
+
+    ipcMain.once('amount-message', (event, amount) => {
+      this.amount = amount
+      // event.returnValue = '$$ OK'
+    })
   }
 
   // getters
@@ -225,15 +235,15 @@ class PaxDevice extends EventEmitter {
     return new Promise<any>(async (resolve, reject) => {
       let timer: any = null
       let timerHandler = () => {
-          self.isSend = false
-              reject(new Error('Request timeout.'))
+        self.isSend = false
+        reject(new Error('Request timeout.'))
       }
 
       // console.log('$$ request', request)
       const response = self.serial.write(request)
       console.log('$$ response', response)
 
-      timer = setTimeout(timerHandler, timeout = 10000)
+      timer = setTimeout(timerHandler, (timeout = 10000))
     })
   }
 
@@ -241,64 +251,81 @@ class PaxDevice extends EventEmitter {
   // ------------------------------------
   write = (request: Buffer, timeout: number = 1000) => {
     let self = this
-    // console.log('$$ request', request)
     const response = self.serial.write(request)
-    // console.log('$$ --write response', response)
     return response
   }
   // ------------------------------------
-  read = (request: Buffer, timeout: number = 1000) => {
-    /* dev */
-    // this.connect()
-
+  read = async (request: Buffer, timeout: number = 1000) => {
     let self = this
+    let result
     try {
-      self.serial.on('readable', () => {
-      //  self.serial.on('data', () => {  
+      await self.serial.on('readable', () => {
         self.readResponse = self.serial.read()
-        self.parseReadResponse(self.readResponse)
+        result = self.parseReadResponse(self.readResponse)
       })
     } catch (err) {
       // throw err
       console.log('Error', err)
     }
-    return true
+    return result
   }
   // ------------------------------------
-  // ACK       <Buffer 06>
-  // WAIT      <Buffer 02 05 00 19 02 00 32 31 a5 c2>
-  // FIN       <Buffer 02 9a 00 00 03 00 32 30 ...
   parseReadResponse(response: any) {
     let self = this
     let res
-    
+    let result
+
     const ack = Buffer.from([BCNet.ACK_RES])
     const eot = Buffer.from([BCNet.EOT_RES])
     const stx = Buffer.from([BCNet.STX_RES])
+    const timeout1 = BCNet.TIMEOUT_1
+    const timeout2 = BCNet.TIMEOUT_2
 
-    console.log('$$ ack eot stx', ack, eot, stx)
-    // console.log('$$ ack', ack, response[0], response[1])
+    if (response[0] === ack[0]) {
+      // console.log('ASK')
+      setTimeout(() => {
+        res = self.serial.write(ack)
+        console.log('ASK res', res, response)
+      }, timeout1)
+    } else if (response[0] === stx[0] && response[1] === 0x5) {
+      // console.log('WAIT')
+      setTimeout(() => {
+        res = self.serial.write(ack)
+        console.log('WAIT res', res, response)
+      }, timeout1)
+    } else if (response[0] === stx[0] && response[1] !== 0x5) {
+      // console.log('FIN')
+      setTimeout(() => {
+        // let result
+        res = self.serial.write(ack)
+        console.log('FIN res', res, response)
+        const amount =
+          response[6].toString(16) +
+          response[7].toString(16) +
+          response[8].toString(16)
 
-    if (response[0] === ack) {
-      // console.log('ACK', response[0], response)
-      // self.serial.write(ack)
-      
-    } 
-    // else if (response[0] === stx && response[1] === 0x5) {
-    //   console.log('WAIT', response[0], response[1], response)
-    //   self.serial.write(ack)
-    // } 
-    // else if (response[0] === stx && response[1] !== 0x5) {
-    // console.log('FIN', response[0], response[1], response)
-              // res = self.serial.write(eot)
-              // this.disconnect()
-    //}
+        result = parseInt(self.hexToAscii(amount))
+        const amountLength = self.amount.toString().length
 
-    if (self.serial) {
-      self.serial.write(ack)
+        result = +result.toString().slice(0, amountLength)
+        console.log('$$ FIN amount-->', result)
+
+        // res = self.serial.write(eot)
+        // this.disconnect()
+      }, timeout1)
     }
-    
-    
+
+    // self.serial.write(ack)
+    return result
+  }
+  // ------------------------------------
+  hexToAscii(str: string) {
+    var hex = str.toString()
+    var str = ''
+    for (var n = 0; n < hex.length; n += 2) {
+      str += String.fromCharCode(parseInt(hex.substr(n, 2), 16))
+    }
+    return str
   }
   // ------------------------------------
 

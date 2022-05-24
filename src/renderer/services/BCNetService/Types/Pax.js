@@ -109,6 +109,8 @@ class Pax extends EventEmitter {
     switch (cmd) {
       case 'PAY':
         res = ipcRenderer.sendSync('amount-message', params.amount.toString())
+        console.log('$$ PAY', res)
+
         break
       case 'FIN':
         break

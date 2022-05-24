@@ -58,35 +58,46 @@ class Pax extends EventEmitter {
     // this.instance.disconnect()
     return item
   }
+  private sleep(ms: number) {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(ms), ms)
+    })
+  }
 
+  // sleep(4000).then(() => {
+  //   console.log('run after 4 sec')
+  // })
   // flowSequence -----------------------
   private flowSequence = async () => {
     // const { port, number, currency } = Pax.instance.config
     // this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)
     // this.device.disconnect()
-    
+
     this.connect()
 
-    // const self = this
-
-    ipcMain.on('amount-message', (event, amount) => {
+    ipcMain.once('amount-message', (event, amount) => {
       this.amount = +amount
-      event.returnValue = 'OK'
-      /* dev */
-      // console.log('$$ Pax amount-message', amount)
+      // event.returnValue = '$$!! OK'
       try {
         if (this.amount > 0) {
           const request = this.device.getSaleRequest(this.amount)
           const writeResponse = this.device.write(request, 2000)
           if (writeResponse) {
-            const readResponse = this.device.read()  
-            console.log('$$ readResponse', readResponse)
+            const readResponse = this.device.read()
+            if (readResponse) {
+
+              this.sleep(30000).then(() => {
+                console.log('run after 4 sec')
+                event.returnValue = this.amount.toString() //'$$!!!! OK'
+              })
+            }
           }
         }
       } catch (err) {
-        // throw err
         console.log('Error', err)
       }
+
+      // this.device.disconnect()
     })
 
     /* dev */
