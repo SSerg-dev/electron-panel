@@ -79,6 +79,7 @@ class PaxDevice extends EventEmitter {
   ern: number = 11
   readResponse: any = 0
   amount: number = 0
+  resultEmitter: any = null
 
   /**
    * PaxDevice constructor.
@@ -131,11 +132,13 @@ class PaxDevice extends EventEmitter {
     this.terminalId = TERMINAL_ID
     this.paxRequest = PaxRequest
     this.paxMessage = PaxMessage
+    
+    // ipcMain.on('async-amount-message', (event, arg) => {
+    //   this.amount = arg
+    // })
+    
 
-    ipcMain.once('amount-message', (event, amount) => {
-      this.amount = amount
-      // event.returnValue = '$$ OK'
-    })
+    this.resultEmitter = new EventEmitter()
   }
 
   // getters
@@ -267,6 +270,8 @@ class PaxDevice extends EventEmitter {
       // throw err
       console.log('Error', err)
     }
+    /* dev */
+    // this.disconnect()
     return result
   }
   // ------------------------------------
@@ -309,13 +314,22 @@ class PaxDevice extends EventEmitter {
 
         result = +result.toString().slice(0, amountLength)
         console.log('$$ FIN amount-->', result)
+        /* dev */
+        this.amount = result
+
+        /* dev */
+        const param = result
+        this.resultEmitter.emit('getAmount', param)
 
         // res = self.serial.write(eot)
         // this.disconnect()
-      }, timeout1)
+      }, timeout2)
     }
 
+    // res = self.serial.write(eot)
+    // this.disconnect()
     // self.serial.write(ack)
+
     return result
   }
   // ------------------------------------

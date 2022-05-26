@@ -108,8 +108,20 @@ class Pax extends EventEmitter {
     let res = {}
     switch (cmd) {
       case 'PAY':
-        res = ipcRenderer.sendSync('amount-message', params.amount.toString())
-        console.log('$$ PAY', res)
+        console.log('$$ Pax.js --PAY')
+        /* if (params.amount !== undefined) {
+          res = ipcRenderer.sendSync('amount-message', params.amount.toString())
+          console.log('$$ Pax.js PAY', res)
+        } */
+
+        /* dev */
+        // send
+        ipcRenderer.send('async-amount-message', params.amount.toString())
+        // on
+        ipcRenderer.on('async-amount-reply', (event, arg) => {  
+          console.log('$$ Pax.JS PAY', arg) 
+        })
+        /*     */
 
         break
       case 'FIN':

@@ -209,7 +209,7 @@
                   
                   "
                 >
-                  <!-- v-if="this.amount > getPaymentLimitMax" -->
+                  <!-- v-if="isMaxBlinking && isMax" -->
                   <div
                     v-if="isMaxBlinking && isMax"
                     id="blink"
@@ -251,7 +251,7 @@
             <tr>
               <td>
                 <div
-                  @click="setNumber('25', (fixed = true))"
+                  @click="setNumber('100', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -270,7 +270,7 @@
                   padding-top: 0em;
                   "
                   >
-                    25
+                    100
                   </div>
                 </div>
               </td>
@@ -351,6 +351,33 @@
               </td>
               <td>
                 <div
+                  @click="setNumber('500', (fixed = true))"
+                  class="card white waves-effect"
+                  style="
+                  width: 220px;
+                  height: 120px; 
+                  border: solid 6px #00B9E3; 
+                  border-radius: 2.5em;
+                  box-shadow: 0px 6px 10px #00b9e3;
+                  
+                  "
+                >
+                  <div
+                    class="card-content black-text"
+                    style="
+                  font-size: 5.2rem;
+                  padding-left: 2.5rem;
+                  padding-top: 0em;
+                  "
+                  >
+                    500
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div
                   @click="setNumber('200', (fixed = true))"
                   class="card white waves-effect"
                   style="
@@ -371,33 +398,6 @@
                   "
                   >
                     200
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div
-                  @click="setNumber('50', (fixed = true))"
-                  class="card white waves-effect"
-                  style="
-                  width: 220px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
-                  "
-                >
-                  <div
-                    class="card-content black-text"
-                    style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
-                  >
-                    50
                   </div>
                 </div>
               </td>
@@ -478,7 +478,7 @@
               </td>
               <td>
                 <div
-                  @click="setNumber('250', (fixed = true))"
+                  @click="setNumber('600', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -497,7 +497,7 @@
                   padding-top: 0em;
                   "
                   >
-                    250
+                    600
                   </div>
                 </div>
               </td>
@@ -506,7 +506,7 @@
             <tr>
               <td>
                 <div
-                  @click="setNumber('100', (fixed = true))"
+                  @click="setNumber('300', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -525,7 +525,7 @@
                   padding-top: 0em;
                   "
                   >
-                    100
+                    300
                   </div>
                 </div>
               </td>
@@ -608,7 +608,7 @@
               </td>
               <td>
                 <div
-                  @click="setNumber('500', (fixed = true))"
+                  @click="setNumber('700', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -627,7 +627,7 @@
                   padding-top: 0em;
                   "
                   >
-                    500
+                    700
                   </div>
                 </div>
               </td>
@@ -636,7 +636,7 @@
             <tr>
               <td>
                 <div
-                  @click="setNumber('150', (fixed = true))"
+                  @click="setNumber('400', (fixed = true))"
                   class="card white waves-effect"
                   style="
                   width: 220px;
@@ -655,7 +655,7 @@
                   padding-top: 0em;
                   "
                   >
-                    150
+                    400
                   </div>
                 </div>
               </td>
@@ -834,6 +834,8 @@ export default {
         if (this.amount > this.getPaymentLimitMax) {
           index = 0
           this.isMax = true
+          /* dev */
+          // this.amount = this.getPaymentLimitMax
         } else {
           index = 1
           this.isMax = false
@@ -934,7 +936,7 @@ export default {
     emitBonusMoney(balance) {
       EventBus.$emit('submitBonusMoney', balance)
     },
-    emitCardMoney(card) {
+    emitCardMoney(card = 0) {
         EventBus.$emit('submitCardMoney', card)
     },
     changeRowOfTable(balance) {
@@ -1082,7 +1084,8 @@ export default {
         this.amount = 0
         if (this.amount + parseInt(num) <= 1000) this.amount = parseInt(num)
       }
-
+      // console.log('isMaxBlinking && isMax', this.isMaxBlinking, this.isMax)
+      /* dev */
       if (this.amount > this.getPaymentLimitMax) {
         this.amount = this.getPaymentLimitMax
       }

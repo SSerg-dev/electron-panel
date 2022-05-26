@@ -89,7 +89,7 @@ export default Vue.extend({
         }
         bankTerminal.connect(options)
         const item = bankTerminal.terminalItem
-
+        // console.log('$$ item', item)
         const stream$ = item
         const observer = bankTerminal.observerItem
         stream$.subscribe(observer)
@@ -99,7 +99,6 @@ export default Vue.extend({
             this.flowSequenceVendotek(item)
             break
           case 'pax':
-            console.log('$$ JS flowSequencePax')
             this.flowSequencePax(item)
             break
 
@@ -117,19 +116,23 @@ export default Vue.extend({
     },
     /* dev */
     flowSequencePax(item) {
-      // console.log('++flowSequencePax--this.card-->', this.card)
+      if (item !== undefined) {
       const amount = this.card
       item.pay(amount)
-      // item.sendFINAL()
+      } 
     },
 
     submitBonusHandler(balance) {
-      this.balance = balance
+      if (balance !== undefined) {
+        this.balance = balance
+      }
     },
 
     submitCardHandler(card) {
-      this.card = card
-      this.initBankTerminal()
+      if (card !== undefined) {
+        this.card = card
+        this.initBankTerminal()
+      }
     },
 
     ...mapMutations({
@@ -149,8 +152,10 @@ export default Vue.extend({
     }
   },
   mounted() {
+
     this.setRouter('/card')
     this.setIsCardMoney(true)
+
     EventBus.$on('submitBonusMoney', this.submitBonusHandler)
     EventBus.$on('submitCardMoney', this.submitCardHandler)
 

@@ -29,6 +29,8 @@ class Pax extends EventEmitter {
   bills: number[]
   amount: number
   isConnect: boolean
+  bankAmount: any = 0
+  customEvent: any = null
 
   constructor() {
     super()
@@ -64,55 +66,84 @@ class Pax extends EventEmitter {
     })
   }
 
-  // sleep(4000).then(() => {
-  //   console.log('run after 4 sec')
-  // })
   // flowSequence -----------------------
   private flowSequence = async () => {
-    // const { port, number, currency } = Pax.instance.config
-    // this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)
-    // this.device.disconnect()
-
     this.connect()
 
-    ipcMain.once('amount-message', (event, amount) => {
+    /* ipcMain.once('amount-message', (event, amount) => {
       this.amount = +amount
-      // event.returnValue = '$$!! OK'
       try {
         if (this.amount > 0) {
-          const request = this.device.getSaleRequest(this.amount)
-          const writeResponse = this.device.write(request, 2000)
-          if (writeResponse) {
-            const readResponse = this.device.read()
-            if (readResponse) {
+          if (this.device !== undefined) {
+            const request = this.device.getSaleRequest(this.amount)
+            const writeResponse = this.device.write(request, 2000)
 
-              this.sleep(30000).then(() => {
-                console.log('run after 4 sec')
-                event.returnValue = this.amount.toString() //'$$!!!! OK'
-              })
+            if (writeResponse !== undefined) {
+              const readResponse = this.device.read()
+              //this.device.resultEmitter.on('getAmount', this.getAmount)
+
+              if (readResponse !== undefined) {
+                this.sleep(10000).then(() => {
+                  event.returnValue = this.device.amount.toString()
+                })
+              }
+
             }
           }
         }
       } catch (err) {
         console.log('Error', err)
       }
-
-      // this.device.disconnect()
-    })
+    }) */
 
     /* dev */
-    // this.device.getSaleRequest(42)
-    // this.device.getReconciliationRequest()
-    // this.device.getCheckRequest()
-    // this.device.sale()
+    
+    ipcMain.once('async-amount-message', (event, arg) => {
+      this.amount = +arg
+      try {
+        if (this.amount > 0) {
+          if (this.device !== undefined) {
+            const request = this.device.getSaleRequest(this.amount)
+            const writeResponse = this.device.write(request, 2000)
 
-    // this.getComPort()
+            if (writeResponse !== undefined) {
+              const readResponse = this.device.read()
+              this.device.resultEmitter.on('getAmount', this.getAmount)
+
+              if (readResponse !== undefined) {
+                this.sleep(10000).then(() => {
+                  // event.returnValue = this.device.amount.toString()
+                  // console.log('$$ Pax.TJ PAY', arg)
+                  event.reply('async-amount-reply', this.device.amount.toString())
+            
+                })
+              }
+
+            }
+          }
+        }
+      } catch (err) {
+        console.log('Error', err)
+      }
+    })
+    /*     */
+  }
+  // ------------------------------------
+  /* dev */
+  // this.device.getSaleRequest(42)
+  // this.device.getReconciliationRequest()
+  // this.device.getCheckRequest()
+  // this.device.sale()
+
+  // this.getComPort()
+
+  // ------------------------------------
+  getAmount(param: any) {
+    this.bankAmount = param
   }
 
   // connect to pax ---------------------
   private connect = async () => {
-    // let port_num = 10
-    /* dev */
     const { port, number, currency } = Pax.instance.config
     this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)
 

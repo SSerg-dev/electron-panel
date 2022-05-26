@@ -32,7 +32,8 @@
         </li>
 
         <!-- 4  -->
-        <li v-if="getIsPing && getTerminalInstalled" class="collection-item" @click="payUp('card')">
+        <!-- <li v-if="getIsPing && getTerminalInstalled" class="collection-item" @click="payUp('card')"> -->
+        <li v-if="getTerminalInstalled" class="collection-item" @click="payUp('card')">
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               💳 {{ 'BANK_CARD' | localize }}
