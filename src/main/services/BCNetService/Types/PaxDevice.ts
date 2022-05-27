@@ -14,12 +14,12 @@ import { wait } from '../../../utils'
 import BCNet from '..'
 
 import {
-  ACK_RES,
-  NAK_RES,
-  EOT_RES,
-  STX_RES,
-  TIMEOUT_1,
-  TIMEOUT_2,
+  // ACK_RES,
+  // NAK_RES,
+  // EOT_RES,
+  // STX_RES,
+  // TIMEOUT_1,
+  // TIMEOUT_2,
   AMOUNT_FUNC,
   CURRENCY_FUNC,
   TIMEDATE_FUNC,
@@ -105,6 +105,7 @@ class PaxDevice extends EventEmitter {
       databits: 8,
       stopbit: 1,
       parity: 'none',
+      /* dev */
       autoOpen: false
     }
     this.isSend = false
@@ -132,11 +133,10 @@ class PaxDevice extends EventEmitter {
     this.terminalId = TERMINAL_ID
     this.paxRequest = PaxRequest
     this.paxMessage = PaxMessage
-    
-    // ipcMain.on('async-amount-message', (event, arg) => {
-    //   this.amount = arg
-    // })
-    
+
+    ipcMain.on('async-amount-message', (event, arg) => {
+      this.amount = +arg
+    })
 
     this.resultEmitter = new EventEmitter()
   }
@@ -258,21 +258,24 @@ class PaxDevice extends EventEmitter {
     return response
   }
   // ------------------------------------
-  read = async (request: Buffer, timeout: number = 1000) => {
+  // read = (request: Buffer, timeout: number = 1000) => {
+  read = () => {
     let self = this
     let result
     try {
-      await self.serial.on('readable', () => {
-        self.readResponse = self.serial.read()
-        result = self.parseReadResponse(self.readResponse)
+      this.connect()
+      self.serial.on('readable', () => {
+        if (self.serial !== undefined) {
+          self.readResponse = self.serial.read()
+          result = self.parseReadResponse(self.readResponse)
+        }
       })
+      return true
     } catch (err) {
       // throw err
       console.log('Error', err)
+      return false
     }
-    /* dev */
-    // this.disconnect()
-    return result
   }
   // ------------------------------------
   parseReadResponse(response: any) {
@@ -283,55 +286,83 @@ class PaxDevice extends EventEmitter {
     const ack = Buffer.from([BCNet.ACK_RES])
     const eot = Buffer.from([BCNet.EOT_RES])
     const stx = Buffer.from([BCNet.STX_RES])
-    const timeout1 = BCNet.TIMEOUT_1
-    const timeout2 = BCNet.TIMEOUT_2
+    const timeout1 = BCNet.TIMEOUT_1 * 1000
+    const timeout2 = BCNet.TIMEOUT_2 * 1000
 
-    if (response[0] === ack[0]) {
-      // console.log('ASK')
-      setTimeout(() => {
-        res = self.serial.write(ack)
-        console.log('ASK res', res, response)
-      }, timeout1)
-    } else if (response[0] === stx[0] && response[1] === 0x5) {
-      // console.log('WAIT')
-      setTimeout(() => {
-        res = self.serial.write(ack)
-        console.log('WAIT res', res, response)
-      }, timeout1)
-    } else if (response[0] === stx[0] && response[1] !== 0x5) {
-      // console.log('FIN')
-      setTimeout(() => {
-        // let result
-        res = self.serial.write(ack)
-        console.log('FIN res', res, response)
-        const amount =
-          response[6].toString(16) +
-          response[7].toString(16) +
-          response[8].toString(16)
+    // try {
+    // ----------------------------------
+    // console.log('$$ parseReadResponse list:', response[0], ack[0], self.serial)
+    // console.log('$$ ASK res list:', response[0], ack[0], typeof self.serial, this.isOpen)
 
-        result = parseInt(self.hexToAscii(amount))
-        const amountLength = self.amount.toString().length
+    try {
+      if (response[0] === ack[0]) {
+        setTimeout(() => {
+          if (self.serial !== undefined) {
+            res = self.serial.write(ack)
 
-        result = +result.toString().slice(0, amountLength)
-        console.log('$$ FIN amount-->', result)
-        /* dev */
-        this.amount = result
-
-        /* dev */
-        const param = result
-        this.resultEmitter.emit('getAmount', param)
-
-        // res = self.serial.write(eot)
-        // this.disconnect()
-      }, timeout2)
+            console.log('ASK res', res, response)
+          }
+        }, timeout1)
+      }
+    } catch (err) {
+      console.log('$$ err ASK', err)
     }
+
+    try {
+      if (response[0] === stx[0] && response[1] === 0x5) {
+        setTimeout(() => {
+          res = self.serial.write(ack)
+          console.log('WAIT res', res, response)
+        }, timeout1)
+      }
+    } catch (err) {
+      // console.log('$$ err WAIT', err)
+      res = self.serial.write(ack)
+    }
+
+    try {
+      if (response[0] === stx[0] && response[1] !== 0x5) {
+        setTimeout(() => {
+          res = self.serial.write(ack)
+          console.log('FIN res', res, response)
+          const amount =
+            response[6].toString(16) +
+            response[7].toString(16) +
+            response[8].toString(16)
+
+          result = parseInt(self.hexToAscii(amount))
+          const amountLength = self.amount.toString().length
+          result = +result.toString().slice(0, amountLength)
+
+          this.amount = result
+          if (+this.amount > 0) {
+            // console.log('$$ FIN amount-->', result)
+            this.sendSuccessAmount(result)
+            res = self.serial.write(eot)
+            this.disconnect()
+          }
+        }, timeout1)
+      }
+    } catch (err) {
+      // console.log('$$ err FIN', err)
+    }
+    // ----------------------------------
+    // } catch (err) {
+    //   console.log('Error parseReadResponse', err)
+    // return false
+    // }
 
     // res = self.serial.write(eot)
     // this.disconnect()
     // self.serial.write(ack)
 
-    return result
+    return true
   }
+  // ------------------------------------
+  sendSuccessAmount(amount: number) {
+    this.resultEmitter.emit('submitSuccessAmount', amount)
+  }
+
   // ------------------------------------
   hexToAscii(str: string) {
     var hex = str.toString()

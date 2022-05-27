@@ -88,6 +88,35 @@ class Pax extends EventEmitter {
 
     return res
   }
+  /* dev */
+  check(amount, amountReply) {
+    let res
+    console.log('$$ amount amountReply', amount, amountReply)
+    if (+amount !== +amountReply) {
+      this.subscribe(Observer.item)
+      // this.fire({ type: 'REJECT', payload: amountReply })
+      this.fire({ type: 'REJECT', payload: null })
+      this.unsubscribe(Observer.item)
+      throw new Error(
+        `Wrond paid. Expected ${amount}, but result ${amountReply}`
+      )
+    } else {
+      /* dev */
+      if (+amountReply > 0) {
+        /* dev */
+        console.log('$$ payload: amountReply', amountReply)
+
+        this.subscribe(Observer.item)
+        this.fire({ type: 'RESOLVE', payload: amountReply })
+        this.unsubscribe(Observer.item)
+      }
+
+      this.sendFINAL()
+    }
+
+    return res
+  }
+
   async sendPRODUCT(amount) {
     let res
     try {
@@ -109,19 +138,13 @@ class Pax extends EventEmitter {
     switch (cmd) {
       case 'PAY':
         console.log('$$ Pax.js --PAY')
-        /* if (params.amount !== undefined) {
-          res = ipcRenderer.sendSync('amount-message', params.amount.toString())
-          console.log('$$ Pax.js PAY', res)
-        } */
-
-        /* dev */
-        // send
         ipcRenderer.send('async-amount-message', params.amount.toString())
-        // on
-        ipcRenderer.on('async-amount-reply', (event, arg) => {  
-          console.log('$$ Pax.JS PAY', arg) 
+        // ipcRenderer.on('async-amount-reply', (event, arg) => {
+        //   console.log('$$ Pax.JS PAY', arg)
+        // })
+        ipcRenderer.on('async-amount-reply', (event, arg) => {
+          this.check(params.amount, arg)
         })
-        /*     */
 
         break
       case 'FIN':

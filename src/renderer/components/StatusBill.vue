@@ -64,7 +64,8 @@ export default Vue.extend({
     observer: null,
     sleepMs: 4000,
     message: null,
-    isShow: false
+    isShow: false,
+    terminalType: ''
   }),
   computed: {
     ...mapGetters({
@@ -96,7 +97,10 @@ export default Vue.extend({
         this.seconds = seconds--
         this.observer = Observer.item
 
-        if (this.observer.state > 0 && this.observer.state === this.card) {
+        // console.log('$$ pax this.observer.state', this.observer.state)
+        console.log('$$ gotoMainMenu list:', this.observer.state, this.card)
+        
+        if (+this.observer.state > 0 && +this.observer.state === +this.card) {
           console.log('Операция одобрена, сумма:', this.observer.state)
           this.cardMessageIndex = 3
           this.setStatusBillMessagesIndex(this.cardMessageIndex)
@@ -108,7 +112,7 @@ export default Vue.extend({
           this.$router.push('/cash')
         }
 
-        if (!(typeof this.observer.state === 'number') && this.card > 0) {
+        if (!(typeof this.observer.state === 'number') && +this.card > 0) {
           this.cardMessageIndex = 4
           this.setStatusBillMessagesIndex(this.cardMessageIndex)
 
@@ -116,6 +120,7 @@ export default Vue.extend({
           this.sleep(this.sleepMs)
           this.$router.push('/')
         }
+
       }, 1000)
     },
     setCardBonusState() {
@@ -134,12 +139,29 @@ export default Vue.extend({
       setCardMoney: 'setCardMoney'
     }),
     ...mapGetters({
-      getCardMoney: 'getCardMoney'
+      getCardMoney: 'getCardMoney',
+      getDefaultTerminalType: 'getDefaultTerminalType'
     })
   },
   mounted() {
     this.card = this.getCardMoney()
-    this.terminal = BCNet.Vendotek.item
+    /* $$dev */
+
+    this.terminalType = this.getDefaultTerminalType()
+
+    switch (this.terminalType) {
+      case 'pax' :
+        this.terminal = BCNet.Pax.item
+        // console.log('BCNet.Pax.item', BCNet.Pax.item)
+        break
+      case 'vendotek' :
+        this.terminal = BCNet.Vendotek.item    
+        // console.log('BCNet.Vendotek.item', BCNet.Vendotek.item)
+        break
+        
+      default:
+        break  
+    }
 
     // todo this.setStatusBill from ...
     this.setStatusBill('card')

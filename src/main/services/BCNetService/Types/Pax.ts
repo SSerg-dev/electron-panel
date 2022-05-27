@@ -54,7 +54,6 @@ class Pax extends EventEmitter {
     let item = new Pax()
     item.config = config
     this.instance = item
-    // this.instance.connect()
     this.instance.flowSequence()
 
     // this.instance.disconnect()
@@ -70,56 +69,34 @@ class Pax extends EventEmitter {
   private flowSequence = async () => {
     this.connect()
 
-    /* ipcMain.once('amount-message', (event, amount) => {
-      this.amount = +amount
-      try {
-        if (this.amount > 0) {
-          if (this.device !== undefined) {
-            const request = this.device.getSaleRequest(this.amount)
-            const writeResponse = this.device.write(request, 2000)
-
-            if (writeResponse !== undefined) {
-              const readResponse = this.device.read()
-              //this.device.resultEmitter.on('getAmount', this.getAmount)
-
-              if (readResponse !== undefined) {
-                this.sleep(10000).then(() => {
-                  event.returnValue = this.device.amount.toString()
-                })
-              }
-
-            }
-          }
-        }
-      } catch (err) {
-        console.log('Error', err)
-      }
-    }) */
-
     /* dev */
-    
-    ipcMain.once('async-amount-message', (event, arg) => {
-      this.amount = +arg
+    ipcMain.on('async-amount-message', (event, arg) => {
+      let self = this
+
+      self.amount = +arg
       try {
-        if (this.amount > 0) {
-          if (this.device !== undefined) {
-            const request = this.device.getSaleRequest(this.amount)
-            const writeResponse = this.device.write(request, 2000)
+        if (self.amount > 0) {
+          if (self.device !== undefined) {
+            const request = self.device.getSaleRequest(self.amount)
+            console.log('$$ Pas.ts request', request)
+            const writeResponse = self.device.write(request, 2000)
+            console.log('$$ writeResponse', writeResponse)
 
-            if (writeResponse !== undefined) {
-              const readResponse = this.device.read()
-              this.device.resultEmitter.on('getAmount', this.getAmount)
+            const readResponse = self.device.read()
+            console.log('$$ readResponse', readResponse)
 
-              if (readResponse !== undefined) {
-                this.sleep(10000).then(() => {
-                  // event.returnValue = this.device.amount.toString()
-                  // console.log('$$ Pax.TJ PAY', arg)
-                  event.reply('async-amount-reply', this.device.amount.toString())
-            
-                })
-              }
-
+            /* dev */
+            function submitAmountHandler(amount: any) {
+              // console.log('$$ replyAmount', amount)
+              self.sleep(2000).then(() => {
+                event.reply('async-amount-reply', amount.toString())
+              })
             }
+            self.device.resultEmitter.on(
+              'submitSuccessAmount',
+              submitAmountHandler,
+              this.amount
+            )
           }
         }
       } catch (err) {
@@ -138,9 +115,9 @@ class Pax extends EventEmitter {
   // this.getComPort()
 
   // ------------------------------------
-  getAmount(param: any) {
-    this.bankAmount = param
-  }
+  // getAmount(param: any) {
+  //   this.bankAmount = param
+  // }
 
   // connect to pax ---------------------
   private connect = async () => {
