@@ -74,27 +74,14 @@ class Pax extends EventEmitter {
     /* dev */
     let res = await this.sendPRODUCT(amount).catch(e => ({}))
 
-    /*     if (params.amount != amount) {
-      this.subscribe(Observer.item)
-      this.fire({ type: 'REJECT', payload: params.amount })
-      this.unsubscribe(Observer.item)
-      throw new Error(
-        `Wrond paid. Expected ${amount}, but result ${params.amount}`
-      )
-    } 
-    else {
-      this.sendFINAL()
-    } */
-
     return res
   }
   /* dev */
-  check(amount, amountReply) {
+  check(amount, amountReply, status) {
     let res
-    console.log('$$ amount amountReply', amount, amountReply)
+    // console.log('$$ amount amountReply status', amount, amountReply, status)
     if (+amount !== +amountReply) {
       this.subscribe(Observer.item)
-      // this.fire({ type: 'REJECT', payload: amountReply })
       this.fire({ type: 'REJECT', payload: null })
       this.unsubscribe(Observer.item)
       throw new Error(
@@ -104,10 +91,11 @@ class Pax extends EventEmitter {
       /* dev */
       if (+amountReply > 0) {
         /* dev */
-        console.log('$$ payload: amountReply', amountReply)
+        // console.log('$$ payload: amountReply', amountReply)
 
         this.subscribe(Observer.item)
-        this.fire({ type: 'RESOLVE', payload: amountReply })
+        /* dev */
+        this.fire({ type: 'RESOLVE', payload: amountReply, status })
         this.unsubscribe(Observer.item)
       }
 
@@ -139,13 +127,11 @@ class Pax extends EventEmitter {
       case 'PAY':
         console.log('$$ Pax.js --PAY')
         ipcRenderer.send('async-amount-message', params.amount.toString())
-        // ipcRenderer.on('async-amount-reply', (event, arg) => {
-        //   console.log('$$ Pax.JS PAY', arg)
-        // })
-        ipcRenderer.on('async-amount-reply', (event, arg) => {
-          this.check(params.amount, arg)
-        })
 
+        ipcRenderer.on('async-amount-reply', (event, amount, status) => {
+          
+          this.check(params.amount, amount, status)
+        })
         break
       case 'FIN':
         break

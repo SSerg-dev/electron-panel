@@ -12,6 +12,7 @@ import BCNetParser from '../BCNetParser'
 import CMDS from '../Commands'
 import { wait } from '../../../utils'
 import BCNet from '..'
+import Pax from './Pax'
 
 import {
   // ACK_RES,
@@ -26,7 +27,8 @@ import {
   CODE_FUNC,
   UNUMBER_FUNC,
   IDENT_FUNC,
-  VUNAME_FUNC
+  VUNAME_FUNC,
+  SUCCESS
 } from '../Constants'
 
 import { PaxRequest } from './PaxRequest'
@@ -65,7 +67,7 @@ class PaxDevice extends EventEmitter {
   info: any
   isDebug: any
   bills: any
-  status: any
+  status: string = ''
 
   isSend: boolean
   currency: string
@@ -116,12 +118,16 @@ class PaxDevice extends EventEmitter {
     )
     /* On serial open event. */
     this.serial.on('open', () => self.onSerialPortOpen())
+
     /* On serial error event. */
     this.serial.on('error', (error: any) => self.onSerialPortError(error))
+
     /* On serial close event. */
     this.serial.on('close', () => this.onSerialPortClose())
 
-    this.parser = this.serial.pipe(new BCNetParser())
+    /* dev */
+    // this.parser = this.serial.pipe(new BCNetParser())
+
     /* Device identification information. */
     this.info = {
       model: '',
@@ -258,12 +264,14 @@ class PaxDevice extends EventEmitter {
     return response
   }
   // ------------------------------------
-  // read = (request: Buffer, timeout: number = 1000) => {
   read = () => {
     let self = this
     let result
     try {
       this.connect()
+      /* dev */
+      // this.serial.on('open', () => self.onSerialPortOpen())
+
       self.serial.on('readable', () => {
         if (self.serial !== undefined) {
           self.readResponse = self.serial.read()
@@ -291,24 +299,31 @@ class PaxDevice extends EventEmitter {
 
     // try {
     // ----------------------------------
-    // console.log('$$ parseReadResponse list:', response[0], ack[0], self.serial)
-    // console.log('$$ ASK res list:', response[0], ack[0], typeof self.serial, this.isOpen)
-
     try {
-      if (response[0] === ack[0]) {
-        setTimeout(() => {
-          if (self.serial !== undefined) {
-            res = self.serial.write(ack)
+      // console.log('$$ parseReadResponse list:', response[0] , ack[0] , self.serial)
+      /* 
+      self.sleep(2000).then(() => {
+                event.reply('async-amount-reply', amount.toString(), status.toString())
+              })
+      */
 
-            console.log('ASK res', res, response)
-          }
-        }, timeout1)
+      if (response[0] === ack[0]) {
+        // setTimeout(() => {
+          // if (self.serial !== undefined) {
+            // res = self.serial.write(ack)
+            // console.log('ASK res', res, response)
+            console.log('$$ ASK err list:', response[0], ack[0], ack)
+            this.serial.write(ack)
+            
+          // }
+        // }, timeout1)
+
       }
     } catch (err) {
-      console.log('$$ err ASK', err)
+      console.log('$$ catch err ASK', err)
     }
 
-    try {
+    /* try {
       if (response[0] === stx[0] && response[1] === 0x5) {
         setTimeout(() => {
           res = self.serial.write(ack)
@@ -317,10 +332,9 @@ class PaxDevice extends EventEmitter {
       }
     } catch (err) {
       // console.log('$$ err WAIT', err)
-      res = self.serial.write(ack)
-    }
+    } */
 
-    try {
+    /* try {
       if (response[0] === stx[0] && response[1] !== 0x5) {
         setTimeout(() => {
           res = self.serial.write(ack)
@@ -334,10 +348,11 @@ class PaxDevice extends EventEmitter {
           const amountLength = self.amount.toString().length
           result = +result.toString().slice(0, amountLength)
 
+          this.status = this.getStatus(response)
+
           this.amount = result
           if (+this.amount > 0) {
-            // console.log('$$ FIN amount-->', result)
-            this.sendSuccessAmount(result)
+            this.sendSuccessAmount(result, this.status)
             res = self.serial.write(eot)
             this.disconnect()
           }
@@ -345,12 +360,8 @@ class PaxDevice extends EventEmitter {
       }
     } catch (err) {
       // console.log('$$ err FIN', err)
-    }
+    } */
     // ----------------------------------
-    // } catch (err) {
-    //   console.log('Error parseReadResponse', err)
-    // return false
-    // }
 
     // res = self.serial.write(eot)
     // this.disconnect()
@@ -359,8 +370,12 @@ class PaxDevice extends EventEmitter {
     return true
   }
   // ------------------------------------
-  sendSuccessAmount(amount: number) {
-    this.resultEmitter.emit('submitSuccessAmount', amount)
+  getStatus(response: any) {
+    const index = response.findIndex((s: any) => s === SUCCESS)
+    return response[index + 1].toString(16)
+  }
+  sendSuccessAmount(amount: number, status: string) {
+    this.resultEmitter.emit('submitSuccessAmount', amount, status)
   }
 
   // ------------------------------------

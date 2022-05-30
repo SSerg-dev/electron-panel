@@ -28,6 +28,7 @@ class Pax extends EventEmitter {
   config: any
   bills: number[]
   amount: number
+  status: any
   isConnect: boolean
   bankAmount: any = 0
   customEvent: any = null
@@ -59,7 +60,7 @@ class Pax extends EventEmitter {
     // this.instance.disconnect()
     return item
   }
-  private sleep(ms: number) {
+  sleep(ms: number) {
     return new Promise(resolve => {
       setTimeout(() => resolve(ms), ms)
     })
@@ -78,24 +79,25 @@ class Pax extends EventEmitter {
         if (self.amount > 0) {
           if (self.device !== undefined) {
             const request = self.device.getSaleRequest(self.amount)
-            console.log('$$ Pas.ts request', request)
+            // console.log('$$ Pas.ts request', request)
             const writeResponse = self.device.write(request, 2000)
-            console.log('$$ writeResponse', writeResponse)
+            // console.log('$$ writeResponse', writeResponse)
 
             const readResponse = self.device.read()
-            console.log('$$ readResponse', readResponse)
+            // console.log('$$ readResponse', readResponse)
 
             /* dev */
-            function submitAmountHandler(amount: any) {
+            function submitAmountHandler(amount: any, status: any) {
               // console.log('$$ replyAmount', amount)
               self.sleep(2000).then(() => {
-                event.reply('async-amount-reply', amount.toString())
+                event.reply('async-amount-reply', amount.toString(), status.toString())
               })
             }
             self.device.resultEmitter.on(
               'submitSuccessAmount',
               submitAmountHandler,
-              this.amount
+              this.amount,
+              this.status
             )
           }
         }

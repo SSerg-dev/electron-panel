@@ -1,9 +1,10 @@
 class Observer {
   static item = null
 
-  constructor(state = 0) {
+  constructor(state = 0, status = 0) {
     this.state = state
     this.initialState = state
+    this.status = status
 
   }
 
@@ -24,6 +25,7 @@ class Observer {
         break
       case 'RESOLVE':
         this.state = action.payload
+        this.status = action.status
         break
       case 'REJECT':
         this.state = action.payload

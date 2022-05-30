@@ -15,8 +15,8 @@ export const CRC_POLY_PAX = 0x8005
 export const ADR_CARD_READER = 0x04
 /* port */
 export const PAX_PORT = '/dev/ttyPos0'
-export const TERMINAL_ID = '00322346'
-// export const TERMINAL_ID = '00311159'
+// export const TERMINAL_ID = '00322346'
+export const TERMINAL_ID = '00311159'
 
 // from Qt src -------------------------- 
 export const ACK_RES = 0x06
@@ -35,6 +35,7 @@ export const UNUMBER_FUNC = 0x26 // 0x1A
 export const IDENT_FUNC = 0x27 // 0x1b
 export const VUNAME_FUNC = 0x89 // 0x59
 
+export const SUCCESS = 0x27
 // --------------------------------------
 
 /* End of file Constants.ts */

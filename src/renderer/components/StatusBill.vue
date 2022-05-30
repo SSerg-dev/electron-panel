@@ -62,10 +62,12 @@ export default Vue.extend({
     card: 0,
     terminal: null,
     observer: null,
-    sleepMs: 4000,
+    sleepMs: 1000,
     message: null,
     isShow: false,
-    terminalType: ''
+    terminalType: '',
+    SUCCESS: 1
+    
   }),
   computed: {
     ...mapGetters({
@@ -93,34 +95,53 @@ export default Vue.extend({
       } while (currentDate - date < ms)
     },
     gotoMainMenu(seconds) {
+      // this.sleep(this.sleepMs)
       this.intervalMainMenu = setInterval(() => {
         this.seconds = seconds--
         this.observer = Observer.item
 
-        // console.log('$$ pax this.observer.state', this.observer.state)
-        console.log('$$ gotoMainMenu list:', this.observer.state, this.card)
-        
-        if (+this.observer.state > 0 && +this.observer.state === +this.card) {
+        // console.log('$$ gotoMainMenu list:', this.observer.state, this.card, this.observer.status)
+
+        if (+this.observer.state > 0 && +this.observer.state === +this.card && +this.observer.status === this.SUCCESS) {
           console.log('Операция одобрена, сумма:', this.observer.state)
           this.cardMessageIndex = 3
           this.setStatusBillMessagesIndex(this.cardMessageIndex)
           this.updateWetMoney(this.observer.state)
           this.$message(`Операция одобрена, сумма:  ${this.observer.state}`)
-          this.sleep(this.sleepMs)
+          
           seconds = 0
           this.setCardBonusState()
           this.$router.push('/cash')
-        }
+        } 
+        /* else {
+          switch (this.terminalType) {
+            case 'pax':
+              if (+this.observer.state === 0 +this.card > 0) {
+                this.$message(`Операция терминала pax отклонена`)
+              }
+              break
+            case 'vendotek':
+              if (
+                !(typeof this.observer.state === 'number') &&
+                +this.card > 0
+              ) {
+                this.$message(`Операция терминала vendotek отклонена`)
+              }
 
-        if (!(typeof this.observer.state === 'number') && +this.card > 0) {
+              break
+
+            default:
+              this.$message(`Неизвестный терминал`)
+              break
+          }
           this.cardMessageIndex = 4
           this.setStatusBillMessagesIndex(this.cardMessageIndex)
-
-          this.$message(`Операция отклонена`)
           this.sleep(this.sleepMs)
-          this.$router.push('/')
-        }
-
+          if (+this.seconds === 0) {
+            this.$router.push('/')  
+          }
+          
+        } */
       }, 1000)
     },
     setCardBonusState() {
@@ -150,17 +171,17 @@ export default Vue.extend({
     this.terminalType = this.getDefaultTerminalType()
 
     switch (this.terminalType) {
-      case 'pax' :
+      case 'pax':
         this.terminal = BCNet.Pax.item
         // console.log('BCNet.Pax.item', BCNet.Pax.item)
         break
-      case 'vendotek' :
-        this.terminal = BCNet.Vendotek.item    
+      case 'vendotek':
+        this.terminal = BCNet.Vendotek.item
         // console.log('BCNet.Vendotek.item', BCNet.Vendotek.item)
         break
-        
+
       default:
-        break  
+        break
     }
 
     // todo this.setStatusBill from ...
