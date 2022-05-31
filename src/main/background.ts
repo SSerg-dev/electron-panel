@@ -156,6 +156,7 @@ const idle = async (config: any) => {
   }
 
   /* dev */
+
   if (config.bank_terminal) {
     const options = {
       type: config.bank_terminal.hardware,

@@ -268,16 +268,31 @@ class PaxDevice extends EventEmitter {
     let self = this
     let result
     try {
-      this.connect()
       /* dev */
-      // this.serial.on('open', () => self.onSerialPortOpen())
+      // this.connect()
 
-      self.serial.on('readable', () => {
-        if (self.serial !== undefined) {
+      if (self.serial !== undefined) {
+        console.log('$$ PaxDevice.ts async-amount-message 05-->')
+
+        // ------------------------------
+        /* dev */
+        // self.serial.on('data', (data: any) => {
+        //   console.log('$$ PaxDevice.ts async-amount-message 07-->', data)
+        // })
+        // ------------------------------
+        self.serial.on('readable', () => {
+          console.log('$$ PaxDevice.ts async-amount-message 06-->')
+
           self.readResponse = self.serial.read()
           result = self.parseReadResponse(self.readResponse)
-        }
-      })
+        })
+        // ------------------------------
+        // self.serial.on('data', (data: any) => {
+        //   console.log('$$ PaxDevice.ts async-amount-message 07-->', data)
+        // })
+        // ------------------------------
+      }
+
       return true
     } catch (err) {
       // throw err
@@ -297,33 +312,21 @@ class PaxDevice extends EventEmitter {
     const timeout1 = BCNet.TIMEOUT_1 * 1000
     const timeout2 = BCNet.TIMEOUT_2 * 1000
 
-    // try {
     // ----------------------------------
     try {
-      // console.log('$$ parseReadResponse list:', response[0] , ack[0] , self.serial)
-      /* 
-      self.sleep(2000).then(() => {
-                event.reply('async-amount-reply', amount.toString(), status.toString())
-              })
-      */
-
       if (response[0] === ack[0]) {
-        // setTimeout(() => {
-          // if (self.serial !== undefined) {
-            // res = self.serial.write(ack)
-            // console.log('ASK res', res, response)
-            console.log('$$ ASK err list:', response[0], ack[0], ack)
-            this.serial.write(ack)
-            
-          // }
-        // }, timeout1)
-
+        setTimeout(() => {
+          if (self.serial !== undefined) {
+            res = self.serial.write(ack)
+            console.log('ASK res', res, response)
+          }
+        }, timeout1)
       }
     } catch (err) {
-      console.log('$$ catch err ASK', err)
+      console.log('$$!! catch err ASK', err)
     }
 
-    /* try {
+    try {
       if (response[0] === stx[0] && response[1] === 0x5) {
         setTimeout(() => {
           res = self.serial.write(ack)
@@ -332,17 +335,27 @@ class PaxDevice extends EventEmitter {
       }
     } catch (err) {
       // console.log('$$ err WAIT', err)
-    } */
+    }
 
-    /* try {
+    try {
+      // console.log(
+      //   '$$ PasDevice.ts async-amount-message 05',
+      //   response[0],
+      //   response[1],
+      //   response[2]
+      // )
       if (response[0] === stx[0] && response[1] !== 0x5) {
         setTimeout(() => {
-          res = self.serial.write(ack)
-          console.log('FIN res', res, response)
+          // res = self.serial.write(ack)
+          // console.log('FIN res', res, response)
+          console.log('FIN res', response)
+
           const amount =
             response[6].toString(16) +
             response[7].toString(16) +
             response[8].toString(16)
+
+          // console.log('$$ PasDevice.ts async-amount-message 05', amount)
 
           result = parseInt(self.hexToAscii(amount))
           const amountLength = self.amount.toString().length
@@ -360,7 +373,7 @@ class PaxDevice extends EventEmitter {
       }
     } catch (err) {
       // console.log('$$ err FIN', err)
-    } */
+    }
     // ----------------------------------
 
     // res = self.serial.write(eot)
@@ -706,25 +719,21 @@ class PaxDevice extends EventEmitter {
    * @param {Number} timeout The maximum time to complete this action.
    * @returns {Promise}
    */
-  execute = (command: any, params: any[] = [], timeout: number = 1000) => {
+
+  /* execute = (command: any, params: any[] = [], timeout: number = 1000) => {
     let self = this
     return new Promise<any>(async (resolve, reject) => {
       try {
-        /* Preparing command to send. */
         const request = command.request(params)
-        // console.log('request', request)
-
         await self.waitSending(timeout)
         await wait(100)
-
         const response = await self.send(request, timeout)
-        // console.log('response', response)
         resolve(command.response(response))
       } catch (error) {
         reject(error)
       }
     })
-  }
+  } */
   // ------------------------------------
 
   /**

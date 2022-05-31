@@ -108,7 +108,7 @@ export default {
         let flag
         this.getWetBalance > 0 ? (flag = true) : (flag = false)
         // console.log('flag-->', flag)
-        if (!flag) this.$message('Внесите минимальную сумму (10 руб.)')
+        if (!flag) this.$message('Внесите минимальную сумму')
         return flag
       }
     }

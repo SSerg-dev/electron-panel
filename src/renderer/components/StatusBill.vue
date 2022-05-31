@@ -66,8 +66,8 @@ export default Vue.extend({
     message: null,
     isShow: false,
     terminalType: '',
-    SUCCESS: 1
-    
+    SUCCESS: 1,
+    UNSUCCESS: 0
   }),
   computed: {
     ...mapGetters({
@@ -95,54 +95,57 @@ export default Vue.extend({
       } while (currentDate - date < ms)
     },
     gotoMainMenu(seconds) {
-      // this.sleep(this.sleepMs)
       this.intervalMainMenu = setInterval(() => {
         this.seconds = seconds--
         this.observer = Observer.item
 
-        // console.log('$$ gotoMainMenu list:', this.observer.state, this.card, this.observer.status)
+        switch (this.terminalType) {
+          case 'pax':
+            if (
+              +this.observer.state > 0 &&
+              +this.observer.state === +this.card &&
+              +this.observer.status === this.SUCCESS
+            ) {
+              seconds = 0
+              this.resolve(this.terminalType)
+            } else if (+this.observer.status === this.UNSUCCESS) {
+              this.reject(this.terminalType)
+            }
+            break
+          case 'vendotek':
+            // if (typeof this.observer.state === 'number' && +this.card > 0) {
+            if (
+              +this.observer.state > 0 &&
+              +this.observer.state === +this.card
+            ) {
+              seconds = 0
+              this.resolve(this.terminalType)
+            } else {
+              // this.reject(this.terminalType)
+            }
+            break
 
-        if (+this.observer.state > 0 && +this.observer.state === +this.card && +this.observer.status === this.SUCCESS) {
-          console.log('Операция одобрена, сумма:', this.observer.state)
-          this.cardMessageIndex = 3
-          this.setStatusBillMessagesIndex(this.cardMessageIndex)
-          this.updateWetMoney(this.observer.state)
-          this.$message(`Операция одобрена, сумма:  ${this.observer.state}`)
-          
-          seconds = 0
-          this.setCardBonusState()
-          this.$router.push('/cash')
-        } 
-        /* else {
-          switch (this.terminalType) {
-            case 'pax':
-              if (+this.observer.state === 0 +this.card > 0) {
-                this.$message(`Операция терминала pax отклонена`)
-              }
-              break
-            case 'vendotek':
-              if (
-                !(typeof this.observer.state === 'number') &&
-                +this.card > 0
-              ) {
-                this.$message(`Операция терминала vendotek отклонена`)
-              }
-
-              break
-
-            default:
-              this.$message(`Неизвестный терминал`)
-              break
-          }
-          this.cardMessageIndex = 4
-          this.setStatusBillMessagesIndex(this.cardMessageIndex)
-          this.sleep(this.sleepMs)
-          if (+this.seconds === 0) {
-            this.$router.push('/')  
-          }
-          
-        } */
+          default:
+            break
+        }
       }, 1000)
+    },
+    resolve(type) {
+      console.log('Операция одобрена, сумма:', this.observer.state)
+      this.cardMessageIndex = 3
+      this.setStatusBillMessagesIndex(this.cardMessageIndex)
+      this.updateWetMoney(this.observer.state)
+      this.$message(
+        `Операция терминала ${type} одобрена, сумма:  ${this.observer.state}`
+      )
+
+      //seconds = 0
+      this.setCardBonusState()
+      this.$router.push('/cash')
+    },
+    reject(type) {
+      this.$message(`Операция терминала ${type} отклонена`)
+      this.$router.push('/')
     },
     setCardBonusState() {
       this.setIsPayBonusMoney(false)

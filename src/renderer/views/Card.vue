@@ -57,7 +57,7 @@ export default Vue.extend({
     },
 
     intervalMainMenu: null,
-    messages: [`Введите сумму пополнения`, `Минимальная сумма 10 руб`],
+    messages: [`Введите сумму пополнения`, ` `],
     messageIndex: -1,
     balance: 0,
     card: 0,

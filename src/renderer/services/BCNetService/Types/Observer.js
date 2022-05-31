@@ -1,7 +1,7 @@
 class Observer {
   static item = null
 
-  constructor(state = 0, status = 0) {
+  constructor(state = 0, status = -1) {
     this.state = state
     this.initialState = state
     this.status = status

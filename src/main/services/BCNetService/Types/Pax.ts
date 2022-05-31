@@ -73,15 +73,21 @@ class Pax extends EventEmitter {
     /* dev */
     ipcMain.on('async-amount-message', (event, arg) => {
       let self = this
-
+      console.log('$$ Pax.ts async-amount-message 01', arg)
+      
       self.amount = +arg
       try {
         if (self.amount > 0) {
+          console.log('$$ Pax.ts async-amount-message 02', arg)
           if (self.device !== undefined) {
             const request = self.device.getSaleRequest(self.amount)
-            // console.log('$$ Pas.ts request', request)
+            
+            /* dev */
+            console.log('$$ Pax.ts async-amount-message 03', arg)
+            // console.log('$$ Pax.ts request', request)
             const writeResponse = self.device.write(request, 2000)
             // console.log('$$ writeResponse', writeResponse)
+            console.log('$$ Pax.ts async-amount-message 04', writeResponse)
 
             const readResponse = self.device.read()
             // console.log('$$ readResponse', readResponse)
