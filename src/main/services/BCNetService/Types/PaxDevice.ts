@@ -37,6 +37,7 @@ import { createContext } from 'vm'
 import { setTimeout } from 'timers'
 
 import { ipcMain } from 'electron'
+import { type } from 'os'
 // const { MessageChannelMain } = require('electron')
 
 const { crc8, crc16, crc32 } = require('easy-crc')
@@ -113,6 +114,7 @@ class PaxDevice extends EventEmitter {
     this.isSend = false
 
     /* Create comport driver.  */
+    // this.serial = null
     this.serial = new SerialPort(this.port, this.portOptions, err =>
       this.debug(err)
     )
@@ -151,15 +153,30 @@ class PaxDevice extends EventEmitter {
   get isOpen() {
     return this.serial.isOpen
   }
-
   // methods
   // comport methods --------------------
-  /**
-   * Open comport.
-   */
+  connect = async () => {
+    if (!this.isOpen) {
+      try {
+        await this.open()
+      } catch (err) {
+        throw err
+      }
+    }
+    // device init --------------
+    // try {
+    //   this.execute(this.commands.Reset)
+    //   return true
+    // } catch (err) {
+    //   throw err
+    // }
+  } // end connect
 
   open = () => {
     let self = this
+    /* dev */
+    console.log('$$ self.serial.open', self.serial.isOpen)
+
     return new Promise<any>((resolve, reject) => {
       if (self.serial.isOpen) {
         resolve(true)
@@ -174,32 +191,13 @@ class PaxDevice extends EventEmitter {
     })
   }
 
-  /**
-   * Connect to device.
-   */
-  connect = async () => {
-    if (!this.isOpen) {
+  disconnect = async () => {
+    if (this.isOpen) {
       try {
-        const response = await this.open()
-        // response--> true
+        await this.close()
       } catch (err) {
         throw err
       }
-    }
-    // device init --------------
-    // try {
-    //   this.execute(this.commands.Reset)
-    //   return true
-    // } catch (err) {
-    //   throw err
-    // }
-  } // end connect
-
-  disconnect = async () => {
-    try {
-      await this.close()
-    } catch (err) {
-      throw err
     }
   }
 
@@ -209,9 +207,7 @@ class PaxDevice extends EventEmitter {
     return new Promise<any>((resolve, reject) => {
       if (self.serial.isOpen) {
         self.serial.close((error: any) => {
-          // dev
           if (error) {
-            console.log('$$ error close')
             reject(error)
           }
           resolve(true)
@@ -268,31 +264,23 @@ class PaxDevice extends EventEmitter {
     let self = this
     let result
     try {
-      /* dev */
-      // this.connect()
-
-      if (self.serial !== undefined) {
-        console.log('$$ PaxDevice.ts async-amount-message 05-->')
-
-        // ------------------------------
-        /* dev */
-        // self.serial.on('data', (data: any) => {
-        //   console.log('$$ PaxDevice.ts async-amount-message 07-->', data)
-        // })
-        // ------------------------------
-        self.serial.on('readable', () => {
-          console.log('$$ PaxDevice.ts async-amount-message 06-->')
-
-          self.readResponse = self.serial.read()
-          result = self.parseReadResponse(self.readResponse)
-        })
-        // ------------------------------
-        // self.serial.on('data', (data: any) => {
-        //   console.log('$$ PaxDevice.ts async-amount-message 07-->', data)
-        // })
-        // ------------------------------
+      if (!self.serial.isOpen) {
+        self.connect()
       }
-
+      console.log(
+        '$$ PaxDevice.ts self.serial.isOpen 01-->',
+        self.serial.isOpen
+      )
+      // ------------------------------
+      self.serial.on('readable', () => {
+        self.readResponse = self.serial.read()
+        console.log(
+          '$$ PaxDevice.ts self.readResponse 02-->',
+          self.readResponse
+        )
+        result = self.parseReadResponse(self.readResponse)
+      })
+      // ------------------------------
       return true
     } catch (err) {
       // throw err
@@ -314,16 +302,15 @@ class PaxDevice extends EventEmitter {
 
     // ----------------------------------
     try {
-      if (response[0] === ack[0]) {
+      const resAck = response[0] || ack[0]
+      if (resAck === ack[0]) {
         setTimeout(() => {
-          if (self.serial !== undefined) {
-            res = self.serial.write(ack)
-            console.log('ASK res', res, response)
-          }
+          res = self.serial.write(ack)
+          console.log('ASK res', res, JSON.stringify(response) )
         }, timeout1)
       }
     } catch (err) {
-      console.log('$$!! catch err ASK', err)
+      console.log('$$ catch err ASK', err)
     }
 
     try {
@@ -334,28 +321,19 @@ class PaxDevice extends EventEmitter {
         }, timeout1)
       }
     } catch (err) {
-      // console.log('$$ err WAIT', err)
+      console.log('$$ err WAIT', err)
     }
 
     try {
-      // console.log(
-      //   '$$ PasDevice.ts async-amount-message 05',
-      //   response[0],
-      //   response[1],
-      //   response[2]
-      // )
       if (response[0] === stx[0] && response[1] !== 0x5) {
         setTimeout(() => {
-          // res = self.serial.write(ack)
-          // console.log('FIN res', res, response)
-          console.log('FIN res', response)
+          res = self.serial.write(ack)
+          console.log('FIN res', res, response)
 
           const amount =
             response[6].toString(16) +
             response[7].toString(16) +
             response[8].toString(16)
-
-          // console.log('$$ PasDevice.ts async-amount-message 05', amount)
 
           result = parseInt(self.hexToAscii(amount))
           const amountLength = self.amount.toString().length
@@ -366,8 +344,8 @@ class PaxDevice extends EventEmitter {
           this.amount = result
           if (+this.amount > 0) {
             this.sendSuccessAmount(result, this.status)
-            res = self.serial.write(eot)
-            this.disconnect()
+            // res = self.serial.write(eot)
+            //this.disconnect()
           }
         }, timeout1)
       }
@@ -557,29 +535,10 @@ class PaxDevice extends EventEmitter {
       Buffer.from(this.str2hex(this.paxRequest.messages[6].data.toString(base)))
     ])
 
-    // resultTest  crc = <Buffer 94 56>
-    // let resultTest
-    // resultTest = Buffer.from([ 0x02, 0x3E , 0x00 , 0x00 , 0x03 , 0x00 , 0x32 , 0x30 , 0x30 , 0x04 , 0x03 , 0x00 , 0x36 , 0x34 , 0x33 , 0x15 , 0x0E , 0x00 , 0x32 , 0x30 , 0x32 , 0x32 , 0x30 , 0x35 , 0x31 , 0x36 , 0x31 , 0x30 , 0x33 , 0x31 , 0x35 , 0x38 , 0x19 , 0x01 , 0x00 , 0x31 , 0x1A , 0x02 , 0x00 , 0x31 , 0x32 , 0x1B , 0x08 , 0x00 , 0x30 , 0x30 , 0x33 , 0x32 , 0x32 , 0x33 , 0x34 , 0x36 , 0x59 , 0x0A , 0x00 , 0x56 , 0x4D , 0x30 , 0x30 , 0x30 , 0x38 , 0x30 , 0x39 , 0x35 , 0x31])
-
-    // resultTest = Buffer.from([ 0x02, 0x3E , 0x00 , 0x00 , 0x03 , 0x00 , 0x32 , 0x30 , 0x30 , 0x04 , 0x03 , 0x00 , 0x36 , 0x34 , 0x33 , 0x15 , 0x0E , 0x00 , 0x32 , 0x30 , 0x32 , 0x32 , 0x30 , 0x35 , 0x31 , 0x39 , 0x31 , 0x36 , 0x35 , 0x31 , 0x32 , 0x31 , 0x19 , 0x01 , 0x00 , 0x31 , 0x1A , 0x02 , 0x00 , 0x31 , 0x32 , 0x1B , 0x08 , 0x00 , 0x30 , 0x30 , 0x33 , 0x32 , 0x32 , 0x33 , 0x34 , 0x36 , 0x59 , 0x0A , 0x00 , 0x56 , 0x4D , 0x30 , 0x30 , 0x30 , 0x38 , 0x30 , 0x39 , 0x35 , 0x31])
-    // const crcTest = this.getCRC16(resultTest)
-    // console.log('$$ resultTest-->', resultTest, crcTest )
-    // return resultTest
-
-    // result
     let result
     result = Buffer.concat([head, body])
     const crc = this.getCRC16(result)
     result = Buffer.concat([head, body, crc])
-
-    // console.log('$$ crc start------------------------>')
-    // for (let i =0; i < result.length; i++ ) {
-    //   console.log( i, result[i].toString(16))
-    // }
-
-    // console.log('$$ crc-->', crc)
-    // console.log('$$ result.length-->', result.length)
-    // console.log('$$ crc end-------------------------->')
 
     return result
   }
@@ -595,22 +554,70 @@ class PaxDevice extends EventEmitter {
   getReconciliationRequest() {
     this.clear()
     this.paxRequest.messages[0] = this.createMessage(CODE_FUNC, '59')
+
     this.paxRequest.messages[1] = this.createMessage(
       IDENT_FUNC,
       this.terminalId
     )
     this.paxRequest.messages[2] = this.createMessage(
       VUNAME_FUNC,
-      'VM' + this.terminalId
+      this.terminalType
     )
-    return this.getRequest()
+    return this.getReconciliationPackRequest()
   }
+  getReconciliationPackRequest() {
+    const base = 10
+    const headSize = 3
 
+    this.paxRequest.stx = BCNet.STX_RES
+    this.paxRequest.mesgsLen = 0
+    this.paxRequest.mesgsData = ''
+
+    this.paxRequest.messages.forEach((item: any, index: number) => {
+      this.paxRequest.mesgsLen += this.paxRequest.messages[index].mesLen
+      this.paxRequest.mesgsData += this.paxRequest.messages[index].data
+    })
+
+    const requestLength =
+      this.paxRequest.mesgsLen + this.paxRequest.messages.length * headSize
+
+    const head = Buffer.concat([
+      Buffer.from([this.paxRequest.stx]), // stx 1 byte
+      Buffer.from([requestLength.toString(base), '00']) // requestLength 2 byte
+    ])
+
+    const body = Buffer.concat([
+      Buffer.from([this.paxRequest.messages[0].numField]), // field number 1 byte
+      Buffer.from([this.paxRequest.messages[0].mesLen, '00']), // mesgsLen 2 byte
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[0].data.toString(base))
+      ),
+
+      Buffer.from([this.paxRequest.messages[1].numField]),
+      Buffer.from([this.paxRequest.messages[1].mesLen, '00']),
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[1].data.toString(base))
+      ),
+
+      Buffer.from([this.paxRequest.messages[2].numField]),
+      Buffer.from([this.paxRequest.messages[2].mesLen, '00']),
+      Buffer.from(this.str2hex(this.paxRequest.messages[2].data.toString(base)))
+    ])
+
+    let result
+    result = Buffer.concat([head, body])
+    const crc = this.getCRC16(result)
+    result = Buffer.concat([head, body, crc])
+
+    return result
+  }
+  /* 
   getCheckRequest() {
     this.clear()
     this.paxRequest.messages[0] = this.createMessage(CODE_FUNC, '26')
     return this.getRequest()
   }
+  */
 
   str2hex = (str: any) => {
     str = str.toString()
@@ -622,6 +629,7 @@ class PaxDevice extends EventEmitter {
   }
 
   // ----------------------------------
+  /* 
   swap = (number: any, base: any = 16) => {
     let buf
     switch (number.length) {
@@ -639,8 +647,8 @@ class PaxDevice extends EventEmitter {
     }
     buf = buf.swap16()
     return buf
-  }
-  // console.log('buf-->', swap('42'))
+  } 
+  */
   // --------------------------------------
 
   /* Utils methods --------------------------------------------------------- */

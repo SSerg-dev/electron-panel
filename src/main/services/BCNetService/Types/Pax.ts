@@ -70,33 +70,23 @@ class Pax extends EventEmitter {
   private flowSequence = async () => {
     this.connect()
 
-    /* dev */
     ipcMain.on('async-amount-message', (event, arg) => {
       let self = this
-      console.log('$$ Pax.ts async-amount-message 01', arg)
-      
       self.amount = +arg
       try {
         if (self.amount > 0) {
-          console.log('$$ Pax.ts async-amount-message 02', arg)
           if (self.device !== undefined) {
-            const request = self.device.getSaleRequest(self.amount)
             
-            /* dev */
-            console.log('$$ Pax.ts async-amount-message 03', arg)
+            const request = self.device.getSaleRequest(self.amount)
+            // const request = this.device.getReconciliationRequest()
+            
             // console.log('$$ Pax.ts request', request)
             const writeResponse = self.device.write(request, 2000)
-            // console.log('$$ writeResponse', writeResponse)
-            console.log('$$ Pax.ts async-amount-message 04', writeResponse)
-
             const readResponse = self.device.read()
-            // console.log('$$ readResponse', readResponse)
-
-            /* dev */
             function submitAmountHandler(amount: any, status: any) {
-              // console.log('$$ replyAmount', amount)
               self.sleep(2000).then(() => {
                 event.reply('async-amount-reply', amount.toString(), status.toString())
+                // self.device.disconnect()
               })
             }
             self.device.resultEmitter.on(
@@ -110,7 +100,8 @@ class Pax extends EventEmitter {
       } catch (err) {
         console.log('Error', err)
       }
-    })
+    }) 
+   
     /*     */
   }
   // ------------------------------------
@@ -129,7 +120,9 @@ class Pax extends EventEmitter {
 
   // connect to pax ---------------------
   private connect = async () => {
+
     const { port, number, currency } = Pax.instance.config
+    // this.device = delete this.device
     this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)
 
     try {
@@ -142,7 +135,7 @@ class Pax extends EventEmitter {
       log(TAG, '$$ Connected error', err)
       await this.device.disconnect()
       this.isConnect = false
-      delete this.device
+      // delete this.device
     }
   }
   // private disconnect = async () => {}
