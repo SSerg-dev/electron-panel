@@ -73,19 +73,30 @@ class Pax extends EventEmitter {
     ipcMain.on('async-amount-message', (event, arg) => {
       let self = this
       self.amount = +arg
+      let isWrite = false
       try {
         if (self.amount > 0) {
           if (self.device !== undefined) {
-            
             const request = self.device.getSaleRequest(self.amount)
             // const request = this.device.getReconciliationRequest()
-            
-            // console.log('$$ Pax.ts request', request)
-            const writeResponse = self.device.write(request, 2000)
-            const readResponse = self.device.read()
+
+            if (!isWrite) {
+              let timestamp = new Date().getTime()
+              console.log('$$ Pax.ts request 00', request, timestamp)
+              
+              const writeResponse = self.device.write(request, 2000)
+              const readResponse = self.device.read()
+              isWrite = true  
+            }
+
+            // --------------------------
             function submitAmountHandler(amount: any, status: any) {
               self.sleep(2000).then(() => {
-                event.reply('async-amount-reply', amount.toString(), status.toString())
+                event.reply(
+                  'async-amount-reply',
+                  amount.toString(),
+                  status.toString()
+                )
                 // self.device.disconnect()
               })
             }
@@ -95,13 +106,14 @@ class Pax extends EventEmitter {
               this.amount,
               this.status
             )
+            // --------------------------
           }
         }
       } catch (err) {
         console.log('Error', err)
       }
-    }) 
-   
+    })
+
     /*     */
   }
   // ------------------------------------
@@ -120,7 +132,6 @@ class Pax extends EventEmitter {
 
   // connect to pax ---------------------
   private connect = async () => {
-
     const { port, number, currency } = Pax.instance.config
     // this.device = delete this.device
     this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)

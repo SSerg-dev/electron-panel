@@ -254,10 +254,12 @@ class PaxDevice extends EventEmitter {
 
   // dev
   // ------------------------------------
-  write = (request: Buffer, timeout: number = 1000) => {
+  write = (request: Buffer, timeout: number = 2000) => {
     let self = this
-    const response = self.serial.write(request)
-    return response
+    setTimeout(() => {
+      const res = self.serial.write(request)
+      return res
+    }, timeout)
   }
   // ------------------------------------
   read = () => {
@@ -272,11 +274,17 @@ class PaxDevice extends EventEmitter {
         self.serial.isOpen
       )
       // ------------------------------
+      // ОПЕРАЦИЯ ПРЕРВАНА КАССОЙ
+      const ack = Buffer.from([BCNet.ACK_RES])
+
       self.serial.on('readable', () => {
-        self.readResponse = self.serial.read()
+        /* dev */
+        self.readResponse = self.serial.read() || ack // ??
+        let timestamp = new Date().getTime()
         console.log(
           '$$ PaxDevice.ts self.readResponse 02-->',
-          self.readResponse
+          self.readResponse,
+          timestamp
         )
         result = self.parseReadResponse(self.readResponse)
       })
@@ -306,7 +314,7 @@ class PaxDevice extends EventEmitter {
       if (resAck === ack[0]) {
         setTimeout(() => {
           res = self.serial.write(ack)
-          console.log('ASK res', res, JSON.stringify(response) )
+          console.log('ASK res', res, response /* JSON.stringify(response) */)
         }, timeout1)
       }
     } catch (err) {
@@ -344,6 +352,7 @@ class PaxDevice extends EventEmitter {
           this.amount = result
           if (+this.amount > 0) {
             this.sendSuccessAmount(result, this.status)
+
             // res = self.serial.write(eot)
             //this.disconnect()
           }
