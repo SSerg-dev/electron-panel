@@ -83,6 +83,7 @@ class PaxDevice extends EventEmitter {
   readResponse: any = 0
   amount: number = 0
   resultEmitter: any = null
+  timestamp: number = 0
 
   /**
    * PaxDevice constructor.
@@ -156,6 +157,8 @@ class PaxDevice extends EventEmitter {
   // methods
   // comport methods --------------------
   connect = async () => {
+    /* dev */
+
     if (!this.isOpen) {
       try {
         await this.open()
@@ -174,7 +177,6 @@ class PaxDevice extends EventEmitter {
 
   open = () => {
     let self = this
-    /* dev */
     console.log('$$ self.serial.open', self.serial.isOpen)
 
     return new Promise<any>((resolve, reject) => {
@@ -235,6 +237,7 @@ class PaxDevice extends EventEmitter {
    * @param {Number} timeout The maximum time to complete this action.
    * @returns {Promise}
    */
+  /* 
   send = (request: Buffer, timeout: number = 1000) => {
     let self = this
     return new Promise<any>(async (resolve, reject) => {
@@ -251,7 +254,7 @@ class PaxDevice extends EventEmitter {
       timer = setTimeout(timerHandler, (timeout = 10000))
     })
   }
-
+ */
   // dev
   // ------------------------------------
   write = (request: Buffer, timeout: number = 2000) => {
@@ -262,39 +265,69 @@ class PaxDevice extends EventEmitter {
     }, timeout)
   }
   // ------------------------------------
-  read = () => {
+
+  read = (request: Buffer, timeout: number = 2000) => {
     let self = this
     let result
     try {
       if (!self.serial.isOpen) {
         self.connect()
       }
-      console.log(
-        '$$ PaxDevice.ts self.serial.isOpen 01-->',
-        self.serial.isOpen
-      )
       // ------------------------------
       // ОПЕРАЦИЯ ПРЕРВАНА КАССОЙ
       const ack = Buffer.from([BCNet.ACK_RES])
+      const eot = Buffer.from([BCNet.EOT_RES])
 
       self.serial.on('readable', () => {
+        // self.readResponse = self.serial.read() // || ack
+        self.readResponse = self.serial.read() // || self.readNextResponse(request)
+
         /* dev */
-        self.readResponse = self.serial.read() || ack // ??
-        let timestamp = new Date().getTime()
+        if (self.readResponse === null) {
+          self.serial.write(ack)
+          self.serial.write(eot)
+          // self.serial.on('data', () => {
+            self.readResponse = self.serial.read()
+          //  })
+        }
+
+        self.timestamp = new Date().getTime()
         console.log(
           '$$ PaxDevice.ts self.readResponse 02-->',
           self.readResponse,
-          timestamp
+          self.timestamp
         )
-        result = self.parseReadResponse(self.readResponse)
+        if (self.readResponse !== null) {
+          result = self.parseReadResponse(self.readResponse)
+          return true
+        } else {
+          return false
+        }
       })
       // ------------------------------
-      return true
     } catch (err) {
-      // throw err
       console.log('Error', err)
-      return false
     }
+  }
+  // end read
+  // ------------------------------------
+  readNextResponse(request: Buffer) {
+    let self = this
+    let res = 42
+
+    // const eot = Buffer.from([BCNet.EOT_RES])
+    // const ack = Buffer.from([BCNet.ACK_RES])
+
+    // res = self.serial.write(eot)
+    // console.log('$$ readNextResponse 01-->', JSON.stringify(res) )
+
+    // res = self.serial.write(ack)
+    // console.log('$$ readNextResponse 02-->', JSON.stringify(res) )
+
+    // res = self.serial.write(request)
+    // console.log('$$ readNextResponse 03-->', JSON.stringify(res) )
+
+    return res
   }
   // ------------------------------------
   parseReadResponse(response: any) {
@@ -310,7 +343,7 @@ class PaxDevice extends EventEmitter {
 
     // ----------------------------------
     try {
-      const resAck = response[0] || ack[0]
+      const resAck = response[0] // || ack[0]
       if (resAck === ack[0]) {
         setTimeout(() => {
           res = self.serial.write(ack)
@@ -318,7 +351,7 @@ class PaxDevice extends EventEmitter {
         }, timeout1)
       }
     } catch (err) {
-      console.log('$$ catch err ASK', err)
+      console.log('$$ catch err ASK--> ', err)
     }
 
     try {
@@ -329,10 +362,12 @@ class PaxDevice extends EventEmitter {
         }, timeout1)
       }
     } catch (err) {
-      console.log('$$ err WAIT', err)
+      console.log('$$ err WAIT--> ', err)
     }
+    /* dev */
 
     try {
+      /* && response[9] === 0xc2 */
       if (response[0] === stx[0] && response[1] !== 0x5) {
         setTimeout(() => {
           res = self.serial.write(ack)
@@ -353,8 +388,9 @@ class PaxDevice extends EventEmitter {
           if (+this.amount > 0) {
             this.sendSuccessAmount(result, this.status)
 
+            /* dev */
             // res = self.serial.write(eot)
-            //this.disconnect()
+            // this.disconnect()
           }
         }, timeout1)
       }
@@ -362,10 +398,6 @@ class PaxDevice extends EventEmitter {
       // console.log('$$ err FIN', err)
     }
     // ----------------------------------
-
-    // res = self.serial.write(eot)
-    // this.disconnect()
-    // self.serial.write(ack)
 
     return true
   }
@@ -620,13 +652,51 @@ class PaxDevice extends EventEmitter {
 
     return result
   }
-  /* 
+
+  /* dev */
+  // ------------------------------------
   getCheckRequest() {
     this.clear()
     this.paxRequest.messages[0] = this.createMessage(CODE_FUNC, '26')
-    return this.getRequest()
+    return this.getCheckPackRequest()
   }
-  */
+  getCheckPackRequest() {
+    const base = 10
+    const headSize = 3
+
+    this.paxRequest.stx = BCNet.STX_RES
+    this.paxRequest.mesgsLen = 0
+    this.paxRequest.mesgsData = ''
+
+    this.paxRequest.messages.forEach((item: any, index: number) => {
+      this.paxRequest.mesgsLen += this.paxRequest.messages[index].mesLen
+      this.paxRequest.mesgsData += this.paxRequest.messages[index].data
+    })
+
+    const requestLength =
+      this.paxRequest.mesgsLen + this.paxRequest.messages.length * headSize
+
+    const head = Buffer.concat([
+      Buffer.from([this.paxRequest.stx]), // stx 1 byte
+      Buffer.from([requestLength.toString(base), '00']) // requestLength 2 byte
+    ])
+
+    const body = Buffer.concat([
+      Buffer.from([this.paxRequest.messages[0].numField]), // field number 1 byte
+      Buffer.from([this.paxRequest.messages[0].mesLen, '00']), // mesgsLen 2 byte
+      Buffer.from(
+        this.str2hex(this.paxRequest.messages[0].data.toString(base))
+      ),
+    ])
+
+    let result
+    result = Buffer.concat([head, body])
+    const crc = this.getCRC16(result)
+    result = Buffer.concat([head, body, crc])
+
+    return result
+  }
+  // ------------------------------------
 
   str2hex = (str: any) => {
     str = str.toString()

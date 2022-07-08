@@ -36,7 +36,7 @@
       </div>
 
       <div
-        v-if="getWetActive === 'false'"
+        v-if="getWetActive === 'false' && getIsPingUrl"
         style="color: red; font-size: 5em; margin-top: 10em;"
       >
         <p align="center">{{ `ПОСТ ОТКЛЮЧЕН` }}</p>

@@ -65,9 +65,9 @@ class Pax extends EventEmitter {
   async connect() {
     return true
   }
+  /* dev */
   async disconnect() {}
-  /*     */
-
+  
   async pay(amount) {
     this.payProcess = true
     this.opNumber++

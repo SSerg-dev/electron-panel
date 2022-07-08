@@ -32,6 +32,8 @@ class Pax extends EventEmitter {
   isConnect: boolean
   bankAmount: any = 0
   customEvent: any = null
+  isWrite: boolean
+  timestamp: number = 0
 
   constructor() {
     super()
@@ -39,6 +41,8 @@ class Pax extends EventEmitter {
     this.bills = []
     this.amount = 0
     this.isConnect = false
+    this.isWrite = false
+    // this.timestamp = 0
 
     // let self = this
 
@@ -53,11 +57,15 @@ class Pax extends EventEmitter {
   // methods
   static connect(config: any) {
     let item = new Pax()
+
     item.config = config
     this.instance = item
+
+    /* dev */
+    // this.instance.check()
+
     this.instance.flowSequence()
 
-    // this.instance.disconnect()
     return item
   }
   sleep(ms: number) {
@@ -65,53 +73,67 @@ class Pax extends EventEmitter {
       setTimeout(() => resolve(ms), ms)
     })
   }
-
+  /* 
+  private check = async () => {
+    let self = this
+    const request = self.device.getCheckRequest()
+    self.device.write(request, 2000)
+  }
+  */
   // flowSequence -----------------------
   private flowSequence = async () => {
     this.connect()
 
     ipcMain.on('async-amount-message', (event, arg) => {
       let self = this
+
       self.amount = +arg
-      let isWrite = false
+      self.timestamp = new Date().getTime()
+
       try {
-        if (self.amount > 0) {
-          if (self.device !== undefined) {
-            const request = self.device.getSaleRequest(self.amount)
-            // const request = this.device.getReconciliationRequest()
+        if (self.amount > 0 && self.device !== undefined) {
 
-            if (!isWrite) {
-              let timestamp = new Date().getTime()
-              console.log('$$ Pax.ts request 00', request, timestamp)
-              
-              const writeResponse = self.device.write(request, 2000)
-              const readResponse = self.device.read()
-              isWrite = true  
-            }
+          // const requestCheck = self.device.getCheckRequest()
+          const request = self.device.getSaleRequest(self.amount)
+          // const request = this.device.getReconciliationRequest()
 
-            // --------------------------
-            function submitAmountHandler(amount: any, status: any) {
-              self.sleep(2000).then(() => {
-                event.reply(
-                  'async-amount-reply',
-                  amount.toString(),
-                  status.toString()
-                )
-                // self.device.disconnect()
-              })
-            }
-            self.device.resultEmitter.on(
-              'submitSuccessAmount',
-              submitAmountHandler,
-              this.amount,
-              this.status
+          if (!this.isWrite) {
+            // const writeCheck = self.device.write(requestCheck, 2000)
+            const writeResponse = self.device.write(request, 2000)
+            const readResponse = self.device.read(request, 2000)
+
+            console.log(
+              '$$ Pax.ts request 00',
+              request //,
+              // readResponse,
+              // self.timestamp
             )
-            // --------------------------
+            this.isWrite = true
           }
+          // --------------------------
+          function submitAmountHandler(amount: any, status: any) {
+            self.sleep(2000).then(() => {
+              event.reply(
+                'async-amount-reply',
+                amount.toString(),
+                status.toString()
+              )
+              // self.device.disconnect()
+            })
+          }
+          self.device.resultEmitter.on(
+            'submitSuccessAmount',
+            submitAmountHandler,
+            this.amount,
+            this.status
+          )
+          // --------------------------
         }
       } catch (err) {
         console.log('Error', err)
       }
+      this.isWrite = false
+      // this.device = null
     })
 
     /*     */
@@ -134,6 +156,8 @@ class Pax extends EventEmitter {
   private connect = async () => {
     const { port, number, currency } = Pax.instance.config
     // this.device = delete this.device
+    // this.device = null
+
     this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)
 
     try {
