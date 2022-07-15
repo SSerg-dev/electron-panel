@@ -75,7 +75,10 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 import { Database } from '@/storage/database.js'
 import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
 import { Storage } from '@/storage/index.js'
+
 import { ipcRenderer } from 'electron'
+
+import { dateFilter, getRndInteger } from '@/utils/order.js'
 
 export default {
   name: 'cash-bill',
@@ -89,17 +92,28 @@ export default {
       payBonus: false
     },
 
+    sum: 0,
+    cash: true,
+    order: '',
+    coins: {},
+
     client: 'fetch',
     url: 'https://192.168.1.3/',
     storage: null,
     options: {}
   }),
   mounted() {
+    this.order = this.createOrder()
+
     this.storage = new Storage(this.client, this.url)
-    // this.setIsMoneyToBonus(false)
   },
   computed: {
     ...mapGetters({
+      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getVacuumNumber: 'getVacuumNumber',
+      getPanelType: 'getPanelType',
+      getWetOrder: 'getWetOrder',
+      getDryOrder: 'getDryOrder',
       getWetBalance: 'getWetBalance',
       getIsPing: 'getIsPing'
     }),
@@ -150,12 +164,15 @@ export default {
       this.doReceipt()
       // payEnd
       if (program === 'payEnd') {
-        this.payCashMoney()
+        /* dev */
+        //  this.payCashMoney()
+        this.getCoins()
+        /*     */
         this.setCashEnabler(true)
         this.setIsAppendBonusMoney(false)
         this.setIsPayBonusMoney(true)
         if (this.$route.name !== 'program') this.$router.push('/program')
-      } 
+      }
       // payBonus
       else if (program === 'payBonus') {
         this.setIsAppendBonusMoney(true)
@@ -237,35 +254,114 @@ export default {
       // this.printReceipt()
 
       /* dev */
-      this.payCashMoney()
+      // this.payCashMoney()
+    },
+
+    /* dev */
+
+    getCoins() {
+      // const options = 'request-bills 01'
+      // ipcRenderer.send('async-bills-message', options)
+      // ipcRenderer.on('async-redis-reply', (event, args) => {
+      //   console.log('$$ ipcRenderer', args)
+      //   const options = 'request-bills 02'
+      //   event.sender.send('async-client', options)
+      // })
+      let isClear = false
+
+      const options = 'ipcRenderer.send coin from CashBill'
+      ipcRenderer.send('async-coin-start', options)
+
+      ipcRenderer.on('async-coin-reply', (event, coins) => {
+        // console.log('$$ ipcRenderer coins reply', coins)
+        this.coins = coins
+        this.payCashMoney()
+        
+        
+        // if (coins) {
+        //   isClear = true
+        //   event.sender.send('async-coin-clear', isClear)
+        // }
+        // return coins
+      })
+
+      // return coins // { test: 42 }
     },
 
     async payCashMoney() {
-      console.log('++payCashMoney')
+      // console.log('++payCashMoney')
+
+      const method = methods[0]
+      const type = types[0]
+
+      this.options = this.getStoreMoneyOptions()
+      this.sum = this.getWetBalance
+
       /* dev */
-      // const method = methods[0]
-      // const type = types[0]
+      // this.coins = await this.getCoins()
+      console.log('$$$$ from redis this.coins', this.coins)
 
-      // const storage = new Storage(this.client, this.url)
-      // this.options = this.getStoreMoneyOptions()
+      this.options.params.unit_id = this.getDefaultPanelNumber - 1
+      this.options.params.type = 'cash'
+      this.options.params.sum = +this.sum
 
-      // const response = await this.storage.getClient(method, this.options, type)
+      if (!this.order) this.order = this.createOrder() /* 'W220220504143549' */
+      this.options.params.order = this.order // ??
+      this.options.params.detail.order = this.order
 
-      // if (response === undefined) {
-      //   if (this.$route.name !== 'program') this.$router.push('/program')
-      //   this.$message(`Связь с connect недоступна!!!`)
-      //   return
-      // }
-      // if (+response.result === 0 && +this.getWetBalance > 0) {
-      //   if (this.$route.name !== 'program') this.$router.push('/program')
-      //   this.$message(
-      //     `Оплата наличными прошла успешно, внесенная сумма:  ${+this
-      //       .getWetBalance} ₽`
-      //   )
-      // } else {
-      //   this.$error('payCashMoney $error')
-      // }
+      console.log(
+        'CashBill ++payStoreMoney-->options-->this.options-->',
+        JSON.stringify(this.options)
+      )
+
+      const response = await this.storage.getClient(method, this.options, type)
+
+      if (response === undefined) {
+        if (this.$route.name !== 'program') this.$router.push('/program')
+        this.$message(`Связь с connect недоступна!!!`)
+        return
+      }
+      /* dev add vacuum */
+      if (+response.result === 0 && +this.getWetBalance > 0) {
+        if (this.$route.name !== 'program') this.$router.push('/program')
+        this.$message(
+          `Оплата наличными прошла успешно, внесенная сумма:  ${+this
+            .getWetBalance} ₽`
+        )
+      } else {
+        // this.$error('payCashMoney $error')
+        //this.$message(`Оплата наличными не прошла`)
+      }
     },
+    // ----------------------------------
+    createOrder() {
+      const type = this.getPanelType
+      const date = dateFilter(new Date())
+      let result, index, prefix, suffix
+      suffix = getRndInteger(10000, 99999)
+
+      switch (type) {
+        case 'wash':
+          if (this.getWetOrder === '') {
+            prefix = 'W'
+            index = this.getDefaultPanelNumber
+            result = prefix + index + date
+          } else result = this.getWetOrder
+          break
+        case 'vacuum':
+          if (this.getDryOrder === '') {
+            prefix = 'V'
+            index = this.getVacuumNumber
+            result = prefix + index + date
+          } else result = this.getDryOrder
+          break
+        default:
+          break
+      }
+
+      return result
+    },
+    // ----------------------------------
     async appendBonusMoney() {
       console.log('!!!CashBill-->appendBonusMoney-->', methods[10])
       const method = methods[10]

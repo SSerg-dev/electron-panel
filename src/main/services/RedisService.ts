@@ -10,11 +10,24 @@ import { wait } from '../utils'
 class RedisService extends EventEmitter {
   // resultEmitter: any = null
   // CoinAcceptor: CoinAcceptorController
+  static coinC5 = 5
+  static coinC10 = 10
+  static coinC25 = 25
+
   bills: any = null
   coins: any = null
-  sumC5: number = 0
-  sumC10: number = 0
-  sumC25: number = 0
+
+  Coins: any = {
+    sumC5: 0,
+    sumC10: 0,
+    sumC25: 0,
+
+    counterC5: 0,
+    counterC10: 0,
+    counterC25: 0,
+
+    amountCoin: 0
+  }
 
   constructor() {
     super()
@@ -39,34 +52,42 @@ class RedisService extends EventEmitter {
     // ipcMain.on('async-client', (event: any, options: any) => {
     //   console.log('$$ ipcMain.on 02', options)
     // })
+
+    ipcMain.on('async-coin-start', (event: any, options: any) => {
+      const coins = this.Coins
+      event.sender.send('async-coin-reply', coins)
+    })
   }
-  public calcCoin(coin: any) {
-    console.log('$$ receiveCoin-->', coin)
-    // get one by one bill
-    // this.CoinAcceptor.on('current-coin', (coin) => console.log('$$ Redis CoinAcceptor', coin))
-    
-    // const index = this.coins.findIndex((c: any) => c === coin)
-    // console.log('$$ index', index)
-    // const type = this.coins[index]
-    const type = coin.toString()
-    
+  public calcCoin(coin: number) {
+    if (Number.isInteger(coin)) {
+      const denomination = coin.toString()
 
-    switch (type) {
-      case '5':
-        this.sumC5 += 5
-        console.log('$$ receiveCoin 5 -->', type, this.sumC5)
-        break
-      case '10':
-        this.sumC10 += 10
-        console.log('$$ receiveCoin 10 -->', type, this.sumC10)
-        break
-      case '25':
-        break
+      switch (denomination) {
+        case RedisService.coinC5.toString():
+          this.Coins.counterC5++
+          this.Coins.sumC5 += RedisService.coinC5
+          break
+        case RedisService.coinC10.toString():
+          this.Coins.counterC10++
+          this.Coins.sumC10 += RedisService.coinC10
+          break
+        case RedisService.coinC25.toString():
+          this.Coins.counterC25++
+          this.Coins.sumC25 += RedisService.coinC25
+          break
 
-      default:
-        break
+        default:
+          break
+      }
+      this.Coins.amountCoin =
+        this.Coins.sumC5 + this.Coins.sumC10 + this.Coins.sumC25
+      // console.log('$$ receiveCoin this.amountCoin -->', this.Coins)
+      return true
+    } else {
+      return false
     }
-  }
+  } // end calsCoin
+
   public calcBill(bill: any) {
     console.log('$$ receiveBill', bill.amount)
   }

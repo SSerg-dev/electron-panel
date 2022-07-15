@@ -488,7 +488,7 @@ export default {
     EventBus.$on('submitBonusQrMoney', this.submitBonusQrHandler)
 
     /* dev */
-    this.calcBillNumbers()
+    // this.calcBills()
   }, // end mounted
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
@@ -745,19 +745,19 @@ export default {
       }
     },
     /* dev */
-    calcBillNumbers() {
-      // console.log('$$ ipcRenderer.send')
-      // const options = 'request-bills 01'
-      // ipcRenderer.send('async-bills-message', options)
-
-      // ipcRenderer.on('async-redis-reply', (event, args) => {
-      //   console.log('$$ ipcRenderer', args)
-
-      //   const options = 'request-bills 02'
-      //   event.sender.send('async-client', options)
-      // })
+    /* 
+    calcCoins() {
+      console.log('$$ ipcRenderer.send')
+      const options = 'request-bills 01'
+      ipcRenderer.send('async-bills-message', options)
+      ipcRenderer.on('async-redis-reply', (event, args) => {
+        console.log('$$ ipcRenderer', args)
+        const options = 'request-bills 02'
+        event.sender.send('async-client', options)
+      })
     },
-    calcCoinNumbers() {},
+     */
+    // calcBills() {},
 
     async payStoreMoney() {
       // console.log('++payStoreMoney')
