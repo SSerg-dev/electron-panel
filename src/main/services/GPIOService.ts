@@ -49,10 +49,10 @@ class GPIOService extends EventEmitter {
                     if (error) {
                         //console.error(`exec error: ${error}`)
                         reject(error)
-                    }
+                    } 
                     //stdout && console.log(`stdout: ${stdout}`)
                     //stderr && console.error(`stderr: ${stderr}`)
-                    resolve()
+                    resolve(true)
                 })
             })
         })
@@ -68,7 +68,7 @@ class GPIOService extends EventEmitter {
             }
             //stdout && console.log(`stdout: ${stdout}`)
             //stderr && console.error(`stderr: ${stderr}`)
-            resolve()
+            resolve(true)
         })
     })
 

@@ -66,7 +66,7 @@ console.log(' ')
 
 /* ----------------------------------------------------------------------- */
 /* */
-getSerialDevicesInfo('USB').then(ports => {   
+getSerialDevicesInfo('USB').then(ports => {
   //ports.forEach( (el: any) => execShellCommand(`kill -9 $(fuser ${el.path})`))
 })
 
@@ -81,9 +81,6 @@ GPIO.on('humidity', value => {
   log(TAG, 'Panel humidity change =>', value)
   sendEventToView(mainWindow, 'humidity', value)
 })
-/* ----------------------------------------------------------------------- */
-/* dev */
-const Redis = new RedisService()
 
 /* ----------------------------------------------------------------------- */
 /* */
@@ -119,6 +116,10 @@ bankTerminal.on('enrolled', terminal =>
   sendEventToView(mainWindow, 'emoney', terminal)
 )
 /* ----------------------------------------------------------------------- */
+/* dev */
+const redis = new RedisService()
+
+/* ----------------------------------------------------------------------- */
 
 const idle = async (config: any) => {
   if (
@@ -128,7 +129,8 @@ const idle = async (config: any) => {
   ) {
     OPCUAClient.start(config.type, config.index)
   }
-  /* dev */ 
+  /* dev */
+
   /* if (config.bill_validator) {
     if (
       !mConfig ||
@@ -140,7 +142,7 @@ const idle = async (config: any) => {
         isBillValidatorConnected && BillValidator.stop()
       }
     }
-  } */ 
+  } */
 
   if (config.coin_acceptor) {
     if (
@@ -154,8 +156,6 @@ const idle = async (config: any) => {
       }
     }
   }
-
-  /* dev */
 
   if (config.bank_terminal) {
     const options = {
@@ -175,9 +175,14 @@ const idle = async (config: any) => {
       }
     }
   }
-  /*     */
 
   mConfig = config
+
+  /* ----------------------------------------------------------------------- */
+  ipcMain.on('async-card-message', (event: any, options: any) => {
+    // console.log('$$ ipcMain.on background!!', options)
+    // reinitialization bank terminal ???
+  })
 }
 
 /* ----------------------------------------------------------------------- */
@@ -188,12 +193,17 @@ try {
   settings = JSON.parse(rawdata.toString())
   log(TAG, 'SETTINGS', JSON.stringify(settings))
   idle(settings)
+  /* dev */
+  redis.start(settings)
+  CoinAcceptor.on('current-coin', coin => redis.calcCoin(coin))
+  BillValidator.on('current-bill', bill => redis.calcBill(bill))
 } catch (err) {
   log(TAG, "Application dont't started, cause setting file is wrong:", err)
   setTimeout(process.exit(1), 2000)
 }
 
 /* ----------------------------------------------------------------------- */
+
 /* */
 ipcMain.on('reset', (evt, data) => {
   execShellCommand('killall login')
@@ -271,20 +281,11 @@ ipcMain.on('OPCUA', async (evt, data) => {
   }
 })
 
-/* dev */
-// redis
-/* ipcMain.on('redis', (evt, data) => {
-  log(TAG, 'Data from renderer', 'Send data from redis')
-  Redis.sendRedisData()
-}) */
-
-/*     */
 /* ----------------------------------------------------------------------- */
 /* */
 app.commandLine.appendSwitch('ignore-certificate-errors', 'true')
 app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors')
 app.commandLine.appendSwitch('--enable-logging')
-
 
 /* */
 app.on('ready', () => {

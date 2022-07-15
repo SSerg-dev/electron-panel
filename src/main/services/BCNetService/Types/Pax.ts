@@ -29,10 +29,6 @@ class Pax extends EventEmitter {
   bills: number[]
   amount: number
   status: any
-  isConnect: boolean
-  bankAmount: any = 0
-  customEvent: any = null
-  isWrite: boolean
   timestamp: number = 0
 
   constructor() {
@@ -40,11 +36,7 @@ class Pax extends EventEmitter {
     this.config = {}
     this.bills = []
     this.amount = 0
-    this.isConnect = false
-    this.isWrite = false
-    // this.timestamp = 0
-
-    // let self = this
+    this.device = null
 
     // singelton
     if (Pax.exists) {
@@ -57,14 +49,10 @@ class Pax extends EventEmitter {
   // methods
   static connect(config: any) {
     let item = new Pax()
-
     item.config = config
-    this.instance = item
+    Pax.instance = item
 
-    /* dev */
-    // this.instance.check()
-
-    this.instance.flowSequence()
+    Pax.instance.flowSequence()
 
     return item
   }
@@ -73,43 +61,33 @@ class Pax extends EventEmitter {
       setTimeout(() => resolve(ms), ms)
     })
   }
-  /* 
-  private check = async () => {
-    let self = this
-    const request = self.device.getCheckRequest()
-    self.device.write(request, 2000)
-  }
-  */
   // flowSequence -----------------------
   private flowSequence = async () => {
-    this.connect()
+    let self = this
+    self.connect()
 
     ipcMain.on('async-amount-message', (event, arg) => {
-      let self = this
-
       self.amount = +arg
       self.timestamp = new Date().getTime()
 
+      // self.reconnect()
       try {
         if (self.amount > 0 && self.device !== undefined) {
-
+          
+          /* 01 CheckRequest */
           // const requestCheck = self.device.getCheckRequest()
+          // const writeCheck = self.device.write(requestCheck, 2000)
+          
+          /* 02 Reconciliation */
+          // const request = self.device.getReconciliationRequest()
+          // const writeResponse = self.device.write(request, 2000)
+          // const readResponse = self.device.read(request, 2000)
+          
+          /* 03 SaleRequest */
           const request = self.device.getSaleRequest(self.amount)
-          // const request = this.device.getReconciliationRequest()
-
-          if (!this.isWrite) {
-            // const writeCheck = self.device.write(requestCheck, 2000)
-            const writeResponse = self.device.write(request, 2000)
-            const readResponse = self.device.read(request, 2000)
-
-            console.log(
-              '$$ Pax.ts request 00',
-              request //,
-              // readResponse,
-              // self.timestamp
-            )
-            this.isWrite = true
-          }
+          const writeResponse = self.device.write(request, 2000)
+          const readResponse = self.device.read(request, 2000)
+          
           // --------------------------
           function submitAmountHandler(amount: any, status: any) {
             self.sleep(2000).then(() => {
@@ -118,7 +96,6 @@ class Pax extends EventEmitter {
                 amount.toString(),
                 status.toString()
               )
-              // self.device.disconnect()
             })
           }
           self.device.resultEmitter.on(
@@ -132,66 +109,59 @@ class Pax extends EventEmitter {
       } catch (err) {
         console.log('Error', err)
       }
-      this.isWrite = false
-      // this.device = null
     })
-
-    /*     */
+    self.disconnect()
   }
   // ------------------------------------
-  /* dev */
-  // this.device.getSaleRequest(42)
-  // this.device.getReconciliationRequest()
-  // this.device.getCheckRequest()
-  // this.device.sale()
-
   // this.getComPort()
 
-  // ------------------------------------
-  // getAmount(param: any) {
-  //   this.bankAmount = param
-  // }
+  // reconnect to pax -------------------
+  private reconnect = async () => {
+    let self = this
+    const { port, number, currency } = Pax.instance.config
+
+    try {
+      if (self.device.isOpen) {
+        await self.device.disconnect()
+
+        await self.device.connect()
+        log(TAG, '$$ reconnect to pax at port', port)
+      }
+    } catch (err) {
+      log(TAG, '$$ reconnect to pax error', err)
+    }
+  }
 
   // connect to pax ---------------------
   private connect = async () => {
-    const { port, number, currency } = Pax.instance.config
-    // this.device = delete this.device
-    // this.device = null
+    let self = this
 
-    this.device = new BCNet.PaxDevice(port, currency, this.bills, conf.debug)
+    const { port, number, currency } = Pax.instance.config
+    self.device = new BCNet.PaxDevice(port, currency, self.bills, conf.debug)
 
     try {
-      if (!this.isConnect) {
-        await this.device.connect()
+      if (!self.device.isOpen) {
+        await self.device.connect()
         log(TAG, '$$ Connected at port', port)
       }
-      this.isConnect = true
     } catch (err) {
       log(TAG, '$$ Connected error', err)
-      await this.device.disconnect()
-      this.isConnect = false
-      // delete this.device
+      await self.device.disconnect()
     }
   }
-  // private disconnect = async () => {}
+  private disconnect = async () => {
+    try {
+      let self = this
+      const { port, number, currency } = Pax.instance.config
 
-  // test com port
-
-  /* private getComPort() {
-    const SerialPort = require('serialport')
-    const port = new SerialPort('/dev/ttyPos0', function(err: any) {
-      if (err) {
-        return console.log('Error: ', err.message)
+      if (self.device.isOpen) {
+        await self.device.disconnect()
+        log(TAG, '$$ Disconnected', port)
       }
-    })
-    port.write('main screen turn on', function(err: any) {
-      if (err) {
-        return console.log('Error on write: ', err.message)
-      }
-      console.log('message written')
-    })
-  } */
-
+    } catch (err) {
+      log(TAG, '$$ Disconnected error', err)
+    }
+  }
   // end methods
 } // end class Pax
 

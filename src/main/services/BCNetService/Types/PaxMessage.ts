@@ -1,9 +1,3 @@
-/* class PaxMessage
-{
-  static  numField: number = 0
-  static  mesLen: number = 0
-  static  data: string = ''
-} */
 
 class PaxMessage
 {

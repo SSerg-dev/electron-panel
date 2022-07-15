@@ -726,6 +726,7 @@ import { Database } from '@/storage/database.js'
 import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
 import { Storage } from '@/storage/index.js'
 import EventBus from '@/bus/EventBus'
+const { ipcRenderer } = require('electron')
 import { profile } from 'console'
 
 export default {
@@ -859,6 +860,9 @@ export default {
     }
   },
   mounted() {
+    const options = {}
+    ipcRenderer.send('async-card-message', options)
+
     this.setup()
 
     this.storage = new Storage(this.client, this.url)

@@ -12,6 +12,7 @@ class BankTerminalController extends EventEmitter {
 
   constructor() {
     super()
+  
   }
   get terminalItem() {
     return this.terminal
@@ -20,7 +21,6 @@ class BankTerminalController extends EventEmitter {
   public start = async (options: any) => {
     const { type, number, currency } = options
     const config = {
-      // port: BCNet.PAX_PORT,
       port: null,
       number: number, 
       currency: currency

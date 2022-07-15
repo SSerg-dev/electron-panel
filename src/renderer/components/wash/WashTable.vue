@@ -608,10 +608,10 @@ export default {
       this.setCompleteWash(this.options.params)
       this.options = this.getCompleteWash()
 
-      /* console.log(
-        'completeWash options-->this.options-->',
-        JSON.stringify(this.options)
-      ) */
+      // console.log(
+      //   'completeWash options-->this.options-->',
+      //   JSON.stringify(this.options)
+      // )
       const response = await this.storage.getClient(method, this.options, type)
       
       if (+response.result === 0) {

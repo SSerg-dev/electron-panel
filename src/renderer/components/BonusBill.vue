@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div>
       <section>
         <div class="info-title">
@@ -424,6 +423,8 @@ import EventBus from '@/bus/EventBus'
 import { result } from 'lodash'
 import program from '../store/program'
 
+const { ipcRenderer } = require('electron')
+
 import {
   dateFilter,
   getRndInteger,
@@ -485,7 +486,10 @@ export default {
     }
     // submitBonusQrMoney
     EventBus.$on('submitBonusQrMoney', this.submitBonusQrHandler)
-  },
+
+    /* dev */
+    this.calcBillNumbers()
+  }, // end mounted
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
   },
@@ -740,6 +744,21 @@ export default {
         this.$message(`Введите правильно номер мобильного телефона`)
       }
     },
+    /* dev */
+    calcBillNumbers() {
+      // console.log('$$ ipcRenderer.send')
+      // const options = 'request-bills 01'
+      // ipcRenderer.send('async-bills-message', options)
+
+      // ipcRenderer.on('async-redis-reply', (event, args) => {
+      //   console.log('$$ ipcRenderer', args)
+
+      //   const options = 'request-bills 02'
+      //   event.sender.send('async-client', options)
+      // })
+    },
+    calcCoinNumbers() {},
+
     async payStoreMoney() {
       // console.log('++payStoreMoney')
 
@@ -757,7 +776,9 @@ export default {
       this.options.params.sum = +this.sum
 
       if (!this.order) this.order = this.createOrder() /* 'W220220504143549' */
-      this.options.params.order = this.order
+      this.options.params.order = this.order // ??
+      /* dev */
+      this.options.params.detail.order = this.order
 
       console.log(
         '++payStoreMoney-->options-->this.options-->',
