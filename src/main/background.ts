@@ -130,8 +130,8 @@ const idle = async (config: any) => {
     OPCUAClient.start(config.type, config.index)
   }
   /* dev */
-
-  /* if (config.bill_validator) {
+  /* 
+  if (config.bill_validator) {
     if (
       !mConfig ||
       mConfig.bill_validator.installed !== config.bill_validator.installed
@@ -143,7 +143,7 @@ const idle = async (config: any) => {
       }
     }
   } */
-
+   
   if (config.coin_acceptor) {
     if (
       !mConfig ||
@@ -155,7 +155,8 @@ const idle = async (config: any) => {
         isCoinAcceptorConnected && CoinAcceptor.stop()
       }
     }
-  }
+  } 
+ 
 
   if (config.bank_terminal) {
     const options = {

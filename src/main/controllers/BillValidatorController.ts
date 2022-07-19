@@ -167,7 +167,7 @@ class BillValidatorController extends EventEmitter {
       log(TAG, 'Stacked:', bill.amount)
       self.emit('stacked', bill.amount)
       /* dev */
-      this.sendBill(bill)
+      this.sendBill(bill.amount)
     })
     /*  */
     this.device.on('returning', () => log(TAG, 'Returning...'))

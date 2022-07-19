@@ -448,6 +448,9 @@ export default {
     order: '',
     actives: [],
 
+    coins: {},
+    bills: {},
+
     client: 'fetch',
     url: 'https://192.168.1.3/',
     storage: null,
@@ -471,6 +474,9 @@ export default {
   }),
   created() {},
   mounted() {
+    /* dev */
+    this.getCashMoney()
+
     this.order = this.createOrder()
     this.setCompleteWashOrder(this.order)
 
@@ -633,22 +639,20 @@ export default {
         program === 'append' &&
         !this.getIsMoneyToBonus
       ) {
-        /* dev */
         this.appendBonusMoney()
-        this.payStoreMoney()
+        /* dev */
+        // this.payStoreMoney()
+        this.getCashMoney()
       }
-      // --------------------------------
-      /* dev */
-      // if (this.getMoneyToBonus > 0 && program === 'append') {
-      //   this.saveBonusMoney()
-      // }
       // --------------------------------
       if (
         this.getIsPayBonusMoney() &&
         program === 'confirm' &&
         !this.getIsMoneyToBonus
       ) {
-        this.payBonusMoney()
+        /* dev */
+        // this.payBonusMoney()
+        this.getCashMoney()
       }
       // --------------------------------
       this.emitClick(program)
@@ -745,19 +749,24 @@ export default {
       }
     },
     /* dev */
-    /* 
-    calcCoins() {
-      console.log('$$ ipcRenderer.send')
-      const options = 'request-bills 01'
-      ipcRenderer.send('async-bills-message', options)
-      ipcRenderer.on('async-redis-reply', (event, args) => {
-        console.log('$$ ipcRenderer', args)
-        const options = 'request-bills 02'
-        event.sender.send('async-client', options)
+    getCashMoney() {
+      console.log('$$ BonusBill getCashMoney')
+
+      let isClear = false
+      const options = 'ipcRenderer.send coin from BonusBill'
+      ipcRenderer.send('async-cash-start', options)
+
+      ipcRenderer.on('async-cash-reply', (event, coins, bills) => {
+        this.coins = coins
+        this.bills = bills
+        // this.payStoreMoney()
+
+        if (coins) {
+          isClear = true
+          event.sender.send('async-cash-clear', isClear)
+        }
       })
     },
-     */
-    // calcBills() {},
 
     async payStoreMoney() {
       // console.log('++payStoreMoney')
@@ -771,13 +780,35 @@ export default {
         ? (this.sum = this.getWetBalance)
         : (this.sum = this.getMoneyToBonus)
 
+      /* dev */
+      console.log('$$$$ BonusBill.vue from redis this.coins', this.coins)
+      console.log('$$$$ BonusBill.vue from redis this.bills', this.bills)
+
       this.options.params.unit_id = this.getDefaultPanelNumber - 1
       this.options.params.type = 'cash'
       this.options.params.sum = +this.sum
 
+      /* dev */
+      // for statistic coins
+      this.options.params.detail.sum_coins = this.coins.amountCoin
+      this.options.params.detail.coins_count = this.coins.counterCoin
+      this.options.params.detail.coins_1 = 0
+      this.options.params.detail.coins_2 = 0
+      this.options.params.detail.coins_5 = this.coins.counterC5
+      this.options.params.detail.coins_10 = this.coins.counterC10
+      this.options.params.detail.coins_25 = this.coins.counterC25
+
+      // for statistic bills
+      this.options.params.detail.sum_bills = this.bills.amountBill
+      this.options.params.detail.bills_count = this.bills.counterBill
+      this.options.params.detail.bills_10 = this.bills.counterB10
+      this.options.params.detail.bills_50 = this.bills.counterB50
+      this.options.params.detail.bills_100 = this.bills.counterB100
+      this.options.params.detail.bills_200 = this.bills.counterB200
+      this.options.params.detail.bills_500 = this.bills.counterB500
+
       if (!this.order) this.order = this.createOrder() /* 'W220220504143549' */
       this.options.params.order = this.order // ??
-      /* dev */
       this.options.params.detail.order = this.order
 
       console.log(

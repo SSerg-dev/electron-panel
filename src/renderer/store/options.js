@@ -12,9 +12,9 @@ export default {
       method: 'storage::store_money',
       params: {
         // _unit_id – номер поста (0-7)
-        unit_id: 1,
+        unit_id: 0,
         // _money_type – cash, card, service, bonus
-        type: 'cash',
+        type: '',
         // _sum – сумма зачисления
         sum: 0,
         // nl::json – структура доп. данных
@@ -25,12 +25,15 @@ export default {
           // общее количество монет
           coins_count: 0,
           // номинал монеты
-          coins_1: 1,
-          coins_2: 2,
-          coins_5: 5,
-          coins_10: 1,
+          coins_1: 0,
+          coins_2: 0,
+          coins_5: 0,
+          coins_10: 0,
+          coins_25: 0,
           // сумма зачисления в купюрах
           sum_bills: 0,
+          // количество купюр
+          bills_count: 0,
           // количество купюр наминала 10р
           bills_10: 0,
           // количество купюр наминала 50
@@ -51,7 +54,7 @@ export default {
         // _unit_id – номер поста (0-7)
         unit_id: 1,
         // _money_type – cash, card, service, bonus
-        type: 'cash',
+        type: '',
         // _sum – сумма зачисления
         sum: 2,
         // nl::json – структура доп. данных
@@ -61,12 +64,14 @@ export default {
           // общее количество монет
           coins_count: 0,
           // номинал монеты
-          coins_1: 1,
-          coins_2: 2,
-          coins_5: 5,
-          coins_10: 10,
+          coins_1: 0,
+          coins_2: 0,
+          coins_5: 0,
+          coins_10: 0,
           // сумма зачисления в купюрах
-          sum_bills: 300,
+          sum_bills: 0,
+          // количество купюр
+          bills_count: 0,
           // количество купюр наминала 10р
           bills_10: 0,
           // количество купюр наминала 50
