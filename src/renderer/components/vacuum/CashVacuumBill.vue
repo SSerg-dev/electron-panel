@@ -1,10 +1,5 @@
 <template>
   <div class="page-title">
-    <!-- <div
-      id="button-main"
-      style="background: white; margin-left: -8.0em; width: 945px;"
-    >
-    </div> -->
 
     <ul style="margin-top: 18em;">
       <li
@@ -41,7 +36,7 @@
 
       <!--  & getIsPing -->
 
-      <li v-if="this.IsDryBalance === false" @click="payUp('payEnd')">
+      <!-- <li v-if="this.IsDryBalance === false" @click="payUp('payEnd')">
         <div
           class="card white waves-effect pay-end-bonus"
           style="
@@ -67,7 +62,25 @@
             {{ 'ВНЕСИТЕ ОПЛАТУ' }}
           </div>
         </div>
+      </li> -->
+
+      <!-- dev -->
+      <li v-if="this.IsDryBalance === false" @click="payUp('')">
+        <div class="card grey pay-input" style="">
+          <div
+            class="card-content white-text button-content-style  noselect"
+            style="
+                  font-size: 4em;
+                  padding-right: 0em;
+                  padding-top: 1em;
+                  "
+          >
+            {{ 'ВНЕСИТЕ ОПЛАТУ' }}
+          </div>
+        </div>
       </li>
+      <!--     -->
+
       <li v-if="this.IsDryBalance === true" @click="payUp('payEnd')">
         <div
           class="card white waves-effect pay-end-bonus"
@@ -95,6 +108,7 @@
           </div>
         </div>
       </li>
+
     </ul>
   </div>
 </template>
@@ -158,7 +172,7 @@ export default {
     */
     /*     */
 
-    //console.log('getDryBalance-->', this.getDryBalance)
+    // console.log('getDryBalance-->', this.getDryBalance)
   },
   computed: {
     ...mapGetters({
@@ -169,9 +183,7 @@ export default {
       get: function() {
         let flag
         this.getDryBalance > 0 ? (flag = true) : (flag = false)
-        // console.log('flag-->', flag)
-        console.log('--getDryBalance-->', this.getDryBalance)
-        if (!flag) this.$message('Внесите минимальную сумму (10 руб.)')
+        console.log('$$ getDryBalance-->', this.getDryBalance)
         return flag
       }
     }
@@ -207,11 +219,11 @@ export default {
         this.setCashEnabler(true)
         this.setIsAppendBonusMoney(false)
         this.setIsPayBonusMoney(true)
-        this.$router.push('/program')
+        if (this.$route.name !== 'program') this.$router.push('/program')
       } else if (program === 'payBonus') {
         this.setIsAppendBonusMoney(true)
         this.setIsPayBonusMoney(false)
-        this.$router.push('/bonus')
+        if (this.$route.name !== 'bonus') this.$router.push('/bonus')
       }
     },
     /* dev */
@@ -274,21 +286,21 @@ export default {
       /* dev */
       //this.options = this.getStoreMoneyOptions()
       this.options = this.getDryStoreMoneyOptions()
-      //console.log('this.options-->', this.options)
+      console.log('vacuum this.options-->', this.options)
 
       const response = await this.storage.getClient(method, this.options, type)
 
       /* dev */
       //console.log('storeMoney-->', typeof response)
       if (response === undefined) {
-        this.$router.push('/program')
+        if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(`Связь с connect недоступна!!!`)
         return
       }
       /* dev vacuum */
 
       if (+response.result === 0 && +this.getDryBalance > 0) {
-        this.$router.push('/program')
+        if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(
           `Оплата наличными прошла успешно, внесенная сумма:  ${+this
             .getDryBalance} ₽`
@@ -346,6 +358,7 @@ export default {
       //console.log('this.isDown.payEnd-clearDown-->', this.isDown.payEnd)
     }
   }
+
   /* components: {
 
   } */
@@ -359,6 +372,16 @@ export default {
   margin-top: -20rem;
   margin-bottom: 10rem;
 } */
+.pay-input {
+  width: 66em;
+  height: 14em;
+  margin-left: -9em;
+  margin-top: -17em;
+
+  border: solid 2px white;
+  border-radius: 1em;
+  box-shadow: 0px 10px 20px #eee;
+}
 .pay-end-bonus {
   background-color: black;
   margin-left: -10rem;

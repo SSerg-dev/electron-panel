@@ -88,10 +88,11 @@ export default Vue.extend({
           number: this.getDefaultPanelNumber
         }
         bankTerminal.connect(options)
+        
         const item = bankTerminal.terminalItem
-        // console.log('$$ item', item)
         const stream$ = item
         const observer = bankTerminal.observerItem
+        
         stream$.subscribe(observer)
 
         switch (options.type) {

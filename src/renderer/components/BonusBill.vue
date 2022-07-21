@@ -640,9 +640,7 @@ export default {
         !this.getIsMoneyToBonus
       ) {
         this.appendBonusMoney()
-        /* dev */
-        // this.payStoreMoney()
-        this.getCashMoney()
+        this.payStoreMoney()
       }
       // --------------------------------
       if (
@@ -651,8 +649,8 @@ export default {
         !this.getIsMoneyToBonus
       ) {
         /* dev */
-        // this.payBonusMoney()
-        this.getCashMoney()
+        this.payBonusMoney()
+        // this.getCashMoney()
       }
       // --------------------------------
       this.emitClick(program)
@@ -750,7 +748,6 @@ export default {
     },
     /* dev */
     getCashMoney() {
-      console.log('$$ BonusBill getCashMoney')
 
       let isClear = false
       const options = 'ipcRenderer.send coin from BonusBill'
@@ -761,7 +758,7 @@ export default {
         this.bills = bills
         // this.payStoreMoney()
 
-        if (coins) {
+        if (coins || bills) {
           isClear = true
           event.sender.send('async-cash-clear', isClear)
         }
@@ -775,14 +772,9 @@ export default {
       const type = types[0]
 
       this.options = this.getStoreMoneyOptions()
-
       this.getMoneyToBonus === 0
         ? (this.sum = this.getWetBalance)
         : (this.sum = this.getMoneyToBonus)
-
-      /* dev */
-      console.log('$$$$ BonusBill.vue from redis this.coins', this.coins)
-      console.log('$$$$ BonusBill.vue from redis this.bills', this.bills)
 
       this.options.params.unit_id = this.getDefaultPanelNumber - 1
       this.options.params.type = 'cash'

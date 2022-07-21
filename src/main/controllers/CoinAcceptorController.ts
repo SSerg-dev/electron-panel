@@ -112,9 +112,7 @@ class CoinAcceptorController extends EventEmitter {
     })
     device.statusTimerStart()
   }
-  /* dev */
   private sendCoin = (coin: number) => {
-    // log(TAG, '$$ add coin:', coin)
     this.emit('current-coin', coin)
   }
 }

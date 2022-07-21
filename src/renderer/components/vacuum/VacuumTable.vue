@@ -5,19 +5,30 @@
         <div class="message">
           <div><Message /></div>
         </div>
-        <div v-if="getWetBalance > 0" class="price">
-          <img src="imgs/price/price-up.png" />
+
+        <!-- dev -->
+        <div
+          @click="setProgram('price')"
+          class="waves-effect price"
+          id="button-price"
+        >
+          <div
+            class="button-content-style"
+            :class="[
+              { 'card-content black-text': !this.isDown.price },
+              { 'card-content white-text': this.isDown.price }
+            ]"
+          >
+            <div>
+              {{ `📄` }}
+            </div>
+          </div>
         </div>
       </section>
 
       <table border="0" width="100%" cellpadding="0" cellspacing="0">
         <tbody>
-          <!-- dev -->
-          <!-- from #50E3C2 -->
-          <!-- teal accent-3 #1de9b6  -->
-
           <!-- ПЫЛЕСОС vacuum -->
-
           <tr>
             <td
               v-if="this.actives[0].display === 'block'"
@@ -96,7 +107,7 @@
           </tr>
 
           <!-- ТУРБОСУШКА turboDryer-->
-          <tr> 
+          <tr>
             <td
               v-if="this.actives[3].display === 'block'"
               @click="setProgram('turboDryer')"
@@ -186,7 +197,6 @@ import Message from '@/components/app/Message'
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
 
-
 export default {
   data: () => ({
     name: 'vacuum-table',
@@ -201,8 +211,10 @@ export default {
       washer: false,
       turboDryer: false,
       blacking: false,
-      disinfection: false
-    }
+      disinfection: false,
+      price: false,
+    },
+    buttonPrice: null,
   }),
 
   components: {
@@ -227,7 +239,7 @@ export default {
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getDryBalance: 'getDryBalance',
+      getDryBalance: 'getDryBalance'
     })
   },
   methods: {
@@ -239,15 +251,23 @@ export default {
     }),
     ...mapGetters({}),
 
-    
     setProgram(program) {
       /* dev */
       // console.log('vacuumProgram-->', program)
+      /* dev */
+      if (program === 'price') {
+        this.isDown.price = true
+        this.buttonPrice.background = 'rgb(64, 196, 255)'
+        this.setDown()
+        this.$router.push('/cost')
+        return
+      }
+
       this.setDown(program)
 
       this.active = program
       this.setActiveProgram(this.active)
-      
+
       this.updateDryStartProgram([
         this.getPanelType,
         this.getVacuumNumber,
@@ -255,10 +275,9 @@ export default {
         this.getDryBalance
       ])
 
-
-       this.timeoutPopup = setTimeout(() => {
-         this.$router.push('/popup')
-       }, 1000)
+      // this.timeoutPopup = setTimeout(() => {
+      //   this.$router.push('/')
+      // }, 1000)
 
     },
     setDown(program) {
@@ -292,11 +311,38 @@ export default {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
+    },
+    setup() {
+      // this.initCurrency()
+      this.initial()
+    },
+    initial() {
+      // classes instances
+
+      /* button price */
+      this.buttonPrice = new Button({
+        selector: '#button-price',
+
+        width: 8.5,
+        height: 8.5,
+        background: 'rgb(255, 255, 255)',
+        border: '0.4em solid rgb(64, 196, 255)',
+        boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
+        borderRadius: 2,
+        fontSize: '1em',
+
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      })
+
+      if (!+this.getDryBalance > 0) this.buttonPrice.hide()
     }
   },
   mounted() {
-    
+    this.setup()
   },
+
   beforeDestroy() {
     clearTimeout(this.timeoutPopup)
   }
@@ -321,8 +367,8 @@ export default {
 }
 table {
   position: absolute;
-  margin-top: 16.5em; /* 18em; 16.5em; */
-  margin-left: 2em; /* 33em; */
+  margin-top: 18em; /* 18em; 16.5em; */
+  margin-left: 2.5em; /* 33em; */
 
   font-family: 'Plumb-Medium';
   font-weight: bold;
@@ -337,7 +383,7 @@ table {
 tr {
   /* text-align: center; */
   height: 130px;
-  
+
   float: left;
 }
 td {
@@ -352,9 +398,17 @@ td {
 
 .price {
   position: absolute;
-  margin-top: 4em;
-  margin-left: 1.5em;
+  margin-top: 0em;
+  margin-left: 0.5em;
 }
+
+/* .price {
+  position: absolute;
+  margin-top: 0em;
+  margin-left: -15em;
+  font-size: 2em;
+} */
+
 .button-style {
   padding-top: 0em;
   width: 945px;

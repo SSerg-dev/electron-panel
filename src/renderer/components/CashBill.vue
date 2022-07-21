@@ -79,6 +79,7 @@ import { Storage } from '@/storage/index.js'
 import { ipcRenderer } from 'electron'
 
 import { dateFilter, getRndInteger } from '@/utils/order.js'
+import sleep from '@/utils/sleep'
 
 export default {
   name: 'cash-bill',
@@ -97,6 +98,7 @@ export default {
     order: '',
     coins: {},
     bills: {},
+    delay: 2000,
 
     client: 'fetch',
     url: 'https://192.168.1.3/',
@@ -104,8 +106,6 @@ export default {
     options: {}
   }),
   mounted() {
-    // this.getCashMoney()
-
     this.order = this.createOrder()
 
     this.storage = new Storage(this.client, this.url)
@@ -165,11 +165,16 @@ export default {
       this.setDown(program)
       /* dev */
       this.doReceipt()
+
       // payEnd
       if (program === 'payEnd') {
         /* dev */
-        // this.payCashMoney()
+        console.log('$$ payUp(program)', program)
         this.getCashMoney()
+
+        sleep(this.delay).then(() => {
+          this.payCashMoney()
+        })
 
         this.setCashEnabler(true)
         this.setIsAppendBonusMoney(false)
@@ -178,6 +183,7 @@ export default {
       }
       // payBonus
       else if (program === 'payBonus') {
+        console.log('$$ payUp(program)', program)
         this.setIsAppendBonusMoney(true)
         this.setIsPayBonusMoney(false)
         this.$router.push('/bonus')
@@ -266,9 +272,11 @@ export default {
         this.coins = coins
         this.bills = bills
         /* dev */
-        this.payCashMoney()
+        /* sleep(this.timeout).then(() => {
+          this.payCashMoney()
+        }) */
 
-        if (coins) {
+        if (coins || bills) {
           isClear = true
           event.sender.send('async-cash-clear', isClear)
         }
@@ -282,10 +290,6 @@ export default {
 
       this.options = this.getStoreMoneyOptions()
       this.sum = this.getWetBalance
-
-      /* dev */
-      console.log('$$$$ CashBill.vue from redis this.coins', this.coins)
-      console.log('$$$$ CashBill.vue from redis this.bills', this.bills)
 
       this.options.params.unit_id = this.getDefaultPanelNumber - 1
       this.options.params.type = 'cash'
@@ -314,7 +318,7 @@ export default {
       this.options.params.detail.order = this.order
 
       console.log(
-        'CashBill ++payStoreMoney-->options-->this.options-->',
+        'CashBill ++payCashMoney-->options-->this.options-->',
         JSON.stringify(this.options)
       )
 
@@ -412,6 +416,10 @@ export default {
       )
       //console.log('this.isDown.payEnd-clearDown-->', this.isDown.payEnd)
     }
+  }, // end methods
+
+  beforeDestroy() {
+    
   }
   /* components: {
 

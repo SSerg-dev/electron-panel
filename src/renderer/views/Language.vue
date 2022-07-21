@@ -10,7 +10,7 @@
       </router-link>
 
     <section>
-      <form @submit.prevent>
+      <!-- <form @submit.prevent=""> -->
         <div class="row">
           <table ref="tableRows">
             <tr v-if="this.getPaginate === 1">
@@ -286,7 +286,7 @@
             />
           </div>
         </div>
-      </form>
+      <!-- </form> -->
     </section>
   </div>
 </template>

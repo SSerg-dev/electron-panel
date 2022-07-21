@@ -79,7 +79,6 @@ class Pax extends EventEmitter {
   /* dev */
   check(amount, amountReply, status) {
     let res
-    // console.log('$$ amount amountReply status', amount, amountReply, status)
     if (+amount !== +amountReply) {
       this.subscribe(Observer.item)
       this.fire({ type: 'REJECT', payload: null })
@@ -88,13 +87,9 @@ class Pax extends EventEmitter {
         `Wrond paid. Expected ${amount}, but result ${amountReply}`
       )
     } else {
-      /* dev */
       if (+amountReply > 0) {
-        /* dev */
-        // console.log('$$ payload: amountReply', amountReply)
 
         this.subscribe(Observer.item)
-        /* dev */
         this.fire({ type: 'RESOLVE', payload: amountReply, status })
         this.unsubscribe(Observer.item)
       }

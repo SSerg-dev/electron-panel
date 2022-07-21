@@ -170,6 +170,9 @@ export default Vue.extend({
           this.isDown.coldWater = true
           break
         case 'coldWater_turbo':
+          /* dev */
+          // this.isDown.coldWater = true
+
           this.setButtonStyle(this._downTurboOptions)
           this.isDown.coldWater_turbo = true
           break
@@ -322,6 +325,14 @@ export default Vue.extend({
       }
 
       if (options.type === 'right') {
+        /* dev */
+        // this.buttonLeft.background = options.background
+        // this.buttonLeft.border = options.border
+        // this.buttonLeft.boxShadow = options.boxShadow
+        // this.buttonLeft.fontSize = options.fontSize
+        // this.buttonLeft.width = options.width
+        /*     */
+
         this.buttonRight.background = options.background
         this.buttonRight.border = options.border
         this.buttonRight.boxShadow = options.boxShadow

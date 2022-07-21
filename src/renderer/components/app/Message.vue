@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div class="page-title">
-
+    <div class="wet-balance">
       <!-- wash type -->
       <div v-if="this.getPanelType === 'wash'">
         <!-- show Wet Balance-->
@@ -56,16 +55,22 @@
         </div>
       </div>
     </div>
+
     <!-- end wash -->
 
     <!-- vacuum type -->
-    <div v-if="this.getPanelType === 'vacuum'">
-      <div v-if="!getIsMoneyToBonus">
-        {{
-          `${parseFloat(getDryBalance / Math.pow(10, digits)).toFixed(digits)}`
-        }}
+    <div class="dry-balance">
+      <div v-if="this.getPanelType === 'vacuum'">
+        <div v-if="!getIsMoneyToBonus">
+          {{
+            `${parseFloat(getDryBalance / Math.pow(10, digits)).toFixed(
+              digits
+            )}`
+          }}
+        </div>
       </div>
     </div>
+
     <!-- end vacuum -->
   </div>
 </template>
@@ -122,7 +127,7 @@ export default Vue.extend({
       if (+flag === 0 && !this.getIsMoneyToBonusYes) this.$router.push('/')
     },
     getDryBalance(flag) {
-      // console.log('Message getDryBalance-->', this.getDryBalance)
+      console.log('Message getDryBalance-->', this.getDryBalance)
     },
     getFixedCurrency(flag) {
       this.digits = flag
@@ -145,7 +150,7 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.page-title {
+.wet-balance {
   padding-top: 0.02em;
   padding-right: 2.5em;
   width: 4em;
@@ -158,13 +163,28 @@ export default Vue.extend({
   align-items: center;
   justify-content: center;
 }
+.dry-balance {
+  padding-top: 0.02em;
+  padding-right: 2.5em;
+  width: 4em;
+
+  color: white;
+  font-size: 23em;
+  font-weight: normal;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  
+}
 ul {
   width: 4em;
   height: 1.6em;
   list-style: none;
   margin: 0;
   padding-left: 0.95em;
-  padding-top: 0.02em ;
+  padding-top: 0.02em;
   font-size: 1em;
   display: flex;
 }

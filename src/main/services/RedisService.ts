@@ -68,25 +68,21 @@ class RedisService extends EventEmitter {
     this.coins = options.coin_acceptor.enable_coins
 
     ipcMain.on('async-cash-start', (event: any, options: any) => {
-      console.log('$$ ipcMain.on', options)
-
       const coins = this.Coins
       const bills = this.Bills  
-
+      
       event.sender.send('async-cash-reply', coins, bills)
-      /* dev ?? */
-      // this.clearCoins() 
-      // this.clearBills()
-
     })
     ipcMain.on('async-cash-clear', (event: any, options: any) => {
       if (options) {
+
         this.clearCoins()
         this.clearBills()
       }
     })
   }
   private clearCoins() {
+    
     this.Coins.sumC5 = 0
     this.Coins.sumC10 = 0
     this.Coins.sumC25 = 0
@@ -97,6 +93,7 @@ class RedisService extends EventEmitter {
 
     this.Coins.amountCoin = 0
     this.Coins.counterCoin = 0
+
   }
   private clearBills() {
     this.Bills.sumB10 = 0
@@ -148,7 +145,6 @@ class RedisService extends EventEmitter {
   
 
   public calcBill(bill: any) {
-    console.log('$$ receiveBill', bill)
     if (Number.isInteger(bill)) {
       const denomination = bill.toString()
 
