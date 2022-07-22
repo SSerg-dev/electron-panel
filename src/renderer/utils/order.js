@@ -34,7 +34,7 @@ function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min)) + min
 }
 
-function createOrder(type, wetOrder, dryOrder, panelNumber, vacuumNumber) {
+function createOrder(type, wetOrder = '', dryOrder = '', panelNumber, vacuumNumber) {
   // const type = this.getPanelType
   const date = dateFilter(new Date())
   let result, index, prefix, suffix

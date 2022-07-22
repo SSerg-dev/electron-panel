@@ -86,7 +86,7 @@ export default {
   data: () => ({
     title: '',
     body: '',
-    cash: 0,
+    // cash: 0,
     cash_enabler: false,
     isDown: {
       payEnd: false,
@@ -163,13 +163,10 @@ export default {
 
     payUp(program) {
       this.setDown(program)
-      /* dev */
       this.doReceipt()
 
       // payEnd
       if (program === 'payEnd') {
-        /* dev */
-        console.log('$$ payUp(program)', program)
         this.getCashMoney()
 
         sleep(this.delay).then(() => {
@@ -271,10 +268,6 @@ export default {
       ipcRenderer.on('async-cash-reply', (event, coins, bills) => {
         this.coins = coins
         this.bills = bills
-        /* dev */
-        /* sleep(this.timeout).then(() => {
-          this.payCashMoney()
-        }) */
 
         if (coins || bills) {
           isClear = true
@@ -318,7 +311,7 @@ export default {
       this.options.params.detail.order = this.order
 
       console.log(
-        'CashBill ++payCashMoney-->options-->this.options-->',
+        '$$ CashBill ++payCashMoney-->options-->this.options-->',
         JSON.stringify(this.options)
       )
 

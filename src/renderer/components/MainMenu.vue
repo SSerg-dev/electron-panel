@@ -141,7 +141,7 @@ export default Vue.extend({
     }),
 
     payUp(program) {
-      switch (program) {
+      switch (program) { 
         case 'bonus':
           this.setIsAppendBonusMoney(false)
           this.setIsPayBonusMoney(true)
@@ -151,15 +151,12 @@ export default Vue.extend({
           break
         case 'card':
           this.setIsPayCardMoney(false)
-          //console.log('++card')
           this.$router.push('/card')
           break
         case 'cost':
-          //console.log('++cost')
-          this.$router.push('/cost')
+          this.$router.push('/cost') 
           break
         case 'cash':
-          //console.log('++cash')
           this.setEnabler()
           this.$router.push('/cash')
           break

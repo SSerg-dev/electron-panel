@@ -100,7 +100,6 @@ export default Vue.extend({
     },
 
     setActiveProg() {
-
       this.activeProg = [...this.getActiveProgBit()].reverse().join('')
 
       if (this.getWetProgPrice !== undefined) {
@@ -188,8 +187,6 @@ export default Vue.extend({
     const type = this.getPanelType
     switch (type) {
       case 'wash':
-        /* dev */
-        // this.costs = this.getCosts()
         this.actives = [...this.getPrograms()]
 
         this.costs = this.actives.sort((a, b) =>

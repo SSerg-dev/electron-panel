@@ -627,7 +627,7 @@ export default new Vuex.Store({
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
       )
-      // console.log('displayName-->', displayName, parameter.value)
+      // console.log('setDryParameters-->', displayName, parameter.value)
 
       switch (displayName) {
         case 'progPrice':

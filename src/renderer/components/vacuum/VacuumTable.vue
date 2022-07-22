@@ -6,22 +6,14 @@
           <div><Message /></div>
         </div>
 
-        <!-- dev -->
         <div
+          v-if="this.getDryBalance > 0"
           @click="setProgram('price')"
           class="waves-effect price"
           id="button-price"
         >
-          <div
-            class="button-content-style"
-            :class="[
-              { 'card-content black-text': !this.isDown.price },
-              { 'card-content white-text': this.isDown.price }
-            ]"
-          >
-            <div>
-              {{ `📄` }}
-            </div>
+          <div class="emoji">
+            {{ `📄` }}
           </div>
         </div>
       </section>
@@ -205,16 +197,16 @@ export default {
     active: '',
     timeoutPopup: null,
     isDown: {
-      /* dev */
       vacuum: false,
       air: false,
       washer: false,
       turboDryer: false,
       blacking: false,
       disinfection: false,
-      price: false,
+      price: false
     },
     buttonPrice: null,
+    delay: 4000
   }),
 
   components: {
@@ -242,6 +234,16 @@ export default {
       getDryBalance: 'getDryBalance'
     })
   },
+  watch: {
+    getDryBalance(flag) {
+      if (parseInt(flag) === 0) {
+        this.clearDown()
+        this.timeoutPopup = setTimeout(() => {
+          this.$router.push('/')
+        }, this.delay)
+      }
+    }
+  },
   methods: {
     ...mapActions({
       updateDryStartProgram: 'updateDryStartProgram'
@@ -252,17 +254,6 @@ export default {
     ...mapGetters({}),
 
     setProgram(program) {
-      /* dev */
-      // console.log('vacuumProgram-->', program)
-      /* dev */
-      if (program === 'price') {
-        this.isDown.price = true
-        this.buttonPrice.background = 'rgb(64, 196, 255)'
-        this.setDown()
-        this.$router.push('/cost')
-        return
-      }
-
       this.setDown(program)
 
       this.active = program
@@ -274,16 +265,10 @@ export default {
         this.getActiveProgram,
         this.getDryBalance
       ])
-
-      // this.timeoutPopup = setTimeout(() => {
-      //   this.$router.push('/')
-      // }, 1000)
-
     },
     setDown(program) {
       this.clearDown()
       switch (program) {
-        /* dev */
         case 'vacuum':
           this.isDown.vacuum = true
           break
@@ -302,6 +287,10 @@ export default {
         case 'disinfection':
           this.isDown.disinfection = true
           break
+        case 'price':
+          this.isDown.price = true
+          this.$router.push('/cost')
+          break
 
         default:
           break
@@ -313,7 +302,6 @@ export default {
       )
     },
     setup() {
-      // this.initCurrency()
       this.initial()
     },
     initial() {
@@ -401,14 +389,10 @@ td {
   margin-top: 0em;
   margin-left: 0.5em;
 }
-
-/* .price {
-  position: absolute;
-  margin-top: 0em;
-  margin-left: -15em;
-  font-size: 2em;
-} */
-
+.emoji {
+  font-size: 5em;
+  padding-bottom: 0em;
+}
 .button-style {
   padding-top: 0em;
   width: 945px;
