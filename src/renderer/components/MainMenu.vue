@@ -141,7 +141,7 @@ export default Vue.extend({
     }),
 
     payUp(program) {
-      switch (program) {
+      switch (program) { 
         case 'bonus':
           this.setIsAppendBonusMoney(false)
           this.setIsPayBonusMoney(true)
