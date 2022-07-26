@@ -45,9 +45,13 @@
           <div
             class="waves-effect button-style"
             :class="[
-              { 'card black ': !this.isDown.operator },
+              { 'card deep-purple lighten-1': !this.isDown.operator },
               { 'card teal accent-3': this.isDown.operator }
             ]"
+            style="
+            border: solid 2px #b39ddb;
+            box-shadow: 0px 15px 20px #7e57c2;
+            "
           >
             <div
               class="button-content-style"

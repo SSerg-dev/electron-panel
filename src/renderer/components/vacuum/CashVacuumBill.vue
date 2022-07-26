@@ -1,6 +1,5 @@
 <template>
   <div class="page-title">
-
     <ul style="margin-top: 18em;">
       <li
         v-if="this.IsDryBalance === true && this.getIsPing"
@@ -108,7 +107,6 @@
           </div>
         </div>
       </li>
-
     </ul>
   </div>
 </template>
@@ -125,18 +123,26 @@ import sleep from '@/utils/sleep'
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
 
 import { ipcRenderer } from 'electron'
+import { dateFilter, getRndInteger } from '@/utils/order.js'
 
 export default {
   name: 'cash-vacuum-bill',
   data: () => ({
     title: '',
     body: '',
-    cash: 0,
+    // cash: 0,
     cash_enabler: false,
     isDown: {
       payEnd: false,
       payBonus: false
     },
+
+    sum: 0,
+    cash: true,
+    order: '',
+    coins: {},
+    bills: {},
+    delay: 2000,
 
     client: 'fetch',
     url: 'https://192.168.1.3/',
@@ -144,46 +150,25 @@ export default {
     options: {}
   }),
   mounted() {
+    this.order = this.createOrder()
+
     this.storage = new Storage(this.client, this.url)
-    /* dev */
-    // sleep(4000).then(() => {
-    //   console.log('run after 4 sec')
-    // })
-
-    /* 
-    const button = new Button({
-      selector: '#button-main',
-      width: 60,
-      height: 5,
-
-      color: 'rgb(255, 255, 255)',
-      borderTopRightRadius: 2,
-      borderTopLeftRadius: 2,
-      borderBottomRightRadius: 2,
-      borderBottomLeftRadius: 2,
-
-      border: 'solid 0.4em #00B9E3',
-
-      boxShadow: '0px 13px 20px #00B9E3'
-    })
-    button.hide()
-    button.show()
-    button.opacity(0.5)
-    */
-    /*     */
-
-    // console.log('getDryBalance-->', this.getDryBalance)
   },
   computed: {
     ...mapGetters({
       getDryBalance: 'getDryBalance',
-      getIsPing: 'getIsPing'
+      getIsPing: 'getIsPing',
+      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getVacuumNumber: 'getVacuumNumber',
+      getPanelType: 'getPanelType',
+      getWetOrder: 'getWetOrder',
+      getDryOrder: 'getDryOrder',
+      getWetBalance: 'getWetBalance'
     }),
     IsDryBalance: {
       get: function() {
         let flag
         this.getDryBalance > 0 ? (flag = true) : (flag = false)
-        console.log('$$ getDryBalance-->', this.getDryBalance)
         return flag
       }
     }
@@ -211,15 +196,20 @@ export default {
 
     payUp(program) {
       this.setDown(program)
-      /* dev */
       this.doReceipt()
 
+      // payEnd
       if (program === 'payEnd') {
-        this.payCashMoney()
+        this.getCashMoney()
+
+        sleep(this.delay).then(() => {
+          this.payCashMoney()
+        })
+
         this.setCashEnabler(true)
         this.setIsAppendBonusMoney(false)
         this.setIsPayBonusMoney(true)
-        if (this.$route.name !== 'program') this.$router.push('/program')
+        // if (this.$route.name !== 'program') this.$router.push('/program')
       } else if (program === 'payBonus') {
         this.setIsAppendBonusMoney(true)
         this.setIsPayBonusMoney(false)
@@ -268,30 +258,69 @@ export default {
 
     doReceipt() {
       console.log('!!! Dry doReceipt()')
-      const storage = new Storage(this.client, this.url)
+      // const storage = new Storage(this.client, this.url)
 
       /* dev */
       //this.readReceipt()
       //this.createReceipt()
       //this.printReceipt()
     },
+    getCashMoney() {
+      let isClear = false
+      const options = 'ipcRenderer.send coin from CashBill'
+      ipcRenderer.send('async-cash-start', options)
+
+      ipcRenderer.on('async-cash-reply', (event, coins, bills) => {
+        this.coins = coins
+        this.bills = bills
+
+        if (coins || bills) {
+          isClear = true
+          event.sender.send('async-cash-clear', isClear)
+        }
+      })
+    },
 
     async payCashMoney() {
       const method = methods[0]
       const type = types[0]
 
-      //console.log('payCashMoney')
-
-      const storage = new Storage(this.client, this.url)
-      /* dev */
-      //this.options = this.getStoreMoneyOptions()
       this.options = this.getDryStoreMoneyOptions()
-      console.log('vacuum this.options-->', this.options)
+      this.sum = this.getDryBalance
+
+      this.options.params.unit_id = this.getVacuumNumber - 1
+      this.options.params.type = 'cash'
+      this.options.params.sum = +this.sum
+
+      // for statistic coins
+      this.options.params.detail.sum_coins = this.coins.amountCoin
+      this.options.params.detail.coins_count = this.coins.counterCoin
+      this.options.params.detail.coins_1 = 0
+      this.options.params.detail.coins_2 = 0
+      this.options.params.detail.coins_5 = this.coins.counterC5
+      this.options.params.detail.coins_10 = this.coins.counterC10
+      this.options.params.detail.coins_25 = this.coins.counterC25
+
+      // for statistic bills
+      this.options.params.detail.sum_bills = this.bills.amountBill
+      this.options.params.detail.bills_count = this.bills.counterBill
+      this.options.params.detail.bills_10 = this.bills.counterB10
+      this.options.params.detail.bills_50 = this.bills.counterB50
+      this.options.params.detail.bills_100 = this.bills.counterB100
+      this.options.params.detail.bills_200 = this.bills.counterB200
+      this.options.params.detail.bills_500 = this.bills.counterB500
+
+      if (!this.order) this.order = this.createOrder() 
+      this.options.params.order = this.order 
+      this.options.params.detail.order = this.order
+
+      console.log(
+        '$$ CashVacuumBill ++payCashMoney-->options-->this.options-->',
+        JSON.stringify(this.options)
+      )
 
       const response = await this.storage.getClient(method, this.options, type)
 
-      /* dev */
-      //console.log('storeMoney-->', typeof response)
       if (response === undefined) {
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(`Связь с connect недоступна!!!`)
@@ -306,9 +335,35 @@ export default {
             .getDryBalance} ₽`
         )
       } else {
-        this.$error('payCashMoney $error')
-        //this.$message(`Оплата наличными не прошла`)
+        this.$message(`Оплата наличными не прошла`)
       }
+    },
+    createOrder() {
+      const type = this.getPanelType
+      const date = dateFilter(new Date())
+      let result, index, prefix, suffix
+      suffix = getRndInteger(10000, 99999)
+
+      switch (type) {
+        case 'wash':
+          if (this.getWetOrder === '') {
+            prefix = 'W'
+            index = this.getDefaultPanelNumber
+            result = prefix + index + date
+          } else result = this.getWetOrder
+          break
+        case 'vacuum':
+          if (this.getDryOrder === '') {
+            prefix = 'V'
+            index = this.getVacuumNumber
+            result = prefix + index + date
+          } else result = this.getDryOrder
+          break
+        default:
+          break
+      }
+
+      return result
     },
     async appendBonusMoney() {
       console.log('!!!CashBill-->appendBonusMoney-->', methods[10])

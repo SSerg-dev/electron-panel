@@ -75,7 +75,7 @@
     "syspanel": "US"
   },
   "log_path": "/var/log",
-  "type": "vacuum",
+  "type": "wash",
   "ui": {
     "CNW": 0,
     "degreasing_enable": 0,

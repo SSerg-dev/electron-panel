@@ -1007,14 +1007,6 @@ export default {
     }),
 
     payUp(program) {
-      /* switch (program) {
-        case 'append' :
-          break
-        case 'noappend' :
-          break
-        default:
-          break
-      } */
 
       const card = this.amount
       if (
