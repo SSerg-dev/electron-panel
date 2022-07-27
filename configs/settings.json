@@ -19,7 +19,7 @@
     "type": "CCTALK1"
   },
   "__commentCountries": "add available countries",
-  "countries": ["RU", "US", "DE"],
+  "countries": ["RU", "US"],
   "country": "RU",
   "__commentCurrency": "add default currency",
   "currency": "RUB",

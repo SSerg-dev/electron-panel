@@ -59,6 +59,8 @@ export default Vue.extend({
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },
   beforeDestroy() {
+    /* dev */
+    this.setIsBonusMoney(false)
     clearInterval(this.intervalMainMenu)
   },
 

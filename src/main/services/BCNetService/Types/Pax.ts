@@ -73,21 +73,17 @@ class Pax extends EventEmitter {
       // self.reconnect()
       try {
         if (self.amount > 0 && self.device !== undefined) {
-          
           /* 01 CheckRequest */
-          // const requestCheck = self.device.getCheckRequest()
-          // const writeCheck = self.device.write(requestCheck, 2000)
-          
+          // this.check()
+
           /* 02 Reconciliation */
-          // const request = self.device.getReconciliationRequest()
-          // const writeResponse = self.device.write(request, 2000)
-          // const readResponse = self.device.read(request, 2000)
-          
+          // this.reconcile()
+
           /* 03 SaleRequest */
           const request = self.device.getSaleRequest(self.amount)
           const writeResponse = self.device.write(request, 2000)
           const readResponse = self.device.read(request, 2000)
-          
+
           // --------------------------
           function submitAmountHandler(amount: any, status: any) {
             self.sleep(2000).then(() => {
@@ -110,7 +106,25 @@ class Pax extends EventEmitter {
         console.log('Error', err)
       }
     })
+    ipcMain.on('async-reconciliation-message', (event, arg) => {
+      self.reconcile()
+    })
     self.disconnect()
+  }
+  // ------------------------------------
+  /* Reconciliation */
+  private reconcile() {
+    let self = this
+    const requestReconciliation = self.device.getReconciliationRequest()
+    const writeReconciliation = self.device.write(requestReconciliation, 2000)
+    const readReconciliation = self.device.read(requestReconciliation, 2000)
+  }
+  // ------------------------------------
+  /* CheckRequest */
+  private check() {
+    let self = this
+    const requestCheck = self.device.getCheckRequest()
+    const writeCheck = self.device.write(requestCheck, 2000)
   }
   // ------------------------------------
   // this.getComPort()

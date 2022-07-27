@@ -117,8 +117,6 @@ export default {
       switch (type) {
         case 'wash':
           this.setWetBalance(+amount)
-          /* dev */
-          // this.updateWetMoney(+amount)
           break
         case 'vacuum':
           this.setDryBalance(+amount)
@@ -182,7 +180,7 @@ export default {
       setWetBalance: 'setWetBalance',
     }),
     ...mapActions({
-      updateWetMoney: 'updateWetMoney',
+      
     }),
 
     payUp(program) {

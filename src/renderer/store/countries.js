@@ -273,6 +273,7 @@ export default {
         emojiU: 'U+1F1F0 U+1F1FF'
       }, */
 
+      /* 
       DE: {
         name: 'Germany',
         native: 'Deutschland',
@@ -290,7 +291,8 @@ export default {
         emoji: '🇩🇪',
         emojiU: 'U+1F1E9 U+1F1EA'
       },
-
+      */
+     
       /* FR: {
         name: 'France',
         native: 'France',

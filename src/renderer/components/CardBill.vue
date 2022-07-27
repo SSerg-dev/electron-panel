@@ -2,29 +2,29 @@
   <div
     class="overlay"
     ref="overlay"
-    style="background: none;
-  width: 80em;   
-  height: 90em; 
-  padding-top: 14em;
-  padding-left: 4em;
-  margin-top: -2em;
-  margin-left: -4em;
-  z-index: 1;
-  "
+    style="
+      background: none;
+      width: 80em;
+      height: 90em;
+      padding-top: 14em;
+      padding-left: 4em;
+      margin-top: -2em;
+      margin-left: -4em;
+      z-index: 1;
+    "
   >
     <section
       style="
-          width: 66em; 
-          height: 72em; 
-          margin-left: 0.2em; 
-          margin-top: -6em;
-          padding-left: 1.8em; 
-          padding-top: 8em;
-          border: solid 3px #00B9E3; 
-          border-radius: 2em;
-          box-shadow: 0px 0px 20px 15px #00b9e3;  
-          
-    "
+        width: 66em;
+        height: 72em;
+        margin-left: 0.2em;
+        margin-top: -6em;
+        padding-left: 1.8em;
+        padding-top: 8em;
+        border: solid 3px #00b9e3;
+        border-radius: 2em;
+        box-shadow: 0px 0px 20px 15px #00b9e3;
+      "
     >
       <form @submit.prevent="">
         <div v-if="loading">
@@ -47,13 +47,13 @@
             <div
               v-if="this.messageIndex > -1"
               class="info-title noselect"
-              style="margin-bottom: 4em; "
+              style="margin-bottom: 4em"
             >
               <p align="center">
                 {{ `${this.messages[0]}` }}
                 {{ `${this.firstname}` }}
               </p>
-              <p align="center" style="font-size: 140px;">
+              <p align="center" style="font-size: 140px">
                 {{ parseFloat(this.balance).toFixed(this.digits) }}
               </p>
               <p align="center">
@@ -73,7 +73,7 @@
                 </div>
               </td>
               <td colspan="1" class="white-text currency">
-                <div align="center" style="font-size: 1em;">
+                <div align="center" style="font-size: 1em">
                   <p>{{ this.emoji }}</p>
                   {{ this.currency }}
                   <!-- {{ this.symbol }} -->
@@ -87,22 +87,22 @@
                   @click="setNumber('')"
                   class="card black waves-effect"
                   style="
-                  width: 220px;
-                  height: 120px; 
-                  border: none; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
+                    width: 220px;
+                    height: 120px;
+                    border: none;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     v-if="isMinBlinking && isMin"
                     id="blink"
-                    class="card-content "
+                    class="card-content"
                     style="
-                  font-size: 3rem;
-                  padding-left: 2.4rem;
-                  padding-top: 1.4rem;
-                  "
+                      font-size: 3rem;
+                      padding-left: 2.4rem;
+                      padding-top: 1.4rem;
+                    "
                   >
                     {{ `Min ${getPaymentLimitMin}` }}
                   </div>
@@ -111,10 +111,10 @@
                     v-else
                     class="card-content white-text"
                     style="
-                  font-size: 3rem;
-                  padding-left: 2.4rem;
-                  padding-top: 1.4rem;
-                  "
+                      font-size: 3rem;
+                      padding-left: 2.4rem;
+                      padding-top: 1.4rem;
+                    "
                   >
                     {{ `Min ${getPaymentLimitMin}` }}
                   </div>
@@ -125,21 +125,20 @@
                   @click="setNumber('1')"
                   class="card white waves-effect"
                   style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 125px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     1
                   </div>
@@ -150,21 +149,20 @@
                   @click="setNumber('2')"
                   class="card white waves-effect"
                   style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 125px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     2
                   </div>
@@ -175,21 +173,20 @@
                   @click="setNumber('3')"
                   class="card white waves-effect"
                   style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 125px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     3
                   </div>
@@ -201,26 +198,23 @@
                   @click="setNumber('')"
                   class="card black waves-effect"
                   style="
-                  width: 220px;
-                  height: 120px; 
-                  border: none; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 220px;
+                    height: 120px;
+                    border: none;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
-                  <!-- v-if="isMaxBlinking && isMax" -->
                   <div
                     v-if="isMaxBlinking && isMax"
                     id="blink"
                     class="card-content"
                     style="
-                  font-size: 3rem;
-                  padding-left: 1.5rem;
-                  padding-top: 1.4rem;
-                  "
+                      font-size: 3rem;
+                      padding-left: 1.5rem;
+                      padding-top: 1.4rem;
+                    "
                   >
-                    <!-- {{ `Max ${getPaymentLimitMax}` }} -->
                     {{
                       `Max ${parseFloat(getPaymentLimitMax).toFixed(
                         this.digits
@@ -232,16 +226,31 @@
                     v-else
                     class="card-content white-text"
                     style="
-                  font-size: 3rem;
-                  padding-left: 1.5rem;
-                  padding-top: 1.4rem;
-                  "
+                      font-size: 3rem;
+                      padding-left: 1.5rem;
+                      padding-top: 1.4rem;
+                    "
                   >
                     {{
                       `Max ${parseFloat(getPaymentLimitMax).toFixed(
                         this.digits
                       )}`
                     }}
+                    <!-- <div v-if="!this.getIsCardMoney">
+                      {{
+                        `Max ${parseFloat(this.cardLimitMax).toFixed(
+                          this.digits
+                        )}`
+                      }}
+                    </div>
+                    <div v-else>
+                      {{
+                        `Max ${parseFloat(getPaymentLimitMax).toFixed(
+                          this.digits
+                        )}`
+                      }}
+                    </div> -->
+
                   </div>
                 </div>
               </td>
@@ -254,21 +263,20 @@
                   @click="setNumber('100', (fixed = true))"
                   class="card white waves-effect"
                   style="
-                  width: 220px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 220px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     100
                   </div>
@@ -279,21 +287,20 @@
                   @click="setNumber('4')"
                   class="card white waves-effect"
                   style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 125px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     4
                   </div>
@@ -304,21 +311,20 @@
                   @click="setNumber('5')"
                   class="card white waves-effect"
                   style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 125px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     5
                   </div>
@@ -329,21 +335,20 @@
                   @click="setNumber('6')"
                   class="card white waves-effect"
                   style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 125px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     6
                   </div>
@@ -354,21 +359,20 @@
                   @click="setNumber('500', (fixed = true))"
                   class="card white waves-effect"
                   style="
-                  width: 220px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 220px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     500
                   </div>
@@ -381,21 +385,20 @@
                   @click="setNumber('200', (fixed = true))"
                   class="card white waves-effect"
                   style="
-                  width: 220px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 220px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     200
                   </div>
@@ -406,21 +409,20 @@
                   @click="setNumber('7')"
                   class="card white waves-effect"
                   style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 125px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     7
                   </div>
@@ -431,21 +433,20 @@
                   @click="setNumber('8')"
                   class="card white waves-effect"
                   style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 125px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     8
                   </div>
@@ -456,21 +457,20 @@
                   @click="setNumber('9')"
                   class="card white waves-effect"
                   style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 125px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     9
                   </div>
@@ -481,21 +481,20 @@
                   @click="setNumber('600', (fixed = true))"
                   class="card white waves-effect"
                   style="
-                  width: 220px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 220px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     600
                   </div>
@@ -509,21 +508,20 @@
                   @click="setNumber('300', (fixed = true))"
                   class="card white waves-effect"
                   style="
-                  width: 220px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 220px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     300
                   </div>
@@ -534,22 +532,22 @@
                   @click="setNumber('.')"
                   class="card white waves-effect"
                   style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  opacity: 1;
+                    width: 125px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
+                    opacity: 1;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 3rem;
-                  padding-top: 0rem;
-                  padding-bottom: 0rem;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 3rem;
+                      padding-top: 0rem;
+                      padding-bottom: 0rem;
+                    "
                   >
                     .
                   </div>
@@ -560,21 +558,20 @@
                   @click="setNumber('0')"
                   class="card white waves-effect"
                   style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 125px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     0
                   </div>
@@ -585,21 +582,20 @@
                   @click="backspace"
                   class="card white waves-effect"
                   style="
-                  width: 125px;
-                  height: 120px; 
-                  border: solid 6px red; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px red;
-                  
+                    width: 125px;
+                    height: 120px;
+                    border: solid 6px red;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px red;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 4.2rem;
-                  padding-left: 1.8rem;
-                  padding-top: 1rem;
-                  "
+                      font-size: 4.2rem;
+                      padding-left: 1.8rem;
+                      padding-top: 1rem;
+                    "
                   >
                     <!-- del -->
                     <i class="medium material-icons">backspace</i>
@@ -611,21 +607,20 @@
                   @click="setNumber('700', (fixed = true))"
                   class="card white waves-effect"
                   style="
-                  width: 220px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 220px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     700
                   </div>
@@ -639,21 +634,20 @@
                   @click="setNumber('400', (fixed = true))"
                   class="card white waves-effect"
                   style="
-                  width: 220px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  
+                    width: 220px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 2.5rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 2.5rem;
+                      padding-top: 0em;
+                    "
                   >
                     400
                   </div>
@@ -664,21 +658,20 @@
                   @click="payUp('append')"
                   class="card white waves-effect"
                   style="
-                  width: 420px;
-                  height: 120px; 
-                  border: solid 6px rgb(118, 255, 3); 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px rgb(118, 255, 3);
-                  
+                    width: 420px;
+                    height: 120px;
+                    border: solid 6px rgb(118, 255, 3);
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px rgb(118, 255, 3);
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 4em;
-                  padding-left: 2.8rem;
-                  padding-top: 0.2em;
-                  "
+                      font-size: 4em;
+                      padding-left: 2.8rem;
+                      padding-top: 0.2em;
+                    "
                   >
                     ЗАЧИСЛИТЬ
                   </div>
@@ -690,21 +683,21 @@
                   @click="setNumber('', (fixed = true))"
                   class="card white waves-effect"
                   style="
-                  width: 220px;
-                  height: 120px; 
-                  border: solid 6px #00B9E3; 
-                  border-radius: 2.5em;
-                  box-shadow: 0px 6px 10px #00b9e3;
-                  opacity: 0.2;
+                    width: 220px;
+                    height: 120px;
+                    border: solid 6px #00b9e3;
+                    border-radius: 2.5em;
+                    box-shadow: 0px 6px 10px #00b9e3;
+                    opacity: 0.2;
                   "
                 >
                   <div
                     class="card-content black-text"
                     style="
-                  font-size: 5.2rem;
-                  padding-left: 1.2rem;
-                  padding-top: 0em;
-                  "
+                      font-size: 5.2rem;
+                      padding-left: 1.2rem;
+                      padding-top: 0em;
+                    "
                   >
                     1000
                   </div>
@@ -740,7 +733,7 @@ export default {
       phone: '',
       balance: 0,
       firstname: '',
-      lastname: ''
+      lastname: '',
     },
 
     amount: 0,
@@ -761,7 +754,6 @@ export default {
     timeoutMinDelay: null,
     timeoutMaxDelay: null,
     timeoutDelay: null,
-
 
     minX: 55,
     minY: 560,
@@ -786,7 +778,7 @@ export default {
     emoji: '',
     currency: '',
     symbol: '',
-    currencies: []
+    currencies: [],
   }),
   computed: {
     ...mapGetters({
@@ -801,11 +793,11 @@ export default {
       getIsBonusMoney: 'getIsBonusMoney',
 
       getWetPaidBonus: 'getWetPaidBonus',
-      getProfile: 'getProfile'
+      getProfile: 'getProfile',
     }),
 
     isMinBlinking: {
-      get: function() {
+      get: function () {
         const flags = [true, false]
         let index
         if (this.amount < this.getPaymentLimitMin) {
@@ -816,7 +808,7 @@ export default {
           this.isMin = false
         }
         // if (index === 0) this.$message('Сумма меньше минимальной')
-        flags.modeBlink = function(index) {
+        flags.modeBlink = function (index) {
           return flags[index]
         }
         this.timeoutMinDelay = setTimeout(() => {
@@ -825,11 +817,11 @@ export default {
         }, this.delay)
 
         return flags.modeBlink(index)
-      }
+      },
     },
 
     isMaxBlinking: {
-      get: function() {
+      get: function () {
         const flags = [true, false]
         let index
         if (this.amount > this.getPaymentLimitMax) {
@@ -842,7 +834,7 @@ export default {
           this.isMax = false
         }
         if (index === 0) this.$message('Сумма больше максимальной')
-        flags.modeBlink = function(index) {
+        flags.modeBlink = function (index) {
           return flags[index]
         }
         this.timeoutMaxDelay = setTimeout(() => {
@@ -851,13 +843,13 @@ export default {
         }, this.delay)
 
         return flags.modeBlink(index)
-      }
-    }
+      },
+    },
   },
   watch: {
     getFixedCurrency(flag) {
       this.digits = flag
-    }
+    },
   },
   mounted() {
     const options = {}
@@ -875,18 +867,18 @@ export default {
       balance,
       phone,
       firstname,
-      lastname
+      lastname,
     } = this.getProfile
 
     this.profile.isQrAuthorization = isQrAuthorization
     this.profile.isPhoneAuthorization = isPhoneAuthorization
     this.profile.isCashAuthorization = isCashAuthorization
-    this.profile.phone = phone 
+    this.profile.phone = phone
     this.profile.balance = balance
     this.profile.firstname = firstname
     this.profile.lastname = lastname
 
-    // console.log('this.profile-->', this.profile ) 
+    // console.log('this.profile-->', this.profile )
 
     if (!this.profile.isQrAuthorization) {
       this.profile.isPhoneAuthorization = true
@@ -898,7 +890,7 @@ export default {
     /* dev */
     if (this.profile.isQrAuthorization) {
       this.loading = true
-      
+
       this.setPaymentLimitMax(this.profile.balance)
 
       this.balance = this.profile.balance
@@ -907,10 +899,9 @@ export default {
       this.lastname = this.profile.lastname
       this.messageIndex = 0
 
-      this.timeoutDelay =setTimeout(()=> {
-        this.loading = false  
-      }, this.delay )
-      
+      this.timeoutDelay = setTimeout(() => {
+        this.loading = false
+      }, this.delay)
     }
   },
   created() {
@@ -941,7 +932,7 @@ export default {
       EventBus.$emit('submitBonusMoney', balance)
     },
     emitCardMoney(card = 0) {
-        EventBus.$emit('submitCardMoney', card)
+      EventBus.$emit('submitCardMoney', card)
     },
     changeRowOfTable(balance) {
       if (balance < 1) {
@@ -968,7 +959,7 @@ export default {
     overlay() {
       const overlay = this.$refs.overlay
 
-      overlay.onclick = evt => {
+      overlay.onclick = (evt) => {
         if (
           evt.clientX > this.minX &&
           evt.clientY > this.minY &&
@@ -990,7 +981,7 @@ export default {
       getLoginBonusOptions: 'getLoginBonusOptions',
       getLoginBonusPhone: 'getLoginBonusPhone',
       getIsPayCardMoney: 'getIsPayCardMoney',
-      getCardMoney: 'getCardMoney'
+      getCardMoney: 'getCardMoney',
     }),
     ...mapMutations({
       setLoginBonusPhone: 'setLoginBonusPhone',
@@ -999,15 +990,13 @@ export default {
       setIsBonusMoney: 'setIsBonusMoney',
       setCardMoney: 'setCardMoney',
       setPaymentLimitMax: 'setPaymentLimitMax',
-      setProfile: 'setProfile'
+      setProfile: 'setProfile',
     }),
     ...mapActions({
-      updateWetMoney: 'updateWetMoney',
-      updateWetBonusMoney: 'updateWetBonusMoney'
+      updateWetBonusMoney: 'updateWetBonusMoney',
     }),
 
     payUp(program) {
-
       const card = this.amount
       if (
         this.amount > 0 &&
@@ -1016,6 +1005,10 @@ export default {
       ) {
         // payCard
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
+          /* dev */
+          console.log('$$ payCard', this.getIsCardMoney, this.getIsBonusMoney)
+          // this.setPaymentLimitMax(this.cardLimitMax)
+
           this.emitCardMoney(card)
           this.setCardMoney(card)
           this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)
@@ -1023,6 +1016,9 @@ export default {
         }
         // payBonus
         if (this.getIsBonusMoney && this.getIsCardMoney) {
+          /* dev */
+          console.log('$$ payBonus', this.getIsCardMoney, this.getIsBonusMoney)
+
           this.updateWetBonusMoney(card)
           this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
           if (this.$route.name !== 'program') this.$router.push('/program')
@@ -1101,8 +1097,8 @@ export default {
         this.amount = 0
         this.display = this.amountString
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

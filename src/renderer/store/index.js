@@ -289,7 +289,8 @@ export default new Vuex.Store({
           'OPCUA',
           JSON.stringify({
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
-              1}].paidMoney`,
+              /* 1}].paidMoney`, */
+              1}].prepaymentMoney`,
             value: cash
           })
         )

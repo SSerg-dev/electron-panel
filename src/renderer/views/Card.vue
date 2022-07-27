@@ -77,7 +77,6 @@ export default Vue.extend({
 
   methods: {
     ...mapActions({
-      updateWetMoney: 'updateWetMoney'
     }),
     initBankTerminal() {
       const bankTerminal = new BankTerminalController()
@@ -113,7 +112,6 @@ export default Vue.extend({
       const amount = this.card
       item.pay(amount)
       item.sendFINAL()
-      // this.updateWetMoney(this.card)
     },
     /* dev */
     flowSequencePax(item) {

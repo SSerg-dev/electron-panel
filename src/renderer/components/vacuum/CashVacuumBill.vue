@@ -191,7 +191,6 @@ export default {
       setIsAppendBonusMoney: 'setIsAppendBonusMoney'
     }),
     ...mapActions({
-      updateWetMoney: 'updateWetMoney'
     }),
 
     payUp(program) {

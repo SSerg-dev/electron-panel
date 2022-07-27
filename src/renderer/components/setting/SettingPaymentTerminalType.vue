@@ -34,6 +34,21 @@
                 </button>
           
         </div>
+        <div v-if="this.current === 4" class="col s4">
+          <button
+                  
+                  class="btn waves-effect waves-light  white-text button-setting "
+                  type="submit"
+                  @click="setService('pax')"
+                  style="margin-left: 1em; margin-top: -0.2em;"
+                >
+                  <div style="margin-top: -0.1em;">
+                   {{ `Сверка PAX` }}
+                  </div>
+
+                </button>
+          
+        </div>
 
       </div>
     </div>
@@ -43,6 +58,9 @@
 <script>
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
+const EventEmitter = require('events')
+const { ipcRenderer } = require('electron')
+
 
 export default Vue.extend({
   name: 'setting-terminal-type',
@@ -76,6 +94,11 @@ export default Vue.extend({
         case 'menu':
           // console.log('Открыть меню Ярус К2100')
           break
+        case 'pax':
+          const message = 'pax reconciliation'
+          ipcRenderer.send('async-reconciliation-message', message)
+
+          break  
         default:
           break
       }
