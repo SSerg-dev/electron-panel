@@ -107,7 +107,9 @@ export default Vue.extend({
               +this.observer.status === this.SUCCESS
             ) {
               seconds = 0
+              // console.log('$$ this.updateWetMoney-->StatusBill.vue: 110', )
               this.resolve(this.terminalType)
+
             } else if (+this.observer.status === this.UNSUCCESS) {
               this.reject(this.terminalType)
             }

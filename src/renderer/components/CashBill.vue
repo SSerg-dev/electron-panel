@@ -90,7 +90,7 @@ export default {
     cash_enabler: false,
     isDown: {
       payEnd: false,
-      payBonus: false
+      payBonus: false,
     },
 
     sum: 0,
@@ -103,12 +103,35 @@ export default {
     client: 'fetch',
     url: 'https://192.168.1.3/',
     storage: null,
-    options: {}
+    options: {},
   }),
   mounted() {
     this.order = this.createOrder()
 
     this.storage = new Storage(this.client, this.url)
+
+    /* dev */
+    
+    ipcRenderer.on('async-amount-reply', (event, amount, status) => {
+      const type = this.getPanelType
+      switch (type) {
+        case 'wash':
+          this.setWetBalance(+amount)
+          /* dev */
+          // this.updateWetMoney(+amount)
+          break
+        case 'vacuum':
+          this.setDryBalance(+amount)
+          break
+
+        default:
+          break
+      }
+      // if (+amount > 0 && this.$route.name !== 'program')
+      //   this.$router.push('/program')
+    })
+    
+    /*     */
   },
   computed: {
     ...mapGetters({
@@ -118,16 +141,16 @@ export default {
       getWetOrder: 'getWetOrder',
       getDryOrder: 'getDryOrder',
       getWetBalance: 'getWetBalance',
-      getIsPing: 'getIsPing'
+      getIsPing: 'getIsPing',
     }),
     IsWetBalance: {
-      get: function() {
+      get: function () {
         let flag
         this.getWetBalance > 0 ? (flag = true) : (flag = false)
         // if (!flag) this.$message('Внесите минимальную сумму')
         return flag
-      }
-    }
+      },
+    },
   },
 
   methods: {
@@ -143,7 +166,7 @@ export default {
       /* dev */
       getIsReceiptRead: 'getIsReceiptRead',
       getIsReceiptCreate: 'getIsReceiptCreate',
-      getIsReceiptPrint: 'getIsReceiptPrint'
+      getIsReceiptPrint: 'getIsReceiptPrint',
     }),
     ...mapMutations({
       //createCash: 'cash/createCash',
@@ -155,10 +178,11 @@ export default {
       setIsReceiptCreate: 'setIsReceiptCreate',
       setIsReceiptPrint: 'setIsReceiptPrint',
 
-      setIsMoneyToBonus: 'setIsMoneyToBonus'
+      setIsMoneyToBonus: 'setIsMoneyToBonus',
+      setWetBalance: 'setWetBalance',
     }),
     ...mapActions({
-      updateWetMoney: 'updateWetMoney'
+      updateWetMoney: 'updateWetMoney',
     }),
 
     payUp(program) {
@@ -408,12 +432,10 @@ export default {
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
       //console.log('this.isDown.payEnd-clearDown-->', this.isDown.payEnd)
-    }
+    },
   }, // end methods
 
-  beforeDestroy() {
-    
-  }
+  beforeDestroy() {},
   /* components: {
 
   } */

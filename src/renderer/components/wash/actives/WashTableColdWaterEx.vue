@@ -5,14 +5,14 @@
     <td>
       <div
         @click="setProgram('coldWater')"
-        class="waves-effect "
+        class="waves-effect"
         id="button-left-cold-water"
       >
         <div
           class="button-content-style"
           :class="[
             { 'card-content black-text': !this.isDown.coldWater },
-            { 'card-content white-text': this.isDown.coldWater }
+            { 'card-content white-text': this.isDown.coldWater },
           ]"
         >
           {{ `${actives[this.activeNumber].title}` }}
@@ -31,10 +31,10 @@
           class="button-content-style-turbo"
           :class="[
             { 'card-content black-text': !this.isDown.coldWater_turbo },
-            { 'card-content white-text': this.isDown.coldWater_turbo }
+            { 'card-content white-text': this.isDown.coldWater_turbo },
           ]"
         >
-          <div style="font-style: italic;">
+          <div style="font-style: italic">
             {{ `${actives[this.activeNumber_turbo].name.slice(-5)}` }}
           </div>
         </div>
@@ -52,7 +52,7 @@ import {
   upStandardOptions,
   downStandardOptions,
   upTurboOptions,
-  downTurboOptions
+  downTurboOptions,
 } from '@/shapes/index.js'
 
 import { log } from '../../../../main/utils'
@@ -94,22 +94,22 @@ export default Vue.extend({
 
     isDown: {
       coldWater: false,
-      coldWater_turbo: false
-    }
+      coldWater_turbo: false,
+    },
   }),
   props: {
     actives: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
   },
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getWetBalance: 'getWetBalance'
-    })
+      getWetBalance: 'getWetBalance',
+    }),
   },
   watch: {
     getWetBalance(flag) {
@@ -123,20 +123,20 @@ export default Vue.extend({
         flag !== this.actives[this.activeNumber_turbo].name
       )
         this.clearDown()
-    }
+    },
   },
   methods: {
     ...mapGetters({
       getActiveProgramKit: 'getActiveProgramKit',
-      getIsActiveProgramKit: 'getIsActiveProgramKit'
+      getIsActiveProgramKit: 'getIsActiveProgramKit',
     }),
     ...mapActions({
-      updateStartProgram: 'updateStartProgram'
+      updateStartProgram: 'updateStartProgram',
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setActiveProgramKit: 'setActiveProgramKit',
-      setIsActiveProgramKit: 'setIsActiveProgramKit'
+      setIsActiveProgramKit: 'setIsActiveProgramKit',
     }),
 
     setProgram(program) {
@@ -145,11 +145,12 @@ export default Vue.extend({
       this.setActiveProgram(this.active)
       this.setDown(this.active)
 
+      // console.log('cold water this.updateStartProgram')
       this.updateStartProgram([
         this.getPanelType,
         this.getDefaultPanelNumber,
         this.getActiveProgram,
-        this.getWetBalance
+        this.getWetBalance,
       ])
 
       this.setIsActiveProgramKit(true)
@@ -229,7 +230,7 @@ export default Vue.extend({
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'left'
+        justifyContent: 'left',
       })
       /* right button */
       this.buttonRight = new Button({
@@ -242,7 +243,7 @@ export default Vue.extend({
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
       // end classes
 
@@ -341,7 +342,7 @@ export default Vue.extend({
 
         this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
-    }
+    },
   }, // end methods
 
   beforeDestroy() {
@@ -361,7 +362,7 @@ export default Vue.extend({
     this.visibleWarm_turbo = this.actives[this.activeWarmNumber_turbo].display
 
     this.setup()
-  }
+  },
 })
 </script>
 
