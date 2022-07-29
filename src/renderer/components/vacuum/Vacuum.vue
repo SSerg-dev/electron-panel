@@ -46,18 +46,15 @@
             class="waves-effect button-style"
             :class="[
               { 'card deep-purple lighten-1': !this.isDown.operator },
-              { 'card teal accent-3': this.isDown.operator }
+              { 'card teal accent-3': this.isDown.operator },
             ]"
-            style="
-            border: solid 2px #b39ddb;
-            box-shadow: 0px 15px 20px #7e57c2;
-            "
+            style="border: solid 2px #b39ddb; box-shadow: 0px 15px 20px #7e57c2"
           >
             <div
               class="button-content-style"
               :class="[
                 { 'card-content white-text': !this.isDown.operator },
-                { 'card-content grey-text': this.isDown.operator }
+                { 'card-content grey-text': this.isDown.operator },
               ]"
             >
               {{ `КОНСУЛЬТАНТ` }}
@@ -77,7 +74,7 @@
               <div style="color: #00b9e3">{{ `ПОСТ №2` }}</div>
             </div>
           </div>
-        </li> 
+        </li>
 
         <li
           v-if="getVacuum === 2"
@@ -100,7 +97,7 @@ import Vue from 'vue'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 import MainMenu from '@/components/MainMenu'
-//import { ipcRenderer } from 'electron'
+import { ipcRenderer } from 'electron'
 
 export default Vue.extend({
   name: 'vacuum',
@@ -112,11 +109,11 @@ export default Vue.extend({
     delay: 500,
     isDown: {
       stop: false,
-      operator: false
+      operator: false,
     },
 
     isMainMenu: false,
-    type: 'vacuum'
+    type: 'vacuum',
     //number:
   }),
   computed: {
@@ -129,11 +126,11 @@ export default Vue.extend({
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
-      getIsFooter: 'getIsFooter'
-    })
+      getIsFooter: 'getIsFooter',
+    }),
   },
   components: {
-    MainMenu
+    MainMenu,
   },
   created() {
     this.isMainMenu = false
@@ -154,43 +151,48 @@ export default Vue.extend({
       setPanelType: 'setPanelType',
       setActiveProgram: 'setActiveProgram',
       setVacuumNumber: 'setVacuumNumber',
-      setIsFooter: 'setIsFooter'
+      setIsFooter: 'setIsFooter',
     }),
     ...mapActions({
-      updateDryStartProgram: 'updateDryStartProgram'
+      updateDryStartProgram: 'updateDryStartProgram',
     }),
 
     /*     */
+    /* dev */
+    relaunch(index) {
+      const options = { index: index - 1 }
+      ipcRenderer.send('async-relaunch-start', options)
+    },
 
     payUp(program) {
+      let index = 0
       switch (program) {
         case 'first':
-          console.log('first')
+          index = 1
           this.isMainMenu = true
-          this.setVacuumNumber(1)
           break
         case 'third':
-          console.log('third')
+          index = 3
           this.isMainMenu = true
-          this.setVacuumNumber(3)
           break
-
         case 'operator':
           this.setProgram(program)
           break
         case 'second':
-          console.log('second')
+          index = 2
           this.isMainMenu = true
-          this.setVacuumNumber(2)
           break
         case 'fourth':
-          console.log('fourth')
+          index = 4
           this.isMainMenu = true
-          this.setVacuumNumber(4)
           break
 
         default:
           break
+      }
+      if (index > 0) {
+        this.relaunch(index)
+        this.setVacuumNumber(index)
       }
     },
     setProgram(program) {
@@ -203,7 +205,7 @@ export default Vue.extend({
         this.getPanelType,
         this.getVacuumNumber,
         this.getActiveProgram,
-        this.getDryBalance
+        this.getDryBalance,
       ])
 
       this.timeoutPopup = setTimeout(() => {
@@ -235,8 +237,8 @@ export default Vue.extend({
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-    }
-  }
+    },
+  },
 })
 </script>
 

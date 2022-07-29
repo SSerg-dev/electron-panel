@@ -186,8 +186,6 @@ class OPCUAService extends EventEmitter {
       for (let tag in this.nodes) {
         const node = this.nodes[tag].replace('{0}', String(num - 1))
 
-        /* dev */
-        // if ( (type.indexOf("vacuum")
         if (
           (type.indexOf('Vacuum') != -1 && node.indexOf('Post') != -1) ||
           (type.indexOf('wash') != -1 && node.indexOf('acuum') != -1)
@@ -199,7 +197,6 @@ class OPCUAService extends EventEmitter {
           nodeId: resolveNodeId(`ns=${this.TAG_NS};s=${node}`),
           attributeId: AttributeIds.Value
         })
-        // console.log('itemsToMonitor-->', itemsToMonitor)
       }
 
       this.monitoredItemGroup = ClientMonitoredItemGroup.create(

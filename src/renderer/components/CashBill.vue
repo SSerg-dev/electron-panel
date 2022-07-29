@@ -111,7 +111,7 @@ export default {
     this.storage = new Storage(this.client, this.url)
 
     /* dev */
-    
+
     ipcRenderer.on('async-amount-reply', (event, amount, status) => {
       const type = this.getPanelType
       switch (type) {
@@ -128,7 +128,7 @@ export default {
       // if (+amount > 0 && this.$route.name !== 'program')
       //   this.$router.push('/program')
     })
-    
+
     /*     */
   },
   computed: {
@@ -179,9 +179,7 @@ export default {
       setIsMoneyToBonus: 'setIsMoneyToBonus',
       setWetBalance: 'setWetBalance',
     }),
-    ...mapActions({
-      
-    }),
+    ...mapActions({}),
 
     payUp(program) {
       this.setDown(program)
@@ -202,7 +200,6 @@ export default {
       }
       // payBonus
       else if (program === 'payBonus') {
-        console.log('$$ payUp(program)', program)
         this.setIsAppendBonusMoney(true)
         this.setIsPayBonusMoney(false)
         this.$router.push('/bonus')

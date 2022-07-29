@@ -13,7 +13,8 @@ export default {
     vacuum: 1,
     vacuumNumber: 1,
     payment: 1,
-    isTooltipInstalled: true
+    isTooltipInstalled: true,
+    cardLimitMax: 0
   }, // end state
 
   // getters
@@ -24,6 +25,10 @@ export default {
     getPaymentLimitMax(state) {
       return state.config.bank_terminal.max_sum
     },
+    getCardLimitMax(state) {
+      return state.cardLimitMax
+    },
+
     getDefaultLanguage(state) {
       return state.config.languages.default
     },
@@ -246,6 +251,9 @@ export default {
     },
     setConfig(state, config) {
       state.config = config
+      /* dev */
+      state.cardLimitMax = state.config.bank_terminal.max_sum
+      
       //console.log('!!++state.config-->', state.config.languages.default)
     }
     /* setTooltipInstalled(state, isTooltipInstalled) {

@@ -46,14 +46,21 @@ export default Vue.extend({
       getWetProgStatus: 'getWetProgStatus',
       getWetProgShow: 'getWetProgShow',
       getParamsChange: 'getParamsChange',
-      getPanelType: 'getPanelType'
-    })
+      getPanelType: 'getPanelType',
+      getWetBalance: 'getWetBalance',
+      getDryBalance: 'getDryBalance'
+    }),
+
   },
   watch: {
     getParamsChange(flag) {
       const actives = this.setActiveProg()
+    },
+    getWetBalance(flag) {
+      if (+flag === 0) {
+        this.$router.push('/')
+      }
     }
-
   },
   methods: {
     ...mapMutations({

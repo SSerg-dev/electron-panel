@@ -193,7 +193,6 @@
                 </div>
               </td>
               <td>
-                <!-- border: solid 6px #00B9E3; -->
                 <div
                   @click="setNumber('')"
                   class="card black waves-effect"
@@ -215,11 +214,13 @@
                       padding-top: 1.4rem;
                     "
                   >
-                    {{
-                      `Max ${parseFloat(getPaymentLimitMax).toFixed(
-                        this.digits
-                      )}`
-                    }}
+                    <div>
+                      {{
+                        `Max ${parseFloat(getPaymentLimitMax).toFixed(
+                          this.digits
+                        )}`
+                      }}
+                    </div>
                   </div>
 
                   <div
@@ -231,26 +232,13 @@
                       padding-top: 1.4rem;
                     "
                   >
-                    {{
-                      `Max ${parseFloat(getPaymentLimitMax).toFixed(
-                        this.digits
-                      )}`
-                    }}
-                    <!-- <div v-if="!this.getIsCardMoney">
-                      {{
-                        `Max ${parseFloat(this.cardLimitMax).toFixed(
-                          this.digits
-                        )}`
-                      }}
-                    </div>
-                    <div v-else>
+                    <div>
                       {{
                         `Max ${parseFloat(getPaymentLimitMax).toFixed(
                           this.digits
                         )}`
                       }}
-                    </div> -->
-
+                    </div>
                   </div>
                 </div>
               </td>
@@ -794,6 +782,7 @@ export default {
 
       getWetPaidBonus: 'getWetPaidBonus',
       getProfile: 'getProfile',
+      getCardLimitMax: 'getCardLimitMax',
     }),
 
     isMinBlinking: {
@@ -850,6 +839,11 @@ export default {
     getFixedCurrency(flag) {
       this.digits = flag
     },
+    getIsCardMoney(flag) {
+      if (flag) {
+        if (!this.getIsBonusMoney) this.setPaymentLimitMax(this.cardLimitMax)
+      }
+    },
   },
   mounted() {
     const options = {}
@@ -878,8 +872,6 @@ export default {
     this.profile.firstname = firstname
     this.profile.lastname = lastname
 
-    // console.log('this.profile-->', this.profile )
-
     if (!this.profile.isQrAuthorization) {
       this.profile.isPhoneAuthorization = true
       this.setProfile(this.profile)
@@ -887,10 +879,10 @@ export default {
       this.payBonusMoney()
     }
 
-    /* dev */
     if (this.profile.isQrAuthorization) {
       this.loading = true
 
+      /* dev */
       this.setPaymentLimitMax(this.profile.balance)
 
       this.balance = this.profile.balance
@@ -905,7 +897,6 @@ export default {
     }
   },
   created() {
-    //this.setup()
     this.initCurrency()
     if (parseInt(this.getFixedCurrency) > 0) {
       this.digits = this.getFixedCurrency
@@ -915,6 +906,7 @@ export default {
   beforeDestroy() {
     this.setIsCardMoney(false)
     this.setIsBonusMoney(false)
+
     this.setPaymentLimitMax(this.cardLimitMax)
 
     clearTimeout(this.timeoutMinDelay)
@@ -973,8 +965,9 @@ export default {
       }
     },
     setup() {
-      this.display = this.amount = /*0*/ this.getPaymentLimitMin
-      this.cardLimitMax = this.getPaymentLimitMax
+      this.display = this.amount = this.getPaymentLimitMin
+      this.cardLimitMax = this.getCardLimitMax
+
       this.overlay()
     },
     ...mapGetters({
@@ -1003,12 +996,11 @@ export default {
         this.amount >= this.getPaymentLimitMin &&
         this.amount <= this.getPaymentLimitMax
       ) {
+        // console.log(
+        //   `CardBill.vue 996: this.getIsCardMoney ${this.getIsCardMoney} this.getIsBonusMoney ${this.getIsBonusMoney}`
+        // )
         // payCard
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
-          /* dev */
-          console.log('$$ payCard', this.getIsCardMoney, this.getIsBonusMoney)
-          // this.setPaymentLimitMax(this.cardLimitMax)
-
           this.emitCardMoney(card)
           this.setCardMoney(card)
           this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)
@@ -1016,9 +1008,6 @@ export default {
         }
         // payBonus
         if (this.getIsBonusMoney && this.getIsCardMoney) {
-          /* dev */
-          console.log('$$ payBonus', this.getIsCardMoney, this.getIsBonusMoney)
-
           this.updateWetBonusMoney(card)
           this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
           if (this.$route.name !== 'program') this.$router.push('/program')
@@ -1053,7 +1042,8 @@ export default {
           this.lastname = response.profile.lastname
           this.messageIndex = 0
 
-          if (this.balance > 0) this.setPaymentLimitMax(this.balance)
+          this.setPaymentLimitMax(this.balance)
+
           this.emitBonusMoney(this.balance)
           this.changeRowOfTable(this.balance)
 

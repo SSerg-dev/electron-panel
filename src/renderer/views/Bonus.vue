@@ -56,11 +56,10 @@ export default Vue.extend({
   mounted() {
     this.setRouter('/bonus')
     this.setIsBonusMoney(true)
+    
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },
   beforeDestroy() {
-    /* dev */
-    this.setIsBonusMoney(false)
     clearInterval(this.intervalMainMenu)
   },
 

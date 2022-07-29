@@ -183,7 +183,8 @@ export default new Vuex.Store({
           'OPCUA',
           JSON.stringify({
             node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
-              1}].paidMoney`,
+              // 1}].paidMoney`,
+              1}].prepaymentMoney`,
             value: cash
           })
         )
@@ -645,6 +646,7 @@ export default new Vuex.Store({
           break
         case 'panel_money':
           state.dryParameters.panelMoney = parameter.value
+          // console.log('state.dryParameters.panelMoney', )
           break
         case 'digits':
           state.globalParameters.fixedCurrency = parameter.value

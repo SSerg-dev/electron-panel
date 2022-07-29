@@ -136,7 +136,8 @@ export default Vue.extend({
 
     ...mapMutations({
       setRouter: 'setRouter',
-      setIsCardMoney: 'setIsCardMoney'
+      setIsCardMoney: 'setIsCardMoney',
+      setIsBonusMoney: 'setIsBonusMoney'
     }),
     gotoMainMenu(seconds) {
       this.intervalMainMenu = setInterval(() => {
