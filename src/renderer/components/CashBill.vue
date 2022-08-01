@@ -110,8 +110,6 @@ export default {
 
     this.storage = new Storage(this.client, this.url)
 
-    /* dev */
-
     ipcRenderer.on('async-amount-reply', (event, amount, status) => {
       const type = this.getPanelType
       switch (type) {
@@ -125,11 +123,7 @@ export default {
         default:
           break
       }
-      // if (+amount > 0 && this.$route.name !== 'program')
-      //   this.$router.push('/program')
     })
-
-    /*     */
   },
   computed: {
     ...mapGetters({

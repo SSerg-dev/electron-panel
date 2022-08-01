@@ -152,6 +152,7 @@ export default Vue.extend({
       setActiveProgram: 'setActiveProgram',
       setVacuumNumber: 'setVacuumNumber',
       setIsFooter: 'setIsFooter',
+      setDryBalance: 'setDryBalance'
     }),
     ...mapActions({
       updateDryStartProgram: 'updateDryStartProgram',
@@ -160,7 +161,8 @@ export default Vue.extend({
     /*     */
     /* dev */
     relaunch(index) {
-      const options = { index: index - 1 }
+      // this.setDryBalance(0)
+      const options = { index: index }
       ipcRenderer.send('async-relaunch-start', options)
     },
 

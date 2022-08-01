@@ -780,7 +780,6 @@ export default {
       getIsCardMoney: 'getIsCardMoney',
       getIsBonusMoney: 'getIsBonusMoney',
 
-      getWetPaidBonus: 'getWetPaidBonus',
       getProfile: 'getProfile',
       getCardLimitMax: 'getCardLimitMax',
     }),
@@ -1008,7 +1007,9 @@ export default {
         }
         // payBonus
         if (this.getIsBonusMoney && this.getIsCardMoney) {
+          /* dev */
           this.updateWetBonusMoney(card)
+          /*     */
           this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
           if (this.$route.name !== 'program') this.$router.push('/program')
         }

@@ -30,14 +30,14 @@
                 class="waves-effect button-style"
                 :class="[
                   { 'card white': !this.isDown.vacuum },
-                  { 'card teal accent-3': this.isDown.vacuum }
+                  { 'card teal accent-3': this.isDown.vacuum },
                 ]"
               >
                 <div
                   class="button-content-style"
                   :class="[
                     { 'card-content black-text': !this.isDown.vacuum },
-                    { 'card-content white-text': this.isDown.vacuum }
+                    { 'card-content white-text': this.isDown.vacuum },
                   ]"
                 >
                   {{ `${actives[0].title}` }}
@@ -56,14 +56,14 @@
                 class="waves-effect button-style"
                 :class="[
                   { 'card white': !this.isDown.air },
-                  { 'card teal accent-3': this.isDown.air }
+                  { 'card teal accent-3': this.isDown.air },
                 ]"
               >
                 <div
                   class="button-content-style"
                   :class="[
                     { 'card-content black-text': !this.isDown.air },
-                    { 'card-content white-text': this.isDown.air }
+                    { 'card-content white-text': this.isDown.air },
                   ]"
                 >
                   {{ `${actives[1].title}` }}
@@ -82,14 +82,14 @@
                 class="waves-effect button-style"
                 :class="[
                   { 'card white': !this.isDown.washer },
-                  { 'card teal accent-3': this.isDown.washer }
+                  { 'card teal accent-3': this.isDown.washer },
                 ]"
               >
                 <div
                   class="button-content-style"
                   :class="[
                     { 'card-content black-text': !this.isDown.washer },
-                    { 'card-content white-text': this.isDown.washer }
+                    { 'card-content white-text': this.isDown.washer },
                   ]"
                 >
                   {{ `${actives[2].title}` }}
@@ -108,14 +108,14 @@
                 class="waves-effect button-style"
                 :class="[
                   { 'card white': !this.isDown.turboDryer },
-                  { 'card teal accent-3': this.isDown.turboDryer }
+                  { 'card teal accent-3': this.isDown.turboDryer },
                 ]"
               >
                 <div
                   class="button-content-style"
                   :class="[
                     { 'card-content black-text': !this.isDown.turboDryer },
-                    { 'card-content white-text': this.isDown.turboDryer }
+                    { 'card-content white-text': this.isDown.turboDryer },
                   ]"
                 >
                   {{ `${actives[3].title}` }}
@@ -134,14 +134,14 @@
                 class="waves-effect button-style"
                 :class="[
                   { 'card white': !this.isDown.blacking },
-                  { 'card teal accent-3': this.isDown.blacking }
+                  { 'card teal accent-3': this.isDown.blacking },
                 ]"
               >
                 <div
                   class="button-content-style"
                   :class="[
                     { 'card-content black-text': !this.isDown.blacking },
-                    { 'card-content white-text': this.isDown.blacking }
+                    { 'card-content white-text': this.isDown.blacking },
                   ]"
                 >
                   {{ `${actives[4].title}` }}
@@ -160,14 +160,14 @@
                 class="waves-effect button-style"
                 :class="[
                   { 'card white': !this.isDown.disinfection },
-                  { 'card teal accent-3': this.isDown.disinfection }
+                  { 'card teal accent-3': this.isDown.disinfection },
                 ]"
               >
                 <div
                   class="button-content-style"
                   :class="[
                     { 'card-content black-text': !this.isDown.disinfection },
-                    { 'card-content white-text': this.isDown.disinfection }
+                    { 'card-content white-text': this.isDown.disinfection },
                   ]"
                 >
                   {{ `${actives[5].title}` }}
@@ -186,14 +186,26 @@
 import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import Message from '@/components/app/Message'
+import EventBus from '@/bus/EventBus'
+
+import { Database } from '@/storage/database.js'
+import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
+import { Storage } from '@/storage/index.js'
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
+import { dateFilter, getRndInteger, log } from '@/utils/order.js'
 
 export default {
   data: () => ({
     name: 'vacuum-table',
     //loading: true,
     //records: [],
+    client: 'fetch',
+    url: 'https://192.168.1.3/',
+    storage: null,
+    options: {},
+    order: '',
+
     active: '',
     timeoutPopup: null,
     isDown: {
@@ -203,55 +215,178 @@ export default {
       turboDryer: false,
       blacking: false,
       disinfection: false,
-      price: false
+      price: false,
     },
     buttonPrice: null,
-    delay: 4000
+    delay: 4000,
   }),
 
   components: {
-    Message
+    Message,
   },
 
   props: {
     actives: {
       required: true,
-      type: Array
+      type: Array,
     },
     number: {
       type: String,
-      default: '' //'second'
-    }
+      default: '', //'second'
+    },
   },
   computed: {
     ...mapGetters({
       getVacuumNumber: 'getVacuumNumber',
       getWetBalance: 'getWetBalance',
+      getDryBalance: 'getDryBalance',
+      getDryPaidBonus: 'getDryPaidBonus',
 
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
+
       getActiveProgram: 'getActiveProgram',
-      getDryBalance: 'getDryBalance'
-    })
+      getActiveProgramNumber: 'getActiveProgramNumber',
+    }),
   },
   watch: {
     getDryBalance(flag) {
-      if (parseInt(flag) === 0) {
+      if (+flag === 0) {
+        this.completeDry()
+        /* dev */
+        console.log('$$ getDryPaidBonus', this.getDryPaidBonus)
+        if (this.getDryPaidBonus > 0) {
+          this.chargeBonusMoney()
+        }
+
         this.clearDown()
         this.timeoutPopup = setTimeout(() => {
           this.$router.push('/')
         }, this.delay)
       }
-    }
+    },
   },
   methods: {
     ...mapActions({
-      updateDryStartProgram: 'updateDryStartProgram'
+      updateDryStartProgram: 'updateDryStartProgram',
     }),
     ...mapMutations({
-      setActiveProgram: 'setActiveProgram'
+      setActiveProgram: 'setActiveProgram',
+      setCompleteWash: 'setCompleteWash',
     }),
-    ...mapGetters({}),
+    ...mapGetters({
+      getCompleteWash: 'getCompleteWash',
+    }),
+
+    /* dev */
+    // ----------------------------------
+    // ЗАВЕРШИТЬ ПЫЛЕСОС
+
+    async completeDry() {
+      console.log('++completeDry-->')
+
+      const method = methods[11]
+      const type = types[4]
+
+      this.options = this.getCompleteWash()
+
+      if (!this.order) this.order = this.createOrder()
+
+      this.options.params.order = this.order
+
+      this.options.params.programs[0].program_id = this.getActiveProgramNumber
+
+      this.options.params.programs[0].program_name =
+        this.actives[this.getActiveProgramNumber - 1].title
+
+      this.options.params.programs[0].program_quantity = 0.42
+
+      this.setCompleteWash(this.options.params)
+      this.options = this.getCompleteWash()
+
+      console.log(
+        'completeDry options-->this.options-->',
+        JSON.stringify(this.options)
+      )
+
+      const response = await this.storage.getClient(method, this.options, type)
+
+      if (+response.result === 0) {
+        this.$message(`Программа пылесоса закончена успешно`)
+        if (this.$route.name !== 'home') this.$router.push('/')
+      } else {
+        this.$message(`Ошибка:  ${response.error}`)
+      }
+    },
+    createOrder() {
+      const type = this.getPanelType
+      const date = dateFilter(new Date())
+      let result, index, prefix, suffix
+      suffix = getRndInteger(10000, 99999)
+
+      switch (type) {
+        case 'wash':
+          if (this.getWetOrder === '') {
+            prefix = 'W'
+            index = this.getDefaultPanelNumber
+            result = prefix + index + date
+            // result = prefix + index + date + '_' + suffix.toString()
+          } else result = this.getWetOrder
+          break
+        case 'vacuum':
+          if (this.getDryOrder === '') {
+            prefix = 'V'
+            index = this.getVacuumNumber
+            result = prefix + index + date
+            // result = prefix + index + date + '_' + suffix.toString()
+          } else result = this.getDryOrder
+          break
+        default:
+          break
+      }
+
+      return result
+    },
+        // ----------------------------------
+    // СПИСАТЬ БОНУСЫ ИЗ ОБЛАКА
+    // ----------------------------------
+    async chargeBonusMoney() {
+      // console.log('++chargeBonusMoney')
+
+      const method = methods[13]
+      const type = types[4]
+
+      this.options = this.getChargeBonus()
+      this.sum = this.getWetPaidBonus
+
+      this.options.params.sum = +this.sum
+      this.options.params.cash = this.cash
+      this.options.params.order = this.order
+
+      const prefix = '+'
+      const profile = this.getProfile()
+
+      this.options.params.phone = prefix + profile.phone
+
+      this.setChargeBonus(this.options.params)
+      this.options = this.getChargeBonus()
+
+      console.log(
+        '++chargeBonusMoney-->options-->this.options-->',
+        JSON.stringify(this.options)
+      )
+      const response = await this.storage.getClient(method, this.options, type)
+      if (+response.result === 0) {
+        this.$message(`У Вас СПИСАНО ${this.options.params.sum} бонуса(ов) `)
+        if (this.$route.name !== 'home') this.$router.push('/')
+      } else {
+        this.$message(`Ошибка:  ${response.error}`)
+      }
+    },
+    // ----------------------------------
+
+
+    /*     */
 
     setProgram(program) {
       this.setDown(program)
@@ -263,7 +398,7 @@ export default {
         this.getPanelType,
         this.getVacuumNumber,
         this.getActiveProgram,
-        this.getDryBalance
+        this.getDryBalance,
       ])
     },
     setDown(program) {
@@ -321,19 +456,22 @@ export default {
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
 
       if (!+this.getDryBalance > 0) this.buttonPrice.hide()
-    }
+    },
   },
   mounted() {
+    this.storage = new Storage(this.client, this.url)
+    this.order = this.getCompleteWash().params.order
+
     this.setup()
   },
 
   beforeDestroy() {
     clearTimeout(this.timeoutPopup)
-  }
+  },
 }
 </script>
 

@@ -23,7 +23,7 @@
   "country": "RU",
   "__commentCurrency": "add default currency",
   "currency": "RUB",
-  "index": 1,
+  "index": 2,
   "languages": {
     "default": "RU",
     "panel": [
@@ -75,7 +75,7 @@
     "syspanel": "US"
   },
   "log_path": "/var/log",
-  "type": "vacuum",
+  "type": "wash",
   "ui": {
     "CNW": 0,
     "degreasing_enable": 0,

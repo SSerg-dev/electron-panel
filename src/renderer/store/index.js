@@ -123,6 +123,7 @@ export default new Vuex.Store({
       busy: '',
       panelMoney: '0',
       order: '',
+      paidBonus: '',
       active: ''
     },
     globalParameters: {
@@ -458,6 +459,10 @@ export default new Vuex.Store({
     getDryBalance(state) {
       return state.dryParameters.panelMoney
     },
+    /* dev */
+    getDryPaidBonus(state) {
+      return state.dryParameters.paidBonus
+    },
     getDryBusyPanel(state) {
       return state.dryParameters.busy
     },
@@ -654,6 +659,13 @@ export default new Vuex.Store({
         case 'order':
           state.dryParameters.order = parameter.value
           break
+
+        /* dev */
+        case 'paidBonus':
+          state.dryParameters.paidBonus = parameter.value
+          console.log('$$ index.js state.dryParameters.paidBonus', state.dryParameters.paidBonus)
+          break
+
         case 'active':
           state.dryParameters.active = parameter.value
 
@@ -697,7 +709,7 @@ export default new Vuex.Store({
     },
     setActiveProgram(state, activeProgram) {
       state.activeProgram = activeProgram
-      //console.log('state.activeProgram-->', state.activeProgram)
+      // console.log('state.activeProgram-->', state.activeProgram)
     },
     setActiveProgramKit(state, activeProgramKit) {
       state.activeProgramKit = activeProgramKit

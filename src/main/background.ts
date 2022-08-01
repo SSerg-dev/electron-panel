@@ -128,21 +128,17 @@ const idle = async (config: any) => {
     mConfig.index !== config.index
   ) {
     OPCUAClient.start(config.type, config.index)
-    /* dev */
+    
+    // crutch :((
     ipcMain.on('async-relaunch-start', (event: any, options: any) => {
-      console.log(
-        '$$ ipcMain.on background async-relaunch-start',
-        options.index
-      )
-      // crutch :((
       OPCUAClient = new OPCUAService(opcURL)
       OPCUAClient.on('change', (payload: any) => {
         isOPCUAConnected = true
         sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))
       })
       OPCUAClient.start(config.type, +options.index)
+
     })
-    /*     */
   }
   /* dev */
   /* 

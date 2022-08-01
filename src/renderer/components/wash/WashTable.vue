@@ -16,7 +16,7 @@
             class="button-content-style"
             :class="[
               { 'card-content black-text': !this.isDown.price },
-              { 'card-content white-text': this.isDown.price }
+              { 'card-content white-text': this.isDown.price },
             ]"
           >
             <!-- style="content:'\1f4c2'; filter: hue-rotate(180deg) brightness(1.5); margin-right:4px;" -->
@@ -48,7 +48,7 @@
             class="button-content-style"
             :class="[
               { 'card-content black-text': !this.isDown.receipt },
-              { 'card-content white-text': this.isDown.receipt }
+              { 'card-content white-text': this.isDown.receipt },
             ]"
           >
             {{ `🧾` }}
@@ -65,18 +65,18 @@
             class="button-content-style"
             :class="[
               { 'card-content black-text': !this.isDown.bonus },
-              { 'card-content white-text': this.isDown.bonus }
+              { 'card-content white-text': this.isDown.bonus },
             ]"
           >
             <div align="center">
-              <ul style="font-size: 0.6em; padding-top: 0em;">
+              <ul style="font-size: 0.6em; padding-top: 0em">
                 <li>{{ this.currency }}</li>
                 <li>
                   <i class="medium material-icons">arrow_downward</i>
                 </li>
                 <li>
                   <div
-                    style="width: 1.8em; border: solid 6px ; border-radius: 50%"
+                    style="width: 1.8em; border: solid 6px; border-radius: 50%"
                   >
                     {{ `₿` }}
                   </div>
@@ -301,7 +301,7 @@ export default {
       keyVacuum: 13,
       keyTurboDryer: 14,
       keyAir: 15,
-      keyWasher: 16
+      keyWasher: 16,
     },
 
     client: 'fetch',
@@ -320,7 +320,7 @@ export default {
       air: false,
       price: false,
       receipt: false,
-      bonus: false
+      bonus: false,
     },
     buttonPrice: null,
     buttonReceipt: null,
@@ -329,7 +329,7 @@ export default {
     emoji: '',
     currency: '',
     symbol: '',
-    currencies: []
+    currencies: [],
   }),
   components: {
     Message,
@@ -349,22 +349,22 @@ export default {
     WashTableWasher,
     WashTableDegrease,
     WashTableDisinfection,
-    WashTableBonus
+    WashTableBonus,
   },
   props: {
     actives: {
       required: true,
-      type: Array
+      type: Array,
     },
     delay: {
       required: true,
-      type: Number
-    }
+      type: Number,
+    },
   },
 
   watch: {
     getWetBalance(flag) {
-      // console.log('getWetBalance-->', flag)
+      console.log('$$ getWetBalance-->', flag)
       if (+flag === 0) {
         this.completeWash()
         if (this.getWetPaidBonus > 0) {
@@ -427,7 +427,7 @@ export default {
     getIsMoneyToBonusNo(flag) {
       if (flag) this.isVisibleWashTableBonus = false
       // else this.isVisibleWashTableBonus = true
-    }
+    },
   },
   computed: {
     ...mapGetters({
@@ -439,6 +439,7 @@ export default {
       getActiveProgramNumber: 'getActiveProgramNumber',
 
       getWetBalance: 'getWetBalance',
+      getDryBalance: 'getDryBalance',
 
       getWetProgStatus: 'getWetProgStatus',
       getWetProgShow: 'getWetProgShow',
@@ -459,13 +460,13 @@ export default {
       getWetPaidBonus: 'getWetPaidBonus',
 
       getWetOrder: 'getWetOrder',
-      getDryOrder: 'getDryOrder'
-    })
+      getDryOrder: 'getDryOrder',
+    }),
   },
 
   methods: {
     ...mapActions({
-      updateStartProgram: 'updateStartProgram'
+      updateStartProgram: 'updateStartProgram',
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
@@ -480,13 +481,13 @@ export default {
       setIsFirstTimer: 'setIsFirstTimer',
 
       setCompleteWash: 'setCompleteWash',
-      setChargeBonus: 'setChargeBonus'
+      setChargeBonus: 'setChargeBonus',
     }),
     ...mapGetters({
       getPrintReceiptOptions: 'getPrintReceiptOptions',
       getCompleteWash: 'getCompleteWash',
       getChargeBonus: 'getChargeBonus',
-      getProfile: 'getProfile'
+      getProfile: 'getProfile',
 
       // getLoginBonusPhone: 'getLoginBonusPhone'
       // getIsReceiptPrint: 'getIsReceiptPrint'
@@ -523,7 +524,7 @@ export default {
         this.getPanelType,
         this.getDefaultPanelNumber,
         this.getActiveProgram,
-        this.getWetBalance
+        this.getWetBalance,
       ])
 
       this.timeoutPopup = setTimeout(() => {
@@ -592,16 +593,14 @@ export default {
 
       this.options = this.getCompleteWash()
 
-      if (!this.order) 
-        this.order =  this.createOrder() /* 'W220220504143549' */ 
-   
+      if (!this.order) this.order = this.createOrder() /* 'W220220504143549' */
+
       this.options.params.order = this.order
 
       this.options.params.programs[0].program_id = this.getActiveProgramNumber
-      this.options.params.programs[0].program_name = this.actives[
-        this.getActiveProgramNumber - 1
-      ].title
-      
+      this.options.params.programs[0].program_name =
+        this.actives[this.getActiveProgramNumber - 1].title
+
       /* dev */
       this.options.params.programs[0].program_quantity = 0.42
 
@@ -613,7 +612,7 @@ export default {
       //   JSON.stringify(this.options)
       // )
       const response = await this.storage.getClient(method, this.options, type)
-      
+
       if (+response.result === 0) {
         this.$message(`Программа мойки закончена успешно`)
         if (this.$route.name !== 'home') this.$router.push('/')
@@ -623,7 +622,7 @@ export default {
     },
     // ----------------------------------
     // СПИСАТЬ БОНУСЫ ИЗ ОБЛАКА
-    // ----------------------------------
+    // ---------------------------------- 
     async chargeBonusMoney() {
       // console.log('++chargeBonusMoney')
 
@@ -687,7 +686,7 @@ export default {
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
 
       // button-receipt
@@ -704,7 +703,7 @@ export default {
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
 
       // button bonus
@@ -721,7 +720,7 @@ export default {
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
 
       if (!+this.getWetBalance > 0) this.buttonPrice.hide()
@@ -795,7 +794,7 @@ export default {
       this.keys = Object.fromEntries(
         Object.entries(this.keys).map(([key, value], index) => [
           key,
-          (index + 1) * 10
+          (index + 1) * 10,
         ])
       )
       // console.log('this.keys-->', this.keys)
@@ -829,7 +828,7 @@ export default {
       }
 
       return result
-    }
+    },
 
     /*     */
   }, // end methods
@@ -871,7 +870,7 @@ export default {
   created() {
     // this.initial()
     // this.setup()
-  }
+  },
 }
 </script>
 
