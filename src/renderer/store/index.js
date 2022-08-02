@@ -210,7 +210,7 @@ export default new Vuex.Store({
     },
     // бонусы
     updateDryBonusMoney({ getters }, bonus) {
-      console.log('Bonus update-->', bonus)
+      console.log('DRY Bonus update-->', bonus)
       try {
         ipcRenderer.send(
           'OPCUA',
@@ -317,7 +317,7 @@ export default new Vuex.Store({
     },
     // бонусы
     updateWetBonusMoney({ getters }, bonus) {
-      console.log('Bonus update-->', bonus)
+      console.log('WET Bonus update-->', bonus)
       try {
         ipcRenderer.send(
           'OPCUA',
@@ -651,7 +651,7 @@ export default new Vuex.Store({
           break
         case 'panel_money':
           state.dryParameters.panelMoney = parameter.value
-          // console.log('state.dryParameters.panelMoney', )
+          console.log('state.dryParameters.panelMoney', state.dryParameters.panelMoney)
           break
         case 'digits':
           state.globalParameters.fixedCurrency = parameter.value
@@ -659,13 +659,10 @@ export default new Vuex.Store({
         case 'order':
           state.dryParameters.order = parameter.value
           break
-
-        /* dev */
         case 'paidBonus':
           state.dryParameters.paidBonus = parameter.value
-          console.log('$$ index.js state.dryParameters.paidBonus', state.dryParameters.paidBonus)
+          console.log('state.dryParameters.paidBonus', state.dryParameters.paidBonus)
           break
-
         case 'active':
           state.dryParameters.active = parameter.value
 

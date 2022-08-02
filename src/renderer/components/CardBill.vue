@@ -770,6 +770,8 @@ export default {
   }),
   computed: {
     ...mapGetters({
+      getPanelType: 'getPanelType',
+
       getInitCurrency: 'getInitCurrency',
       getDefaultCurrency: 'getDefaultCurrency',
       getLanguageNatives: 'getLanguageNatives',
@@ -986,6 +988,7 @@ export default {
     }),
     ...mapActions({
       updateWetBonusMoney: 'updateWetBonusMoney',
+      updateDryBonusMoney: 'updateDryBonusMoney'
     }),
 
     payUp(program) {
@@ -995,9 +998,10 @@ export default {
         this.amount >= this.getPaymentLimitMin &&
         this.amount <= this.getPaymentLimitMax
       ) {
-        // console.log(
-        //   `CardBill.vue 996: this.getIsCardMoney ${this.getIsCardMoney} this.getIsBonusMoney ${this.getIsBonusMoney}`
-        // )
+        /* dev */
+        console.log(
+          `CardBill.vue 996: this.getIsCardMoney ${this.getIsCardMoney} this.getIsBonusMoney ${this.getIsBonusMoney}`
+        )
         // payCard
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
           this.emitCardMoney(card)
@@ -1007,11 +1011,24 @@ export default {
         }
         // payBonus
         if (this.getIsBonusMoney && this.getIsCardMoney) {
-          /* dev */
-          this.updateWetBonusMoney(card)
-          /*     */
+          const type = this.getPanelType
+          switch (type) {
+            case 'wash':
+              this.updateWetBonusMoney(card)
+              // if (this.$route.name !== 'program') this.$router.push('/program')
+              this.$router.push('/')
+              break
+            case 'vacuum':
+              this.updateDryBonusMoney(card)
+              // if (this.$route.name !== 'program') this.$router.push('/program')
+              this.$router.push('/cash')
+              break
+
+            default:
+              break
+          }
+
           this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
-          if (this.$route.name !== 'program') this.$router.push('/program')
         }
 
         this.display = this.title = this.body = '0'

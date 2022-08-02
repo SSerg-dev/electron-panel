@@ -529,7 +529,6 @@ export default {
         return flag
       },
     },
-
   },
   /* watch: {
     getProfile(flag) {
@@ -679,6 +678,11 @@ export default {
           this.getMoneyToBonus === 0
             ? (this.sum = this.getDryBalance)
             : (this.sum = this.getMoneyToBonus)
+          console.log(
+            '$$ ++appendBonusMoney vacuum',
+            this.getDryBalance,
+            this.getMoneyToBonus
+          )
           break
         default:
           break
@@ -807,15 +811,27 @@ export default {
       const type = types[0]
 
       this.options = this.getStoreMoneyOptions()
-      this.getMoneyToBonus === 0
-        ? (this.sum = this.getWetBalance)
-        : (this.sum = this.getMoneyToBonus)
+
+      const panelType = this.getPanelType
+      switch (type) {
+        case 'wash':
+          this.getMoneyToBonus === 0
+            ? (this.sum = this.getWetBalance)
+            : (this.sum = this.getMoneyToBonus)
+          break
+        case 'vacuum':
+          this.getMoneyToBonus === 0
+            ? (this.sum = this.getDryBalance)
+            : (this.sum = this.getMoneyToBonus)
+          break
+        default:
+          break
+      }
 
       this.options.params.unit_id = this.getDefaultPanelNumber - 1
       this.options.params.type = 'cash'
       this.options.params.sum = +this.sum
 
-      /* dev */
       // for statistic coins
       this.options.params.detail.sum_coins = this.coins.amountCoin
       this.options.params.detail.coins_count = this.coins.counterCoin
@@ -834,15 +850,14 @@ export default {
       this.options.params.detail.bills_200 = this.bills.counterB200
       this.options.params.detail.bills_500 = this.bills.counterB500
 
-      if (!this.order) this.order = this.createOrder() /* 'W220220504143549' */
-      this.options.params.order = this.order // ??
+      if (!this.order) this.order = this.createOrder() // 'W220220504143549'
+      this.options.params.order = this.order // for compatibility 
       this.options.params.detail.order = this.order
 
-      console.log(
-        '++payStoreMoney-->options-->this.options-->',
-        JSON.stringify(this.options)
-      )
-
+      // console.log(
+      //   '++payStoreMoney-->options-->this.options-->',
+      //   JSON.stringify(this.options)
+      // )
       const response = await this.storage.getClient(method, this.options, type)
 
       if (response === undefined) {
@@ -850,16 +865,28 @@ export default {
         this.$message(`Связь с connect недоступна!!!`)
         return
       }
-      /* dev add vacuum */
-      if (+response.result === 0 && +this.getWetBalance > 0) {
-        if (this.$route.name !== 'program') this.$router.push('/program')
-        this.$message(
-          `На бонусную систему connect payStoreMoney зачислено ${+this
-            .getWetBalance} `
-        )
-      } else {
-        // this.$error('payCashMoney $error')
-        //this.$message(`Оплата наличными не прошла`)
+
+      switch (panelType) {
+        case 'wash':
+          if (+response.result === 0 && +this.getWetBalance > 0) {
+            if (this.$route.name !== 'program') this.$router.push('/program')
+            this.$message(
+              `На бонусную систему wash connect payStoreMoney зачислено ${+this
+                .getWetBalance} `
+            )
+          }
+          break
+        case 'vacuum':
+          if (+response.result === 0 && +this.getDryBalance > 0) {
+            if (this.$route.name !== 'program') this.$router.push('/program')
+            this.$message(
+              `На бонусную систему vacuum connect payStoreMoney зачислено ${+this
+                .getDryBalance} `
+            )
+          }
+          break
+        default:
+          break
       }
     },
 

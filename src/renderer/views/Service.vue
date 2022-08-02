@@ -19,7 +19,7 @@ export default Vue.extend({
         JSON.stringify({ type: 'Post', number: 0 })
       )
       ipcRenderer.on('OPCUA', (evt, payload) => {
-        console.log(payload)
+        // console.log(payload)
       })
     } catch (e) {
       console.warn('Error:', e.message)

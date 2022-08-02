@@ -364,8 +364,10 @@ export default {
 
   watch: {
     getWetBalance(flag) {
-      console.log('$$ getWetBalance-->', flag)
-      if (+flag === 0) {
+      // console.log('$$ getWetBalance-->', flag)
+      /* dev */
+      // if (+flag === 0) {
+      if (+flag < 2) {
         this.completeWash()
         if (this.getWetPaidBonus > 0) {
           this.chargeBonusMoney()
@@ -622,9 +624,9 @@ export default {
     },
     // ----------------------------------
     // СПИСАТЬ БОНУСЫ ИЗ ОБЛАКА
-    // ---------------------------------- 
+    // ----------------------------------
     async chargeBonusMoney() {
-      // console.log('++chargeBonusMoney')
+      console.log('++chargeBonusMoney')
 
       const method = methods[13]
       const type = types[4]

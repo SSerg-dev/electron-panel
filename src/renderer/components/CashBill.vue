@@ -269,7 +269,7 @@ export default {
 
       /* dev */
       this.readReceipt()
-      this.createReceipt()
+      // this.createReceipt()
       // this.printReceipt()
     },
 

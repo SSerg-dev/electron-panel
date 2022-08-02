@@ -251,13 +251,14 @@ export default {
   },
   watch: {
     getDryBalance(flag) {
-      if (+flag === 0) {
+      /* dev */
+      // if (+flag === 0) {
+      if (+flag < 2) {
         this.completeDry()
-        /* dev */
         console.log('$$ getDryPaidBonus', this.getDryPaidBonus)
-        if (this.getDryPaidBonus > 0) {
+        // if (this.getDryPaidBonus > 0) {
           this.chargeBonusMoney()
-        }
+        // }
 
         this.clearDown()
         this.timeoutPopup = setTimeout(() => {
@@ -299,7 +300,7 @@ export default {
       this.options.params.programs[0].program_name =
         this.actives[this.getActiveProgramNumber - 1].title
 
-      this.options.params.programs[0].program_quantity = 0.42
+      this.options.params.programs[0].program_quantity = 0.42 // ??
 
       this.setCompleteWash(this.options.params)
       this.options = this.getCompleteWash()
@@ -347,7 +348,7 @@ export default {
 
       return result
     },
-        // ----------------------------------
+    // ----------------------------------
     // СПИСАТЬ БОНУСЫ ИЗ ОБЛАКА
     // ----------------------------------
     async chargeBonusMoney() {
@@ -384,7 +385,6 @@ export default {
       }
     },
     // ----------------------------------
-
 
     /*     */
 
