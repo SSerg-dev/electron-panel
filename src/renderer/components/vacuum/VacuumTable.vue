@@ -73,7 +73,7 @@
           </tr>
 
           <!-- ОМЫВАТЕЛЬ washer -->
-          <tr>
+          <!-- <tr>
             <td
               v-if="this.actives[2].display === 'block'"
               @click="setProgram('washer')"
@@ -96,7 +96,7 @@
                 </div>
               </div>
             </td>
-          </tr>
+          </tr> -->
 
           <!-- ТУРБОСУШКА turboDryer-->
           <tr>
@@ -125,7 +125,7 @@
           </tr>
 
           <!-- ЧЕРНЕНИЕ blacking -->
-          <tr>
+          <!-- <tr>
             <td
               v-if="this.actives[4].display === 'block'"
               @click="setProgram('blacking')"
@@ -148,10 +148,10 @@
                 </div>
               </div>
             </td>
-          </tr>
+          </tr> -->
 
           <!-- ДЕЗИНФЕКЦИЯ disinfection-->
-          <tr>
+          <!-- <tr>
             <td
               v-if="this.actives[5].display === 'block'"
               @click="setProgram('disinfection')"
@@ -174,7 +174,7 @@
                 </div>
               </div>
             </td>
-          </tr>
+          </tr> -->
           <!--  -->
         </tbody>
       </table>
@@ -247,18 +247,22 @@ export default {
 
       getActiveProgram: 'getActiveProgram',
       getActiveProgramNumber: 'getActiveProgramNumber',
+
+      getWetOrder: 'getWetOrder',
+      getDryOrder: 'getDryOrder',
     }),
   },
   watch: {
     getDryBalance(flag) {
+
       /* dev */
-      // if (+flag === 0) {
-      if (+flag < 2) {
+      if (+flag === 0) {
+      // if (+flag < 2) {
         this.completeDry()
-        console.log('$$ getDryPaidBonus', this.getDryPaidBonus)
-        // if (this.getDryPaidBonus > 0) {
-          this.chargeBonusMoney()
-        // }
+        
+        if (this.getDryPaidBonus > 0) {
+        this.chargeBonusMoney()
+        }
 
         this.clearDown()
         this.timeoutPopup = setTimeout(() => {
@@ -274,9 +278,12 @@ export default {
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setCompleteWash: 'setCompleteWash',
+      setChargeBonus: 'setChargeBonus',
     }),
     ...mapGetters({
       getCompleteWash: 'getCompleteWash',
+      getChargeBonus: 'getChargeBonus',
+      getProfile: 'getProfile',
     }),
 
     /* dev */
@@ -290,13 +297,11 @@ export default {
       const type = types[4]
 
       this.options = this.getCompleteWash()
-
-      if (!this.order) this.order = this.createOrder()
-
+      
+      if (!this.order) this.order = this.createOrder() /* 'W220220504143549' */
       this.options.params.order = this.order
 
       this.options.params.programs[0].program_id = this.getActiveProgramNumber
-
       this.options.params.programs[0].program_name =
         this.actives[this.getActiveProgramNumber - 1].title
 
@@ -358,8 +363,9 @@ export default {
       const type = types[4]
 
       this.options = this.getChargeBonus()
-      this.sum = this.getWetPaidBonus
+      this.sum = this.getDryPaidBonus
 
+      
       this.options.params.sum = +this.sum
       this.options.params.cash = this.cash
       this.options.params.order = this.order
@@ -371,6 +377,8 @@ export default {
 
       this.setChargeBonus(this.options.params)
       this.options = this.getChargeBonus()
+      /* dev */
+      // this.options.params.sum = 4
 
       console.log(
         '++chargeBonusMoney-->options-->this.options-->',

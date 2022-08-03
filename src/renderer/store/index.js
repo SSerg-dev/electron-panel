@@ -93,13 +93,21 @@ export default new Vuex.Store({
       'mosquito_x2',
       'turboDryer' // ?
     ],
-    dryPrograms: [
+    /* dryPrograms: [
       'vacuum',
       'air',
       'washer',
       'turboDryer',
       'blacking',
       'disinfection'
+    ], */
+    dryPrograms: [
+      'vacuum',
+      'air',
+      'washer',
+      'disinfection',
+      'blacking',
+      'turboDryer',
     ],
 
     parameters: {
@@ -459,7 +467,6 @@ export default new Vuex.Store({
     getDryBalance(state) {
       return state.dryParameters.panelMoney
     },
-    /* dev */
     getDryPaidBonus(state) {
       return state.dryParameters.paidBonus
     },
@@ -651,7 +658,6 @@ export default new Vuex.Store({
           break
         case 'panel_money':
           state.dryParameters.panelMoney = parameter.value
-          console.log('state.dryParameters.panelMoney', state.dryParameters.panelMoney)
           break
         case 'digits':
           state.globalParameters.fixedCurrency = parameter.value
@@ -661,7 +667,6 @@ export default new Vuex.Store({
           break
         case 'paidBonus':
           state.dryParameters.paidBonus = parameter.value
-          console.log('state.dryParameters.paidBonus', state.dryParameters.paidBonus)
           break
         case 'active':
           state.dryParameters.active = parameter.value

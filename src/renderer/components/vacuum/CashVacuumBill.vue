@@ -1,6 +1,6 @@
 <template>
   <div class="page-title">
-    <ul style="margin-top: 18em;">
+    <ul style="margin-top: 18em">
       <li
         v-if="this.IsDryBalance === true && this.getIsPing"
         @click="payUp('payBonus')"
@@ -8,100 +8,58 @@
         <div
           class="card white waves-effect pay-end-bonus"
           style="
-                  
-                  width: 945px;
-                  height: 320px;
-                  margin-left: -8.0em;
-                  margin-bottom: 16em;
+            width: 945px;
+            height: 320px;
+            margin-left: -8em;
+            margin-bottom: 16em;
 
-                  border: solid 6px #7FE409; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #7FE409;
-                  "
+            border: solid 6px #7fe409;
+            border-radius: 4em;
+            box-shadow: 0px 10px 20px #7fe409;
+          "
         >
           <div
             class="card-content black-text button-content-style noselect"
             style="
-                  font-size: 4em;
-                  padding-right: 1.1em;
-                  padding-left: 1.1em;
-                  padding-top: 1.4em;
-                  "
+              font-size: 4em;
+              padding-right: 1.1em;
+              padding-left: 1.1em;
+              padding-top: 1.4em;
+            "
           >
             {{ 'ВЕРНУТЬ БОНУСАМИ ДО 30% И ЗАВЕРШИТЬ ОПЛАТУ' }}
           </div>
         </div>
       </li>
 
-      <!--  & getIsPing -->
-
-      <!-- <li v-if="this.IsDryBalance === false" @click="payUp('payEnd')">
-        <div
-          class="card white waves-effect pay-end-bonus"
-          style="
-                  
-                  width: 945px;
-                  height: 220px;
-                  margin-left: -8.0em;
-                  margin-top: -17em;
-
-                  border: solid 6px #00B9E3; 
-                  border-radius: 4em;
-                  box-shadow: 0px 10px 20px #00b9e3;
-                  "
-        >
-          <div
-            class="card-content black-text button-content-style  noselect"
-            style="
-                  font-size: 4em;
-                  padding-right: 0em;
-                  padding-top: 1em;
-                  "
-          >
-            {{ 'ВНЕСИТЕ ОПЛАТУ' }}
-          </div>
-        </div>
-      </li> -->
-
-      <!-- dev -->
       <li v-if="this.IsDryBalance === false" @click="payUp('')">
         <div class="card grey pay-input" style="">
           <div
-            class="card-content white-text button-content-style  noselect"
-            style="
-                  font-size: 4em;
-                  padding-right: 0em;
-                  padding-top: 1em;
-                  "
+            class="card-content white-text button-content-style noselect"
+            style="font-size: 4em; padding-right: 0em; padding-top: 1em"
           >
             {{ 'ВНЕСИТЕ ОПЛАТУ' }}
           </div>
         </div>
       </li>
-      <!--     -->
 
       <li v-if="this.IsDryBalance === true" @click="payUp('payEnd')">
         <div
           class="card white waves-effect pay-end-bonus"
           style="
-                  
-                  width: 945px;
-                  height: 220px;
-                  margin-left: -8.0em;
-                  margin-top: -17em;
+            width: 945px;
+            height: 220px;
+            margin-left: -8em;
+            margin-top: -17em;
 
-                  border: solid 6px red; 
-                  border-radius: 4em;
-                  box-shadow: 0px 13px 20px red;
-                  "
+            border: solid 6px red;
+            border-radius: 4em;
+            box-shadow: 0px 13px 20px red;
+          "
         >
           <div
             class="card-content black-text button-content-style noselect"
-            style="
-                  font-size: 4em;
-                  padding-right: 0.5em;
-                  padding-top: 1em;
-                  "
+            style="font-size: 4em; padding-right: 0.5em; padding-top: 1em"
           >
             {{ 'ЗАВЕРШИТЬ ОПЛАТУ' }}
           </div>
@@ -134,7 +92,7 @@ export default {
     cash_enabler: false,
     isDown: {
       payEnd: false,
-      payBonus: false
+      payBonus: false,
     },
 
     sum: 0,
@@ -147,7 +105,7 @@ export default {
     client: 'fetch',
     url: 'https://192.168.1.3/',
     storage: null,
-    options: {}
+    options: {},
   }),
   mounted() {
     this.order = this.createOrder()
@@ -163,15 +121,15 @@ export default {
       getPanelType: 'getPanelType',
       getWetOrder: 'getWetOrder',
       getDryOrder: 'getDryOrder',
-      getWetBalance: 'getWetBalance'
+      getWetBalance: 'getWetBalance',
     }),
     IsDryBalance: {
-      get: function() {
+      get: function () {
         let flag
         this.getDryBalance > 0 ? (flag = true) : (flag = false)
         return flag
-      }
-    }
+      },
+    },
   },
   methods: {
     ...mapGetters({
@@ -182,16 +140,15 @@ export default {
       /* dev */
       getCreateReceiptOptions: 'getCreateReceiptOptions',
       getReadReceiptOptions: 'getReadReceiptOptions',
-      getPrintReceiptOptions: 'getPrintReceiptOptions'
+      getPrintReceiptOptions: 'getPrintReceiptOptions',
     }),
     ...mapMutations({
       //createCash: 'cash/createCash',
       setCashEnabler: 'setCashEnabler',
       setIsPayBonusMoney: 'setIsPayBonusMoney',
-      setIsAppendBonusMoney: 'setIsAppendBonusMoney'
+      setIsAppendBonusMoney: 'setIsAppendBonusMoney',
     }),
-    ...mapActions({
-    }),
+    ...mapActions({}),
 
     payUp(program) {
       this.setDown(program)
@@ -309,14 +266,14 @@ export default {
       this.options.params.detail.bills_200 = this.bills.counterB200
       this.options.params.detail.bills_500 = this.bills.counterB500
 
-      if (!this.order) this.order = this.createOrder() 
-      this.options.params.order = this.order 
+      if (!this.order) this.order = this.createOrder()
+      this.options.params.order = this.order
       this.options.params.detail.order = this.order
 
-      console.log(
-        '$$ CashVacuumBill ++payCashMoney-->options-->this.options-->',
-        JSON.stringify(this.options)
-      )
+      // console.log(
+      //   '$$ CashVacuumBill ++payCashMoney-->options-->this.options-->',
+      //   JSON.stringify(this.options)
+      // )
 
       const response = await this.storage.getClient(method, this.options, type)
 
@@ -390,16 +347,13 @@ export default {
       }
     },
     setDown(program) {
-      //console.log('setDown-program-->', program)
       this.clearDown()
       switch (program) {
         case 'payEnd':
           this.isDown.payEnd = true
-          //console.log('this.isDown.payEnd-->', this.isDown.payEnd)
           break
         case 'payBonus':
           this.isDown.payBonus = true
-          //console.log('this.isDown.payEnd-->', this.isDown.payEnd)
           break
         default:
           break
@@ -409,23 +363,14 @@ export default {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-      //console.log('this.isDown.payEnd-clearDown-->', this.isDown.payEnd)
-    }
-  }
+    },
+  },
 
-  /* components: {
-
-  } */
 }
 </script>
 
 <style scoped>
-/* .btn {
-  background-color: black;
-  margin-left: -10rem;
-  margin-top: -20rem;
-  margin-bottom: 10rem;
-} */
+
 .pay-input {
   width: 66em;
   height: 14em;

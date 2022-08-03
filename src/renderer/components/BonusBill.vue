@@ -666,7 +666,6 @@ export default {
 
       this.options = this.getAppendBonus()
 
-      /* dev */
       const panelType = this.getPanelType
       switch (panelType) {
         case 'wash':
@@ -678,20 +677,10 @@ export default {
           this.getMoneyToBonus === 0
             ? (this.sum = this.getDryBalance)
             : (this.sum = this.getMoneyToBonus)
-          console.log(
-            '$$ ++appendBonusMoney vacuum',
-            this.getDryBalance,
-            this.getMoneyToBonus
-          )
           break
         default:
           break
       }
-      /*     */
-
-      // this.getMoneyToBonus === 0
-      //   ? (this.sum = this.getWetBalance)
-      //   : (this.sum = this.getMoneyToBonus)
 
       const res = this.getProfile
       const prefix = '+'
@@ -720,7 +709,7 @@ export default {
       }
     },
 
-    // ЗАЧИСЛИТЬ
+    // ЗАЧИСЛИТЬ ЧЕРЕЗ номер телефона
     // --------------------------------
     async appendBonusMoney() {
       // console.log('++appendBonusMoney')
@@ -729,8 +718,6 @@ export default {
       const type = types[4]
 
       this.options = this.getAppendBonus()
-
-      /* dev */
 
       const panelType = this.getPanelType
       switch (panelType) {
@@ -747,9 +734,6 @@ export default {
         default:
           break
       }
-      // this.getMoneyToBonus === 0
-      //   ? (this.sum = this.getWetBalance)
-      //   : (this.sum = this.getMoneyToBonus)
 
       this.options.params.phone = (this.code + this.totString).replace(
         /\s+/g,
@@ -766,7 +750,6 @@ export default {
         JSON.stringify(this.options)
       )
 
-      // let response
       if (this.phone.length === this.phoneParseLength) {
         const response = await this.storage.getClient(
           method,

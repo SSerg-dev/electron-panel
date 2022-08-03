@@ -139,7 +139,6 @@ export default {
       get: function () {
         let flag
         this.getWetBalance > 0 ? (flag = true) : (flag = false)
-        // if (!flag) this.$message('Внесите минимальную сумму')
         return flag
       },
     },
@@ -401,16 +400,13 @@ export default {
       }
     },
     setDown(program) {
-      //console.log('setDown-program-->', program)
       this.clearDown()
       switch (program) {
         case 'payEnd':
           this.isDown.payEnd = true
-          //console.log('this.isDown.payEnd-->', this.isDown.payEnd)
           break
         case 'payBonus':
           this.isDown.payBonus = true
-          //console.log('this.isDown.payEnd-->', this.isDown.payEnd)
           break
         default:
           break
@@ -420,24 +416,15 @@ export default {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-      //console.log('this.isDown.payEnd-clearDown-->', this.isDown.payEnd)
     },
   }, // end methods
 
   beforeDestroy() {},
-  /* components: {
-
-  } */
 }
 </script>
 
 <style scoped>
-/* .btn {
-  background-color: black;
-  margin-left: -10rem;
-  margin-top: -20rem;
-  margin-bottom: 10rem;
-} */
+
 .pay-input {
   width: 66em;
   height: 14em;

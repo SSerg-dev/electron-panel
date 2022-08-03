@@ -998,10 +998,10 @@ export default {
         this.amount >= this.getPaymentLimitMin &&
         this.amount <= this.getPaymentLimitMax
       ) {
-        /* dev */
-        console.log(
-          `CardBill.vue 996: this.getIsCardMoney ${this.getIsCardMoney} this.getIsBonusMoney ${this.getIsBonusMoney}`
-        )
+        // console.log(
+        //   `CardBill.vue 996: this.getIsCardMoney ${this.getIsCardMoney} this.getIsBonusMoney ${this.getIsBonusMoney}`
+        // )
+        
         // payCard
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
           this.emitCardMoney(card)

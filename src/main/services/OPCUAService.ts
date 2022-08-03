@@ -75,7 +75,7 @@ class OPCUAService extends EventEmitter {
 
     TAG_DRY_MONEY: '::AsGlobalPV:VacuumBalance[{0}].paidMoney',
     TAG_DRY_SERV_MONEY: '::AsGlobalPV:VacuumBalance[{0}].paidService',
-    TAG_DRY_BONUS_MONEY: '::AsGlobalPV:VacuumBalance[{0}].paidService',
+    TAG_DRY_BONUS_MONEY: '::AsGlobalPV:VacuumBalance[{0}].paidBonus',
     TAG_DRY_ORDER: '::AsGlobalPV:VacuumBalance[{0}].order',
 
     TAG_DRY_CALL_OPERATOR: '::AsGlobalPV:Vacuum[{0}].operatorCall',

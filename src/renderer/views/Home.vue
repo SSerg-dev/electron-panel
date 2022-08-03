@@ -4,8 +4,8 @@
       <div
         v-if="
           this.getPanelType === 'wash' &&
-            getIsPingUrl &&
-            getWetActive === 'true'
+          getIsPingUrl &&
+          getWetActive === 'true'
         "
       >
         <Wash />
@@ -20,24 +20,20 @@
       >
         <Vacuum />
       </div> -->
-      <div
-        v-if="
-          this.getPanelType === 'vacuum'
-        "
-      >
+      <div v-if="this.getPanelType === 'vacuum'">
         <Vacuum />
       </div>
 
       <div
         v-if="!getIsPingUrl"
-        style="color: red; font-size: 5em; margin-top: 10em;"
+        style="color: red; font-size: 5em; margin-top: 10em"
       >
         <p align="center">{{ `Ошибка: нет связи с мойкой` }}</p>
       </div>
 
       <div
         v-if="getWetActive === 'false' && getIsPingUrl"
-        style="color: red; font-size: 5em; margin-top: 10em;"
+        style="color: red; font-size: 5em; margin-top: 10em"
       >
         <p align="center">{{ `ПОСТ ОТКЛЮЧЕН` }}</p>
       </div>
@@ -58,26 +54,44 @@ export default Vue.extend({
 
   components: {
     Wash,
-    Vacuum
+    Vacuum,
     // loader
   },
 
   methods: {
     ...mapMutations({
       setRouter: 'setRouter',
-      setIsPingUrl: 'setIsPingUrl'
-    })
+      setIsPingUrl: 'setIsPingUrl',
+
+      setIsCardMoney: 'setIsCardMoney',
+      setIsBonusMoney: 'setIsBonusMoney',
+    }),
+    setup() {
+      this.setIsCardMoney(false)
+      this.setIsBonusMoney(false)
+
+      // console.log(
+      //   `$$ Home.vue 
+      //   getIsCardMoney: ${this.getIsCardMoney}
+      //   getIsBonusMoney: ${this.getIsBonusMoney}`
+      // )
+    },
   },
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
       getIsPingUrl: 'getIsPingUrl',
-      getWetActive: 'getWetActive'
-    })
+      getWetActive: 'getWetActive',
+
+      /* dev */
+      getIsCardMoney: 'getIsCardMoney',
+      getIsBonusMoney: 'getIsBonusMoney',
+    }),
   },
   mounted() {
     this.setRouter('/')
-  }
+    this.setup()
+  },
 })
 </script>
 

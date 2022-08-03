@@ -596,7 +596,6 @@ export default {
       this.options = this.getCompleteWash()
 
       if (!this.order) this.order = this.createOrder() /* 'W220220504143549' */
-
       this.options.params.order = this.order
 
       this.options.params.programs[0].program_id = this.getActiveProgramNumber

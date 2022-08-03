@@ -73,7 +73,8 @@ export default Vue.extend({
     ...mapGetters({
       getSecondsGotoProgramMenu: 'getSecondsGotoProgramMenu',
       getStatusBill: 'getStatusBill',
-      getStatusBillMessages: 'getStatusBillMessages'
+      getStatusBillMessages: 'getStatusBillMessages',
+      getPanelType: 'getPanelType'
     })
   },
   watch: {
@@ -135,7 +136,21 @@ export default Vue.extend({
       console.log('Операция одобрена, сумма:', this.observer.state)
       this.cardMessageIndex = 3
       this.setStatusBillMessagesIndex(this.cardMessageIndex)
-      this.updateWetMoney(this.observer.state)
+      /* dev */
+      
+      const panelType = this.getPanelType
+          switch (panelType) {
+            case 'wash':
+              this.updateWetMoney(this.observer.state)
+              break
+            case 'vacuum':
+              this.updateDryMoney(this.observer.state)
+              break
+
+            default:
+              break
+          }
+
       this.$message(
         `Операция терминала ${type} одобрена, сумма:  ${this.observer.state}`
       )
@@ -154,7 +169,9 @@ export default Vue.extend({
     },
     ...mapActions({
       fetchStatus: 'fetchStatus',
-      updateWetMoney: 'updateWetMoney'
+      updateWetMoney: 'updateWetMoney',
+      updateDryMoney: 'updateDryMoney'
+
     }),
     ...mapMutations({
       setStatusBill: 'setStatusBill',
