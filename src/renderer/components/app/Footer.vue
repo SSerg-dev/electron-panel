@@ -62,7 +62,7 @@
               @click="setProgram('operator')"
             >
               <div class="button-title-long button-title-operator">
-                {{ `КОНСУЛЬТАНТ` }}
+                {{ `CONSULTANT` | localize }}
               </div>
             </div>
             <div
@@ -71,7 +71,7 @@
               @click="setProgram('operator')"
             >
               <div class="button-title-long button-title-operator">
-                {{ `КОНСУЛЬТАНТ` }}
+                {{ `CONSULTANT` | localize }}
               </div>
             </div>
           </div>

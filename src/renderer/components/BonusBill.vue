@@ -514,6 +514,7 @@ export default {
       getActiveProgramNumber: 'getActiveProgramNumber',
 
       getProfile: 'getProfile',
+      getServiceBalance: 'getServiceBalance',
     }),
     IsWetBalance: {
       get: function () {
@@ -692,20 +693,33 @@ export default {
 
       this.setAppendBonus(this.options.params)
       this.options = this.getAppendBonus()
+
+      /* dev */
+      console.log('$$ this.getServiceBalance', this.getServiceBalance)
+
       console.log(
         '++appendBonusMoney-->options-->this.options-->',
         JSON.stringify(this.options)
       )
 
-      const response = await this.storage.getClient(method, this.options, type)
-      if (+response.result === 0) {
-        this.$message(
-          `Вам начислено appendBonusQrMoney ${this.options.params.sum} бонуса(ов) `
+      if (!this.getServiceBalance) {
+        const response = await this.storage.getClient(
+          method,
+          this.options,
+          type
         )
-        this.setIsAppendBonusMoney(false)
-        if (this.$route.name !== 'program') this.$router.push('/program')
+
+        if (+response.result === 0) {
+          this.$message(
+            `Вам начислено appendBonusQrMoney ${this.options.params.sum} бонуса(ов) `
+          )
+          this.setIsAppendBonusMoney(false)
+          if (this.$route.name !== 'program') this.$router.push('/program')
+        } else {
+          this.$message(`appendBonusQrMoney Ошибка:  ${response.error}`)
+        }
       } else {
-        this.$message(`appendBonusQrMoney Ошибка:  ${response.error}`)
+        this.$message(`Бонусы не зачислены, на мойке сервисные деньги`)
       }
     },
 
@@ -834,7 +848,7 @@ export default {
       this.options.params.detail.bills_500 = this.bills.counterB500
 
       if (!this.order) this.order = this.createOrder() // 'W220220504143549'
-      this.options.params.order = this.order // for compatibility 
+      this.options.params.order = this.order // for compatibility
       this.options.params.detail.order = this.order
 
       // console.log(

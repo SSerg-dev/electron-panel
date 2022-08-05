@@ -1,12 +1,7 @@
 <template>
   <div>
     <div v-if="this.messageIndex > -1" class="message">
-      {{ `${this.messages[this.messageIndex]}` }}
-
-      <!-- <div v-if="getSecondsBonusTimer > 0" style="font-size: 2em">
-        {{ ` ${ getSecondsBonusTimer }` }}
-      </div> -->
-
+      {{ `${this.messages[this.messageIndex]}` | localize }}
     </div>
 
     <div class="locate">
@@ -37,8 +32,8 @@ export default Vue.extend({
     isStop: false,
     isOperator: false,
     messages: [
-      `БЕСПЛАТНЫЙ СТОП`,
-      `ВЫЗОВ ОТПРАВЛЕН, ОЖИДАЙТЕ`,
+      `FREE_STOP`,
+      `CALL_SENT_WAIT`,
       ''
     ],
     messageIndex: -1,

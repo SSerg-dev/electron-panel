@@ -38,7 +38,7 @@
             class="card-content white-text button-content-style noselect"
             style="font-size: 4em; padding-right: 0em; padding-top: 1em"
           >
-            {{ 'ВНЕСИТЕ ОПЛАТУ' }}
+            {{ `MAKE_A_PAYMENT` | localize }}
           </div>
         </div>
       </li>

@@ -8,5 +8,9 @@
     "CASH": "CASH",
     "BANK_CARD": "BANK CARD",
     "BONUSES": "BONUSES",
-    "Choose_your_payment_method": "Choose your payment method"
+    "Choose_your_payment_method": "Choose your payment method",
+    "CONSULTANT": "CONSULTANT",
+    "CALL_SENT_WAIT": "CALL SENT, WAIT",
+    "FREE_STOP": "FREE STOP",
+    "MAKE_A_PAYMENT": "MAKE A PAYMENT"
 }

@@ -906,7 +906,7 @@ export default {
 
   beforeDestroy() {
     this.setIsCardMoney(false)
-    this.setIsBonusMoney(false)
+    // this.setIsBonusMoney(false)
 
     this.setPaymentLimitMax(this.cardLimitMax)
 
@@ -1015,8 +1015,8 @@ export default {
           switch (type) {
             case 'wash':
               this.updateWetBonusMoney(card)
-              // if (this.$route.name !== 'program') this.$router.push('/program')
-              this.$router.push('/')
+              if (this.$route.name !== 'program') this.$router.push('/program')
+              // this.$router.push('/')
               break
             case 'vacuum':
               this.updateDryBonusMoney(card)
@@ -1028,7 +1028,7 @@ export default {
               break
           }
 
-          this.$message(`На Вашу карту успешно зачислено:  ${+card} ₽`)
+          this.$message(`Оплата бонусами:  ${+card} ₽`)
         }
 
         this.display = this.title = this.body = '0'

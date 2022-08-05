@@ -8,5 +8,9 @@
   "CASH": "НАЛИЧНЫМИ",
   "BANK_CARD": "БАНКОВСКОЙ КАРТОЙ",
   "BONUSES": "БОНУСАМИ",
-  "Choose_your_payment_method": "Выберите способ оплаты"
+  "Choose_your_payment_method": "Выберите способ оплаты",
+  "CONSULTANT": "КОНСУЛЬТАНТ",
+  "CALL_SENT_WAIT": "ВЫЗОВ ОТПРАВЛЕН, ОЖИДАЙТЕ",
+  "FREE_STOP": "БЕСПЛАТНЫЙ СТОП",
+  "MAKE_A_PAYMENT": "ВНЕСИТЕ ОПЛАТУ" 
 }

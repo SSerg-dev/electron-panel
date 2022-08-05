@@ -365,12 +365,15 @@ export default {
   watch: {
     getWetBalance(flag) {
       // console.log('$$ getWetBalance-->', flag)
-      /* dev */
+
       // if (+flag === 0) {
-      if (+flag < 2) {
+      if (+flag <= 1) {
+        console.log('$$ this.completeWash-->', flag)
         this.completeWash()
-        if (this.getWetPaidBonus > 0) {
+        if (this.getWetPaidBonus > 0 && this.getIsBonusMoney) {
           this.chargeBonusMoney()
+          /* dev */
+          this.updateWetBonusMoney(0)
         }
       }
     },
@@ -384,7 +387,7 @@ export default {
     },
 
     getIsMoneyToBonus(flag) {
-      console.log('++getIsMoneyToBonus', flag)
+      console.log('++getIsMoneyToBonus', flag) 
       if (flag) {
         this.buttonBonus.show()
         this.flex()
@@ -463,12 +466,16 @@ export default {
 
       getWetOrder: 'getWetOrder',
       getDryOrder: 'getDryOrder',
+
+      getIsBonusMoney: 'getIsBonusMoney',
     }),
   },
 
   methods: {
     ...mapActions({
       updateStartProgram: 'updateStartProgram',
+    
+      updateWetBonusMoney: 'updateWetBonusMoney'
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
@@ -600,7 +607,7 @@ export default {
 
       this.options.params.programs[0].program_id = this.getActiveProgramNumber
       this.options.params.programs[0].program_name =
-        this.actives[this.getActiveProgramNumber - 1].title
+        this.actives[this.getActiveProgramNumber - 1]?.title
 
       /* dev */
       this.options.params.programs[0].program_quantity = 0.42

@@ -178,7 +178,6 @@ export default Vue.extend({
       setStatusBillMessagesIndex: 'setStatusBillMessagesIndex',
       setIsPayBonusMoney: 'setIsPayBonusMoney',
       setIsAppendBonusMoney: 'setIsAppendBonusMoney',
-      setCardMoney: 'setCardMoney'
     }),
     ...mapGetters({
       getCardMoney: 'getCardMoney',
@@ -187,8 +186,6 @@ export default Vue.extend({
   },
   mounted() {
     this.card = this.getCardMoney()
-    /* $$dev */
-
     this.terminalType = this.getDefaultTerminalType()
 
     switch (this.terminalType) {

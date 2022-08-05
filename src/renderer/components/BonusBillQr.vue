@@ -122,7 +122,7 @@ export default {
             if (this.$route.name !== 'program') this.$router.push('/program')
           }
           // Заплатить бонусами
-          else {
+          else if (this.$route.name !== 'program') {
             if (this.$route.name !== 'card') this.$router.push('/card')
           }
         }

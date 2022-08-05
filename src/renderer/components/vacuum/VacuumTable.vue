@@ -250,18 +250,21 @@ export default {
 
       getWetOrder: 'getWetOrder',
       getDryOrder: 'getDryOrder',
+
+      getIsBonusMoney: 'getIsBonusMoney',
     }),
   },
   watch: {
     getDryBalance(flag) {
 
-      /* dev */
-      if (+flag === 0) {
-      // if (+flag < 2) {
+      // if (+flag === 0) {
+      if (+flag <= 1) {
         this.completeDry()
         
-        if (this.getDryPaidBonus > 0) {
+        if (this.getDryPaidBonus > 0 && this.getIsBonusMoney) {
         this.chargeBonusMoney()
+        /* dev */
+        this.updateDryBonusMoney(0)
         }
 
         this.clearDown()
@@ -274,6 +277,8 @@ export default {
   methods: {
     ...mapActions({
       updateDryStartProgram: 'updateDryStartProgram',
+
+      updateDryBonusMoney: 'updateDryBonusMoney'
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',

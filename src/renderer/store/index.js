@@ -332,6 +332,7 @@ export default new Vuex.Store({
           JSON.stringify({
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
               1}].paidBonus`,
+              // 1}].prepaymentBonus`,
             value: bonus
           })
         )

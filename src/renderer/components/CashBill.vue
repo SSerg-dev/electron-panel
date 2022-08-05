@@ -38,7 +38,7 @@
             class="card-content white-text noselect"
             style="font-size: 4em; padding-right: 1.5em; padding-top: 1em"
           >
-            {{ 'ВНЕСИТЕ ОПЛАТУ' }}
+            {{ `MAKE_A_PAYMENT` | localize }}
           </div>
         </div>
       </li>
@@ -134,6 +134,7 @@ export default {
       getDryOrder: 'getDryOrder',
       getWetBalance: 'getWetBalance',
       getIsPing: 'getIsPing',
+      
     }),
     IsWetBalance: {
       get: function () {
@@ -381,11 +382,15 @@ export default {
       const type = types[4]
 
       this.options = this.getAppendBonus()
+        const response = await this.storage.getClient(
+          method,
+          this.options,
+          type
+        )
+        if (+response.result === 0) {
+          this.$message(`Бонусы зачислены успешно`)
+        }
 
-      const response = await this.storage.getClient(method, this.options, type)
-      if (+response.result === 0) {
-        this.$message(`Бонусы зачислены успешно`)
-      }
     },
     setEnabler() {
       this.getCashEnabler === true
@@ -424,7 +429,6 @@ export default {
 </script>
 
 <style scoped>
-
 .pay-input {
   width: 66em;
   height: 14em;
