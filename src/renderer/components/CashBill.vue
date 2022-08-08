@@ -94,7 +94,7 @@ export default {
     },
 
     sum: 0,
-    cash: true,
+    // cash: true,
     order: '',
     coins: {},
     bills: {},

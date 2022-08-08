@@ -11,11 +11,12 @@
     <section>
       <div style="padding-top: 10em;">
         <div v-if="!isChart">
-          <FinanceTable :cash="cash" />
+          <!-- <FinanceTable :cash="cash" /> -->
+          <FinanceTable :coins="coins" :bills="bills"  />
         </div>
-        <div v-else>
+        <!-- <div v-else>
           <FinanceChart :cash="cash" :cashTitle="cashTitle" />
-        </div>
+        </div> -->
 
       </div>
       <!-- dev -->
@@ -84,6 +85,8 @@ import { Database } from '@/storage/database.js'
 import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
 import { Storage } from '@/storage/index.js'
 
+import { ipcRenderer } from 'electron'
+
 export default Vue.extend({
   name: 'finance',
   data: () => ({
@@ -94,7 +97,10 @@ export default Vue.extend({
 
     isChart: false,
     cash: {},
-    cashTitle: []
+    cashTitle: [],
+
+    coins: {},
+    bills: {},
   }),
   computed: {
     ...mapGetters({
@@ -122,30 +128,42 @@ export default Vue.extend({
         this.collect()
     },
     async readCash() {
-      console.log('++readCash')
+      console.log('$$ Finance.vue readCash')
       // cash
       const method = methods[2]
-      const type = types[6] /* types[4] */ // ['cash', 'card', 'bonus', 'service', 'common', 'ping', 'finance']
+      const type = types[6] 
 
       this.options = this.getReadCashOptions()
       const response = await this.storage.getClient(method, this.options, type)
 
       if (+response.result === 0) {
-        // console.log('Finance readCash response OK!-->', JSON.stringify(response.result) )
-        // console.log('readCash Returned data:', JSON.stringify(response))
         this.$message(
           `Запрос наличных средств панели № ${this.getDefaultPanelNumber} выполнен успешно`
         )
       }
       /* dev */ 
-      // !!! uncomment in relase
       //this.setAllCash(response.cash)
+      // this.cash = this.getAllCash
 
-      this.cash = this.getAllCash
-      this.cashTitle = this.getCashTitle 
+      // this.cashTitle = this.getCashTitle 
 
-      //console.log('++cash-->', this.cash)
-      //console.log('++this.cashTitle-->', this.cashTitle)
+    },
+    getCashMoney() {
+      let isClear = false
+      const options = 'ipcRenderer.send coin from CashBill'
+      ipcRenderer.send('async-cash-start', options)
+
+      ipcRenderer.on('async-cash-reply', (event, coins, bills) => {
+        this.coins = coins
+        this.bills = bills
+
+        console.log('$$ Finance.vue', this.coins, this.bills)
+
+        if (coins || bills) {
+          isClear = true
+          // event.sender.send('async-cash-clear', isClear)
+        }
+      })
     },
 
     async collect() {
@@ -181,10 +199,12 @@ export default Vue.extend({
       // end dev
     }),
     ...mapMutations({
-      /* setPanelMoneyNumber: 'setPanelMoneyNumber',
+      /* 
+      setPanelMoneyNumber: 'setPanelMoneyNumber',
       setPanelMoneyType: 'setPanelMoneyType',
       setPanelMoneySum: 'setPanelMoneySum',
-      setPanelMoneyDetail: 'setPanelMoneyDetail' */
+      setPanelMoneyDetail: 'setPanelMoneyDetail' 
+      */
       setRouter: 'setRouter'
     })
   },
@@ -195,14 +215,22 @@ export default Vue.extend({
     this.setRouter('/finance')
     this.storage = new Storage(this.client, this.url)
 
+     
+
     /* const dbf = new Database(new FetchClient())
     console.log(dbf.getData('rand'))
     const url = 'https://jsonplaceholder.typicode.com/posts?_limit=2'
     const url = 'https://jsonplaceholder.typicode.com/users?_limit=2' */
   },
   created() {
-    this.cash = this.getAllCash
-    this.cashTitle = this.getCashTitle
+    this.getCashMoney()
+
+    // this.cash = this.getAllCash
+    // this.cashTitle = this.getCashTitle
+    
+    
+    
+    
     
   },
   components: {

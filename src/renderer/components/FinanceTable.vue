@@ -4,143 +4,98 @@
       <h1>
         <p>Статистика поста №{{ getDefaultPanelNumber }}</p>
       </h1>
-
     </div>
 
-    <table style="border: solid 3px #00B9E3;">
+    <table style="border: solid 3px #00b9e3">
       <thead>
         <tr>
-          <th>{{ this.emoji }}
-              {{ this.currency }}
-              {{ this.symbol }}</th>
-          <th>{{ `Посты` }}</th>
-          <th>{{ `Пылесосы` }}</th>
-          <th>{{ `Всего` }}</th>
+          <th>
+            {{ this.emoji }}
+            {{ this.currency }}
+            {{ this.symbol }}
+          </th>
+          <th>{{ `` }}</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr style="border: solid 3px #00B9E3;">
-          <td style="text-align: left; padding-left: 1em;">
-            {{ `Сумма общая` }}
+        <tr style="border: solid 3px #00b9e3">
+          <td style="text-align: left; padding-left: 1em">
+            {{ `${this.getCashTitle[0].title}` }}
           </td>
           <td>{{ getSumCash }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getSumCash + 42 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em;">
-            {{ `Сумма в купюрах` }}
+          <td style="text-align: left; padding-left: 1em">
+            {{ `${this.getCashTitle[1].title}` }}
           </td>
           <td>{{ getSumBills }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getSumBills + 42 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em;">
-            {{ ` Количество купюр` }}
+          <td style="text-align: left; padding-left: 1em">
+            {{ `${this.getCashTitle[2].title}` }}
           </td>
           <td>{{ getBillsCount }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getBillsCount + 42 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em;">{{ `10` }}</td>
+          <td style="text-align: left; padding-left: 1em">{{ `10` }}</td>
           <td>{{ getBills10 }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getBills10 + 42 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em;">{{ `50` }}</td>
+          <td style="text-align: left; padding-left: 1em">{{ `50` }}</td>
           <td>{{ getBills50 }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getBills50 + 42 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em;">{{ `100` }}</td>
+          <td style="text-align: left; padding-left: 1em">{{ `100` }}</td>
           <td>{{ getBills100 }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getBills100 + 42 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em;">{{ `200` }}</td>
+          <td style="text-align: left; padding-left: 1em">{{ `200` }}</td>
           <td>{{ getBills200 }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getBills200 + 42 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em;">{{ `500` }}</td>
+          <td style="text-align: left; padding-left: 1em">{{ `500` }}</td>
           <td>{{ getBills500 }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getBills500 + 42 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em;">{{ `1000` }}</td>
+          <td style="text-align: left; padding-left: 1em">{{ `1000` }}</td>
           <td>{{ getBills1000 }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getBills1000 + 42 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em;">{{ `2000` }}</td>
+          <td style="text-align: left; padding-left: 1em">{{ `2000` }}</td>
           <td>{{ getBills2000 }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getBills2000 + 42 }}</td>
         </tr>
 
-        <!-- <tr>
-          <td style="text-align: left; padding-left: 1em;">{{ `5000` }}</td>
-          <td>{{ getBills5000 }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getBills5000 + 42 }}</td>
-        </tr>
-        <tr> -->
-
+        <tr>
           <td
-            style="text-align: left; padding-left: 1em; border-top: solid 3px #00B9E3;"
+            style="
+              text-align: left;
+              padding-left: 1em;
+              border-top: solid 3px #00b9e3;
+            "
           >
-            {{ `Сумма в монетах` }}
+            {{ `${this.getCashTitle[3].title}` }}
           </td>
-          <td style="border-top: solid 3px #00B9E3;">{{ getSumCoins }}</td>
-          <td style="border-top: solid 3px #00B9E3;">{{ 42 }}</td>
-          <td
-            style="border-right-color: #121212; border-top: solid 3px #00B9E3;"
-          >
-            {{ getSumCoins + 42 }}
-          </td>
+          <td style="border-top: solid 3px #00b9e3">{{ getSumCoins }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em; ">
-            {{ `Количество монет` }}
+          <td style="text-align: left; padding-left: 1em">
+            {{ `${this.getCashTitle[4].title}` }}
           </td>
           <td>{{ getCoinsCount }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getCoinsCount + 42 }}</td>
         </tr>
 
-        <!-- <tr>
-          <td style="text-align: left; padding-left: 1em;">{{ `0` }}</td>
-          <td>{{ getCoins0 }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getCoins0 + 42 }}</td>
-        </tr> -->
-
         <tr>
-          <td style="text-align: left; padding-left: 1em;">{{ `1` }}</td>
+          <td style="text-align: left; padding-left: 1em">{{ `1` }}</td>
           <td>{{ getCoins1 }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getCoins1 + 42 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em;">{{ `2` }}</td>
+          <td style="text-align: left; padding-left: 1em">{{ `2` }}</td>
           <td>{{ getCoins2 }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getCoins2 + 42 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em;">{{ `10` }}</td>
+          <td style="text-align: left; padding-left: 1em">{{ `10` }}</td>
           <td>{{ getCoins10 }}</td>
-          <td>{{ 42 }}</td>
-          <td>{{ getCoins10 + 42 }}</td>
         </tr>
       </tbody>
     </table>
@@ -153,18 +108,18 @@ import { mapGetters } from 'vuex'
 
 export default Vue.extend({
   name: 'finance-table',
-  props: ['cash'],
+  // props: ['cash'],
+  props: ['coins', 'bills'],
 
-  data: () => ({        
+  data: () => ({
     emoji: '',
     currency: '',
     symbol: '',
-    currencies: []
+    currencies: [],
   }), // end data
 
-  methods: { 
+  methods: {
     initCurrency() {
-
       /* dev */
       const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
       this.current = id
@@ -183,6 +138,9 @@ export default Vue.extend({
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getDefaultCurrency: 'getDefaultCurrency',
       getLanguageNatives: 'getLanguageNatives',
+
+      // getCashTitle
+      getCashTitle: 'getCashTitle',
 
       // getBills
       getBills10: 'getBills10',
@@ -203,13 +161,16 @@ export default Vue.extend({
       // getSum
       getSumBills: 'getSumBills',
       getSumCash: 'getSumCash',
-      getSumCoins: 'getSumCoins'
-    })
+      getSumCoins: 'getSumCoins',
+    }),
   },
 
   created() {
     this.initCurrency()
-    // console.log('cash-->', this.cash)
+    
+  },
+  mounted() {
+    console.log('$$ FinanceTable.vue ', this.coins, this.bills)
   }
 })
 </script>

@@ -16,11 +16,14 @@ export default {
   state: {
     // mode: [color, x2, turbo],
     // x2: false, color: false,  turbo: true
+    // {{ `${actives[this.activeNumber].title}` | localize }}
+
     actives: [
       {
         id: 2,
         order: 0.1 /* 1 */,
         title: 'ШАМПУНЬ',
+        // title: 'SHAMPOO',
         name: 'shampoo',
         price: 0,
         priceTurbo: 0,
@@ -36,6 +39,7 @@ export default {
         id: 3,
         order: 0.8 /* 2 */,
         title: 'ВОДА + ШАМПУНЬ',
+        // title: 'WATER_SHAMPOO',
         name: 'waterShampoo',
         price: 0,
         priceTurbo: 0,
@@ -51,6 +55,7 @@ export default {
         id: 4,
         order: 0.9 /* 3 */,
         title: 'ХОЛОДНАЯ',
+        // title: 'COLD_WATER',
         name: 'coldWater',
         price: 0,
         priceTurbo: 0,
@@ -66,6 +71,7 @@ export default {
         id: 5,
         order: 100 /* 4 */,
         title: 'ВОСК',
+        // title: 'WAX',
         name: 'waxProtection',
         price: 0,
         priceTurbo: 0,
@@ -82,6 +88,7 @@ export default {
         id: 6,
         order: 100 /* 5 */,
         title: 'ОСМОС' /* 'СУШКА И БЛЕСК', */,
+        // title: 'OSMOSIS',
         name: 'dryShine',
         price: 0,
         priceTurbo: 0,
@@ -97,6 +104,7 @@ export default {
         id: 7,
         order: 0.4 /* 6 */,
         title: 'ПЕНА',
+        // title: 'FOAM',
         name: 'foam',
         price: 0,
         priceTurbo: 0,
@@ -112,6 +120,7 @@ export default {
         id: 8,
         order: 100 /* 7 */,
         title: 'СТОП/ПАУЗА',
+        // title: 'STOP',
         name: 'stop',
         price: 0,
         priceTurbo: 0,
@@ -235,6 +244,7 @@ export default {
         id: 16,
         order: 0.2 /* 15 */,
         title: 'ДИСКИ',
+        // title: 'DISK',
         name: 'disk',
         price: 0,
         priceTurbo: 0,

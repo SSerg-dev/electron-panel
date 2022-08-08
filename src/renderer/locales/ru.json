@@ -12,5 +12,16 @@
   "CONSULTANT": "КОНСУЛЬТАНТ",
   "CALL_SENT_WAIT": "ВЫЗОВ ОТПРАВЛЕН, ОЖИДАЙТЕ",
   "FREE_STOP": "БЕСПЛАТНЫЙ СТОП",
-  "MAKE_A_PAYMENT": "ВНЕСИТЕ ОПЛАТУ" 
+  "MAKE_A_PAYMENT": "ВНЕСИТЕ ОПЛАТУ",
+  "Insert_banknotes_or_coins": "Внесите купюры или монеты, по завершению нажмите кнопку ниже",
+  "Price_per_minute": "Цена за одну минуту",
+  "Program": "Программа",
+  "SHAMPOO": "ШАМПУНЬ",
+  "WATER_SHAMPOO": "ВОДА + ШАМПУНЬ",
+  "COLD_WATER": "ХОЛОДНАЯ ВОДА",
+  "WAX": "WAX",
+  "OSMOSIS": "ОСМОС",
+  "FOAM": "ПЕНА",
+  "STOP": "СТОП",
+  "DISK": "ДИСКИ"
 }

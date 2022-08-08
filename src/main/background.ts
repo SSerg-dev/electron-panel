@@ -110,7 +110,7 @@ CoinAcceptor.on('accepted', coin => sendEventToView(mainWindow, 'coin', coin))
 
 /* ----------------------------------------------------------------------- */
 /* */
-const bankTerminal = new BankTerminalController()
+let bankTerminal = new BankTerminalController()
 bankTerminal.on('connect', () => (isBankTerminalConnected = true))
 bankTerminal.on('enrolled', terminal =>
   sendEventToView(mainWindow, 'emoney', terminal)
@@ -128,7 +128,7 @@ const idle = async (config: any) => {
     mConfig.index !== config.index
   ) {
     OPCUAClient.start(config.type, config.index)
-    
+
     // crutch :((
     ipcMain.on('async-relaunch-start', (event: any, options: any) => {
       OPCUAClient = new OPCUAService(opcURL)
@@ -137,7 +137,6 @@ const idle = async (config: any) => {
         sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))
       })
       OPCUAClient.start(config.type, +options.index)
-
     })
   }
   /* dev */
@@ -193,6 +192,24 @@ const idle = async (config: any) => {
   ipcMain.on('async-card-message', (event: any, options: any) => {
     // console.log('$$ ipcMain.on background!!', options)
     // reinitialization bank terminal ???
+    // crutch :((
+
+    // ----------------------------------
+    // bankTerminal = new BankTerminalController()
+    // bankTerminal.on('connect', () => (isBankTerminalConnected = true))
+    // bankTerminal.on('enrolled', terminal =>
+    //   sendEventToView(mainWindow, 'emoney', terminal)
+    // )
+    // if (config.bank_terminal) {
+    //   const options = {
+    //     type: config.bank_terminal.hardware,
+    //     number: config.index,
+    //     currency: config.currency
+    //   }
+    //   console.log('$$ re-init bankTerminal.start')
+    //   bankTerminal.start(options)
+    // }
+    // ----------------------------------
   })
 }
 

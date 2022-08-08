@@ -18,7 +18,9 @@
             { 'card-content white-text': this.isDown.waterShampoo }
           ]"
         >
+
           {{ `${actives[this.activeNumber].title}` }}
+        
         </div>
       </div>
     </td>

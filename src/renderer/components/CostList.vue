@@ -1,13 +1,15 @@
 <template>
   <div>
 
-    <!-- <p align="center">{{ `${this.messages[3]}` }}</p> -->
     <div class="cost-title">
-       <p align="center">{{ `Цена за одну минуту` }}</p>
+       <p align="center">
+        {{ `Price_per_minute` | localize}}
+        </p>
     </div>
     <div class="row list-title">
-      <div class="col s7">{{ `Программа` }}</div>
-      <!-- <div class="col ">цена за 1 мин</div> -->
+      <div class="col s7">
+        {{ `Program` | localize}}
+      </div>
       
       <div class="col s3" align="center">
       {{ this.currency }}

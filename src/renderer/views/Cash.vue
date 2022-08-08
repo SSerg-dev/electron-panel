@@ -14,11 +14,11 @@
       <div style="width: 800px;" class="info-title">
         <h3>
           <p align="center">
-            {{ `${this.messages[0]}` }}
+            {{ `${this.messages[0]}` | localize}}
           </p>
-          <p align="center">
+          <!-- <p align="center">
             {{ `${this.messages[1]}` }}
-          </p>
+          </p> -->
         </h3>
       </div>
 
@@ -52,8 +52,7 @@ export default Vue.extend({
   data: () => ({
     intervalMainMenu: null,
     messages: [
-      `Внесите купюры или монеты,`,
-      `по завершению нажмите кнопку ниже`
+      `Insert_banknotes_or_coins`
     ],
     messageIndex: -1
   }),

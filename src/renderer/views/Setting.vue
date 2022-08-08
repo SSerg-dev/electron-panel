@@ -8,20 +8,21 @@
         id="tabs-swipe"
         class="tabs"
         ref="tabs"
-        style="background: white; 
-        width: 92%;
-        border-radius: 5px;
-        box-shadow: 10px 10px 10px #00b9e3;
+        style="
+          background: white;
+          width: 92%;
+          border-radius: 5px;
+          box-shadow: 10px 10px 10px #00b9e3;
         "
       >
         <li class="tab col s3">
-          <a active class="black-text" href="#swipe-1" style="font-size: 32px;"
+          <a active class="black-text" href="#swipe-1" style="font-size: 32px"
             >Экран</a
           >
         </li>
 
         <li class="tab col s3">
-          <a class=" black-text" href="#swipe-2" style="font-size: 32px"
+          <a class="black-text" href="#swipe-2" style="font-size: 32px"
             >Настройки</a
           >
         </li>
@@ -30,10 +31,16 @@
             >Языки</a
           >
         </li>
-        <li class="tab col s3">
+        <li 
+           @click="setProgram('finance')" 
+           class="tab col s3">
           <a class="black-text" href="#swipe-4" style="font-size: 32px"
             >Финансы</a
           >
+          <!-- dev -->
+          
+
+          <!--     -->
         </li>
       </ul>
       <!-- end ul -->
@@ -42,14 +49,14 @@
       <div
         id="swipe-1"
         class="col s8 black"
-        style="box-shadow: 10px 10px 10px #00b9e3;"
+        style="box-shadow: 10px 10px 10px #00b9e3"
       >
         <!-- Обзор -->
         <div>
           <h2 class="white-text page-subtitle">Обзор</h2>
           <br />
           <div class="row panel">
-            <div class="page-title white-text" style="padding-left: 1em;"></div>
+            <div class="page-title white-text" style="padding-left: 1em"></div>
             <SettingOverviewService />
             <SettingOverviewCommon />
           </div>
@@ -62,18 +69,18 @@
           <br />
 
           <!-- table -->
-          <table style="margin-left: 1em; margin-top: 2em;">
+          <table style="margin-left: 1em; margin-top: 2em">
             <tbody>
               <!-- row 01 -->
-              <tr style="margin-top: 8em;">
+              <tr style="margin-top: 8em">
                 <td style="border: none; width: 1040px; height: 80px">
-                  <div style="margin-right: 0em; margin-top: -12em;">
+                  <div style="margin-right: 0em; margin-top: -12em">
                     <SettingScreenTooltip />
                   </div>
                 </td>
               </tr>
               <!-- row 02 -->
-              <tr style="margin-top: 0.5em;">
+              <tr style="margin-top: 0.5em">
                 <td>
                   <div>
                     <SettingScreenGotoMainMenu />
@@ -82,7 +89,7 @@
               </tr>
               <!-- row 03 -->
               <tr style="margin-top: 0.5em; opacity: 0.2">
-                <td style="border: none; width: 360px; height: 80px;">
+                <td style="border: none; width: 360px; height: 80px">
                   <div
                     class="card grey lighten-3"
                     style="
@@ -92,7 +99,6 @@
                       border-top-left-radius: 2em;
                       border-bottom-left-radius: 2em;
                       border-right-style: hidden;
-                      
                     "
                   >
                     <div class="card-content black-text">
@@ -118,8 +124,7 @@
                       height: 0px;
                       margin-left: -7.5em;
                       margin-bottom: 6.5em;
-                      padding-rigth: 0em; 
-                                           
+                      padding-rigth: 0em;
                     "
                   >
                     <div>
@@ -281,7 +286,7 @@
                 </td>
               </tr>
               <!-- row 06 -->
-              <tr style="margin-top: 0.5em;">
+              <tr style="margin-top: 0.5em">
                 <!-- td 01 -->
                 <td style="width: 1040px">
                   <div
@@ -296,7 +301,7 @@
                     "
                   >
                     <div class="card-content white-text">
-                      <div class="switch" style="margin-top: -0.8em;">
+                      <div class="switch" style="margin-top: -0.8em">
                         <label>
                           <input type="checkbox" v-model="isPayScreenMain" />
 
@@ -316,7 +321,7 @@
               <!-- end row -->
 
               <!-- new row 02 -->
-              <tr style="margin-top: -0.5em;">
+              <tr style="margin-top: -0.5em">
                 <!-- td 01 -->
                 <td style="width: 1040px">
                   <div
@@ -331,7 +336,7 @@
                     "
                   >
                     <div class="card-content white-text">
-                      <div class="switch" style="margin-top: -0.8em;">
+                      <div class="switch" style="margin-top: -0.8em">
                         <label>
                           <input type="checkbox" v-model="isCnw" />
 
@@ -348,7 +353,7 @@
               </tr>
               <!-- end row -->
               <!-- row 03 -->
-              <tr style="margin-top: -0.5em;">
+              <tr style="margin-top: -0.5em">
                 <td style="width: 1040px">
                   <div
                     class="card black lighten-3"
@@ -362,7 +367,7 @@
                     "
                   >
                     <div class="card-content white-text">
-                      <div class="switch" style="margin-top: -0.8em;">
+                      <div class="switch" style="margin-top: -0.8em">
                         <label>
                           <input type="checkbox" v-model="isCursor" />
 
@@ -390,7 +395,7 @@
               </tr> -->
             </tbody>
           </table>
-          <div style="margin-top: -0.6em;">
+          <div style="margin-top: -0.6em">
             <hr />
           </div>
           <!-- end table -->
@@ -402,16 +407,16 @@
       <div
         id="swipe-2"
         class="col s8 black"
-        style="box-shadow: 10px 10px 10px #00b9e3;"
+        style="box-shadow: 10px 10px 10px #00b9e3"
       >
         <!-- new Настройки -->
         <!-- <h2 class="white-text">Настройки</h2>
         <br /> -->
 
-        <table style="margin-left: 1em; margin-top: -1em;">
+        <table style="margin-left: 1em; margin-top: -1em">
           <tbody>
             <!-- row 01 -->
-            <tr style="height: 80px; margin-left: 6.5em;">
+            <tr style="height: 80px; margin-left: 6.5em">
               <td>
                 <div class="panel">
                   <div class="page-title white-text">
@@ -422,7 +427,7 @@
             </tr>
 
             <!-- row 02 -->
-            <tr style="margin-top: -1em;">
+            <tr style="margin-top: -1em">
               <td
                 style="
               width: 520px;  
@@ -442,22 +447,21 @@
               </td>
             </tr>
             <!-- row 03 -->
-            <tr style="margin-top: 3em;">
+            <tr style="margin-top: 3em">
               <td style="width: 1040px">
                 <div
                   class="card black lighten-3"
                   style="
-                      border: solid 3px #00b9e3;
-                      width: 1040px;
-                      height: 60px;
-                      margin-left: 0px;
-                      margin-top: 0em;
-                      border-radius: 2rem;
-                      
-                    "
+                    border: solid 3px #00b9e3;
+                    width: 1040px;
+                    height: 60px;
+                    margin-left: 0px;
+                    margin-top: 0em;
+                    border-radius: 2rem;
+                  "
                 >
                   <div class="card-content white-text">
-                    <div class="switch" style="margin-top: -0.8em;">
+                    <div class="switch" style="margin-top: -0.8em">
                       <label>
                         <input type="checkbox" v-model="isCursor" />
 
@@ -475,7 +479,7 @@
               </td>
             </tr>
             <!-- row 04 -->
-            <tr style="margin-top: -4em; margin-left: 6.5em;">
+            <tr style="margin-top: -4em; margin-left: 6.5em">
               <td>
                 <div class="panel">
                   <div class="page-title white-text">
@@ -485,7 +489,7 @@
               </td>
             </tr>
             <!-- row 05 -->
-            <tr style="margin-top: -3em;">
+            <tr style="margin-top: -3em">
               <td style="width: 520px">
                 <div>
                   <SettingPanelType />
@@ -507,21 +511,21 @@
             </tr>
 
             <!-- row 06 -->
-            <tr style="margin-top: 3.5em;">
+            <tr style="margin-top: 3.5em">
               <td style="width: 1040px">
                 <div
                   class="card black lighten-3"
                   style="
-                      border: solid 3px #00b9e3;
-                      width: 1040px;
-                      height: 60px;
-                      margin-left: 0px;
-                      margin-top: 0em;
-                      border-radius: 2rem;
-                    "
+                    border: solid 3px #00b9e3;
+                    width: 1040px;
+                    height: 60px;
+                    margin-left: 0px;
+                    margin-top: 0em;
+                    border-radius: 2rem;
+                  "
                 >
                   <div class="card-content white-text">
-                    <div class="switch" style="margin-top: -0.8em;">
+                    <div class="switch" style="margin-top: -0.8em">
                       <label>
                         <input type="checkbox" v-model="isDirectCash" />
 
@@ -538,18 +542,18 @@
             </tr>
 
             <!-- row 07 -->
-            <tr style="margin-top: -3em;">
+            <tr style="margin-top: -3em">
               <td style="width: 1040px">
                 <div
                   class="card black lighten-3"
                   style="
-                      border: none;
-                      width: 1040px;
-                      height: 80px;
-                      margin-left: 0px;
-                      margin-top: 0em;
-                      border-radius: 2rem;
-                    "
+                    border: none;
+                    width: 1040px;
+                    height: 80px;
+                    margin-left: 0px;
+                    margin-top: 0em;
+                    border-radius: 2rem;
+                  "
                 >
                   <div class="card-content white-text">
                     <div class="switch">
@@ -561,7 +565,7 @@
                     </div>
 
                     <div class="pay-screen-title">
-                      <span class="card-title" style="font-size: 33.06px;"
+                      <span class="card-title" style="font-size: 33.06px"
                         >КУПЮРОПРИЕМНИК</span
                       >
                     </div>
@@ -571,18 +575,18 @@
             </tr>
             <!-- row 08 -->
             <tr
-              style="margin-top: -4em;"
+              style="margin-top: -4em"
               :class="[
                 { 'first-opacity': isAcceptorInstalled },
-                { 'second-opacity': !isAcceptorInstalled }
+                { 'second-opacity': !isAcceptorInstalled },
               ]"
             >
-              <td style="width: 520px;">
+              <td style="width: 520px">
                 <div>
                   <SettingPaymentAcceptor />
                 </div>
               </td>
-              <td style="width: 520px;">
+              <td style="width: 520px">
                 <div>
                   <SettingPaymentBill />
                 </div>
@@ -590,18 +594,18 @@
             </tr>
 
             <!-- row 09 -->
-            <tr style="margin-top: 3em;">
+            <tr style="margin-top: 3em">
               <td style="width: 1040px">
                 <div
                   class="card black lighten-3"
                   style="
-                      border: none;
-                      width: 1040px;
-                      height: 80px;
-                      margin-left: 0px;
-                      margin-top: 0em;
-                      border-radius: 2rem;
-                    "
+                    border: none;
+                    width: 1040px;
+                    height: 80px;
+                    margin-left: 0px;
+                    margin-top: 0em;
+                    border-radius: 2rem;
+                  "
                 >
                   <div class="card-content white-text">
                     <div class="switch">
@@ -615,7 +619,7 @@
                     </div>
 
                     <div class="pay-screen-title">
-                      <span class="card-title" style="font-size: 33.06px;"
+                      <span class="card-title" style="font-size: 33.06px"
                         >МОНЕТОПРИЕМНИК</span
                       >
                     </div>
@@ -625,18 +629,18 @@
             </tr>
             <!-- row 10 -->
             <tr
-              style="margin-top: -4em;"
+              style="margin-top: -4em"
               :class="[
                 { 'first-opacity': isCoinAcceptorInstalled },
-                { 'second-opacity': !isCoinAcceptorInstalled }
+                { 'second-opacity': !isCoinAcceptorInstalled },
               ]"
             >
-              <td style="width: 520px;">
+              <td style="width: 520px">
                 <div>
                   <SettingCoinAcceptor />
                 </div>
               </td>
-              <td style="width: 520px;">
+              <td style="width: 520px">
                 <div>
                   <SettingCoinBill />
                 </div>
@@ -644,21 +648,21 @@
             </tr>
 
             <!-- row 11 -->
-            <tr style="margin-top: 3em;">
+            <tr style="margin-top: 3em">
               <td style="width: 1040px">
                 <div
                   class="card black lighten-3"
                   style="
-                      border: solid 3px #00b9e3;
-                      width: 1040px;
-                      height: 60px;
-                      margin-left: 0px;
-                      margin-top: 0em;
-                      border-radius: 2rem;
-                    "
+                    border: solid 3px #00b9e3;
+                    width: 1040px;
+                    height: 60px;
+                    margin-left: 0px;
+                    margin-top: 0em;
+                    border-radius: 2rem;
+                  "
                 >
                   <div class="card-content white-text">
-                    <div class="switch" style="margin-top: -0.8em;">
+                    <div class="switch" style="margin-top: -0.8em">
                       <label>
                         <input type="checkbox" v-model="isTerminalInstalled" />
 
@@ -675,23 +679,21 @@
             </tr>
 
             <div
-            :class="[
-                  { 'first-opacity': isTerminalInstalled },
-                  { 'second-opacity': !isTerminalInstalled }
-                ]"
+              :class="[
+                { 'first-opacity': isTerminalInstalled },
+                { 'second-opacity': !isTerminalInstalled },
+              ]"
             >
               <!-- row 12 -->
-              <tr
-                style="margin-top: -2em; margin-left: 10px;"
-              >
-                <td style="width: 1020px;">
+              <tr style="margin-top: -2em; margin-left: 10px">
+                <td style="width: 1020px">
                   <div>
                     <SettingPaymentTerminalType />
                   </div>
                 </td>
               </tr>
               <!-- row 13 -->
-              <tr style="margin-top: 2.8em; margin-left: 0px;">
+              <tr style="margin-top: 2.8em; margin-left: 0px">
                 <td>
                   <div>
                     <SettingPaymentLimit />
@@ -701,7 +703,7 @@
             </div>
 
             <!-- row 14 -->
-            <tr style="margin-top: 3.7em; margin-left: 0px;">
+            <tr style="margin-top: 3.7em; margin-left: 0px">
               <td>
                 <div>
                   <SettingPaymentToken />
@@ -713,7 +715,7 @@
             <!--  -->
           </tbody>
         </table>
-        <div style="margin-top: 2em;">
+        <div style="margin-top: 2em">
           <hr />
         </div>
 
@@ -723,7 +725,7 @@
       <div
         id="swipe-3"
         class="col s8 black"
-        style="box-shadow: 10px 10px 10px #00b9e3;"
+        style="box-shadow: 10px 10px 10px #00b9e3"
       >
         <!-- Языки -->
         <!-- dev -->
@@ -731,11 +733,11 @@
         <h2 class="white-text page-subtitle">Языки</h2>
         <br />
 
-        <table style="margin-left: 2em; margin-top: -1em;">
+        <table style="margin-left: 2em; margin-top: -1em">
           <tbody>
             <!-- row 01 -->
-            <tr style="margin-top: 2em;">
-              <td style="width: 1040px;">
+            <tr style="margin-top: 2em">
+              <td style="width: 1040px">
                 <div>
                   <SettingLanguageSelect />
                 </div>
@@ -744,7 +746,7 @@
             Payment
           </tbody>
         </table>
-        <div style="margin-top: 4em;">
+        <div style="margin-top: 4em">
           <hr />
         </div>
 
@@ -758,15 +760,16 @@
       <div
         id="swipe-4"
         class="col s8 black"
-        style="box-shadow: 10px 10px 10px #00b9e3;"
+        style="box-shadow: 10px 10px 10px #00b9e3"
       >
         <!-- Финансы -->
-        <div>
+        <!-- <div>
           <h2 class="white-text page-subtitle">Финансы</h2>
           <br />
           <div class="row panel">
             <div class="row left">
               <div class="col">
+                
                 <router-link to="/finance">
                   <button
                     class="
@@ -780,12 +783,15 @@
                     {{ 'Статистика' }}
                   </button>
                 </router-link>
+
               </div>
             </div>
           </div>
         </div>
-        <hr />
+        <hr /> -->
+
         <!-- end Финансы -->
+
       </div>
 
       <!-- valign="center" -->
@@ -868,6 +874,8 @@ import SettingScreenGotoMainMenu from '@/components/setting/SettingScreenGotoMai
 import SettingScreenChangeItem from '@/components/setting/SettingScreenChangeItem'
 import SettingScreenAssignItem from '@/components/setting/SettingScreenAssignItem'
 
+import FinanceTable from '@/components/FinanceTable'
+
 import cost from '../store/cost'
 import EventBus from '@/bus/EventBus'
 
@@ -898,7 +906,7 @@ export default Vue.extend({
     isCoinAcceptorInstalled: false,
 
     isDown: false,
-    tabs: null
+    tabs: null,
   }),
   components: {
     SettingPanelType,
@@ -929,7 +937,9 @@ export default Vue.extend({
     SettingScreenTooltip,
     SettingScreenGotoMainMenu,
     SettingScreenChangeItem,
-    SettingScreenAssignItem
+    SettingScreenAssignItem,
+
+    FinanceTable,
   },
   mounted() {
     /* dev */
@@ -941,7 +951,7 @@ export default Vue.extend({
   methods: {
     /* dev */
     ...mapActions({
-      updateConfig: 'updateConfig'
+      updateConfig: 'updateConfig',
     }),
     submitHandler(options) {
       const selected = JSON.stringify(options.selected)
@@ -949,9 +959,13 @@ export default Vue.extend({
       //this.setLanguage(selected, current)
     },
     /* dev */
+    setProgram(program) {
+      this.$router.push('/finance')
+    },
+
     setLanguage() {},
     ...mapGetters({
-      getConfig: 'getConfig'
+      getConfig: 'getConfig',
     }),
     ...mapMutations({
       setRouter: 'setRouter',
@@ -964,7 +978,7 @@ export default Vue.extend({
       setDirectCash: 'setDirectCash',
       setCursor: 'setCursor',
       setPayScreenMain: 'setPayScreenMain',
-      setCnw: 'setCnw'
+      setCnw: 'setCnw',
     }),
     setDown() {
       this.isDown = !this.isDown
@@ -1003,15 +1017,15 @@ export default Vue.extend({
       getDirectCash: 'getDirectCash',
       getCursor: 'getCursor',
       getPayScreenMain: 'getPayScreenMain',
-      getCnw: 'getCnw'
-    })
+      getCnw: 'getCnw',
+    }),
   },
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
       getAcceptorInstalled: 'getAcceptorInstalled',
-      getCoinAcceptorInstalled: 'getCoinAcceptorInstalled'
-    })
+      getCoinAcceptorInstalled: 'getCoinAcceptorInstalled',
+    }),
   },
   watch: {
     /* dev */
@@ -1044,7 +1058,7 @@ export default Vue.extend({
     isCoinAcceptorInstalled(flag) {
       //console.log('isCoinAcceptorInstalled-->', flag)
       this.setCoinAcceptorInstalled(flag)
-    }
+    },
   },
   created() {
     this.isPayScreenMain = this.getPayScreenMain()
@@ -1068,7 +1082,7 @@ export default Vue.extend({
     if (this.tabs && this.tabs.destroy) {
       this.tabs.destroy()
     }
-  }
+  },
 })
 </script>
 

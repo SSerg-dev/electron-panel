@@ -12,5 +12,17 @@
     "CONSULTANT": "CONSULTANT",
     "CALL_SENT_WAIT": "CALL SENT, WAIT",
     "FREE_STOP": "FREE STOP",
-    "MAKE_A_PAYMENT": "MAKE A PAYMENT"
+    "MAKE_A_PAYMENT": "MAKE A PAYMENT",
+    "Insert_banknotes_or_coins": "Insert banknotes or coins, click the button below when you are done",
+    "Price_per_minute": "Price per minute",
+    "Program": "Program",
+    "SHAMPOO": "SHAMPOO",
+    "WATER_SHAMPOO": "WATER SHAMPOO",
+    "COLD_WATER": "COLD WATER",
+    "WAX": "WAX",
+    "OSMOSIS": "OSMOSIS",
+    "FOAM": "FOAM",
+    "STOP": "STOP",
+    "DISK": "WHEELS" 
+
 }
