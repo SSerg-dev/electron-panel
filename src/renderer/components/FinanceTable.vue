@@ -20,50 +20,42 @@
 
       <tbody>
         <tr style="border: solid 3px #00b9e3">
-          <td style="text-align: left; padding-left: 1em">
+          <td class="cell-style">
             {{ `${this.getCashTitle[0].title}` }}
           </td>
-          <td>{{ getSumCash }}</td>
+          <td>{{ getAllCoins.amountCoin + getAllBills.amountBill }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em">
+          <td class="cell-style">
             {{ `${this.getCashTitle[1].title}` }}
           </td>
-          <td>{{ getSumBills }}</td>
+          <td>{{ getAllBills.amountBill }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em">
+          <td class="cell-style">
             {{ `${this.getCashTitle[2].title}` }}
           </td>
-          <td>{{ getBillsCount }}</td>
+          <td>{{ getAllBills.counterBill }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em">{{ `10` }}</td>
-          <td>{{ getBills10 }}</td>
+          <td class="cell-style">{{ `10` }}</td>
+          <td>{{ getAllBills.counterB10 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em">{{ `50` }}</td>
-          <td>{{ getBills50 }}</td>
+          <td class="cell-style">{{ `50` }}</td>
+          <td>{{ getAllBills.counterB50 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em">{{ `100` }}</td>
-          <td>{{ getBills100 }}</td>
+          <td class="cell-style">{{ `100` }}</td>
+          <td>{{ getAllBills.counterB100 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em">{{ `200` }}</td>
-          <td>{{ getBills200 }}</td>
+          <td class="cell-style">{{ `200` }}</td>
+          <td>{{ getAllBills.counterB200 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em">{{ `500` }}</td>
-          <td>{{ getBills500 }}</td>
-        </tr>
-        <tr>
-          <td style="text-align: left; padding-left: 1em">{{ `1000` }}</td>
-          <td>{{ getBills1000 }}</td>
-        </tr>
-        <tr>
-          <td style="text-align: left; padding-left: 1em">{{ `2000` }}</td>
-          <td>{{ getBills2000 }}</td>
+          <td class="cell-style">{{ `500` }}</td>
+          <td>{{ getAllBills.counterB500 }}</td>
         </tr>
 
         <tr>
@@ -76,26 +68,26 @@
           >
             {{ `${this.getCashTitle[3].title}` }}
           </td>
-          <td style="border-top: solid 3px #00b9e3">{{ getSumCoins }}</td>
+          <td style="border-top: solid 3px #00b9e3">
+            {{ getAllCoins.amountCoin }}
+          </td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em">
+          <td class="cell-style">
             {{ `${this.getCashTitle[4].title}` }}
           </td>
-          <td>{{ getCoinsCount }}</td>
+          <td>
+            {{ getAllCoins.counterCoin }}
+          </td>
         </tr>
 
         <tr>
-          <td style="text-align: left; padding-left: 1em">{{ `1` }}</td>
-          <td>{{ getCoins1 }}</td>
+          <td class="cell-style">{{ `5` }}</td>
+          <td>{{ getAllCoins.counterC5 }}</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 1em">{{ `2` }}</td>
-          <td>{{ getCoins2 }}</td>
-        </tr>
-        <tr>
-          <td style="text-align: left; padding-left: 1em">{{ `10` }}</td>
-          <td>{{ getCoins10 }}</td>
+          <td class="cell-style">{{ `10` }}</td>
+          <td>{{ getAllCoins.counterC10 }}</td>
         </tr>
       </tbody>
     </table>
@@ -108,8 +100,7 @@ import { mapGetters } from 'vuex'
 
 export default Vue.extend({
   name: 'finance-table',
-  // props: ['cash'],
-  props: ['coins', 'bills'],
+  // props: ['coins', 'bills'],
 
   data: () => ({
     emoji: '',
@@ -120,7 +111,6 @@ export default Vue.extend({
 
   methods: {
     initCurrency() {
-      /* dev */
       const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
       this.current = id
       this.select = title
@@ -128,7 +118,6 @@ export default Vue.extend({
       this.emoji = emoji
       this.currency = currency
       this.symbol = symbol
-      /*     */
     },
   },
 
@@ -139,39 +128,16 @@ export default Vue.extend({
       getDefaultCurrency: 'getDefaultCurrency',
       getLanguageNatives: 'getLanguageNatives',
 
-      // getCashTitle
       getCashTitle: 'getCashTitle',
-
-      // getBills
-      getBills10: 'getBills10',
-      getBills100: 'getBills100',
-      getBills1000: 'getBills1000',
-      getBills200: 'getBills200',
-      getBills2000: 'getBills2000',
-      getBills50: 'getBills50',
-      getBills500: 'getBills500',
-      getBills5000: 'getBills5000',
-      getBillsCount: 'getBillsCount',
-      // getCoins
-      getCoins0: 'getCoins0',
-      getCoins1: 'getCoins1',
-      getCoins10: 'getCoins10',
-      getCoins2: 'getCoins2',
-      getCoinsCount: 'getCoinsCount',
-      // getSum
-      getSumBills: 'getSumBills',
-      getSumCash: 'getSumCash',
-      getSumCoins: 'getSumCoins',
+      getAllCoins: 'getAllCoins',
+      getAllBills: 'getAllBills',
     }),
   },
 
   created() {
     this.initCurrency()
-    
   },
-  mounted() {
-    console.log('$$ FinanceTable.vue ', this.coins, this.bills)
-  }
+  mounted() {},
 })
 </script>
 
@@ -182,6 +148,10 @@ export default Vue.extend({
   margin-left: 16.5em; /* 16em; */
   padding-top: em;
   color: white;
+}
+.cell-style {
+  text-align: left; 
+  padding-left: 1em;
 }
 table {
   margin-top: 0em; /* 20em; */
@@ -204,4 +174,5 @@ td {
   text-align: center;
   /* border-left-color: aqua; */
 }
+
 </style>

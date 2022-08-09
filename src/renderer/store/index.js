@@ -17,6 +17,13 @@ import { ipcRenderer } from 'electron'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  /*
+    state: {},
+    actions: {},
+    getters: {},
+    mutations: {},
+    modules: {}
+  */
   state: {
     params: [{ id: '', title: '', value: '' }],
     /* dev */

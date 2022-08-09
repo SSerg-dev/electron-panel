@@ -212,12 +212,12 @@ export default {
         // console.log('response.result', response.result)
         if (+response.result === 0) {
           this.setIsReceiptRead(true)
-          this.$message(
-            `01 Выполняется панелью при формировании чека result--> ${+response.result}`
-          )
+          // this.$message(
+          //   `01 Выполняется панелью при формировании чека result--> ${+response.result}`
+          // )
         } else {
           this.setIsReceiptRead(false)
-          this.$message(`НЕ выполняется панелью при формировании чека`)
+          // this.$message(`НЕ выполняется панелью при формировании чека`)
         }
       }
       // console.log('++getIsReceiptRead', this.getIsReceiptRead())

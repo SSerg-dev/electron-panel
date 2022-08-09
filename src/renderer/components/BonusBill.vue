@@ -694,9 +694,6 @@ export default {
       this.setAppendBonus(this.options.params)
       this.options = this.getAppendBonus()
 
-      /* dev */
-      console.log('$$ this.getServiceBalance', this.getServiceBalance)
-
       console.log(
         '++appendBonusMoney-->options-->this.options-->',
         JSON.stringify(this.options)
@@ -710,9 +707,9 @@ export default {
         )
 
         if (+response.result === 0) {
-          this.$message(
-            `Вам начислено appendBonusQrMoney ${this.options.params.sum} бонуса(ов) `
-          )
+          // this.$message(
+          //   `Вам начислено appendBonusQrMoney ${this.options.params.sum} бонуса(ов) `
+          // )
           this.setIsAppendBonusMoney(false)
           if (this.$route.name !== 'program') this.$router.push('/program')
         } else {
@@ -771,9 +768,9 @@ export default {
           type
         )
         if (+response.result === 0) {
-          this.$message(
-            `Вам начислено appendBonusMoney ${this.options.params.sum} бонуса(ов) `
-          )
+          // this.$message(
+          //   `Вам начислено appendBonusMoney ${this.options.params.sum} бонуса(ов) `
+          // )
           this.setIsAppendBonusMoney(false)
           if (this.$route.name !== 'program') this.$router.push('/program')
         } else {

@@ -9,35 +9,46 @@
     </div>
 
     <section>
-      <div style="padding-top: 10em;">
+      <div style="padding-top: 10em">
         <div v-if="!isChart">
-          <!-- <FinanceTable :cash="cash" /> -->
-          <FinanceTable :coins="coins" :bills="bills"  />
+          <FinanceTable />
+          <!-- <FinanceTable :coins="coins" :bills="bills" /> -->
         </div>
         <!-- <div v-else>
-          <FinanceChart :cash="cash" :cashTitle="cashTitle" />
+          <FinanceChart :coins="coins" :bills="bills" :cashTitle="cashTitle" />
         </div> -->
-
       </div>
       <!-- dev -->
       <!-- @click="readCash" -->
       <div class="row button-group">
-        <div class="col ">
+        <!-- <div class="col">
           <router-link to="/finance">
             <button
-              class="btn waves-effect waves-light lighten-3 white-text button-setting"
+              class="
+                btn
+                waves-effect waves-light
+                lighten-3
+                white-text
+                button-setting
+              "
               type="submit"
               @click="readCash"
             >
               {{ 'Наличные' }}
             </button>
           </router-link>
-        </div>
+        </div> -->
 
-        <div class="col ">
+        <div class="col">
           <router-link to="/finance">
             <button
-              class="btn waves-effect waves-light lighten-3 white-text button-setting"
+              class="
+                btn
+                waves-effect waves-light
+                lighten-3
+                white-text
+                button-setting
+              "
               type="submit"
               @click="doCollect"
             >
@@ -59,16 +70,12 @@
               <div v-else>
                {{ 'Диаграмма' }}
               </div>
-              
-
 
             </button>
           </router-link>
         </div> -->
         <!--     -->
-
       </div>
-      
     </section>
   </div>
 </template>
@@ -105,33 +112,29 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getDefaultPanelNumber: 'getDefaultPanelNumber',
-      getAllCash: 'getAllCash',
-      getCashTitle: 'getCashTitle',
-    })
+      getAllCoins: 'getAllCoins',
+      getAllBills: 'getAllBills',
+    }),
   },
   methods: {
-    /* dev */
-    ...mapGetters({
-      //getAllCash: 'getAllCash'
-      //getCashTitle: 'getCashTitle' 
-    }),
+    ...mapGetters({}),
     ...mapMutations({
-      setAllCash: 'setAllCash'
+      setAllCoins: 'setAllCoins',
+      setAllBills: 'setAllBills',
     }),
     /*     */
     doChart() {
-      this.isChart = !this.isChart 
+      this.isChart = !this.isChart
     },
 
     doCollect() {
-      if(confirm('Подтвердите инкассацию'))
-        this.collect()
+      if (confirm('Подтвердите инкассацию')) this.collect()
     },
+
     async readCash() {
-      console.log('$$ Finance.vue readCash')
-      // cash
+      // console.log('$$ Finance.vue readCash')
       const method = methods[2]
-      const type = types[6] 
+      const type = types[6]
 
       this.options = this.getReadCashOptions()
       const response = await this.storage.getClient(method, this.options, type)
@@ -141,12 +144,6 @@ export default Vue.extend({
           `Запрос наличных средств панели № ${this.getDefaultPanelNumber} выполнен успешно`
         )
       }
-      /* dev */ 
-      //this.setAllCash(response.cash)
-      // this.cash = this.getAllCash
-
-      // this.cashTitle = this.getCashTitle 
-
     },
     getCashMoney() {
       let isClear = false
@@ -157,7 +154,8 @@ export default Vue.extend({
         this.coins = coins
         this.bills = bills
 
-        console.log('$$ Finance.vue', this.coins, this.bills)
+        this.setAllCoins(coins)
+        this.setAllBills(bills)
 
         if (coins || bills) {
           isClear = true
@@ -175,12 +173,12 @@ export default Vue.extend({
 
       if (+response.result === 0)
         this.$message(
-          `Инкассация панели № ${this.getDefaultPanelNumber} выполнена успешно`
+          `Инкассация поста № ${this.getDefaultPanelNumber} выполнена успешно`
         )
     },
     ...mapGetters({
       getCollectOptions: 'getCollectOptions',
-      getReadCashOptions: 'getReadCashOptions'
+      getReadCashOptions: 'getReadCashOptions',
       // dev
       /* 
       getStoreMoneyOptions: 'getStoreMoneyOptions',
@@ -199,23 +197,12 @@ export default Vue.extend({
       // end dev
     }),
     ...mapMutations({
-      /* 
-      setPanelMoneyNumber: 'setPanelMoneyNumber',
-      setPanelMoneyType: 'setPanelMoneyType',
-      setPanelMoneySum: 'setPanelMoneySum',
-      setPanelMoneyDetail: 'setPanelMoneyDetail' 
-      */
-      setRouter: 'setRouter'
-    })
+      setRouter: 'setRouter',
+    }),
   },
   async mounted() {
-    //this.cash = this.getAllCash
-    //this.cashTitle = this.getCashTitle
-    
     this.setRouter('/finance')
     this.storage = new Storage(this.client, this.url)
-
-     
 
     /* const dbf = new Database(new FetchClient())
     console.log(dbf.getData('rand'))
@@ -224,19 +211,11 @@ export default Vue.extend({
   },
   created() {
     this.getCashMoney()
-
-    // this.cash = this.getAllCash
-    // this.cashTitle = this.getCashTitle
-    
-    
-    
-    
-    
   },
   components: {
     FinanceTable,
-    FinanceChart
-  }
+    FinanceChart,
+  },
 })
 </script>
 
@@ -281,9 +260,6 @@ export default Vue.extend({
   border-radius: 2rem;
   box-shadow: 6px 6px 10px #00b9e3;
   height: 2em;
-  width: 9em;
-
+  width: 21em;
 }
-
-
 </style>

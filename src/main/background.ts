@@ -140,8 +140,8 @@ const idle = async (config: any) => {
     })
   }
   /* dev */
-  /* 
-  if (config.bill_validator) {
+  
+  /* if (config.bill_validator) {
     if (
       !mConfig ||
       mConfig.bill_validator.installed !== config.bill_validator.installed

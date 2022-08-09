@@ -589,13 +589,13 @@ export default {
         this.setIsReceiptPrint(false)
         this.$message(`НЕ выполняется панелью  на запрос печати чека`)
       }
-      console.log('++ WashTable-->getIsReceiptPrint-->', this.getIsReceiptPrint)
+      // console.log('++ WashTable-->getIsReceiptPrint-->', this.getIsReceiptPrint)
     },
     // ----------------------------------
     // ЗАВЕРШИТЬ МОЙКУ
 
     async completeWash() {
-      console.log('++completeWash-->')
+      // console.log('++completeWash-->')
 
       const method = methods[11]
       const type = types[4]

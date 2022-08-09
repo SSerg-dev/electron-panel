@@ -251,7 +251,7 @@ class PaxDevice extends EventEmitter {
   }
   // ------------------------------------
 
-  read = (request: Buffer, timeout: number = 2000) => {
+  /* read = (request: Buffer, timeout: number = 2000) => {
     let self = this
     let result
     try {
@@ -264,8 +264,8 @@ class PaxDevice extends EventEmitter {
       const eot = Buffer.from([BCNet.EOT_RES])
 
       self.serial.on('readable', () => {
-        self.readResponse = self.serial.read() // || ack
-        // self.readResponse = self.serial.read() || self.readNextResponse(request)
+        // self.readResponse = self.serial.read() // || ack
+        self.readResponse = self.serial.read() // || self.readNextResponse(request)
 
         self.time = new Date().toLocaleTimeString()
         // console.log(`$$ self.readResponse-->  ${self.time}`, self.readResponse)
@@ -281,7 +281,33 @@ class PaxDevice extends EventEmitter {
     } catch (err) {
       throw new Error(`serial read  ${err}`)
     }
+  } */
+  // ------------------------------------
+  read = (request: Buffer, timeout: number = 2000) => {
+    let self = this
+    let result
+    try {
+      self.connect()
+      // ------------------------------
+      // ОПЕРАЦИЯ ПРЕРВАНА КАССОЙ
+      // --------------------------------
+      // self.serial.removeListener('readable')
+
+      self.serial.on('readable', () => {
+        let chunk
+        while (null !== (chunk = self.serial.read())) {
+          self.readResponse = chunk
+          console.log(`Received ${chunk.length} bytes of data.`)
+        }
+        self.parseReadResponse(self.readResponse)
+      })
+
+      // ------------------------------
+    } catch (err) {
+      throw new Error(`serial read  ${err}`)
+    }
   }
+  // ------------------------------------
   // end read
   // ------------------------------------
   async readNextResponse(request: Buffer) {
