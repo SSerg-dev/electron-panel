@@ -12,16 +12,42 @@
   "CONSULTANT": "КОНСУЛЬТАНТ",
   "CALL_SENT_WAIT": "ВЫЗОВ ОТПРАВЛЕН, ОЖИДАЙТЕ",
   "FREE_STOP": "БЕСПЛАТНЫЙ СТОП",
+  "STOP": "СТОП",
   "MAKE_A_PAYMENT": "ВНЕСИТЕ ОПЛАТУ",
   "Insert_banknotes_or_coins": "Внесите купюры или монеты, по завершению нажмите кнопку ниже",
   "Price_per_minute": "Цена за одну минуту",
   "Program": "Программа",
+
   "SHAMPOO": "ШАМПУНЬ",
-  "WATER_SHAMPOO": "ВОДА + ШАМПУНЬ",
-  "COLD_WATER": "ХОЛОДНАЯ ВОДА",
-  "WAX": "WAX",
-  "OSMOSIS": "ОСМОС",
+  "DISK": "ДИСКИ",
+  "MOSQUITO": "МОСКИТ", 
   "FOAM": "ПЕНА",
-  "STOP": "СТОП",
-  "DISK": "ДИСКИ"
+  "FOAM_COLOR": "ПЕНА ЦВЕТ",
+  "BRUSH": "ЩЕТКА",
+  "BRUSH_COLOR": "ЩЕТКА ЦВЕТ",
+  "WATER_SHAMPOO": "ВОДА + ШАМПУНЬ",
+  "COLD_WATER": "ХОЛОДНАЯ",
+  "WARM_WATER": "ТЕПЛАЯ",
+  "OSMOSIS": "ОСМОС",
+  "STOP_PAUSE": "СТОП/ПАУЗА",
+  "AIR": "ВОЗДУХ",
+  "GLASS_WASHING_LIQUID": "ОМЫВАТЕЛЬ",
+  "WAX": "ВОСК",
+  "FOAM_X2": "ПЕНА Х2",
+  "VACUUM_CLEANER": "ПЫЛЕСОС",
+  "BRUSH_X2": "ЩЕТКА Х2",
+  "DISK_X2": "ДИСКИ Х2",
+  "MOSQUITO_X2": "МОСКИТ Х2",
+  "TURBO_DRYER": "ТУРБОСУШКА",
+  "DEGREASE": "ОБЕЗЖИРИВАНИЕ",
+  "DISINFECTION": "ДЕЗИНФЕКЦИЯ",
+
+  "COMPLETE_PAYMENT": "ЗАВЕРШИТЬ ОПЛАТУ",
+  "RETURN_BONUSES_UP": "ВЕРНУТЬ БОНУСАМИ ДО 30% И ЗАВЕРШИТЬ ОПЛАТУ",
+  "CONFIRM": "ЗАЧИСЛИТЬ"
+  
+
+
+
+
 }

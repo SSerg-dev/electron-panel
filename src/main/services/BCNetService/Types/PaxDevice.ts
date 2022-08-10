@@ -297,7 +297,7 @@ class PaxDevice extends EventEmitter {
         let chunk
         while (null !== (chunk = self.serial.read())) {
           self.readResponse = chunk
-          console.log(`Received ${chunk.length} bytes of data.`)
+          // console.log(`Received ${chunk.length} bytes of data.`)
         }
         self.parseReadResponse(self.readResponse)
       })

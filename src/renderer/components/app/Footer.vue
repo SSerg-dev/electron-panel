@@ -39,7 +39,7 @@
               @click="setProgram('stop')"
             >
               <div class="button-title-long button-title-stop">
-                {{ `СТОП` }}
+                {{ `STOP` | localize }}
               </div>
             </div>
             <div
@@ -48,7 +48,7 @@
               @click="setProgram('stop')"
             >
               <div class="button-title-long button-title-stop">
-                {{ `СТОП` }}
+                {{ `STOP` | localize }}
               </div>
             </div>
           </div>

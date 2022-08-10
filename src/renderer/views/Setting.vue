@@ -907,6 +907,8 @@ export default Vue.extend({
 
     isDown: false,
     tabs: null,
+
+    config: {}
   }),
   components: {
     SettingPanelType,
@@ -984,8 +986,8 @@ export default Vue.extend({
       this.isDown = !this.isDown
     },
     okHandler() {
-      /* dev */
-      //this.updateConfig()
+      this.config = this.getConfig()
+      this.updateConfig(this.config)
 
       this.setLanguage()
       this.$router.push('/')
@@ -1001,9 +1003,8 @@ export default Vue.extend({
       //this.$router.push('/')
     },
     applyHandler() {
-      /* dev */
-      const config = this.getConfig()
-      this.updateConfig(config)
+      this.config = this.getConfig()
+      this.updateConfig(this.config)
 
       this.setLanguage()
 

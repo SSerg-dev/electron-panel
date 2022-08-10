@@ -346,6 +346,21 @@
                             box-shadow: 0px 6px 10px #00b9e3;
                           "
                         >
+                         <!-- 
+                          <div
+                    class="card-content black-text"
+                    style="
+                      display: flex;
+                      justifyContent: center;
+
+                      font-size: 4em;
+                      padding-top: 0.2em;
+                      padding-left: 0.3em;
+                    "
+                  >
+                    {{ `CONFIRM` | localize }}
+                  </div>
+                          -->
                           <div
                             class="card-content black-text"
                             style="
@@ -356,6 +371,7 @@
                           >
                             {{ `ЗАЧИСЛИТЬ` }}
                           </div>
+
                         </div>
                       </td>
                     </tr>

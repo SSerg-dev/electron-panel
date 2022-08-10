@@ -15,7 +15,7 @@
             { 'card-content white-text': this.isDown.dryShine }
           ]"
         >
-          {{ `${actives[this.activeNumber].title}` }}
+          {{ `${actives[this.activeNumber].title}` | localize }}
         </div>
       </div>
     </td>

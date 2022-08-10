@@ -12,17 +12,40 @@
     "CONSULTANT": "CONSULTANT",
     "CALL_SENT_WAIT": "CALL SENT, WAIT",
     "FREE_STOP": "FREE STOP",
+    "STOP": "STOP", 
     "MAKE_A_PAYMENT": "MAKE A PAYMENT",
     "Insert_banknotes_or_coins": "Insert banknotes or coins, click the button below when you are done",
     "Price_per_minute": "Price per minute",
     "Program": "Program",
+
     "SHAMPOO": "SHAMPOO",
-    "WATER_SHAMPOO": "WATER SHAMPOO",
-    "COLD_WATER": "COLD WATER",
-    "WAX": "WAX",
-    "OSMOSIS": "OSMOSIS",
+    "DISK": "WHEELS",
+    "MOSQUITO": "MOSQUITO",
     "FOAM": "FOAM",
-    "STOP": "STOP",
-    "DISK": "WHEELS" 
+    "FOAM_COLOR": "FOAM COLOR", 
+    "BRUSH": "BRUSH",
+    "BRUSH_COLOR": "BRUSH COLOR",
+    "WATER_SHAMPOO": "WATER SHAMPOO",
+    "COLD_WATER": "COLD",
+    "WARM_WATER": "WARM",
+    "OSMOSIS": "OSMOSIS",
+    "STOP_PAUSE": "STOP/PAUSE",
+    "AIR": "AIR",
+    "GLASS_WASHING_LIQUID": "WASH LIQUID",
+    "WAX": "WAX",
+    "FOAM_X2": "FOAM X2",
+    "VACUUM_CLEANER": "VACUUM",
+    "BRUSH_X2": "BRUSH X2",
+    "DISK_X2": "WHEELS X2",
+    "MOSQUITO_X2": "MOSQUITO X2",
+    "TURBO_DRYER": "TURBO DRYER",
+    "DEGREASE": "DEGREASE",
+    "DISINFECTION": "DISINFECTION",
+    
+    "COMPLETE_PAYMENT": "COMPLETE PAYMENT",
+    "RETURN_BONUSES_UP": "RETURN BONUSES UP TO 30% COMPLETE PAYMENT",
+    "CONFIRM": "CONFIRM"
+    
+     
 
 }

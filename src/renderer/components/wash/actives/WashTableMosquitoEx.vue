@@ -15,7 +15,7 @@
             { 'card-content white-text': this.isDown.mosquito }
           ]"
         >
-          {{ `${actives[this.activeNumber].title}` }}
+          {{ `${actives[this.activeNumber].title}` | localize }}
         </div>
       </div>
     </td>

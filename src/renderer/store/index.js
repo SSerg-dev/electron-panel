@@ -387,11 +387,11 @@ export default new Vuex.Store({
 
     updateConfig({ getters }, config) {
       //console.group(`config:`)
-      console.log(
-        `Config update config.bank_terminal--> ${JSON.stringify(
-          config.bank_terminal
-        )}`
-      )
+      // console.log(
+      //   `Config update config.bank_terminal--> ${JSON.stringify(
+      //     config.bank_terminal
+      //   )}`
+      // )
       //console.log('Config update config.ui.CNW-->', config.ui.CNW)
       //console.log('++Config update-->', config.ui.main_window)
       //console.log('++Config update-->', config.ui.hide_cursor)

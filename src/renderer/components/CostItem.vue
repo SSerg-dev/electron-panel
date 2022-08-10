@@ -12,8 +12,8 @@
             { 'card-content white-text': !cost.color }
           ]"
         >
-          <!-- {{ `${cost.title}` | localize }} -->
-          {{ `${cost.title}`}}
+          {{ `${cost.title}` | localize }}
+          <!-- {{ `${cost.title}`}} -->
         </div>
 
 

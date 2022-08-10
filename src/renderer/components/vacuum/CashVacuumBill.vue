@@ -27,7 +27,7 @@
               padding-top: 1.4em;
             "
           >
-            {{ 'ВЕРНУТЬ БОНУСАМИ ДО 30% И ЗАВЕРШИТЬ ОПЛАТУ' }}
+            {{ `RETURN_BONUSES_UP` | localize }}
           </div>
         </div>
       </li>
@@ -61,7 +61,7 @@
             class="card-content black-text button-content-style noselect"
             style="font-size: 4em; padding-right: 0.5em; padding-top: 1em"
           >
-            {{ 'ЗАВЕРШИТЬ ОПЛАТУ' }}
+            {{ `COMPLETE_PAYMENT` | localize }}
           </div>
         </div>
       </li>

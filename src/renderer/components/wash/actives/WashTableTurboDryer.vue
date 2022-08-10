@@ -16,7 +16,7 @@
             { 'card-content white-text': this.isDown.turboDryer }
           ]"
         >
-          {{ `${actives[this.activeNumber].title}` }}
+          {{ `${actives[this.activeNumber].title}` | localize}}
         </div>
       </div>
     </td>

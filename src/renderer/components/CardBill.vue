@@ -656,12 +656,15 @@
                   <div
                     class="card-content black-text"
                     style="
+                      display: flex;
+                      justifyContent: center;
+
                       font-size: 4em;
-                      padding-left: 2.8rem;
                       padding-top: 0.2em;
+                      padding-left: 0.3em;
                     "
                   >
-                    ЗАЧИСЛИТЬ
+                    {{ `CONFIRM` | localize }}
                   </div>
                 </div>
               </td>
@@ -988,7 +991,7 @@ export default {
     }),
     ...mapActions({
       updateWetBonusMoney: 'updateWetBonusMoney',
-      updateDryBonusMoney: 'updateDryBonusMoney'
+      updateDryBonusMoney: 'updateDryBonusMoney',
     }),
 
     payUp(program) {
@@ -1001,7 +1004,7 @@ export default {
         // console.log(
         //   `CardBill.vue 996: this.getIsCardMoney ${this.getIsCardMoney} this.getIsBonusMoney ${this.getIsBonusMoney}`
         // )
-        
+
         // payCard
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
           this.emitCardMoney(card)

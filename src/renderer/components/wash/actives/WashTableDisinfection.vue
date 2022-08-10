@@ -18,7 +18,7 @@
             { 'card-content white-text': this.isDown.disinfection }
           ]"
         >
-          {{ `${actives[this.activeNumber].title}` }}
+          {{ `${actives[this.activeNumber].title}` | localize}}
         </div>
       </div>
     </td>
