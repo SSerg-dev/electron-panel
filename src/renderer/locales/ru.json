@@ -44,8 +44,31 @@
 
   "COMPLETE_PAYMENT": "ЗАВЕРШИТЬ ОПЛАТУ",
   "RETURN_BONUSES_UP": "ВЕРНУТЬ БОНУСАМИ ДО 30% И ЗАВЕРШИТЬ ОПЛАТУ",
-  "CONFIRM": "ЗАЧИСЛИТЬ"
+  "APPEND": "ЗАЧИСЛИТЬ",
+  "CONFIRM": "ПОДТВЕРДИТЬ",
+
+  "To_enter_the_system": "Для входа в систему введите номер телефона или отсканируйте QR код",
+  "To_credit_Bonuses_to_your_account": "Для зачисления бонусов, введите номер телефона",
+  "By_clicking_on_CONFIRM": "Нажимая ЗАЧИСЛИТЬ, Вы даете свое согласие на отправку Вам СМС-сообщения и обработку персональных данных, согласно условиям, размещенным на сайте: www.alles-bonus.com",
   
+  "Authorization_using_a_QR": "Авторизация через QR",
+  "Your_balance": "Ваш баланс,",
+  "Select_charge_amount": "Выберите сумму списания",
+  
+  "Enter_your_password": "Введите пароль",
+  "for_Alles_Bonus": "от аккаунта Alles Bonus",
+  "to_enter_the_settings_menu": "для входа в меню настроек",
+
+  "The_status_of_the_operation": "Статус выполнения операции:",
+  
+  "Connection_to_the_bank_terminal": "Подключение к банковскому терминалу...",
+  "Failed_to_connect_to_the_bank_terminal": "Не удалось подключитьсяк банковскому терминалу",
+  "Timed_out": "Время ожидания истекло",
+  "Operation_approved": "Операция одобрена",
+  "Operation_rejected": "Операция отклонена",
+  "Follow_the_instructions_on_the_terminal": "Следуйте инструкциям на терминале"
+  
+
 
 
 

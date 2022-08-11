@@ -10,12 +10,18 @@ export default {
   state: {
     messageStatus: -1,
     messages: [
-      'Подключение к банковскому терминалу...',
-      'Не удалось подключитьсяк банковскому терминалу',
-      'Время ожидания истекло',
-      'Операция одобрена',
-      'Операция отклонена',
-      'Следуйте инструкциям на терминале'
+      /* 'Подключение к банковскому терминалу...' */
+      `Connection_to_the_bank_terminal`,
+      /* 'Не удалось подключитьсяк банковскому терминалу' */
+      `Failed_to_connect_to_the_bank_terminal`,
+      /* 'Время ожидания истекло' */
+      `Timed_out`,
+      /* 'Операция одобрена' */
+      `Operation_approved`,
+      /* 'Операция отклонена' */
+      `Operation_rejected`,
+      /* 'Следуйте инструкциям на терминале' */
+      `Follow_the_instructions_on_the_terminal`
     ],
     messageIndex: -1
   }, // end state
@@ -38,18 +44,15 @@ export default {
       return state.messageStatus
     },
     getStatusBillMessages(state) {
-      /* dev */
       return state.messages[state.messageIndex]
-      // return state.messages
     }
   },
   mutations: {
     setStatusBill(state, messageStatus) {
       state.messageStatus = messageStatus
-      // console.log('state.messageStatus-->', state.messageStatus)
     },
     setStatusBillMessagesIndex(state, messageIndex) {
-      state.messageIndex = messageIndex
+      state.messageIndex = messageIndex - 0  /* 0 - 5 */
     }
   }
 }

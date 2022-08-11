@@ -31,14 +31,14 @@
                   <div class="info-title">
                     <div v-if="this.getIsLoginSettingPassword()">
                       <p align="center">
-                        Введите пароль <br />
-                        для входа в меню настроек
+                        {{ `Enter_your_password` | localize }} <br />
+                        {{`to_enter_the_settings_menu` | localize }}
                       </p>
                     </div>
                     <div v-if="!this.getIsLoginSettingPassword()">
                       <p align="center">
-                        Введите пароль <br />
-                        от аккаунта Alles Bonus
+                        {{ `Enter_your_password` | localize }} <br />
+                        {{`for_Alles_Bonus` | localize }}
                       </p>
                     </div>
                   </div>
@@ -364,12 +364,14 @@
                     <div
                       class="card-content black-text"
                       style="
+                        display: flex;
+                        justify-content: center;
+
                         font-size: 3.5em;
-                        padding-left: 2rem;
                         padding-top: 0.3em;
                       "
                     >
-                      {{ `ПОДТВЕРДИТЬ` }}
+                      {{ `CONFIRM` | localize}}
                     </div>
                   </div>
                 </td>

@@ -56,11 +56,14 @@
         </div>
 
         <!-- v-if="!getIsMoneyToBonus" -->
+        
+        
         <div
           @click="setProgram('savemoney')"
           class="waves-effect bonus"
           id="button-bonus"
         >
+         <!-- dev hidden -->  
           <div
             class="button-content-style"
             :class="[
@@ -84,7 +87,9 @@
               </ul>
             </div>
           </div>
+
         </div>
+
 
         <div v-if="this.isVisibleWashTableBonus" class="savemoney">
           <WashTableBonus :actives="actives" />

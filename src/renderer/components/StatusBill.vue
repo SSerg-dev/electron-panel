@@ -5,12 +5,8 @@
         <div class="info-title" style="margin-bottom: 4em;">
           <h3>
             <div id="message" align="center">
-              {{ ` ${getStatusBillMessages} ` }}
+              {{ `${getStatusBillMessages}` | localize }}
             </div>
-            <!-- <input v-model="isShow" v-if="isShow"> -->
-            <!-- <div v-if="isShow" align="center">
-              {{ ` SSS ` }}
-            </div> -->
 
             <div
               v-if="this.seconds >= 0"

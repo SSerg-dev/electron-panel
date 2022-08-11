@@ -44,7 +44,31 @@
     
     "COMPLETE_PAYMENT": "COMPLETE PAYMENT",
     "RETURN_BONUSES_UP": "RETURN BONUSES UP TO 30% COMPLETE PAYMENT",
-    "CONFIRM": "CONFIRM"
+    "APPEND": "APPEND",
+    "CONFIRM": "CONFIRM",
+
+    "To_enter_the_system": "To enter the system, enter the number phone or scan the QR code", 
+    "To_credit_Bonuses_to_your_account": "To credit Bonuses to your account, enter your phone number",
+    "By_clicking_on_CONFIRM": "By clicking on CONFIRM, you give your consent to send SMS messages and personal data processing to you, according to the conditions posted on the website: www.alles-bonus.com",
+
+    "Authorization_using_a_QR": "Authorization using a QR",
+    "Your_balance": "Your balance,",
+    "Select_charge_amount": "Select charge amount",
+    
+    "Enter_your_password": "Enter your password",
+    "for_Alles_Bonus": "for Alles Bonus",
+    "to_enter_the_settings_menu": "to enter the settings menu",
+    
+    "The_status_of_the_operation": "The status of the operation:",
+    "Connection_to_the_bank_terminal": "Connection to the bank terminal...",
+    "Failed_to_connect_to_the_bank_terminal": "Failed to connect to the bank terminal",
+    "Timed_out": "Timed out",
+    "Operation_approved": "Operation approved",
+    "Operation_rejected": "Operation rejected",
+    "Follow_the_instructions_on_the_terminal": "Follow the instructions on the terminal"
+
+    
+
     
      
 

@@ -50,14 +50,14 @@
               style="margin-bottom: 4em"
             >
               <p align="center">
-                {{ `${this.messages[0]}` }}
+                {{ `${this.messages[0]}` | localize }}
                 {{ `${this.firstname}` }}
               </p>
               <p align="center" style="font-size: 140px">
                 {{ parseFloat(this.balance).toFixed(this.digits) }}
               </p>
               <p align="center">
-                {{ `${this.messages[1]}` }}
+                {{ `${this.messages[1]}` | localize}}
               </p>
             </div>
           </div>
@@ -657,14 +657,14 @@
                     class="card-content black-text"
                     style="
                       display: flex;
-                      justifyContent: center;
+                      justify-content: center;
 
                       font-size: 4em;
                       padding-top: 0.2em;
-                      padding-left: 0.3em;
+                      
                     "
                   >
-                    {{ `CONFIRM` | localize }}
+                    {{ `APPEND` | localize }}
                   </div>
                 </div>
               </td>
@@ -762,7 +762,12 @@ export default {
     firstname: '',
     lastname: '',
 
-    messages: [`Ваш баланс,`, `Выберите сумму списания`],
+    messages: [
+      /* `Ваш баланс,` */
+      `Your_balance`, 
+      /* `Выберите сумму списания` */
+      `Select_charge_amount`
+    ],
     messageIndex: -1,
 
     /* dev */
@@ -806,7 +811,7 @@ export default {
         }
         this.timeoutMinDelay = setTimeout(() => {
           this.isMin = false
-          // flags.modeBlink(1)
+          flags.modeBlink(1)
         }, this.delay)
 
         return flags.modeBlink(index)
@@ -820,21 +825,21 @@ export default {
         if (this.amount > this.getPaymentLimitMax) {
           index = 0
           this.isMax = true
-          /* dev */
-          // this.amount = this.getPaymentLimitMax
         } else {
           index = 1
           this.isMax = false
         }
-        if (index === 0) this.$message('Сумма больше максимальной')
         flags.modeBlink = function (index) {
           return flags[index]
         }
         this.timeoutMaxDelay = setTimeout(() => {
           this.isMax = false
-          // flags.modeBlink(1)
-        }, this.delay)
+          flags.modeBlink(1)
 
+        }, this.delay)
+        if (index === 0) {
+          this.$message('Сумма больше максимальной')
+        }
         return flags.modeBlink(index)
       },
     },
@@ -1087,13 +1092,17 @@ export default {
         this.amount = 0
         if (this.amount + parseInt(num) <= 1000) this.amount = parseInt(num)
       }
-      // console.log('isMaxBlinking && isMax', this.isMaxBlinking, this.isMax)
+       
       /* dev */
+      this.timeoutMaxDelay = setTimeout(() => {
       if (this.amount > this.getPaymentLimitMax) {
         this.amount = this.getPaymentLimitMax
       }
-      this.amountString = this.amount.toString()
-      this.display = this.amountString
+        this.amountString = this.amount.toString()
+        this.display = this.amountString
+
+      }, this.delay = 500)
+
     },
 
     backspace() {

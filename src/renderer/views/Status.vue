@@ -6,7 +6,8 @@
           <div style="width: 800px; margin-top: 50px;" class="info-title">
             <h2>
               <p align="center">
-                Статус выполнения операции:
+                <!-- Статус выполнения операции: -->
+                {{ `The_status_of_the_operation` | localize }}
               </p>
             </h2>
           </div>

@@ -118,15 +118,11 @@ export default {
     })
   },
   watch: {
+    
+    /* dev */
     getWetStopFreeCount(flag) {
       try {
-        /* console.log(
-          'Footer-->flag-->+this.getMoneyToBonus-->this.getIsFirstTimer',
-          flag,
-          +this.getMoneyToBonus,
-          this.getIsFirstTimer,
-          this.$route.name
-        ) */
+
         if (
           parseInt(flag) > 0 &&
           +this.getMoneyToBonus === 0 &&
@@ -135,8 +131,10 @@ export default {
           this.setMoneyToBonus(this.getWetBalance)
           this.setIsMoneyToBonus(true)
         }
+
       } catch (err) {}
     }
+
     /* dev */
     /* getSecondsBonusTimer(flag) {
       try {

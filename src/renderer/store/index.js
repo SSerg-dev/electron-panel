@@ -30,7 +30,7 @@ export default new Vuex.Store({
     paginate: 1,
     router: '/',
 
-    info: { name: '', locale: 'ru-RU' },
+    info: { name: '', locale: 'ru-RU' }, /* ru-RU en-GB */
     cash_enabler: false,
     busyPanel: false,
     secondsGotoMainMenu: 442 /* 42 */,

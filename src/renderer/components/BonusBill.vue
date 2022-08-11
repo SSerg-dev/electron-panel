@@ -11,7 +11,7 @@
             "
           >
             <p align="center">
-              {{ `${this.messages[0]}` }}
+              {{ `${this.messages[0]}` | localize}}
             </p>
           </h3>
           <h3
@@ -22,12 +22,12 @@
             "
           >
             <p align="center">
-              {{ `${this.messages[1]}` }}
+              {{ `${this.messages[1]}` | localize }}
             </p>
           </h3>
           <h3 v-else-if="getMoneyToBonus && getIsMoneyToBonus">
             <p align="center">
-              {{ `${this.messages[2]}` }}
+              {{ `${this.messages[2]}` | localize }}
             </p>
           </h3>
         </div>
@@ -346,30 +346,18 @@
                             box-shadow: 0px 6px 10px #00b9e3;
                           "
                         >
-                         <!-- 
-                          <div
-                    class="card-content black-text"
-                    style="
-                      display: flex;
-                      justifyContent: center;
-
-                      font-size: 4em;
-                      padding-top: 0.2em;
-                      padding-left: 0.3em;
-                    "
-                  >
-                    {{ `CONFIRM` | localize }}
-                  </div>
-                          -->
                           <div
                             class="card-content black-text"
                             style="
+                              display: flex;
+                              justify-content: center;
+
                               font-size: 3.5em;
-                              padding-left: 4rem;
                               padding-top: 0.3em;
+                              
                             "
                           >
-                            {{ `ЗАЧИСЛИТЬ` }}
+                            {{ `APPEND` | localize}}
                           </div>
 
                         </div>
@@ -391,15 +379,22 @@
                             box-shadow: 0px 6px 10px #00b9e3;
                           "
                         >
+                        <!-- 
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                         -->
                           <div
                             class="card-content black-text"
                             style="
+                              display: flex;
+                              justify-content: center;
+
                               font-size: 3.5em;
-                              padding-left: 1.8rem;
                               padding-top: 0.3em;
                             "
                           >
-                            {{ `ПОДТВЕРДИТЬ` }}
+                            {{ `CONFIRM` | localize }}
                           </div>
                         </div>
                       </td>
@@ -469,13 +464,19 @@ export default {
     clickCount: 0,
 
     messages: [
-      `Для входа в систему введите номер телефона
-       или отсканируйте QR код`,
-      `Для зачисления бонусов,
-       введите номер телефона`,
-      `Нажимая "Зачислить", Вы даете свое согласие на отправку
+      /* `Для входа в систему введите номер телефона
+       или отсканируйте QR код` */
+       `To_enter_the_system`,
+
+      /* `Для зачисления бонусов,
+       введите номер телефона` */
+       `To_credit_Bonuses_to_your_account`,
+
+      /* `Нажимая "Зачислить", Вы даете свое согласие на отправку
       Вам СМС-сообщения и обработку персональных данных,
-      согласно условиям, размещенным на сайте: www.alles-bonus.com`,
+      согласно условиям, размещенным на сайте: www.alles-bonus.com` */
+      `By_clicking_on_CONFIRM`
+
     ],
     messageIndex: -1,
     delay: 1000,
