@@ -124,6 +124,7 @@ class Vendotek extends EventEmitter {
 
     /* dev */
     this.responseBankInfo = params
+    
     if (this.responseBankInfo.amount > 0) {
       this.subscribe(Observer.item)
       this.fire({ type: 'RESOLVE', payload: this.responseBankInfo.amount })

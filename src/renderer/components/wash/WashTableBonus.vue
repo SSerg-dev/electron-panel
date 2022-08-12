@@ -7,10 +7,8 @@
           <tbody>
             <!-- row 01 -->
             <tr class="info-title">
-              <td colspan="2">
-                <p align="center">{{ `${this.messages[0]}` }}</p>
-                <p align="center">{{ `${this.messages[1]}` }}</p>
-                <p align="center">{{ `${this.messages[2]}` }}</p>
+              <td colspan="2" style="padding-left: 1em;">
+                <p style="width: 90%;" align="center">{{ `${this.messages[0]}` | localize }}</p>
               </td>
             </tr>
 
@@ -67,11 +65,8 @@
             </tr>
 
             <tr>
-              <td colspan="2" class="legal-title">
-                <p align="center">{{ `${this.messages[3]}` }}</p>
-                <p align="center">{{ `${this.messages[4]}` }}</p>
-                <p align="center">{{ `${this.messages[5]}` }}</p>
-                <p align="center">{{ `${this.messages[6]}` }}</p>
+              <td colspan="2" style="padding-left: 2em;" class="legal-title" >
+                <p style="width: 85%;"  align="center">{{ `${this.messages[1]}` | localize }}</p>
               </td>
             </tr>
 
@@ -125,14 +120,12 @@ export default {
     },
 
     messages: [
-      'Вы хотите завершить',
-      'мойку и вернуть остаток',
-      'бонусами на счет?',
-
-      'Нажимая кнопку "Да", Вы даете свое согласие на',
-      'отправку Вам СМС-сообщения и обработку',
-      'персональных данных согласно условиям,',
-      'размещенным на сайте: www.alles-bonus.com'
+      /* 'Вы хотите завершить мойку и вернуть остаток бонусами на счет?', */
+      `You_want_to_complete_the_car_wash`,
+      /* 'Нажимая кнопку Да, Вы даете свое согласие на отправку Вам СМС-сообщения 
+      и обработку персональных данных согласно условиям, 
+      размещенным на сайте: www.alles-bonus.com' */
+      `By_clicking_the_Yes_button_you_give_your_consent`
     ],
     messageIndex: -1,
 

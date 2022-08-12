@@ -4,6 +4,8 @@
       <!-- wash type -->
       <div v-if="this.getPanelType === 'wash'">
         <!-- show Wet Balance-->
+
+        <!-- 01 dev hidden -->
         <div
           v-if="
             (getWetBalance >= 0 &&
@@ -20,6 +22,7 @@
           }}
         </div>
 
+        <!-- dev hidden -->
         <div v-else-if="getIsMoneyToBonusYes" style="color: yellow;">
           {{
             `${parseFloat(getMoneyToBonus / Math.pow(10, digits)).toFixed(
@@ -29,6 +32,7 @@
         </div>
 
         <!-- bonus timer -->
+        <!-- dev hidden -->
         <div
           v-else-if="
             getIsMoneyToBonus &&
@@ -40,7 +44,7 @@
           <ul>
             <li class="counter">
               {{ `${this.timerSeconds}` }}
-              <!-- {{ '99' }} -->
+              
             </li>
             <li class="separator">:</li>
             <li class="bonus">
@@ -49,10 +53,11 @@
                   this.getMoneyToBonus / Math.pow(10, digits)
                 ).toFixed(digits)}`
               }}
-              <!-- {{ '999' }} -->
+              
             </li>
           </ul>
         </div>
+
       </div>
     </div>
 

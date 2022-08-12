@@ -58,12 +58,14 @@
         <!-- v-if="!getIsMoneyToBonus" -->
         
         
+        <!-- dev hidden -->
+        
         <div
           @click="setProgram('savemoney')"
           class="waves-effect bonus"
           id="button-bonus"
         >
-         <!-- dev hidden -->  
+           
           <div
             class="button-content-style"
             :class="[
@@ -391,6 +393,7 @@ export default {
       // } else this.buttonReceipt.hide()
     },
 
+    /* dev hidden */
     getIsMoneyToBonus(flag) {
       console.log('++getIsMoneyToBonus', flag) 
       if (flag) {
@@ -415,6 +418,7 @@ export default {
         clearInterval(this.intervalFirstTimer)
       }
     },
+    /* dev hidden */
     getWetStopFreeCount(flag) {
       if (flag > 0) {
         this.buttonBonus.show()
@@ -720,6 +724,7 @@ export default {
       })
 
       // button bonus
+      /* dev hidden */
       this.buttonBonus = new Button({
         selector: '#button-bonus',
 
@@ -846,18 +851,9 @@ export default {
     /*     */
   }, // end methods
   mounted() {
-    // if (!this.getCompleteWash().params.order) {
-    //   console.log(
-    //     'this.getCompleteWash().params.order-->',
-    //     this.getCompleteWash().params.order
-    //   )
-    //   this.order = this.createOrder()
-    // } else this.order = this.getCompleteWash().params.order
 
     this.storage = new Storage(this.client, this.url)
     this.order = this.getCompleteWash().params.order
-
-    // console.log('WashTable 884 this.order-->', this.order)
 
     if (!this.isVisible) {
       this.timeoutDelay = setTimeout(() => {

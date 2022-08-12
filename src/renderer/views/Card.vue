@@ -42,6 +42,7 @@ import EventBus from '@/bus/EventBus'
 import BankTerminalController from '@/controllers/BankTerminalController'
 import Vendotek from '../services/BCNetService/Types/Vendotek'
 import { type } from 'os'
+import BCNet from '../services/BCNetService'
 
 export default Vue.extend({
   name: 'card',
@@ -109,11 +110,11 @@ export default Vue.extend({
     },
 
     flowSequenceVendotek(item) {
-      const amount = this.card
+      const amount = this.card * BCNet.VENDOTEK_MONEY_SCALE
       item.pay(amount)
       item.sendFINAL()
     },
-    /* dev */
+    
     flowSequencePax(item) {
       if (item !== undefined) {
       const amount = this.card

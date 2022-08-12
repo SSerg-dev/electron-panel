@@ -95,7 +95,7 @@ export default Vue.extend({
       this.intervalMainMenu = setInterval(() => {
         this.seconds = seconds--
         this.observer = Observer.item
-
+        
         switch (this.terminalType) {
           case 'pax':
             if (
@@ -111,13 +111,12 @@ export default Vue.extend({
             }
             break
           case 'vendotek':
-            // if (typeof this.observer.state === 'number' && +this.card > 0) {
             if (
-              +this.observer.state > 0 &&
-              +this.observer.state === +this.card
+              +this.observer.state > 0 
+              // && +this.observer.state === +this.card
             ) {
               seconds = 0
-              this.resolve(this.terminalType)
+          this.resolve(this.terminalType)
             } else {
               // this.reject(this.terminalType)
             }
@@ -129,10 +128,11 @@ export default Vue.extend({
       }, 1000)
     },
     resolve(type) {
+      this.observer.state /= BCNet.VENDOTEK_MONEY_SCALE
+
       console.log('Операция одобрена, сумма:', this.observer.state)
       this.cardMessageIndex = 3
       this.setStatusBillMessagesIndex(this.cardMessageIndex)
-      /* dev */
       
       const panelType = this.getPanelType
           switch (panelType) {

@@ -14,6 +14,7 @@ import { mapMutations, mapGetters, mapActions } from 'vuex'
 import EmptyLayout from '@/layouts/EmptyLayout'
 import MainLayout from '@/layouts/MainLayout'
 import sleep from '@/utils/sleep'
+import EventBus from '@/bus/EventBus'
 
 import { ipcRenderer } from 'electron'
 
@@ -73,7 +74,15 @@ export default Vue.extend({
           break
       }
     },
+    /* dev */
+    // emitCardMoneyInitial(card = 0) {
+    //   EventBus.$emit('CardMoneyInitial', card)
+    // },    
 
+    initial() {
+      // this.emitCardMoneyInitial()
+
+    },
     setup() {
       /*
        * Get global setings from settings.json in main (electron) process
@@ -160,6 +169,8 @@ export default Vue.extend({
       ipcRenderer.on('temperature', (event, args) => {
         this.setTemperature(args)
       })
+
+      this.initial()
 
     },
 
