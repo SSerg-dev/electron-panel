@@ -67,11 +67,10 @@ class Pax extends EventEmitter {
   }
   /* dev */
   async disconnect() {}
-  
+
   async pay(amount) {
     this.payProcess = true
     this.opNumber++
-    /* dev */
     let res = await this.sendPRODUCT(amount).catch(e => ({}))
 
     return res
@@ -79,24 +78,20 @@ class Pax extends EventEmitter {
   /* dev */
   check(amount, amountReply, status) {
     let res
-    if (+amount !== +amountReply) {
+    if (+amountReply === 0 && +status !== 1) {
       this.subscribe(Observer.item)
       this.fire({ type: 'REJECT', payload: null })
       this.unsubscribe(Observer.item)
       throw new Error(
         `Wrond paid. Expected ${amount}, but result ${amountReply}`
       )
-    } else {
-      if (+amountReply > 0) {
-
-        this.subscribe(Observer.item)
-        this.fire({ type: 'RESOLVE', payload: amountReply, status })
-        this.unsubscribe(Observer.item)
-      }
-
-      this.sendFINAL()
+    } else if (+amountReply > 0 && +status === 1) {
+      this.subscribe(Observer.item)
+      this.fire({ type: 'RESOLVE', payload: amountReply, status })
+      this.unsubscribe(Observer.item)
     }
 
+    this.sendFINAL()
     return res
   }
 
@@ -118,15 +113,19 @@ class Pax extends EventEmitter {
   }
   async send(cmd, params = {}) {
     let res = {}
+
     switch (cmd) {
       case 'PAY':
         console.log('$$ Pax.js --PAY')
+        // async-amount-message
         ipcRenderer.send('async-amount-message', params.amount.toString())
 
+        // async-amount-reply
         ipcRenderer.on('async-amount-reply', (event, amount, status) => {
-          
+          // console.log('$$ check', params.amount, amount, status)
           this.check(params.amount, amount, status)
         })
+
         break
       case 'FIN':
         break

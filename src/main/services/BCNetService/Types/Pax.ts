@@ -87,6 +87,7 @@ class Pax extends EventEmitter {
           // --------------------------
           function submitAmountHandler(amount: any, status: any) {
             self.sleep(2000).then(() => {
+              // console.log('$$ Pax.ts amount', amount)
               event.reply(
                 'async-amount-reply',
                 amount.toString(),

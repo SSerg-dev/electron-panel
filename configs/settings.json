@@ -1,6 +1,6 @@
 {
   "bank_terminal": {
-    "hardware": "vendotek",
+    "hardware": "pax",
     "installed": true,
     "max_sum": 510,
     "min_sum": 0
@@ -75,7 +75,7 @@
     "syspanel": "US"
   },
   "log_path": "/var/log",
-  "type": "wash",
+  "type": "vacuum",
   "ui": {
     "CNW": 0,
     "degreasing_enable": 0,

@@ -112,6 +112,7 @@ export default Vue.extend({
         }
 
         if (typeof this.progPrice !== undefined) {
+          /* dev */
           const priceIndex = this.costs[i].id - 1
           this.costs[i].price = this.progPrice[priceIndex]?.toString()
         }
@@ -187,13 +188,22 @@ export default Vue.extend({
     const type = this.getPanelType
     switch (type) {
       case 'wash':
-        this.actives = [...this.getPrograms()]
-
+        
+        /* this.actives = [...this.getPrograms()]
         this.costs = this.actives.sort((a, b) =>
           a.order > b.order ? 1 : b.order > a.order ? -1 : 0
         )
         this.setActiveProg()
+        break */
+
+        this.actives = [...this.getPrograms()]
+        this.costs = this.actives
+        this.setActiveProg()
+        this.costs = this.costs.sort((a, b) =>
+          a.order > b.order ? 1 : b.order > a.order ? -1 : 0
+        )
         break
+
       case 'vacuum':
         this.costs = this.getDryCosts()
         this.setDryActiveProg()

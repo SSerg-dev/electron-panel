@@ -128,7 +128,9 @@ export default Vue.extend({
       }, 1000)
     },
     resolve(type) {
-      this.observer.state /= BCNet.VENDOTEK_MONEY_SCALE
+
+      if (type === 'vendotek')
+        this.observer.state /= BCNet.VENDOTEK_MONEY_SCALE
 
       console.log('Операция одобрена, сумма:', this.observer.state)
       this.cardMessageIndex = 3

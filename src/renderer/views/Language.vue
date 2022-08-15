@@ -307,6 +307,7 @@ export default Vue.extend({
     tableRows: []
   }),
   mounted() {
+    this.setPaginate(1)
     this.tableRows = this.$refs.tableRows.rows
     this.setupPagination(this.tableRows)
   },
@@ -315,11 +316,17 @@ export default Vue.extend({
       info: 'info',
       getPaginate: 'getPaginate',
       getRouter: 'getRouter'
-    })
+    }),
+    
   },
+
+  // beforeDestroy() {
+  //   setPaginate(1)
+  // },
   methods: {
     ...mapMutations({
-      setInfo: 'setInfo'
+      setInfo: 'setInfo',
+      setPaginate: 'setPaginate'
     }),
     setLocale(locale) {
       this.locale = locale

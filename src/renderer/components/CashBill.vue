@@ -110,7 +110,9 @@ export default {
 
     this.storage = new Storage(this.client, this.url)
 
-    ipcRenderer.on('async-amount-reply', (event, amount, status) => {
+    /* dev */
+    /* ipcRenderer.on('async-amount-reply', (event, amount, status) => {
+      console.log('$$ CashBill.vue amount', amount)
       const type = this.getPanelType
       switch (type) {
         case 'wash':
@@ -123,7 +125,7 @@ export default {
         default:
           break
       }
-    })
+    }) */
   },
   computed: {
     ...mapGetters({

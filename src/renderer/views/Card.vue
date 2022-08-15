@@ -11,8 +11,8 @@
       <div
         v-if="
           this.balance < 1 &&
-            !this.profile.isQrAuthorization &&
-            !this.profile.isPhoneAuthorization
+          !this.profile.isQrAuthorization &&
+          !this.profile.isPhoneAuthorization
         "
         class="message"
       >
@@ -54,7 +54,7 @@ export default Vue.extend({
       phone: '',
       balance: 0,
       firstname: '',
-      lastname: ''
+      lastname: '',
     },
 
     intervalMainMenu: null,
@@ -62,7 +62,8 @@ export default Vue.extend({
     messageIndex: -1,
     balance: 0,
     card: 0,
-    terminalItem: {}
+    terminalItem: {},
+    isInitBankTerminal: false,
   }),
   computed: {
     ...mapGetters({
@@ -72,32 +73,38 @@ export default Vue.extend({
       getTerminalInstalled: 'getTerminalInstalled',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getIsCardMoney: 'getIsCardMoney',
-      getProfile: 'getProfile'
-    })
+      getProfile: 'getProfile',
+    }),
   },
 
   methods: {
-    ...mapActions({
-    }),
+    ...mapActions({}),
     initBankTerminal() {
       const bankTerminal = new BankTerminalController()
 
       if (this.getTerminalInstalled) {
         const options = {
           type: this.getDefaultTerminalType,
-          number: this.getDefaultPanelNumber
+          number: this.getDefaultPanelNumber,
         }
         bankTerminal.connect(options)
-        
+
         const item = bankTerminal.terminalItem
         const stream$ = item
-        const observer = bankTerminal.observerItem
-        
-        stream$.subscribe(observer)
+
+        if (!this.isInitBankTerminal) {
+          const observer = bankTerminal.observerItem
+          stream$.subscribe(observer)
+        }
 
         switch (options.type) {
           case 'vendotek':
-            this.flowSequenceVendotek(item)
+            /* dev */
+            !this.isInitBankTerminal
+              ? this.flowSequenceVendotek(item)
+              : item.sendIDLE()
+            // item.enable()
+
             break
           case 'pax':
             this.flowSequencePax(item)
@@ -114,12 +121,12 @@ export default Vue.extend({
       item.pay(amount)
       item.sendFINAL()
     },
-    
+
     flowSequencePax(item) {
       if (item !== undefined) {
-      const amount = this.card
-      item.pay(amount)
-      } 
+        const amount = this.card
+        item.pay(amount)
+      }
     },
 
     submitBonusHandler(balance) {
@@ -131,6 +138,8 @@ export default Vue.extend({
     submitCardHandler(card) {
       if (card !== undefined) {
         this.card = card
+        /* dev */
+        this.isInitBankTerminal = false
         this.initBankTerminal()
       }
     },
@@ -138,7 +147,7 @@ export default Vue.extend({
     ...mapMutations({
       setRouter: 'setRouter',
       setIsCardMoney: 'setIsCardMoney',
-      setIsBonusMoney: 'setIsBonusMoney'
+      setIsBonusMoney: 'setIsBonusMoney',
     }),
     gotoMainMenu(seconds) {
       this.intervalMainMenu = setInterval(() => {
@@ -150,10 +159,9 @@ export default Vue.extend({
           this.$router.push('/')
         }
       }, 1000)
-    }
+    },
   },
   mounted() {
-
     this.setRouter('/card')
     this.setIsCardMoney(true)
 
@@ -170,7 +178,7 @@ export default Vue.extend({
       phone,
       balance,
       firstname,
-      lastname
+      lastname,
     } = this.getProfile
 
     this.profile.isQrAuthorization = isQrAuthorization
@@ -180,14 +188,19 @@ export default Vue.extend({
     this.profile.balance = balance
     this.profile.firstname = firstname
     this.profile.lastname = lastname
+
+    /* dev */
+    this.isInitBankTerminal = true
+    this.initBankTerminal()
   },
   beforeDestroy() {
     // this.setIsCardMoney(false)
+    this.isInitBankTerminal = false
     clearInterval(this.intervalMainMenu)
   },
   components: {
-    CardBill
-  }
+    CardBill,
+  },
 })
 </script>
 

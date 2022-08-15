@@ -686,9 +686,10 @@ export default new Vuex.Store({
       }
     },
 
-    /*     */
-
-    // dev
+    setPaginate(state, paginate) {
+      state.paginate = paginate
+    },
+  // dev
     // setParamsChange
     setParamsChange(state, isParamsChange) {
       state.isParamsChange = isParamsChange
