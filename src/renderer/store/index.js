@@ -109,12 +109,13 @@ export default new Vuex.Store({
       'disinfection'
     ], */
     dryPrograms: [
-      'vacuum',
+      'vacuum', 
       'air',
+      'stop',
       'washer',
-      'disinfection',
       'blacking',
       'turboDryer',
+      'disinfection'
     ],
 
     parameters: {
@@ -267,6 +268,7 @@ export default new Vuex.Store({
       const number = state.programs.findIndex(p => p === params[2]) + 1
 
       commit('setActiveProgramNumber', number)
+      
       if (params[3] > 0 || params[2] === 'stop') {
         try {
           // box index 1,2 ...

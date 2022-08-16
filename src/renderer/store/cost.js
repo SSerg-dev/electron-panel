@@ -7,7 +7,8 @@ export default {
           dryCosts: [
             {
               id: 1,
-              title: 'ПЫЛЕСОС',
+              /* title: 'ПЫЛЕСОС', */
+              title: 'VACUUM', 
               name: 'vacuum',
               price: 0,
               priceTurbo: 0,
@@ -16,7 +17,8 @@ export default {
             },
             {
               id: 2,
-              title: 'ВОЗДУХ',
+              /* title: 'ВОЗДУХ', */
+              title: 'AIR', 
               name: 'air',
               price: 0,
               priceTurbo: 0,
@@ -25,62 +27,45 @@ export default {
             },
             {
               id: 3,
-              title: 'СТОП',
-              name: 'washer',
+              /* title: 'СТОП', */
+              title: 'STOP', 
+              name: 'stop',
               price: 0,
               priceTurbo: 0,
               mode: '',
               display: '0'
             },
-            /* {
-              id: 3,
-              title: 'ОМЫВАТЕЛЬ',
-              name: 'washer',
-              price: 0,
-              priceTurbo: 0,
-              mode: '',
-              display: '0'
-            }, */
-            /* {
-              id: 4,
-              title: 'ТУРБОСУШКА',
-              name: 'turboDryer',
-              price: 0,
-              priceTurbo: 0,
-              mode: '',
-              display: '0'
-            }, */
             {
-              id: 4
+              id: 4,
+              // title: 'ОМЫВАТЕЛЬ',
+              title: 'GLASS_WASHING_LIQUID', 
+              name: 'washer',
+              price: 0,
+              priceTurbo: 0,
+              mode: '',
+              display: '0'
             },
-
             {
               id: 5,
-              title: 'ЧЕРНЕНИЕ',
+              /* title: 'ЧЕРНЕНИЕ', */
+              title: 'BLACKING', 
               name: 'blacking',
               price: 0,
               priceTurbo: 0,
               mode: '',
               display: '0'
             },
-            /* {
-              id: 6,
-              title: 'ДЕЗИНФЕКЦИЯ',
-              name: 'disinfection',
-              price: 0,
-              priceTurbo: 0,
-              mode: '',
-              display: '0'
-            }, */
             {
-              id: 6,
-              title: 'ТУРБОСУШКА',
+              id: 7,
+              // title: 'ТУРБОСУШКА',
+              title: 'TURBO_DRYER',
               name: 'turboDryer',
               price: 0,
               priceTurbo: 0,
               mode: '',
               display: '0'
             },
+
           ]  
     }, // end state
   

@@ -13,8 +13,8 @@
     <div class="row">
       <div class="col"><CostList :costs="items" /></div>
     </div>
-
-    <div class="paginate" style="padding-left: 8em;">
+    
+    <div v-if="getPanelType !== 'vacuum'" class="paginate" style="padding-left: 8em;">
       <Paginate
         v-model="page"
         :page-count="pageCount"

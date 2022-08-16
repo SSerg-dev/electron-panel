@@ -97,12 +97,12 @@ const router = new Router({
       meta: { layout: 'main' },
       component: () => import('../views/Password.vue')
     },
-    /* {
-      path: '/vacuum',
-      name: 'vacuum',
+    {
+      path: '/receipt',
+      name: 'receipt',
       meta: { layout: 'main' },
-      component: () => import('../views/Vacuum.vue')
-    }, */
+      component: () => import('../views/Receipt.vue')
+    },
   ]
 })
 

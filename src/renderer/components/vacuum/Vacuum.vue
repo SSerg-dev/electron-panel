@@ -19,8 +19,13 @@
         >
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
-              <div style="color: #00b9e3">{{ `ПОСТ №1 &nbsp &nbsp` }}</div>
-              <div>{{ `ОПЛАТИТЬ` }}</div>
+              <div style="color: #00b9e3">{{ `BOX` | localize }}</div>
+              <div>{{ `&nbsp` }}</div>
+              <div style="color: #00b9e3">{{ `#` | localize }}</div>
+              <div style="color: #00b9e3">{{ `1` }}</div>
+              <div>{{ `&nbsp &nbsp` }}</div>
+
+              <div>{{ `PAYMENT` | localize }}</div>
             </div>
           </div>
         </li>
@@ -31,8 +36,12 @@
         >
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
-              <div style="color: #00b9e3">{{ `ПОСТ №3 &nbsp &nbsp` }}</div>
-              <div>{{ `ОПЛАТИТЬ` }}</div>
+              <div style="color: #00b9e3">{{ `BOX` | localize }}</div>
+              <div>{{ `&nbsp` }}</div>
+              <div style="color: #00b9e3">{{ `#` | localize }}</div>
+              <div style="color: #00b9e3">{{ `3` }}</div>
+              <div>{{ `&nbsp &nbsp` }}</div>
+              <div>{{ `PAYMENT` | localize }}</div>
             </div>
           </div>
         </li>
@@ -57,7 +66,7 @@
                 { 'card-content grey-text': this.isDown.operator },
               ]"
             >
-              {{ `КОНСУЛЬТАНТ` }}
+              {{ `CONSULTANT` | localize }}
             </div>
           </div>
         </li>
@@ -70,8 +79,12 @@
         >
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
-              <div>{{ `ОПЛАТИТЬ &nbsp &nbsp` }}</div>
-              <div style="color: #00b9e3">{{ `ПОСТ №2` }}</div>
+              <div>{{ `PAYMENT` | localize }}</div>
+              <div>{{ `&nbsp &nbsp` }}</div>
+              <div style="color: #00b9e3">{{ `BOX` | localize }}</div>
+              <div>{{ `&nbsp` }}</div>
+              <div style="color: #00b9e3">{{ `#` | localize }}</div>
+              <div style="color: #00b9e3">{{ `2` }}</div>
             </div>
           </div>
         </li>
@@ -83,8 +96,12 @@
         >
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
-              <div>{{ `ОПЛАТИТЬ &nbsp &nbsp` }}</div>
-              <div style="color: #00b9e3">{{ `ПОСТ №4` }}</div>
+              <div>{{ `PAYMENT` | localize }}</div>
+              <div>{{ `&nbsp &nbsp` }}</div>
+              <div style="color: #00b9e3">{{ `BOX` | localize }}</div>
+              <div>{{ `&nbsp` }}</div>
+              <div style="color: #00b9e3">{{ `#` | localize }}</div>
+              <div style="color: #00b9e3">{{ `4` }}</div>
             </div>
           </div>
         </li>
@@ -152,7 +169,7 @@ export default Vue.extend({
       setActiveProgram: 'setActiveProgram',
       setVacuumNumber: 'setVacuumNumber',
       setIsFooter: 'setIsFooter',
-      setDryBalance: 'setDryBalance'
+      setDryBalance: 'setDryBalance',
     }),
     ...mapActions({
       updateDryStartProgram: 'updateDryStartProgram',

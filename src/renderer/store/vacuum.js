@@ -15,7 +15,8 @@ export default {
         name: 'vacuum',
         number: -1,
         order: 1,
-        title: 'ПЫЛЕСОС',
+        /* title: 'ПЫЛЕСОС', */
+        title: 'VACUUM',
         display: 'block'
       },
       {
@@ -23,7 +24,8 @@ export default {
         name: 'air',
         number: -1,
         order: 2,
-        title: 'ВОЗДУХ',
+        /* title: 'ВОЗДУХ', */
+        title: 'AIR',
         display: 'block'
       },
       {
@@ -31,7 +33,8 @@ export default {
         name: 'washer',
         number: -1,
         order: 3,
-        title: 'ОМЫВАТЕЛЬ',
+        /* title: 'ОМЫВАТЕЛЬ', */
+        title: 'GLASS_WASHING_LIQUID',
         display: 'block'
       },
       {
@@ -39,7 +42,8 @@ export default {
         name: 'turboDryer',
         number: -1,
         order: 4,
-        title: 'ТУРБОСУШКА',
+        /* title: 'ТУРБОСУШКА', */
+        title: 'TURBO_DRYER',
         display: 'block'
       },
       {
@@ -47,7 +51,8 @@ export default {
         name: 'blacking',
         number: -1,
         order: 5,
-        title: 'ЧЕРНЕНИЕ',
+        /* title: 'ЧЕРНЕНИЕ', */
+        title: 'BLACKING',
         display: 'block'
       },
       {

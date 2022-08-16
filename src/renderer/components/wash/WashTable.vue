@@ -522,6 +522,8 @@ export default {
         this.printReceipt()
         this.isDown.receipt = true
         this.buttonReceipt.background = 'rgb(64, 196, 255)'
+        /* dev */
+        this.$router.push('/receipt')
         this.setDown()
         return
       }
@@ -742,7 +744,8 @@ export default {
       })
 
       if (!+this.getWetBalance > 0) this.buttonPrice.hide()
-      if (!this.getIsReceiptRead) this.buttonReceipt.hide()
+      /* dev */
+      if (this.getIsReceiptRead) this.buttonReceipt.hide()
       if (!this.getIsMoneyToBonus) this.buttonBonus.hide()
 
       // end classes instances

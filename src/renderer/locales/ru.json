@@ -1,6 +1,7 @@
 {
   "LanguageTitle": "Локализация",
   "BOX": "ПОСТ",
+  "#": "№",
   "VACUUM": "ПЫЛЕСОС",
   "PAYMENT": "ОПЛАТА",
   "locales": "RU",
@@ -41,6 +42,7 @@
   "TURBO_DRYER": "ТУРБОСУШКА",
   "DEGREASE": "ОБЕЗЖИРИВАНИЕ",
   "DISINFECTION": "ДЕЗИНФЕКЦИЯ",
+  "BLACKING": "ЧЕРНЕНИЕ",
 
   "COMPLETE_PAYMENT": "ЗАВЕРШИТЬ ОПЛАТУ",
   "RETURN_BONUSES_UP": "ВЕРНУТЬ БОНУСАМИ ДО 30% И ЗАВЕРШИТЬ ОПЛАТУ",

@@ -1,6 +1,7 @@
 {
     "LanguageTitle": "Localize",
     "BOX": "BOX",
+    "#": "#",
     "VACUUM": "VACUUM",
     "PAYMENT": "PAYMENT",
     "locales": "EN",
@@ -41,6 +42,7 @@
     "TURBO_DRYER": "TURBO DRYER",
     "DEGREASE": "DEGREASE",
     "DISINFECTION": "DISINFECTION",
+    "BLACKING": "BLACKING",
     
     "COMPLETE_PAYMENT": "COMPLETE PAYMENT",
     "RETURN_BONUSES_UP": "RETURN BONUSES UP TO 30% COMPLETE PAYMENT",

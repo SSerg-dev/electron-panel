@@ -40,7 +40,7 @@
                     { 'card-content white-text': this.isDown.vacuum },
                   ]"
                 >
-                  {{ `${actives[0].title}` }}
+                  {{ `${actives[0].title}` | localize}}
                 </div>
               </div>
             </td>
@@ -66,16 +66,16 @@
                     { 'card-content white-text': this.isDown.air },
                   ]"
                 >
-                  {{ `${actives[1].title}` }}
+                  {{ `${actives[1].title}` | localize }}
                 </div>
               </div>
             </td>
           </tr>
 
           <!-- ОМЫВАТЕЛЬ washer -->
-          <!-- <tr>
+          <tr>
             <td
-              v-if="this.actives[2].display === 'block'"
+              v-if="this.actives[2].display === 'block'" 
               @click="setProgram('washer')"
             >
               <div
@@ -92,11 +92,37 @@
                     { 'card-content white-text': this.isDown.washer },
                   ]"
                 >
-                  {{ `${actives[2].title}` }}
+                  {{ `${actives[2].title}` | localize}}
                 </div>
               </div>
             </td>
-          </tr> -->
+          </tr>
+
+          <!-- ЧЕРНЕНИЕ blacking -->
+          <tr>
+            <td
+              v-if="this.actives[4].display === 'block'"
+              @click="setProgram('blacking')"
+            >
+              <div
+                class="waves-effect button-style"
+                :class="[
+                  { 'card white': !this.isDown.blacking },
+                  { 'card teal accent-3': this.isDown.blacking },
+                ]"
+              >
+                <div
+                  class="button-content-style"
+                  :class="[
+                    { 'card-content black-text': !this.isDown.blacking },
+                    { 'card-content white-text': this.isDown.blacking },
+                  ]"
+                >
+                  {{ `${actives[4].title}` | localize}}
+                </div>
+              </div>
+            </td>
+          </tr>
 
           <!-- ТУРБОСУШКА turboDryer-->
           <tr>
@@ -118,42 +144,18 @@
                     { 'card-content white-text': this.isDown.turboDryer },
                   ]"
                 >
-                  {{ `${actives[3].title}` }}
+                  {{ `${actives[3].title}` | localize}}
                 </div>
               </div>
             </td>
           </tr>
 
-          <!-- ЧЕРНЕНИЕ blacking -->
-          <!-- <tr>
-            <td
-              v-if="this.actives[4].display === 'block'"
-              @click="setProgram('blacking')"
-            >
-              <div
-                class="waves-effect button-style"
-                :class="[
-                  { 'card white': !this.isDown.blacking },
-                  { 'card teal accent-3': this.isDown.blacking },
-                ]"
-              >
-                <div
-                  class="button-content-style"
-                  :class="[
-                    { 'card-content black-text': !this.isDown.blacking },
-                    { 'card-content white-text': this.isDown.blacking },
-                  ]"
-                >
-                  {{ `${actives[4].title}` }}
-                </div>
-              </div>
-            </td>
-          </tr> -->
+          
 
           <!-- ДЕЗИНФЕКЦИЯ disinfection-->
           <!-- <tr>
             <td
-              v-if="this.actives[5].display === 'block'"
+              v-if="this.actives[6].display === 'block'"
               @click="setProgram('disinfection')"
             >
               <div
@@ -170,7 +172,7 @@
                     { 'card-content white-text': this.isDown.disinfection },
                   ]"
                 >
-                  {{ `${actives[5].title}` }}
+                  {{ `${actives[6].title}` }}
                 </div>
               </div>
             </td>
