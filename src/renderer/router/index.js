@@ -98,10 +98,10 @@ const router = new Router({
       component: () => import('../views/Password.vue')
     },
     {
-      path: '/receipt',
-      name: 'receipt',
+      path: '/invoice',
+      name: 'invoice',
       meta: { layout: 'main' },
-      component: () => import('../views/Receipt.vue')
+      component: () => import('../views/Invoice.vue')
     },
   ]
 })

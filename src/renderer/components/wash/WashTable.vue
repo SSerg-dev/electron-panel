@@ -523,7 +523,7 @@ export default {
         this.isDown.receipt = true
         this.buttonReceipt.background = 'rgb(64, 196, 255)'
         /* dev */
-        this.$router.push('/receipt')
+        this.$router.push('/invoice')
         this.setDown()
         return
       }

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Invoice from 'vue-invoice'
 import Paginate from 'vuejs-paginate'
 import App from './App.vue'
 import './registerServiceWorker'
@@ -8,6 +9,7 @@ import dateFilter from '@/filters/date.filter'
 import messagePlugin from '@/utils/message.plugin'
 // import Loader from '@/components/app/Loader'
 import loader from "vue-ui-preloader"
+
 
 import localizeFilter from '@/filters/localize.filter'
 
@@ -20,6 +22,8 @@ Vue.config.productionTip = false
 
 Vue.use(messagePlugin)
 Vue.use(loader)
+Vue.use(Invoice, { store } )
+
 Vue.filter('date', dateFilter)
 Vue.filter('localize', localizeFilter)
 // Vue.component('Loader', Loader)
