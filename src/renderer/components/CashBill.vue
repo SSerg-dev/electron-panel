@@ -107,25 +107,8 @@ export default {
   }),
   mounted() {
     this.order = this.createOrder()
-
     this.storage = new Storage(this.client, this.url)
 
-    /* dev */
-    /* ipcRenderer.on('async-amount-reply', (event, amount, status) => {
-      console.log('$$ CashBill.vue amount', amount)
-      const type = this.getPanelType
-      switch (type) {
-        case 'wash':
-          this.setWetBalance(+amount)
-          break
-        case 'vacuum':
-          this.setDryBalance(+amount)
-          break
-
-        default:
-          break
-      }
-    }) */
   },
   computed: {
     ...mapGetters({
@@ -152,25 +135,12 @@ export default {
       getCashEnabler: 'getCashEnabler',
       getStoreMoneyOptions: 'getStoreMoneyOptions',
       getAppendBonus: 'getAppendBonus',
-
-      getCreateReceiptOptions: 'getCreateReceiptOptions',
-      getReadReceiptOptions: 'getReadReceiptOptions',
-      getPrintReceiptOptions: 'getPrintReceiptOptions',
-
-      /* dev */
-      getIsReceiptRead: 'getIsReceiptRead',
-      getIsReceiptCreate: 'getIsReceiptCreate',
-      getIsReceiptPrint: 'getIsReceiptPrint',
+      
     }),
     ...mapMutations({
-      //createCash: 'cash/createCash',
       setCashEnabler: 'setCashEnabler',
       setIsPayBonusMoney: 'setIsPayBonusMoney',
       setIsAppendBonusMoney: 'setIsAppendBonusMoney',
-
-      setIsReceiptRead: 'setIsReceiptRead',
-      setIsReceiptCreate: 'setIsReceiptCreate',
-      setIsReceiptPrint: 'setIsReceiptPrint',
 
       setIsMoneyToBonus: 'setIsMoneyToBonus',
       setWetBalance: 'setWetBalance',
@@ -179,7 +149,6 @@ export default {
 
     payUp(program) {
       this.setDown(program)
-      this.doReceipt()
 
       // payEnd
       if (program === 'payEnd') {
@@ -202,78 +171,6 @@ export default {
       }
     },
 
-    // 01 readReceipt
-
-    async readReceipt() {
-      const method = methods[6]
-      const type = types[4]
-
-      this.options = this.getReadReceiptOptions()
-      const response = await this.storage.getClient(method, this.options, type)
-      if (response) {
-        // console.log('response.result', response.result)
-        if (+response.result === 0) {
-          this.setIsReceiptRead(true)
-          // this.$message(
-          //   `01 Выполняется панелью при формировании чека result--> ${+response.result}`
-          // )
-        } else {
-          this.setIsReceiptRead(false)
-          // this.$message(`НЕ выполняется панелью при формировании чека`)
-        }
-      }
-      // console.log('++getIsReceiptRead', this.getIsReceiptRead())
-    },
-
-    // 02 createReceipt
-    async createReceipt() {
-      const method = methods[5]
-      const type = types[4]
-
-      this.options = this.getCreateReceiptOptions()
-      const response = await this.storage.getClient(method, this.options, type)
-      if (+response.result === 0) {
-        this.setIsReceiptCreate(true)
-        this.$message(
-          `02 Выполняется при запросе чека панелью result--> ${+response.result}`
-        )
-      } else {
-        this.setIsReceiptCreate(false)
-        this.$message(`НЕ выполняется при запросе чека панелью`)
-      }
-      // console.log('++getIsReceiptCreate', this.getIsReceiptCreate())
-    },
-
-    // 03 printReceipt
-
-    /* async printReceipt() {
-      const method = methods[7]
-      const type = types[4]
-
-      this.options = this.getPrintReceiptOptions()
-      const response = await this.storage.getClient(method, this.options, type)
-      if (+response.result === 0) {
-        this.setIsReceiptPrint(true)
-        this.$message(
-          `03 Выполняется панелью  на запрос печати чека result--> ${+response.result}`
-        )
-      } else {
-        this.setIsReceiptPrint(false)
-        this.$message(`НЕ выполняется панелью  на запрос печати чека`)
-      }
-      console.log('++getIsReceiptPrint', this.getIsReceiptPrint())
-      
-    }, */
-
-    doReceipt() {
-      console.log('!!! Wet doReceipt()')
-      const storage = new Storage(this.client, this.url)
-
-      /* dev */
-      this.readReceipt()
-      // this.createReceipt()
-      // this.printReceipt()
-    },
 
     getCashMoney() {
       let isClear = false

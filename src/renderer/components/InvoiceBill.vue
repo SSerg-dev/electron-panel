@@ -1,31 +1,36 @@
 <template>
-  <div class="invoice-bill">
+  <div v-if="getIsReceiptRead" class="invoice-bill">
     <div class="page-title">
       <p align="center">{{ `ИП КОЛОМИЕЦ ВИКТОР ВИТАЛЬЕВИЧ` }}</p>
-      <p align="center">{{ `г. Санкт-Петербург` }}</p>
+      <!-- style="color: aqua" -->
+
+      <p align="center">{{ `${this.getReceiptResult.receipt.org.address}` }}</p>
     </div>
 
-    <table >
+    <table>
       <tbody>
         <tr>
           <td class="td-left">{{ `КАССОВЫЙ ЧЕК / ПРИХОД` }}</td>
-          <td class="td-right">{{ `№ док: 999` }}</td>
+          <td class="td-right">{{ `№ док: 2410` }}</td>
+          <!-- style="color: aqua" -->
         </tr>
         <tr>
           <td class="td-left">{{ `Кассир` }}</td>
-          <td class="td-right">{{ `Коломиец В.В` }}</td>
+          <td class="td-right">
+            {{ `${this.getReceiptResult.receipt.org.cashier}` }}
+          </td>
         </tr>
         <tr>
           <td class="td-left">{{ `Услуги автомойки` }}</td>
-          <td class="td-right">{{ ` = 1` }}</td>
+          <td class="td-right">{{ `${this.getReceiptResult.receipt.sum}` }}</td>
         </tr>
         <tr>
           <td class="td-left">{{ `ИТОГ :` }}</td>
-          <td class="td-right">{{ ` = 1` }}</td>
+          <td class="td-right">{{ `${this.getReceiptResult.receipt.sum}` }}</td>
         </tr>
         <tr>
           <td class="td-left">{{ `НАЛИЧНЫМИ :` }}</td>
-          <td class="td-right">{{ ` = 1` }}</td>
+          <td class="td-right">{{ `${this.getReceiptResult.receipt.sum}` }}</td>
         </tr>
         <tr>
           <td class="td-left">{{ `Сумма НДС :` }}</td>
@@ -33,19 +38,30 @@
         </tr>
         <tr>
           <td class="td-left">{{ `РН ККТ : 0004910320025320` }}</td>
+          <!-- style="color: aqua"  -->
+
           <td class="td-right">{{ `ИНН : 343600164360` }}</td>
+          <!-- style="color: aqua" -->
         </tr>
         <tr class="space"></tr>
         <tr>
           <td class="td-left">{{ `ЗН ККТ : 550101013289` }}</td>
+          <!-- style="color: aqua" -->
+
           <td class="td-right">{{ `` }}</td>
         </tr>
         <tr>
-          <td class="td-left">{{ `19.08.2022 02:01` }}</td>
+          <td class="td-left">
+            {{
+              `${this.getReceiptResult.receipt.date} ${this.getReceiptResult.receipt.time}`
+            }}
+          </td>
           <td class="td-right">{{ `` }}</td>
         </tr>
         <tr>
-          <td class="td-left">{{ `ФД 2154` }}</td>
+          <td class="td-left">
+            {{ `ФД ${this.getReceiptResult.receipt.fd}` }}
+          </td>
           <td class="td-right">{{ `` }}</td>
         </tr>
         <tr>
@@ -53,8 +69,18 @@
           <td class="td-right">{{ `` }}</td>
         </tr>
         <tr>
-          <td class="td-left">{{ `ЧЕК : 6` }}</td>
-          <td class="td-left">{{ `СМЕНА : 413` }}</td>
+          <td class="td-left">
+            {{ `ФП ${this.getReceiptResult.receipt.fp}` }}
+          </td>
+          <td class="td-right">{{ `` }}</td>
+        </tr>
+        <tr>
+          <td class="td-left">
+            {{ `ЧЕК : ${this.getReceiptResult.receipt.number}` }}
+          </td>
+          <td class="td-right">
+            {{ `СМЕНА : ${this.getReceiptResult.receipt.session}` }}
+          </td>
         </tr>
         <tr>
           <td class="td-left">{{ `СНО : Патент` }}</td>
@@ -64,14 +90,16 @@
           <td class="td-left">{{ `Сайт ФНС www.nalog.ru` }}</td>
           <td class="td-right">{{ `` }}</td>
         </tr>
-
       </tbody>
     </table>
 
-    <div class="page-title">
-      <p align="center">{{ `Автомойка самообслуживания` }}</p>
+    <div>
+      <InvoiceBillQr />
     </div>
-    
+
+    <div class="page-title">
+      <p align="center">{{ `${this.getReceiptResult.receipt.org.place}` }}</p>
+    </div>
   </div>
 </template>
 
@@ -79,15 +107,31 @@
 import Vue from 'vue'
 
 import { mapGetters, mapMutations } from 'vuex'
+import InvoiceBillQr from '@/components/InvoiceBillQr'
 
 export default Vue.extend({
   data: () => ({
     name: 'invoice-bill',
   }),
-  computed: {},
-  methods: {},
+  computed: {
+    ...mapGetters({
+      getIsReceiptRead: 'getIsReceiptRead',
+      getReceiptResult: 'getReceiptResult',
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      setIsReceiptRead: 'setIsReceiptRead',
+    }),
+  },
+  created() {},
   mounted() {},
-  components: {},
+  beforeDestroy() {
+    this.setIsReceiptRead(false)
+  },
+  components: {
+    InvoiceBillQr,
+  },
 })
 </script>
 
@@ -101,7 +145,7 @@ export default Vue.extend({
   font-size: 2em;
   margin-top: 0em;
   margin-bottom: 0em;
-  margin-left: 0em; /* 16em; */
+  margin-left: 0em; 
   padding-top: 0em;
   color: rgb(100, 100, 100);
 }
@@ -131,11 +175,11 @@ td {
   /* text-align: center; */
   /* border-left-color: aqua; */
 }
-.td-left{
+.td-left {
   text-align: left;
   width: 50%;
 }
-.td-right{
+.td-right {
   text-align: right;
 }
 .space {

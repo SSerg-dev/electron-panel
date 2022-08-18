@@ -146,11 +146,12 @@ export default {
     },
     readReceipt: {
       method: 'kkt::receipt.read',
-      params: { id: 1 }
+      /* dev */
+      params: { id: 2410 }
     },
     printReceipt: {
       method: 'kkt::receipt.print',
-      params: { id: 1 }
+      params: { fd: 1 }
     },
     /*     */
     loginBonus: {
@@ -180,11 +181,12 @@ export default {
         }]
       }
     },
-    /* dev */
     checkBonusQr: {
       method: 'bonus::qr.check',
       params: { qr: ''}
     },
+    /* dev */
+    receipt: {},
 
     // end methods options
 
@@ -225,6 +227,10 @@ export default {
   //actions: {},
   getters: {
     // dev
+    getReceiptResult(state) {
+      return state.receipt
+    },
+
     getIsReceiptRead(state) {
       return state.isReceipt.read
     },
@@ -349,6 +355,11 @@ export default {
     } */
   },
   mutations: {
+    /* dev */
+    setReceiptResult(state, receipt) {
+      state.receipt = receipt
+    },
+
     setIsReceiptRead(state, read) {
       state.isReceipt.read = read
     },

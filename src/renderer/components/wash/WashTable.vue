@@ -519,10 +519,8 @@ export default {
         return
       }
       if (program === 'receipt') {
-        this.printReceipt()
         this.isDown.receipt = true
         this.buttonReceipt.background = 'rgb(64, 196, 255)'
-        /* dev */
         this.$router.push('/invoice')
         this.setDown()
         return
@@ -584,24 +582,7 @@ export default {
         this.isVisibleWashTableBonus = true
       }
     },
-    // printReceipt
-    async printReceipt() {
-      const method = methods[7]
-      const type = types[4]
-
-      this.options = this.getPrintReceiptOptions()
-      const response = await this.storage.getClient(method, this.options, type)
-      if (+response.result === 0) {
-        this.setIsReceiptPrint(true)
-        this.$message(
-          `03 Выполняется панелью  на запрос печати чека result--> ${+response.result}`
-        )
-      } else {
-        this.setIsReceiptPrint(false)
-        this.$message(`НЕ выполняется панелью  на запрос печати чека`)
-      }
-      // console.log('++ WashTable-->getIsReceiptPrint-->', this.getIsReceiptPrint)
-    },
+    
     // ----------------------------------
     // ЗАВЕРШИТЬ МОЙКУ
 
@@ -745,7 +726,8 @@ export default {
 
       if (!+this.getWetBalance > 0) this.buttonPrice.hide()
       /* dev */
-      if (this.getIsReceiptRead) this.buttonReceipt.hide()
+      // if (!this.getIsReceiptRead) this.buttonReceipt.hide()
+      
       if (!this.getIsMoneyToBonus) this.buttonBonus.hide()
 
       // end classes instances

@@ -152,7 +152,6 @@ export default {
 
     payUp(program) {
       this.setDown(program)
-      this.doReceipt()
 
       // payEnd
       if (program === 'payEnd') {
@@ -172,55 +171,7 @@ export default {
         if (this.$route.name !== 'bonus') this.$router.push('/bonus')
       }
     },
-    /* dev */
-    // 01 readReceipt
-    async readReceipt() {
-      const method = methods[6]
-      const type = types[4]
 
-      this.options = this.getReadReceiptOptions()
-      const response = (
-        await this.storage.getClient(method, this.options, type)
-      )(+response.result === 0)
-        ? this.$message(`Выполняется панелью при формировании чека`)
-        : this.$message(`НЕ выполняется панелью при формировании чека`)
-    },
-
-    // 02 createReceipt
-    async createReceipt() {
-      const method = methods[5]
-      const type = types[4]
-
-      this.options = this.getCreateReceiptOptions()
-      const response = (
-        await this.storage.getClient(method, this.options, type)
-      )(+response.result === 0)
-        ? this.$message(`Выполняется при запросе чека панелью`)
-        : this.$message(`НЕ выполняется при запросе чека панелью`)
-    },
-
-    // 03 printReceipt
-    async printReceipt() {
-      const method = methods[7]
-      const type = types[4]
-
-      this.options = this.getPrintReceiptOptions()
-      const response = (
-        await this.storage.getClient(method, this.options, type)
-      )(+response.result === 0)
-        ? this.$message(`Выполняется панелью  на запрос печати чека`)
-        : this.$message(`НЕ выполняется панелью  на запрос печати чека`)
-    },
-
-    doReceipt() {
-      console.log('!!! Dry doReceipt()')
-      // const storage = new Storage(this.client, this.url)
-
-      /* dev */
-      //this.readReceipt()
-      //this.createReceipt()
-      //this.printReceipt()
-    },
     getCashMoney() {
       let isClear = false
       const options = 'ipcRenderer.send coin from CashBill'

@@ -3,10 +3,6 @@
     <div>
       <div class="qr-title">
         <h3>
-          
-          <!-- <p align="center">
-            Авторизация через QR
-          </p> -->
          
           <p align="center">
             {{ `Authorization_using_a_QR` | localize}}
