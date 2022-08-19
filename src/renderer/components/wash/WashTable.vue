@@ -858,7 +858,8 @@ export default {
     clearInterval(this.intervalSecondTimer)
     clearInterval(this.intervalThirdTimer)
 
-    this.setIsReceiptRead(false)
+    // this.setIsReceiptRead(false)
+    
     // this.setIsMoneyToBonus(false)
   },
   created() {

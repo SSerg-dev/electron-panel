@@ -450,6 +450,7 @@ export default {
     sum: 0,
     cash: true,
     order: '',
+    id: 0,
     actives: [],
 
     coins: {},
@@ -826,11 +827,13 @@ export default {
       const panelType = this.getPanelType
       switch (type) {
         case 'wash':
+          this.id = this.getDefaultPanelNumber - 1
           this.getMoneyToBonus === 0
             ? (this.sum = this.getWetBalance)
             : (this.sum = this.getMoneyToBonus)
           break
         case 'vacuum':
+          this.id = this.getVacuumNumber - 1
           this.getMoneyToBonus === 0
             ? (this.sum = this.getDryBalance)
             : (this.sum = this.getMoneyToBonus)
@@ -838,8 +841,8 @@ export default {
         default:
           break
       }
-
-      this.options.params.unit_id = this.getDefaultPanelNumber - 1
+      /* dev */
+      this.options.params.unit_id = this.id //this.getDefaultPanelNumber - 1
       this.options.params.type = 'cash'
       this.options.params.sum = +this.sum
 

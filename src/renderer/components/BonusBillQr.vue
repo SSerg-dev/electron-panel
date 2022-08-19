@@ -3,15 +3,20 @@
     <div>
       <div class="qr-title">
         <h3>
-         
           <p align="center">
-            {{ `Authorization_using_a_QR` | localize}}
+            {{ `Authorization_using_a_QR` | localize }}
           </p>
-          
         </h3>
       </div>
+      <!-- :color="{ dark: '#00b9e3', light: '#ffffffff' }" -->
+      <!-- :errorCorrectionLevel="L" -->
       <div class="qr-code">
-        <vue-qrcode :value="qr" :scale="9" :margin="2" />
+        <vue-qrcode
+          :value="qr"
+          :scale="9"
+          :margin="2"
+          errorCorrectionLevel="L"
+        />
       </div>
     </div>
   </div>
@@ -48,23 +53,23 @@ export default {
       phone: '',
       balance: 0,
       firstname: '',
-      lastname: ''
-    }
+      lastname: '',
+    },
   }),
   computed: {
     ...mapGetters({
       getDefaultPanelNumber: 'getDefaultPanelNumber',
-      getIsAppendBonusMoney: 'getIsAppendBonusMoney'
-    })
+      getIsAppendBonusMoney: 'getIsAppendBonusMoney',
+    }),
   },
   methods: {
     ...mapGetters({
       getQrOptions: 'getQrOptions',
       getCheckBonusQr: 'getCheckBonusQr',
-      getProfile: 'getProfile'
+      getProfile: 'getProfile',
     }),
     ...mapMutations({
-      setProfile: 'setProfile'
+      setProfile: 'setProfile',
     }),
 
     async getQr() {
@@ -130,7 +135,7 @@ export default {
     /* dev */
     emitBonusQrMoney(isCashAuthorization) {
       EventBus.$emit('submitBonusQrMoney', isCashAuthorization)
-    }
+    },
   }, // end methods
 
   mounted() {
@@ -142,8 +147,8 @@ export default {
     // this.isCheckBonusQr = false
   },
   components: {
-    VueQrcode
-  }
+    VueQrcode,
+  },
 }
 </script>
 

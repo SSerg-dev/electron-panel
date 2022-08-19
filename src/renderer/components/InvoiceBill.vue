@@ -1,18 +1,15 @@
 <template>
-  <div v-if="getIsReceiptRead" class="invoice-bill">
+  <!-- -->
+  <div v-if="this.getIsReceiptCreate && this.getIsReceiptRead" class="invoice-bill">
     <div class="page-title">
-      <p align="center">{{ `ИП КОЛОМИЕЦ ВИКТОР ВИТАЛЬЕВИЧ` }}</p>
-      <!-- style="color: aqua" -->
-
-      <p align="center">{{ `${this.getReceiptResult.receipt.org.address}` }}</p>
+      <p align="center">{{ `${this.getReceiptResult.receipt.org.org}` }}</p>
     </div>
 
     <table>
       <tbody>
         <tr>
           <td class="td-left">{{ `КАССОВЫЙ ЧЕК / ПРИХОД` }}</td>
-          <td class="td-right">{{ `№ док: 2410` }}</td>
-          <!-- style="color: aqua" -->
+          <td class="td-right">{{ `№ док: ${this.getReadReceiptOptions.params.id}` }}</td>
         </tr>
         <tr>
           <td class="td-left">{{ `Кассир` }}</td>
@@ -37,16 +34,13 @@
           <td class="td-right">{{ ` без НДС` }}</td>
         </tr>
         <tr>
-          <td class="td-left">{{ `РН ККТ : 0004910320025320` }}</td>
-          <!-- style="color: aqua"  -->
-
-          <td class="td-right">{{ `ИНН : 343600164360` }}</td>
-          <!-- style="color: aqua" -->
+          <td class="td-left">{{ `РН ККТ : ${this.getReceiptResult.receipt.org.rn}` }}</td>
+        
+          <td class="td-right">{{ `ИНН : ${this.getReceiptResult.receipt.org.inn}` }}</td>
         </tr>
         <tr class="space"></tr>
         <tr>
-          <td class="td-left">{{ `ЗН ККТ : 550101013289` }}</td>
-          <!-- style="color: aqua" -->
+          <td class="td-left">{{ `ЗН ККТ : ${this.getReceiptResult.receipt.org.sn}` }}</td>
 
           <td class="td-right">{{ `` }}</td>
         </tr>
@@ -65,7 +59,7 @@
           <td class="td-right">{{ `` }}</td>
         </tr>
         <tr>
-          <td class="td-left">{{ `ФН 9287440300907662` }}</td>
+          <td class="td-left">{{ `ФН ${this.getReceiptResult.receipt.org.fn}` }}</td>
           <td class="td-right">{{ `` }}</td>
         </tr>
         <tr>
@@ -116,7 +110,11 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getIsReceiptRead: 'getIsReceiptRead',
+      getIsReceiptCreate: 'getIsReceiptCreate',
+      getIsReceiptPrint: 'getIsReceiptPrint',
+      
       getReceiptResult: 'getReceiptResult',
+      getReadReceiptOptions: 'getReadReceiptOptions'
     }),
   },
   methods: {
@@ -125,9 +123,18 @@ export default Vue.extend({
     }),
   },
   created() {},
-  mounted() {},
+  mounted() {
+    console.log('this.getIsReceiptCreate && this.getIsReceiptRead', this.getIsReceiptCreate, this.getIsReceiptRead)
+    /* if (!this.isVisible) {
+      this.timeoutDelay = setTimeout(() => {
+        this.isVisible = true
+        // rerender after 1 sec.
+        // this.setKeys()
+      }, (this.delay = 1000))
+    } */
+  },
   beforeDestroy() {
-    this.setIsReceiptRead(false)
+    // this.setIsReceiptRead(false)
   },
   components: {
     InvoiceBillQr,

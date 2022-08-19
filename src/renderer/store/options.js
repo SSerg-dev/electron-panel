@@ -141,8 +141,7 @@ export default {
     /* dev */
     createReceipt: {
       method: 'kkt::receipt.create',
-      /* params: { unit_id: 1, sum: 2, cash: '' } */
-      params: { unit_id: 1, sum: 0, cash: false }
+      params: { unit_id: 0, sum: 0, cash: false, order: ''  }
     },
     readReceipt: {
       method: 'kkt::receipt.read',
@@ -425,7 +424,11 @@ export default {
     },
     setProfile(state, profile) {
       state.profile = profile
-    }
+    },
+    setReadReceiptOptions(state, id) {
+      state.readReceipt.params.id = id
+    },
+
 
     /* setPanelMoneyNumber(state, unit_id) {
       state.options.params.unit_id = unit_id
