@@ -51,7 +51,6 @@ export default Vue.extend({
       getVacuumNumber: 'getVacuumNumber',
       getWetOrder: 'getWetOrder',
       getDryOrder: 'getDryOrder',
-      
     }),
   },
   methods: {
@@ -63,8 +62,6 @@ export default Vue.extend({
       getIsReceiptRead: 'getIsReceiptRead',
       getIsReceiptCreate: 'getIsReceiptCreate',
       getIsReceiptPrint: 'getIsReceiptPrint',
-
-      
     }),
     ...mapMutations({
       setRouter: 'setRouter',
@@ -74,7 +71,7 @@ export default Vue.extend({
       setIsReceiptPrint: 'setIsReceiptPrint',
 
       setReceiptResult: 'setReceiptResult',
-      setReadReceiptOptions: 'setReadReceiptOptions'
+      setReadReceiptOptions: 'setReadReceiptOptions',
     }),
     payUp(program) {
       this.$router.push('/program')
@@ -86,7 +83,6 @@ export default Vue.extend({
       const type = types[4]
 
       this.options = this.getCreateReceiptOptions()
-      /* dev */
       const panelType = this.getPanelType
       switch (panelType) {
         case 'wash':
@@ -104,8 +100,6 @@ export default Vue.extend({
       this.options.params.sum = +this.sum
       this.options.params.cash = true
       this.options.params.order = this.order
-
-      console.log('$$ this.options', this.options)
 
       const response = await this.storage.getClient(method, this.options, type)
       if (+response.result === 0) {
@@ -128,7 +122,7 @@ export default Vue.extend({
       this.options = this.getReadReceiptOptions()
       const response = await this.storage.getClient(method, this.options, type)
       if (response) {
-        if (+response.result === 0) {
+        if (response.receipt && +response.result === 0) {
           this.setIsReceiptRead(true)
           this.$message(
             `01 Выполняется readReceipt result--> ${+response.result}`
@@ -160,8 +154,6 @@ export default Vue.extend({
     },
 
     doInvoice() {
-      console.log('!!! Invoice.vue doInvoice()')
-
       this.createReceipt()
       this.readReceipt()
       // this.printReceipt()

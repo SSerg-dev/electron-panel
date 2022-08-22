@@ -13,7 +13,7 @@
       <div class="qr-code">
         <vue-qrcode
           :value="qr"
-          :scale="9"
+          :scale="10"
           :margin="2"
           errorCorrectionLevel="L"
         />

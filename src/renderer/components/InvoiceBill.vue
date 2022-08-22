@@ -1,6 +1,7 @@
 <template>
   <!-- -->
-  <div v-if="this.getIsReceiptCreate && this.getIsReceiptRead" class="invoice-bill">
+  <!-- <div v-if="this.getIsReceiptCreate && this.getIsReceiptRead" class="invoice-bill" -->
+  <div v-if="this.getReceiptResult.receipt" class="invoice-bill">
     <div class="page-title">
       <p align="center">{{ `${this.getReceiptResult.receipt.org.org}` }}</p>
     </div>
@@ -9,7 +10,9 @@
       <tbody>
         <tr>
           <td class="td-left">{{ `КАССОВЫЙ ЧЕК / ПРИХОД` }}</td>
-          <td class="td-right">{{ `№ док: ${this.getReadReceiptOptions.params.id}` }}</td>
+          <td class="td-right">
+            {{ `№ док: ${this.getReadReceiptOptions.params.id}` }}
+          </td>
         </tr>
         <tr>
           <td class="td-left">{{ `Кассир` }}</td>
@@ -34,13 +37,19 @@
           <td class="td-right">{{ ` без НДС` }}</td>
         </tr>
         <tr>
-          <td class="td-left">{{ `РН ККТ : ${this.getReceiptResult.receipt.org.rn}` }}</td>
-        
-          <td class="td-right">{{ `ИНН : ${this.getReceiptResult.receipt.org.inn}` }}</td>
+          <td class="td-left">
+            {{ `РН ККТ : ${this.getReceiptResult.receipt.org.rn}` }}
+          </td>
+
+          <td class="td-right">
+            {{ `ИНН : ${this.getReceiptResult.receipt.org.inn}` }}
+          </td>
         </tr>
         <tr class="space"></tr>
         <tr>
-          <td class="td-left">{{ `ЗН ККТ : ${this.getReceiptResult.receipt.org.sn}` }}</td>
+          <td class="td-left">
+            {{ `ЗН ККТ : ${this.getReceiptResult.receipt.org.sn}` }}
+          </td>
 
           <td class="td-right">{{ `` }}</td>
         </tr>
@@ -59,7 +68,9 @@
           <td class="td-right">{{ `` }}</td>
         </tr>
         <tr>
-          <td class="td-left">{{ `ФН ${this.getReceiptResult.receipt.org.fn}` }}</td>
+          <td class="td-left">
+            {{ `ФН ${this.getReceiptResult.receipt.org.fn}` }}
+          </td>
           <td class="td-right">{{ `` }}</td>
         </tr>
         <tr>
@@ -112,11 +123,12 @@ export default Vue.extend({
       getIsReceiptRead: 'getIsReceiptRead',
       getIsReceiptCreate: 'getIsReceiptCreate',
       getIsReceiptPrint: 'getIsReceiptPrint',
-      
+
       getReceiptResult: 'getReceiptResult',
-      getReadReceiptOptions: 'getReadReceiptOptions'
+      getReadReceiptOptions: 'getReadReceiptOptions',
     }),
   },
+  watch: {},
   methods: {
     ...mapMutations({
       setIsReceiptRead: 'setIsReceiptRead',
@@ -124,7 +136,7 @@ export default Vue.extend({
   },
   created() {},
   mounted() {
-    console.log('this.getIsReceiptCreate && this.getIsReceiptRead', this.getIsReceiptCreate, this.getIsReceiptRead)
+    // console.log('this.getIsReceiptCreate && this.getIsReceiptRead', this.getIsReceiptCreate, this.getIsReceiptRead)
     /* if (!this.isVisible) {
       this.timeoutDelay = setTimeout(() => {
         this.isVisible = true
@@ -134,7 +146,7 @@ export default Vue.extend({
     } */
   },
   beforeDestroy() {
-    // this.setIsReceiptRead(false)
+    this.setIsReceiptRead(false)
   },
   components: {
     InvoiceBillQr,
@@ -152,7 +164,7 @@ export default Vue.extend({
   font-size: 2em;
   margin-top: 0em;
   margin-bottom: 0em;
-  margin-left: 0em; 
+  margin-left: 0em;
   padding-top: 0em;
   color: rgb(100, 100, 100);
 }

@@ -145,6 +145,9 @@ export default new Vuex.Store({
     globalParameters: {
       fixedCurrency: ''
     },
+    kktParameters: {
+      isKktInstalled: false
+    },
 
     isDebug: true
   },
@@ -576,7 +579,11 @@ export default new Vuex.Store({
     },
     getIsFooter(state) {
       return state.isFooter
+    },
+    getIsKktInstalled(state) {
+      return state.kktParameters.isKktInstalled
     }
+
   },
 
   mutations: {
@@ -600,6 +607,10 @@ export default new Vuex.Store({
 
       // console.log('++displayName-->', displayName)
       // console.log('++parameter.value-->', parameter.value)
+
+      /* dev */
+      // TAG_KKT_INSTALLED: '::AsGlobalPV:Recipe.Kkm.EnableDevice'
+      // ++displayName--> Kkm.EnableDevice
 
       switch (displayName) {
         case 'progPrice':
@@ -638,6 +649,10 @@ export default new Vuex.Store({
         case 'active':
           state.parameters.active = parameter.value
           break
+        // common parameters  
+        case 'Kkm.EnableDevice':
+          state.kktParameters.isKktInstalled = JSON.parse(parameter.value)  
+          break  
 
         default:
           //console.log('no param')
@@ -680,13 +695,17 @@ export default new Vuex.Store({
           break
         case 'active':
           state.dryParameters.active = parameter.value
-
           break
+        // common parameters  
+        case 'Kkm.EnableDevice':
+          state.kktParameters.isKktInstalled = JSON.parse(parameter.value) 
+          break  
 
         default:
           break
       }
     },
+
 
     setPaginate(state, paginate) {
       state.paginate = paginate

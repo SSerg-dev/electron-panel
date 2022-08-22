@@ -124,8 +124,6 @@ export default Vue.extend({
           } else {
             this.isControllerWork = true
             this.setIsPingUrl(true)
-            // date = new Date(new Date().toDateString() + ' ' + parameter.value)
-            // start = date.getTime()
           }
         } catch (err) {
           console.warn('App.vue setup() error:', err)

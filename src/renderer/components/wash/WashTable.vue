@@ -5,8 +5,6 @@
         <div class="message">
           <div><Message /></div>
         </div>
-
-        <!-- v-if="getWetBalance > 0" -->
         <div
           @click="setProgram('price')"
           class="waves-effect price"
@@ -19,19 +17,6 @@
               { 'card-content white-text': this.isDown.price },
             ]"
           >
-            <!-- style="content:'\1f4c2'; filter: hue-rotate(180deg) brightness(1.5); margin-right:4px;" -->
-            <svg>
-              <filter id="color">
-                <feColorMatrix
-                  type="matrix"
-                  values="
-                  1 0 0 0 0
-                  0 1 0 0 0
-                  0 0 1 0 0
-                  0 0 0 1 0"
-                />
-              </filter>
-            </svg>
             <div class="emoji">
               {{ `📄` }}
             </div>
@@ -51,21 +36,21 @@
               { 'card-content white-text': this.isDown.receipt },
             ]"
           >
-            {{ `🧾` }}
+            <div v-if="this.getIsKktInstalled">
+              {{ `🧾` }}
+            </div>
+            <div v-else style="opacity: 0.2">
+              {{ `🧾` }}
+            </div>
           </div>
         </div>
 
         <!-- v-if="!getIsMoneyToBonus" -->
-        
-        
-        <!-- dev hidden -->
-        
         <div
           @click="setProgram('savemoney')"
           class="waves-effect bonus"
           id="button-bonus"
         >
-           
           <div
             class="button-content-style"
             :class="[
@@ -89,9 +74,7 @@
               </ul>
             </div>
           </div>
-
         </div>
-
 
         <div v-if="this.isVisibleWashTableBonus" class="savemoney">
           <WashTableBonus :actives="actives" />
@@ -371,31 +354,36 @@ export default {
 
   watch: {
     getWetBalance(flag) {
-      // console.log('$$ getWetBalance-->', flag)
-
-      // if (+flag === 0) {
       if (+flag <= 1) {
+        // +flag === 0
         console.log('$$ this.completeWash-->', flag)
         this.completeWash()
         if (this.getWetPaidBonus > 0 && this.getIsBonusMoney) {
           this.chargeBonusMoney()
-          /* dev */
           this.updateWetBonusMoney(0)
         }
       }
     },
 
-    getIsReceiptRead(flag) {
-      // console.log('getIsReceiptRead', flag)
-      // if (flag) {
-      //   this.buttonReceipt.show()
-      //   this.flex()
-      // } else this.buttonReceipt.hide()
-    },
+    // getIsReceiptRead(flag) {
+    //   console.log('getIsReceiptRead', flag)
+    //   if (flag) {
+    //     this.buttonReceipt.show()
+    //     this.flex()
+    //   } else this.buttonReceipt.hide()
+    // },
 
-    /* dev hidden */
+    // getIsKktInstalled(flag) {
+    //   if (flag) {
+    //     this.buttonReceipt.show()
+    //     this.flex()
+    //   } else {
+    //     this.buttonReceipt.hide()
+    //   }
+    // },
+
     getIsMoneyToBonus(flag) {
-      console.log('++getIsMoneyToBonus', flag) 
+      console.log('++getIsMoneyToBonus', flag)
       if (flag) {
         this.buttonBonus.show()
         this.flex()
@@ -409,16 +397,13 @@ export default {
       // console.log('getWetProgShow', flag, this.actives[14])
     },
     seconds(flag) {
-      console.log('++this.seconds-->flag--> ', flag)
-      // console.log('this.getIsFirstTimer-->', this.getIsFirstTimer)
-
+      // console.log('++this.seconds-->flag--> ', flag)
       if (flag < 0 || !this.getIsFirstTimer) {
         // this.setMoneyToBonus(0)
         this.setIsMoneyToBonus(false)
         clearInterval(this.intervalFirstTimer)
       }
     },
-    /* dev hidden */
     getWetStopFreeCount(flag) {
       if (flag > 0) {
         this.buttonBonus.show()
@@ -477,14 +462,15 @@ export default {
       getDryOrder: 'getDryOrder',
 
       getIsBonusMoney: 'getIsBonusMoney',
+      getIsKktInstalled: 'getIsKktInstalled',
     }),
   },
 
   methods: {
     ...mapActions({
       updateStartProgram: 'updateStartProgram',
-    
-      updateWetBonusMoney: 'updateWetBonusMoney'
+
+      updateWetBonusMoney: 'updateWetBonusMoney',
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
@@ -506,8 +492,6 @@ export default {
       getCompleteWash: 'getCompleteWash',
       getChargeBonus: 'getChargeBonus',
       getProfile: 'getProfile',
-
-      // getLoginBonusPhone: 'getLoginBonusPhone'
       // getIsReceiptPrint: 'getIsReceiptPrint'
     }),
     setProgram(program) {
@@ -521,7 +505,10 @@ export default {
       if (program === 'receipt') {
         this.isDown.receipt = true
         this.buttonReceipt.background = 'rgb(64, 196, 255)'
-        this.$router.push('/invoice')
+        if (this.getIsKktInstalled) {
+          this.$router.push('/invoice')
+        }
+
         this.setDown()
         return
       }
@@ -529,7 +516,6 @@ export default {
         this.isDown.bonus = true
         this.buttonBonus.background = 'rgb(64, 196, 255)'
         this.setDown()
-        /* dev */
         this.saveMoney()
         return
       }
@@ -582,7 +568,7 @@ export default {
         this.isVisibleWashTableBonus = true
       }
     },
-    
+
     // ----------------------------------
     // ЗАВЕРШИТЬ МОЙКУ
 
@@ -727,7 +713,7 @@ export default {
       if (!+this.getWetBalance > 0) this.buttonPrice.hide()
       /* dev */
       // if (!this.getIsReceiptRead) this.buttonReceipt.hide()
-      
+
       if (!this.getIsMoneyToBonus) this.buttonBonus.hide()
 
       // end classes instances
@@ -836,7 +822,6 @@ export default {
     /*     */
   }, // end methods
   mounted() {
-
     this.storage = new Storage(this.client, this.url)
     this.order = this.getCompleteWash().params.order
 
@@ -859,13 +844,9 @@ export default {
     clearInterval(this.intervalThirdTimer)
 
     // this.setIsReceiptRead(false)
-    
     // this.setIsMoneyToBonus(false)
   },
-  created() {
-    // this.initial()
-    // this.setup()
-  },
+  created() {},
 }
 </script>
 

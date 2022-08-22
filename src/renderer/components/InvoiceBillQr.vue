@@ -40,7 +40,7 @@ export default {
       receiptDate = this.getReceiptResult.receipt.date
       receiptTime = this.getReceiptResult.receipt.time
       sum =  Number.parseFloat(this.getReceiptResult.receipt.sum).toFixed(2) 
-      fn = '9287440300907662'
+      fn = this.getReceiptResult.receipt.org.fn
       document = this.getReadReceiptOptions.params.id //'2410'
       fp = this.getReceiptResult.receipt.fp
       n = '1'
@@ -76,7 +76,6 @@ export default {
   }, // end methods
 
   mounted() {
-    console.log('$$ getReadReceiptOptions', this.getReadReceiptOptions.params.id)
     this.getQr()
   },
   beforeDestroy() {},
