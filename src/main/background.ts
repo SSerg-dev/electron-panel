@@ -19,7 +19,7 @@ import CoinAcceptorController from './controllers/CoinAcceptorController'
 import BankTerminalController from './controllers/BankTerminalController'
 import { pathToFileURL } from 'url'
 import * as path from 'path'
-import { readFileSync } from 'fs'
+import { readFileSync, writeFileSync } from 'fs'
 
 /* ----------------------------------------------------------------------- */
 let mConfig: any
@@ -140,7 +140,7 @@ const idle = async (config: any) => {
     })
   }
   /* dev */
-  
+
   /* if (config.bill_validator) {
     if (
       !mConfig ||
@@ -193,7 +193,6 @@ const idle = async (config: any) => {
     // console.log('$$ ipcMain.on background!!', options)
     // reinitialization bank terminal ???
     // crutch :((
-
     // ----------------------------------
     // bankTerminal = new BankTerminalController()
     // bankTerminal.on('connect', () => (isBankTerminalConnected = true))
@@ -217,7 +216,16 @@ const idle = async (config: any) => {
 /* */
 let settings: any = {}
 try {
-  const rawdata = readFileSync('./configs/settings.json')
+  let rawdata
+  /* dev */
+  // rawdata = readFileSync('./configs/settings.json')
+  
+  rawdata = readFileSync('./configs/settings-current.json')
+  if (!rawdata.length) {
+    rawdata = readFileSync('./configs/settings.json')
+    log(TAG, 'SETTINGS FROM settings.json')
+  }
+
   settings = JSON.parse(rawdata.toString())
   log(TAG, 'SETTINGS', JSON.stringify(settings))
   idle(settings)
@@ -252,8 +260,9 @@ ipcMain.on('cash_enabler', (evt, data) => {
 /* */
 ipcMain.on('config', (evt, data) => {
   let config: any
+  // log(TAG, 'Config from renderer:', data)
 
-  log(TAG, 'Config from renderer:', data)
+  writeConfig(data)
 
   try {
     config = JSON.parse(data)
@@ -391,3 +400,8 @@ const sendEventToView = (view: any, evt: string, data: string) => {
 function toUpperCase(arg0: string) {
   throw new Error('Function not implemented.')
 }
+
+function writeConfig(data: any) {
+  writeFileSync('./configs/settings-current.json', data)
+}
+

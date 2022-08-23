@@ -30,7 +30,7 @@ export default new Vuex.Store({
     paginate: 1,
     router: '/',
 
-    info: { name: '', locale: 'ru-RU' }, /* ru-RU en-GB */
+    info: { name: '', locale: 'ru-RU' } /* ru-RU en-GB */,
     cash_enabler: false,
     busyPanel: false,
     secondsGotoMainMenu: 442 /* 42 */,
@@ -109,7 +109,7 @@ export default new Vuex.Store({
       'disinfection'
     ], */
     dryPrograms: [
-      'vacuum', 
+      'vacuum',
       'air',
       'stop',
       'washer',
@@ -271,7 +271,7 @@ export default new Vuex.Store({
       const number = state.programs.findIndex(p => p === params[2]) + 1
 
       commit('setActiveProgramNumber', number)
-      
+
       if (params[3] > 0 || params[2] === 'stop') {
         try {
           // box index 1,2 ...
@@ -344,7 +344,7 @@ export default new Vuex.Store({
           JSON.stringify({
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
               1}].paidBonus`,
-              // 1}].prepaymentBonus`,
+            // 1}].prepaymentBonus`,
             value: bonus
           })
         )
@@ -412,7 +412,8 @@ export default new Vuex.Store({
       //console.groupEnd()
 
       try {
-        ipcRenderer.send('config', JSON.stringify(config))
+        const options = JSON.stringify(config, null, 2)
+        ipcRenderer.send('config', options)
       } catch (e) {
         console.warn('Error:', e.message)
       }
@@ -583,7 +584,6 @@ export default new Vuex.Store({
     getIsKktInstalled(state) {
       return state.kktParameters.isKktInstalled
     }
-
   },
 
   mutations: {
@@ -649,10 +649,10 @@ export default new Vuex.Store({
         case 'active':
           state.parameters.active = parameter.value
           break
-        // common parameters  
+        // common parameters
         case 'Kkm.EnableDevice':
-          state.kktParameters.isKktInstalled = JSON.parse(parameter.value)  
-          break  
+          state.kktParameters.isKktInstalled = JSON.parse(parameter.value)
+          break
 
         default:
           //console.log('no param')
@@ -696,21 +696,20 @@ export default new Vuex.Store({
         case 'active':
           state.dryParameters.active = parameter.value
           break
-        // common parameters  
+        // common parameters
         case 'Kkm.EnableDevice':
-          state.kktParameters.isKktInstalled = JSON.parse(parameter.value) 
-          break  
+          state.kktParameters.isKktInstalled = JSON.parse(parameter.value)
+          break
 
         default:
           break
       }
     },
 
-
     setPaginate(state, paginate) {
       state.paginate = paginate
     },
-  // dev
+    // dev
     // setParamsChange
     setParamsChange(state, isParamsChange) {
       state.isParamsChange = isParamsChange

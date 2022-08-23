@@ -94,7 +94,9 @@ export default Vue.extend({
 
         if (!this.isInitBankTerminal) {
           const observer = bankTerminal.observerItem
-          stream$.subscribe(observer)
+          /* dev */
+          if (observer)
+            stream$.subscribe(observer)
         }
 
         switch (options.type) {
@@ -146,6 +148,7 @@ export default Vue.extend({
 
     ...mapMutations({
       setRouter: 'setRouter',
+      setPayType: 'setPayType',
       setIsCardMoney: 'setIsCardMoney',
       setIsBonusMoney: 'setIsBonusMoney',
     }),
@@ -163,6 +166,7 @@ export default Vue.extend({
   },
   mounted() {
     this.setRouter('/card')
+    this.setPayType('card')
     this.setIsCardMoney(true)
 
     EventBus.$on('submitBonusMoney', this.submitBonusHandler)

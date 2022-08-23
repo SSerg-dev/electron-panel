@@ -47,20 +47,22 @@ export default {
         }
       }
     },
-    /* dev */
+
     /* storeDryMoneyOptions: {
       method: 'storage::store_money',
       params: {
         unit_id: 1,
         type: 'cash',
-        sum: 2,
+        sum: 0,
         detail: {
+          order: '', 
           sum_coins: 0,
           coins_count: 0,
           coins_1: 0,
           coins_2: 0,
           coins_5: 0,
           coins_10: 0,
+          coins_25: 0,
           sum_bills: 0,
           bills_count: 0,
           bills_10: 0,
@@ -71,45 +73,7 @@ export default {
         }
       }
     }, */
-    storeDryMoneyOptions: {
-      method: 'storage::store_money',
-      params: {
-        // _unit_id – номер поста (0-7)
-        unit_id: 1,
-        // _money_type – cash, card, service, bonus
-        type: 'cash',
-        // _sum – сумма зачисления
-        sum: 0,
-        // nl::json – структура доп. данных
-        detail: {
-          order: 'W220220504143549', 
-          // сумма зачисления в монетах
-          sum_coins: 0,
-          // общее количество монет
-          coins_count: 0,
-          // номинал монеты
-          coins_1: 0,
-          coins_2: 0,
-          coins_5: 0,
-          coins_10: 0,
-          coins_25: 0,
-          // сумма зачисления в купюрах
-          sum_bills: 0,
-          // количество купюр
-          bills_count: 0,
-          // количество купюр наминала 10р
-          bills_10: 0,
-          // количество купюр наминала 50
-          bills_50: 0,
-          // количество купюр наминала 100р
-          bills_100: 0,
-          // количество купюр наминала 200
-          bills_200: 0,
-          // количество купюр наминала 500
-          bills_500: 0
-        }
-      }
-    },
+
     /*     */
     collectOptions: {
       method: 'storage::collect',
@@ -187,6 +151,9 @@ export default {
     /* dev */
     receipt: {},
 
+    // cash, card, bonus, service
+    payType: '',
+
     // end methods options
 
     isBonusMoney: {
@@ -226,10 +193,13 @@ export default {
   //actions: {},
   getters: {
     // dev
+    getPayType(state) {
+      return state.payType
+    },
+
     getReceiptResult(state) {
       return state.receipt
     },
-
     getIsReceiptRead(state) {
       return state.isReceipt.read
     },
@@ -355,10 +325,13 @@ export default {
   },
   mutations: {
     /* dev */
+    setPayType(state, type) {
+      state.payType = type
+    },
+
     setReceiptResult(state, receipt) {
       state.receipt = receipt
     },
-
     setIsReceiptRead(state, read) {
       state.isReceipt.read = read
     },

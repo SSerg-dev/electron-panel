@@ -507,7 +507,7 @@ export default {
         this.buttonReceipt.background = 'rgb(64, 196, 255)'
         if (this.getIsKktInstalled) {
           this.$router.push('/invoice')
-        }
+        } else this.$message(`ККТ не установлен`)
 
         this.setDown()
         return

@@ -197,6 +197,7 @@ export default {
       this.sum = this.getWetBalance
 
       this.options.params.unit_id = this.getDefaultPanelNumber - 1
+      // getPayType
       this.options.params.type = 'cash'
       this.options.params.sum = +this.sum
 
@@ -226,7 +227,6 @@ export default {
         '$$ CashBill ++payCashMoney-->options-->this.options-->',
         JSON.stringify(this.options)
       )
-
       const response = await this.storage.getClient(method, this.options, type)
 
       if (response === undefined) {

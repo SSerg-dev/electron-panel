@@ -72,8 +72,20 @@
   "Follow_the_instructions_on_the_terminal": "Следуйте инструкциям на терминале",
 
   "You_want_to_complete_the_car_wash": "Вы хотите завершить мойку и вернуть остаток бонусами на счет?",
-  "By_clicking_the_Yes_button_you_give_your_consent": "Нажимая кнопку Да, Вы даете свое согласие на отправку Вам СМС-сообщения и обработку персональных данных согласно условиям, размещенным на сайте: www.alles-bonus.com"
+  "By_clicking_the_Yes_button_you_give_your_consent": "Нажимая кнопку Да, Вы даете свое согласие на отправку Вам СМС-сообщения и обработку персональных данных согласно условиям, размещенным на сайте: www.alles-bonus.com",
   
+  "Display": "Экран",
+  "Setting": "Настройки",
+  "Languages": "Языки",
+  "Finance": "Финансы",
+  "Review": "Обзор",
+
+  "OK": "ОК",
+  "Cancel": "Отмена",
+  "Confirm": "Применить",
+  "Make_the_payment_window_the_main": "Сделать окно оплаты основным",
+  "Show_cursor_in_the_main_window": "Показать курсор в основном окне"
+
 
 
 

@@ -192,7 +192,9 @@ export default {
       const method = methods[0]
       const type = types[0]
 
-      this.options = this.getDryStoreMoneyOptions()
+      /* dev */
+      // this.options = this.getDryStoreMoneyOptions()
+      this.options = this.getStoreMoneyOptions()
       this.sum = this.getDryBalance
 
       this.options.params.unit_id = this.getVacuumNumber - 1

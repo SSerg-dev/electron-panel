@@ -104,7 +104,7 @@ export default {
       return state.config.coin_acceptor.tokens
     },
     getDefaultTerminalType(state) {
-      return state.config.bank_terminal.hardware
+      return state.config.bank_terminal.hardware.toLowerCase()
     },
     getCoinInstalled(state) {
       return state.config.coin_acceptor.installed
@@ -197,7 +197,7 @@ export default {
       state.config.bill_validator.enable_bills = bills
     },
     setDefaultTerminalType(state, hardware) {
-      state.config.bank_terminal.hardware = hardware
+      state.config.bank_terminal.hardware = hardware.toLowerCase()
     },
     setTerminalInstalled(state, flag) {
       state.config.bank_terminal.installed = flag

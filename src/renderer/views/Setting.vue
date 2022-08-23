@@ -17,25 +17,25 @@
       >
         <li class="tab col s3">
           <a active class="black-text" href="#swipe-1" style="font-size: 32px"
-            >Экран</a
+            >{{ `Display` | localize }}</a
           >
         </li>
 
         <li class="tab col s3">
           <a class="black-text" href="#swipe-2" style="font-size: 32px"
-            >Настройки</a
+            >{{ `Setting` | localize }}</a
           >
         </li>
         <li class="tab col s3">
           <a class="black-text" href="#swipe-3" style="font-size: 32px"
-            >Языки</a
+            >{{ `Languages` | localize }}</a
           >
         </li>
         <li 
            @click="setProgram('finance')" 
            class="tab col s3">
           <a class="black-text" href="#swipe-4" style="font-size: 32px"
-            >Финансы</a
+            >{{ `Finance` | localize }}</a
           >
           <!-- dev -->
           
@@ -53,7 +53,7 @@
       >
         <!-- Обзор -->
         <div>
-          <h2 class="white-text page-subtitle">Обзор</h2>
+          <h2 class="white-text page-subtitle">{{ `Review` | localize }}</h2>
           <br />
           <div class="row panel">
             <div class="page-title white-text" style="padding-left: 1em"></div>
@@ -65,7 +65,7 @@
         <!-- end Обзор -->
         <!-- Экран -->
         <div>
-          <h2 class="white-text page-subtitle">Экран</h2>
+          <h2 class="white-text page-subtitle">{{ `Display` | localize }}</h2>
           <br />
 
           <!-- table -->
@@ -311,7 +311,7 @@
 
                       <div class="pay-screen-title">
                         <span class="card-title"
-                          >Сделать окно оплаты основным</span
+                          >{{ `Make_the_payment_window_the_main` | localize }}</span
                         >
                       </div>
                     </div>
@@ -377,7 +377,7 @@
 
                       <div class="pay-screen-title">
                         <span class="card-title"
-                          >Показать курсор в основном окне</span
+                          >{{ `Show_cursor_in_the_main_window` | localize }}</span
                         >
                       </div>
                     </div>
@@ -809,7 +809,7 @@
             type="submit"
             @click="okHandler"
           >
-            {{ 'ОК' }}
+            {{ `OK` | localize }}
             <!-- <i class="material-icons right"></i> -->
           </button>
           <!-- </router-link> -->
@@ -820,7 +820,7 @@
             type="submit"
             @click="cancelHandler"
           >
-            {{ 'Отмена' }}
+            {{ `Cancel` | localize }}
             <!-- <i class="material-icons right"></i> -->
           </button>
         </div>
@@ -831,7 +831,7 @@
             type="submit"
             @click="applyHandler"
           >
-            {{ 'Применить' }}
+            {{ `Confirm` | localize }}
             <!-- <i class="material-icons right"></i> -->
           </button>
         </div>

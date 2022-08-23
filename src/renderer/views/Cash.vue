@@ -75,7 +75,8 @@ export default Vue.extend({
       
     }),
     ...mapMutations({
-      setRouter: 'setRouter'
+      setRouter: 'setRouter',
+      setPayType: 'setPayType'
     }),
 
     gotoMainMenu(seconds) {
@@ -112,6 +113,8 @@ export default Vue.extend({
   },
   mounted() {
     this.setRouter('/cash')
+    this.setPayType('cash')
+
 
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },

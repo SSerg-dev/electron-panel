@@ -41,6 +41,7 @@ export default Vue.extend({
   methods: {
     ...mapMutations({
       setRouter: 'setRouter',
+      setPayType: 'setPayType',
       setIsBonusMoney: 'setIsBonusMoney'
     }),
 
@@ -55,6 +56,7 @@ export default Vue.extend({
 
   mounted() {
     this.setRouter('/bonus')
+    this.setPayType('bonus')
     this.setIsBonusMoney(true)
     
     this.gotoMainMenu(this.getSecondsGotoMainMenu)

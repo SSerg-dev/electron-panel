@@ -868,10 +868,10 @@ export default {
       this.options.params.order = this.order // for compatibility
       this.options.params.detail.order = this.order
 
-      // console.log(
-      //   '++payStoreMoney-->options-->this.options-->',
-      //   JSON.stringify(this.options)
-      // )
+      console.log(
+        '++payStoreMoney-->options-->this.options-->',
+        JSON.stringify(this.options)
+      )
       const response = await this.storage.getClient(method, this.options, type)
 
       if (response === undefined) {
