@@ -2,14 +2,27 @@ import { exec } from 'child_process'
 import { EventEmitter } from 'events'
 import { ipcMain } from 'electron'
 
-import CoinAcceptorController from '../controllers/CoinAcceptorController'
-import BillValidatorController from '../controllers/BillValidatorController'
+import CoinAcceptorController from '../../controllers/CoinAcceptorController'
+import BillValidatorController from '../../controllers/BillValidatorController'
 
-import { wait } from '../utils'
+import { wait } from '../../utils'
+
+/* redis */
+// import { createClient } from 'redis'
+// import { Client } from 'redis-om'
+// import { Entity, Schema } from 'redis-om'
+
+// import { client } from './server.js'
+
+// import client from './server.js'
+import { plus } from './server.js'
+
+
+
+
 
 class RedisService extends EventEmitter {
-
-  // coins  
+  // coins
   static coinC5 = 5
   static coinC10 = 10
   static coinC25 = 25
@@ -30,8 +43,7 @@ class RedisService extends EventEmitter {
   }
   // end coins
 
-
- // bills
+  // bills
   static billB10 = 10
   static billB50 = 50
   static billB100 = 100
@@ -62,27 +74,36 @@ class RedisService extends EventEmitter {
     super()
   }
   public start(options: any) {
-    console.log('[...start redis]')
+    /* console.log('[...start redis]') */
+    this.create()
 
     this.bills = options.bill_validator.enable_bills
     this.coins = options.coin_acceptor.enable_coins
 
     ipcMain.on('async-cash-start', (event: any, options: any) => {
       const coins = this.Coins
-      const bills = this.Bills  
-      
+      const bills = this.Bills
+
       event.sender.send('async-cash-reply', coins, bills)
     })
     ipcMain.on('async-cash-clear', (event: any, options: any) => {
       if (options) {
-
         this.clearCoins()
         this.clearBills()
       }
     })
   }
-  private clearCoins() {
+
+  async create() {
+    console.log('[... start redis]')
     
+    // console.log('redis function-->', plus(40 , 2))
+    // client.on('error', (err) => console.log('Redis Client Error', err))
+    console.log('redis function-->', plus(40, 2))
+     
+  }
+
+  private clearCoins() {
     this.Coins.sumC5 = 0
     this.Coins.sumC10 = 0
     this.Coins.sumC25 = 0
@@ -93,7 +114,6 @@ class RedisService extends EventEmitter {
 
     this.Coins.amountCoin = 0
     this.Coins.counterCoin = 0
-
   }
   private clearBills() {
     this.Bills.sumB10 = 0
@@ -142,7 +162,6 @@ class RedisService extends EventEmitter {
       return false
     }
   } // end calcCoin
-  
 
   public calcBill(bill: any) {
     if (Number.isInteger(bill)) {

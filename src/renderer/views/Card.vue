@@ -74,6 +74,7 @@ export default Vue.extend({
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getIsCardMoney: 'getIsCardMoney',
       getProfile: 'getProfile',
+      getPayType: 'getPayType'
     }),
   },
 
@@ -94,7 +95,6 @@ export default Vue.extend({
 
         if (!this.isInitBankTerminal) {
           const observer = bankTerminal.observerItem
-          /* dev */
           if (observer)
             stream$.subscribe(observer)
         }
@@ -132,6 +132,7 @@ export default Vue.extend({
     },
 
     submitBonusHandler(balance) {
+      // console.log('$$ submitBonusHandler', balance)
       if (balance !== undefined) {
         this.balance = balance
       }
@@ -140,9 +141,13 @@ export default Vue.extend({
     submitCardHandler(card) {
       if (card !== undefined) {
         this.card = card
-        /* dev */
         this.isInitBankTerminal = false
         this.initBankTerminal()
+        // if (this.getPayType === 'card') {
+        //   console.log('$$ submitCardHandler', card)
+        //   this.initBankTerminal()
+        // }
+        
       }
     },
 
@@ -166,7 +171,6 @@ export default Vue.extend({
   },
   mounted() {
     this.setRouter('/card')
-    this.setPayType('card')
     this.setIsCardMoney(true)
 
     EventBus.$on('submitBonusMoney', this.submitBonusHandler)
@@ -194,12 +198,13 @@ export default Vue.extend({
     this.profile.lastname = lastname
 
     /* dev */
-    this.isInitBankTerminal = true
-    this.initBankTerminal()
+    // this.isInitBankTerminal = true
+    // console.log('$$ getPayType', this.getPayType)
+    // this.initBankTerminal()
   },
   beforeDestroy() {
     // this.setIsCardMoney(false)
-    this.isInitBankTerminal = false
+    // this.isInitBankTerminal = false
     clearInterval(this.intervalMainMenu)
   },
   components: {

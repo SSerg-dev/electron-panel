@@ -13,7 +13,7 @@ import {
 } from './utils'
 import OPCUAService from './services/OPCUAService'
 import GPIOService from './services/GPIOService'
-import RedisService from './services/RedisService'
+import RedisService from './services/RedisService/RedisService'
 import BillValidatorController from './controllers/BillValidatorController'
 import CoinAcceptorController from './controllers/CoinAcceptorController'
 import BankTerminalController from './controllers/BankTerminalController'

@@ -206,7 +206,7 @@ class Vendotek extends EventEmitter {
         clearTimeout(timeoutFunc)
         resolve(data)
       }
-
+      
       let timeoutFunc = () => {
         this.removeListener(event, check_response)
         reject(new Error(`Timeout response ${event}`))

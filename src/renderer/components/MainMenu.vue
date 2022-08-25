@@ -32,8 +32,7 @@
         </li>
 
         <!-- 4  -->
-        <!-- <li v-if="getIsPing && getTerminalInstalled" class="collection-item" @click="payUp('card')"> -->
-        <li v-if="getTerminalInstalled" class="collection-item" @click="payUp('card')">
+        <li v-if="getIsPing && getTerminalInstalled" class="collection-item" @click="payUp('card')">
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               💳 {{ 'BANK_CARD' | localize }}
@@ -75,7 +74,8 @@ export default Vue.extend({
       getWetBalance: 'getWetBalance',
       getMoneyToBonus: 'getMoneyToBonus',
       getIsPing: 'getIsPing',
-      getTerminalInstalled: 'getTerminalInstalled'
+      getTerminalInstalled: 'getTerminalInstalled',
+      
     })
   },
   watch: {
@@ -93,21 +93,22 @@ export default Vue.extend({
   mounted() {
     // initial timers
     /* dev */
-    if (this.getWetBalance > 0)
-      this.$router.push('/cash')
+    // if (this.getWetBalance > 0)
+    //   this.$router.push('/cash')
 
     this.setIsFirstTimer(true)
     this.setSecondsFirstTimer(15)
 
     this.setIsMoneyToBonusYes(false)
     this.setMoneyToBonus(0)
-    // setIsMoneyToBonus
     this.setIsMoneyToBonus(false)
 
+    this.setIsCardMoney(false)
+    this.setIsBonusMoney(false)
     
-
-
-
+    this.setIsPayCardMoney(false)
+    this.setIsPayBonusMoney(false)
+    
     this.isDirectCash = this.getDirectCash()
 
     if (this.isDirectCash === 1) {
@@ -140,7 +141,12 @@ export default Vue.extend({
       setSecondsFirstTimer: 'setSecondsFirstTimer',
       setIsMoneyToBonusYes: 'setIsMoneyToBonusYes',
       setMoneyToBonus: 'setMoneyToBonus',
-      setIsMoneyToBonus: 'setIsMoneyToBonus'
+      setIsMoneyToBonus: 'setIsMoneyToBonus',
+
+      setIsCardMoney: 'setIsCardMoney',
+      setIsBonusMoney: 'setIsBonusMoney',
+      setPayType: 'setPayType',
+
     }),
 
     payUp(program) {
@@ -150,10 +156,14 @@ export default Vue.extend({
           this.setIsPayBonusMoney(true)
 
           this.setIsPayCardMoney(true)
+          this.setPayType('bonus')
           this.$router.push('/bonus')
           break
         case 'card':
           this.setIsPayCardMoney(false)
+
+          this.setPayType('card')
+          console.log('$$ push main')
           this.$router.push('/card')
           break
         case 'cost':
@@ -161,6 +171,8 @@ export default Vue.extend({
           break
         case 'cash':
           this.setEnabler()
+
+          this.setPayType('cash')
           this.$router.push('/cash')
           break
 

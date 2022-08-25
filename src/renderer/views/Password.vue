@@ -439,7 +439,6 @@ export default {
       getLoginBonusPassword: 'getLoginBonusPassword',
       // getLoginBonusPhone: 'getLoginBonusPhone',
       getLoginSettingPassword: 'getLoginSettingPassword',
-      // getIsPayBonusMoney: 'getIsPayBonusMoney',
       getIsLoginSettingPassword: 'getIsLoginSettingPassword',
     }),
     ...mapMutations({
@@ -459,7 +458,9 @@ export default {
         this.setIsLoginSettingPassword(false)
       } else if (!this.getIsLoginSettingPassword()) {
         this.setLoginBonusPassword(this.password)
-        //this.setIsPayBonusMoney(true)
+
+        this.setIsPayBonusMoney(true)
+        // console.log('$$ push password')
         this.$router.push('/card')
       }
     },

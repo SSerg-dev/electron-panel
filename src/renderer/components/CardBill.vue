@@ -57,7 +57,7 @@
                 {{ parseFloat(this.balance).toFixed(this.digits) }}
               </p>
               <p align="center">
-                {{ `${this.messages[1]}` | localize}}
+                {{ `${this.messages[1]}` | localize }}
               </p>
             </div>
           </div>
@@ -661,7 +661,6 @@
 
                       font-size: 4em;
                       padding-top: 0.2em;
-                      
                     "
                   >
                     {{ `APPEND` | localize }}
@@ -764,9 +763,9 @@ export default {
 
     messages: [
       /* `Ваш баланс,` */
-      `Your_balance`, 
+      `Your_balance`,
       /* `Выберите сумму списания` */
-      `Select_charge_amount`
+      `Select_charge_amount`,
     ],
     messageIndex: -1,
 
@@ -835,7 +834,6 @@ export default {
         this.timeoutMaxDelay = setTimeout(() => {
           this.isMax = false
           flags.modeBlink(1)
-
         }, this.delay)
         if (index === 0) {
           this.$message('Сумма больше максимальной')
@@ -856,7 +854,7 @@ export default {
   },
   mounted() {
     const options = {}
-    ipcRenderer.send('async-card-message', options)
+    // ipcRenderer.send('async-card-message', options)
 
     this.setup()
 
@@ -1006,25 +1004,28 @@ export default {
         this.amount >= this.getPaymentLimitMin &&
         this.amount <= this.getPaymentLimitMax
       ) {
-        // console.log(
-        //   `CardBill.vue 996: this.getIsCardMoney ${this.getIsCardMoney} this.getIsBonusMoney ${this.getIsBonusMoney}`
-        // )
+        console.log(
+          `CardBill.vue 996: this.getIsCardMoney ${this.getIsCardMoney} this.getIsBonusMoney ${this.getIsBonusMoney}`
+        )
 
         // payCard
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
+          /* dev */
+          console.log('$$ payCard')
           this.emitCardMoney(card)
           this.setCardMoney(card)
           this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)
           this.$router.push('/status')
         }
         // payBonus
+        
         if (this.getIsBonusMoney && this.getIsCardMoney) {
           const type = this.getPanelType
           switch (type) {
             case 'wash':
               this.updateWetBonusMoney(card)
-              if (this.$route.name !== 'program') this.$router.push('/program')
-              // this.$router.push('/')
+              // if (this.$route.name !== 'program') this.$router.push('/program')
+              this.$router.push('/cash')
               break
             case 'vacuum':
               this.updateDryBonusMoney(card)
@@ -1051,10 +1052,12 @@ export default {
 
       let response
       this.options = this.getLoginBonusOptions()
+      
 
       this.options.params.pin.length > 0
         ? (this.payType = 'bonus')
         : (this.payType = 'card')
+      // console.log('$$ this.payType', this.payType)        
 
       if (this.options.params.pin.length > 0) {
         this.loading = true
@@ -1076,10 +1079,16 @@ export default {
           // clear
           this.setLoginBonusPhone('')
           this.setLoginBonusPassword('')
+          /* dev */
+        //   this.timeoutDelay = setTimeout(() => {
+        //   this.loading = false
+        // }, this.delay)
+
         } else {
           this.$message(`Ошибка:  ${response.error}`)
           this.$router.push('/password')
         }
+        
       }
     },
 
@@ -1092,17 +1101,15 @@ export default {
         this.amount = 0
         if (this.amount + parseInt(num) <= 1000) this.amount = parseInt(num)
       }
-       
+
       /* dev */
       this.timeoutMaxDelay = setTimeout(() => {
-      if (this.amount > this.getPaymentLimitMax) {
-        this.amount = this.getPaymentLimitMax
-      }
+        if (this.amount > this.getPaymentLimitMax) {
+          this.amount = this.getPaymentLimitMax
+        }
         this.amountString = this.amount.toString()
         this.display = this.amountString
-
-      }, this.delay = 500)
-
+      }, (this.delay = 500))
     },
 
     backspace() {

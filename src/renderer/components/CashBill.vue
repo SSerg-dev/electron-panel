@@ -119,6 +119,7 @@ export default {
       getDryOrder: 'getDryOrder',
       getWetBalance: 'getWetBalance',
       getIsPing: 'getIsPing',
+      getPayType:'getPayType'
       
     }),
     IsWetBalance: {
@@ -197,8 +198,8 @@ export default {
       this.sum = this.getWetBalance
 
       this.options.params.unit_id = this.getDefaultPanelNumber - 1
-      // getPayType
-      this.options.params.type = 'cash'
+      // console.log('$$ CashBill this.getPayType', this.getPayType)
+      this.options.params.type = this.getPayType || 'cash'
       this.options.params.sum = +this.sum
 
       // for statistic coins

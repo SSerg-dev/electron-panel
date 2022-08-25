@@ -354,9 +354,10 @@ export default {
 
   watch: {
     getWetBalance(flag) {
+      
       if (+flag <= 1) {
-        // +flag === 0
-        console.log('$$ this.completeWash-->', flag)
+      // if (+flag === 0) {  
+        // console.log('$$ WashTable', this.getWetPaidBonus, this.getIsBonusMoney)
         this.completeWash()
         if (this.getWetPaidBonus > 0 && this.getIsBonusMoney) {
           this.chargeBonusMoney()

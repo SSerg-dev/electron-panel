@@ -60,6 +60,9 @@ export default {
     ...mapGetters({
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getIsAppendBonusMoney: 'getIsAppendBonusMoney',
+      getIsPayBonusMoney: 'getIsPayBonusMoney',
+      getWetBalance: 'getWetBalance',
+      getWetPaidBonus: 'getWetPaidBonus',
     }),
   },
   methods: {
@@ -126,8 +129,14 @@ export default {
             if (this.$route.name !== 'program') this.$router.push('/program')
           }
           // Заплатить бонусами
-          else if (this.$route.name !== 'program') {
-            if (this.$route.name !== 'card') this.$router.push('/card')
+          else if (
+            this.getIsPayBonusMoney &&
+            +this.getWetPaidBonus === 0 &&
+            this.$route.name !== 'program'
+          ) {
+            if (this.$route.name !== 'card') {
+              this.$router.push('/card')
+            }
           }
         }
       }

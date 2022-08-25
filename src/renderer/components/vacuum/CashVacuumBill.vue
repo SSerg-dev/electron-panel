@@ -122,6 +122,7 @@ export default {
       getWetOrder: 'getWetOrder',
       getDryOrder: 'getDryOrder',
       getWetBalance: 'getWetBalance',
+      getPayType:'getPayType'
     }),
     IsDryBalance: {
       get: function () {
@@ -198,7 +199,7 @@ export default {
       this.sum = this.getDryBalance
 
       this.options.params.unit_id = this.getVacuumNumber - 1
-      this.options.params.type = 'cash'
+      this.options.params.type = this.getPayType || 'cash'
       this.options.params.sum = +this.sum
 
       // for statistic coins

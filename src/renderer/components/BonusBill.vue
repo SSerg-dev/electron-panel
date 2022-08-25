@@ -438,7 +438,6 @@ import {
 export default {
   name: 'bonus-bill',
   data: () => ({
-    loading: false,
 
     phone: '',
     phoneNotParse: '',
@@ -533,6 +532,8 @@ export default {
 
       getProfile: 'getProfile',
       getServiceBalance: 'getServiceBalance',
+      getPayType:'getPayType'
+
     }),
     IsWetBalance: {
       get: function () {
@@ -843,7 +844,8 @@ export default {
       }
       /* dev */
       this.options.params.unit_id = this.id //this.getDefaultPanelNumber - 1
-      this.options.params.type = 'cash'
+      console.log('$$ BonusBill this.getPayType', this.getPayType)
+      this.options.params.type = this.getPayType || 'cash'
       this.options.params.sum = +this.sum
 
       // for statistic coins
