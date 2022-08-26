@@ -24,6 +24,7 @@ export default {
   mutations: {
     setAllCoins(state, coins) {
       state.coins = coins
+      // console.log('$$ finance.js: 27 state.coins', state.coins)
     },
     setAllBills(state, bills) {
       state.bills = bills

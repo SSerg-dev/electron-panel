@@ -84,6 +84,7 @@
         <tr>
           <td class="cell-style">{{ `5` }}</td>
           <td>{{ getAllCoins.counterC5 }}</td>
+          <!-- <td>{{ JSON.parse(this.getAllCoins).counterC5 }}</td> -->
         </tr>
         <tr>
           <td class="cell-style">{{ `10` }}</td>
@@ -133,7 +134,6 @@ export default Vue.extend({
       getAllBills: 'getAllBills',
     }),
   },
-
   created() {
     this.initCurrency()
   },

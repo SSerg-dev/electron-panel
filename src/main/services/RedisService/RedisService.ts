@@ -6,26 +6,25 @@ import CoinAcceptorController from '../../controllers/CoinAcceptorController'
 import BillValidatorController from '../../controllers/BillValidatorController'
 
 import { wait } from '../../utils'
+import { readFileSync, writeFileSync } from 'fs'
 
 /* redis */
-// import { createClient } from 'redis'
+import { createClient } from 'redis'
 // import { Client } from 'redis-om'
 // import { Entity, Schema } from 'redis-om'
-
 // import { client } from './server.js'
-
 // import client from './server.js'
+
 import { plus } from './server.js'
-
-
-
-
 
 class RedisService extends EventEmitter {
   // coins
   static coinC5 = 5
   static coinC10 = 10
   static coinC25 = 25
+
+  static coinPath = './configs/coin-statistic.json'
+  static billPath = './configs/bill-statistic.json'
 
   coins: any = null
 
@@ -72,17 +71,26 @@ class RedisService extends EventEmitter {
 
   constructor() {
     super()
+    this.setup()
+
+  }
+  private setup() {
+    const coins = this.readData(RedisService.coinPath) 
+    this.coins = JSON.parse(coins.toString())
+    
+    console.log('$$ setup this.coins', this.coins.sumC5 ) 
   }
   public start(options: any) {
     /* console.log('[...start redis]') */
     this.create()
 
-    this.bills = options.bill_validator.enable_bills
-    this.coins = options.coin_acceptor.enable_coins
+    // this.bills = options.bill_validator.enable_bills
+    // this.coins = options.coin_acceptor.enable_coins
 
     ipcMain.on('async-cash-start', (event: any, options: any) => {
-      const coins = this.Coins
-      const bills = this.Bills
+      
+      const coins = this.readData(RedisService.coinPath)
+      const bills = this.readData(RedisService.billPath)
 
       event.sender.send('async-cash-reply', coins, bills)
     })
@@ -96,11 +104,7 @@ class RedisService extends EventEmitter {
 
   async create() {
     console.log('[... start redis]')
-    
-    // console.log('redis function-->', plus(40 , 2))
-    // client.on('error', (err) => console.log('Redis Client Error', err))
-    console.log('redis function-->', plus(40, 2))
-     
+    // console.log('redis function-->', plus(40, 2))
   }
 
   private clearCoins() {
@@ -156,12 +160,31 @@ class RedisService extends EventEmitter {
         this.Coins.sumC5 + this.Coins.sumC10 + this.Coins.sumC25
       this.Coins.counterCoin =
         this.Coins.counterC5 + this.Coins.counterC10 + this.Coins.counterC25
-
+      /* dev */
+      const data = JSON.stringify(this.Coins, null, 2)
+      const path = RedisService.coinPath
+      this.writeData(path, data)
+      
       return true
     } else {
       return false
     }
   } // end calcCoin
+  private writeData(path: any, data: any) {
+    try {
+      writeFileSync(path, data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  private readData(path: any) {
+    try {
+      return readFileSync(path, 'utf8')
+    } catch (err) {
+      console.error(err)
+      return false
+    }
+  }
 
   public calcBill(bill: any) {
     if (Number.isInteger(bill)) {
@@ -205,6 +228,10 @@ class RedisService extends EventEmitter {
         this.Bills.counterB100 +
         this.Bills.counterB200 +
         this.Bills.counterB500
+      /* dev */
+      const data = JSON.stringify(this.Bills, null, 2)
+      const path = RedisService.billPath  
+      this.writeData(path, data)
 
       return true
     } else {

@@ -732,7 +732,7 @@ export default {
           this.setIsAppendBonusMoney(false)
           if (this.$route.name !== 'program') this.$router.push('/program')
         } else {
-          this.$message(`appendBonusQrMoney Ошибка:  ${response.error}`)
+          // this.$message(`appendBonusQrMoney Ошибка:  ${response.error}`)
         }
       } else {
         this.$message(`Бонусы не зачислены, на мойке сервисные деньги`)
@@ -886,19 +886,19 @@ export default {
         case 'wash':
           if (+response.result === 0 && +this.getWetBalance > 0) {
             if (this.$route.name !== 'program') this.$router.push('/program')
-            this.$message(
-              `На бонусную систему wash connect payStoreMoney зачислено ${+this
-                .getWetBalance} `
-            )
+            // this.$message(
+            //   `На бонусную систему wash connect payStoreMoney зачислено ${+this
+            //     .getWetBalance} `
+            // )
           }
           break
         case 'vacuum':
           if (+response.result === 0 && +this.getDryBalance > 0) {
             if (this.$route.name !== 'program') this.$router.push('/program')
-            this.$message(
-              `На бонусную систему vacuum connect payStoreMoney зачислено ${+this
-                .getDryBalance} `
-            )
+            // this.$message(
+            //   `На бонусную систему vacuum connect payStoreMoney зачислено ${+this
+            //     .getDryBalance} `
+            // )
           }
           break
         default:
@@ -934,7 +934,7 @@ export default {
           this.updateWetZeroMoney(true)
           // this.setIsMoneyToBonus(false)
 
-          this.$message(`Ваш остаток ${this.getMoneyToBonus} сохранен бонусами`)
+          // this.$message(`Ваш остаток ${this.getMoneyToBonus} сохранен бонусами`)
           this.setIsAppendBonusMoney(false)
 
           this.timeoutDelay = setTimeout(() => {
@@ -943,7 +943,7 @@ export default {
             } catch (err) {}
           }, (this.delay = 0))
         } else {
-          this.$message(`Ошибка:  ${response.error}`)
+          // this.$message(`Ошибка:  ${response.error}`)
         }
       } else {
         this.$message(`Введите правильно номер мобильного телефона`)

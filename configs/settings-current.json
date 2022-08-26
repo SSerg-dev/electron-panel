@@ -1,8 +1,8 @@
 {
   "bank_terminal": {
-    "hardware": "pax",
+    "hardware": "vendotek",
     "installed": true,
-    "max_sum": 510,
+    "max_sum": 410,
     "min_sum": 0
   },
   "bill_validator": {
@@ -99,7 +99,7 @@
     "degreasing_program2": 0,
     "degreasing_program_to": 0,
     "degreasing_program_to2": 0,
-    "direct_cash": 1,
+    "direct_cash": true,
     "disk_color": 0,
     "disk_color_type": 0,
     "hide_cursor": true,

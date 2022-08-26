@@ -151,11 +151,11 @@ export default Vue.extend({
       ipcRenderer.send('async-cash-start', options)
 
       ipcRenderer.on('async-cash-reply', (event, coins, bills) => {
-        this.coins = coins
-        this.bills = bills
+        this.coins = JSON.parse(coins) || {} // coins
+        this.bills = JSON.parse(bills) || {} // bills
 
-        this.setAllCoins(coins)
-        this.setAllBills(bills)
+        this.setAllCoins(this.coins)
+        this.setAllBills(this.bills)
 
         if (coins || bills) {
           isClear = true

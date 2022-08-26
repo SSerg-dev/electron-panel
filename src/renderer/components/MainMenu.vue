@@ -93,8 +93,8 @@ export default Vue.extend({
   mounted() {
     // initial timers
     /* dev */
-    // if (this.getWetBalance > 0)
-    //   this.$router.push('/cash')
+    if (this.getWetBalance > 0)
+      this.$router.push('/cash')
 
     this.setIsFirstTimer(true)
     this.setSecondsFirstTimer(15)
@@ -163,7 +163,6 @@ export default Vue.extend({
           this.setIsPayCardMoney(false)
 
           this.setPayType('card')
-          console.log('$$ push main')
           this.$router.push('/card')
           break
         case 'cost':

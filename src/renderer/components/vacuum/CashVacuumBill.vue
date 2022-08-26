@@ -241,11 +241,11 @@ export default {
       if (+response.result === 0 && +this.getDryBalance > 0) {
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(
-          `Оплата наличными прошла успешно, внесенная сумма:  ${+this
+          `Оплата прошла успешно, внесенная сумма:  ${+this
             .getDryBalance} ₽`
         )
       } else {
-        this.$message(`Оплата наличными не прошла`)
+        this.$message(`Оплата не прошла`)
       }
     },
     createOrder() {

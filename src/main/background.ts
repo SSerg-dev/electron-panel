@@ -139,7 +139,7 @@ const idle = async (config: any) => {
       OPCUAClient.start(config.type, +options.index)
     })
   }
-  /* dev */
+  /* dev hidden */
 
   /* if (config.bill_validator) {
     if (
@@ -218,8 +218,6 @@ let settings: any = {}
 try {
   let rawdata
   /* dev */
-  // rawdata = readFileSync('./configs/settings.json')
-  
   rawdata = readFileSync('./configs/settings-current.json')
   if (!rawdata.length) {
     rawdata = readFileSync('./configs/settings.json')
