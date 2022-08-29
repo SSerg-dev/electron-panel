@@ -15,7 +15,7 @@ import { createClient } from 'redis'
 // import { client } from './server.js'
 // import client from './server.js'
 
-import { plus } from './server.js'
+// import { plus } from './server.js'
 
 class RedisService extends EventEmitter {
   // coins
@@ -72,23 +72,22 @@ class RedisService extends EventEmitter {
   constructor() {
     super()
     this.setup()
-
   }
   private setup() {
-    const coins = this.readData(RedisService.coinPath) 
-    this.coins = JSON.parse(coins.toString())
-    
-    console.log('$$ setup this.coins', this.coins.sumC5 ) 
+    this.initCoins()
+    this.initBills()
+  }
+  private initCoins() {
+    const coins = this.readData(RedisService.coinPath)
+    this.Coins = JSON.parse(coins.toString())
+  }
+  private initBills() {
+    const bills = this.readData(RedisService.billPath)
+    this.Bills = JSON.parse(bills.toString())
   }
   public start(options: any) {
-    /* console.log('[...start redis]') */
     this.create()
-
-    // this.bills = options.bill_validator.enable_bills
-    // this.coins = options.coin_acceptor.enable_coins
-
     ipcMain.on('async-cash-start', (event: any, options: any) => {
-      
       const coins = this.readData(RedisService.coinPath)
       const bills = this.readData(RedisService.billPath)
 
@@ -108,6 +107,7 @@ class RedisService extends EventEmitter {
   }
 
   private clearCoins() {
+
     this.Coins.sumC5 = 0
     this.Coins.sumC10 = 0
     this.Coins.sumC25 = 0
@@ -118,6 +118,10 @@ class RedisService extends EventEmitter {
 
     this.Coins.amountCoin = 0
     this.Coins.counterCoin = 0
+    
+    const data = JSON.stringify(this.Coins, null, 2)
+    const path = RedisService.coinPath
+    this.writeData(path, data)
   }
   private clearBills() {
     this.Bills.sumB10 = 0
@@ -134,8 +138,13 @@ class RedisService extends EventEmitter {
 
     this.Bills.amountBill = 0
     this.Bills.counterBill = 0
+
+    const data = JSON.stringify(this.Bills, null, 2)
+    const path = RedisService.billPath
+    this.writeData(path, data)
   }
   public calcCoin(coin: number) {
+    this.initCoins()
     if (Number.isInteger(coin)) {
       const denomination = coin.toString()
 
@@ -160,11 +169,11 @@ class RedisService extends EventEmitter {
         this.Coins.sumC5 + this.Coins.sumC10 + this.Coins.sumC25
       this.Coins.counterCoin =
         this.Coins.counterC5 + this.Coins.counterC10 + this.Coins.counterC25
-      /* dev */
+
       const data = JSON.stringify(this.Coins, null, 2)
       const path = RedisService.coinPath
       this.writeData(path, data)
-      
+
       return true
     } else {
       return false
@@ -187,6 +196,7 @@ class RedisService extends EventEmitter {
   }
 
   public calcBill(bill: any) {
+    this.initBills()
     if (Number.isInteger(bill)) {
       const denomination = bill.toString()
 
@@ -228,9 +238,9 @@ class RedisService extends EventEmitter {
         this.Bills.counterB100 +
         this.Bills.counterB200 +
         this.Bills.counterB500
-      /* dev */
+
       const data = JSON.stringify(this.Bills, null, 2)
-      const path = RedisService.billPath  
+      const path = RedisService.billPath
       this.writeData(path, data)
 
       return true

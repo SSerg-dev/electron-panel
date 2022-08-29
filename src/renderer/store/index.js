@@ -148,6 +148,10 @@ export default new Vuex.Store({
     kktParameters: {
       isKktInstalled: false
     },
+    users: {
+      user: '',
+      roles: ''
+    },
 
     isDebug: true
   },
@@ -583,6 +587,9 @@ export default new Vuex.Store({
     },
     getIsKktInstalled(state) {
       return state.kktParameters.isKktInstalled
+    },
+    getUsersRole(state) {
+      return state.users.role
     }
   },
 
@@ -609,8 +616,7 @@ export default new Vuex.Store({
       // console.log('++parameter.value-->', parameter.value)
 
       /* dev */
-      // TAG_KKT_INSTALLED: '::AsGlobalPV:Recipe.Kkm.EnableDevice'
-      // ++displayName--> Kkm.EnableDevice
+      // TAG_USER_NAME: '::AsGlobalPV:User[{0}].name'
 
       switch (displayName) {
         case 'progPrice':
@@ -649,13 +655,32 @@ export default new Vuex.Store({
         case 'active':
           state.parameters.active = parameter.value
           break
+
         // common parameters
         case 'Kkm.EnableDevice':
           state.kktParameters.isKktInstalled = JSON.parse(parameter.value)
           break
+        case 'name':
+          state.users.user = parameter.value
+          if (parameter.value === 'user') {
+            state.users.role = 'user'
+          } else if (parameter.value === 'admin') {
+            state.users.role = 'admin'
+          } 
+          else if (parameter.value === 'alles') {
+            state.users.role = 'admin'
+          } 
+          else if (parameter.value === 'guest') {
+            state.users.role = 'user'
+          } 
+          else {
+            state.users.role = 'unknown'
+          }
+          console.log('$$ state.users.role', state.users.role)
+
+          break
 
         default:
-          //console.log('no param')
           break
       }
     },

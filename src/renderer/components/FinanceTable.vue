@@ -2,7 +2,7 @@
   <div>
     <div class="page-title">
       <h1>
-        <p>Статистика поста №{{ getDefaultPanelNumber }}</p>
+        <p align="center" >Касса поста №{{ getDefaultPanelNumber }}</p>
       </h1>
     </div>
 
@@ -37,23 +37,23 @@
           </td>
           <td>{{ getAllBills.counterBill }}</td>
         </tr>
-        <tr>
-          <td class="cell-style">{{ `10` }}</td>
+        <tr v-if="getAllBills.counterB10">
+          <td class="cell-style" style="padding-left: 1.5em;">{{ `10` }}</td>
           <td>{{ getAllBills.counterB10 }}</td>
         </tr>
-        <tr>
-          <td class="cell-style">{{ `50` }}</td>
+        <tr v-if="getAllBills.counterB50">
+          <td class="cell-style" style="padding-left: 1.5em;">{{ `50` }}</td>
           <td>{{ getAllBills.counterB50 }}</td>
         </tr>
-        <tr>
+        <tr v-if="getAllBills.counterB100">
           <td class="cell-style">{{ `100` }}</td>
           <td>{{ getAllBills.counterB100 }}</td>
         </tr>
-        <tr>
+        <tr v-if="getAllBills.counterB200">
           <td class="cell-style">{{ `200` }}</td>
           <td>{{ getAllBills.counterB200 }}</td>
         </tr>
-        <tr>
+        <tr v-if="getAllBills.counterB500">
           <td class="cell-style">{{ `500` }}</td>
           <td>{{ getAllBills.counterB500 }}</td>
         </tr>
@@ -81,12 +81,12 @@
           </td>
         </tr>
 
-        <tr>
-          <td class="cell-style">{{ `5` }}</td>
+        <tr v-if="getAllCoins.counterC5">
+          <td class="cell-style" style="padding-left: 1.5em;">{{ `5` }}</td>
           <td>{{ getAllCoins.counterC5 }}</td>
           <!-- <td>{{ JSON.parse(this.getAllCoins).counterC5 }}</td> -->
         </tr>
-        <tr>
+        <tr v-if="getAllCoins.counterC10">
           <td class="cell-style">{{ `10` }}</td>
           <td>{{ getAllCoins.counterC10 }}</td>
         </tr>
@@ -145,8 +145,8 @@ export default Vue.extend({
 .page-title {
   margin-top: 16em;
   margin-bottom: 2em;
-  margin-left: 16.5em; /* 16em; */
-  padding-top: em;
+  /* margin-left: 16.5em; */
+  padding-top: 0em;
   color: white;
 }
 .cell-style {

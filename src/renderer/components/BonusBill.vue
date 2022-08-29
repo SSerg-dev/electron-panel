@@ -802,18 +802,17 @@ export default {
     /* dev */
     getCashMoney() {
       let isClear = false
-      const options = 'ipcRenderer.send coin from BonusBill'
+      const options = {}
       ipcRenderer.send('async-cash-start', options)
 
       ipcRenderer.on('async-cash-reply', (event, coins, bills) => {
         this.coins = coins
         this.bills = bills
-        // this.payStoreMoney()
 
-        if (coins || bills) {
-          isClear = true
-          event.sender.send('async-cash-clear', isClear)
-        }
+        // if (coins || bills) {
+        //   isClear = true
+        //   event.sender.send('async-cash-clear', isClear)
+        // }
       })
     },
 

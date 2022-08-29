@@ -182,10 +182,10 @@ export default {
         this.coins = coins
         this.bills = bills
 
-        if (coins || bills) {
-          isClear = true
-          event.sender.send('async-cash-clear', isClear)
-        }
+        // if (coins || bills) {
+        //   isClear = true
+        //   event.sender.send('async-cash-clear', isClear)
+        // }
       })
     },
 

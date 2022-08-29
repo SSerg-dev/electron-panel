@@ -101,6 +101,8 @@ export default Vue.extend({
     url: 'https://192.168.1.3/',
     storage: null,
     options: {},
+    id: 0,
+    user: 'user',
 
     isChart: false,
     cash: {},
@@ -114,6 +116,7 @@ export default Vue.extend({
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getAllCoins: 'getAllCoins',
       getAllBills: 'getAllBills',
+      getPanelType: 'getPanelType',
     }),
   },
   methods: {
@@ -128,7 +131,18 @@ export default Vue.extend({
     },
 
     doCollect() {
-      if (confirm('Подтвердите инкассацию')) this.collect()
+      if (confirm('Подтвердите инкассацию')) {
+        this.collect()
+        // this.clearCash()
+       
+      }
+    },
+    clearCash() {
+      let isClear = false
+      if (this.coins || this.bills) {
+        isClear = true
+        ipcRenderer.send('async-cash-clear', isClear)
+      }
     },
 
     async readCash() {
@@ -146,21 +160,21 @@ export default Vue.extend({
       }
     },
     getCashMoney() {
-      let isClear = false
+      // let isClear = false
       const options = 'ipcRenderer.send coin from CashBill'
       ipcRenderer.send('async-cash-start', options)
 
       ipcRenderer.on('async-cash-reply', (event, coins, bills) => {
-        this.coins = JSON.parse(coins) || {} // coins
-        this.bills = JSON.parse(bills) || {} // bills
+        this.coins = JSON.parse(coins) || {}
+        this.bills = JSON.parse(bills) || {}
 
         this.setAllCoins(this.coins)
         this.setAllBills(this.bills)
 
-        if (coins || bills) {
-          isClear = true
-          // event.sender.send('async-cash-clear', isClear)
-        }
+        // if (coins || bills) {
+        //   isClear = true
+        //   event.sender.send('async-cash-clear', isClear)
+        // }
       })
     },
 
@@ -169,12 +183,28 @@ export default Vue.extend({
       const type = types[4] // ['cash', 'card', 'bonus', 'service', 'common', 'ping', 'finance']
 
       this.options = this.getCollectOptions()
+      const panelType = this.getPanelType
+      switch (panelType) {
+        case 'wash':
+          this.id = this.getDefaultPanelNumber - 1
+          break
+        case 'vacuum':
+          this.id = this.getVacuumNumber - 1
+          break
+        default:
+          break
+      }
+      this.options.params.unit_id = this.id
+      this.options.params.user = this.user
+
       const response = await this.storage.getClient(method, this.options, type)
 
-      if (+response.result === 0)
+      if (+response.result === 0) {
         this.$message(
           `Инкассация поста № ${this.getDefaultPanelNumber} выполнена успешно`
         )
+        this.clearCash()
+      }
     },
     ...mapGetters({
       getCollectOptions: 'getCollectOptions',

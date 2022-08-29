@@ -4,26 +4,27 @@
     <div class="col s6">
       <div
         class="card grey lighten-3"
-        style="height: 220px; border: solid 3px #00B9E3; border-radius: 2rem;"
+        style="height: 220px; border: solid 3px #00b9e3; border-radius: 2rem"
       >
         <div class="card-content black-text">
           <span class="card-title">Сервисы: </span>
           <!-- 1.5em -->
-          <p style="font-size: 24px;">
+          <p style="font-size: 24px">
             {{ `Сервисный баланс: ${getServiceBalance}` }}
           </p>
 
           <table>
             <tr>
               <td>
-                <!-- style="border: solid 3px #00B9E3;" -->
                 <button
+                  v-if="getUsersRole === 'admin'"
                   class="btn waves-effect waves-light black-text button-setting"
                   type="submit"
                   @click="setService('ten')"
                 >
-                  <div >
+                  <div>
                     {{ `+ ${getIncrement}` }}
+                    {{getUsersRole}}
                   </div>
 
                   <i class="material-icons right"></i>
@@ -31,7 +32,7 @@
               </td>
               <td>
                 <button
-                  class="btn waves-effect waves-light  black-text button-setting"
+                  class="btn waves-effect waves-light black-text button-setting"
                   type="submit"
                   @click="setService('balance')"
                 >
@@ -82,20 +83,22 @@ export default Vue.extend({
   data: () => ({}),
   mounted() {
     this.setService('balance')
+    console.log('$$ getUsersRole', this.getUsersRole)
   },
   computed: {
     ...mapGetters({
       getWetBalance: 'getWetBalance',
       getServiceBalance: 'getServiceBalance',
-      getIncrement: 'getIncrement'
-    })
+      getIncrement: 'getIncrement',
+      getUsersRole: 'getUsersRole',
+    }),
   },
   methods: {
     ...mapActions({
       updateOpenDoor: 'updateOpenDoor',
       updatePlusTen: 'updatePlusTen',
       updateClearBalance: 'updateClearBalance',
-      updateReboot: 'updateReboot'
+      updateReboot: 'updateReboot',
     }),
 
     ...mapMutations({}),
@@ -117,8 +120,8 @@ export default Vue.extend({
         default:
           break
       }
-    }
-  }
+    },
+  },
 })
 </script>
 
