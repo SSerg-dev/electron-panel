@@ -6,11 +6,11 @@
         <li class="collection-item cost" @click="payUp('cost')">
           <div
             class="card white waves-effect button-style"
-            style="padding-left: 0em;"
+            style="padding-left: 0em"
           >
             <div
               class="card-content black-text button-content-style"
-              style="justify-content: center; "
+              style="justify-content: center"
             >
               {{ 'PROGRAMS_COST' | localize }}
             </div>
@@ -32,7 +32,11 @@
         </li>
 
         <!-- 4  -->
-        <li v-if="getIsPing && getTerminalInstalled" class="collection-item" @click="payUp('card')">
+        <li
+          v-if="getIsPing && getTerminalInstalled"
+          class="collection-item"
+          @click="payUp('card')"
+        >
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               💳 {{ 'BANK_CARD' | localize }}
@@ -46,7 +50,6 @@
             <div class="card-content black-text button-content-style">
               🎁 {{ 'BONUSES' | localize }}
             </div>
-            
           </div>
         </li>
       </ul>
@@ -65,7 +68,7 @@ export default Vue.extend({
       cash_enabler: false,
       isDirectCash: false,
       delay: 10000,
-      timeoutDelay: null
+      timeoutDelay: null,
     }
   },
   props: ['type'],
@@ -75,26 +78,23 @@ export default Vue.extend({
       getMoneyToBonus: 'getMoneyToBonus',
       getIsPing: 'getIsPing',
       getTerminalInstalled: 'getTerminalInstalled',
-      
-    })
+    }),
   },
   watch: {
     getWetBalance(value) {
-      if(value > 0 && this.getMoneyToBonus === 0 ) {
+      if (value > 0 && this.getMoneyToBonus === 0) {
         /* dev */
         // this.setIsMoneyToBonusYes(false)
         this.setIsMoneyToBonus(false)
         this.$router.push('/cash')
       }
-        
-    }
+    },
   },
 
   mounted() {
     // initial timers
     /* dev */
-    if (this.getWetBalance > 0)
-      this.$router.push('/cash')
+    if (this.getWetBalance > 0) this.$router.push('/cash')
 
     this.setIsFirstTimer(true)
     this.setSecondsFirstTimer(15)
@@ -105,13 +105,13 @@ export default Vue.extend({
 
     this.setIsCardMoney(false)
     this.setIsBonusMoney(false)
-    
+
     this.setIsPayCardMoney(false)
     this.setIsPayBonusMoney(false)
-    
+
     this.isDirectCash = this.getDirectCash()
 
-    if (this.isDirectCash === 1) {
+    if (this.isDirectCash) {
       this.timeoutDelay = setTimeout(() => {
         this.setEnabler()
       }, this.delay)
@@ -120,16 +120,14 @@ export default Vue.extend({
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
   },
-  created() {
-  },
+  created() {},
 
   methods: {
     ...mapGetters({
       getCashEnabler: 'getCashEnabler',
       getIsPayCardMoney: 'getIsPayCardMoney',
       getDirectCash: 'getDirectCash',
-      getSecondsFirstTimer: 'getSecondsFirstTimer'
-      
+      getSecondsFirstTimer: 'getSecondsFirstTimer',
     }),
     ...mapMutations({
       setCashEnabler: 'setCashEnabler',
@@ -146,11 +144,10 @@ export default Vue.extend({
       setIsCardMoney: 'setIsCardMoney',
       setIsBonusMoney: 'setIsBonusMoney',
       setPayType: 'setPayType',
-
     }),
 
     payUp(program) {
-      switch (program) { 
+      switch (program) {
         case 'bonus':
           this.setIsAppendBonusMoney(false)
           this.setIsPayBonusMoney(true)
@@ -166,7 +163,7 @@ export default Vue.extend({
           this.$router.push('/card')
           break
         case 'cost':
-          this.$router.push('/cost') 
+          this.$router.push('/cost')
           break
         case 'cash':
           this.setEnabler()
@@ -181,16 +178,14 @@ export default Vue.extend({
     },
 
     setEnabler() {
-      //console.log('setEnabler')
-
       this.getCashEnabler() === false
         ? (this.cash_enabler = true)
         : (this.cash_enabler = false)
+      
       this.setCashEnabler(this.cash_enabler)
-
       ipcRenderer.send('cash_enabler', 'true')
-    }
-  }
+    },
+  },
 })
 </script>
 

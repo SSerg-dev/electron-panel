@@ -149,6 +149,7 @@ class OPCUAService extends EventEmitter {
 
   public start = async (type: string = 'Post', num: number = 1) => {
     try {
+
       await this.stop()
       await this.client.connect(this.endpointUrl)
       console.log(`Connected to ${this.endpointUrl}`)

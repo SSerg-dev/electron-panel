@@ -149,8 +149,21 @@ export default new Vuex.Store({
       isKktInstalled: false
     },
     users: {
-      user: '',
-      roles: ''
+      name: '',
+      role: '',
+      isAccess: {
+        /* B&D */ /* index 0-10 */
+        mainMenu: false, // 1
+        mainDiagnostic: false, // 2
+        mainPosts: false, // 3
+        mainSetting: false, // 4
+        mainStatistic: false, // 5
+        mainFinance: false, // 6
+        /* panels */
+        panelCollection: false, // 0
+        panelPlusTen: false, // 7
+        panelOpen: false // 8
+      }
     },
 
     isDebug: true
@@ -590,6 +603,13 @@ export default new Vuex.Store({
     },
     getUsersRole(state) {
       return state.users.role
+    },
+    getUsersName(state) {
+      return state.users.name
+    },
+    /* dev */
+    getUsersIsAccess (state) {
+      return state.users.isAccess
     }
   },
 
@@ -602,7 +622,7 @@ export default new Vuex.Store({
     },
     // set one parameter
     setParameters(state, parameter) {
-      //console.log('--setParameters')
+      // console.log('$$ --setParameters', parameter)
 
       state.isParamsChange = !state.isParamsChange
 
@@ -661,24 +681,39 @@ export default new Vuex.Store({
           state.kktParameters.isKktInstalled = JSON.parse(parameter.value)
           break
         case 'name':
-          state.users.user = parameter.value
+          state.users.name = parameter.value
           if (parameter.value === 'user') {
             state.users.role = 'user'
           } else if (parameter.value === 'admin') {
             state.users.role = 'admin'
-          } 
-          else if (parameter.value === 'alles') {
+          } else if (parameter.value === 'alles') {
             state.users.role = 'admin'
-          } 
-          else if (parameter.value === 'guest') {
+          } else if (parameter.value === 'guest') {
             state.users.role = 'user'
-          } 
-          else {
-            state.users.role = 'unknown'
+          } else {
+            state.users.role = /* 'admin' */ 'unknown'
           }
-          console.log('$$ state.users.role', state.users.role)
-
+          // console.log('$$ state.users.role', state.users.role)
           break
+        case 'access':
+          // getUsersIsAccess
+          const comma = ','
+          const arrayAccess = parameter.value.split(comma) 
+          // console.log('$$ state.users.isAccess', arrayAccess[0] /* parameter.value */ /* state.users.isAccess */)
+          // set access B&D
+          state.users.isAccess.mainMenu = arrayAccess[1]
+          state.users.isAccess.mainDiagnostic = arrayAccess[2]
+          state.users.isAccess.mainPosts = arrayAccess[3]
+          state.users.isAccess.mainSetting = arrayAccess[4]
+          state.users.isAccess.mainStatistic = arrayAccess[5]
+          state.users.isAccess.mainFinance = arrayAccess[6]
+          // set access panels
+          state.users.isAccess.panelCollection = arrayAccess[0]
+          state.users.isAccess.panelPlusTen = arrayAccess[7]
+          state.users.isAccess.panelOpen = arrayAccess[8]
+          
+          break  
+          
 
         default:
           break

@@ -5,16 +5,27 @@
       <div v-if="this.getPanelType === 'wash'">
         <!-- show Wet Balance-->
 
-        <!-- 01 dev hidden -->
-        <div
+        <!-- show wet balance -->
+
+        <!-- <div
           v-if="
             (getWetBalance >= 0 &&
               !getIsMoneyToBonus &&
               !getIsMoneyToBonusYes) ||
-              this.$route.name === 'cash' ||
-              (this.$route.name === 'program' && !getIsMoneyToBonus)
+            this.$route.name === 'cash' ||
+            (this.$route.name === 'program' && !getIsMoneyToBonus)
+          "
+        > -->
+        <!-- instead show wet balance -->
+        <div
+          v-if="
+            (+getWetBalance >= 0 && +this.getWetStopFreeCount === 0) &&
+            (this.$route.name === 'cash' ||
+            this.$route.name === 'program')
           "
         >
+          <!-- end instead show wet balance  -->
+
           {{
             `${parseFloat(getWetBalance / Math.pow(10, digits)).toFixed(
               digits
@@ -22,8 +33,8 @@
           }}
         </div>
 
-        <!-- dev hidden -->
-        <div v-else-if="getIsMoneyToBonusYes" style="color: yellow;">
+        <!-- -->
+        <div v-else-if="getIsMoneyToBonusYes" style="color: yellow">
           {{
             `${parseFloat(getMoneyToBonus / Math.pow(10, digits)).toFixed(
               digits
@@ -33,7 +44,7 @@
 
         <!-- bonus timer -->
         <!-- dev hidden -->
-        <div
+        <!-- <div
           v-else-if="
             getIsMoneyToBonus &&
               this.$route.name !== 'bonus' &&
@@ -56,8 +67,32 @@
               
             </li>
           </ul>
+        </div> -->
+
+        <!-- instead bonus timer for simple-->
+        <div
+          v-if="
+            this.$route.name !== 'bonus' &&
+            this.$route.name !== 'cash' &&
+            this.getWetStopFreeCount > 0
+          "
+        >
+          <ul>
+            <li class="counter">
+              {{ `${this.getWetStopFreeCount}` }}
+            </li>
+            <li class="separator">:</li>
+            <li class="bonus">
+              {{
+                `${parseFloat(
+                  this.getWetBalance / Math.pow(10, digits)
+                ).toFixed(digits)}`
+              }}
+            </li>
+          </ul>
         </div>
 
+        <!-- end instead bonus timer for simple -->
       </div>
     </div>
 
@@ -73,7 +108,6 @@
             )}`
           }}
         </div>
-
       </div>
     </div>
 
@@ -91,20 +125,20 @@ export default Vue.extend({
       id: 0,
       title: '',
       type: '',
-      value: 0
+      value: 0,
     },
     digits: 0,
-    timerSeconds: 0
+    timerSeconds: 0,
   }),
 
   props: {
     messages: {
       type: Object,
-      required: false
-    }
+      required: false,
+    },
   },
   methods: {
-    ...mapActions({})
+    ...mapActions({}),
   },
   computed: {
     ...mapGetters({
@@ -119,12 +153,12 @@ export default Vue.extend({
       getIsFirstTimer: 'getIsFirstTimer',
       getIsMoneyToBonusNo: 'getIsMoneyToBonusNo',
       getIsMoneyToBonusYes: 'getIsMoneyToBonusYes',
-      getMoneyToBonus: 'getMoneyToBonus'
+      getMoneyToBonus: 'getMoneyToBonus',
     }),
     ...mapMutations({
       setWetBalance: 'setWetBalance',
-      setDryBalance: 'setDryBalance'
-    })
+      setDryBalance: 'setDryBalance',
+    }),
   },
   watch: {
     /* dev */
@@ -143,7 +177,7 @@ export default Vue.extend({
     },
     getSecondsBonusTimer(flag) {
       if (flag >= 0) this.timerSeconds = flag
-    }
+    },
   },
 
   mounted() {},
@@ -151,7 +185,7 @@ export default Vue.extend({
     if (parseInt(this.getFixedCurrency) > 0) {
       this.digits = this.getFixedCurrency
     }
-  }
+  },
 })
 </script>
 
@@ -181,8 +215,6 @@ export default Vue.extend({
   display: flex;
   align-items: center;
   justify-content: center;
-
-  
 }
 ul {
   width: 4em;

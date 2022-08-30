@@ -46,6 +46,8 @@
         </div>
 
         <!-- v-if="!getIsMoneyToBonus" -->
+        <!-- dev hidden -->
+        <!-- 
         <div
           @click="setProgram('savemoney')"
           class="waves-effect bonus"
@@ -75,7 +77,8 @@
             </div>
           </div>
         </div>
-
+        -->
+        
         <div v-if="this.isVisibleWashTableBonus" class="savemoney">
           <WashTableBonus :actives="actives" />
         </div>
@@ -383,7 +386,8 @@ export default {
     //   }
     // },
 
-    getIsMoneyToBonus(flag) {
+    /* dev hidden */
+    /* getIsMoneyToBonus(flag) {
       console.log('++getIsMoneyToBonus', flag)
       if (flag) {
         this.buttonBonus.show()
@@ -393,7 +397,8 @@ export default {
       } else {
         this.buttonBonus.hide()
       }
-    },
+    }, */
+    
     getWetProgShow(flag) {
       // console.log('getWetProgShow', flag, this.actives[14])
     },
@@ -405,14 +410,15 @@ export default {
         clearInterval(this.intervalFirstTimer)
       }
     },
-    getWetStopFreeCount(flag) {
+    /* dev hidden */ 
+    /* getWetStopFreeCount(flag) {
       if (flag > 0) {
         this.buttonBonus.show()
         this.flex()
       } else {
         this.buttonBonus.hide()
       }
-    },
+    }, */
     getSecondsBonusTimer(flag) {
       if (flag > 0) {
         /* dev */
@@ -695,7 +701,8 @@ export default {
 
       // button bonus
       /* dev hidden */
-      this.buttonBonus = new Button({
+
+      /* this.buttonBonus = new Button({
         selector: '#button-bonus',
 
         width: 8.5,
@@ -709,13 +716,14 @@ export default {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-      })
+      }) */
 
       if (!+this.getWetBalance > 0) this.buttonPrice.hide()
       /* dev */
       // if (!this.getIsReceiptRead) this.buttonReceipt.hide()
-
-      if (!this.getIsMoneyToBonus) this.buttonBonus.hide()
+      
+      /* dev hidden */
+      // if (!this.getIsMoneyToBonus) this.buttonBonus.hide()
 
       // end classes instances
     },

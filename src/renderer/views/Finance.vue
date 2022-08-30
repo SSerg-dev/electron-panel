@@ -42,6 +42,7 @@
         <div class="col">
           <router-link to="/finance">
             <button
+              v-if="getUsersRole.toLowerCase() === 'admin'"
               class="
                 btn
                 waves-effect waves-light
@@ -117,6 +118,7 @@ export default Vue.extend({
       getAllCoins: 'getAllCoins',
       getAllBills: 'getAllBills',
       getPanelType: 'getPanelType',
+      getUsersRole: 'getUsersRole'
     }),
   },
   methods: {

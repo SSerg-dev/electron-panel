@@ -16,15 +16,15 @@
           <table>
             <tr>
               <td>
+                <!-- v-if="getUsersRole.toLowerCase() === 'admin'" -->
                 <button
-                  v-if="getUsersRole === 'admin'"
+                  
                   class="btn waves-effect waves-light black-text button-setting"
                   type="submit"
                   @click="setService('ten')"
                 >
                   <div>
                     {{ `+ ${getIncrement}` }}
-                    {{getUsersRole}}
                   </div>
 
                   <i class="material-icons right"></i>
@@ -44,12 +44,17 @@
 
             <tr>
               <td>
+                <!-- v-if="getUsersRole.toLowerCase() === 'admin'" -->
+                <!-- v-if="getUsersIsAccess.panelPlusTen" -->
                 <button
+                  
                   class="btn waves-effect waves-light black-text button-setting"
                   type="submit"
                   @click="setService('door')"
                 >
                   {{ `Открыть дверь` }}
+                  <!-- {{getUsersIsAccess.panelPlusTen}} -->
+
                   <i class="material-icons right"></i>
                 </button>
               </td>
@@ -83,7 +88,7 @@ export default Vue.extend({
   data: () => ({}),
   mounted() {
     this.setService('balance')
-    console.log('$$ getUsersRole', this.getUsersRole)
+    // console.log('$$ getUsersRole', this.getUsersRole)
   },
   computed: {
     ...mapGetters({
@@ -91,6 +96,8 @@ export default Vue.extend({
       getServiceBalance: 'getServiceBalance',
       getIncrement: 'getIncrement',
       getUsersRole: 'getUsersRole',
+      getUsersName: 'getUsersName',
+      getUsersIsAccess: 'getUsersIsAccess'
     }),
   },
   methods: {
@@ -100,6 +107,7 @@ export default Vue.extend({
       updateClearBalance: 'updateClearBalance',
       updateReboot: 'updateReboot',
     }),
+    ...mapGetters({}),
 
     ...mapMutations({}),
 

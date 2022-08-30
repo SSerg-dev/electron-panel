@@ -2,7 +2,7 @@
   "bank_terminal": {
     "hardware": "vendotek",
     "installed": true,
-    "max_sum": 410,
+    "max_sum": 510,
     "min_sum": 0
   },
   "bill_validator": {

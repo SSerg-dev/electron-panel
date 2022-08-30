@@ -82,12 +82,12 @@
         </tr>
 
         <tr v-if="getAllCoins.counterC5">
-          <td class="cell-style" style="padding-left: 1.5em;">{{ `5` }}</td>
+          <td class="cell-style" style="padding-left: 2em;">{{ `5` }}</td>
           <td>{{ getAllCoins.counterC5 }}</td>
           <!-- <td>{{ JSON.parse(this.getAllCoins).counterC5 }}</td> -->
         </tr>
         <tr v-if="getAllCoins.counterC10">
-          <td class="cell-style">{{ `10` }}</td>
+          <td class="cell-style" style="padding-left: 1.5em;" >{{ `10` }}</td>
           <td>{{ getAllCoins.counterC10 }}</td>
         </tr>
       </tbody>

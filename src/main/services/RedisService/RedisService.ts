@@ -23,8 +23,8 @@ class RedisService extends EventEmitter {
   static coinC10 = 10
   static coinC25 = 25
 
-  static coinPath = './configs/coin-statistic.json'
-  static billPath = './configs/bill-statistic.json'
+  static coinPath = './data/coin-statistic.json'
+  static billPath = './data/bill-statistic.json'
 
   coins: any = null
 
