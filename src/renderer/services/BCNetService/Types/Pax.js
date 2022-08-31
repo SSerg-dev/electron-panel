@@ -122,7 +122,6 @@ class Pax extends EventEmitter {
 
         // async-amount-reply
         ipcRenderer.on('async-amount-reply', (event, amount, status) => {
-          // console.log('$$ check', params.amount, amount, status)
           this.check(params.amount, amount, status)
         })
 

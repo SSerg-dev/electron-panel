@@ -31,6 +31,8 @@
             >{{ `Languages` | localize }}</a
           >
         </li>
+
+        <!-- v-if="JSON.parse(getUsersIsAccess.mainFinance)" -->
         <li 
            @click="setProgram('finance')" 
            class="tab col s3">
@@ -1026,6 +1028,7 @@ export default Vue.extend({
       getPanelType: 'getPanelType',
       getAcceptorInstalled: 'getAcceptorInstalled',
       getCoinAcceptorInstalled: 'getCoinAcceptorInstalled',
+      getUsersIsAccess: 'getUsersIsAccess'
     }),
   },
   watch: {

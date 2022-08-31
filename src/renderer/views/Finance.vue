@@ -12,37 +12,15 @@
       <div style="padding-top: 10em">
         <div v-if="!isChart">
           <FinanceTable />
-          <!-- <FinanceTable :coins="coins" :bills="bills" /> -->
         </div>
-        <!-- <div v-else>
-          <FinanceChart :coins="coins" :bills="bills" :cashTitle="cashTitle" />
-        </div> -->
       </div>
-      <!-- dev -->
-      <!-- @click="readCash" -->
       <div class="row button-group">
-        <!-- <div class="col">
-          <router-link to="/finance">
-            <button
-              class="
-                btn
-                waves-effect waves-light
-                lighten-3
-                white-text
-                button-setting
-              "
-              type="submit"
-              @click="readCash"
-            >
-              {{ 'Наличные' }}
-            </button>
-          </router-link>
-        </div> -->
-
         <div class="col">
           <router-link to="/finance">
+            <!-- v-if="getUsersRole.toLowerCase() === 'admin'" -->
             <button
-              v-if="getUsersRole.toLowerCase() === 'admin'"
+              v-if="JSON.parse(getUsersIsAccess.panelCollection)"
+              style="font-weight: bold;"
               class="
                 btn
                 waves-effect waves-light
@@ -118,7 +96,8 @@ export default Vue.extend({
       getAllCoins: 'getAllCoins',
       getAllBills: 'getAllBills',
       getPanelType: 'getPanelType',
-      getUsersRole: 'getUsersRole'
+      getUsersRole: 'getUsersRole',
+      getUsersIsAccess: 'getUsersIsAccess'
     }),
   },
   methods: {

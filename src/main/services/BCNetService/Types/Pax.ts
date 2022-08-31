@@ -63,12 +63,17 @@ class Pax extends EventEmitter {
   }
   // flowSequence -----------------------
   private flowSequence = async () => {
+    let counterRequest = 0
+    let firstTimestamp = 0,
+      lastTimestamp = 0,
+      deltaTimestamp = 0
     let self = this
     self.connect()
 
     ipcMain.on('async-amount-message', (event, arg) => {
       self.amount = +arg
       self.timestamp = new Date().getTime()
+      counterRequest++
 
       // self.reconnect()
       try {
@@ -81,9 +86,33 @@ class Pax extends EventEmitter {
 
           /* 03 SaleRequest */
           const request = self.device.getSaleRequest(self.amount)
-          const writeResponse = self.device.write(request, 2000)
-          const readResponse = self.device.read(request, 2000)
 
+          lastTimestamp = self.timestamp
+          deltaTimestamp = lastTimestamp - firstTimestamp
+
+          /* console.log(
+            '$$ write request',
+            counterRequest,
+            firstTimestamp,
+            lastTimestamp,
+            deltaTimestamp,
+          ) */
+          
+          /* if (counterRequest < 3) {
+            const writeResponse = self.device.write(request, 2000)
+            const readResponse = self.device.read(request, 2000)
+          } else {
+            return
+          } */
+
+          if (deltaTimestamp > 5000) {
+            console.log('$$ if deltaTimestamp', deltaTimestamp)
+            const writeResponse = self.device.write(request, 2000)
+            const readResponse = self.device.read(request, 2000)
+            firstTimestamp = lastTimestamp 
+          } else {
+            return
+          }
           // --------------------------
           function submitAmountHandler(amount: any, status: any) {
             self.sleep(2000).then(() => {

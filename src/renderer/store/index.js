@@ -608,7 +608,7 @@ export default new Vuex.Store({
       return state.users.name
     },
     /* dev */
-    getUsersIsAccess (state) {
+    getUsersIsAccess(state) {
       return state.users.isAccess
     }
   },
@@ -696,10 +696,8 @@ export default new Vuex.Store({
           // console.log('$$ state.users.role', state.users.role)
           break
         case 'access':
-          // getUsersIsAccess
           const comma = ','
-          const arrayAccess = parameter.value.split(comma) 
-          // console.log('$$ state.users.isAccess', arrayAccess[0] /* parameter.value */ /* state.users.isAccess */)
+          const arrayAccess = parameter.value.split(comma)
           // set access B&D
           state.users.isAccess.mainMenu = arrayAccess[1]
           state.users.isAccess.mainDiagnostic = arrayAccess[2]
@@ -708,12 +706,11 @@ export default new Vuex.Store({
           state.users.isAccess.mainStatistic = arrayAccess[5]
           state.users.isAccess.mainFinance = arrayAccess[6]
           // set access panels
-          state.users.isAccess.panelCollection = arrayAccess[0]
-          state.users.isAccess.panelPlusTen = arrayAccess[7]
-          state.users.isAccess.panelOpen = arrayAccess[8]
-          
-          break  
-          
+          state.users.isAccess.panelCollection = arrayAccess[7]
+          state.users.isAccess.panelPlusTen = arrayAccess[8]
+          state.users.isAccess.panelOpen = arrayAccess[0]
+
+          break
 
         default:
           break

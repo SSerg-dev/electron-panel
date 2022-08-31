@@ -18,8 +18,9 @@
               <td>
                 <!-- v-if="getUsersRole.toLowerCase() === 'admin'" -->
                 <button
-                  
+                  v-if="JSON.parse(getUsersIsAccess.panelPlusTen)"
                   class="btn waves-effect waves-light black-text button-setting"
+                  
                   type="submit"
                   @click="setService('ten')"
                 >
@@ -33,6 +34,10 @@
               <td>
                 <button
                   class="btn waves-effect waves-light black-text button-setting"
+                  :class="[
+                  {'button-setting': JSON.parse(getUsersIsAccess.panelPlusTen)},
+                  {'button-setting-large': !JSON.parse(getUsersIsAccess.panelPlusTen)}
+                  ]"
                   type="submit"
                   @click="setService('balance')"
                 >
@@ -44,17 +49,13 @@
 
             <tr>
               <td>
-                <!-- v-if="getUsersRole.toLowerCase() === 'admin'" -->
-                <!-- v-if="getUsersIsAccess.panelPlusTen" -->
                 <button
-                  
+                  v-if="JSON.parse(getUsersIsAccess.panelOpen)"
                   class="btn waves-effect waves-light black-text button-setting"
                   type="submit"
                   @click="setService('door')"
                 >
                   {{ `Открыть дверь` }}
-                  <!-- {{getUsersIsAccess.panelPlusTen}} -->
-
                   <i class="material-icons right"></i>
                 </button>
               </td>
@@ -97,9 +98,10 @@ export default Vue.extend({
       getIncrement: 'getIncrement',
       getUsersRole: 'getUsersRole',
       getUsersName: 'getUsersName',
-      getUsersIsAccess: 'getUsersIsAccess'
+      getUsersIsAccess: 'getUsersIsAccess',
     }),
   },
+  
   methods: {
     ...mapActions({
       updateOpenDoor: 'updateOpenDoor',
@@ -135,31 +137,19 @@ export default Vue.extend({
 
 <style scoped>
 table {
-  /* border-spacing: 2px; */
   border: none;
 }
 tr {
   margin-left: 0em;
 }
 td {
-  width: 236px;
+  width: 232px;
   border: none;
-  align-content: justify;
-  /* justify; */
   padding-bottom: 10px;
   padding-left: 6px;
 }
-button {
-  width: 220px;
-}
-/* .button-setting {
-  height: 2em;
-  border: solid 1px white;
-  font-size: 1.5em;
-  border-radius: 2em;
-  background-color: #00b9e3;
-} */
 .button-setting {
+  width: 220px;
   height: 2em;
   border: solid 2px #00b9e3;
   font-weight: 500;
@@ -168,4 +158,16 @@ button {
   border-radius: 2em;
   background-color: #e0e0e0;
 }
+.button-setting-large {
+  width: 220px; /* 450px */
+  height: 2em;
+  border: solid 2px #00b9e3;
+  font-weight: 500;
+  font-size: 1.5em;
+  
+
+  border-radius: 2em;
+  background-color: #e0e0e0;
+}
+
 </style>

@@ -164,7 +164,7 @@ export default Vue.extend({
     /* dev */
     getWetBalance(flag) {
       console.log('Message getWetBalance-->', this.getWetBalance)
-      if (+flag === 0 && !this.getIsMoneyToBonusYes) this.$router.push('/')
+      if (+flag <= 1 && !this.getIsMoneyToBonusYes) this.$router.push('/')
     },
     getDryBalance(flag) {
       console.log('Message getDryBalance-->', this.getDryBalance)

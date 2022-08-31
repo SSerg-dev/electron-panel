@@ -32,8 +32,9 @@
         </li>
 
         <!-- 4  -->
+        <!-- v-if="getIsPing && getTerminalInstalled" -->
         <li
-          v-if="getIsPing && getTerminalInstalled"
+          v-if="getTerminalInstalled"
           class="collection-item"
           @click="payUp('card')"
         >
