@@ -189,25 +189,24 @@ const idle = async (config: any) => {
   mConfig = config
 
   /* ----------------------------------------------------------------------- */
-  ipcMain.on('async-card-message', (event: any, options: any) => {
-    // console.log('$$ ipcMain.on background!!', options)
-    // reinitialization bank terminal ???
-    // crutch :((
+  ipcMain.on('async-relaunch-app', (event: any, options: any) => {
     // ----------------------------------
-    // bankTerminal = new BankTerminalController()
-    // bankTerminal.on('connect', () => (isBankTerminalConnected = true))
-    // bankTerminal.on('enrolled', terminal =>
-    //   sendEventToView(mainWindow, 'emoney', terminal)
-    // )
-    // if (config.bank_terminal) {
-    //   const options = {
-    //     type: config.bank_terminal.hardware,
-    //     number: config.index,
-    //     currency: config.currency
-    //   }
-    //   console.log('$$ re-init bankTerminal.start')
-    //   bankTerminal.start(options)
-    // }
+    if (options.isRelaunch) {
+      app.relaunch({ args: process.argv.slice(1).concat(['--relaunch']) })
+      app.quit()
+
+      // app.relaunch({
+      //   args: process.argv.slice(1),
+      //   execPath: process.env.PORTABLE_EXECUTABLE_FILE
+      // })
+      // app.quit()
+
+      // if (process.platform !== 'darwin') {
+      //   app.quit()
+      //   app.relaunch({ args: process.argv.slice(1).concat(['--relaunch']) })
+      //   app.exit(0)
+      // }
+    }
     // ----------------------------------
   })
 }
@@ -217,7 +216,7 @@ const idle = async (config: any) => {
 let settings: any = {}
 try {
   let rawdata
-  /* dev */
+
   rawdata = readFileSync('./configs/settings-current.json')
   if (!rawdata.length) {
     rawdata = readFileSync('./configs/settings.json')
@@ -227,7 +226,7 @@ try {
   settings = JSON.parse(rawdata.toString())
   log(TAG, 'SETTINGS', JSON.stringify(settings))
   idle(settings)
-  /* dev */
+
   redis.start(settings)
   CoinAcceptor.on('current-coin', coin => redis.calcCoin(coin))
   BillValidator.on('current-bill', bill => redis.calcBill(bill))
@@ -402,4 +401,3 @@ function toUpperCase(arg0: string) {
 function writeConfig(data: any) {
   writeFileSync('./configs/settings-current.json', data)
 }
-

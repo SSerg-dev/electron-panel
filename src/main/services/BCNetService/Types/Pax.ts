@@ -90,26 +90,10 @@ class Pax extends EventEmitter {
           lastTimestamp = self.timestamp
           deltaTimestamp = lastTimestamp - firstTimestamp
 
-          /* console.log(
-            '$$ write request',
-            counterRequest,
-            firstTimestamp,
-            lastTimestamp,
-            deltaTimestamp,
-          ) */
-          
-          /* if (counterRequest < 3) {
-            const writeResponse = self.device.write(request, 2000)
-            const readResponse = self.device.read(request, 2000)
-          } else {
-            return
-          } */
-
           if (deltaTimestamp > 5000) {
-            console.log('$$ if deltaTimestamp', deltaTimestamp)
             const writeResponse = self.device.write(request, 2000)
             const readResponse = self.device.read(request, 2000)
-            firstTimestamp = lastTimestamp 
+            firstTimestamp = lastTimestamp
           } else {
             return
           }

@@ -2,7 +2,7 @@
   <div>
     <section>
       <div align="center" class="page-title">
-        <div class="info-title" style="margin-bottom: 4em;">
+        <div class="info-title" style="margin-bottom: 4em">
           <h3>
             <div id="message" align="center">
               {{ `${getStatusBillMessages}` | localize }}
@@ -11,7 +11,7 @@
             <div
               v-if="this.seconds >= 0"
               align="center"
-              style="font-size: 2em; padding-top: 2em; padding-left: 0.5em;"
+              style="font-size: 2em; padding-top: 2em; padding-left: 0.5em"
             >
               {{ `${this.seconds}` }}
             </div>
@@ -53,6 +53,9 @@ export default Vue.extend({
     loading: true,
 
     intervalMainMenu: null,
+    timeoutResolveDelay: null,
+    timeoutRejectDelay: null,
+
     seconds: 45,
     cardMessageIndex: -1,
     card: 0,
@@ -63,15 +66,15 @@ export default Vue.extend({
     isShow: false,
     terminalType: '',
     SUCCESS: 1,
-    UNSUCCESS: 0
+    UNSUCCESS: 0,
   }),
   computed: {
     ...mapGetters({
       getSecondsGotoProgramMenu: 'getSecondsGotoProgramMenu',
       getStatusBill: 'getStatusBill',
       getStatusBillMessages: 'getStatusBillMessages',
-      getPanelType: 'getPanelType'
-    })
+      getPanelType: 'getPanelType',
+    }),
   },
   watch: {
     getStatusBillMessages(flag) {},
@@ -80,7 +83,7 @@ export default Vue.extend({
         this.loading = false
         this.$router.push('/')
       }
-    }
+    },
   },
 
   methods: {
@@ -95,7 +98,7 @@ export default Vue.extend({
       this.intervalMainMenu = setInterval(() => {
         this.seconds = seconds--
         this.observer = Observer.item
-        
+
         switch (this.terminalType) {
           case 'pax':
             if (
@@ -103,21 +106,39 @@ export default Vue.extend({
               +this.observer.state === +this.card &&
               +this.observer.status === this.SUCCESS
             ) {
-              seconds = 0
-              this.resolve(this.terminalType)
+              this.cardMessageIndex = 3
+              this.setStatusBillMessagesIndex(this.cardMessageIndex)
 
+              this.timeoutResolveDelay = setTimeout(() => {
+                seconds = 0
+                this.resolve(this.terminalType)
+              }, 2000)
             } else if (+this.observer.status === this.UNSUCCESS) {
-              this.reject(this.terminalType)
+              this.cardMessageIndex = 4
+              this.setStatusBillMessagesIndex(this.cardMessageIndex)
+
+              this.timeoutRejectDelay = setTimeout(() => {
+                this.reject(this.terminalType)
+              }, 2000)
             }
             break
           case 'vendotek':
             if (
-              +this.observer.state > 0 
+              +this.observer.state > 0
               // && +this.observer.state === +this.card
             ) {
-              seconds = 0
-          this.resolve(this.terminalType)
+              this.cardMessageIndex = 3
+              this.setStatusBillMessagesIndex(this.cardMessageIndex)
+
+              this.timeoutResolveDelay = setTimeout(() => {
+                seconds = 0
+                this.resolve(this.terminalType)
+              }, 2000)
+
             } else {
+              this.cardMessageIndex = 4
+              this.setStatusBillMessagesIndex(this.cardMessageIndex)
+
               // this.reject(this.terminalType)
             }
             break
@@ -128,26 +149,24 @@ export default Vue.extend({
       }, 1000)
     },
     resolve(type) {
-
-      if (type === 'vendotek')
-        this.observer.state /= BCNet.VENDOTEK_MONEY_SCALE
+      if (type === 'vendotek') this.observer.state /= BCNet.VENDOTEK_MONEY_SCALE
 
       console.log('Операция одобрена, сумма:', this.observer.state)
       this.cardMessageIndex = 3
       this.setStatusBillMessagesIndex(this.cardMessageIndex)
-      
-      const panelType = this.getPanelType
-          switch (panelType) {
-            case 'wash':
-              this.updateWetMoney(this.observer.state)
-              break
-            case 'vacuum':
-              this.updateDryMoney(this.observer.state)
-              break
 
-            default:
-              break
-          }
+      const panelType = this.getPanelType
+      switch (panelType) {
+        case 'wash':
+          this.updateWetMoney(this.observer.state)
+          break
+        case 'vacuum':
+          this.updateDryMoney(this.observer.state)
+          break
+
+        default:
+          break
+      }
 
       this.$message(
         `Операция терминала ${type} одобрена, сумма:  ${this.observer.state}`
@@ -168,8 +187,7 @@ export default Vue.extend({
     ...mapActions({
       fetchStatus: 'fetchStatus',
       updateWetMoney: 'updateWetMoney',
-      updateDryMoney: 'updateDryMoney'
-
+      updateDryMoney: 'updateDryMoney',
     }),
     ...mapMutations({
       setStatusBill: 'setStatusBill',
@@ -179,8 +197,8 @@ export default Vue.extend({
     }),
     ...mapGetters({
       getCardMoney: 'getCardMoney',
-      getDefaultTerminalType: 'getDefaultTerminalType'
-    })
+      getDefaultTerminalType: 'getDefaultTerminalType',
+    }),
   },
   mounted() {
     this.card = this.getCardMoney()
@@ -222,9 +240,11 @@ export default Vue.extend({
 
   beforeDestroy() {
     clearInterval(this.intervalMainMenu)
+    clearTimeout(this.timeoutResolveDelay)
+    clearTimeout(this.timeoutRejectDelay)
   },
 
-  components: {}
+  components: {},
 })
 </script>
 

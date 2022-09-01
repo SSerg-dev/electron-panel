@@ -346,8 +346,12 @@ export default {
       commit('setServiceBalance', 0)
     },
     updateReboot() {
-      //console.log('!!!updateReboot')
-      //ipcRenderer.send("OPCUA",  JSON.stringify({node: "::AsGlobalPV:PostBalance[4].???", value: '0' }))
+      const options = {
+        isRelaunch: true
+      }
+      ipcRenderer.send('async-relaunch-app', options)
+      // ipcRenderer.send('reset', options)
+      // ipcRenderer.send('reboot', options)
     }
   } // end actions
 }

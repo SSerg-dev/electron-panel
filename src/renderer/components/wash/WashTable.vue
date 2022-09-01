@@ -656,7 +656,8 @@ export default {
       )
       this.buttonPrice.background = 'rgb(255, 255, 255)'
       this.buttonReceipt.background = 'rgb(255, 255, 255)'
-      this.buttonBonus.background = 'rgb(255, 255, 255)'
+      /* dev hidden */
+      // this.buttonBonus.background = 'rgb(255, 255, 255)'
     },
     setup() {
       this.initCurrency()

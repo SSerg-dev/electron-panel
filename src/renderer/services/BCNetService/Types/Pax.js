@@ -10,6 +10,7 @@ let Config = {
 class Pax extends EventEmitter {
   static item = null
   responseBank = null
+  timestamp = 0
 
   constructor(config) {
     super()
@@ -75,10 +76,19 @@ class Pax extends EventEmitter {
 
     return res
   }
-  /* dev */
+
   check(amount, amountReply, status) {
     let res
-    if (+amountReply === 0 && +status !== 1) {
+    // console.log(
+    //   '$$ check(amount, amountReply, status)',
+    //   amount,
+    //   amountReply,
+    //   status
+    // )
+
+    /* dev */
+    /* if (+amountReply !== +amount || +status !== 1) { { */
+    if (+amountReply === 0 || +status !== 1) {
       this.subscribe(Observer.item)
       this.fire({ type: 'REJECT', payload: null })
       this.unsubscribe(Observer.item)
@@ -113,16 +123,26 @@ class Pax extends EventEmitter {
   }
   async send(cmd, params = {}) {
     let res = {}
+    this.timestamp = new Date().getTime()
+    let firstTimestamp = 0,
+      lastTimestamp = 0,
+      deltaTimestamp = 0
 
     switch (cmd) {
       case 'PAY':
-        console.log('$$ Pax.js --PAY')
+        // console.log('$$ Pax.js PAY', this.timestamp)
         // async-amount-message
         ipcRenderer.send('async-amount-message', params.amount.toString())
 
         // async-amount-reply
         ipcRenderer.on('async-amount-reply', (event, amount, status) => {
-          this.check(params.amount, amount, status)
+          console.log('')
+          /* dev */
+          lastTimestamp = this.timestamp
+          deltaTimestamp = lastTimestamp - firstTimestamp
+          if (deltaTimestamp > 2000) {
+            this.check(params.amount, amount, status)
+          } 
         })
 
         break

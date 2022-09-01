@@ -9,7 +9,7 @@ import { wait } from '../../utils'
 import { readFileSync, writeFileSync } from 'fs'
 
 /* redis */
-import { createClient } from 'redis'
+// import { createClient } from 'redis'
 // import { Client } from 'redis-om'
 // import { Entity, Schema } from 'redis-om'
 // import { client } from './server.js'

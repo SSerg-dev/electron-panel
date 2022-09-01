@@ -35,8 +35,6 @@
     "materialize-css": "^1.0.0-rc.2",
     "node-opcua": "^2.26.0",
     "qrcode": "^1.4.4",
-    "redis": "^4.3.0",
-    "redis-om": "^0.3.6",
     "register-service-worker": "^1.7.2",
     "serialport": "^9.0.3",
     "vendotek": "^1.0.18",

@@ -854,7 +854,6 @@ export default {
   },
   mounted() {
     const options = {}
-    // ipcRenderer.send('async-card-message', options)
 
     this.setup()
 
@@ -1010,8 +1009,6 @@ export default {
 
         // payCard
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
-          /* dev */
-          console.log('$$ payCard')
           this.emitCardMoney(card)
           this.setCardMoney(card)
           this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)

@@ -74,7 +74,7 @@ export default Vue.extend({
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getIsCardMoney: 'getIsCardMoney',
       getProfile: 'getProfile',
-      getPayType: 'getPayType'
+      getPayType: 'getPayType',
     }),
   },
 
@@ -95,19 +95,17 @@ export default Vue.extend({
 
         if (!this.isInitBankTerminal) {
           const observer = bankTerminal.observerItem
-          if (observer)
-            stream$.subscribe(observer)
+          if (observer) stream$.subscribe(observer)
         }
 
         switch (options.type) {
           case 'vendotek':
-            /* dev */
             !this.isInitBankTerminal
               ? this.flowSequenceVendotek(item)
               : item.sendIDLE()
             // item.enable()
-
             break
+
           case 'pax':
             this.flowSequencePax(item)
             break
@@ -127,6 +125,7 @@ export default Vue.extend({
     flowSequencePax(item) {
       if (item !== undefined) {
         const amount = this.card
+        // console.log('$$ flowSequencePax')
         item.pay(amount)
       }
     },
@@ -147,7 +146,6 @@ export default Vue.extend({
         //   console.log('$$ submitCardHandler', card)
         //   this.initBankTerminal()
         // }
-        
       }
     },
 

@@ -70,9 +70,9 @@ export default Vue.extend({
     title: '',
 
     types: [
-      { id: 1, title: 'ЯРУС К2100' },
+      /* { id: 1, title: 'ЯРУС К2100' }, */
       { id: 2, title: 'VENDOTEK' },
-      { id: 3, title: 'INGENICO' },
+      /* { id: 3, title: 'INGENICO' }, */
       { id: 4, title: 'PAX' },
     ]
   }),
