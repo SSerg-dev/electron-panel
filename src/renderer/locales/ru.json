@@ -75,6 +75,21 @@
   "By_clicking_the_Yes_button_you_give_your_consent": "Нажимая кнопку Да, Вы даете свое согласие на отправку Вам СМС-сообщения и обработку персональных данных согласно условиям, размещенным на сайте: www.alles-bonus.com",
   
   "Display": "Экран",
+  "Services": "Сервисы",
+  "Service_balance": "Сервисный баланс",
+  "Reset": "Сбросить",
+  "Open_the_door": "Открыть дверь",
+  "Reboot": "Перегрузить",
+
+  "Software_version": "Версия ПО",
+  "Temperature": "Температура",
+  "Humidity": "Влажность",
+
+  "Show_tooltips_when_switching_programs": "Показывать всплывающие подсказки при переключении программ",
+  "during": "в течение",
+
+  "Time_to_switch_to_the_main_window": "Время перехода к основному окну",
+
   "Setting": "Настройки",
   "Languages": "Языки",
   "Finance": "Финансы",

@@ -74,6 +74,21 @@
     "By_clicking_the_Yes_button_you_give_your_consent": "By clicking the Yes button, you consent to the sending of SMS messages to you and the processing of personal data in accordance with the conditions posted on the website: www.alles-bonus.com",
 
     "Display": "Display",
+    "Services": "Services",
+    "Service_balance": "Service balance",
+    "Reset": "Reset",
+    "Open_the_door": "Open the door",
+    "Reboot": "Reboot",
+
+    "Software_version": "Software version",
+    "Temperature": "Temperature",
+    "Humidity": "Humidity",
+
+    "Show_tooltips_when_switching_programs": "Show tooltips when switching programs",
+    "during": "during",
+
+    "Time_to_switch_to_the_main_window": "Time to switch to the main window",
+
     "Setting": "Setting",
     "Languages": "Languages",
     "Finance": "Finance",

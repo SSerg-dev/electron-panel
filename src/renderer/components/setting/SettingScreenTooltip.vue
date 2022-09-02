@@ -22,11 +22,12 @@
             </div>
           </div>
           <!--     -->
-          <div class="col s11">
+          <p align="center">
+            
             <span class="card-title"
-              >Показывать всплывающие подсказки при переключении программ</span 
+              >{{`Show_tooltips_when_switching_programs` | localize }}</span 
             >
-          </div>
+          </p>
         </div>
         <!-- end row 01 -->
 
@@ -35,7 +36,8 @@
           
 
           <div class="col s5">
-            <span class="card-title" style="padding-top: 6px; padding-left: 11.3em;">в течение:</span>
+            <!-- <span class="card-title" style="padding-top: 6px; padding-left: 11.3em;">в течение:</span> -->
+            <span class="card-title" style="padding-top: 6px; padding-left: 12em;">{{`during` | localize}}</span>
           </div>
 
           <div class="col s1">

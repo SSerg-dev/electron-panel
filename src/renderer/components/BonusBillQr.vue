@@ -135,6 +135,7 @@ export default {
             this.$route.name !== 'program'
           ) {
             if (this.$route.name !== 'card') {
+              // console.log('$$ BonusBillQr this.$router.push/card')
               this.$router.push('/card')
             }
           }

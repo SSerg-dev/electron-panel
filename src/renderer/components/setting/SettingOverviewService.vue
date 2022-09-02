@@ -7,10 +7,12 @@
         style="height: 220px; border: solid 3px #00b9e3; border-radius: 2rem"
       >
         <div class="card-content black-text">
-          <span class="card-title">Сервисы: </span>
-          <!-- 1.5em -->
+          <!-- <span class="card-title">Сервисы: </span> -->
+          <span class="card-title">{{ `Services` | localize }} {{`:`}} </span>
+          
           <p style="font-size: 24px">
-            {{ `Сервисный баланс: ${getServiceBalance}` }}
+            <!-- {{ `Сервисный баланс: ${getServiceBalance}` }} -->
+            {{ `Service_balance` | localize }} {{`: ${getServiceBalance}`}} 
           </p>
 
           <table>
@@ -41,7 +43,7 @@
                   type="submit"
                   @click="setService('balance')"
                 >
-                  {{ `Сбросить` }}
+                  {{ `Reset` | localize }}
                   <i class="material-icons right"></i>
                 </button>
               </td>
@@ -55,7 +57,7 @@
                   type="submit"
                   @click="setService('door')"
                 >
-                  {{ `Открыть дверь` }}
+                  {{ `Open_the_door` | localize }}
                   <i class="material-icons right"></i>
                 </button>
               </td>
@@ -66,7 +68,7 @@
                   type="submit"
                   @click="setService('reboot')"
                 >
-                  {{ `Перегрузить` }}
+                  {{ `Reboot` | localize }}
                   <i class="material-icons right"></i>
                 </button>
               </td>

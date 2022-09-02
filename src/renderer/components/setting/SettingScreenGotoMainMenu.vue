@@ -12,8 +12,9 @@
     >
       <div class="card-content black-text">
         <div class="row">
-          <div class="col s5">
-            <span class="card-title">Время перехода к основному окну:</span>
+          <div class="col s5" style="margin-top: 0.2em; padding-left: 1em;">
+            <!-- <span class="card-title">Время перехода к основному окну:</span> -->
+            <span class="card-title">{{`Time_to_switch_to_the_main_window` | localize}} {{`:`}}</span>
           </div>
 
           <div class="col s1">

@@ -886,6 +886,7 @@ export default {
     }
 
     if (this.profile.isQrAuthorization) {
+      /* dev */
       this.loading = true
 
       /* dev */
@@ -1022,12 +1023,13 @@ export default {
             case 'wash':
               this.updateWetBonusMoney(card)
               // if (this.$route.name !== 'program') this.$router.push('/program')
-              this.$router.push('/cash')
+              // console.log('$$ CardBill.vue this.$router.push /cash' )
+              if (this.$route.name !== 'cash') this.$router.push('/cash')
               break
             case 'vacuum':
               this.updateDryBonusMoney(card)
               // if (this.$route.name !== 'program') this.$router.push('/program')
-              this.$router.push('/cash')
+              if (this.$route.name !== 'cash') this.$router.push('/cash')
               break
 
             default:

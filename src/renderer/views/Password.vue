@@ -460,7 +460,7 @@ export default {
         this.setLoginBonusPassword(this.password)
 
         this.setIsPayBonusMoney(true)
-        // console.log('$$ push password')
+        // console.log('$$ Password this.$router.push/card')
         this.$router.push('/card')
       }
     },

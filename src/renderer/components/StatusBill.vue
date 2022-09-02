@@ -120,6 +120,7 @@ export default Vue.extend({
               this.timeoutRejectDelay = setTimeout(() => {
                 this.reject(this.terminalType)
               }, 2000)
+              if (this.$route.name !== 'home') this.$router.push('/')
             }
             break
           case 'vendotek':
@@ -138,6 +139,8 @@ export default Vue.extend({
             } else {
               this.cardMessageIndex = 4
               this.setStatusBillMessagesIndex(this.cardMessageIndex)
+
+              if (this.$route.name !== 'home') this.$router.push('/')
 
               // this.reject(this.terminalType)
             }
@@ -174,7 +177,7 @@ export default Vue.extend({
 
       //seconds = 0
       this.setCardBonusState()
-      this.$router.push('/cash')
+      if (this.$route.name !== 'cash') this.$router.push('/cash')
     },
     reject(type) {
       this.$message(`Операция терминала ${type} отклонена`)

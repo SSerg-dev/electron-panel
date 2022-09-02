@@ -51,7 +51,7 @@ export default Vue.extend({
     types: [
       { id: 1, title: 'МОЙКА' },
       { id: 2, title: 'ПЫЛЕСОС' },
-      { id: 3, title: 'ПОСТ ОПЛАТЫ' }
+      /* { id: 3, title: 'ПОСТ ОПЛАТЫ' } */
     ]
   }),
   mounted() {

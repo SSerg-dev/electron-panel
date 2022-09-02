@@ -46,7 +46,7 @@
         </li>
 
         <!-- 5 ₿ 🎁 -->
-        <li v-if="getIsPing" class="collection-item" @click="payUp('bonus')">
+        <li v-if="!getIsPing" class="collection-item" @click="payUp('bonus')">
           <div class="card white waves-effect button-style-bonus">
             <div class="card-content black-text button-content-style">
               🎁 {{ 'BONUSES' | localize }}
