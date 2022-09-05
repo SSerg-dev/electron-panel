@@ -90,7 +90,7 @@ class Pax extends EventEmitter {
           lastTimestamp = self.timestamp
           deltaTimestamp = lastTimestamp - firstTimestamp
 
-          if (deltaTimestamp > 5000) {
+          if (deltaTimestamp > 10000) {
             const writeResponse = self.device.write(request, 2000)
             const readResponse = self.device.read(request, 2000)
             firstTimestamp = lastTimestamp

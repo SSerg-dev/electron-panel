@@ -358,6 +358,7 @@
                             "
                           >
                             {{ `APPEND` | localize}}
+                            <!-- {{`Bonus`}} -->
                           </div>
 
                         </div>

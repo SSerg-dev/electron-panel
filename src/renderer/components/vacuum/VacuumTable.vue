@@ -75,7 +75,7 @@
           <!-- ОМЫВАТЕЛЬ washer -->
           <tr>
             <td
-              v-if="this.actives[2].display === 'block'" 
+              v-if="this.actives[3].display === 'block'" 
               @click="setProgram('washer')"
             >
               <div
@@ -92,7 +92,7 @@
                     { 'card-content white-text': this.isDown.washer },
                   ]"
                 >
-                  {{ `${actives[2].title}` | localize}}
+                  {{ `${actives[3].title}` | localize}}
                 </div>
               </div>
             </td>
@@ -127,7 +127,7 @@
           <!-- ТУРБОСУШКА turboDryer-->
           <tr>
             <td
-              v-if="this.actives[3].display === 'block'"
+              v-if="this.actives[5].display === 'block'"
               @click="setProgram('turboDryer')"
             >
               <div
@@ -144,7 +144,7 @@
                     { 'card-content white-text': this.isDown.turboDryer },
                   ]"
                 >
-                  {{ `${actives[3].title}` | localize}}
+                  {{ `${actives[5].title}` | localize}}
                 </div>
               </div>
             </td>
@@ -524,6 +524,7 @@ table {
 tr {
   /* text-align: center; */
   height: 130px;
+  
 
   float: left;
 }

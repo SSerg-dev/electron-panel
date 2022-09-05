@@ -220,8 +220,8 @@ export default new Vuex.Store({
           'OPCUA',
           JSON.stringify({
             node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
-              // 1}].paidMoney`,
-              1}].prepaymentMoney`,
+              1}].paidMoney`,
+              // 1}].prepaymentMoney`,
             value: cash
           })
         )
@@ -328,8 +328,8 @@ export default new Vuex.Store({
           'OPCUA',
           JSON.stringify({
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
-              /* 1}].paidMoney`, */
-              1}].prepaymentMoney`,
+              1}].paidMoney`,
+              /* 1}].prepaymentMoney`, */
             value: cash
           })
         )
@@ -489,6 +489,9 @@ export default new Vuex.Store({
     },
     // DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Список всех Dry программ
+    getDryProgStatus(state) {
+      return state.dryParameters.progStatusMask
+    },
     getDryProgShow(state) {
       return state.dryParameters.progShowMask
     },

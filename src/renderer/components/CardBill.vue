@@ -664,6 +664,7 @@
                     "
                   >
                     {{ `APPEND` | localize }}
+                    <!-- {{`Card`}} -->
                   </div>
                 </div>
               </td>

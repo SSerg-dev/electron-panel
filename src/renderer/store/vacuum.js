@@ -30,22 +30,22 @@ export default {
       },
       {
         id: 3,
-        name: 'washer',
+        name: 'stop',
         number: -1,
         order: 3,
-        /* title: 'ОМЫВАТЕЛЬ', */
-        title: 'GLASS_WASHING_LIQUID',
+        title: 'STOP',
         display: 'block'
       },
       {
         id: 4,
-        name: 'turboDryer',
+        name: 'washer',
         number: -1,
         order: 4,
-        /* title: 'ТУРБОСУШКА', */
-        title: 'TURBO_DRYER',
+        /* title: 'ОМЫВАТЕЛЬ', */
+        title: 'GLASS_WASHING_LIQUID',
         display: 'block'
       },
+      
       {
         id: 5,
         name: 'blacking',
@@ -57,12 +57,21 @@ export default {
       },
       {
         id: 6,
-        name: 'disinfection',
+        name: 'turboDryer',
         number: -1,
         order: 6,
+        /* title: 'ТУРБОСУШКА', */
+        title: 'TURBO_DRYER',
+        display: 'block'
+      },
+      /* {
+        id: 7,
+        name: 'disinfection',
+        number: -1,
+        order: 7,
         title: 'ДЕЗИНФЕКЦИЯ',
         display: 'block'
-      }
+      } */
       
     ],
     
