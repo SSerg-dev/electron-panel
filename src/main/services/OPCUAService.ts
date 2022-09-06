@@ -137,8 +137,11 @@ class OPCUAService extends EventEmitter {
       this.subscription = null
       try {
         await this.monitoredItemGroup.terminate()
-        await this.session.close()
-        console.log(`OPC UA session closed`)
+        /* dev */
+        if (this.session) {
+          await this.session.close()
+          console.log(`OPC UA session closed`)
+        }
         await this.client.disconnect()
         console.log(`OPC UA server disconected`)
       } catch (err) {

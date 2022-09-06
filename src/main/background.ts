@@ -127,6 +127,7 @@ const idle = async (config: any) => {
     mConfig.type !== config.type ||
     mConfig.index !== config.index
   ) {
+
     OPCUAClient.start(config.type, config.index)
 
     // crutch :((
@@ -138,6 +139,7 @@ const idle = async (config: any) => {
       })
       OPCUAClient.start(config.type, +options.index)
     })
+
   }
   /* dev hidden */
 
@@ -255,7 +257,7 @@ ipcMain.on('cash_enabler', (evt, data) => {
 })
 
 /* */
-ipcMain.on('config', (evt, data) => {
+ipcMain.on('async-config-message', (evt, data) => {
   let config: any
   // log(TAG, 'Config from renderer:', data)
 

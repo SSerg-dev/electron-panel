@@ -141,10 +141,22 @@ export default Vue.extend({
 
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
+
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
       getIsFooter: 'getIsFooter',
+
+      getVacuumNumber: 'getVacuumNumber',
+      getDryActive: 'getDryActive'
     }),
+  },
+  watch: {
+    getDryActive(flag) {
+      // console.log('$$ flag', flag)
+    },
+    getVacuumNumber(value) {
+      // console.log('$$ value', value)
+    }
   },
   components: {
     MainMenu,

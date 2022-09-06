@@ -15,11 +15,12 @@
         v-if="
           this.getPanelType === 'vacuum' &&
             getIsPingUrl &&
-            getWetActive === 'true'
+            getDryActive === 'true'
         "
       >
         <Vacuum />
       </div> -->
+
       <div v-if="this.getPanelType === 'vacuum'">
         <Vacuum />
       </div>
@@ -82,6 +83,7 @@ export default Vue.extend({
       getPanelType: 'getPanelType',
       getIsPingUrl: 'getIsPingUrl',
       getWetActive: 'getWetActive',
+      getDryActive: 'getDryActive',
 
       /* dev */
       getIsCardMoney: 'getIsCardMoney',

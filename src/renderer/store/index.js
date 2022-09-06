@@ -430,7 +430,7 @@ export default new Vuex.Store({
 
       try {
         const options = JSON.stringify(config, null, 2)
-        ipcRenderer.send('config', options)
+        ipcRenderer.send('async-config-message', options)
       } catch (e) {
         console.warn('Error:', e.message)
       }
@@ -517,7 +517,7 @@ export default new Vuex.Store({
       return state.dryParameters.order
     },
     getDryActive(state) {
-      return state.parameters.active
+      return state.dryParameters.active
     },
 
     // END DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

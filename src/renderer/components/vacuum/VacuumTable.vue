@@ -310,7 +310,7 @@ export default {
 
       this.options.params.programs[0].program_id = this.getActiveProgramNumber
       this.options.params.programs[0].program_name =
-        this.actives[this.getActiveProgramNumber - 1].title
+        this.actives[this.getActiveProgramNumber - 1].title || ''
 
       this.options.params.programs[0].program_quantity = 0.42 // ??
 

@@ -991,7 +991,7 @@ export default Vue.extend({
       this.config = this.getConfig()
       this.updateConfig(this.config)
 
-      this.setLanguage()
+      // this.setLanguage()
       this.$router.push('/')
 
       //const panelType = this.getPanelType
@@ -1006,9 +1006,10 @@ export default Vue.extend({
     },
     applyHandler() {
       this.config = this.getConfig()
+      
       this.updateConfig(this.config)
 
-      this.setLanguage()
+      // this.setLanguage()
 
       //console.log('!!!updateApply')
       // this.$router.push('/setting')
