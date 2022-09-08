@@ -44,6 +44,7 @@
   "DEGREASE": "ОБЕЗЖИРИВАНИЕ",
   "DISINFECTION": "ДЕЗИНФЕКЦИЯ",
   "BLACKING": "ЧЕРНЕНИЕ",
+  "DOORSILL": "ПОРОГИ", 
 
   "COMPLETE_PAYMENT": "ЗАВЕРШИТЬ ОПЛАТУ",
   "RETURN_BONUSES_UP": "ВЕРНУТЬ БОНУСАМИ ДО 30% И ЗАВЕРШИТЬ ОПЛАТУ",
@@ -63,7 +64,6 @@
   "to_enter_the_settings_menu": "для входа в меню настроек",
 
   "The_status_of_the_operation": "Статус выполнения операции:",
-  
   "Connection_to_the_bank_terminal": "Подключение к банковскому терминалу...",
   "Failed_to_connect_to_the_bank_terminal": "Не удалось подключитьсяк банковскому терминалу",
   "Timed_out": "Время ожидания истекло",
@@ -85,8 +85,7 @@
   "Temperature": "Температура",
   "Humidity": "Влажность",
 
-  "Show_tooltips_when_switching_programs": "Показывать всплывающие подсказки при переключении программ",
-  "during": "в течение",
+  "Show_tooltips_when_switching_programs_during": "Показывать всплывающие подсказки при переключении программ в течение",
 
   "Time_to_switch_to_the_main_window": "Время перехода к основному окну",
 
@@ -99,11 +98,46 @@
   "Cancel": "Отмена",
   "Confirm": "Применить",
   "Make_the_payment_window_the_main": "Сделать окно оплаты основным",
-  "Show_cursor_in_the_main_window": "Показать курсор в основном окне"
+  "Show_cursor_in_the_main_window": "Показать курсор в основном окне",
+  "Direct_cash_payment": "Прямая оплата наличными",
+  "Banking_terminal": "Банковский терминал",
 
+  "System": "Система",
+  "Panel": "Панель",
+  "Bill_acceptor": "Купюроприемник",
+  "Coin_acceptor": "Монетоприемник",
 
+  "Language": "Язык",
+  "Currency": "Валюта",
 
+  "Type_of_panel": "Тип панели",
+  "Panel_number": "Номер панели",
 
+  "Type": "Тип",
+  "Accept_bills": "Принимать купюры",
+  "Accept_coins": "Принимать монеты",
+
+  "Model": "Модель",
+  "Reconciliation_Pax": "Сверка Pax",
+
+  "Payment_limits": "Лимиты платежей",
+  "Minimum": "Минимальный",
+  "Maximum": "Максимальный",
+  "Tokens": "Жетоны",
+
+  "CAR_WASH": "МОЙКА",
+  "PAYMENT_CENTER": "ЦЕНТР ОПЛАТЫ",
+  "PANEL": "ПАНЕЛЬ", 
+
+  "Cash_post": "Касса поста",
+  "Total_amount": "Сумма зачисления общая",
+  "Amount_of_deposit_in_banknotes": "Сумма зачисления в купюрах",
+  "Number_of_banknotes": "Количество купюр",
+  "Credit_amount_in_coins": "Сумма зачисления в монетах",
+  "Number_of_coins": "Количество монет",
+
+  "Replace_item": "Заменить пункт",
+  "Replace_program": "Заменить программу"
 
 
 }

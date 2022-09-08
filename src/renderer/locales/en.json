@@ -36,7 +36,7 @@
     "GLASS_WASHING_LIQUID": "WASH LIQUID",
     "WAX": "WAX",
     "FOAM_X2": "FOAM X2",
-    "VACUUM_CLEANER": "VACUUM",
+    "VACUUM_CLEANER": "VACUUM CLEANER",
     "BRUSH_X2": "BRUSH X2",
     "DISK_X2": "WHEELS X2",
     "MOSQUITO_X2": "MOSQUITO X2",
@@ -44,6 +44,7 @@
     "DEGREASE": "DEGREASE",
     "DISINFECTION": "DISINFECTION",
     "BLACKING": "BLACKING",
+    "DOORSILL": "DOORSILL",
     
     "COMPLETE_PAYMENT": "COMPLETE PAYMENT",
     "RETURN_BONUSES_UP": "RETURN BONUSES UP TO 30% COMPLETE PAYMENT",
@@ -84,8 +85,7 @@
     "Temperature": "Temperature",
     "Humidity": "Humidity",
 
-    "Show_tooltips_when_switching_programs": "Show tooltips when switching programs",
-    "during": "during",
+    "Show_tooltips_when_switching_programs_during": "Show tooltips when switching programs during",
 
     "Time_to_switch_to_the_main_window": "Time to switch to the main window",
 
@@ -98,6 +98,48 @@
     "Cancel": "Cancel",
     "Confirm": "Confirm",
     "Make_the_payment_window_the_main": "Make the payment window the main",
-    "Show_cursor_in_the_main_window": "Show cursor in the main window" 
+    "Show_cursor_in_the_main_window": "Show cursor in the main window",
+    "Direct_cash_payment": "Direct cash payment",
+    "Banking_terminal": "Banking terminal",
+    
+    "System": "System",
+    "Panel": "Panel",
+    "Bill_acceptor": "Bill acceptor",
+    "Coin_acceptor": "Coin acceptor",
+
+    "Language": "Language",
+    "Currency": "Currency",
+    
+    "Type_of_panel": "Type of panel",
+    "Panel_number": "Panel number",
+
+    "Type": "Type",
+    "Accept_bills": "Accept bills",
+    "Accept_coins": "Accept coins",
+
+    "Model": "Model",
+    "Reconciliation_Pax": "Reconciliation Pax",
+
+    "Payment_limits": "Payment limits",
+    "Minimum": "Minimum",
+    "Maximum": "Maximum",
+    "Tokens": "Tokens",
+
+    "CAR_WASH": "CAR WASH",
+    "PAYMENT_CENTER": "PAYMENT CENTER",
+    "PANEL": "PANEL",
+
+    "Cash_post": "Cash post",
+    "Total_amount": "Total amount",
+    "Amount_of_deposit_in_banknotes": "Amount of deposit in banknotes",
+    "Number_of_banknotes": "Number of banknotes",
+    "Credit_amount_in_coins": "Credit amount in coins",
+    "Number_of_coins": "Number of coins",
+
+    "Replace_item": "Replace Item",
+    "Replace_program": "Replace program" 
+
+
+
 
 }

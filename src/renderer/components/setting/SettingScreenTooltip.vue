@@ -3,18 +3,14 @@
     <!-- style="height: 150px; border: solid 3px #00b9e3; border-radius: 2rem" -->
     <div
       class="card grey lighten-3"
-      style="
-      height: 168px; 
-      border: solid 3px #00b9e3; 
-      border-radius: 2em;
-      "
+      style="height: 168px; border: solid 3px #00b9e3; border-radius: 2em"
     >
       <div class="card-content black-text">
         <!-- row 01 -->
-        <div class="row" style="height: 1em; ">
+        <div class="row" style="height: 1em">
           <!-- dev -->
           <div class="col s1">
-            <div class="switch" style="padding-top: 6px;">
+            <div class="switch" style="padding-top: 6px">
               <label>
                 <input type="checkbox" v-model="isTooltipInstalled" />
                 <span class="lever"></span>
@@ -23,21 +19,22 @@
           </div>
           <!--     -->
           <p align="center">
-            
-            <span class="card-title"
-              >{{`Show_tooltips_when_switching_programs` | localize }}</span 
-            >
+            <span class="card-title">{{
+              `Show_tooltips_when_switching_programs_during` | localize
+            }}</span>
           </p>
         </div>
         <!-- end row 01 -->
 
         <!-- row 02 -->
         <div v-if="isTooltipInstalled" class="row">
-          
-
+          <!-- {{`during` | localize}} -->
           <div class="col s5">
-            <!-- <span class="card-title" style="padding-top: 6px; padding-left: 11.3em;">в течение:</span> -->
-            <span class="card-title" style="padding-top: 6px; padding-left: 12em;">{{`during` | localize}}</span>
+            <span
+              class="card-title"
+              style="padding-top: 6px; padding-left: 12em"
+              >{{ `` }}</span
+            >
           </div>
 
           <div class="col s1">
@@ -79,14 +76,15 @@
             </button>
           </div>
         </div>
-        
+
         <!-- end row 02 -->
-        
+
         <!-- row 03 -->
 
-
-        <div v-if="isTooltipInstalled" class="row" style="margin-top: -1em;">
-          <div class="col s1" style="font-size: 2em; padding-left: 2.0em; " >{{ min }}</div>
+        <div v-if="isTooltipInstalled" class="row" style="margin-top: -1em">
+          <div class="col s1" style="font-size: 2em; padding-left: 2em">
+            {{ min }}
+          </div>
 
           <div class="col s10">
             <p class="range-field">
@@ -103,8 +101,9 @@
             </p>
           </div>
 
-          <div class="col s1" style="font-size: 2em; padding-left: 0.5em">{{max}}</div>
-
+          <div class="col s1" style="font-size: 2em; padding-left: 0.5em">
+            {{ max }}
+          </div>
         </div>
         <!-- end row 03 -->
       </div>
@@ -128,7 +127,7 @@ export default Vue.extend({
     display: 0,
     min: 0,
     max: 10,
-    step: 1
+    step: 1,
   }),
   mounted() {
     this.setNumber(this.min.toString())
@@ -147,17 +146,17 @@ export default Vue.extend({
       this.current = this.amount
     },
     ...mapMutations({
-      setSecondsGotoPopupMenu: 'setSecondsGotoPopupMenu'
+      setSecondsGotoPopupMenu: 'setSecondsGotoPopupMenu',
     }),
     ...mapGetters({
       getTooltipInstalled: 'getTooltipInstalled',
-    })
+    }),
   },
 
   computed: {
     ...mapGetters({
-      getSecondsGotoPopupMenu: 'getSecondsGotoPopupMenu'
-    })
+      getSecondsGotoPopupMenu: 'getSecondsGotoPopupMenu',
+    }),
   },
   watch: {
     current(num) {
@@ -170,7 +169,7 @@ export default Vue.extend({
 
       this.setSecondsGotoPopupMenu(this.amount)
       //console.log('++this.getSecondsGotoPopupMenu-->', this.getSecondsGotoPopupMenu)
-    }
+    },
   },
   created() {
     this.isTooltipInstalled = this.getTooltipInstalled()
@@ -178,8 +177,7 @@ export default Vue.extend({
     const secondsGotoPopupMenu = this.getSecondsGotoPopupMenu
     this.amount = secondsGotoPopupMenu
     // console.log('this.amount-->', this.amount)
-
-  }
+  },
 })
 </script>
 

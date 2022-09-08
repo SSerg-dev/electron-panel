@@ -24,12 +24,11 @@
          -->
         <div class="row">
           <div class="col s2">
-            <!-- <span class="card-title">Жетоны (RUB):</span> -->
-            <span class="card-title">Жетоны:</span>
+            <span class="card-title">{{`Tokens` | localize }} {{`:`}}</span>
             <div style="font-size: 1.35em; margin-left: 0em;">
               {{ this.emoji }}
               {{ this.currency }}
-              {{ this.symbol }}
+              <!-- {{ this.symbol }} -->
             </div>
           </div>
           <div class="col s3" style="margin-left: -4em;">

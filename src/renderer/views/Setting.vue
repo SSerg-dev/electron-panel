@@ -113,7 +113,7 @@
                       </div>
                       <!-- Заменить пункт / программу -->
                       <div class="change-item-title">
-                        <span class="card-title">Заменить пункт</span>
+                        <span class="card-title">{{`Replace_item` | localize}}</span>
                       </div>
                     </div>
                   </div>
@@ -177,7 +177,7 @@
                         </label>
                       </div>
                       <div class="change-item-title">
-                        <span class="card-title">Заменить программу</span>
+                        <span class="card-title">{{`Replace_program` | localize}}</span>
                       </div>
                     </div>
                   </div>
@@ -245,7 +245,7 @@
                         </label>
                       </div>
                       <div class="change-item-title">
-                        <span class="card-title">Заменить программу</span>
+                        <span class="card-title">{{`Replace_program` | localize }}</span>
                       </div>
                     </div>
                   </div>
@@ -422,7 +422,8 @@
               <td>
                 <div class="panel">
                   <div class="page-title white-text">
-                    <h4>СИСТЕМА</h4>
+                    <!-- <h4>СИСТЕМА</h4> -->
+                    <h4>{{`System` | localize}}</h4>
                   </div>
                 </div>
               </td>
@@ -473,7 +474,7 @@
 
                     <div class="pay-screen-title">
                       <span class="card-title"
-                        >Показать курсор в основном окне</span
+                        >{{`Show_cursor_in_the_main_window` | localize}}</span
                       >
                     </div>
                   </div>
@@ -485,7 +486,7 @@
               <td>
                 <div class="panel">
                   <div class="page-title white-text">
-                    <h4>ПАНЕЛЬ</h4>
+                    <h4>{{`Panel` | localize}}</h4>
                   </div>
                 </div>
               </td>
@@ -536,7 +537,7 @@
                     </div>
 
                     <div class="pay-screen-title">
-                      <span class="card-title">Прямая оплата наличными</span>
+                      <span class="card-title">{{`Direct_cash_payment` | localize}}</span>
                     </div>
                   </div>
                 </div>
@@ -566,9 +567,9 @@
                       </label>
                     </div>
 
-                    <div class="pay-screen-title">
+                    <div class="pay-screen-title panel">
                       <span class="card-title" style="font-size: 33.06px"
-                        >КУПЮРОПРИЕМНИК</span
+                        >{{ `Bill_acceptor` | localize }}</span
                       >
                     </div>
                   </div>
@@ -620,9 +621,9 @@
                       </label>
                     </div>
 
-                    <div class="pay-screen-title">
+                    <div class="pay-screen-title panel">
                       <span class="card-title" style="font-size: 33.06px"
-                        >МОНЕТОПРИЕМНИК</span
+                        >{{`Coin_acceptor` | localize}}</span
                       >
                     </div>
                   </div>
@@ -673,7 +674,7 @@
                     </div>
 
                     <div class="pay-screen-title">
-                      <span class="card-title">Банковский терминал</span>
+                      <span class="card-title">{{`Banking_terminal` | localize}}</span>
                     </div>
                   </div>
                 </div>
@@ -1098,6 +1099,7 @@ export default Vue.extend({
 }
 .panel {
   margin: 0 auto;
+  text-transform: uppercase;
 }
 .payment {
   margin: 0 auto;

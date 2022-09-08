@@ -13,7 +13,7 @@
       "
     >
       <div class="card-content black-text">
-        <span class="card-title">Принимать монеты:</span>
+        <span class="card-title">{{`Accept_coins` | localize}} {{`:`}}</span>
         <div class="input-field">
           <select
             multiple

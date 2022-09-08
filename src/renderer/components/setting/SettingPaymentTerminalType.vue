@@ -1,19 +1,17 @@
 <template>
-
-    <div class="row">
-    <div class="card grey lighten-3" style="height: 80px; border: solid 3px #00B9E3; border-radius: 2rem;">
+  <div class="row">
+    <div
+      class="card grey lighten-3"
+      style="height: 80px; border: solid 3px #00b9e3; border-radius: 2rem"
+    >
       <div class="card-content black-text">
-        
-        
-          <span class="card-title col s2" style="margin-top: -0em;">Модель:</span>
-        
-        
-        
-        <div class="input-field col s5" style="margin-top: -0.5em;">
+        <span class="card-title col s2" style="margin-top: -0em">{{`Model` | localize}} {{`:`}}</span>
+
+        <div class="input-field col s5" style="margin-top: -0.5em">
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(t, index) in types" :key="index" :value="t.id">
               <div class="dropdown-setting">
-              {{ t.title }}
+                {{ t.title }}
               </div>
             </option>
           </select>
@@ -21,35 +19,28 @@
 
         <div v-if="this.current === 1" class="col s4">
           <button
-                  
-                  class="btn waves-effect waves-light  white-text button-setting "
-                  type="submit"
-                  @click="setService('menu')"
-                  style="margin-left: 1em; margin-top: -0.2em;"
-                >
-                  <div style="margin-top: -0.1em;">
-                   {{ `Открыть меню Ярус К2100` }}
-                  </div>
-
-                </button>
-          
+            class="btn waves-effect waves-light white-text button-setting"
+            type="submit"
+            @click="setService('menu')"
+            style="margin-left: 1em; margin-top: -0.2em"
+          >
+            <div style="margin-top: -0.1em">
+              {{ `Открыть меню Ярус К2100` }}
+            </div>
+          </button>
         </div>
         <div v-if="this.current === 4" class="col s4">
           <button
-                  
-                  class="btn waves-effect waves-light  white-text button-setting "
-                  type="submit"
-                  @click="setService('pax')"
-                  style="margin-left: 1em; margin-top: -0.2em;"
-                >
-                  <div style="margin-top: -0.1em;">
-                   {{ `Сверка PAX` }}
-                  </div>
-
-                </button>
-          
+            class="btn waves-effect waves-light white-text button-setting"
+            type="submit"
+            @click="setService('pax')"
+            style="margin-left: 1em; margin-top: -0.2em"
+          >
+            <div style="margin-top: -0.1em">
+              {{ `Reconciliation_Pax` | localize }}
+            </div>
+          </button>
         </div>
-
       </div>
     </div>
   </div>
@@ -60,7 +51,6 @@ import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 const EventEmitter = require('events')
 const { ipcRenderer } = require('electron')
-
 
 export default Vue.extend({
   name: 'setting-terminal-type',
@@ -74,11 +64,11 @@ export default Vue.extend({
       { id: 2, title: 'VENDOTEK' },
       /* { id: 3, title: 'INGENICO' }, */
       { id: 4, title: 'PAX' },
-    ]
+    ],
   }),
   mounted() {
     this.select = M.FormSelect.init(this.$refs.select, {
-      constrainWidth: true
+      constrainWidth: true,
     })
     M.updateTextFields()
   },
@@ -86,8 +76,8 @@ export default Vue.extend({
     ...mapGetters({
       getDefaultTerminalType: 'getDefaultTerminalType',
     }),
-    ...mapMutations ({
-      setDefaultTerminalType: 'setDefaultTerminalType'
+    ...mapMutations({
+      setDefaultTerminalType: 'setDefaultTerminalType',
     }),
     setService(service) {
       switch (service) {
@@ -98,26 +88,24 @@ export default Vue.extend({
           const message = 'pax reconciliation'
           ipcRenderer.send('async-reconciliation-message', message)
 
-          break  
+          break
         default:
           break
       }
-    }
-
+    },
   },
   watch: {
     current(typeId) {
-      const { id, title } = this.types.find(t => t.id === typeId)
+      const { id, title } = this.types.find((t) => t.id === typeId)
       this.select = title
       // console.log('++current-->', this.current, this.select)
-      this.setDefaultTerminalType(this.select) 
-
-    }
+      this.setDefaultTerminalType(this.select)
+    },
   },
 
   created() {
     const defaultTerminalType = this.getDefaultTerminalType().toUpperCase()
-    const index = this.types.findIndex(t => t.title === defaultTerminalType)
+    const index = this.types.findIndex((t) => t.title === defaultTerminalType)
 
     const { id, title } = this.types[index]
     this.current = id
@@ -127,7 +115,7 @@ export default Vue.extend({
     if (this.select && this.select.destroy) {
       this.select.destroy()
     }
-  }
+  },
 })
 </script>
 
@@ -139,5 +127,4 @@ export default Vue.extend({
   background-color: #00b9e3;
   width: 380px;
 }
-
 </style>

@@ -12,7 +12,7 @@
       "
     >
       <div class="card-content black-text">
-        <span class="card-title">Язык:</span>
+        <span class="card-title">{{`Language` | localize}} {{`:`}}</span>
 
         <div class="input-field">
           <select

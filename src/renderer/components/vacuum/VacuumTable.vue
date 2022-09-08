@@ -18,6 +18,8 @@
         </div>
       </section>
 
+      
+
       <table border="0" width="100%" cellpadding="0" cellspacing="0">
         <tbody>
           <!-- ПЫЛЕСОС vacuum -->
@@ -180,6 +182,19 @@
           <!--  -->
         </tbody>
       </table>
+      <div class="no-programs-message"
+        v-if="
+        this.actives[0].display !== 'block' && 
+        this.actives[1].display !== 'block' &&
+        //this.actives[2].display !== 'block' &&
+        this.actives[3].display !== 'block' &&
+        this.actives[4].display !== 'block' &&
+        this.actives[5].display !== 'block'
+        "
+      >
+        <p align="center">{{ `Нет активных программ` }}</p>
+      </div>
+
     </div>
   </div>
 </template>
@@ -310,7 +325,7 @@ export default {
 
       this.options.params.programs[0].program_id = this.getActiveProgramNumber
       this.options.params.programs[0].program_name =
-        this.actives[this.getActiveProgramNumber - 1].title || ''
+        this.actives[this.getActiveProgramNumber - 1]?.title ?? ''
 
       this.options.params.programs[0].program_quantity = 0.42 // ??
 
@@ -506,6 +521,15 @@ export default {
   text-align: justify;
   z-index: 1;
 }
+.no-programs-message {
+  padding-top: 10em;
+  padding-right: 0.4em;
+
+  color: red; 
+  font-size: 5em; 
+  margin-top: 0em
+}
+
 table {
   position: absolute;
   margin-top: 18em; /* 18em; 16.5em; */

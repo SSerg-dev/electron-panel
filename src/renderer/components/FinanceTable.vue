@@ -2,7 +2,12 @@
   <div>
     <div class="page-title">
       <h1>
-        <p align="center" >Касса поста №{{ getDefaultPanelNumber }}</p>
+        <!-- <p align="center" >Касса поста №{{ getDefaultPanelNumber }}</p> -->
+        <p align="center">
+          {{ `Cash_post` | localize }}
+          {{ `#` | localize }}
+          {{ getDefaultPanelNumber }}
+        </p>
       </h1>
     </div>
 
@@ -21,28 +26,28 @@
       <tbody>
         <tr style="border: solid 3px #00b9e3">
           <td class="cell-style">
-            {{ `${this.getCashTitle[0].title}` }}
+            {{ `${this.getCashTitle[0].title}` | localize }}
           </td>
           <td>{{ getAllCoins.amountCoin + getAllBills.amountBill }}</td>
         </tr>
         <tr>
           <td class="cell-style">
-            {{ `${this.getCashTitle[1].title}` }}
+            {{ `${this.getCashTitle[1].title}` | localize }}
           </td>
           <td>{{ getAllBills.amountBill }}</td>
         </tr>
         <tr>
           <td class="cell-style">
-            {{ `${this.getCashTitle[2].title}` }}
+            {{ `${this.getCashTitle[2].title}` | localize }}
           </td>
           <td>{{ getAllBills.counterBill }}</td>
         </tr>
         <tr v-if="getAllBills.counterB10">
-          <td class="cell-style" style="padding-left: 1.5em;">{{ `10` }}</td>
+          <td class="cell-style" style="padding-left: 1.5em">{{ `10` }}</td>
           <td>{{ getAllBills.counterB10 }}</td>
         </tr>
         <tr v-if="getAllBills.counterB50">
-          <td class="cell-style" style="padding-left: 1.5em;">{{ `50` }}</td>
+          <td class="cell-style" style="padding-left: 1.5em">{{ `50` }}</td>
           <td>{{ getAllBills.counterB50 }}</td>
         </tr>
         <tr v-if="getAllBills.counterB100">
@@ -66,15 +71,16 @@
               border-top: solid 3px #00b9e3;
             "
           >
-            {{ `${this.getCashTitle[3].title}` }}
+            {{ `${this.getCashTitle[3].title}` | localize }}
           </td>
           <td style="border-top: solid 3px #00b9e3">
             {{ getAllCoins.amountCoin }}
           </td>
         </tr>
+
         <tr>
           <td class="cell-style">
-            {{ `${this.getCashTitle[4].title}` }}
+            {{ `${this.getCashTitle[4].title}` | localize }}
           </td>
           <td>
             {{ getAllCoins.counterCoin }}
@@ -82,12 +88,12 @@
         </tr>
 
         <tr v-if="getAllCoins.counterC5">
-          <td class="cell-style" style="padding-left: 2em;">{{ `5` }}</td>
+          <td class="cell-style" style="padding-left: 2em">{{ `5` }}</td>
           <td>{{ getAllCoins.counterC5 }}</td>
-          <!-- <td>{{ JSON.parse(this.getAllCoins).counterC5 }}</td> -->
         </tr>
+
         <tr v-if="getAllCoins.counterC10">
-          <td class="cell-style" style="padding-left: 1.5em;" >{{ `10` }}</td>
+          <td class="cell-style" style="padding-left: 1.5em">{{ `10` }}</td>
           <td>{{ getAllCoins.counterC10 }}</td>
         </tr>
       </tbody>
@@ -150,7 +156,7 @@ export default Vue.extend({
   color: white;
 }
 .cell-style {
-  text-align: left; 
+  text-align: left;
   padding-left: 1em;
 }
 table {
@@ -174,5 +180,4 @@ td {
   text-align: center;
   /* border-left-color: aqua; */
 }
-
 </style>

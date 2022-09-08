@@ -14,7 +14,7 @@
       "
     >
       <div class="card-content black-text">
-        <span class="card-title">Принимать купюры:</span>
+        <span class="card-title">{{`Accept_bills` | localize}} {{`:`}}</span>
         <div class="input-field">
           <select
             multiple

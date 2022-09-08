@@ -14,7 +14,7 @@
         <div class="row" style="margin-top: -0.8em;">
           <div class="col s5" style="padding-top: 0.5em;">
             <div style="margin-left: -1em" class="display">
-              {{ `Минимальный` }}
+              {{ `Minimum` | localize }}
             </div>
           </div>
 
@@ -59,6 +59,7 @@
             />
           </p>
         </div>
+
       </div>
     </div>
   </div>

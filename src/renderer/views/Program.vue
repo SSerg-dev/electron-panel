@@ -130,7 +130,6 @@ export default Vue.extend({
     setDryActiveProg() {
       let activeProgNames = []
       const progsNumber = 6
-      const stopNumber = 2
 
       this.activesVacuum.forEach((element) => (element.display = 'block'))
 
@@ -139,36 +138,31 @@ export default Vue.extend({
         .join('')
         .slice(1)
       this.showProg = [...this.getDryShowProgBit()].reverse().join('').slice(1)
-      // add to end zero
-      if (this.showProg.length === progsNumber - 1)
+
+      // add to and zero symbols 
+      const deltaIndex = this.activesVacuum.length - this.showProg.length
+      for (let index = 0; index < deltaIndex; index++)
         this.showProg = this.showProg + '0'
+      // console.log('$$ after this.showProg', this.showProg)  
 
       for (let i = 0; i < this.showProg.length; i++) {
-        if (
-          this.activesVacuum[i] &&
-          this.showProg.toString().slice(i, i + 1) === '0' // || i === stopNumber
-        ) {
+        if (this.showProg.toString().slice(i, i + 1) === '0') {
           this.activesVacuum[i].display = 'none'
-        } else if (
-          this.activesVacuum[i] &&
-          this.showProg.toString().slice(i, i + 1) === '1' // && i !== stopNumber
-        ) {
+        } else if (this.showProg.toString().slice(i, i + 1) === '1') {
           this.activesVacuum[i].display = 'block'
           activeProgNames.push(this.activesVacuum[i].name)
         }
-
         // console.log(
         //   '$$ this.activesVacuum[i].display',
         //   i,
         //   this.activesVacuum[i].name,
-        //   this.activesVacuum[i].display
+        //   this.activesVacuum[i].display,
+        //   this.showProg.length
         // )
       }
-
       if (this.showProg.length === 0) {
         this.activesVacuum.forEach((element) => (element.display = 'none'))
       }
-      // console.log('$$ this.showProg.length', this.showProg.length, this.showProg)
 
       return this.activesVacuum
     },

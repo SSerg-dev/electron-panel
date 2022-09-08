@@ -11,7 +11,7 @@
       "
     >
       <div class="card-content black-text">
-        <span class="card-title">Валюта:</span>
+        <span class="card-title">{{`Currency` | localize}} {{`:`}}</span>
         <div class="input-field">
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(c, index) in currencies" :key="index" :value="c.id">

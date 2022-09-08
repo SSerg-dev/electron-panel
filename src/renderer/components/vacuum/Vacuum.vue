@@ -147,7 +147,9 @@ export default Vue.extend({
       getIsFooter: 'getIsFooter',
 
       getVacuumNumber: 'getVacuumNumber',
-      getDryActive: 'getDryActive'
+      getDryActive: 'getDryActive',
+
+      getIsOddVacuumNumber: 'getIsOddVacuumNumber'
     }),
   },
   watch: {
@@ -182,6 +184,8 @@ export default Vue.extend({
       setVacuumNumber: 'setVacuumNumber',
       setIsFooter: 'setIsFooter',
       setDryBalance: 'setDryBalance',
+
+      setIsOddVacuumNumber: 'setIsOddVacuumNumber'      
     }),
     ...mapActions({
       updateDryStartProgram: 'updateDryStartProgram',
@@ -201,10 +205,12 @@ export default Vue.extend({
         case 'first':
           index = 1
           this.isMainMenu = true
+          this.setIsOddVacuumNumber(true)
           break
         case 'third':
           index = 3
           this.isMainMenu = true
+          this.setIsOddVacuumNumber(true)
           break
         case 'operator':
           this.setProgram(program)
@@ -212,10 +218,12 @@ export default Vue.extend({
         case 'second':
           index = 2
           this.isMainMenu = true
+          this.setIsOddVacuumNumber(false)
           break
         case 'fourth':
           index = 4
           this.isMainMenu = true
+          this.setIsOddVacuumNumber(false)
           break
 
         default:

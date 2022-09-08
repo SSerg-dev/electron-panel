@@ -13,7 +13,6 @@
           ]"
         >
           {{ `${cost.title}` | localize }}
-          <!-- {{ `${cost.title}`}} -->
         </div>
 
 

@@ -17,7 +17,8 @@
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(n, index) in items" :key="index" :value="n.id">
               <div class="dropdown-setting">
-                {{ n.title }}
+                <!-- {{ n.title }} -->
+                {{ `${n.title}` | localize }}
               </div>
             </option>
           </select>
@@ -43,9 +44,9 @@ export default Vue.extend({
     title: "",
 
     items: [
-      { id: 1, title: "ДИСКИ" },
-      { id: 2, title: "АНТИМОСКИТ" },
-      { id: 3, title: "ШАМПУНЬ" },
+      { id: 1, title: `DISK` },
+      { id: 2, title: `MOSQUITO` },
+      { id: 3, title: `SHAMPOO` },
     ],
   }),
   mounted() {

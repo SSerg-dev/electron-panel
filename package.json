@@ -6,7 +6,7 @@
   "main": "background.js",
   "type": "commonjs",
   "scripts": {
-    "start": "NODE_NO_WARNINGS=1 vue-cli-service electron:serve ./src/renderer/main.js --enable-logging --openssl-legacy-provider serve",
+    "start": "NODE_NO_WARNINGS=1 vue-cli-service  electron:serve ./src/renderer/main.js --enable-logging --openssl-legacy-provider serve",
     "build": "vue-cli-service electron:build --linux deb --armv7l",
     "rebuild": "./node_modules/.bin/electron-rebuild -f -a armv7l"
   },

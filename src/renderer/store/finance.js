@@ -12,11 +12,11 @@ export default {
     bills: {},
 
     cashTitle: [
-      { id: 1, title: 'Сумма зачисления общая' },
-      { id: 2, title: 'Сумма зачисления в купюрах' },
-      { id: 3, title: 'Количество купюр' },
-      { id: 4, title: 'Сумма зачисления в монетах' },
-      { id: 5, title: 'Количество монет' }
+      { id: 1, title: `Total_amount` },
+      { id: 2, title: `Amount_of_deposit_in_banknotes` },
+      { id: 3, title: `Number_of_banknotes` },
+      { id: 4, title: `Credit_amount_in_coins` },
+      { id: 5, title: `Number_of_coins` }
     ]
   }, // end state
 

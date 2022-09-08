@@ -20,7 +20,7 @@
         </div> -->
         <!-- dev -->
 
-        <span class="card-title" style="margin-top: 0.25em;">Тип:</span>
+        <span class="card-title" style="margin-top: 0.25em;">{{`Type` | localize }} {{`:`}}</span>
 
         <div class="input-field" style="margin-top: 0em">
           <select class="page-title white-text" ref="select" v-model="current">

@@ -3,23 +3,25 @@
     <div
       class="card grey lighten-3"
       style="
-      height: 150px; 
-      border: solid 3px #00B9E3; 
-      
-      border-top-right-radius: 2rem;
-      border-bottom-right-radius: 2rem;
-      border-left-style: hidden;
+        height: 150px;
+        border: solid 3px #00b9e3;
 
+        border-top-right-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+        border-left-style: hidden;
       "
     >
       <div class="card-content black-text">
-        <span class="card-title">Номер панели:</span>
+        <span class="card-title"
+          >{{ `Panel_number` | localize }} {{ `:` }}</span
+        >
         <div class="input-field">
-          <!-- <div>{{ `${this.getPanelType}` }}</div> -->
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(n, index) in numbers" :key="index" :value="n.id">
               <div class="dropdown-setting">
-                {{ n.title }}
+                {{ `${n.title}` | localize }}
+                {{`#` | localize}}
+                {{ `${index + 1}` }}
               </div>
             </option>
           </select>
@@ -30,26 +32,24 @@
 </template>
 
 <script>
-import Vue from "vue";
-import { mapGetters, mapMutations } from "vuex";
+import Vue from 'vue'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default Vue.extend({
-  name: "setting-panel-number",
+  name: 'setting-panel-number',
   data: () => ({
     select: null,
     current: null,
-    title: "",
+    title: '',
 
     numbers: [
-      { id: 1, title: "ПАНЕЛЬ №1" },
-      { id: 2, title: "ПАНЕЛЬ №2" },
-      { id: 3, title: "ПАНЕЛЬ №3" },
-      { id: 4, title: "ПАНЕЛЬ №4" },
-      { id: 5, title: "ПАНЕЛЬ №5" },
-      { id: 6, title: "ПАНЕЛЬ №6" },
-      { id: 7, title: "ПАНЕЛЬ №7" },
-      { id: 8, title: "ПАНЕЛЬ №8" },
-      { id: 9, title: "ПАНЕЛЬ №9" },
+      { id: 1, title: `PANEL` },
+      { id: 2, title: `PANEL` },
+      { id: 3, title: `PANEL` },
+      { id: 4, title: `PANEL` },
+      { id: 5, title: `PANEL` },
+      { id: 6, title: `PANEL` },
+      { id: 7, title: `PANEL` }
     ],
     /* payments: [
       { id: 1, title: 'ПОСТ ОПЛАТЫ №1' },
@@ -59,41 +59,41 @@ export default Vue.extend({
   mounted() {
     this.select = M.FormSelect.init(this.$refs.select, {
       constrainWidth: true,
-    });
-    M.updateTextFields();
+    })
+    M.updateTextFields()
     // console.log('++this.select-->', this.select)
   },
   methods: {
     ...mapGetters({
-      getDefaultPanelNumber: "getDefaultPanelNumber",
+      getDefaultPanelNumber: 'getDefaultPanelNumber',
     }),
     ...mapMutations({
-      setDefaultPanelNumber: "setDefaultPanelNumber",
+      setDefaultPanelNumber: 'setDefaultPanelNumber',
     }),
   },
   computed: {
     ...mapGetters({
-      getPanelType: "getPanelType",
+      getPanelType: 'getPanelType',
     }),
   },
   watch: {
     current(numberId) {
       //console.log('numberId-->', numberId)
-      const { id, title } = this.numbers.find((n) => n.id === numberId);
-      this.select = title;
-      this.setDefaultPanelNumber(id);
+      const { id, title } = this.numbers.find((n) => n.id === numberId)
+      this.select = title
+      this.setDefaultPanelNumber(id)
     },
   },
   created() {
-    const defaultPanelNumber = this.getDefaultPanelNumber();
-    const { id, title } = this.numbers[defaultPanelNumber - 1];
-    this.current = id;
-    this.select = title;
+    const defaultPanelNumber = this.getDefaultPanelNumber()
+    const { id, title } = this.numbers[defaultPanelNumber - 1]
+    this.current = id
+    this.select = title
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {
-      this.select.destroy();
+      this.select.destroy()
     }
   },
-});
+})
 </script>

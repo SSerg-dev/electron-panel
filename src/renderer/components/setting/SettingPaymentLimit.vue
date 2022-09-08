@@ -17,7 +17,7 @@
         <div class="row">
           
           <div class="col s2">
-            <span class="card-title">Лимиты платежей:</span>
+            <span class="card-title">{{`Payment_limits` | localize}} {{`:`}}</span>
           </div>
           <div class="col s5" style="margin-left: -3em;">
             <div>

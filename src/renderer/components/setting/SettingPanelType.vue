@@ -22,12 +22,13 @@
       "
     >
       <div class="card-content black-text">
-        <span class="card-title">Тип панели:</span>
+        <span class="card-title">{{`Type_of_panel` | localize}} {{`:`}}</span>
         <div class="input-field">
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(t, index) in types" :key="index" :value="t.id">
               <div class="dropdown-setting">
-                {{ t.title }}
+                <!-- {{ t.title }} -->
+                {{ `${t.title}` | localize }}
               </div>
             </option>
           </select>
@@ -49,9 +50,9 @@ export default Vue.extend({
     title: '',
 
     types: [
-      { id: 1, title: 'МОЙКА' },
-      { id: 2, title: 'ПЫЛЕСОС' },
-      /* { id: 3, title: 'ПОСТ ОПЛАТЫ' } */
+      { id: 1, title: `CAR_WASH` },      
+      { id: 2, title: `VACUUM_CLEANER` },
+      /* { id: 3, title: `PAYMENT_CENTER` } */
     ]
   }),
   mounted() {

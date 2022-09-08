@@ -166,6 +166,7 @@ export default new Vuex.Store({
       }
     },
 
+    isOddVacuumNumber: true,
     isDebug: true
   },
   actions: {
@@ -221,7 +222,7 @@ export default new Vuex.Store({
           JSON.stringify({
             node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
               1}].paidMoney`,
-              // 1}].prepaymentMoney`,
+            // 1}].prepaymentMoney`,
             value: cash
           })
         )
@@ -329,7 +330,7 @@ export default new Vuex.Store({
           JSON.stringify({
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
               1}].paidMoney`,
-              /* 1}].prepaymentMoney`, */
+            /* 1}].prepaymentMoney`, */
             value: cash
           })
         )
@@ -493,6 +494,7 @@ export default new Vuex.Store({
       return state.dryParameters.progStatusMask
     },
     getDryProgShow(state) {
+      // console.log('$$ state.dryParameters.progShowMask', state.dryParameters.progShowMask)
       return state.dryParameters.progShowMask
     },
     getDryProgPrice(state) {
@@ -520,6 +522,9 @@ export default new Vuex.Store({
       return state.dryParameters.active
     },
 
+    getIsOddVacuumNumber(state) {
+      return state.isOddVacuumNumber
+    },
     // END DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     info: s => s.info,
@@ -733,7 +738,10 @@ export default new Vuex.Store({
           state.dryParameters.progPrice = parameter.value
           break
         case 'progShowMask':
-          state.dryParameters.progShowMask = parameter.value
+          // trash & odd filter
+          if ( state.isOddVacuumNumber &&  parameter.value.length < 4) {  
+            state.dryParameters.progShowMask = parameter.value
+          }
           break
         case 'progStatusMask':
           state.dryParameters.progStatusMask = parameter.value
@@ -764,6 +772,9 @@ export default new Vuex.Store({
         default:
           break
       }
+    },
+    setIsOddVacuumNumber(state, isOdd) {
+      state.isOddVacuumNumber = isOdd
     },
 
     setPaginate(state, paginate) {
