@@ -115,7 +115,7 @@ export default Vue.extend({
 
     this.intervalPing = setInterval(() => {
       /* dev hidden */
-      // this.ping()
+      this.ping()
       
     }, 2000)
   },

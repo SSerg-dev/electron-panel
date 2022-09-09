@@ -278,7 +278,7 @@ export default {
         id: 18,
         order: 100 /* 17 */,
         // title: 'ПЫЛЕСОС',
-        title: 'VACUUM_CLEANER', 
+        title: 'VACUUM', 
         name: 'vacuum',
         price: 0,
         priceTurbo: 0,
