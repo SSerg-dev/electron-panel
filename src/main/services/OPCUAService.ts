@@ -100,12 +100,19 @@ class OPCUAService extends EventEmitter {
     TAG_SERVICE_MONEY: '::AsGlobalPV:Recipe.ServiceMoneyAmount',
 
     TAG_USER: '::AsGlobalPV:System.userActiveName',
-    TAG_USER_ACCESS: '::AsGlobalPV:User[{0}].access',
+    
+    /* TAG_USER_ACCESS: '::AsGlobalPV:User[{0}].access',
     TAG_USER_NAME: '::AsGlobalPV:User[{0}].name',
-    TAG_USER_PASSWORD: '::AsGlobalPV:User[{0}].password',
+    TAG_USER_PASSWORD: '::AsGlobalPV:User[{0}].password', */
 
     TAG_DATE: '::AsGlobalPV:DateTime.Date',
     TAG_TIME: '::AsGlobalPV:DateTime.Time'
+  }
+  /* dev */
+  public userNodes: { [key: string]: string } = {
+    TAG_USER_ACCESS: '::AsGlobalPV:User[{0}].access',
+    TAG_USER_NAME: '::AsGlobalPV:User[{0}].name',
+    TAG_USER_PASSWORD: '::AsGlobalPV:User[{0}].password'
   }
 
   private client: OPCUAClient
@@ -152,7 +159,6 @@ class OPCUAService extends EventEmitter {
 
   public start = async (type: string = 'Post', num: number = 1) => {
     try {
-
       await this.stop()
       await this.client.connect(this.endpointUrl)
       console.log(`Connected to ${this.endpointUrl}`)
@@ -202,6 +208,34 @@ class OPCUAService extends EventEmitter {
           attributeId: AttributeIds.Value
         })
       }
+      /* dev */
+      /* users array */
+      // let index = 1
+      let item = {}
+      for(let index = 1; index < 8; index++) {
+        for (let tag in this.userNodes) {
+          const node = this.userNodes[tag].replace('{0}', String(index))
+          // index++
+          console.log('$$ tag', tag)
+          console.log('$$ index', index)
+          if (
+            (type.indexOf('Vacuum') != -1 && node.indexOf('Post') != -1) ||
+            (type.indexOf('wash') != -1 && node.indexOf('acuum') != -1)
+          ) {
+            continue
+          }
+          item = {
+            nodeId: resolveNodeId(`ns=${this.TAG_NS};s=${node}`),
+            attributeId: AttributeIds.Value
+          }
+          itemsToMonitor.push(item)
+          console.log('$$ item', item)
+  
+          // console.log('$$ itemsToMonitor', itemsToMonitor)
+        }
+      }
+      
+      /*     */
 
       this.monitoredItemGroup = ClientMonitoredItemGroup.create(
         this.subscription,

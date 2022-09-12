@@ -122,6 +122,8 @@ class Pax extends EventEmitter {
     })
     ipcMain.on('async-reconciliation-message', (event, arg) => {
       self.reconcile()
+      /* dev */
+      // self.check()
     })
     self.disconnect()
   }
@@ -138,6 +140,7 @@ class Pax extends EventEmitter {
   private check() {
     let self = this
     const requestCheck = self.device.getCheckRequest()
+    // console.log('$$ requestCheck', requestCheck)
     const writeCheck = self.device.write(requestCheck, 2000)
   }
   // ------------------------------------

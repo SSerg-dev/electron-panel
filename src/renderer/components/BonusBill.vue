@@ -878,7 +878,7 @@ export default {
 
       if (response === undefined) {
         if (this.$route.name !== 'program') this.$router.push('/program')
-        this.$message(`Связь с connect недоступна!!!`)
+        this.$message(`Связь с connect bonus недоступна!!!`)
         return
       }
 

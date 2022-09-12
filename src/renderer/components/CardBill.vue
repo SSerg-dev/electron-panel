@@ -1023,13 +1023,10 @@ export default {
           switch (type) {
             case 'wash':
               this.updateWetBonusMoney(card)
-              // if (this.$route.name !== 'program') this.$router.push('/program')
-              // console.log('$$ CardBill.vue this.$router.push /cash' )
               if (this.$route.name !== 'cash') this.$router.push('/cash')
               break
             case 'vacuum':
               this.updateDryBonusMoney(card)
-              // if (this.$route.name !== 'program') this.$router.push('/program')
               if (this.$route.name !== 'cash') this.$router.push('/cash')
               break
 

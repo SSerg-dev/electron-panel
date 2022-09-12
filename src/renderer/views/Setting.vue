@@ -649,9 +649,18 @@
                 </div>
               </td>
             </tr>
+            <!-- dev -->
+            <tr style="margin-top: 7em; margin-left: 0px">
+              <td>
+                <div>
+                  <SettingPaymentToken />
+                </div>
+              </td>
+            </tr>
+            <!--     -->
 
             <!-- row 11 -->
-            <tr style="margin-top: 3em">
+            <tr style="margin-top: -2em">
               <td style="width: 1040px">
                 <div
                   class="card black lighten-3"
@@ -705,17 +714,6 @@
               </tr>
             </div>
 
-            <!-- row 14 -->
-            <tr style="margin-top: 3.7em; margin-left: 0px">
-              <td>
-                <div>
-                  <SettingPaymentToken />
-                </div>
-              </td>
-            </tr>
-            <!-- row 15 -->
-
-            <!--  -->
           </tbody>
         </table>
         <div style="margin-top: 2em">

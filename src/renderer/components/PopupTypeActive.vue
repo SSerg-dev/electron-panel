@@ -260,7 +260,7 @@ export default {
 
         this.timeoutPopup = setTimeout(() => {
           try {
-            this.$router.push('/program')
+            if (this.$route.name !== 'home') this.$router.push('/')
           } catch (err) {}
         }, this.delay)
       }

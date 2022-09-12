@@ -9,7 +9,7 @@
             <div
               v-if="this.isDown.home === false"
               style="background-image:url('./imgs/operator/home-down.png'); width: 401px; height: 106px"
-              @click="gotoHome('home')"
+              @click="goHome('home')"
             >
               <div class="button-title-long button-title-home">
                 <i class="large material-icons">home</i>
@@ -18,7 +18,7 @@
             <div
               v-if="this.isDown.home === true"
               style="background-image:url('./imgs/operator/home-up.png'); width: 401px; height: 106px"
-              @click="gotoHome('home')"
+              @click="goHome('home')"
             >
               <div class="button-title-long button-title-home">
                 <i class="large material-icons">home</i>
@@ -166,14 +166,12 @@ export default {
       updateDryStartProgram: 'updateDryStartProgram'
     }),
 
-    gotoHome(program) {
+    goHome(program) {
       this.isDown.home = true
       this.timeoutDelay = setTimeout(() => {
         this.isDown.home = false
         try {
-          /* dev */
           if (this.$route.name !== 'home') this.$router.push('/')
-          // if (this.$route.name !== 'program') this.$router.push('/program')
         } catch (err) {}
       }, this.delay)
     },

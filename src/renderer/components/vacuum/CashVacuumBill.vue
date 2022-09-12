@@ -233,7 +233,7 @@ export default {
 
       if (response === undefined) {
         if (this.$route.name !== 'program') this.$router.push('/program')
-        this.$message(`Связь с connect недоступна!!!`)
+        this.$message(`Связь с connect cash vacuum недоступна!!!`)
         return
       }
       /* dev vacuum */

@@ -7,8 +7,7 @@
 
 /* Message transmission start code. */
 export const SYNC = 0x02
-/*  */
-// export const CRC_POLY_PAX = 0x18005
+
 export const CRC_POLY_PAX = 0x8005
 
 /* Peripheral addresses. */

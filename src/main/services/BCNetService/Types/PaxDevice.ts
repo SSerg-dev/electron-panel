@@ -246,63 +246,29 @@ class PaxDevice extends EventEmitter {
     let self = this
     setTimeout(() => {
       const res = self.serial.write(request)
+      /* dev */
+      /* let chunk
+        while (null !== (chunk = self.serial.read())) {
+          self.readResponse = chunk
+        }
+      console.log('$$ self.readResponse', self.readResponse ) */
+
       return res
     }, timeout)
   }
-  // ------------------------------------
-
-  /* read = (request: Buffer, timeout: number = 2000) => {
-    let self = this
-    let result
-    try {
-      // if (!self.serial.isOpen) {
-      self.connect()
-      // }
-      // ------------------------------
-      // ОПЕРАЦИЯ ПРЕРВАНА КАССОЙ
-      const ack = Buffer.from([BCNet.ACK_RES])
-      const eot = Buffer.from([BCNet.EOT_RES])
-
-      self.serial.on('readable', () => {
-        // self.readResponse = self.serial.read() // || ack
-        self.readResponse = self.serial.read() // || self.readNextResponse(request)
-
-        self.time = new Date().toLocaleTimeString()
-        // console.log(`$$ self.readResponse-->  ${self.time}`, self.readResponse)
-
-        if (self.readResponse !== null) {
-          result = self.parseReadResponse(self.readResponse)
-          return true
-        } else {
-          return false
-        }
-      })
-      // ------------------------------
-    } catch (err) {
-      throw new Error(`serial read  ${err}`)
-    }
-  } */
   // ------------------------------------
   read = (request: Buffer, timeout: number = 2000) => {
     let self = this
     let result
     try {
       self.connect()
-      // ------------------------------
-      // ОПЕРАЦИЯ ПРЕРВАНА КАССОЙ
-      // --------------------------------
-      // self.serial.removeListener('readable')
-
       self.serial.on('readable', () => {
         let chunk
         while (null !== (chunk = self.serial.read())) {
           self.readResponse = chunk
-          // console.log(`Received ${chunk.length} bytes of data.`)
         }
         self.parseReadResponse(self.readResponse)
       })
-
-      // ------------------------------
     } catch (err) {
       throw new Error(`serial read  ${err}`)
     }
@@ -321,27 +287,15 @@ class PaxDevice extends EventEmitter {
     console.log('$$ readNextResponse self.isOpen 01', self.serial.isOpen)
 
     if (self.serial.isOpen) {
-    await self.disconnect()
-    await self.connect()
+      await self.disconnect()
+      await self.connect()
 
-    console.log('$$ readNextResponse self.serial.isOpen 02', self.serial.isOpen)
+      console.log(
+        '$$ readNextResponse self.serial.isOpen 02',
+        self.serial.isOpen
+      )
     }
 
-    /* CheckRequest */
-    // const requestCheck = self.getCheckRequest()
-    // const writeCheck = self.write(requestCheck, 2000)
-
-    // await self.serial.write(eot)
-    // await self.serial.write(ack)
-
-
-    // await self.serial.write(request)
-    // self.serial.on('readable', () => {
-    // res = self.readResponse = self.serial.read() || 11
-    
-    // console.log('$$ readNextResponse self.readResponse 03', self.readResponse)
-    // })
-    
     return res
   }
   // ------------------------------------
@@ -358,7 +312,7 @@ class PaxDevice extends EventEmitter {
 
     // ----------------------------------
     try {
-      const resAck = response[0] // || ack[0]
+      const resAck = response[0] 
       if (resAck === ack[0]) {
         setTimeout(() => {
           res = self.serial.write(ack)
@@ -379,10 +333,8 @@ class PaxDevice extends EventEmitter {
     } catch (err) {
       console.log('$$ err WAIT--> ', err)
     }
-    /* dev */
 
     try {
-      /* && response[9] === 0xc2 */
       if (response[0] === stx[0] && response[1] !== 0x5) {
         setTimeout(() => {
           res = self.serial.write(ack)
@@ -424,7 +376,7 @@ class PaxDevice extends EventEmitter {
   sendSuccessAmount(amount: number, status: string) {
     this.resultEmitter.emit('submitSuccessAmount', amount, status)
   }
-  
+
   // ------------------------------------
   hexToAscii(str: string) {
     var hex = str.toString()

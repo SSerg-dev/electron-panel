@@ -79,7 +79,7 @@ export default Vue.extend({
   watch: {
     getStatusBillMessages(flag) {},
     seconds(flag) {
-      if (flag === 0) {
+      if (flag === 0 ) {
         this.loading = false
         this.$router.push('/')
       }
