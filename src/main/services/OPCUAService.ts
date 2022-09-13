@@ -21,7 +21,7 @@ const TAG = 'OPCUA'
 class OPCUAService extends EventEmitter {
   private endpointUrl: string = '' // = `opc.tcp://${setIPToLocalSubnet(2)}:4840`
   private TAG_NS = 6
-  private maxUsersNumber = 4
+  private maxUsersNumber = 6
 
   public nodes: { [key: string]: string } = {
     TAG_WET_ZERO_MONEY: '::AsGlobalPV:PostN[{0}].cmdZeroMoney',
@@ -215,8 +215,8 @@ class OPCUAService extends EventEmitter {
       for (let index = 1; index < this.maxUsersNumber + 1; index++) {
         for (let tag in this.userNodes) {
           const node = this.userNodes[tag].replace('{0}', String(index))
-          console.log('$$ tag', tag)
-          console.log('$$ index', index)
+          // console.log('$$ tag', tag)
+          // console.log('$$ index', index)
           if (
             (type.indexOf('Vacuum') != -1 && node.indexOf('Post') != -1) ||
             (type.indexOf('wash') != -1 && node.indexOf('acuum') != -1)
@@ -228,7 +228,7 @@ class OPCUAService extends EventEmitter {
             attributeId: AttributeIds.Value
           }
           itemsToMonitor.push(item)
-          console.log('$$ item', item)
+          // console.log('$$ item', item)
         }
       }
 

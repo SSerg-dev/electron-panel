@@ -148,9 +148,14 @@ export default new Vuex.Store({
     kktParameters: {
       isKktInstalled: false
     },
-    users: {
+    users: { 
       name: '',
+      names: [],
+
+      access: [],
+
       role: '',
+      delay: 2000,
       isAccess: {
         /* B&D */ /* index 0-10 */
         mainMenu: false, // 1
@@ -634,6 +639,11 @@ export default new Vuex.Store({
 
       state.isParamsChange = !state.isParamsChange
 
+      /* dev */
+      // const user = parameter.title.slice( (-parameter.title.indexOf('[')), (-parameter.title.indexOf('[') - 5))
+
+      // console.log('$$ user-->', user)
+
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
       )
@@ -689,8 +699,12 @@ export default new Vuex.Store({
           state.kktParameters.isKktInstalled = JSON.parse(parameter.value)
           break
         case 'name':
+          if (!state.users.names.includes(parameter.value)) {
+            state.users.names.push(parameter.value)
+            // console.log('$$ state.users.names', state.users.names)
+          }
           state.users.name = parameter.value
-          if (parameter.value === 'user') {
+          /* if (parameter.value === 'user') {
             state.users.role = 'user'
           } else if (parameter.value === 'admin') {
             state.users.role = 'admin'
@@ -699,13 +713,21 @@ export default new Vuex.Store({
           } else if (parameter.value === 'guest') {
             state.users.role = 'user'
           } else {
-            state.users.role = /* 'admin' */ 'unknown'
-          }
+            state.users.role = 'unknown'
+          } */
           // console.log('$$ state.users.role', state.users.role)
           break
         case 'access':
+          /* dev */
+          const index = +parameter.title.slice(-9, -8)
+          // const index = 2
+
+          const item = parameter.value
+          state.users.access[index - 1] = item
+
           const comma = ','
-          const arrayAccess = parameter.value.split(comma)
+          const arrayAccess = state.users.access[index - 1].split(comma)
+
           // set access B&D
           state.users.isAccess.mainMenu = arrayAccess[1]
           state.users.isAccess.mainDiagnostic = arrayAccess[2]
@@ -713,10 +735,20 @@ export default new Vuex.Store({
           state.users.isAccess.mainSetting = arrayAccess[4]
           state.users.isAccess.mainStatistic = arrayAccess[5]
           state.users.isAccess.mainFinance = arrayAccess[6]
+
           // set access panels
           state.users.isAccess.panelCollection = arrayAccess[7]
           state.users.isAccess.panelPlusTen = arrayAccess[8]
           state.users.isAccess.panelOpen = arrayAccess[0]
+
+          setTimeout(() => {
+            console.log(
+              '$$ state.users.access[index]-->',
+              index,
+              state.users.names[index - 1],
+              state.users.access[index - 1]
+            )
+          }, state.users.delay)
 
           break
 
@@ -739,7 +771,7 @@ export default new Vuex.Store({
           break
         case 'progShowMask':
           // trash & odd filter
-          if ( state.isOddVacuumNumber &&  parameter.value.length < 4) {  
+          if (state.isOddVacuumNumber && parameter.value.length < 4) {
             state.dryParameters.progShowMask = parameter.value
           }
           break

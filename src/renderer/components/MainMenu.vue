@@ -35,7 +35,7 @@
         <!-- v-if="getIsPing && getTerminalInstalled" -->
         <!-- v-if="getTerminalInstalled" -->
         <li
-          v-if="getTerminalInstalled"
+          v-if="getIsPing && getTerminalInstalled"
           class="collection-item"
           @click="payUp('card')"
         >
