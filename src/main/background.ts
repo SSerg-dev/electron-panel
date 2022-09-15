@@ -142,7 +142,7 @@ const idle = async (config: any) => {
 
   }
   /* dev hidden */
-
+  
   /* if (config.bill_validator) {
     if (
       !mConfig ||

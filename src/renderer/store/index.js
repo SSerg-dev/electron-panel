@@ -11,6 +11,7 @@ import options from './options'
 import status from './status'
 import countries from './countries'
 import languages from './languages'
+import sleep from '@/utils/sleep'
 
 import { ipcRenderer } from 'electron'
 
@@ -148,14 +149,17 @@ export default new Vuex.Store({
     kktParameters: {
       isKktInstalled: false
     },
-    users: { 
+    users: {
       name: '',
       names: [],
 
       access: [],
 
+      password: '',
+      passwords: [],
+
       role: '',
-      delay: 2000,
+      delay: 1000,
       isAccess: {
         /* B&D */ /* index 0-10 */
         mainMenu: false, // 1
@@ -701,54 +705,56 @@ export default new Vuex.Store({
         case 'name':
           if (!state.users.names.includes(parameter.value)) {
             state.users.names.push(parameter.value)
-            // console.log('$$ state.users.names', state.users.names)
           }
           state.users.name = parameter.value
-          /* if (parameter.value === 'user') {
-            state.users.role = 'user'
-          } else if (parameter.value === 'admin') {
-            state.users.role = 'admin'
-          } else if (parameter.value === 'alles') {
-            state.users.role = 'admin'
-          } else if (parameter.value === 'guest') {
-            state.users.role = 'user'
-          } else {
-            state.users.role = 'unknown'
-          } */
-          // console.log('$$ state.users.role', state.users.role)
+          break
+        case 'password':
+          if (!state.users.passwords.includes(parameter.value)) {
+            state.users.passwords.push(parameter.value)
+          }
+          state.users.password = parameter.value
           break
         case 'access':
-          /* dev */
-          const index = +parameter.title.slice(-9, -8)
-          // const index = 2
+          
+          sleep(state.users.delay).then(() => {
+            // --------------------------
+            const currentIndex = +parameter.title.slice(-9, -8) - 1
+            /* dev */
+            // get password
+            
+            // const password = 'ac04add834e8214cc355159be09da01f3ff1cc6c'
+            // const password = 'ef157cc11861f113e7ace863c8e5f3cd09005705'
+            // const password = '3a01ed51d78a9e6043f12b9942077d92d975fe36'
+            const password = '9cd8f4ac7b5ab48c1d75db4874e2f59bc7fcd7d3'
+            // const password = '487f7d19ee697511256d37004457df73c45436d2'
+            // const password = '8f7d8f45f8c9bdcdb66077726a2862ba75340f5f'
+         
+            const index = state.users.passwords.findIndex(p => p === password)
 
-          const item = parameter.value
-          state.users.access[index - 1] = item
+            if (index !== -1 && index === currentIndex) {
+              // --------------------------
+              const item = parameter.value
+              state.users.access[index] = item
+              const comma = ','
+              const arrayAccess = state.users.access[index].split(comma)
 
-          const comma = ','
-          const arrayAccess = state.users.access[index - 1].split(comma)
+              // set access B&D
+              state.users.isAccess.mainMenu = arrayAccess[1]
+              state.users.isAccess.mainDiagnostic = arrayAccess[2]
+              state.users.isAccess.mainPosts = arrayAccess[3]
+              state.users.isAccess.mainSetting = arrayAccess[4]
+              state.users.isAccess.mainStatistic = arrayAccess[5]
+              state.users.isAccess.mainFinance = arrayAccess[6]
 
-          // set access B&D
-          state.users.isAccess.mainMenu = arrayAccess[1]
-          state.users.isAccess.mainDiagnostic = arrayAccess[2]
-          state.users.isAccess.mainPosts = arrayAccess[3]
-          state.users.isAccess.mainSetting = arrayAccess[4]
-          state.users.isAccess.mainStatistic = arrayAccess[5]
-          state.users.isAccess.mainFinance = arrayAccess[6]
-
-          // set access panels
-          state.users.isAccess.panelCollection = arrayAccess[7]
-          state.users.isAccess.panelPlusTen = arrayAccess[8]
-          state.users.isAccess.panelOpen = arrayAccess[0]
-
-          setTimeout(() => {
-            console.log(
-              '$$ state.users.access[index]-->',
-              index,
-              state.users.names[index - 1],
-              state.users.access[index - 1]
-            )
-          }, state.users.delay)
+              // set access panels
+              state.users.isAccess.panelCollection = arrayAccess[7]
+              state.users.isAccess.panelPlusTen = arrayAccess[8]
+              state.users.isAccess.panelOpen = arrayAccess[0]
+              // --------------------------
+            } else if (index === -1) {
+              console.log('user not find')
+            }
+          })
 
           break
 

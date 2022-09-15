@@ -34,7 +34,7 @@ class Button extends Box {
 
   // methods
   getButtonInfo() {
-    console.log('!!++getButtonInfo')
+    // console.log('!!++getButtonInfo')
   }
   // getters
   get background() {

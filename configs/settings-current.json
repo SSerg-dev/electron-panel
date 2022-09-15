@@ -1,7 +1,7 @@
 {
   "bank_terminal": {
     "hardware": "pax",
-    "installed": true,
+    "installed": false,
     "max_sum": 510,
     "min_sum": 0
   },

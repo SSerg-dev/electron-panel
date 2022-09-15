@@ -1,14 +1,19 @@
 <template>
   <div v-if="getIsFooter">
-    <div class="footer-panel white-text ">
+    <div class="footer-panel white-text">
       <div class="row">
         <!-- {{ `ДОМОЙ` }} -->
         <!-- home keyboard_backspace -->
-        <!-- <div class="col s4">
+
+        <div class="col s4">
           <div class="home">
             <div
               v-if="this.isDown.home === false"
-              style="background-image:url('./imgs/operator/home-down.png'); width: 401px; height: 106px"
+              style="
+                background-image: url('./imgs/operator/home-down.png');
+                width: 401px;
+                height: 106px;
+              "
               @click="goHome('home')"
             >
               <div class="button-title-long button-title-home">
@@ -17,25 +22,28 @@
             </div>
             <div
               v-if="this.isDown.home === true"
-              style="background-image:url('./imgs/operator/home-up.png'); width: 401px; height: 106px"
-              @click="goHome('home')"
+              style="
+                background-image: url('./imgs/operator/home-up.png');
+                width: 401px;
+                height: 106px;
+              "
             >
               <div class="button-title-long button-title-home">
                 <i class="large material-icons">home</i>
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
 
-        <div  class="col s4"
-        v-if="
-          this.$route.name === 'program' 
-        "
-        >
-          <div class="stop" style="z-index: 0;">
+        <div class="col s4" v-if="this.$route.name === 'program'">
+          <div class="stop" style="z-index: 0">
             <div
               v-if="this.isDown.stop === false"
-              style="background-image:url('./imgs/stop/stop-down.png'); width: 460px; height: 120px;"
+              style="
+                background-image: url('./imgs/stop/stop-down.png');
+                width: 460px;
+                height: 120px;
+              "
               @click="setProgram('stop')"
             >
               <div class="button-title-long button-title-stop">
@@ -44,7 +52,11 @@
             </div>
             <div
               v-if="this.isDown.stop === true"
-              style="background-image:url('./imgs/stop/stop-up.png'); width: 460px; height: 120px"
+              style="
+                background-image: url('./imgs/stop/stop-up.png');
+                width: 460px;
+                height: 120px;
+              "
               @click="setProgram('stop')"
             >
               <div class="button-title-long button-title-stop">
@@ -58,7 +70,11 @@
           <div class="operator">
             <div
               v-if="this.isDown.operator === false"
-              style="background-image:url('./imgs/operator/operator-down.png'); width: 401px; height: 106px"
+              style="
+                background-image: url('./imgs/operator/operator-down.png');
+                width: 401px;
+                height: 106px;
+              "
               @click="setProgram('operator')"
             >
               <div class="button-title-long button-title-operator">
@@ -67,7 +83,11 @@
             </div>
             <div
               v-if="this.isDown.operator === true"
-              style="background-image:url('./imgs/operator/operator-up.png'); width: 401px; height: 106px"
+              style="
+                background-image: url('./imgs/operator/operator-up.png');
+                width: 401px;
+                height: 106px;
+              "
               @click="setProgram('operator')"
             >
               <div class="button-title-long button-title-operator">
@@ -85,6 +105,9 @@
 import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 
+import { Queue } from '@/queue/index.js'
+import { log } from '../../../main/utils'
+
 export default {
   data: () => ({
     active: '',
@@ -94,8 +117,8 @@ export default {
     isDown: {
       stop: false,
       operator: false,
-      home: false
-    }
+      home: false,
+    },
   }),
   computed: {
     ...mapGetters({
@@ -114,15 +137,13 @@ export default {
       getIsMoneyToBonusNo: 'getIsMoneyToBonusNo',
       getMoneyToBonus: 'getMoneyToBonus',
       getSecondsBonusTimer: 'getSecondsBonusTimer',
-      getIsFirstTimer: 'getIsFirstTimer'
-    })
+      getIsFirstTimer: 'getIsFirstTimer',
+    }),
   },
   watch: {
-    
     /* dev */
     getWetStopFreeCount(flag) {
       try {
-
         if (
           parseInt(flag) > 0 &&
           +this.getMoneyToBonus === 0 &&
@@ -131,9 +152,8 @@ export default {
           this.setMoneyToBonus(this.getWetBalance)
           this.setIsMoneyToBonus(true)
         }
-
       } catch (err) {}
-    }
+    },
 
     /* dev */
     /* getSecondsBonusTimer(flag) {
@@ -158,22 +178,33 @@ export default {
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setIsMoneyToBonus: 'setIsMoneyToBonus',
-      setMoneyToBonus: 'setMoneyToBonus'
+      setMoneyToBonus: 'setMoneyToBonus',
     }),
     ...mapGetters({}),
     ...mapActions({
       updateStartProgram: 'updateStartProgram',
-      updateDryStartProgram: 'updateDryStartProgram'
+      updateDryStartProgram: 'updateDryStartProgram',
     }),
 
     goHome(program) {
-      this.isDown.home = true
+      /* dev */
+      /* this.isDown.home = true
       this.timeoutDelay = setTimeout(() => {
         this.isDown.home = false
         try {
           if (this.$route.name !== 'home') this.$router.push('/')
         } catch (err) {}
-      }, this.delay)
+      }, this.delay) */
+      // --------------------------------
+      const queue = new Queue({
+        elements:  {},
+        // head:  12,
+        // tail:  42
+      }) 
+      queue.enqueue({ name: 'QQQQQQQQQ' })
+      console.log('$$ queue', JSON.stringify(queue) )
+
+      // --------------------------------
     },
 
     setProgram(program) {
@@ -188,7 +219,7 @@ export default {
             this.getPanelType,
             this.getDefaultPanelNumber,
             this.getActiveProgram,
-            this.getWetBalance
+            this.getWetBalance,
           ])
           break
         case 'vacuum':
@@ -196,7 +227,7 @@ export default {
             this.getPanelType,
             this.getVacuumNumber,
             this.getActiveProgram,
-            this.getDryBalance
+            this.getDryBalance,
           ])
           break
 
@@ -234,31 +265,29 @@ export default {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-    }
+    },
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutPopup)
-  }
+  },
 }
 </script>
 
 <style scoped>
 .footer-panel {
-  height:  106px;
+  height: 106px;
   width: 100%;
   position: fixed;
   left: 0em;
   bottom: -0.2em;
-  opacity: 1; 
+  opacity: 1;
   /* #121212 */
-  background: linear-gradient(180deg, #505CAD 1.62%, #5B68BB 100%);;
-  
+  background: linear-gradient(180deg, #505cad 1.62%, #5b68bb 100%);
 }
 .row {
   position: fixed;
   left: 0.8em;
-  
 }
 
 .button-title-long {
