@@ -80,6 +80,7 @@ import { ipcRenderer } from 'electron'
 
 import { dateFilter, getRndInteger } from '@/utils/order.js'
 import sleep from '@/utils/sleep'
+import { Queue } from '@/queue/index.js'
 
 export default {
   name: 'cash-bill',
@@ -104,11 +105,21 @@ export default {
     url: 'https://192.168.1.3/',
     storage: null,
     options: {},
+
+    queue: null,
+    localClient: 'local',
+    localStorage: null,
   }),
   mounted() {
     this.order = this.createOrder()
     this.storage = new Storage(this.client, this.url)
 
+    this.queue = new Queue()
+
+    this.localStorage = new Storage(
+      this.localClient,
+      (this.url = 'http://127.0.0.1/')
+    )
   },
   computed: {
     ...mapGetters({
@@ -119,8 +130,7 @@ export default {
       getDryOrder: 'getDryOrder',
       getWetBalance: 'getWetBalance',
       getIsPing: 'getIsPing',
-      getPayType:'getPayType'
-      
+      getPayType: 'getPayType',
     }),
     IsWetBalance: {
       get: function () {
@@ -136,7 +146,6 @@ export default {
       getCashEnabler: 'getCashEnabler',
       getStoreMoneyOptions: 'getStoreMoneyOptions',
       getAppendBonus: 'getAppendBonus',
-      
     }),
     ...mapMutations({
       setCashEnabler: 'setCashEnabler',
@@ -171,7 +180,6 @@ export default {
         this.$router.push('/bonus')
       }
     },
-
 
     getCashMoney() {
       let isClear = false
@@ -231,21 +239,31 @@ export default {
       const response = await this.storage.getClient(method, this.options, type)
 
       if (response === undefined) {
+        /* dev */
+        this.enqueue(method, this.options, type)
+
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(`Связь с connect cash недоступна!!!`)
         return
       }
-      /* dev add vacuum */
       if (+response.result === 0 && +this.getWetBalance > 0) {
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(
-          `Оплата прошла успешно, внесенная сумма:  ${+this
-            .getWetBalance} ₽`
+          `Оплата прошла успешно, внесенная сумма:  ${+this.getWetBalance} ₽`
         )
       } else {
         // this.$error('payCashMoney $error')
         //this.$message(`Оплата наличными не прошла`)
       }
+    },
+    // ----------------------------------
+    enqueue(method, options, type) {
+      // this.queue.enqueue(options)
+      // this.queue.peek()
+      // this.queue.length
+
+      const response = this.localStorage.getClient(method, options, type)
+      console.log('$$ response', response)
     },
     // ----------------------------------
     createOrder() {
@@ -282,15 +300,10 @@ export default {
       const type = types[4]
 
       this.options = this.getAppendBonus()
-        const response = await this.storage.getClient(
-          method,
-          this.options,
-          type
-        )
-        if (+response.result === 0) {
-          this.$message(`Бонусы зачислены успешно`)
-        }
-
+      const response = await this.storage.getClient(method, this.options, type)
+      if (+response.result === 0) {
+        this.$message(`Бонусы зачислены успешно`)
+      }
     },
     setEnabler() {
       this.getCashEnabler === true

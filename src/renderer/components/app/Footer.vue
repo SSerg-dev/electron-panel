@@ -187,24 +187,13 @@ export default {
     }),
 
     goHome(program) {
-      /* dev */
-      /* this.isDown.home = true
+      this.isDown.home = true
       this.timeoutDelay = setTimeout(() => {
         this.isDown.home = false
         try {
           if (this.$route.name !== 'home') this.$router.push('/')
         } catch (err) {}
-      }, this.delay) */
-      // --------------------------------
-      const queue = new Queue({
-        elements:  {},
-        // head:  12,
-        // tail:  42
-      }) 
-      queue.enqueue({ name: 'QQQQQQQQQ' })
-      console.log('$$ queue', JSON.stringify(queue) )
-
-      // --------------------------------
+      }, this.delay)
     },
 
     setProgram(program) {

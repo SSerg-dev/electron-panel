@@ -12,7 +12,7 @@ class Storage {
     // console.log('storage-->method-->', method)
 
     if (this.client === 'local') 
-      this.data = new Database(new LocalStorageClient())
+      this.data = new Database(new LocalStorageClient(method, options, type))
     else if (this.client === 'fetch') 
       this.data = new Database(new FetchClient(this.url, method, options, type))
     else {
