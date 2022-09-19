@@ -1,20 +1,48 @@
 import { Queue } from '@/queue/index.js'
 
 class LocalStorage {
+  // static queues = []
+  key = null
+  value = null
+  maxQueueNumber = 100
+
   constructor() {
     this.queue = new Queue()
+    // init key
+    this.key = window.localStorage.getItem('key')
+    if (!this.key) window.localStorage.setItem('key', '0')
   }
   get() {
     const dataFromLocalStorage = 'data from local storage'
     return dataFromLocalStorage
   }
   set(method, options, type) {
-    // console.log('$$!! setClient options', method, options, type)
-    const item = { method, options, type }
-    this.queue.enqueue(item)
-    // console.log('$$ this.queue.peek()', this.queue.peek())
-    // console.log('$$ this.queue.length', this.queue.length)
-    return 0
+    const args = { method, options, type }
+
+    this.key = window.localStorage.getItem('key')
+    if (+this.key < this.maxQueueNumber) {
+      this.queue.enqueue(args)
+      window.localStorage.setItem(
+        this.key.toString(),
+        JSON.stringify(this.queue)
+      )
+
+      this.key++
+      window.localStorage.setItem('key', this.key.toString())
+
+      this.runQueue()
+      return 0
+    }
+    return -1
+  }
+  runQueue() {
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i)
+
+      if (Number.isInteger(+key) && +key < this.maxQueueNumber) {
+        console.log(`${key}`)
+      } 
+    }
   }
 }
 class LocalStorageClient {

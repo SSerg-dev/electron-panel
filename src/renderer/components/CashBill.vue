@@ -114,8 +114,6 @@ export default {
     this.order = this.createOrder()
     this.storage = new Storage(this.client, this.url)
 
-    this.queue = new Queue()
-
     this.localStorage = new Storage(
       this.localClient,
       (this.url = 'http://127.0.0.1/')
@@ -236,11 +234,14 @@ export default {
         '$$ CashBill ++payCashMoney-->options-->this.options-->',
         JSON.stringify(this.options)
       )
+      
       const response = await this.storage.getClient(method, this.options, type)
+        /* dev */
+        this.enqueue(method, this.options, type)
 
       if (response === undefined) {
         /* dev */
-        this.enqueue(method, this.options, type)
+        // this.enqueue(method, this.options, type)
 
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(`Связь с connect cash недоступна!!!`)
@@ -258,12 +259,7 @@ export default {
     },
     // ----------------------------------
     enqueue(method, options, type) {
-      // this.queue.enqueue(options)
-      // this.queue.peek()
-      // this.queue.length
-
       const response = this.localStorage.getClient(method, options, type)
-      console.log('$$ response', response)
     },
     // ----------------------------------
     createOrder() {

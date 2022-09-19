@@ -117,8 +117,8 @@
             <img src="@/assets/images/flag_UK.png" />
           </div>
 
-          <div v-if="this.info.locale === 'ua-UA'">
-            <img src="@/assets/images/flag_UA.png" />
+          <div v-if="this.info.locale === 'kz-KZ'">
+            <img src="@/assets/images/flag_KZ.png" />
           </div>
         </router-link>
       </div>
