@@ -9,10 +9,7 @@
 
     <!-- !getIsPingUrl && -->
     <div
-      v-if="
-        
-          this.$route.name != 'language' && this.$route.name != 'setting'
-      "
+      v-if="this.$route.name != 'language' && this.$route.name != 'setting'"
       class="footer"
     >
       <Footer />
@@ -31,8 +28,10 @@ import { setInterval, clearInterval } from 'timers'
 import { Database } from '@/storage/database.js'
 import { Fetch, FetchClient, methods, types } from '@/storage/fetch.js'
 import { Storage } from '@/storage/index.js'
+import sleep from '@/utils/sleep'
 
 import Snowf from 'vue-snowf'
+import { response } from 'express'
 
 export default Vue.extend({
   name: 'main-layout',
@@ -44,26 +43,41 @@ export default Vue.extend({
     url: 'https://192.168.1.3/',
     urlController: 'https://192.168.1.2:4840',
     storage: null,
-    options: {}
+    options: {},
+    intervalCheckQueue: null,
+    delay: 10000,
+    
+    queue: null,
+    queueType: '',
+    localClient: 'local',
+    localStorage: null,
   }),
 
   computed: {
     ...mapGetters({
-      //getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getDefaultPanelNumber: 'getDefaultPanelNumber',
       //getWetBusyPanel: 'getWetBusyPanel',
       getPanelType: 'getPanelType',
-      getIsPingUrl: 'getIsPingUrl'
-    })
+      getIsPingUrl: 'getIsPingUrl',
+
+      getIsPing: 'getIsPing',
+    }),
   },
 
   methods: {
     ...mapGetters({
       getPingOptions: 'getPingOptions',
       getCompleteWash: 'getCompleteWash',
-
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
-      getIsPing: 'getIsPing',
     }),
+
+    checkQueue() {
+      console.log('$$ ++ checkQueue')
+      if (this.getIsPing) {
+        this.queueType = 'getQueue'
+        
+      
+      }
+    },
 
     async ping() {
       const method = methods[3]
@@ -101,8 +115,8 @@ export default Vue.extend({
 
     ...mapMutations({
       setIsPing: 'setIsPing',
-      setIsPingUrl: 'setIsPingUrl'
-    })
+      setIsPingUrl: 'setIsPingUrl',
+    }),
   },
   created() {
     //console.log('!!++this.getPanelType-->', this.getPanelType)
@@ -111,27 +125,31 @@ export default Vue.extend({
 
   async mounted() {
     this.storage = new Storage(this.client, this.url)
-    
 
     this.intervalPing = setInterval(() => {
       /* dev hidden */
-      // this.ping()
-      
+      this.ping()
     }, 2000)
+
+    this.intervalCheckQueue = setInterval(() => {
+      this.checkQueue()
+    }, this.delay)
+
   },
   beforeDestroy() {
     clearInterval(this.intervalPing)
+    clearInterval(this.intervalCheckQueue)
   },
   components: {
     Navbar,
     Footer,
-    Snowf
+    Snowf,
   },
   computed: {
     locale() {
       return this.$store.getters.info.locale
-    }
-  }
+    },
+  },
 })
 </script>
 

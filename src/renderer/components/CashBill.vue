@@ -107,6 +107,7 @@ export default {
     options: {},
 
     queue: null,
+    queueType: '',
     localClient: 'local',
     localStorage: null,
   }),
@@ -196,7 +197,6 @@ export default {
     },
 
     async payCashMoney() {
-      // console.log('++payCashMoney')
       const method = methods[0]
       const type = types[0]
 
@@ -234,14 +234,16 @@ export default {
         '$$ CashBill ++payCashMoney-->options-->this.options-->',
         JSON.stringify(this.options)
       )
-      
-      const response = await this.storage.getClient(method, this.options, type)
-        /* dev */
-        this.enqueue(method, this.options, type)
 
+      const response = await this.storage.getClient(method, this.options, type)
+      /* dev */
+      this.queueType = 'getQueue'
+      this.enqueue(method, this.options, this.queueType)
+       
       if (response === undefined) {
         /* dev */
-        // this.enqueue(method, this.options, type)
+        // this.queueType = 'setQueue'
+        // this.enqueue(method, this.options, this.queueType)
 
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(`Связь с connect cash недоступна!!!`)
@@ -254,12 +256,12 @@ export default {
         )
       } else {
         // this.$error('payCashMoney $error')
-        //this.$message(`Оплата наличными не прошла`)
       }
     },
     // ----------------------------------
     enqueue(method, options, type) {
       const response = this.localStorage.getClient(method, options, type)
+      console.log('$$!! response', response)
     },
     // ----------------------------------
     createOrder() {

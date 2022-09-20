@@ -1,7 +1,7 @@
 import { Queue } from '@/queue/index.js'
 
 class LocalStorage {
-  // static queues = []
+
   key = null
   value = null
   maxQueueNumber = 100
@@ -13,37 +13,48 @@ class LocalStorage {
     if (!this.key) window.localStorage.setItem('key', '0')
   }
   get() {
-    const dataFromLocalStorage = 'data from local storage'
-    return dataFromLocalStorage
+    const queueKeys = Object.keys(localStorage)
+      .filter(key => Number.isInteger(+key) && +key < this.maxQueueNumber)
+      .sort((a, b) => (a > b ? 1 : b > a ? -1 : 0))
+
+    const queueValues = []
+    queueKeys.forEach((key, index) => {
+      queueValues[index] = window.localStorage.getItem(key.toString())
+    })
+
+    return queueValues
   }
   set(method, options, type) {
     const args = { method, options, type }
 
     this.key = window.localStorage.getItem('key')
     if (+this.key < this.maxQueueNumber) {
-      this.queue.enqueue(args)
       window.localStorage.setItem(
         this.key.toString(),
-        JSON.stringify(this.queue)
+        JSON.stringify(args.options)
       )
-
       this.key++
       window.localStorage.setItem('key', this.key.toString())
-
-      this.runQueue()
       return 0
     }
     return -1
   }
-  runQueue() {
-    for (let i = 0; i < localStorage.length; i++) {
-      let key = localStorage.key(i)
 
-      if (Number.isInteger(+key) && +key < this.maxQueueNumber) {
-        console.log(`${key}`)
-      } 
-    }
-  }
+  /* getQueues() {
+    const queueKeys = Object.keys(localStorage)
+      .filter(key => Number.isInteger(+key) && +key < this.maxQueueNumber)
+      .sort((a, b) => (a > b ? 1 : b > a ? -1 : 0))
+
+    const queueValues = []
+    queueKeys.forEach((key, index) => {
+      queueValues[index] = window.localStorage.getItem(key.toString())
+    })
+
+    // console.log('queueKeys', queueKeys)
+    console.log('queueValues', queueValues)
+
+    return queueValues
+  } */
 }
 class LocalStorageClient {
   constructor(method, options, type) {
@@ -54,8 +65,14 @@ class LocalStorageClient {
     this.localStorage = new LocalStorage()
   }
   getClient() {
-    // return this.localStorage.get(this.method, this.options, this.type)
-    return this.localStorage.set(this.method, this.options, this.type)
+    let result = null
+    
+    if (this.type === 'setQueue')
+      result = this.localStorage.set(this.method, this.options, this.type)
+    if (this.type === 'getQueue')
+      result = this.localStorage.get(this.method, this.options, this.type)
+
+    return result
   }
 }
 
