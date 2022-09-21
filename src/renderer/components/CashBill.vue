@@ -204,7 +204,6 @@ export default {
       this.sum = this.getWetBalance
 
       this.options.params.unit_id = this.getDefaultPanelNumber - 1
-      // console.log('$$ CashBill this.getPayType', this.getPayType)
       this.options.params.type = this.getPayType || 'cash'
       this.options.params.sum = +this.sum
 
@@ -234,16 +233,16 @@ export default {
         '$$ CashBill ++payCashMoney-->options-->this.options-->',
         JSON.stringify(this.options)
       )
+      /* dev */
+      this.queueType = 'setQueue'
+      this.setQueue(method, this.options, this.queueType)
 
       const response = await this.storage.getClient(method, this.options, type)
-      /* dev */
-      this.queueType = 'getQueue'
-      this.enqueue(method, this.options, this.queueType)
        
       if (response === undefined) {
         /* dev */
         // this.queueType = 'setQueue'
-        // this.enqueue(method, this.options, this.queueType)
+        // this.setQueue(method, this.options, this.queueType)
 
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(`Связь с connect cash недоступна!!!`)
@@ -259,7 +258,10 @@ export default {
       }
     },
     // ----------------------------------
-    enqueue(method, options, type) {
+    setQueue(method, options, type) {
+      // setQueue
+      this.queueType = 'setQueue'
+
       const response = this.localStorage.getClient(method, options, type)
       console.log('$$!! response', response)
     },

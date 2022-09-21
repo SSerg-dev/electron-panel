@@ -1,7 +1,6 @@
 import { Queue } from '@/queue/index.js'
 
 class LocalStorage {
-
   key = null
   value = null
   maxQueueNumber = 100
@@ -10,7 +9,7 @@ class LocalStorage {
     this.queue = new Queue()
     // init key
     this.key = window.localStorage.getItem('key')
-    if (!this.key) window.localStorage.setItem('key', '0')
+    if (!this.key ) window.localStorage.setItem('key', '0')
   }
   get() {
     const queueKeys = Object.keys(localStorage)
@@ -39,22 +38,12 @@ class LocalStorage {
     }
     return -1
   }
-
-  /* getQueues() {
-    const queueKeys = Object.keys(localStorage)
-      .filter(key => Number.isInteger(+key) && +key < this.maxQueueNumber)
-      .sort((a, b) => (a > b ? 1 : b > a ? -1 : 0))
-
-    const queueValues = []
-    queueKeys.forEach((key, index) => {
-      queueValues[index] = window.localStorage.getItem(key.toString())
-    })
-
-    // console.log('queueKeys', queueKeys)
-    console.log('queueValues', queueValues)
-
-    return queueValues
-  } */
+  remove(method, options, type) {
+    const args = { method, options, type }
+    console.log('$$ args', typeof args.options.index)
+    window.localStorage.removeItem(args.options.index.toString())
+    window.localStorage.removeItem('key')
+  }
 }
 class LocalStorageClient {
   constructor(method, options, type) {
@@ -66,11 +55,15 @@ class LocalStorageClient {
   }
   getClient() {
     let result = null
-    
+
     if (this.type === 'setQueue')
       result = this.localStorage.set(this.method, this.options, this.type)
+
     if (this.type === 'getQueue')
       result = this.localStorage.get(this.method, this.options, this.type)
+
+    if (this.type === 'removeQueue')
+      result = this.localStorage.remove(this.method, this.options, this.type)
 
     return result
   }

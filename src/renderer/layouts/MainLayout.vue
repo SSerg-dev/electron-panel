@@ -32,6 +32,7 @@ import sleep from '@/utils/sleep'
 
 import Snowf from 'vue-snowf'
 import { response } from 'express'
+import { forEach } from 'lodash'
 
 export default Vue.extend({
   name: 'main-layout',
@@ -42,12 +43,13 @@ export default Vue.extend({
     client: 'fetch',
     url: 'https://192.168.1.3/',
     urlController: 'https://192.168.1.2:4840',
+    urlLocal: 'http://127.0.0.1/',
+
     storage: null,
     options: {},
-    intervalCheckQueue: null,
+    intervalRestorePayment: null,
     delay: 10000,
-    
-    queue: null,
+
     queueType: '',
     localClient: 'local',
     localStorage: null,
@@ -70,14 +72,60 @@ export default Vue.extend({
       getCompleteWash: 'getCompleteWash',
     }),
 
-    checkQueue() {
-      console.log('$$ ++ checkQueue')
-      if (this.getIsPing) {
-        this.queueType = 'getQueue'
-        
+    async restorePayment() {
+      const queues = await this.getQueue()
+      console.log('$$ restorePayment()', queues)
       
+      /* dev */
+      // if (this.getIsPing && queues.length > 0) {
+      // if (queues.length > 0) {
+      if (!this.getIsPing && queues.length > 0) { 
+        queues.forEach((queue, index) => {
+          sleep(4000).then(() => {
+            this.options[index] = queue
+            this.payCashMoney(index)
+          })
+        })
       }
     },
+    // ----------------------------------
+    async payCashMoney(index) {
+      const method = methods[0]
+      const type = types[0]
+      const options = this.options[index]
+
+      const response = await this.storage.getClient(method, options, type)
+
+      console.log('$$ payCashMoney response', response)
+      
+      if (response.result === 0) {
+        this.removeQueue(index)
+      } else {
+        console.log('$$ error restorePayment', response)
+      }
+      return response
+    },
+    // ----------------------------------
+    async getQueue() {
+      const method = ''
+      const options = ''
+      this.queueType = 'getQueue'
+
+      const response = await this.localStorage.getClient(method, options, this.queueType)
+      console.log('$$ response', response)
+      
+      return response
+    },
+    // ----------------------------------
+    async removeQueue(index) {
+      const method = ''
+      const options = { index }
+      this.queueType = 'removeQueue'
+
+      const response = await this.localStorage.getClient(method, options, this.queueType)
+      return response
+    },
+    // ----------------------------------
 
     async ping() {
       const method = methods[3]
@@ -126,19 +174,24 @@ export default Vue.extend({
   async mounted() {
     this.storage = new Storage(this.client, this.url)
 
+    this.localStorage = new Storage(
+      this.localClient,
+      this.urlLocal
+    )
+
     this.intervalPing = setInterval(() => {
       /* dev hidden */
       this.ping()
     }, 2000)
 
-    this.intervalCheckQueue = setInterval(() => {
-      this.checkQueue()
+    this.intervalRestorePayment = setInterval(() => {
+      /* dev */
+      // this.restorePayment()
     }, this.delay)
-
   },
   beforeDestroy() {
     clearInterval(this.intervalPing)
-    clearInterval(this.intervalCheckQueue)
+    clearInterval(this.intervalRestorePayment)
   },
   components: {
     Navbar,
