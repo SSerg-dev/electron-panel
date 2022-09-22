@@ -65,7 +65,7 @@
 
   "The_status_of_the_operation": "Статус выполнения операции:",
   "Connection_to_the_bank_terminal": "Подключение к банковскому терминалу...",
-  "Failed_to_connect_to_the_bank_terminal": "Не удалось подключитьсяк банковскому терминалу",
+  "Failed_to_connect_to_the_bank_terminal": "Не удалось подключиться к банковскому терминалу",
   "Timed_out": "Время ожидания истекло",
   "Operation_approved": "Операция одобрена",
   "Operation_rejected": "Операция отклонена",

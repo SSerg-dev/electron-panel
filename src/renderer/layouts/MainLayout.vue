@@ -48,7 +48,7 @@ export default Vue.extend({
     storage: null,
     options: {},
     intervalRestorePayment: null,
-    delay: 10000,
+    delay: 8000,
 
     queueType: '',
     localClient: 'local',
@@ -61,7 +61,6 @@ export default Vue.extend({
       //getWetBusyPanel: 'getWetBusyPanel',
       getPanelType: 'getPanelType',
       getIsPingUrl: 'getIsPingUrl',
-
       getIsPing: 'getIsPing',
     }),
   },
@@ -74,14 +73,10 @@ export default Vue.extend({
 
     async restorePayment() {
       const queues = await this.getQueue()
-      console.log('$$ restorePayment()', queues)
-      
-      /* dev */
-      // if (this.getIsPing && queues.length > 0) {
-      // if (queues.length > 0) {
-      if (!this.getIsPing && queues.length > 0) { 
+
+      if (this.getIsPing && queues.length > 0) {
         queues.forEach((queue, index) => {
-          sleep(4000).then(() => {
+          sleep(this.delay).then(() => {
             this.options[index] = queue
             this.payCashMoney(index)
           })
@@ -90,20 +85,25 @@ export default Vue.extend({
     },
     // ----------------------------------
     async payCashMoney(index) {
+      // console.log('$$ MainLayout payCashMoney')
       const method = methods[0]
       const type = types[0]
       const options = this.options[index]
 
       const response = await this.storage.getClient(method, options, type)
 
-      console.log('$$ payCashMoney response', response)
-      
-      if (response.result === 0) {
-        this.removeQueue(index)
-      } else {
-        console.log('$$ error restorePayment', response)
+      // console.log('$$ payCashMoney response response.result', response, response.result)
+      // this.$message(`$$ payCashMoney response.result ${response} `)
+
+      if (response) {
+        if (response.result === 0) {
+          this.removeQueue(index)
+        } else {
+          console.log('$$ error restorePayment', response)
+        }
+        return response
       }
-      return response
+      return
     },
     // ----------------------------------
     async getQueue() {
@@ -111,9 +111,13 @@ export default Vue.extend({
       const options = ''
       this.queueType = 'getQueue'
 
-      const response = await this.localStorage.getClient(method, options, this.queueType)
-      console.log('$$ response', response)
-      
+      const response = await this.localStorage.getClient(
+        method,
+        options,
+        this.queueType
+      )
+      // console.log('$$ response', response)
+
       return response
     },
     // ----------------------------------
@@ -122,7 +126,11 @@ export default Vue.extend({
       const options = { index }
       this.queueType = 'removeQueue'
 
-      const response = await this.localStorage.getClient(method, options, this.queueType)
+      const response = await this.localStorage.getClient(
+        method,
+        options,
+        this.queueType
+      )
       return response
     },
     // ----------------------------------
@@ -132,9 +140,9 @@ export default Vue.extend({
       const type = types[4]
 
       this.options = this.getPingOptions()
-      // console.log('ping this.options-->', this.options)
 
       const response = await this.storage.getClient(method, this.options, type)
+     // console.log('ping this.options-->', this.options)
 
       if (response === undefined) {
         this.setIsPing(false)
@@ -168,26 +176,25 @@ export default Vue.extend({
   },
   created() {
     //console.log('!!++this.getPanelType-->', this.getPanelType)
+    this.getIsPing = true
     this.getIsPingUrl = true
   },
 
   async mounted() {
     this.storage = new Storage(this.client, this.url)
 
-    this.localStorage = new Storage(
-      this.localClient,
-      this.urlLocal
-    )
+    this.localStorage = new Storage(this.localClient, this.urlLocal)
 
     this.intervalPing = setInterval(() => {
       /* dev hidden */
       this.ping()
-    }, 2000)
+    }, this.delay = 2000)
 
     this.intervalRestorePayment = setInterval(() => {
-      /* dev */
-      // this.restorePayment()
-    }, this.delay)
+      if (this.getIsPing) {
+        this.restorePayment()
+      } 
+    }, this.delay = 4000)
   },
   beforeDestroy() {
     clearInterval(this.intervalPing)

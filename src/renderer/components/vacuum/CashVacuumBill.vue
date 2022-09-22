@@ -104,13 +104,26 @@ export default {
 
     client: 'fetch',
     url: 'https://192.168.1.3/',
+    urlLocal: 'http://127.0.0.1/',
     storage: null,
     options: {},
+
+    queue: null,
+    queueType: '',
+    localClient: 'local',
+    localStorage: null,
+
+
   }),
   mounted() {
     this.order = this.createOrder()
 
     this.storage = new Storage(this.client, this.url)
+    
+    this.localStorage = new Storage(
+      this.localClient,
+      (this.urlLocal)
+    )
   },
   computed: {
     ...mapGetters({
@@ -232,6 +245,10 @@ export default {
       const response = await this.storage.getClient(method, this.options, type)
 
       if (response === undefined) {
+        /* dev */
+        this.queueType = 'setQueue'
+        this.setQueue(method, this.options, this.queueType)
+
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(`Связь с connect cash vacuum недоступна!!!`)
         return
@@ -248,6 +265,16 @@ export default {
         this.$message(`Оплата не прошла`)
       }
     },
+        // ----------------------------------
+    setQueue(method, options, type) {
+      // setQueue
+      this.queueType = 'setQueue'
+
+      const response = this.localStorage.getClient(method, options, type)
+      console.log('$$!! response', response)
+    },
+    // ----------------------------------
+
     createOrder() {
       const type = this.getPanelType
       const date = dateFilter(new Date())

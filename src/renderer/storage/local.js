@@ -40,7 +40,7 @@ class LocalStorage {
   }
   remove(method, options, type) {
     const args = { method, options, type }
-    console.log('$$ args', typeof args.options.index)
+    // console.log('$$ args', typeof args.options.index)
     window.localStorage.removeItem(args.options.index.toString())
     window.localStorage.removeItem('key')
   }

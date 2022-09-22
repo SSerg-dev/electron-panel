@@ -103,6 +103,8 @@ export default {
 
     client: 'fetch',
     url: 'https://192.168.1.3/',
+    urlLocal: 'http://127.0.0.1/',
+
     storage: null,
     options: {},
 
@@ -117,7 +119,7 @@ export default {
 
     this.localStorage = new Storage(
       this.localClient,
-      (this.url = 'http://127.0.0.1/')
+      (this.urlLocal)
     )
   },
   computed: {
@@ -234,15 +236,16 @@ export default {
         JSON.stringify(this.options)
       )
       /* dev */
-      this.queueType = 'setQueue'
-      this.setQueue(method, this.options, this.queueType)
+      // this.queueType = 'setQueue'
+      // this.setQueue(method, this.options, this.queueType)
 
       const response = await this.storage.getClient(method, this.options, type)
-       
+      console.log('$$ CashBill response', response)
+      
       if (response === undefined) {
         /* dev */
-        // this.queueType = 'setQueue'
-        // this.setQueue(method, this.options, this.queueType)
+        this.queueType = 'setQueue'
+        this.setQueue(method, this.options, this.queueType)
 
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(`Связь с connect cash недоступна!!!`)

@@ -120,6 +120,10 @@
           <div v-if="this.info.locale === 'kz-KZ'">
             <img src="@/assets/images/flag_KZ.png" />
           </div>
+
+          <div v-if="this.info.locale === 'ua-UA'">
+            <img src="@/assets/images/flag_UA.png" />
+          </div>
         </router-link>
       </div>
     </div>
