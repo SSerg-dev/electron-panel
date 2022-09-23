@@ -2,7 +2,7 @@
   "bank_terminal": {
     "hardware": "pax",
     "installed": true,
-    "max_sum": 510,
+    "max_sum": 500,
     "min_sum": 0
   },
   "bill_validator": {

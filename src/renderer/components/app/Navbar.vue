@@ -109,6 +109,7 @@
       <!-- <div @click="setRouterHandler"> -->
       <div>  
         <router-link to="/language" class="flag">
+        
           <div v-if="this.info.locale === 'ru-RU'">
             <img src="@/assets/images/flag_RU.png" />
           </div>

@@ -165,7 +165,7 @@ export default {
     isCardMoney: false,
     isPing: false,
     isPingUrl: false, 
-    loginSettingPassword: '5',
+    loginSettingPassword: '1470',
     isLoginSettingPassword: false,
     isReceipt: {
       read: false,

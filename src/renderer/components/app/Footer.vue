@@ -5,7 +5,7 @@
         <!-- {{ `ДОМОЙ` }} -->
         <!-- home keyboard_backspace -->
 
-        <div class="col s4">
+        <!-- <div class="col s4">
           <div class="home">
             <div
               v-if="this.isDown.home === false"
@@ -33,7 +33,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="col s4" v-if="this.$route.name === 'program'">
           <div class="stop" style="z-index: 0">

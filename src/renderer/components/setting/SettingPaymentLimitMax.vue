@@ -5,7 +5,7 @@
       style="
         border: none;
         width: 420px;
-        height: 120px;
+        height: 100px;
         margin-left: 0em;
         margin-top: -0.4em;
         padding-left: 1em;
@@ -58,7 +58,7 @@
           </div>
         </div>
 
-        <div class="col s12" style="margin-left: -0.5em; margin-top: -0.5em">
+        <!-- <div class="col s12" style="margin-left: -0.5em; margin-top: -0.5em">
           <p class="range-field">
             <input
               id="slider"
@@ -71,8 +71,7 @@
               v-model="current"
             />
           </p>
-        </div>
-
+        </div> -->
       </div>
     </div>
   </div>
@@ -138,7 +137,7 @@ export default Vue.extend({
   },
   created() {
     const paymentLimitMin = this.getPaymentLimitMin
-    this.min = paymentLimitMin
+    if (paymentLimitMin - 10 >= 0) this.min = paymentLimitMin - 10
 
     const paymentLimitMax = this.getPaymentLimitMax
     this.max = paymentLimitMax

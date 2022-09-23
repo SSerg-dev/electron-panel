@@ -3,16 +3,17 @@
     <div
       class="card grey lighten-3"
       style="
-      border: none; 
-      width: 420px; height: 120px; 
-      margin-left: 0em;
-      margin-top: -0.4em;
-      padding-left: 1em; 
+        border: none;
+        width: 420px;
+        height: 100px;
+        margin-left: 0em;
+        margin-top: -0.4em;
+        padding-left: 1em;
       "
     >
       <div class="card-content black-text">
-        <div class="row" style="margin-top: -0.8em;">
-          <div class="col s5" style="padding-top: 0.5em;">
+        <div class="row" style="margin-top: -0.8em">
+          <div class="col s5" style="padding-top: 0.5em">
             <div style="margin-left: -1em" class="display">
               {{ `Minimum` | localize }}
             </div>
@@ -20,7 +21,13 @@
 
           <div class="col s2">
             <button
-              class="btn waves-effect waves-light lighten-3 white-text button-setting"
+              class="
+                btn
+                waves-effect waves-light
+                lighten-3
+                white-text
+                button-setting
+              "
               type="submit"
               @click="setNumber('-1')"
             >
@@ -28,15 +35,21 @@
             </button>
           </div>
 
-          <div class="col s2" style="padding-top: 0.5em;">
-            <div style="margin-left: 0.4em" class="display">
+          <div class="col s2" style="padding-top: 0.5em">
+            <div align="center" class="display">
               {{ display }}
             </div>
           </div>
 
           <div class="col s2">
             <button
-              class="btn waves-effect waves-light lighten-3 white-text button-setting"
+              class="
+                btn
+                waves-effect waves-light
+                lighten-3
+                white-text
+                button-setting
+              "
               type="submit"
               @click="setNumber('+1')"
             >
@@ -45,7 +58,7 @@
           </div>
         </div>
 
-        <div class="col s12" style="margin-left: -0.5em; margin-top: -0.5em;">
+        <!-- <div class="col s12" style="margin-left: -0.5em; margin-top: -0.5em;">
           <p class="range-field">
             <input
               id="slider"
@@ -58,8 +71,7 @@
               v-model="current"
             />
           </p>
-        </div>
-
+        </div> -->
       </div>
     </div>
   </div>
@@ -80,7 +92,7 @@ export default Vue.extend({
     display: 0,
     min: 50,
     max: 500,
-    step: 10
+    step: 10,
   }),
   mounted() {
     this.setNumber(this.amount.toString())
@@ -100,14 +112,14 @@ export default Vue.extend({
     },
     ...mapMutations({
       setPaymentLimitMin: 'setPaymentLimitMin',
-      setPaymentLimitMax: 'setPaymentLimitMax'
-    })
+      setPaymentLimitMax: 'setPaymentLimitMax',
+    }),
   },
   computed: {
     ...mapGetters({
       getPaymentLimitMin: 'getPaymentLimitMin',
-      getPaymentLimitMax: 'getPaymentLimitMax'
-    })
+      getPaymentLimitMax: 'getPaymentLimitMax',
+    }),
   },
   watch: {
     current(num) {
@@ -121,18 +133,19 @@ export default Vue.extend({
       this.current = this.amount
 
       this.setPaymentLimitMin(this.amount)
-    }
+    },
   },
   created() {
     const paymentLimitMin = this.getPaymentLimitMin
-    this.min = paymentLimitMin
-    /* dev */
+    this.min = paymentLimitMin - 1
+    if (this.min < 0) this.min = 0
+
     const paymentLimitMax = this.getPaymentLimitMax / 10
     this.max = paymentLimitMax
 
     this.amount = paymentLimitMin
     this.display = this.amount.toString()
-  }
+  },
 })
 </script>
 

@@ -14,6 +14,8 @@ import languages from './languages'
 import sleep from '@/utils/sleep'
 
 import { ipcRenderer } from 'electron'
+import { result } from 'lodash'
+var sha1 = require('sha-1');
 
 Vue.use(Vuex)
 
@@ -720,8 +722,21 @@ export default new Vuex.Store({
             // --------------------------
             const currentIndex = +parameter.title.slice(-9, -8) - 1
             /* dev */
-            // get password
+            // console.log('$$ state.users.passwords', state.users.passwords)
             
+            // password
+            const strPass = '1470'
+            // salt
+            const hexSalt = '61839E54F17AB4CE3D47'
+            let strSalt = ''
+            for (var n = 0; n < hexSalt.length; n += 2) {
+              strSalt += String.fromCharCode(parseInt(hexSalt.substr(n, 2), 16));
+            }
+            const result = strPass + strSalt
+            const hash = sha1(result)
+
+            console.log('$$ salt hash', hash)
+
             // const password = 'ac04add834e8214cc355159be09da01f3ff1cc6c'
             // const password = 'ef157cc11861f113e7ace863c8e5f3cd09005705'
             // const password = '3a01ed51d78a9e6043f12b9942077d92d975fe36'

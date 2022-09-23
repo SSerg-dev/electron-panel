@@ -6,7 +6,7 @@
       class="card grey lighten-3"
       style="
       border: solid 3px #00B9E3; 
-      width: 1040px; height: 160px; 
+      width: 1040px; height: 140px; 
       margin-left: 0px;
       margin-top: -3.5em; 
       border-radius: 2rem;"
