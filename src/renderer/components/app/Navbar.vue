@@ -101,12 +101,10 @@
         <span class="white-text">{{ date | date('time') }}</span>
       </div>
 
-      <div class="ru">
+      <div class="title">
         <span class="white-text">{{ 'locales' | localize }}</span>
       </div>
 
-      <!-- dev -->
-      <!-- <div @click="setRouterHandler"> -->
       <div>  
         <router-link to="/language" class="flag">
         
@@ -121,10 +119,19 @@
           <div v-if="this.info.locale === 'kz-KZ'">
             <img src="@/assets/images/flag_KZ.png" />
           </div>
-
+          
           <div v-if="this.info.locale === 'ua-UA'">
             <img src="@/assets/images/flag_UA.png" />
           </div>
+
+          <div v-if="this.info.locale === 'lat-LAT'">
+            <img src="@/assets/images/flag_LAT.png" />
+          </div>
+
+          <div v-if="this.info.locale === 'lit-LIT'">
+            <img src="@/assets/images/flag_LIT.png" />
+          </div>
+
         </router-link>
       </div>
     </div>
@@ -271,11 +278,11 @@ img {
   left: 12%;
   color: white;
 }
-.ru {
+.title {
   font-size: 2.4rem;
   position: absolute;
   top: 42%;
-  left: 84%;
+  left: 83%;
 }
 .flag {
   position: absolute;

@@ -32,13 +32,13 @@
                     <div v-if="this.getIsLoginSettingPassword()">
                       <p align="center">
                         {{ `Enter_your_password` | localize }} <br />
-                        {{`to_enter_the_settings_menu` | localize }}
+                        {{ `to_enter_the_settings_menu` | localize }}
                       </p>
                     </div>
                     <div v-if="!this.getIsLoginSettingPassword()">
                       <p align="center">
                         {{ `Enter_your_password` | localize }} <br />
-                        {{`for_Alles_Bonus` | localize }}
+                        {{ `for_Alles_Bonus` | localize }}
                       </p>
                     </div>
                   </div>
@@ -371,7 +371,7 @@
                         padding-top: 0.3em;
                       "
                     >
-                      {{ `CONFIRM` | localize}}
+                      {{ `CONFIRM` | localize }}
                     </div>
                   </div>
                 </td>
@@ -389,10 +389,14 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 
+var sha1 = require('sha-1')
+
 export default {
   name: 'bonus-bill',
   data: () => ({
     password: '',
+    salt: '61839E54F17AB4CE3D47',
+    hash: '',
     passwordLength: 6,
     totString: '',
     settingPassword: '',
@@ -450,10 +454,7 @@ export default {
     ...mapActions({}),
 
     payUp(program) {
-      if (
-        this.password === this.settingPassword &&
-        this.getIsLoginSettingPassword()
-      ) {
+      if (this.check() && this.getIsLoginSettingPassword()) {
         this.$router.push('/setting')
         this.setIsLoginSettingPassword(false)
       } else if (!this.getIsLoginSettingPassword()) {
@@ -475,6 +476,46 @@ export default {
       this.totString = this.totString.substring(0, this.totString.length - 1)
       if (this.totString.length === 0) this.password
       this.password = this.totString
+    },
+    check() {
+      // password
+      const strPass = this.password
+      // salt
+      const hexSalt = this.salt
+      let strSalt = ''
+
+      for (var n = 0; n < hexSalt.length; n += 2) {
+        strSalt += String.fromCharCode(parseInt(hexSalt.substr(n, 2), 16))
+      }
+      const result = strPass + strSalt
+      this.hash = sha1(result)
+
+      const password = this.hash
+      const index = this.$store.state.users.passwords.findIndex(
+        (p) => p === password
+      )
+      if (index === -1 || this.password.length < 4) return false
+
+      // console.log('$$ salt hash', this.hash)
+      // console.log('$$!! index', index)
+
+      const comma = ','
+      const arrayAccess = this.$store.state.users.access[index].split(comma)
+
+      // set access B&D
+      this.$store.state.users.isAccess.mainMenu = arrayAccess[1]
+      this.$store.state.users.isAccess.mainDiagnostic = arrayAccess[2]
+      this.$store.state.users.isAccess.mainPosts = arrayAccess[3]
+      this.$store.state.users.isAccess.mainSetting = arrayAccess[4]
+      this.$store.state.users.isAccess.mainStatistic = arrayAccess[5]
+      this.$store.state.users.isAccess.mainFinance = arrayAccess[6]
+
+      // set access panels
+      this.$store.state.users.isAccess.panelCollection = arrayAccess[7]
+      this.$store.state.users.isAccess.panelPlusTen = arrayAccess[8]
+      this.$store.state.users.isAccess.panelOpen = arrayAccess[0]
+
+      return true
     },
   },
 }

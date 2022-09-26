@@ -165,7 +165,7 @@ export default {
     isCardMoney: false,
     isPing: false,
     isPingUrl: false, 
-    loginSettingPassword: '1470',
+    // loginSettingPassword: '',
     isLoginSettingPassword: false,
     isReceipt: {
       read: false,
@@ -221,10 +221,9 @@ export default {
     getMoneyToBonus(state) {
       return state.moneyToBonus
     },
-
-    getLoginSettingPassword(state) {
+    /* getLoginSettingPassword(state) {
       return state.loginSettingPassword
-    },
+    }, */
     getIsLoginSettingPassword(state) {
       return state.isLoginSettingPassword
     },
@@ -401,6 +400,9 @@ export default {
     setReadReceiptOptions(state, id) {
       state.readReceipt.params.id = id
     },
+    /* setLoginSettingPassword(state, password) {
+      state.loginSettingPassword = password
+    }, */
 
 
     /* setPanelMoneyNumber(state, unit_id) {

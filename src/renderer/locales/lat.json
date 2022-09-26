@@ -1,0 +1,146 @@
+{
+  "LanguageTitle": "Localize",
+  "BOX": "POSTS",
+  "#": "Nē",
+  "VACUUM": "PUTEKĻUSŪC",
+  "PAYMENT": "APMAKSA",
+  "locales": "LAT",
+  "PROGRAMS_COST": "PROGRAMMU IZMAKSAS",
+  "CASH": "SKAIDRĀ NAUDĀ",
+  "BANK_CARD": "AR BANKAS KARTI",
+  "BONUSES": "AR BONUSIEM",
+  "Choose_your_payment_method": "Izvēlieties maksājuma veidu",
+  "CONSULTANT": "KONSULTANTS",
+  "CALL_SENT_WAIT": "NOTIEK IZSAUKŠANA, LŪDZU, GAIDIET",
+  "FREE_STOP": "BEZMAKSAS PIETURA",
+  "STOP": "STOP", 
+  "CONTINUE": "TURPINĀT",
+  "MAKE_A_PAYMENT": "VEIKT MAKSĀJUMU",
+  "Insert_banknotes_or_coins": "Ievietojiet banknoti vai monētas,kad esat pabeidzis, noklikšķiniet uz zemāk redzamās pogas",
+  "Price_per_minute": "Cena par min",
+  "Program": "Programma",
+
+  "SHAMPOO": "ŠAMPŪNS",
+  "DISK": "DISKI",
+  "MOSQUITO": "ANTIMOSK",
+  "FOAM": "PUTAS",
+  "FOAM_COLOR": "PUTU KRĀSA", 
+  "BRUSH": "SLOTA",
+  "BRUSH_COLOR": "SLOTA KRĀSA",
+  "WATER_SHAMPOO": "ŪDENS ŠAMPŪNS",
+  "COLD_WATER": "AUKSTS",
+  "WARM_WATER": "SILTS",
+  "OSMOSIS": "OSMOTISKS",
+  "STOP_PAUSE": "APTURĒT/PAUZĒT",
+  "AIR": "GAISS",
+  "GLASS_WASHING_LIQUID": "MAZGĀTĀJA",
+  "WAX": "VASKS",
+  "FOAM_X2": "PUTAS X2",
+  "VACUUM_CLEANER": "PUTEKĻUSŪCĒJS",
+  "BRUSH_X2": "SLOTA X2",
+  "DISK_X2": "DISKI X2",
+  "MOSQUITO_X2": "ANTIMOSKĪTS X2",
+  "TURBO_DRYER": "ŽĀVĒTĀJS",
+  "DEGREASE": "ATTAUKOŠANA",
+  "DISINFECTION": "DEZINFEKCIJA",
+  "BLACKING": "MELNINĀŠANA",
+  "DOORSILL": "SLIEKŠŅI",
+  
+  "COMPLETE_PAYMENT": "PABEIGTU MAKSĀJUMU",
+  "RETURN_BONUSES_UP": "ATGRIEŠANA AR BONUSIEM LĪDZ 30% UN MAKSĀJUMU",
+  "APPEND": "REĢISTRĒTIES",
+  "CONFIRM": "APSTIPRINĀT",
+
+  "To_enter_the_system": "Lai ievadītu sistēmu, ievadiet numuru pa tālruni vai skenēt QR kodu", 
+  "To_credit_Bonuses_to_your_account": "Lai ieskaitītu bonus savā kontā, ievadiet savu tālruņa numuru",
+  "By_clicking_on_CONFIRM": "Noklikšķinot uz “Apstiprināt”, jūs piekrītat sūtīšanai SMS īsziņas un personas datu apstrāde jums, saskaņā ar nosacījumiem, kas publicēti tīmekļa vietnē: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "QR autorizācija",
+  "Your_balance": "Jūsu bilance,",
+  "Select_charge_amount": "Atlasīt noņemšanas summu",
+  
+  "Enter_your_password": "Ievadiet savu paroli",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "lai atvērtu iestatījumu izvēlni",
+  
+  "The_status_of_the_operation": "Operācijas izpildes statuss:",
+  "Connection_to_the_bank_terminal": "Veidojās savienojums ar bankas termināli...",
+  "Failed_to_connect_to_the_bank_terminal": "Neizdevās izveidot savienojumu uz bankas termināli",
+  "Timed_out": "Noildzis laiks",
+  "Operation_approved": "Operācija apstiprināta",
+  "Operation_rejected": "Operation rejected",
+  "Follow_the_instructions_on_the_terminal": "Izpildiet termināļa norādījumus",
+
+  "You_want_to_complete_the_car_wash": "Vai vēlies pabeigt auto mazgāšanu un atdot atlikumu savā kontā ar bonusiem?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Noklikšķinot uz pogas Jā, jūs piekrītat īsziņu sūtīšanai jums un personas datu apstrādei saskaņā ar vietnē ievietotajiem nosacījumiem: www.alles-bonus.com",
+
+  "Display": "Ekrāns",
+  "Services": "Pakalpojumi",
+  "Service_balance": "Servisa atlikums",
+  "Reset": "Atiestatīt",
+  "Open_the_door": "Atvērt durvis",
+  "Reboot": "Pārlādēt",
+
+  "Software_version": "Programmatūras versija",
+  "Temperature": "Temperatūra",
+  "Humidity": "Mitrums",
+
+  "Show_tooltips_when_switching_programs_during": "Rādīt ekrāna padomus, pārslēdzot programmas laikā",
+
+  "Time_to_switch_to_the_main_window": "Laiks pārslēgties uz galveno logu",
+
+  "Setting": "Iestatījumi",
+  "Languages": "Valodas",
+  "Finance": "Finanses",
+  "Review": "Pārskats",
+
+  "OK": "OK",
+  "Cancel": "Atcelt",
+  "Confirm": "Piesakies",
+  "Make_the_payment_window_the_main": "Padariet maksājuma logu par galveno",
+  "Show_cursor_in_the_main_window": "Rādīt kursoru galvenajā logā",
+  "Direct_cash_payment": "Tiešā skaidra nauda",
+  "Banking_terminal": "Bankas terminālis",
+  
+  "System": "System",
+  "Panel": "Panel",
+  "Bill_acceptor": "Bill acceptor",
+  "Coin_acceptor": "Coin acceptor",
+
+  "Language": "Language",
+  "Currency": "Currency",
+  
+  "Type_of_panel": "Type of panel",
+  "Panel_number": "Panel number",
+  "Vacuum_number": "Vacuum number",
+
+  "Type": "Type",
+  "Accept_bills": "Accept bills",
+  "Accept_coins": "Accept coins",
+
+  "Model": "Model",
+  "Reconciliation_Pax": "Reconciliation Pax",
+
+  "Payment_limits": "Payment limits",
+  "Minimum": "Minimum",
+  "Maximum": "Maximum",
+  "Tokens": "Tokens",
+
+  "CAR_WASH": "CAR WASH",
+  "PAYMENT_CENTER": "PAYMENT CENTER",
+  "PANEL": "PANEL",
+
+  "Cash_post": "Cash post",
+  "Total_amount": "Total amount",
+  "Amount_of_deposit_in_banknotes": "Amount of deposit in banknotes",
+  "Number_of_banknotes": "Number of banknotes",
+  "Credit_amount_in_coins": "Credit amount in coins",
+  "Number_of_coins": "Number of coins",
+
+  "Replace_item": "Replace Item",
+  "Replace_program": "Replace program" 
+
+
+
+
+}

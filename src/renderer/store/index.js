@@ -7,7 +7,6 @@ import paid from './paid'
 import vacuum from './vacuum'
 import finance from './finance'
 import options from './options'
-//import connect from './connect'
 import status from './status'
 import countries from './countries'
 import languages from './languages'
@@ -15,7 +14,7 @@ import sleep from '@/utils/sleep'
 
 import { ipcRenderer } from 'electron'
 import { result } from 'lodash'
-var sha1 = require('sha-1');
+var sha1 = require('sha-1')
 
 Vue.use(Vuex)
 
@@ -29,14 +28,13 @@ export default new Vuex.Store({
   */
   state: {
     params: [{ id: '', title: '', value: '' }],
-    /* dev */
     paginate: 1,
     router: '/',
 
     info: { name: '', locale: 'ru-RU' } /* ru-RU en-GB */,
     cash_enabler: false,
     busyPanel: false,
-    secondsGotoMainMenu: 442 /* 42 */,
+    secondsGotoMainMenu: 442 ,
     secondsGotoPopupMenu: 2,
     //secondsGotoProgramMenu: 6,
 
@@ -52,17 +50,16 @@ export default new Vuex.Store({
     secondsThirdTimer: 30,
 
     isConfig: false,
-    //postNumber: 5,
     activeProgram: '',
     activeProgramNumber: '-1',
-    /* dev */
+
     activeProgramKit: {},
     isActiveProgramKit: false,
+
     isCardMoney: false,
     isBonusMoney: false,
 
     cardMoney: 0,
-    /*     */
 
     message: {
       id: 1,
@@ -71,7 +68,6 @@ export default new Vuex.Store({
       value: -1
     },
     isParamsChange: false,
-    /* dev */
     isFooter: true,
 
     programs: [
@@ -137,7 +133,7 @@ export default new Vuex.Store({
 
     dryParameters: {
       progPrice: '',
-      progShowMask: '' /* all 126, 0 */,
+      progShowMask: '',
       progStatusMask: '',
       busy: '',
       panelMoney: '0',
@@ -154,6 +150,7 @@ export default new Vuex.Store({
     users: {
       name: '',
       names: [],
+      userIndex: -1,
 
       access: [],
 
@@ -176,6 +173,7 @@ export default new Vuex.Store({
         panelOpen: false // 8
       }
     },
+    loginSettingPassword: '',
 
     isOddVacuumNumber: true,
     isDebug: true
@@ -455,7 +453,7 @@ export default new Vuex.Store({
     getParams(state) {
       return state.params
     },
-    // WET !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // WET 
     // Платежи ----------------------------------------------------------------
     // Панель суммы платежей = (наличные или карта) + бонусы + сервисные деньги
     getWetBalance(state) {
@@ -524,7 +522,6 @@ export default new Vuex.Store({
     getFixedCurrency(state) {
       // ::AsGlobalPV:gFixedCurrency.digits
       return state.globalParameters.fixedCurrency
-      // return 2
     },
     getDryOrder(state) {
       return state.dryParameters.order
@@ -536,7 +533,7 @@ export default new Vuex.Store({
     getIsOddVacuumNumber(state) {
       return state.isOddVacuumNumber
     },
-    // END DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // END DRY
 
     info: s => s.info,
 
@@ -611,7 +608,6 @@ export default new Vuex.Store({
       return state.message
     },
     getParamsChange(state) {
-      //console.log('--getParamsChange-->', state.isParamsChange)
       return state.isParamsChange
     },
     getIsFooter(state) {
@@ -626,9 +622,11 @@ export default new Vuex.Store({
     getUsersName(state) {
       return state.users.name
     },
-    /* dev */
     getUsersIsAccess(state) {
       return state.users.isAccess
+    },
+    getLoginSettingPassword(state) {
+      return state.loginSettingPassword
     }
   },
 
@@ -639,16 +637,14 @@ export default new Vuex.Store({
     setDryBalance(state, money) {
       state.dryParameters.panelMoney = money
     },
+    setLoginSettingPassword(state, password) {
+      state.loginSettingPassword = password
+    },
     // set one parameter
     setParameters(state, parameter) {
       // console.log('$$ --setParameters', parameter)
 
       state.isParamsChange = !state.isParamsChange
-
-      /* dev */
-      // const user = parameter.title.slice( (-parameter.title.indexOf('[')), (-parameter.title.indexOf('[') - 5))
-
-      // console.log('$$ user-->', user)
 
       const displayName = parameter.title.slice(
         parameter.title.indexOf('.') + 1
@@ -658,9 +654,6 @@ export default new Vuex.Store({
 
       // console.log('++displayName-->', displayName)
       // console.log('++parameter.value-->', parameter.value)
-
-      /* dev */
-      // TAG_USER_NAME: '::AsGlobalPV:User[{0}].name'
 
       switch (displayName) {
         case 'progPrice':
@@ -717,55 +710,12 @@ export default new Vuex.Store({
           state.users.password = parameter.value
           break
         case 'access':
-          
           sleep(state.users.delay).then(() => {
-            // --------------------------
-            const currentIndex = +parameter.title.slice(-9, -8) - 1
-            /* dev */
-            // console.log('$$ state.users.passwords', state.users.passwords)
-            
-            // password
-            const strPass = '1470'
-            // salt
-            const hexSalt = '61839E54F17AB4CE3D47'
-            let strSalt = ''
-            for (var n = 0; n < hexSalt.length; n += 2) {
-              strSalt += String.fromCharCode(parseInt(hexSalt.substr(n, 2), 16));
-            }
-            const result = strPass + strSalt
-            const hash = sha1(result)
+            const index = +parameter.title.slice(-9, -8) - 1
 
-            console.log('$$ salt hash', hash)
-
-            // const password = 'ac04add834e8214cc355159be09da01f3ff1cc6c'
-            // const password = 'ef157cc11861f113e7ace863c8e5f3cd09005705'
-            // const password = '3a01ed51d78a9e6043f12b9942077d92d975fe36'
-            const password = '9cd8f4ac7b5ab48c1d75db4874e2f59bc7fcd7d3'
-            // const password = '487f7d19ee697511256d37004457df73c45436d2'
-            // const password = '8f7d8f45f8c9bdcdb66077726a2862ba75340f5f'
-         
-            const index = state.users.passwords.findIndex(p => p === password)
-
-            if (index !== -1 && index === currentIndex) {
-              // --------------------------
+            if (index !== -1 ) {
               const item = parameter.value
               state.users.access[index] = item
-              const comma = ','
-              const arrayAccess = state.users.access[index].split(comma)
-
-              // set access B&D
-              state.users.isAccess.mainMenu = arrayAccess[1]
-              state.users.isAccess.mainDiagnostic = arrayAccess[2]
-              state.users.isAccess.mainPosts = arrayAccess[3]
-              state.users.isAccess.mainSetting = arrayAccess[4]
-              state.users.isAccess.mainStatistic = arrayAccess[5]
-              state.users.isAccess.mainFinance = arrayAccess[6]
-
-              // set access panels
-              state.users.isAccess.panelCollection = arrayAccess[7]
-              state.users.isAccess.panelPlusTen = arrayAccess[8]
-              state.users.isAccess.panelOpen = arrayAccess[0]
-              // --------------------------
             } else if (index === -1) {
               console.log('user not find')
             }
@@ -778,7 +728,6 @@ export default new Vuex.Store({
       }
     },
 
-    /* dev */
     setDryParameters(state, parameter) {
       state.isParamsChange = !state.isParamsChange
       const displayName = parameter.title.slice(
@@ -833,12 +782,9 @@ export default new Vuex.Store({
     setPaginate(state, paginate) {
       state.paginate = paginate
     },
-    // dev
-    // setParamsChange
     setParamsChange(state, isParamsChange) {
       state.isParamsChange = isParamsChange
     },
-    // setFooter
     setIsFooter(state, isFooter) {
       state.isFooter = isFooter
     },
@@ -846,9 +792,7 @@ export default new Vuex.Store({
     // Info
     setInfo(state, info) {
       state.info = info
-      //console.log('state.info.locale -->', state.info.locale)
     },
-    /* dev */
     setRouter(state, router) {
       state.router = router
     },
@@ -860,15 +804,12 @@ export default new Vuex.Store({
     },
     setIsConfig(state, isConfig) {
       state.isConfig = isConfig
-      //console.log('setIsConfig')
     },
     setActiveProgram(state, activeProgram) {
       state.activeProgram = activeProgram
-      // console.log('state.activeProgram-->', state.activeProgram)
     },
     setActiveProgramKit(state, activeProgramKit) {
       state.activeProgramKit = activeProgramKit
-      // console.log('state.activeProgramKit-->', state.activeProgramKit)
     },
     setIsActiveProgramKit(state, isActiveProgramKit) {
       state.isActiveProgramKit = isActiveProgramKit
@@ -895,7 +836,6 @@ export default new Vuex.Store({
     setIsThirdTimer(state, isThirdTimer) {
       state.isThirdTimer = isThirdTimer
     },
-
     setSecondsFirstTimer(state, secondsFirstTimer) {
       state.secondsFirstTimer = secondsFirstTimer
     },
@@ -905,22 +845,17 @@ export default new Vuex.Store({
     setSecondsThirdTimer(state, secondsThirdTimer) {
       state.secondsThirdTimer = secondsThirdTimer
     },
-
     setWetZeroMoney(state, zeroMoney) {
       state.parameters.zeroMoney = zeroMoney
     },
-
     setActiveProgramNumber(state, activeProgramNumber) {
       state.activeProgramNumber = activeProgramNumber
-      //console.log('state.activeProgramNumber-->', state.activeProgramNumber)
     },
     setSecondsGotoMainMenu(state, seconds) {
       state.secondsGotoMainMenu = seconds
-      //console.log('++state.secondsGotoMainMenu-->', state.secondsGotoMainMenu)
     },
     setSecondsGotoPopupMenu(state, seconds) {
       state.secondsGotoPopupMenu = seconds
-      //console.log('state.secondsGotoPopupMenu-->', state.secondsGotoPopupMenu)
     }
   } /* end mutations */,
 
@@ -932,7 +867,6 @@ export default new Vuex.Store({
     vacuum,
     finance,
     options,
-    //connect,
     status,
     countries,
     languages

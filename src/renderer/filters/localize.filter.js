@@ -3,12 +3,16 @@ import ru from '../locales/ru.json'
 import en from '../locales/en.json'
 import kz from '../locales/kz.json'
 import ua from '../locales/ua.json'
+import lat from '../locales/lat.json'
+import lit from '../locales/lit.json'
 
 const locales = {
   'ru-RU': ru,
   'en-GB': en,
   'kz-KZ': kz,
-  'ua-UA': ua
+  'ua-UA': ua,
+  'lat-LAT': lat,
+  'lit-LIT': lit
 }
 
 export default function localizeFilter(key) {
