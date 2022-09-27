@@ -31,7 +31,7 @@
               type="submit"
               @click="doCollect"
             >
-              {{ 'Инкассация' }}
+              {{ `Collection` | localize }}
             </button>
           </router-link>
         </div>
@@ -115,6 +115,7 @@ export default Vue.extend({
       if (confirm('Подтвердите инкассацию')) {
         this.collect()
         // this.clearCash()
+        
        
       }
     },
@@ -184,7 +185,7 @@ export default Vue.extend({
         this.$message(
           `Инкассация поста № ${this.getDefaultPanelNumber} выполнена успешно`
         )
-        this.clearCash()
+        // this.clearCash()
       }
     },
     ...mapGetters({

@@ -50,15 +50,15 @@
                     <img src="imgs/language/lang_LIT.png" />
                   </button>
               </td>
-            <!-- dev -->  
-              
+            
             </tr>
             <tr v-if="this.getPaginate === 1">
               <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="imgs/language/lang_EST.png" />
-                </router-link>
+                <button class="btn-small" @click="setLocale('est-EST')">
+                    <img src="imgs/language/lang_EST.png" />
+                  </button>
               </td>
+            <!-- dev -->
               <td>
                 <router-link class="btn-small" to="/language">
                   <img src="imgs/language/lang_POL.png" />

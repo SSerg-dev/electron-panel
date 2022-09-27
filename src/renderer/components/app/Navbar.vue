@@ -132,6 +132,10 @@
             <img src="@/assets/images/flag_LIT.png" />
           </div>
 
+          <div v-if="this.info.locale === 'est-EST'">
+            <img src="@/assets/images/flag_EST.png" />
+          </div>
+
         </router-link>
       </div>
     </div>

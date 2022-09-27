@@ -40,14 +40,14 @@
   "BRUSH_X2": "ЩЕТКА X2",
   "DISK_X2": "ДИСКІЛЕР X2",
   "MOSQUITO_X2": "АНТИМОСК X2",
-  "TURBO_DRYER": "ТУРБО KEПTIPГIШ",
+  "TURBO_DRYER": "KEПTIPГIШ",
   "DEGREASE": "АЗАЙТУ",
   "DISINFECTION": "ДЕЗИНФЕКЦИЯ",
   "BLACKING": "ҚАРАТУ",
   "DOORSILL": "ЕСІК",
   
   "COMPLETE_PAYMENT": "ТӨЛЕМДІ АЯҚТАУ",
-  "RETURN_BONUSES_UP": "30 ДЕЙІН ҚАЙТАРУ%",
+  "RETURN_BONUSES_UP": "30 ДЕЙІН ҚАЙТАРУ% ТӨЛЕМДІ АЯҚТАУ",
   "APPEND": "ТІРКЕЛУ",
   "CONFIRM": "РАСТАУ",
 
@@ -136,6 +136,7 @@
   "Number_of_banknotes": "Купюралар саны",
   "Credit_amount_in_coins": "Монеталардағы несие сомасы",
   "Number_of_coins": "Монеталар саны",
+  "Collection": "Жинақ",
 
   "Replace_item": "Элементті ауыстыру",
   "Replace_program": "Бағдарламаны ауыстыру" 

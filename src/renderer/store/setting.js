@@ -349,9 +349,8 @@ export default {
       const options = {
         isRelaunch: true
       }
-      ipcRenderer.send('async-relaunch-app', options)
-      // ipcRenderer.send('reset', options)
-      // ipcRenderer.send('reboot', options)
+      // ipcRenderer.send('async-relaunch-app', options)
+      ipcRenderer.send('reboot', options)
     }
   } // end actions
 }

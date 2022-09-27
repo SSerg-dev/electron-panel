@@ -37,7 +37,7 @@
   ],
   "country": "RU",
   "__commentCurrency": "add default currency",
-  "currency": "RUB",
+  "currency": "USD",
   "index": 2,
   "languages": {
     "default": "RU",

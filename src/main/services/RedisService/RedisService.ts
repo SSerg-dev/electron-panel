@@ -25,6 +25,7 @@ class RedisService extends EventEmitter {
 
   static coinPath = './data/coin-statistic.json'
   static billPath = './data/bill-statistic.json'
+  static collectPath = './data/collect-statistic.json'
 
   coins: any = null
 
@@ -99,11 +100,16 @@ class RedisService extends EventEmitter {
         this.clearBills()
       }
     })
+
   }
 
   async create() {
     console.log('[... start redis]')
     // console.log('redis function-->', plus(40, 2))
+  }
+  /* dev */
+  private collect() {
+
   }
 
   private clearCoins() {

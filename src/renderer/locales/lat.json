@@ -47,7 +47,7 @@
   "DOORSILL": "SLIEKŠŅI",
   
   "COMPLETE_PAYMENT": "PABEIGTU MAKSĀJUMU",
-  "RETURN_BONUSES_UP": "ATGRIEŠANA AR BONUSIEM LĪDZ 30% UN MAKSĀJUMU",
+  "RETURN_BONUSES_UP": "ATGRIEŠANA AR BONUSIEM LĪDZ 30% UN PABEIGTU MAKSĀJUMU",
   "APPEND": "REĢISTRĒTIES",
   "CONFIRM": "APSTIPRINĀT",
 
@@ -102,43 +102,44 @@
   "Direct_cash_payment": "Tiešā skaidra nauda",
   "Banking_terminal": "Bankas terminālis",
   
-  "System": "System",
-  "Panel": "Panel",
-  "Bill_acceptor": "Bill acceptor",
-  "Coin_acceptor": "Coin acceptor",
+  "System": "Sistēma",
+  "Panel": "Panelis",
+  "Bill_acceptor": "Rēķinu pieņēmējs",
+  "Coin_acceptor": "Monētu pieņēmējs",
 
-  "Language": "Language",
-  "Currency": "Currency",
+  "Language": "Valoda",
+  "Currency": "Valūta",
   
-  "Type_of_panel": "Type of panel",
-  "Panel_number": "Panel number",
-  "Vacuum_number": "Vacuum number",
+  "Type_of_panel": "Paneļa tips",
+  "Panel_number": "Numurs paneļi",
+  "Vacuum_number": "Putekļsūcēja numurs",
 
-  "Type": "Type",
-  "Accept_bills": "Accept bills",
-  "Accept_coins": "Accept coins",
+  "Type": "Tip",
+  "Accept_bills": "Pieņemt rēķinus",
+  "Accept_coins": "Pieņemt monētas",
 
-  "Model": "Model",
-  "Reconciliation_Pax": "Reconciliation Pax",
+  "Model": "Modelis",
+  "Reconciliation_Pax": "Izlīgums Pax",
 
-  "Payment_limits": "Payment limits",
-  "Minimum": "Minimum",
-  "Maximum": "Maximum",
-  "Tokens": "Tokens",
+  "Payment_limits": "Maksājumu limiti",
+  "Minimum": "Minimums",
+  "Maximum": "Maksimums",
+  "Tokens": "Žetoni",
 
-  "CAR_WASH": "CAR WASH",
-  "PAYMENT_CENTER": "PAYMENT CENTER",
-  "PANEL": "PANEL",
+  "CAR_WASH": "AUTOMAZGĀTAVA",
+  "PAYMENT_CENTER": "MAKSĀJUMU CENTRS",
+  "PANEL": "PANELIS",
 
-  "Cash_post": "Cash post",
-  "Total_amount": "Total amount",
-  "Amount_of_deposit_in_banknotes": "Amount of deposit in banknotes",
-  "Number_of_banknotes": "Number of banknotes",
-  "Credit_amount_in_coins": "Credit amount in coins",
-  "Number_of_coins": "Number of coins",
+  "Cash_post": "Skaidras naudas pasts",
+  "Total_amount": "Kopējā summa",
+  "Amount_of_deposit_in_banknotes": "Noguldījuma summa banknotēs",
+  "Number_of_banknotes": "Banknošu skaits",
+  "Credit_amount_in_coins": "Kredīta summa monētās",
+  "Number_of_coins": "Monētu skaits",
+  "Collection": "Inkasācija",
 
-  "Replace_item": "Replace Item",
-  "Replace_program": "Replace program" 
+  "Replace_item": "Aizstāt vienumu",
+  "Replace_program": "Aizstāt programmu" 
 
 
 

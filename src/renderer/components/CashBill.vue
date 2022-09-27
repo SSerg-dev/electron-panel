@@ -5,28 +5,8 @@
         v-if="this.IsWetBalance === true && this.getIsPing"
         @click="payUp('payBonus')"
       >
-        <div
-          class="card white waves-effect pay-end-bonus"
-          style="
-            width: 66em;
-            height: 22em;
-            margin-left: -8em;
-            margin-bottom: 16em;
-
-            border: solid 6px #7fe409;
-            border-radius: 4em;
-            box-shadow: 0px 10px 20px #7fe409;
-          "
-        >
-          <div
-            class="card-content black-text noselect"
-            style="
-              font-size: 4em;
-              padding-right: 1.1em;
-              padding-left: 1.1em;
-              padding-top: 1.4em;
-            "
-          >
+        <div class="card white waves-effect pay-end-bonus">
+          <div class="card-content black-text noselect pay-end-bonus-title">
             {{ `RETURN_BONUSES_UP` | localize }}
           </div>
         </div>
@@ -36,12 +16,13 @@
         <div class="card grey pay-input">
           <div
             class="card-content white-text noselect"
-            style="font-size: 4em; padding-right: 1.5em; padding-top: 1em"
+            style="font-size: 4em; padding-right: 1.0em; padding-top: 1em"
           >
             {{ `MAKE_A_PAYMENT` | localize }}
           </div>
         </div>
       </li>
+
       <li v-if="this.IsWetBalance === true" @click="payUp('payEnd')">
         <div
           class="card white waves-effect pay-end-bonus"
@@ -58,7 +39,7 @@
         >
           <div
             class="card-content black-text noselect"
-            style="font-size: 4em; padding-right: 1.5em; padding-top: 0.9em"
+            style="font-size: 4em; padding-right: 1.0em; padding-top: 0.2em"
           >
             {{ `COMPLETE_PAYMENT` | localize }}
           </div>
@@ -117,10 +98,7 @@ export default {
     this.order = this.createOrder()
     this.storage = new Storage(this.client, this.url)
 
-    this.localStorage = new Storage(
-      this.localClient,
-      (this.urlLocal)
-    )
+    this.localStorage = new Storage(this.localClient, this.urlLocal)
   },
   computed: {
     ...mapGetters({
@@ -235,13 +213,10 @@ export default {
         '$$ CashBill ++payCashMoney-->options-->this.options-->',
         JSON.stringify(this.options)
       )
-      /* dev */
-      // this.queueType = 'setQueue'
-      // this.setQueue(method, this.options, this.queueType)
 
       const response = await this.storage.getClient(method, this.options, type)
       console.log('$$ CashBill response', response)
-      
+
       if (response === undefined) {
         /* dev */
         this.queueType = 'setQueue'
@@ -262,7 +237,6 @@ export default {
     },
     // ----------------------------------
     setQueue(method, options, type) {
-      // setQueue
       this.queueType = 'setQueue'
 
       const response = this.localStorage.getClient(method, options, type)
@@ -349,23 +323,35 @@ export default {
   width: 66em;
   height: 14em;
   margin-left: -9em;
-  margin-top: -17em;
+  margin-top: -16em;
 
   border: solid 2px white;
   border-radius: 1em;
   box-shadow: 0px 10px 20px #eee;
 }
 .pay-end-bonus {
-  background-color: black;
-  margin-left: -10rem;
-  margin-top: -50rem;
-  margin-bottom: 10rem;
+  width: 66em;
+  height: 22em;
+  
+  margin-top: -40em;
+  margin-bottom: 20em;
+  margin-left: -8em;
+
+  border: solid 6px #7fe409;
+  border-radius: 4em;
+  box-shadow: 0px 10px 20px #7fe409;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .pay-end-no-bonus {
   background-color: black;
-  margin-left: -10rem;
   margin-top: -20rem;
   margin-bottom: 10rem;
+}
+.pay-end-bonus-title {
+  font-size: 4em;
 }
 .button-title-long {
   position: relative;
