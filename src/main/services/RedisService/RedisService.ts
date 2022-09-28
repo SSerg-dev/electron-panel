@@ -70,6 +70,50 @@ class RedisService extends EventEmitter {
   }
   // end bills
 
+  // collect
+  Collect: any = {
+    timestamp: null,
+    type: '',
+
+    /* coin */
+    sumC5: 0,
+    sumC10: 0,
+    sumC25: 0,
+
+    counterC5: 0,
+    counterC10: 0,
+    counterC25: 0,
+
+    amountCoin: 0,
+    counterCoin: 0,
+
+    /* bill */
+    sumB10: 0,
+    sumB50: 0,
+    sumB100: 0,
+    sumB200: 0,
+    sumB500: 0,
+
+    counterB10: 0,
+    counterB50: 0,
+    counterB100: 0,
+    counterB200: 0,
+    counterB500: 0,
+
+    amountBill: 0,
+    counterBill: 0,
+
+    /* common amount */
+    amountBonus: 0,
+    amountCard: 0,
+    amountCash: 0,
+    amountCredit: 0,
+
+    balance: 0
+  }
+
+  // end collect
+
   constructor() {
     super()
     this.setup()
@@ -87,7 +131,10 @@ class RedisService extends EventEmitter {
     this.Bills = JSON.parse(bills.toString())
   }
   public start(options: any) {
-    this.create()
+    // this.create()
+    /* dev */
+    this.collect()
+
     ipcMain.on('async-cash-start', (event: any, options: any) => {
       const coins = this.readData(RedisService.coinPath)
       const bills = this.readData(RedisService.billPath)
@@ -100,7 +147,6 @@ class RedisService extends EventEmitter {
         this.clearBills()
       }
     })
-
   }
 
   async create() {
@@ -109,11 +155,78 @@ class RedisService extends EventEmitter {
   }
   /* dev */
   private collect() {
+    this.initCoins()
+    this.initBills()
 
+    // ----------------------------------
+    this.Collect.timestamp = new Date().getTime()
+    this.Collect.type = 'service'
+
+    /* coin */
+    this.Collect.sumC5 = this.Coins.sumC5
+    this.Collect.sumC10 = this.Coins.sumC10
+    this.Collect.sumC25 = this.Coins.sumC25
+
+    this.Collect.counterC5 = this.Coins.counterC5
+    this.Collect.counterC10 = this.Coins.counterC10
+    this.Collect.counterC25 = this.Coins.counterC25
+
+    this.Collect.amountCoin = this.Coins.amountCoin
+    this.Collect.counterCoin = this.Coins.counterCoin
+
+    /* bill */
+    this.Collect.sumB10 = this.Bills.sumB10
+    this.Collect.sumB50 = this.Bills.sumB50
+    this.Collect.sumB100 = this.Bills.sumB100
+    this.Collect.sumB200 = this.Bills.sumB200
+    this.Collect.sumB500 = this.Bills.sumB500
+
+    this.Collect.counterB10 = this.Bills.counterB10
+    this.Collect.counterB50 = this.Bills.counterB50
+    this.Collect.counterB100 = this.Bills.counterB100
+    this.Collect.counterB200 = this.Bills.counterB200
+    this.Collect.counterB500 = this.Bills.counterB500
+
+    this.Collect.amountBill = this.Bills.amountBill
+    this.Collect.counterBill = this.Bills.counterBill
+
+    /* common amount */
+    this.Collect.amountBonus = 0
+    this.Collect.amountCard = 0
+    this.Collect.amountCash = this.Coins.amountCoin + this.Bills.amountBill
+    this.Collect.amountCredit = 0
+
+    this.Collect.balance =
+      this.Collect.amountBonus +
+      this.Collect.amountCard +
+      this.Collect.amountCash +
+      this.Collect.amountCredit
+
+    // console.log('$$ this.Collect', this.Collect)
+    // ----------------------------------
+
+    /* 
+    const data = JSON.stringify(this.Coins, null, 2)
+    const path = RedisService.coinPath
+    this.writeData(path, data)
+    */
+
+    const data = JSON.stringify(this.Collect, null, 2)
+    const path = RedisService.collectPath
+
+    const fileData = this.readData(path)
+    let json
+    if (fileData) {
+      json = JSON.parse(fileData.toString())
+    } else {
+      json = { id: 1 }
+    }
+    // json.push(...this.Collect)
+    this.writeData(path, JSON.stringify(json))
+    //  console.log('$$ json', json)
   }
 
   private clearCoins() {
-
     this.Coins.sumC5 = 0
     this.Coins.sumC10 = 0
     this.Coins.sumC25 = 0
@@ -124,7 +237,7 @@ class RedisService extends EventEmitter {
 
     this.Coins.amountCoin = 0
     this.Coins.counterCoin = 0
-    
+
     const data = JSON.stringify(this.Coins, null, 2)
     const path = RedisService.coinPath
     this.writeData(path, data)

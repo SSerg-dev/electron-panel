@@ -3,7 +3,7 @@
 
     <div class="col">
       <p>
-        <img src="@/assets/images/cash_bills.png" />
+        <img src="imgs/cash/cash_bills.png" />
       </p>
     </div>
 

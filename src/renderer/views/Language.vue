@@ -58,12 +58,12 @@
                     <img src="imgs/language/lang_EST.png" />
                   </button>
               </td>
-            <!-- dev -->
               <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="imgs/language/lang_POL.png" />
-                </router-link>
+                <button class="btn-small" @click="setLocale('fra-FRA')">
+                    <img src="imgs/language/lang_FRA.png" />
+                  </button>
               </td>
+            <!-- dev -->
               <td>
                 <router-link class="btn-small" to="/language">
                   <img src="imgs/language/lang_GER.png" />
@@ -73,9 +73,10 @@
             <tr v-if="this.getPaginate === 1">
               <td>
                 <router-link class="btn-small" to="/language">
-                  <img src="imgs/language/lang_FRA.png" />
+                  <img src="imgs/language/lang_POL.png" />
                 </router-link>
               </td>
+              
               <td>
                 <router-link class="btn-small" to="/language">
                   <img src="imgs/language/lang_JPN.png" />

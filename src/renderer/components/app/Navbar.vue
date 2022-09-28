@@ -32,7 +32,7 @@
           @click="setEnabler()"
         >
           <router-link to="/">
-            <img src="@/assets/svg/head-panel.svg" />
+            <img src="imgs/svg/head-panel.svg" />
           </router-link>
         </button>
       </div>
@@ -43,7 +43,7 @@
           class="btn"
           style="border: none; background-color: #121212;"
         >
-          <img src="@/assets/svg/alles.svg" />
+          <img src="imgs/svg/alles.svg" />
         </router-link>
       </div> -->
 
@@ -57,13 +57,13 @@
             class="btn"
             style="border: none; background-color: #121212;"
           >
-            <img src="@/assets/svg/alles.svg" />
+            <img src="imgs/svg/alles.svg" />
           </router-link>
         </button>
       </div>
 
       <div class="circle">
-        <img src="@/assets/svg/white-circle.svg" />
+        <img src="imgs/svg/white-circle.svg" />
         <div
           style="position: relative; top: -6.4rem; left: 0rem; font-size: 4rem;"
         >
@@ -109,31 +109,35 @@
         <router-link to="/language" class="flag">
         
           <div v-if="this.info.locale === 'ru-RU'">
-            <img src="@/assets/images/flag_RU.png" />
+            <img src="imgs/flags/flag_RU.png" />
           </div>
 
           <div v-if="this.info.locale === 'en-GB'">
-            <img src="@/assets/images/flag_UK.png" />
+            <img src="imgs/flags/flag_UK.png" />
           </div>
 
           <div v-if="this.info.locale === 'kz-KZ'">
-            <img src="@/assets/images/flag_KZ.png" />
+            <img src="imgs/flags/flag_KZ.png" />
           </div>
           
           <div v-if="this.info.locale === 'ua-UA'">
-            <img src="@/assets/images/flag_UA.png" />
+            <img src="imgs/flags/flag_UA.png" />
           </div>
 
           <div v-if="this.info.locale === 'lat-LAT'">
-            <img src="@/assets/images/flag_LAT.png" />
+            <img src="imgs/flags/flag_LAT.png" />
           </div>
 
           <div v-if="this.info.locale === 'lit-LIT'">
-            <img src="@/assets/images/flag_LIT.png" />
+            <img src="imgs/flags/flag_LIT.png" />
           </div>
 
           <div v-if="this.info.locale === 'est-EST'">
-            <img src="@/assets/images/flag_EST.png" />
+            <img src="imgs/flags/flag_EST.png" />
+          </div>
+          
+          <div v-if="this.info.locale === 'fra-FRA'">
+            <img src="imgs/flags/flag_FRA.png" />
           </div>
 
         </router-link>
@@ -151,7 +155,7 @@
       "
     >
       <div class="background-top">
-        <img src="@/assets/svg/background-top.svg" />
+        <img src="imgs/svg/background-top.svg" />
       </div>
     </div>
   </div>

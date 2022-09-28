@@ -64,7 +64,6 @@
                   </div>
                 </td>
               </tr>
-              <!-- <img src="@/assets/svg/k1-up.svg" /> -->
 
               <tr>
                 <!-- row 01 -->

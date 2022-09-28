@@ -6,6 +6,7 @@ import ua from '../locales/ua.json'
 import lat from '../locales/lat.json'
 import lit from '../locales/lit.json'
 import est from '../locales/est.json'
+import fra from '../locales/fra.json'
 
 const locales = {
   'ru-RU': ru,
@@ -14,7 +15,8 @@ const locales = {
   'ua-UA': ua,
   'lat-LAT': lat,
   'lit-LIT': lit,
-  'est-EST': est
+  'est-EST': est,
+  'fra-FRA': fra
 }
 
 export default function localizeFilter(key) {
