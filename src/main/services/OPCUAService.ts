@@ -10,7 +10,10 @@ import {
   ClientMonitoredItemBase,
   DataValue,
   coerceNodeId,
-  resolveNodeId
+  resolveNodeId,
+  /* dev */
+  UserIdentityInfoUserName,
+  UserTokenType
 } from 'node-opcua'
 import { EventEmitter } from 'events'
 
@@ -128,8 +131,13 @@ class OPCUAService extends EventEmitter {
     this.subscription = null
     this.client = OPCUAClient.create({
       applicationName: 'Panel',
+      /* dev */
       securityMode: MessageSecurityMode.None,
       securityPolicy: SecurityPolicy.None,
+      
+      // securityMode: MessageSecurityMode.SignAndEncrypt,
+      // securityPolicy: SecurityPolicy.Basic256Sha256,
+
       endpointMustExist: false,
       keepSessionAlive: true,
       connectionStrategy: {
@@ -145,7 +153,6 @@ class OPCUAService extends EventEmitter {
       this.subscription = null
       try {
         await this.monitoredItemGroup.terminate()
-        /* dev */
         if (this.session) {
           await this.session.close()
           console.log(`OPC UA session closed`)
@@ -164,7 +171,16 @@ class OPCUAService extends EventEmitter {
       await this.client.connect(this.endpointUrl)
       console.log(`Connected to ${this.endpointUrl}`)
 
+      /* dev */
+      // const userIdentityToken: UserIdentityInfoUserName = {
+      //   password: '1234',
+      //   userName: 'admin',
+      //   type: UserTokenType.UserName
+      // }
+      
       this.session = await this.client.createSession()
+      // this.session = await this.client.createSession(userIdentityToken)
+
       console.log(
         `OPC UA session created = ${this.session.sessionId.toString()}`
       )

@@ -26,6 +26,7 @@ class RedisService extends EventEmitter {
   static coinPath = './data/coin-statistic.json'
   static billPath = './data/bill-statistic.json'
   static collectPath = './data/collect-statistic.json'
+  static collectMax = 5
 
   coins: any = null
 
@@ -202,29 +203,24 @@ class RedisService extends EventEmitter {
       this.Collect.amountCash +
       this.Collect.amountCredit
 
-    // console.log('$$ this.Collect', this.Collect)
-    // ----------------------------------
-
-    /* 
-    const data = JSON.stringify(this.Coins, null, 2)
-    const path = RedisService.coinPath
-    this.writeData(path, data)
-    */
-
     const data = JSON.stringify(this.Collect, null, 2)
     const path = RedisService.collectPath
-
     const fileData = this.readData(path)
-    let json
-    if (fileData) {
-      json = JSON.parse(fileData.toString())
+
+    if (!fileData) {
+      this.writeData(path, data)
     } else {
-      json = { id: 1 }
+      const json = JSON.parse(fileData.toString())
+      const newData = { ...this.Collect }
+      const arr = Array.from(json)
+      arr.push(newData)
+
+      if (arr.length > RedisService.collectMax) {
+        arr.shift()
+      }
+      this.writeData(path, JSON.stringify(arr, null, 2))
     }
-    // json.push(...this.Collect)
-    this.writeData(path, JSON.stringify(json))
-    //  console.log('$$ json', json)
-  }
+  } // end collect
 
   private clearCoins() {
     this.Coins.sumC5 = 0
