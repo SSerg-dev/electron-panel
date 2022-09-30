@@ -109,35 +109,39 @@
         <router-link to="/language" class="flag">
         
           <div v-if="this.info.locale === 'ru-RU'">
-            <img src="imgs/flags/flag_RU.png" />
+            <img src="@/assets/imgs/flags/flag_RU.png" />
           </div>
 
           <div v-if="this.info.locale === 'en-GB'">
-            <img src="imgs/flags/flag_UK.png" />
+            <img src="@/assets/imgs/flags/flag_UK.png" />
           </div>
 
           <div v-if="this.info.locale === 'kz-KZ'">
-            <img src="imgs/flags/flag_KZ.png" />
+            <img src="@/assets/imgs/flags/flag_KZ.png" />
           </div>
           
           <div v-if="this.info.locale === 'ua-UA'">
-            <img src="imgs/flags/flag_UA.png" />
+            <img src="@/assets/imgs/flags/flag_UA.png" />
           </div>
 
           <div v-if="this.info.locale === 'lat-LAT'">
-            <img src="imgs/flags/flag_LAT.png" />
+            <img src="@/assets/imgs/flags/flag_LAT.png" />
           </div>
 
           <div v-if="this.info.locale === 'lit-LIT'">
-            <img src="imgs/flags/flag_LIT.png" />
+            <img src="@/assets/imgs/flags/flag_LIT.png" />
           </div>
 
           <div v-if="this.info.locale === 'est-EST'">
-            <img src="imgs/flags/flag_EST.png" />
+            <img src="@/assets/imgs/flags/flag_EST.png" />
           </div>
           
           <div v-if="this.info.locale === 'fra-FRA'">
-            <img src="imgs/flags/flag_FRA.png" />
+            <img src="@/assets/imgs/flags/flag_FRA.png" />
+          </div>
+
+          <div v-if="this.info.locale === 'ger-GER'">
+            <img src="@/assets/imgs/flags/flag_GER.png" />
           </div>
 
         </router-link>

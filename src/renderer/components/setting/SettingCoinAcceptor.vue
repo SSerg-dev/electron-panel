@@ -46,7 +46,7 @@ export default Vue.extend({
 
     acceptors: [
       { id: 1, title: 'CCTALK1' },
-      { id: 2, title: 'NRI G-13 USB' }
+      /* { id: 2, title: 'NRI G-13 USB' } */
     ]
   }),
   mounted() {

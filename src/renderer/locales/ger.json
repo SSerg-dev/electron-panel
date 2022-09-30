@@ -1,0 +1,147 @@
+{
+  "LanguageTitle": "Localize",
+  "BOX": "WÄSCHE",
+  "#": "Nein",
+  "VACUUM": "STAUBSAUGER",
+  "PAYMENT": "ZAHLUNG",
+  "locales": "GER",
+  "PROGRAMS_COST": "PROGRAMMPREIS",
+  "CASH": "BARGELD",
+  "BANK_CARD": "BANKKARTE",
+  "BONUSES": "BONUSPUNKTE",
+  "Choose_your_payment_method": "Wählen Sie die Bezahlungsart",
+  "CONSULTANT": "BERATER",
+  "CALL_SENT_WAIT": "ANFRAGE GESENDET, WARTEN SIE BITTE",
+  "FREE_STOP": "KOSTENLOSER STOP",
+  "STOP": "STOP", 
+  "CONTINUE": "FORTFAHREN",
+  "MAKE_A_PAYMENT": "EINE ZAHLUNG TÄTIGEN",
+  "Insert_banknotes_or_coins": "Führen Sie Banknoten oder werfen Sie Münzen ein, danach betätigen Sie die Taste unten",
+  "Price_per_minute": "Preis für eine Minute",
+  "Program": "Programm",
+
+  "SHAMPOO": "SCHAMPOO",
+  "DISK": "FELGEN",
+  "MOSQUITO": "MÜCKE",
+  "FOAM": "SCHAUM",
+  "FOAM_COLOR": "SCHAUM FARBE", 
+  "BRUSH": "BÜRSTE",
+  "BRUSH_COLOR": "BÜRSTE FARBE",
+  "WATER_SHAMPOO": "WASSER SCHAMPOO",
+  "COLD_WATER": "KALTES",
+  "WARM_WATER": "WARMES",
+  "OSMOSIS": "OSMOSE",
+  "STOP_PAUSE": "STOP/PAUSE",
+  "AIR": "LUFT",
+  "GLASS_WASHING_LIQUID": "WASCHEN",
+  "WAX": "WACHS",
+  "FOAM_X2": "SCHAUM X2",
+  "VACUUM_CLEANER": "STAUBSAUGER",
+  "BRUSH_X2": "BÜRSTE X2",
+  "DISK_X2": "FELGEN X2",
+  "MOSQUITO_X2": "MÜCKE X2",
+  "TURBO_DRYER": "TROCKNER",
+  "DEGREASE": "DEGREASE",
+  "DISINFECTION": "DESINFEKTION",
+  "BLACKING": "SCHWÄRZUNG",
+  "DOORSILL": "THRESHOLD",
+  
+  "COMPLETE_PAYMENT": "VOLLSTÄNDIGE ZAHLUNG",
+  "RETURN_BONUSES_UP": "RETURN BONI BIS ZU 30% VOLLSTÄNDIGE ZAHLUNG",
+  "APPEND": "ANHÄNGEN",
+  "CONFIRM": "BESTÄTIGEN",
+
+  "To_enter_the_system": "Geben Sie die Nummer ein, um sich anzumelden Telefon oder Scannen QR Code", 
+  "To_credit_Bonuses_to_your_account": "Geben Sie Ihre Telefonnummer ein",
+  "By_clicking_on_CONFIRM": "Wenn Sie auf BESTÄTIGEN klicken, Stimmen Sie dem Versand zu Sie SMS-Nachrichten und Verarbeitung personenbezogener Daten, gemäß den auf der Website veröffentlichten Bedingungen: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "Autorisation nach QR",
+  "Your_balance": "Dein Kontostand,",
+  "Select_charge_amount": "Auswählen von Abschreibungen",
+  
+  "Enter_your_password": "Geben Sie das Passwort",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "Einstellungsmenü",
+  
+  "The_status_of_the_operation": "Stand der Operationsdurchführung:",
+  "Connection_to_the_bank_terminal": "Verbindung zum Bankterminal...",
+  "Failed_to_connect_to_the_bank_terminal": "Verbindung konnte nicht hergestellt werden zum Bankterminal",
+  "Timed_out": "Die Wartezeiten sind vorbei",
+  "Operation_approved": "Vorgang genehmigt",
+  "Operation_rejected": "Vorgang abgelehnt",
+  "Follow_the_instructions_on_the_terminal": "Folgen Sie den Anweisungen auf dem Terminal",
+
+  "You_want_to_complete_the_car_wash": "Sie möchten die Autowäsche abschließen und das Guthaben mit Prämien zurückgeben?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Wenn Sie auf Ja klicken, Stimmen Sie dem Versand zu Sie SMS-Nachrichten und Verarbeitung personenbezogener Daten, gemäß den auf der Website veröffentlichten Bedingungen: www.alles-bonus.com",
+
+  "Display": "Bildschirm",
+  "Services": "Dienstleistungen",
+  "Service_balance": "Servicebilanz",
+  "Reset": "Zurücksetzen",
+  "Open_the_door": "Öffne die Tür",
+  "Reboot": "Neustart",
+
+  "Software_version": "Softwareversion",
+  "Temperature": "Temperatur",
+  "Humidity": "Feuchtigkeit",
+
+  "Show_tooltips_when_switching_programs_during": "QuickInfos beim wechseln von Programmen anzeigen während",
+
+  "Time_to_switch_to_the_main_window": "Zum Hauptfenster zu wechseln",
+
+  "Setting": "Einstellungen",
+  "Languages": "Sprachen",
+  "Finance": "Finanzen",
+  "Review": "Übersicht",
+
+  "OK": "OK",
+  "Cancel": "Abbrechen",
+  "Confirm": "Anwenden",
+  "Make_the_payment_window_the_main": "Machen Sie das Zahlungsfenster zum Hauptfenster",
+  "Show_cursor_in_the_main_window": "Cursor im Hauptfenster anzeigen",
+  "Direct_cash_payment": "Direkte Barauszahlung",
+  "Banking_terminal": "Bankterminal",
+  
+  "System": "System",
+  "Panel": "Panel",
+  "Bill_acceptor": "Banknoten annehmen",
+  "Coin_acceptor": "Münzen annehmen",
+
+  "Language": "Sprache",
+  "Currency": "Währung",
+  
+  "Type_of_panel": "Art der Platte",
+  "Panel_number": "Tafel nummer",
+  "Vacuum_number": "Staubsaugers nummer",
+
+  "Type": "Typ",
+  "Accept_bills": "Banknoten annehmen",
+  "Accept_coins": "Münzen annehmen",
+
+  "Model": "Modell",
+  "Reconciliation_Pax": "Versöhnung Pax",
+
+  "Payment_limits": "Zahlung",
+  "Minimum": "Minimum",
+  "Maximum": "Maximal",
+  "Tokens": "Token",
+
+  "CAR_WASH": "WÄSCHE",
+  "PAYMENT_CENTER": "NACHZAHLUNGEN",
+  "PANEL": "PANEL",
+
+  "Cash_post": "Kassenpost",
+  "Total_amount": "Gesamtsumme",
+  "Amount_of_deposit_in_banknotes": "Einzahlungsbetrag in Banknoten",
+  "Number_of_banknotes": "Anzahl Banknoten",
+  "Credit_amount_in_coins": "Kreditbetrag in Münzen",
+  "Number_of_coins": "Anzahl Münzen",
+  "Collection": "Versöhnung",
+
+  "Replace_item": "Artikel ersetzen",
+  "Replace_program": "Replace program" 
+
+
+
+
+}

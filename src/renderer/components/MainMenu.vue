@@ -195,9 +195,9 @@ export default Vue.extend({
 .collection {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 0rem;
+  margin-top: 0em;
   border-color: #121212;
-  padding-top: 8rem;
+  padding-top: 8em;
 }
 .collection-item {
   margin-bottom: 2em;
@@ -216,16 +216,21 @@ section {
 }
 .button-style {
   padding-left: 4em;
-  width: 945px;
-  height: 160px;
+  width: 64em;
+  height: 11em;
+  
   border: solid 6px #00b9e3;
   border-radius: 4em;
   box-shadow: 0px 10px 20px #00b9e3;
 }
+.button-style:hover {
+  box-shadow: 0px 15px 30px #00b9e3;
+}
 .button-style-bonus {
   padding-left: 4em;
-  width: 945px;
-  height: 160px;
+  width: 64em;
+  height: 11em;
+  
   border: solid 6px rgb(118, 255, 3);
   border-radius: 4em;
   box-shadow: 0px 10px 20px rgb(118, 255, 3);
@@ -238,4 +243,6 @@ section {
   align-items: center;
   justify-content: left;
 }
+
+
 </style>

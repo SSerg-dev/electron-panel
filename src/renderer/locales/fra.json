@@ -87,7 +87,7 @@
 
   "Show_tooltips_when_switching_programs_during": "Afficher les info-bulles lors du changement de programme dans le courant",
 
-  "Time_to_switch_to_the_main_window": "Il est temps de passer à la fenêtre principale",
+  "Time_to_switch_to_the_main_window": "Temps jusqu'à la fenêtre principale",
 
   "Setting": "Paramètres",
   "Languages": "Langues",
@@ -139,7 +139,7 @@
   "Collection": "Le recueil",
 
   "Replace_item": "Remplacer l'article",
-  "Replace_program": "Remplacer le programme" 
+  "Replace_program": "Remplacer le prog" 
 
 
 

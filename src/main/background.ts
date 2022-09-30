@@ -351,6 +351,7 @@ const createWindow = () => {
     return display.bounds.x !== 0
   })
   const { width, height } = screen.getPrimaryDisplay().size
+
   mainWindow = new BrowserWindow({
     webPreferences: {
       webSecurity: false,
@@ -361,6 +362,8 @@ const createWindow = () => {
     y: 0,
     width: isDevelopment ? externalDisplay?.workArea.height : height,
     height: isDevelopment ? externalDisplay?.workArea.width : width,
+    // width: 1920,
+    // height: 1080,
 
     frame: false,
     show: false
