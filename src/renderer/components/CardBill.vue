@@ -752,7 +752,7 @@ export default {
     maxY: 1620,
 
     client: 'fetch',
-    url: 'https://192.168.1.3/',
+    url: '',//'https://192.168.1.3/',
     storage: null,
     options: {},
     payType: '',
@@ -857,7 +857,7 @@ export default {
     const options = {}
 
     this.setup()
-
+    this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
 
     // console.log('this.getProfile-->', this.getProfile)
@@ -1106,7 +1106,7 @@ export default {
         }
         this.amountString = this.amount.toString()
         this.display = this.amountString
-      }, (this.delay = 500))
+      }, (this.delay = 100))
     },
 
     backspace() {

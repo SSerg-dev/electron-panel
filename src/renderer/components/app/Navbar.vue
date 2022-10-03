@@ -32,20 +32,10 @@
           @click="setEnabler()"
         >
           <router-link to="/">
-            <img src="imgs/svg/head-panel.svg" />
+            <img src="@/assets/imgs/svg/head-panel.svg" />
           </router-link>
         </button>
       </div>
-
-      <!-- <div class="setting">
-        <router-link
-          to="/password"
-          class="btn"
-          style="border: none; background-color: #121212;"
-        >
-          <img src="imgs/svg/alles.svg" />
-        </router-link>
-      </div> -->
 
       <div class="setting">
         <button
@@ -57,13 +47,13 @@
             class="btn"
             style="border: none; background-color: #121212;"
           >
-            <img src="imgs/svg/alles.svg" />
+            <img src="@/assets/imgs/svg/alles.svg" />
           </router-link>
         </button>
       </div>
 
       <div class="circle">
-        <img src="imgs/svg/white-circle.svg" />
+        <img src="@/assets/imgs/svg/white-circle.svg" />
         <div
           style="position: relative; top: -6.4rem; left: 0rem; font-size: 4rem;"
         >
@@ -142,6 +132,10 @@
 
           <div v-if="this.info.locale === 'ger-GER'">
             <img src="@/assets/imgs/flags/flag_GER.png" />
+          </div>
+
+          <div v-if="this.info.locale === 'pol-POL'">
+            <img src="@/assets/imgs/flags/flag_POL.png" />
           </div>
 
         </router-link>

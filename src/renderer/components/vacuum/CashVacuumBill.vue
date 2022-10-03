@@ -103,7 +103,7 @@ export default {
     delay: 2000,
 
     client: 'fetch',
-    url: 'https://192.168.1.3/',
+    url: '',//'https://192.168.1.3/',
     urlLocal: 'http://127.0.0.1/',
     storage: null,
     options: {},
@@ -117,7 +117,7 @@ export default {
   }),
   mounted() {
     this.order = this.createOrder()
-
+    this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
     
     this.localStorage = new Storage(

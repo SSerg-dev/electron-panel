@@ -56,7 +56,8 @@ class Fetch {
         break
       case 'ping':
         response = await this.pingUrl(
-          (url = 'https://192.168.1.2:4840'),
+          //(url = 'https://192.168.1.2:4840'),
+          (url = process.env.VUE_APP_URL_CONTROLLER),
           options
         )
         break

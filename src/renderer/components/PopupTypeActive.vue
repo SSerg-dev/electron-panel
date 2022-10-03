@@ -2,7 +2,7 @@
   <div class="locate">
     <router-link to="/program">
       <div class="back">
-        <img src="imgs/key/back.png" />
+        <img src="@/assets/imgs/key/back.png" />
       </div>
     </router-link>
     <div class="message" style="background: none;">
@@ -72,13 +72,13 @@
             <tr class="image">
               <td colspan="2">
                 <div id="green-image" class="active">
-                  <img src="imgs/actives/green-active-m.svg" />
+                  <img src="@/assets/imgs/actives/green-active-m.svg" />
                 </div>
                 <div id="blue-image" class="active">
-                  <img src="imgs/actives/blue-active-m.svg" />
+                  <img src="@/assets/imgs/actives/blue-active-m.svg" />
                 </div>
                 <div id="red-image" class="active">
-                  <img src="imgs/actives/red-active-m.svg" />
+                  <img src="@/assets/imgs/actives/red-active-m.svg" />
                 </div>
               </td>
             </tr>

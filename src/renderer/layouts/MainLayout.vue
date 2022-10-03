@@ -41,8 +41,8 @@ export default Vue.extend({
     intervalPing: null,
     // dev
     client: 'fetch',
-    url: 'https://192.168.1.3/',
-    urlController: 'https://192.168.1.2:4840',
+    url: '',//'https://192.168.1.3/',
+    // urlController: 'https://192.168.1.2:4840',
     urlLocal: 'http://127.0.0.1/',
 
     storage: null,
@@ -181,6 +181,7 @@ export default Vue.extend({
   },
 
   async mounted() {
+    this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
 
     this.localStorage = new Storage(this.localClient, this.urlLocal)

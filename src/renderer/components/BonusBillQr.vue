@@ -39,7 +39,7 @@ export default {
   data: () => ({
     qr: '',
     client: 'fetch',
-    url: 'https://192.168.1.3/',
+    url: '',//'https://192.168.1.3/',
     storage: null,
     options: {},
     intervalCheckBonusQr: null,
@@ -149,6 +149,7 @@ export default {
   }, // end methods
 
   mounted() {
+    this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
     this.getQr()
   },

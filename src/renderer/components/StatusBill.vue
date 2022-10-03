@@ -19,7 +19,7 @@
         </div>
 
         <div>
-          <img src="/imgs/arrow/arrow.png" />
+          <img src="@/assets/imgs/arrow/arrow.png" />
         </div>
 
         <div v-if="loading">

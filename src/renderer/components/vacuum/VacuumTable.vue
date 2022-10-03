@@ -218,7 +218,7 @@ export default {
     //loading: true,
     //records: [],
     client: 'fetch',
-    url: 'https://192.168.1.3/',
+    url: '',//'https://192.168.1.3/',
     storage: null,
     options: {},
     order: '',
@@ -493,6 +493,7 @@ export default {
     },
   },
   mounted() {
+    this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
     this.order = this.getCompleteWash().params.order
 

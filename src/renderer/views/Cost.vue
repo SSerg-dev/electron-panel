@@ -4,7 +4,7 @@
       <div class="col s2">
         <router-link to="/">
           <div class="back">
-            <img src="imgs/key/back.png" />
+            <img src="@/assets/imgs/key/back.png" />
           </div>
         </router-link>
       </div>

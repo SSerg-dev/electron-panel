@@ -4,291 +4,289 @@
       <h3>{{ 'LanguageTitle' | localize }}</h3>
     </div>
     <router-link to="/">
-        <div class="back">
-          <img src="imgs/key/back.png" />
-        </div>
-      </router-link>
+      <div class="back">
+        <img src="@/assets/imgs/key/back.png" />
+      </div>
+    </router-link>
 
     <section>
       <!-- <form @submit.prevent=""> -->
-        <div class="row">
-          <table ref="tableRows">
-            <tr v-if="this.getPaginate === 1">
-              <td>
-                  <button class="btn-small" @click="setLocale('ru-RU')">
-                    <img src="@/assets/imgs/language/lang_RU.png" />
-                  </button>
-              </td>
+      <div class="row">
+        <table ref="tableRows">
+          <tr v-if="this.getPaginate === 1">
+            <td>
+              <button class="btn-small" @click="setLocale('ru-RU')">
+                <img src="@/assets/imgs/language/lang_RU.png" />
+              </button>
+            </td>
 
-              <td>
-                  <button class="btn-small" @click="setLocale('en-GB')">
-                    <img src="@/assets/imgs/language/lang_EN.png" />
-                  </button>
-              </td>
+            <td>
+              <button class="btn-small" @click="setLocale('en-GB')">
+                <img src="@/assets/imgs/language/lang_EN.png" />
+              </button>
+            </td>
 
-              <td>
-                <button class="btn-small" @click="setLocale('kz-KZ')">
-                    <img src="@/assets/imgs/language/lang_KZ.png" />
-                  </button>
-              </td>
-            </tr>
-            <tr v-if="this.getPaginate === 1">
-              <td>
-                <button class="btn-small" @click="setLocale('ua-UA')">
-                    <img src="@/assets/imgs/language/lang_UA.png" />
-                  </button>
-              </td>
+            <td>
+              <button class="btn-small" @click="setLocale('kz-KZ')">
+                <img src="@/assets/imgs/language/lang_KZ.png" />
+              </button>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 1">
+            <td>
+              <button class="btn-small" @click="setLocale('ua-UA')">
+                <img src="@/assets/imgs/language/lang_UA.png" />
+              </button>
+            </td>
 
-              <td>
-                <button class="btn-small" @click="setLocale('lat-LAT')">
-                    <img src="@/assets/imgs/language/lang_LAT.png" />
-                  </button>
-              </td>
+            <td>
+              <button class="btn-small" @click="setLocale('lat-LAT')">
+                <img src="@/assets/imgs/language/lang_LAT.png" />
+              </button>
+            </td>
 
-              <td>
-                <button class="btn-small" @click="setLocale('lit-LIT')">
-                    <img src="@/assets/imgs/language/lang_LIT.png" />
-                  </button>
-              </td>
-            
-            </tr>
-            <tr v-if="this.getPaginate === 1">
-              <td>
-                <button class="btn-small" @click="setLocale('est-EST')">
-                    <img src="@/assets/imgs/language/lang_EST.png" />
-                  </button>
-              </td>
-              <td>
-                <button class="btn-small" @click="setLocale('fra-FRA')">
-                    <img src="@/assets/imgs/language/lang_FRA.png" />
-                  </button>
-              </td>
-              <td>
-                <button class="btn-small" @click="setLocale('ger-GER')">
-                    <img src="@/assets/imgs/language/lang_GER.png" />
-                  </button>
-              </td>
-              <!-- dev -->
-            </tr>
-            <tr v-if="this.getPaginate === 1">
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_POL.png" />
-                </router-link>
-              </td>
-              
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_JPN.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_TUR.png" />
-                </router-link>
-              </td>
-            </tr>
-            <tr v-if="this.getPaginate === 2">
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_BLR.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_SVN.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_SVK.png" />
-                </router-link>
-              </td>
-            </tr>
-            <tr v-if="this.getPaginate === 2">
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_SRB.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_NOR.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_FIN.png" />
-                </router-link>
-              </td>
-            </tr>
-            <tr v-if="this.getPaginate === 2">
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_BGR.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_GRC.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_DNK.png" />
-                </router-link>
-              </td>
-            </tr>
-            <tr v-if="this.getPaginate === 2">
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_ROU.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_SWE.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_PRT.png" />
-                </router-link>
-              </td>
-            </tr>
-            <tr v-if="this.getPaginate === 3">
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_NLD.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_MDA.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_ITA.png" />
-                </router-link>
-              </td>
-            </tr>
-            <tr v-if="this.getPaginate === 3">
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_HUN.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_IRN.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_HRV.png" />
-                </router-link>
-              </td>
-            </tr>
-            <tr v-if="this.getPaginate === 3">
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_ARM.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_CZE.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_UZB.png" />
-                </router-link>
-              </td>
-            </tr>
-            <tr v-if="this.getPaginate === 3">
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_TJK.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_KGZ.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_AZE.png" />
-                </router-link>
-              </td>
-            </tr>
-            <tr v-if="this.getPaginate === 4">
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_SPA.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_GEO.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_CHN.png" />
-                </router-link>
-              </td>
-            </tr>
-            <tr v-if="this.getPaginate === 4">
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_ISR.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_ARB.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_CHE.png" />
-                </router-link>
-              </td>
-            </tr>
-            <tr v-if="this.getPaginate === 4">
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_TAT.png" />
-                </router-link>
-              </td>
-              <td>
-                <router-link class="btn-small" to="/language">
-                  <img src="@/assets/imgs/language/lang_KOR.png" />
-                </router-link>
-              </td>
-              <td>
-                  <!-- <button class="btn-large" @click="getCountry()">
+            <td>
+              <button class="btn-small" @click="setLocale('lit-LIT')">
+                <img src="@/assets/imgs/language/lang_LIT.png" />
+              </button>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 1">
+            <td>
+              <button class="btn-small" @click="setLocale('est-EST')">
+                <img src="@/assets/imgs/language/lang_EST.png" />
+              </button>
+            </td>
+            <td>
+              <button class="btn-small" @click="setLocale('pol-POL')">
+                <img src="@/assets/imgs/language/lang_POL.png" />
+              </button>
+            </td>
+            <td>
+              <button class="btn-small" @click="setLocale('ger-GER')">
+                <img src="@/assets/imgs/language/lang_GER.png" />
+              </button>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 1">
+            <td>
+              <button class="btn-small" @click="setLocale('fra-FRA')">
+                <img src="@/assets/imgs/language/lang_FRA.png" />
+              </button>
+            </td>
+            <!-- dev -->
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_JPN.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_TUR.png" />
+              </router-link>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 2">
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_BLR.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_SVN.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_SVK.png" />
+              </router-link>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 2">
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_SRB.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_NOR.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_FIN.png" />
+              </router-link>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 2">
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_BGR.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_GRC.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_DNK.png" />
+              </router-link>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 2">
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_ROU.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_SWE.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_PRT.png" />
+              </router-link>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 3">
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_NLD.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_MDA.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_ITA.png" />
+              </router-link>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 3">
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_HUN.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_IRN.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_HRV.png" />
+              </router-link>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 3">
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_ARM.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_CZE.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_UZB.png" />
+              </router-link>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 3">
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_TJK.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_KGZ.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_AZE.png" />
+              </router-link>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 4">
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_SPA.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_GEO.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_CHN.png" />
+              </router-link>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 4">
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_ISR.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_ARB.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_CHE.png" />
+              </router-link>
+            </td>
+          </tr>
+          <tr v-if="this.getPaginate === 4">
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_TAT.png" />
+              </router-link>
+            </td>
+            <td>
+              <router-link class="btn-small" to="/language">
+                <img src="@/assets/imgs/language/lang_KOR.png" />
+              </router-link>
+            </td>
+            <td>
+              <!-- <button class="btn-large" @click="getCountry()">
                     getCountry
                   </button> -->
-              </td>
-            </tr>
-          </table>
+            </td>
+          </tr>
+        </table>
 
-          <div class="paginate">
-            <!-- :initial-page="this.getPaginate" -->
-            <!-- :page-class="'waves-effect'" -->
-            <Paginate
-              :page-count="4"
-              :click-handler="pageChangeHandler"
-              :prev-text="'<'"
-              :next-text="'>'"
-              :container-class="'pagination'"
-            />
-          </div>
+        <div class="paginate">
+          <!-- :initial-page="this.getPaginate" -->
+          <!-- :page-class="'waves-effect'" -->
+          <Paginate
+            :page-count="4"
+            :click-handler="pageChangeHandler"
+            :prev-text="'<'"
+            :next-text="'>'"
+            :container-class="'pagination'"
+          />
         </div>
+      </div>
       <!-- </form> -->
     </section>
   </div>
@@ -307,7 +305,7 @@ export default Vue.extend({
   mixins: [paginationMixin],
   data: () => ({
     locale: '',
-    tableRows: []
+    tableRows: [],
   }),
   mounted() {
     this.setPaginate(1)
@@ -318,9 +316,8 @@ export default Vue.extend({
     ...mapGetters({
       info: 'info',
       getPaginate: 'getPaginate',
-      getRouter: 'getRouter'
+      getRouter: 'getRouter',
     }),
-    
   },
 
   // beforeDestroy() {
@@ -329,13 +326,13 @@ export default Vue.extend({
   methods: {
     ...mapMutations({
       setInfo: 'setInfo',
-      setPaginate: 'setPaginate'
+      setPaginate: 'setPaginate',
     }),
     setLocale(locale) {
       this.locale = locale
       this.setInfo({
         name: this.name,
-        locale: this.locale
+        locale: this.locale,
       })
       this.pushRouter()
     },
@@ -344,10 +341,10 @@ export default Vue.extend({
       this.$router.push(this.getRouter)
     },
     getCountry() {
-      ipcRenderer.send('country', "RU")
+      ipcRenderer.send('country', 'RU')
       //ipcRenderer.send('config', JSON.stringufy(config))
-    }
-  }
+    },
+  },
 })
 </script>
 
@@ -366,7 +363,7 @@ export default Vue.extend({
   z-index: 1;
 }
 
-table{
+table {
   position: absolute;
 }
 table,

@@ -3,14 +3,19 @@
     <div class="locate">
       <router-link to="/setting">
         <div class="back">
-          <img src="imgs/key/back.png" />
+          <img src="@/assets/imgs/key/back.png" />
         </div>
       </router-link>
     </div>
 
     <section>
       <div style="padding-top: 10em">
-        <div v-if="!isChart">
+        <div>
+
+          <!-- <FinanceAccounting /> -->
+        
+        </div>
+        <div>
           <FinanceTable />
         </div>
       </div>
@@ -20,7 +25,7 @@
             <!-- v-if="getUsersRole.toLowerCase() === 'admin'" -->
             <button
               v-if="JSON.parse(getUsersIsAccess.panelCollection)"
-              style="font-weight: bold;"
+              style="font-weight: bold"
               class="
                 btn
                 waves-effect waves-light
@@ -77,7 +82,7 @@ export default Vue.extend({
   name: 'finance',
   data: () => ({
     client: 'fetch',
-    url: 'https://192.168.1.3/',
+    url: '', //'https://192.168.1.3/',
     storage: null,
     options: {},
     id: 0,
@@ -97,7 +102,7 @@ export default Vue.extend({
       getAllBills: 'getAllBills',
       getPanelType: 'getPanelType',
       getUsersRole: 'getUsersRole',
-      getUsersIsAccess: 'getUsersIsAccess'
+      getUsersIsAccess: 'getUsersIsAccess',
     }),
   },
   methods: {
@@ -112,16 +117,21 @@ export default Vue.extend({
     },
 
     doCollect() {
-      if (confirm('Подтвердите инкассацию')) {
+      if (confirm(`Confirm collection`)) {
+        // collect on panel
+        let isCollect = false
+        if (+this.coins.amountCoin > 0 || +this.bills.amountCoin > 0) {
+          isCollect = true
+          ipcRenderer.send('async-cash-collect', isCollect)
+          this.clearCash()
+        }
+        // collect on connect
         this.collect()
-        // this.clearCash()
-        
-       
       }
     },
     clearCash() {
       let isClear = false
-      if (this.coins || this.bills) {
+      if (+this.coins.amountCoin > 0 || +this.bills.amountCoin > 0) {
         isClear = true
         ipcRenderer.send('async-cash-clear', isClear)
       }
@@ -152,11 +162,6 @@ export default Vue.extend({
 
         this.setAllCoins(this.coins)
         this.setAllBills(this.bills)
-
-        // if (coins || bills) {
-        //   isClear = true
-        //   event.sender.send('async-cash-clear', isClear)
-        // }
       })
     },
 
@@ -185,7 +190,7 @@ export default Vue.extend({
         this.$message(
           `Инкассация поста № ${this.getDefaultPanelNumber} выполнена успешно`
         )
-        // this.clearCash()
+        //this.clearCash()
       }
     },
     ...mapGetters({
@@ -214,6 +219,7 @@ export default Vue.extend({
   },
   async mounted() {
     this.setRouter('/finance')
+    this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
 
     /* const dbf = new Database(new FetchClient())

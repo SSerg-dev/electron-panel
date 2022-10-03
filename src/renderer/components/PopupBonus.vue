@@ -22,7 +22,7 @@
       <section>
         <div class="popup">
           <p>
-            <img src="/imgs/popup/popup-bonus.svg" />
+            <img src="@/assets/imgs/popup/popup-bonus.svg" />
           </p>
         </div>
       </section>

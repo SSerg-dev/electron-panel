@@ -457,7 +457,7 @@ export default {
     bills: {},
 
     client: 'fetch',
-    url: 'https://192.168.1.3/',
+    url: '', //'https://192.168.1.3/',
     storage: null,
     options: {},
 
@@ -485,7 +485,8 @@ export default {
   }),
   created() {},
   mounted() {
-    /* dev */
+    
+    
     this.getCashMoney()
 
     this.order = this.createOrder()
@@ -493,6 +494,7 @@ export default {
 
     this.actives = this.getPrograms()
 
+    this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
     this.setIsLoginSettingPassword(false)
     this.setRouter('/bonus')

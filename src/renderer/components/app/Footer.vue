@@ -68,9 +68,19 @@
 
         <div class="col s4">
           <div class="operator">
+            <!-- <div
+              v-if="this.isDown.operator === false"
+              style="
+                background-image: url('./imgs/operator/operator-down.png');
+                width: 401px;
+                height: 106px;
+              "
+              @click="setProgram('operator')"
+            > -->
             <div
               v-if="this.isDown.operator === false"
               style="
+
                 background-image: url('./imgs/operator/operator-down.png');
                 width: 401px;
                 height: 106px;
@@ -107,6 +117,8 @@ import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 import { Queue } from '@/queue/index.js'
 import { log } from '../../../main/utils'
+
+// import {} from '../../../renderer/assets/imgs/operator/'
 
 export default {
   data: () => ({
