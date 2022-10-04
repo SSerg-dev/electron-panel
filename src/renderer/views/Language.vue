@@ -74,13 +74,14 @@
                 <img src="@/assets/imgs/language/lang_FRA.png" />
               </button>
             </td>
-            <!-- dev -->
+            <td></td>
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('jpn-JPN')">
                 <img src="@/assets/imgs/language/lang_JPN.png" />
-              </router-link>
+              </button>
             </td>
             <td>
+              <!-- dev -->
               <router-link class="btn-small" to="/language">
                 <img src="@/assets/imgs/language/lang_TUR.png" />
               </router-link>

@@ -4,7 +4,7 @@
       <h1>
         <!-- <p align="center" >Касса поста №{{ getDefaultPanelNumber }}</p> -->
         <p align="center">
-          {{ `Cash_post` | localize }}
+          {{ `Cash_post` | localize  }}
           {{ `#` | localize }}
           {{ getDefaultPanelNumber }}
         </p>

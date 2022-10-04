@@ -77,6 +77,7 @@
               "
               @click="setProgram('operator')"
             > -->
+            <!-- ./../src/renderer/assets/imgs/operator/operator-down.png -->
             <div
               v-if="this.isDown.operator === false"
               style="

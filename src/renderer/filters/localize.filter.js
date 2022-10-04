@@ -9,6 +9,7 @@ import est from '../locales/est.json'
 import fra from '../locales/fra.json'
 import ger from '../locales/ger.json'
 import pol from '../locales/pol.json'
+import jpn from '../locales/jpn.json'
 
 const locales = {
   'ru-RU': ru,
@@ -20,7 +21,8 @@ const locales = {
   'est-EST': est,
   'fra-FRA': fra,
   'ger-GER': ger,
-  'pol-POL': pol
+  'pol-POL': pol,
+  'jpn-JPN': jpn
 }
 
 export default function localizeFilter(key) {

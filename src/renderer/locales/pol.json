@@ -89,57 +89,57 @@
 
   "Time_to_switch_to_the_main_window": "Czas przejść do głównego okna",
 
-  "Setting": "Setting",
-  "Languages": "Languages",
-  "Finance": "Finance",
-  "Review": "Review",
+  "Setting": "Konfiguracja",
+  "Languages": "Języki",
+  "Finance": "Finanse",
+  "Review": "Przegląd",
 
   "OK": "OK",
-  "Cancel": "Cancel",
-  "Confirm": "Confirm",
-  "Make_the_payment_window_the_main": "Make the payment window the main",
-  "Show_cursor_in_the_main_window": "Show cursor in the main window",
-  "Direct_cash_payment": "Direct cash payment",
-  "Banking_terminal": "Banking terminal",
+  "Cancel": "Odwołanie",
+  "Confirm": "Zastosować",
+  "Make_the_payment_window_the_main": "Ustaw okno płatności jako główne",
+  "Show_cursor_in_the_main_window": "Pokaż kursor w głównym oknie",
+  "Direct_cash_payment": "Bezpośrednia płatność gotówkowa",
+  "Banking_terminal": "Terminal bankowy",
   
   "System": "System",
   "Panel": "Panel",
-  "Bill_acceptor": "Bill acceptor",
-  "Coin_acceptor": "Coin acceptor",
+  "Bill_acceptor": "Akceptant rachunków",
+  "Coin_acceptor": "Akceptor monet",
 
-  "Language": "Language",
-  "Currency": "Currency",
+  "Language": "Język ",
+  "Currency": "Dewiza",
   
-  "Type_of_panel": "Type of panel",
-  "Panel_number": "Panel number",
-  "Vacuum_number": "Vacuum number",
+  "Type_of_panel": "Typ panelu",
+  "Panel_number": "Numer panelu",
+  "Vacuum_number": "Numer odkurzacza",
 
-  "Type": "Type",
-  "Accept_bills": "Accept bills",
-  "Accept_coins": "Accept coins",
+  "Type": "Typ",
+  "Accept_bills": "Akceptant rachunków",
+  "Accept_coins": "Akceptor monet",
 
   "Model": "Model",
-  "Reconciliation_Pax": "Reconciliation Pax",
+  "Reconciliation_Pax": "Pojednanie Pax",
 
-  "Payment_limits": "Payment limits",
+  "Payment_limits": "Limity płatności",
   "Minimum": "Minimum",
-  "Maximum": "Maximum",
-  "Tokens": "Tokens",
+  "Maximum": "Maksymalny",
+  "Tokens": "Tokeny",
 
-  "CAR_WASH": "CAR WASH",
-  "PAYMENT_CENTER": "PAYMENT CENTER",
+  "CAR_WASH": "MYJNIA",
+  "PAYMENT_CENTER": "POSTOPŁATY",
   "PANEL": "PANEL",
 
-  "Cash_post": "Cash post",
-  "Total_amount": "Total amount",
-  "Amount_of_deposit_in_banknotes": "Amount of deposit in banknotes",
-  "Number_of_banknotes": "Number of banknotes",
-  "Credit_amount_in_coins": "Credit amount in coins",
-  "Number_of_coins": "Number of coins",
-  "Collection": "Collection",
+  "Cash_post": "Kasa",
+  "Total_amount": "Całkowita kwota",
+  "Amount_of_deposit_in_banknotes": "Kwota depozytu w banknotach",
+  "Number_of_banknotes": "Liczba banknotów",
+  "Credit_amount_in_coins": "Kwota kredytu w monetach",
+  "Number_of_coins": "Liczba monet",
+  "Collection": "Kolekcja",
 
-  "Replace_item": "Replace Item",
-  "Replace_program": "Replace program"
+  "Replace_item": "Wymień element",
+  "Replace_program": "Wymień program"
 
 
 

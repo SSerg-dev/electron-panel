@@ -96,6 +96,8 @@ export default Vue.extend({
   mounted() {
     // initial timers
     /* dev */
+    // this.$router.push('/finance')
+
     if (this.getWetBalance > 0) this.$router.push('/cash')
 
     this.setIsFirstTimer(true)

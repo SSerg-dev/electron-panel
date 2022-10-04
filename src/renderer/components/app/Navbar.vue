@@ -138,6 +138,11 @@
             <img src="@/assets/imgs/flags/flag_POL.png" />
           </div>
 
+          <div v-if="this.info.locale === 'jpn-JPN'">
+            <img src="@/assets/imgs/flags/flag_JPN.png" />
+          </div>
+
+
         </router-link>
       </div>
     </div>

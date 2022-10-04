@@ -12,6 +12,8 @@ import loader from "vue-ui-preloader"
 
 
 import localizeFilter from '@/filters/localize.filter'
+import capitalizeFilter from '@/filters/capitalize.filter'
+import uppercaseFilter from '@/filters/uppercase.filter'
 
 import 'materialize-css/dist/js/materialize.min'
 
@@ -26,6 +28,8 @@ Vue.use(Invoice, { store } )
 
 Vue.filter('date', dateFilter)
 Vue.filter('localize', localizeFilter)
+Vue.filter('capitalize', capitalizeFilter)
+Vue.filter('uppercase', uppercaseFilter)
 // Vue.component('Loader', Loader)
 
 

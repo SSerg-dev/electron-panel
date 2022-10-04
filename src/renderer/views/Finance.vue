@@ -11,9 +11,7 @@
     <section>
       <div style="padding-top: 10em">
         <div>
-
-          <!-- <FinanceAccounting /> -->
-        
+          <FinanceGrid />
         </div>
         <div>
           <FinanceTable />
@@ -27,7 +25,6 @@
               v-if="JSON.parse(getUsersIsAccess.panelCollection)"
               style="font-weight: bold"
               class="
-                btn
                 waves-effect waves-light
                 lighten-3
                 white-text
@@ -44,7 +41,7 @@
         <!-- <div class="col ">
           <router-link to="/finance">
             <button
-              class="btn waves-effect waves-light lighten-3 white-text button-setting"
+              class=" waves-effect waves-light lighten-3 white-text button-setting"
               type="submit"
               @click="doChart"
             >
@@ -69,7 +66,8 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 import FinanceTable from '@/components/FinanceTable'
-import FinanceChart from '@/components/FinanceChart'
+// import FinanceChart from '@/components/FinanceChart'
+import FinanceGrid from '@/components/FinanceGrid'
 
 // dev methods
 import { Database } from '@/storage/database.js'
@@ -232,7 +230,8 @@ export default Vue.extend({
   },
   components: {
     FinanceTable,
-    FinanceChart,
+    FinanceGrid,
+    // FinanceChart,
   },
 })
 </script>
@@ -269,6 +268,7 @@ export default Vue.extend({
 }
 .button-group {
   padding-left: 16em;
+  margin-top: 2em;
 }
 .button-setting {
   margin-top: 0em;
