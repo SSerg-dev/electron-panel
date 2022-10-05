@@ -170,7 +170,7 @@ class PaxDevice extends EventEmitter {
           if (err) {
             reject(err)
           }
-          console.log('$$ PaxDevice self.serial.open')
+          // console.log('$$ PaxDevice self.serial.open')
           resolve(true)
         })
       }

@@ -9,79 +9,41 @@
 
     <div id="grid-template">
       <table style="border: solid 3px #00b9e3">
-        <!-- <thead>
+        <thead>
           <tr>
             <th
               v-for="(column, index) in columns"
               :key="index"
-              @click="sortBy(key)"
-              :class="{ active: sortKey == key }"
+              @click="sortBy(columns[index])"
+              :class="{ active: sortKey == columns[index] }"
             >
-              {{ key | capitalize }}
-              <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+              
+              {{ columns[index] | capitalize }}
+              
+              <span 
+              class="arrow" :class="sortOrders[columns[index]] > 0 ? 'asc' : 'dsc'">
               </span>
+            
             </th>
           </tr>
-        </thead> -->
+        </thead>
 
         <tbody>
           <tr
             style="border: solid 3px #00b9e3"
-            v-for="(item, index) in items"
+            v-for="(item, index) in filteredItems"
             :key="index"
           >
-            <!-- <td class="cell-style" >
-            {{ ` ${ index + 1 } ` }}
-            {{ ` ${ JSON.stringify(item)  } ` }}  
-            </td> -->
-
             <td
               class="cell-style"
               v-for="(column, index) in columns"
               :key="index"
             >
-              <!-- {{ ` ${ index + 1 } ` }}
-            {{ ` ${ JSON.stringify(column)  } ` }}   -->
-
-              <!-- {{ column[index] }} -->
-              {{ column }}
+              {{ item[columns[index]] }}
             </td>
           </tr>
         </tbody>
 
-        <!-- <tbody>
-          <tr style="border: solid 3px #00b9e3">
-            <td class="cell-style">
-              {{ `A1` }}
-            </td>
-            <td>
-              {{ `A2` }}
-            </td>
-          </tr>
-          <tr>
-            <td
-              style="
-                text-align: left;
-                padding-left: 1em;
-                border-top: solid 3px #00b9e3;
-              "
-            >
-              {{ `B1` }}
-            </td>
-            <td style="border-top: solid 3px #00b9e3">
-              {{ `B2` }}
-            </td>
-          </tr>
-
-          <tr>
-            <td class="cell-style">
-              {{ `D1` }}
-            </td>
-            <td>
-              {{ `D2` }}
-            </td>
-          </tr>
-        </tbody> -->
       </table>
     </div>
   </div>
@@ -98,26 +60,62 @@ export default Vue.extend({
     filterKey: '',
     columns: ['date', 'cash', 'card', 'bonus', 'service'],
     items: [
-      { date: 1, cash: 11, card: 22, bonus: 33, service: 44 },
-      { date: 2, cash: 11, card: 22, bonus: 33, service: 44 },
-      { date: 3, cash: 11, card: 22, bonus: 33, service: 44 },
-      { date: 4, cash: 11, card: 22, bonus: 33, service: 44 },
+      { date: 1, cash: 11, card: 21, bonus: 31, service: 41 },
+      { date: 2, cash: 12, card: 22, bonus: 32, service: 42 },
+      { date: 3, cash: 13, card: 23, bonus: 33, service: 43 },
+      { date: 4, cash: 14, card: 24, bonus: 34, service: 44 },
     ],
+    /* dev */
+    sortKey: '',
+    sortOrders: {},
   }), // end data
 
   methods: {
-    sortBy: function (key) {
+    sortBy(key) {
       this.sortKey = key
       this.sortOrders[key] = this.sortOrders[key] * -1
+      console.log('$$ this.sortKey', this.sortKey)
     },
   },
 
   computed: {
     // ...mapGetters({}),
-    
+    filteredItems: function () {
+      let sortKey = this.sortKey
+      let filterKey = this.filterKey && this.filterKey.toLowerCase()
+      let order = this.sortOrders[sortKey] || 1
+      let items = this.items
+      if (filterKey) {
+        items = items.filter(function (row) {
+          return Object.keys(row).some(function (key) {
+            return String(row[key]).toLowerCase().indexOf(filterKey) > -1
+          })
+        })
+      }
+      if (sortKey) {
+        items = items.slice().sort(function (a, b) {
+          a = a[sortKey]
+          b = b[sortKey]
+          return (a === b ? 0 : a > b ? 1 : -1) * order
+        })
+      }
+      console.log('$$ items', items)
+      return items
+    },
   },
   created() {},
-  mounted() {},
+  mounted() {
+    // this.columns.forEach(function (key) {
+    //   this.sortOrders[key] = 1
+    // })
+    // console.log('$$ this.columns', this.columns)
+
+    /* data */
+    this.columns.array.forEach((column, index) => {
+      this.sortOrders[index] = 1
+    })
+    console.log('$$ this.columns', this.columns, this.sortOrders)
+  },
 })
 </script>
 
@@ -130,8 +128,8 @@ export default Vue.extend({
   color: white;
 }
 .cell-style {
-  text-align: left;
-  padding-left: 1em;
+  text-align: center;
+  padding-left: 0em;
 }
 table {
   margin-top: 0em; /* 20em; */
@@ -147,6 +145,34 @@ th {
   font-size: 2em;
   text-align: center;
 }
+th.active {
+  color: #00b9e3;
+}
+
+th.active .arrow {
+  opacity: 1;
+}
+
+.arrow {
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  opacity: 0.66;
+}
+
+.arrow.asc {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #fff;
+}
+
+.arrow.dsc {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #fff;
+}
 td {
   border: 1px solid;
   border-color: white;
@@ -154,4 +180,5 @@ td {
   text-align: center;
   /* border-left-color: aqua; */
 }
+
 </style>

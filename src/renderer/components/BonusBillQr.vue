@@ -170,6 +170,8 @@ export default {
   margin-left: 45.5em;
   color: white;
   font-family: 'Plumb-Medium';
+
+  width: 40%;
 }
 .qr-code {
   position: absolute;

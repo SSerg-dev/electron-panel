@@ -142,6 +142,10 @@
             <img src="@/assets/imgs/flags/flag_JPN.png" />
           </div>
 
+          <div v-if="this.info.locale === 'tur-TUR'">
+            <img src="@/assets/imgs/flags/flag_TUR.png" />
+          </div>
+
 
         </router-link>
       </div>
@@ -153,12 +157,13 @@
           this.$route.name !== 'language' &&
           this.$route.name !== 'program' &&
           this.$route.name !== 'setting' &&
-          this.$route.name !== 'password' 
+          this.$route.name !== 'password' &&
+          this.$route.name !== 'finance'
           
       "
     >
       <div class="background-top">
-        <img src="imgs/svg/background-top.svg" />
+        <img src="@/assets/imgs/svg/background-top.svg" />
       </div>
     </div>
   </div>

@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>{{ 'LanguageTitle' | localize }}</h3>
+      <h3>
+        <p align="center">
+          {{ 'LanguageTitle' | localize }}
+        </p>
+        
+      </h3>
     </div>
     <router-link to="/">
       <div class="back">
@@ -81,11 +86,12 @@
               </button>
             </td>
             <td>
-              <!-- dev -->
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('tur-TUR')">
                 <img src="@/assets/imgs/language/lang_TUR.png" />
-              </router-link>
+              </button>
             </td>
+          
+          <!-- dev -->
           </tr>
           <tr v-if="this.getPaginate === 2">
             <td>

@@ -86,7 +86,7 @@ class Fetch {
       .post(url, body, { httpsAgent }, { timeout: 2000 })
       .then(res => {
         this.res = res.data
-        console.log('Returned data:', JSON.stringify(res.data))
+        // console.log('Returned data:', JSON.stringify(res.data))
       })
       .catch(e => {
         console.log('Axios request failed:', JSON.stringify(e))
@@ -107,7 +107,7 @@ class Fetch {
       .post(url, body, { httpsAgent }, { timeout: 2000 })
       .then(res => {
         this.res = res.data
-        console.log('Returned data:', JSON.stringify(res.data))
+        // console.log('Returned data:', JSON.stringify(res.data))
       })
       .catch(e => {
         console.log('Axios request failed:', JSON.stringify(e))
