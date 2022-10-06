@@ -92,12 +92,15 @@ export default Vue.extend({
 
     coins: {},
     bills: {},
+    financeCollect: {}
   }),
   computed: {
     ...mapGetters({
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getAllCoins: 'getAllCoins',
       getAllBills: 'getAllBills',
+      getFinanceCollect: 'getFinanceCollect',
+      
       getPanelType: 'getPanelType',
       getUsersRole: 'getUsersRole',
       getUsersIsAccess: 'getUsersIsAccess',
@@ -108,6 +111,7 @@ export default Vue.extend({
     ...mapMutations({
       setAllCoins: 'setAllCoins',
       setAllBills: 'setAllBills',
+      setFinanceCollect: 'setFinanceCollect'
     }),
     /*     */
     doChart() {
@@ -135,6 +139,7 @@ export default Vue.extend({
       }
     },
 
+
     async readCash() {
       // console.log('$$ Finance.vue readCash')
       const method = methods[2]
@@ -150,8 +155,7 @@ export default Vue.extend({
       }
     },
     getCashMoney() {
-      // let isClear = false
-      const options = 'ipcRenderer.send coin from CashBill'
+      const options = 'ipcRenderer.send getCashMoney'
       ipcRenderer.send('async-cash-start', options)
 
       ipcRenderer.on('async-cash-reply', (event, coins, bills) => {
@@ -162,6 +166,21 @@ export default Vue.extend({
         this.setAllBills(this.bills)
       })
     },
+    /* dev */
+    getCollectMoney() {
+      const options = 'ipcRenderer.send getCollectMoney'
+      ipcRenderer.send('async-read-collect', options)
+
+      ipcRenderer.on('async-collect-reply', (event, collect) => {
+        this.financeCollect = JSON.parse(collect) || {}
+        this.setFinanceCollect(this.financeCollect)
+        
+        // console.log('$$ this.getFinanceCollect', this.getFinanceCollect)
+      })
+
+
+    },
+
 
     async collect() {
       const method = methods[1]
@@ -227,6 +246,8 @@ export default Vue.extend({
   },
   created() {
     this.getCashMoney()
+    /* dev */
+    this.getCollectMoney()
   },
   components: {
     FinanceTable,

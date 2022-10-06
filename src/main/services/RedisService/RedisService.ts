@@ -26,7 +26,7 @@ class RedisService extends EventEmitter {
   static coinPath = './data/coin-statistic.json'
   static billPath = './data/bill-statistic.json'
   static collectPath = './data/collect-statistic.json'
-  static collectMax = 42
+  static collectMax = 10
 
   coins: any = null
 
@@ -155,6 +155,13 @@ class RedisService extends EventEmitter {
         
       }
     })
+    ipcMain.on('async-read-collect', (event: any, options: any) => {
+      if (options) {
+        const collect = this.readData(RedisService.collectPath)
+        event.sender.send('async-collect-reply', collect)
+      }
+    })
+
   }
 
   async create() {
@@ -167,7 +174,10 @@ class RedisService extends EventEmitter {
     this.initBills()
 
     // ----------------------------------
-    this.Collect.timestamp = new Date().getTime()
+    // this.Collect.timestamp = new Date().getTime()
+    const date = new Date()
+    this.Collect.timestamp = date.toLocaleString('ru-RU')
+
     this.Collect.type = 'service'
 
     /* coin */

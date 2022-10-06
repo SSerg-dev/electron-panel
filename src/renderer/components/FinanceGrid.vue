@@ -8,29 +8,29 @@
     </div>
 
     <div id="grid-template">
-      <table style="border: solid 3px #00b9e3">
+      <table>
         <thead>
-          <tr>
+          <tr style="border: solid 3px #00b9e3">
             <th
               v-for="(column, index) in columns"
               :key="index"
-              @click="sortBy(columns[index])"
+              @click="sortBy(columns[index], index)"
               :class="{ active: sortKey == columns[index] }"
             >
-              
-              {{ columns[index] | capitalize }}
-              
-              <span 
-              class="arrow" :class="sortOrders[columns[index]] > 0 ? 'asc' : 'dsc'">
+              <!-- {{ columns[index] | capitalize }} -->
+              {{ titles[index] | capitalize }}
+              <span
+                class="arrow"
+                :class="sortOrders[index] > 0 ? 'asc' : 'dsc'"
+              >
               </span>
-            
             </th>
           </tr>
         </thead>
 
         <tbody>
           <tr
-            style="border: solid 3px #00b9e3"
+            
             v-for="(item, index) in filteredItems"
             :key="index"
           >
@@ -43,7 +43,6 @@
             </td>
           </tr>
         </tbody>
-
       </table>
     </div>
   </div>
@@ -58,32 +57,43 @@ export default Vue.extend({
 
   data: () => ({
     filterKey: '',
-    columns: ['date', 'cash', 'card', 'bonus', 'service'],
-    items: [
-      { date: 1, cash: 11, card: 21, bonus: 31, service: 41 },
-      { date: 2, cash: 12, card: 22, bonus: 32, service: 42 },
-      { date: 3, cash: 13, card: 23, bonus: 33, service: 43 },
-      { date: 4, cash: 14, card: 24, bonus: 34, service: 44 },
-    ],
-    /* dev */
     sortKey: '',
     sortOrders: {},
+    index: -1,
+
+    // columns: ['date', 'cash', 'card', 'bonus', 'service'],
+    // timestamp
+    columns: ['timestamp', 'amountCash', 'card', 'bonus', 'service'],
+    titles: ['дата', 'наличные', 'безналичние', 'бонусы', 'сервисные'],
+
+    items: [],
+
+    delay: 0,
+    timeoutDelay: null,
+
   }), // end data
 
   methods: {
-    sortBy(key) {
+    sortBy: function (key, index) {
+      this.index = index
       this.sortKey = key
-      this.sortOrders[key] = this.sortOrders[key] * -1
-      console.log('$$ this.sortKey', this.sortKey)
+      this.sortOrders[index] = this.sortOrders[index] * -1
+      // console.log('$$ this.index', this.index, this.sortKey, this.sortOrders[index])
+      // --------------------------------
+
+      // --------------------------------
     },
   },
-
   computed: {
-    // ...mapGetters({}),
+    ...mapGetters({
+      getFinanceCollect: 'getFinanceCollect',
+    }),
     filteredItems: function () {
-      let sortKey = this.sortKey
-      let filterKey = this.filterKey && this.filterKey.toLowerCase()
-      let order = this.sortOrders[sortKey] || 1
+      // console.log('$$ filteredItems', this.sortKey)
+      const sortKey = this.sortKey
+      const filterKey = this.filterKey && this.filterKey.toLowerCase()
+      const order = this.sortOrders[sortKey] || 1
+
       let items = this.items
       if (filterKey) {
         items = items.filter(function (row) {
@@ -99,22 +109,31 @@ export default Vue.extend({
           return (a === b ? 0 : a > b ? 1 : -1) * order
         })
       }
-      console.log('$$ items', items)
       return items
     },
   },
-  created() {},
-  mounted() {
-    // this.columns.forEach(function (key) {
-    //   this.sortOrders[key] = 1
-    // })
-    // console.log('$$ this.columns', this.columns)
+  created() {
+    this.timeoutDelay = setTimeout(() => {
+      /* data */
+      this.items = this.getFinanceCollect
+    }, this.delay)
 
-    /* data */
-    this.columns.array.forEach((column, index) => {
-      this.sortOrders[index] = 1
-    })
-    console.log('$$ this.columns', this.columns, this.sortOrders)
+  },
+  mounted() {
+    // [
+    //   { date: 1, cash: 41, card: 21, bonus: 31, service: 41 },
+    //   { date: 2, cash: 32, card: 22, bonus: 32, service: 42 },
+    //   { date: 3, cash: 23, card: 23, bonus: 33, service: 43 },
+    //   { date: 4, cash: 14, card: 24, bonus: 34, service: 44 },
+    // ]
+    if (this.columns) {
+      this.columns.forEach((column, index) => {
+        this.sortOrders[index] = 1
+      })
+    }
+  },
+  beforeDestroy() {
+    clearTimeout(this.timeoutDelay)
   },
 })
 </script>
@@ -130,20 +149,30 @@ export default Vue.extend({
 .cell-style {
   text-align: center;
   padding-left: 0em;
+   
+  border: solid 1px white
+  
 }
 table {
   margin-top: 0em; /* 20em; */
   margin-left: 3.8em;
   color: white;
-  border: 1px solid;
-  border-color: white;
+  border: 3px solid;
+  border-color: #00b9e3;
   width: 90%;
 }
 th {
   border: 1px solid;
+  color: white; /* rgb(200, 200, 200); */
   border-color: white;
   font-size: 2em;
   text-align: center;
+
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 th.active {
   color: #00b9e3;
@@ -180,5 +209,4 @@ td {
   text-align: center;
   /* border-left-color: aqua; */
 }
-
 </style>

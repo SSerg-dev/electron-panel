@@ -10,6 +10,7 @@ export default {
   state: {
     coins: {},
     bills: {},
+    collect: {},
 
     cashTitle: [
       { id: 1, title: `Total_amount` },
@@ -28,7 +29,11 @@ export default {
     },
     setAllBills(state, bills) {
       state.bills = bills
+    },
+    setFinanceCollect(state, collect) {
+      state.collect = collect
     }
+
   },
   // getters
   getters: {
@@ -41,5 +46,9 @@ export default {
     getCashTitle(state) {
       return state.cashTitle
     },
+    getFinanceCollect(state) {
+      return state.collect
+    }
+    
   }
 }
