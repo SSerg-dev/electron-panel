@@ -26,7 +26,7 @@ class RedisService extends EventEmitter {
   static coinPath = './data/coin-statistic.json'
   static billPath = './data/bill-statistic.json'
   static collectPath = './data/collect-statistic.json'
-  static collectMax = 10
+  static collectMax = 12
 
   coins: any = null
 

@@ -139,7 +139,17 @@
     "Collection": "Collection",
 
     "Replace_item": "Replace Item",
-    "Replace_program": "Replace program"
+    "Replace_program": "Replace program",
+
+    "Cash_accounting": "Cash accounting",
+    "Data": "Data",
+    "Cash": "Cash",
+    "Cashless": "Cashless",
+    "Bonus": "Bonus",
+    "Service": "Service"
+
+
+
 
 
 

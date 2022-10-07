@@ -139,7 +139,14 @@
   "Collection": "Inkasācija",
 
   "Replace_item": "Aizstāt vienumu",
-  "Replace_program": "Aizstāt programmu" 
+  "Replace_program": "Aizstāt programmu",
+
+  "Cash_accounting": "Skaidras naudas uzskaite",
+  "Data": "Datums",
+  "Cash": "Nauda",
+  "Cashless": "Bez naudas",
+  "Bonus": "Bonuss",
+  "Service": "Apkalpošana" 
 
 
 

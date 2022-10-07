@@ -139,7 +139,14 @@
   "Collection": "Інкасація",
 
   "Replace_item": "Замінити пункт",
-  "Replace_program": "Замінити програму" 
+  "Replace_program": "Замінити програму",
+
+  "Cash_accounting": "Облік готівки",
+  "Data": "Дата",
+  "Cash": "Готівка",
+  "Cashless": "Безготівковий",
+  "Bonus": "Бонус",
+  "Service": "Сервіс" 
 
 
 

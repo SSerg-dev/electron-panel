@@ -149,7 +149,7 @@ export default Vue.extend({
 
 <style scoped>
 .page-title {
-  margin-top: 16em;
+  margin-top: 2em;
   margin-bottom: 2em;
   /* margin-left: 16.5em; */
   padding-top: 0em;

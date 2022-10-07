@@ -139,7 +139,14 @@
   "Collection": "Le recueil",
 
   "Replace_item": "Remplacer l'article",
-  "Replace_program": "Remplacer le prog" 
+  "Replace_program": "Remplacer le prog",
+
+  "Cash_accounting": "Comptabilité de caisse",
+  "Data": "Data",
+  "Cash": "En espèces",
+  "Cashless": "Sans numéraire",
+  "Bonus": "Prime",
+  "Service": "Service" 
 
 
 

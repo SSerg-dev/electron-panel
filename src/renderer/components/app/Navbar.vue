@@ -146,6 +146,9 @@
             <img src="@/assets/imgs/flags/flag_TUR.png" />
           </div>
 
+          <div v-if="this.info.locale === 'blr-BLR'">
+            <img src="@/assets/imgs/flags/flag_BLR.png" />
+          </div>
 
         </router-link>
       </div>

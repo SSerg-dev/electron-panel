@@ -91,14 +91,15 @@
               </button>
             </td>
           
-          <!-- dev -->
+          
           </tr>
           <tr v-if="this.getPaginate === 2">
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('blr-BLR')">
                 <img src="@/assets/imgs/language/lang_BLR.png" />
-              </router-link>
+              </button>
             </td>
+            <!-- dev -->
             <td>
               <router-link class="btn-small" to="/language">
                 <img src="@/assets/imgs/language/lang_SVN.png" />

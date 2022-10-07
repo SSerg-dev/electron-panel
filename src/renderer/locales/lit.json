@@ -139,7 +139,14 @@
   "Collection": "Inkasacija",
 
   "Replace_item": "Pakeisti elementą",
-  "Replace_program": "Pakeiskite programą" 
+  "Replace_program": "Pakeiskite programą",
+
+  "Cash_accounting": "Grynųjų pinigų apskaita",
+  "Data": "Data",
+  "Cash": "Gryi pinigai",
+  "Cashless": "Be gryi pinigų",
+  "Bonus": "Premija",
+  "Service": "Aptarnavimas" 
 
 
 

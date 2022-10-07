@@ -139,7 +139,14 @@
   "Collection": "Versöhnung",
 
   "Replace_item": "Artikel ersetzen",
-  "Replace_program": "Replace program" 
+  "Replace_program": "Replace program",
+
+  "Cash_accounting": "Kassenbuchhaltung",
+  "Data": "Datum",
+  "Cash": "Kasse",
+  "Cashless": "Bargeldlos",
+  "Bonus": "Bonus",
+  "Service": "Service" 
 
 
 

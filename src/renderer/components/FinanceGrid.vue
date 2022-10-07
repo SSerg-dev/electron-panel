@@ -3,7 +3,7 @@
     <div class="page-title">
       <h1>
         <!-- | uppercase -->
-        <p align="center">{{ `Учет денежных средств` }}</p>
+        <p align="center">{{ `Cash_accounting` | localize }}</p>
       </h1>
     </div>
 
@@ -18,22 +18,34 @@
               :class="{ active: sortKey == columns[index] }"
             >
               <!-- {{ columns[index] | capitalize }} -->
-              {{ titles[index] | capitalize }}
-              <span
-                class="arrow"
-                :class="sortOrders[index] > 0 ? 'asc' : 'dsc'"
-              >
-              </span>
+              <div v-if="index > 1">
+                <div style="opacity: 0.5">
+                  {{ titles[index] | capitalize | localize }}
+                  <span
+                    class="arrow"
+                    :class="sortOrders[index] > 0 ? 'asc' : 'dsc'"
+                  >
+                  </span>
+                </div>
+              </div>
+              <div v-else>
+                <div style="opacity: 1">
+                  {{ titles[index] | capitalize  | localize }}
+                  <span
+                    class="arrow"
+                    :class="sortOrders[index] > 0 ? 'asc' : 'dsc'"
+                  >
+                  </span>
+                </div>
+              </div>
+
+
             </th>
           </tr>
         </thead>
 
         <tbody>
-          <tr
-            
-            v-for="(item, index) in filteredItems"
-            :key="index"
-          >
+          <tr v-for="(item, index) in filteredItems" :key="index">
             <td
               class="cell-style"
               v-for="(column, index) in columns"
@@ -64,13 +76,13 @@ export default Vue.extend({
     // columns: ['date', 'cash', 'card', 'bonus', 'service'],
     // timestamp
     columns: ['timestamp', 'amountCash', 'card', 'bonus', 'service'],
-    titles: ['дата', 'наличные', 'безналичние', 'бонусы', 'сервисные'],
+    // titles: ['дата', 'наличные', 'безналичние', 'бонусы', 'сервисные'],
+    titles: ['Data', 'Cash', 'Cashless', 'Bonus', 'Service'],
 
     items: [],
 
     delay: 0,
     timeoutDelay: null,
-
   }), // end data
 
   methods: {
@@ -117,7 +129,6 @@ export default Vue.extend({
       /* data */
       this.items = this.getFinanceCollect
     }, this.delay)
-
   },
   mounted() {
     // [
@@ -149,9 +160,8 @@ export default Vue.extend({
 .cell-style {
   text-align: center;
   padding-left: 0em;
-   
-  border: solid 1px white
-  
+
+  border: solid 1px white;
 }
 table {
   margin-top: 0em; /* 20em; */

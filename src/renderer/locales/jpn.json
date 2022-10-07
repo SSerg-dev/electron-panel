@@ -139,6 +139,13 @@
   "Collection": "コレクション",
 
   "Replace_item": "アイテムを置換",
-  "Replace_program": "置き換える"
+  "Replace_program": "置き換える",
+
+  "Cash_accounting": "現金会計",
+  "Data": "日にち",
+  "Cash": "現金",
+  "Cashless": "キャッシュレス",
+  "Bonus": "ボーナス",
+  "Service": "サービス"
 
 }

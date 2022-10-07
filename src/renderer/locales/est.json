@@ -139,9 +139,14 @@
   "Collection": "Kollektsioon",
 
   "Replace_item": "Asenda üksus",
-  "Replace_program": "Asenda programm" 
+  "Replace_program": "Asenda programm", 
 
-
+  "Cash_accounting": "Kassaarvestus",
+    "Data": "Kuupäev",
+    "Cash": "Sularaha",
+    "Cashless": "Sularahata",
+    "Bonus": "Boonus",
+    "Service": "Teenindus"
 
 
 }

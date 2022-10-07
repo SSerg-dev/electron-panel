@@ -139,7 +139,14 @@
   "Collection": "Kolekcja",
 
   "Replace_item": "Wymień element",
-  "Replace_program": "Wymień program"
+  "Replace_program": "Wymień program",
+
+  "Cash_accounting": "Rachunkowość kasowa",
+  "Data": "Data",
+  "Cash": "Gotówka",
+  "Cashless": "Bezgotówkowy",
+  "Bonus": "Premia",
+  "Service": "Usługa"
 
 
 

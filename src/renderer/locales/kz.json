@@ -139,7 +139,14 @@
   "Collection": "Жинақ",
 
   "Replace_item": "Элементті ауыстыру",
-  "Replace_program": "Бағдарлам ауыстыру" 
+  "Replace_program": "Бағдарлам ауыстыру",
+
+  "Cash_accounting": "Ақшаны есепке алу",
+  "Data": "Күн",
+  "Cash": "Ақша",
+  "Cashless": "Ақшасыз",
+  "Bonus": "Бонус",
+  "Service": "Қызмет" 
 
 
 

@@ -11,6 +11,8 @@ import ger from '../locales/ger.json'
 import pol from '../locales/pol.json'
 import jpn from '../locales/jpn.json'
 import tur from '../locales/tur.json'
+import blr from '../locales/blr.json'
+
 
 const locales = {
   'ru-RU': ru,
@@ -24,7 +26,8 @@ const locales = {
   'ger-GER': ger,
   'pol-POL': pol,
   'jpn-JPN': jpn,
-  'tur-TUR': tur
+  'tur-TUR': tur,
+  'blr-BLR': blr
 }
 
 export default function localizeFilter(key) {
