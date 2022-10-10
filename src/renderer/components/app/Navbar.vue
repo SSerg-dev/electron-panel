@@ -150,6 +150,10 @@
             <img src="@/assets/imgs/flags/flag_BLR.png" />
           </div>
 
+          <div v-if="this.info.locale === 'svn-SVN'">
+            <img src="@/assets/imgs/flags/flag_SVN.png" />
+          </div>
+
         </router-link>
       </div>
     </div>

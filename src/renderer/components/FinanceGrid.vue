@@ -2,56 +2,47 @@
   <div>
     <div class="page-title">
       <h1>
-        <!-- | uppercase -->
+        <!-- | uppercase | capitalize -->
         <p align="center">{{ `Cash_accounting` | localize }}</p>
       </h1>
     </div>
-
-    <div id="grid-template">
+    <div class="scroll-">
       <table>
         <thead>
           <tr style="border: solid 3px #00b9e3">
             <th
-              v-for="(column, index) in columns"
-              :key="index"
-              @click="sortBy(columns[index], index)"
-              :class="{ active: sortKey == columns[index] }"
+              v-for="(column, columnIndex) in columns"
+              :key="columnIndex"
+              @click="sortBy(columns[columnIndex], columnIndex)"
+              :class="{ active: sortKey == columns[columnIndex] }"
             >
-              <!-- {{ columns[index] | capitalize }} -->
-              <div v-if="index > 1">
-                <div style="opacity: 0.5">
-                  {{ titles[index] | capitalize | localize }}
+              <div>
+                <div
+                  :class="[
+                    { 'opacity-one': columnIndex <= 1 },
+                    { 'opacity-half': columnIndex > 1 },
+                  ]"
+                >
+                  {{ titles[columnIndex] | capitalize | localize }}
                   <span
                     class="arrow"
-                    :class="sortOrders[index] > 0 ? 'asc' : 'dsc'"
+                    :class="sortOrders[columnIndex] > 0 ? 'asc' : 'dsc'"
                   >
                   </span>
                 </div>
               </div>
-              <div v-else>
-                <div style="opacity: 1">
-                  {{ titles[index] | capitalize  | localize }}
-                  <span
-                    class="arrow"
-                    :class="sortOrders[index] > 0 ? 'asc' : 'dsc'"
-                  >
-                  </span>
-                </div>
-              </div>
-
-
             </th>
           </tr>
         </thead>
 
         <tbody>
-          <tr v-for="(item, index) in filteredItems" :key="index">
+          <tr v-for="(item, itemIndex) in filteredItems" :key="itemIndex">
             <td
               class="cell-style"
-              v-for="(column, index) in columns"
-              :key="index"
+              v-for="(column, columnIndex) in columns"
+              :key="columnIndex"
             >
-              {{ item[columns[index]] }}
+              {{ item[columns[columnIndex]] }}
             </td>
           </tr>
         </tbody>
@@ -61,6 +52,7 @@
 </template>
 
 <script>
+import { log } from 'util'
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 
@@ -68,32 +60,35 @@ export default Vue.extend({
   name: 'finance-grid',
 
   data: () => ({
-    filterKey: '',
+    // filterKey: '',
     sortKey: '',
     sortOrders: {},
     index: -1,
 
-    // columns: ['date', 'cash', 'card', 'bonus', 'service'],
-    // timestamp
     columns: ['timestamp', 'amountCash', 'card', 'bonus', 'service'],
-    // titles: ['дата', 'наличные', 'безналичние', 'бонусы', 'сервисные'],
     titles: ['Data', 'Cash', 'Cashless', 'Bonus', 'Service'],
 
     items: [],
 
     delay: 0,
     timeoutDelay: null,
+    isChange: false 
+
   }), // end data
 
   methods: {
     sortBy: function (key, index) {
+
       this.index = index
       this.sortKey = key
       this.sortOrders[index] = this.sortOrders[index] * -1
-      // console.log('$$ this.index', this.index, this.sortKey, this.sortOrders[index])
-      // --------------------------------
-
-      // --------------------------------
+      this.isChange = !this.isChange
+      
+    },
+  },
+  watch: {
+    isChange(flag) {  
+      // console.log('$$ flag', flag)
     },
   },
   computed: {
@@ -101,19 +96,10 @@ export default Vue.extend({
       getFinanceCollect: 'getFinanceCollect',
     }),
     filteredItems: function () {
-      // console.log('$$ filteredItems', this.sortKey)
-      const sortKey = this.sortKey
-      const filterKey = this.filterKey && this.filterKey.toLowerCase()
-      const order = this.sortOrders[sortKey] || 1
 
+      const sortKey = this.sortKey
+      const order = this.sortOrders[sortKey] || 1
       let items = this.items
-      if (filterKey) {
-        items = items.filter(function (row) {
-          return Object.keys(row).some(function (key) {
-            return String(row[key]).toLowerCase().indexOf(filterKey) > -1
-          })
-        })
-      }
       if (sortKey) {
         items = items.slice().sort(function (a, b) {
           a = a[sortKey]
@@ -131,12 +117,6 @@ export default Vue.extend({
     }, this.delay)
   },
   mounted() {
-    // [
-    //   { date: 1, cash: 41, card: 21, bonus: 31, service: 41 },
-    //   { date: 2, cash: 32, card: 22, bonus: 32, service: 42 },
-    //   { date: 3, cash: 23, card: 23, bonus: 33, service: 43 },
-    //   { date: 4, cash: 14, card: 24, bonus: 34, service: 44 },
-    // ]
     if (this.columns) {
       this.columns.forEach((column, index) => {
         this.sortOrders[index] = 1
@@ -153,7 +133,7 @@ export default Vue.extend({
 .page-title {
   margin-top: 4em;
   margin-bottom: 2em;
-  /* margin-left: 16.5em; */
+  margin-left: 0em;
   padding-top: 0em;
   color: white;
 }
@@ -218,5 +198,22 @@ td {
   font-size: 2em;
   text-align: center;
   /* border-left-color: aqua; */
+}
+.opacity-one {
+  opacity: 1;
+}
+.opacity-half {
+  opacity: 0.5;
+}
+div.scroll {
+  /* margin: 4px, 4px; */
+  /* padding: 4px; */
+  background-color: black;
+  width: 71em;
+  height: 22em;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+
 }
 </style>

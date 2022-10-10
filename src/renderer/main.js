@@ -18,6 +18,7 @@ import uppercaseFilter from '@/filters/uppercase.filter'
 import 'materialize-css/dist/js/materialize.min'
 
 import { remote } from "electron"
+
 console.log = remote.require("electron-log").log
 
 Vue.config.productionTip = false

@@ -31,6 +31,8 @@ import { Storage } from '@/storage/index.js'
 import sleep from '@/utils/sleep'
 
 import Snowf from 'vue-snowf'
+// import createLog from 'localstorage-logger'
+
 import { response } from 'express'
 import { forEach } from 'lodash'
 
@@ -41,7 +43,7 @@ export default Vue.extend({
     intervalPing: null,
     // dev
     client: 'fetch',
-    url: '',//'https://192.168.1.3/',
+    url: '', //'https://192.168.1.3/',
     // urlController: 'https://192.168.1.2:4840',
     urlLocal: 'http://127.0.0.1/',
 
@@ -142,7 +144,7 @@ export default Vue.extend({
       this.options = this.getPingOptions()
 
       const response = await this.storage.getClient(method, this.options, type)
-     // console.log('ping this.options-->', this.options)
+      // console.log('ping this.options-->', this.options)
 
       if (response === undefined) {
         this.setIsPing(false)
@@ -181,6 +183,27 @@ export default Vue.extend({
   },
 
   async mounted() {
+    // localstorage-logger --------------
+    /* 
+    const log = createLog({
+      logName: 'electron-panel-log',
+      maxLogSizeInBytes: 500 * 1024, // 500KB
+    })
+
+    // Log something
+    // debug | info | warn | error
+    log.info(
+      'MainLayout.vue',
+      {
+        start: 'start',
+      },
+      42
+    )
+    // Export the log entries
+    const logEntries = log.exportToArray()
+    */
+    // end localstorage-logger
+
     this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
 
@@ -189,13 +212,13 @@ export default Vue.extend({
     this.intervalPing = setInterval(() => {
       /* dev hidden */
       this.ping()
-    }, this.delay = 2000)
+    }, (this.delay = 2000))
 
     this.intervalRestorePayment = setInterval(() => {
       if (this.getIsPing) {
         this.restorePayment()
-      } 
-    }, this.delay = 4000)
+      }
+    }, (this.delay = 4000))
   },
   beforeDestroy() {
     clearInterval(this.intervalPing)

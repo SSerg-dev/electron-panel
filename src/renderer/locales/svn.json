@@ -1,0 +1,156 @@
+{
+  "LanguageTitle": "Lokalizacija",
+  "BOX": "STEBER",
+  "#": "št",
+  "VACUUM": "SESALNIK",
+  "PAYMENT": "PLAČILO",
+  "locales": "SVN",
+  "PROGRAMS_COST": "СТОИМОСТЬ ПРОГРАММ",
+  "CASH": "Z GOTOVINO",
+  "BANK_CARD": "Z BANČNO KARTICO",
+  "BONUSES": "Z BONUSI",
+  "Choose_your_payment_method": "Izberite način plačila",
+  "CONSULTANT": "SVETOVALEC",
+  "CALL_SENT_WAIT": "POKLIC JE POSLAN, ČAKAJTE",
+  "FREE_STOP": "BREZPLAČNO STOP",
+  "STOP": "STOP", 
+  "CONTINUE": "NAPREJ",
+  "MAKE_A_PAYMENT": "IZVEDITE PLAČILO",
+  "Insert_banknotes_or_coins": "Vložite bankovce in kovance, potem pritisnite spodnji gumb",
+  "Price_per_minute": "Cena na min",
+  "Program": "Program",
+
+  "SHAMPOO": "ŠAMPON",
+  "DISK": "PLATIŠČA",
+  "MOSQUITO": "KOMARJEM",
+  "FOAM": "PENA",
+  "FOAM_COLOR": "PENA BARVA", 
+  "BRUSH": "KRTAČA",
+  "BRUSH_COLOR": "KRTAČA BARVA",
+  "WATER_SHAMPOO": "VODA ŠAMPON",
+  "COLD_WATER": "HLADNA",
+  "WARM_WATER": "TOPLA",
+  "OSMOSIS": "OSMOSIS",
+  "STOP_PAUSE": "STOP/PAUSE",
+  "AIR": "AIR",
+  "GLASS_WASHING_LIQUID": "WASH LIQUID",
+  "WAX": "WAX",
+  "FOAM_X2": "FOAM X2",
+  "VACUUM_CLEANER": "VACUUM CLEANER",
+  "BRUSH_X2": "BRUSH X2",
+  "DISK_X2": "WHEELS X2",
+  "MOSQUITO_X2": "MOSQUITO X2",
+  "TURBO_DRYER": "TURBO DRYER",
+  "DEGREASE": "DEGREASE",
+  "DISINFECTION": "DISINFECTION",
+  "BLACKING": "BLACKING",
+  "DOORSILL": "DOORSILL",
+  
+  "COMPLETE_PAYMENT": "COMPLETE PAYMENT",
+  "RETURN_BONUSES_UP": "RETURN BONUSES UP TO 30% COMPLETE PAYMENT",
+  "APPEND": "APPEND",
+  "CONFIRM": "CONFIRM",
+
+  "To_enter_the_system": "To enter the system, enter the number phone or scan the QR code", 
+  "To_credit_Bonuses_to_your_account": "To credit Bonuses to your account, enter your phone number",
+  "By_clicking_on_CONFIRM": "By clicking on CONFIRM, you give your consent to send SMS messages and personal data processing to you, according to the conditions posted on the website: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "Authorization using a QR",
+  "Your_balance": "Your balance,",
+  "Select_charge_amount": "Select charge amount",
+  
+  "Enter_your_password": "Enter your password",
+  "for_Alles_Bonus": "for Alles Bonus",
+  "to_enter_the_settings_menu": "to enter the settings menu",
+  
+  "The_status_of_the_operation": "The status of the operation:",
+  "Connection_to_the_bank_terminal": "Connection to the bank terminal...",
+  "Failed_to_connect_to_the_bank_terminal": "Failed to connect to the bank terminal",
+  "Timed_out": "Timed out",
+  "Operation_approved": "Operation approved",
+  "Operation_rejected": "Operation rejected",
+  "Follow_the_instructions_on_the_terminal": "Follow the instructions on the terminal",
+
+  "You_want_to_complete_the_car_wash": "You want to complete the car wash and return the balance with bonuses?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "By clicking the Yes button, you consent to the sending of SMS messages to you and the processing of personal data in accordance with the conditions posted on the website: www.alles-bonus.com",
+
+  "Display": "Display",
+  "Services": "Services",
+  "Service_balance": "Service balance",
+  "Reset": "Reset",
+  "Open_the_door": "Open the door",
+  "Reboot": "Reboot",
+
+  "Software_version": "Software version",
+  "Temperature": "Temperature",
+  "Humidity": "Humidity",
+
+  "Show_tooltips_when_switching_programs_during": "Show tooltips when switching programs during",
+
+  "Time_to_switch_to_the_main_window": "Time to switch to the main window",
+
+  "Setting": "Setting",
+  "Languages": "Languages",
+  "Finance": "Finance",
+  "Review": "Review",
+
+  "OK": "OK",
+  "Cancel": "Cancel",
+  "Confirm": "Confirm",
+  "Make_the_payment_window_the_main": "Make the payment window the main",
+  "Show_cursor_in_the_main_window": "Show cursor in the main window",
+  "Direct_cash_payment": "Direct cash payment",
+  "Banking_terminal": "Banking terminal",
+  
+  "System": "System",
+  "Panel": "Panel",
+  "Bill_acceptor": "Bill acceptor",
+  "Coin_acceptor": "Coin acceptor",
+
+  "Language": "Language",
+  "Currency": "Currency",
+  
+  "Type_of_panel": "Type of panel",
+  "Panel_number": "Panel number",
+  "Vacuum_number": "Vacuum number",
+
+  "Type": "Type",
+  "Accept_bills": "Accept bills",
+  "Accept_coins": "Accept coins",
+
+  "Model": "Model",
+  "Reconciliation_Pax": "Reconciliation Pax",
+
+  "Payment_limits": "Payment limits",
+  "Minimum": "Minimum",
+  "Maximum": "Maximum",
+  "Tokens": "Tokens",
+
+  "CAR_WASH": "CAR WASH",
+  "PAYMENT_CENTER": "PAYMENT CENTER",
+  "PANEL": "PANEL",
+
+  "Cash_post": "Cash post",
+  "Total_amount": "Total amount",
+  "Amount_of_deposit_in_banknotes": "Amount of deposit in banknotes",
+  "Number_of_banknotes": "Number of banknotes",
+  "Credit_amount_in_coins": "Credit amount in coins",
+  "Number_of_coins": "Number of coins",
+  "Collection": "Collection",
+
+  "Replace_item": "Replace Item",
+  "Replace_program": "Replace program",
+
+  "Cash_accounting": "Cash accounting",
+  "Data": "Data",
+  "Cash": "Cash",
+  "Cashless": "Cashless",
+  "Bonus": "Bonus",
+  "Service": "Service"
+
+
+
+
+
+
+}

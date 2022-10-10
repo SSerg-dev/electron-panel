@@ -12,6 +12,7 @@ import pol from '../locales/pol.json'
 import jpn from '../locales/jpn.json'
 import tur from '../locales/tur.json'
 import blr from '../locales/blr.json'
+import svn from '../locales/svn.json'
 
 
 const locales = {
@@ -27,7 +28,8 @@ const locales = {
   'pol-POL': pol,
   'jpn-JPN': jpn,
   'tur-TUR': tur,
-  'blr-BLR': blr
+  'blr-BLR': blr,
+  'svn-SVN': svn,
 }
 
 export default function localizeFilter(key) {

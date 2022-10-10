@@ -101,9 +101,9 @@
             </td>
             <!-- dev -->
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('svn-SVN')">
                 <img src="@/assets/imgs/language/lang_SVN.png" />
-              </router-link>
+              </button>
             </td>
             <td>
               <router-link class="btn-small" to="/language">

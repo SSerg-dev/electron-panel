@@ -185,7 +185,7 @@ export default Vue.extend({
       this.getCashEnabler() === false
         ? (this.cash_enabler = true)
         : (this.cash_enabler = false)
-      
+
       this.setCashEnabler(this.cash_enabler)
       ipcRenderer.send('cash_enabler', 'true')
     },
@@ -220,7 +220,7 @@ section {
   padding-left: 4em;
   width: 64em;
   height: 11em;
-  
+
   border: solid 6px #00b9e3;
   border-radius: 4em;
   box-shadow: 0px 10px 20px #00b9e3;
@@ -232,7 +232,7 @@ section {
   padding-left: 4em;
   width: 64em;
   height: 11em;
-  
+
   border: solid 6px rgb(118, 255, 3);
   border-radius: 4em;
   box-shadow: 0px 10px 20px rgb(118, 255, 3);
@@ -245,6 +245,4 @@ section {
   align-items: center;
   justify-content: left;
 }
-
-
 </style>
