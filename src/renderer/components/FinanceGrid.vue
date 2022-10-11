@@ -11,22 +11,22 @@
         <thead>
           <tr style="border: solid 3px #00b9e3">
             <th
-              v-for="(column, columnIndex) in columns"
-              :key="columnIndex"
-              @click="sortBy(columns[columnIndex], columnIndex)"
-              :class="{ active: sortKey == columns[columnIndex] }"
+              v-for="(column, index) in columns"
+              :key="index"
+              @click="sortBy(columns[index])"
+              :class="{ active: sortKey == columns[index] }"
             >
               <div>
                 <div
                   :class="[
-                    { 'opacity-one': columnIndex <= 1 },
-                    { 'opacity-half': columnIndex > 1 },
+                    { 'opacity-one': index <= 1 },
+                    { 'opacity-half': index > 1 },
                   ]"
                 >
-                  {{ titles[columnIndex] | capitalize | localize }}
+                  {{ titles[index] | capitalize | localize }}
                   <span
                     class="arrow"
-                    :class="sortOrders[columnIndex] > 0 ? 'asc' : 'dsc'"
+                    :class="sortOrders[columns[index]] > 0 ? 'asc' : 'dsc'"
                   >
                   </span>
                 </div>
@@ -72,23 +72,14 @@ export default Vue.extend({
 
     delay: 0,
     timeoutDelay: null,
-    isChange: false 
-
+    isChange: false,
   }), // end data
 
   methods: {
-    sortBy: function (key, index) {
-
-      this.index = index
+    sortBy: function (key) {
       this.sortKey = key
-      this.sortOrders[index] = this.sortOrders[index] * -1
+      this.sortOrders[key] = this.sortOrders[key] * -1
       this.isChange = !this.isChange
-      
-    },
-  },
-  watch: {
-    isChange(flag) {  
-      // console.log('$$ flag', flag)
     },
   },
   computed: {
@@ -96,10 +87,10 @@ export default Vue.extend({
       getFinanceCollect: 'getFinanceCollect',
     }),
     filteredItems: function () {
-
       const sortKey = this.sortKey
       const order = this.sortOrders[sortKey] || 1
       let items = this.items
+
       if (sortKey) {
         items = items.slice().sort(function (a, b) {
           a = a[sortKey]
@@ -107,19 +98,20 @@ export default Vue.extend({
           return (a === b ? 0 : a > b ? 1 : -1) * order
         })
       }
+      this.isChange
       return items
     },
   },
   created() {
     this.timeoutDelay = setTimeout(() => {
-      /* data */
+      /* get data */
       this.items = this.getFinanceCollect
     }, this.delay)
   },
   mounted() {
     if (this.columns) {
-      this.columns.forEach((column, index) => {
-        this.sortOrders[index] = 1
+      this.columns.forEach((key) => {
+        this.sortOrders[key] = 1
       })
     }
   },
@@ -214,6 +206,5 @@ div.scroll {
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
-
 }
 </style>

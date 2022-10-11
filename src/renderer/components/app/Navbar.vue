@@ -154,6 +154,10 @@
             <img src="@/assets/imgs/flags/flag_SVN.png" />
           </div>
 
+          <div v-if="this.info.locale === 'svk-SVK'">
+            <img src="@/assets/imgs/flags/flag_SVK.png" />
+          </div>
+
         </router-link>
       </div>
     </div>

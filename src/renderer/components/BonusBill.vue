@@ -643,6 +643,7 @@ export default {
         return true
       } else {
         this.$message(`Введите правильно номер мобильного телефона`)
+        // this.$message( enterPhoneNumber )
         return false
       }
     },
@@ -800,6 +801,7 @@ export default {
         }
       } else {
         this.$message(`Введите правильно номер мобильного телефона`)
+        
       }
     },
     /* dev */
