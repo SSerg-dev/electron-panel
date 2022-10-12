@@ -1,7 +1,7 @@
 {
   "LanguageTitle": "Localisation",
   "BOX": "POSTE",
-  "#": "non",
+  "#": "#",
   "VACUUM": "ASPIRATEUR",
   "PAYMENT": "PAIEMENT",
   "locales": "FRA",
@@ -142,7 +142,7 @@
   "Replace_program": "Remplacer le prog",
 
   "Cash_accounting": "Comptabilité de caisse",
-  "Data": "Data",
+  "Date": "Data",
   "Cash": "En espèces",
   "Cashless": "Sans numéraire",
   "Bonus": "Prime",

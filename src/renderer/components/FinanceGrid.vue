@@ -66,7 +66,7 @@ export default Vue.extend({
     index: -1,
 
     columns: ['timestamp', 'amountCash', 'card', 'bonus', 'service'],
-    titles: ['Data', 'Cash', 'Cashless', 'Bonus', 'Service'],
+    titles: ['Date', 'Cash', 'Cashless', 'Bonus', 'Service'],
 
     items: [],
 

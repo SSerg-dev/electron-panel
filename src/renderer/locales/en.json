@@ -142,13 +142,14 @@
     "Replace_program": "Replace program",
 
     "Cash_accounting": "Cash accounting",
-    "Data": "Data",
+    "Date": "Data",
     "Cash": "Cash",
     "Cashless": "Cashless",
     "Bonus": "Bonus",
-    "Service": "Service"
-
-
+    "Service": "Service",
+ 
+    "__commentMessages": "TODO add messages ",
+    "Amount_more_maximum": "Amount more maximum"
 
 
 

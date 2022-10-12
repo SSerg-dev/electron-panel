@@ -712,6 +712,9 @@ import { Storage } from '@/storage/index.js'
 import EventBus from '@/bus/EventBus'
 const { ipcRenderer } = require('electron')
 import { profile } from 'console'
+import messages from '@/utils/messages'
+
+import localizeFilter from '@/filters/localize.filter'
 
 export default {
   data: () => ({
@@ -837,7 +840,10 @@ export default {
           flags.modeBlink(1)
         }, this.delay)
         if (index === 0) {
-          this.$message('Сумма больше максимальной')
+          /* dev */
+          // this.$message( localizeFilter( `Amount_more_maximum`))
+          this.$message( localizeFilter( `${messages.Amount_more_maximum }`))
+
         }
         return flags.modeBlink(index)
       },

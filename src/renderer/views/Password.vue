@@ -387,6 +387,7 @@
 <script>
 import Vue from 'vue'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { log } from 'util'
 
 var sha1 = require('sha-1')
 
@@ -483,20 +484,17 @@ export default {
       const hexSalt = this.salt
       let strSalt = ''
 
-      for (var n = 0; n < hexSalt.length; n += 2) {
+      for (let n = 0; n < hexSalt.length; n += 2) {
         strSalt += String.fromCharCode(parseInt(hexSalt.substr(n, 2), 16))
       }
       const result = strPass + strSalt
       this.hash = sha1(result)
-
+      
       const password = this.hash
       const index = this.$store.state.users.passwords.findIndex(
         (p) => p === password
       )
       if (index === -1 || this.password.length < 4) return false
-
-      // console.log('$$ salt hash', this.hash)
-      // console.log('$$!! index', index)
 
       const comma = ','
       const arrayAccess = this.$store.state.users.access[index].split(comma)

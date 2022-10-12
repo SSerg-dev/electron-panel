@@ -1,7 +1,7 @@
 {
   "LanguageTitle": "Lokalisierung",
   "BOX": "WASCHSTAND",
-  "#": "nein",
+  "#": "#",
   "VACUUM": "STAUBSAUGER",
   "PAYMENT": "ZAHLUNG",
   "locales": "GER",
@@ -142,7 +142,7 @@
   "Replace_program": "Replace program",
 
   "Cash_accounting": "Kassenbuchhaltung",
-  "Data": "Datum",
+  "Date": "Datum",
   "Cash": "Kasse",
   "Cashless": "Bargeldlos",
   "Bonus": "Bonus",

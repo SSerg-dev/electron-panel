@@ -1,7 +1,7 @@
 {
   "LanguageTitle": "Lokalizācija",
   "BOX": "POSTS",
-  "#": "nē",
+  "#": "#",
   "VACUUM": "PUTEKĻUSŪC",
   "PAYMENT": "APMAKSA",
   "locales": "LAT",
@@ -142,7 +142,7 @@
   "Replace_program": "Aizstāt programmu",
 
   "Cash_accounting": "Skaidras naudas uzskaite",
-  "Data": "Datums",
+  "Date": "Datums",
   "Cash": "Nauda",
   "Cashless": "Bez naudas",
   "Bonus": "Bonuss",

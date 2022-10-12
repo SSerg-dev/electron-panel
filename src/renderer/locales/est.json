@@ -1,7 +1,7 @@
 {
   "LanguageTitle": "Lokaliseerimine",
   "BOX": "POSTITUS",
-  "#": "ei",
+  "#": "#",
   "VACUUM": "TOLMUIMEJA",
   "PAYMENT": "MAKSE",
   "locales": "EST",
@@ -142,7 +142,7 @@
   "Replace_program": "Asenda programm", 
 
   "Cash_accounting": "Kassaarvestus",
-    "Data": "Kuupäev",
+    "Date": "Kuupäev",
     "Cash": "Sularaha",
     "Cashless": "Sularahata",
     "Bonus": "Boonus",

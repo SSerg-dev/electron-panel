@@ -720,8 +720,8 @@ export default new Vuex.Store({
               console.log('user not find')
             }
           })
-
           break
+        // end common parameters  
 
         default:
           break
@@ -766,10 +766,37 @@ export default new Vuex.Store({
         case 'active':
           state.dryParameters.active = parameter.value
           break
+
         // common parameters
         case 'Kkm.EnableDevice':
           state.kktParameters.isKktInstalled = JSON.parse(parameter.value)
           break
+          /* dev */
+          case 'name':
+            if (!state.users.names.includes(parameter.value)) {
+              state.users.names.push(parameter.value)
+            }
+            state.users.name = parameter.value
+            break
+          case 'password':
+            if (!state.users.passwords.includes(parameter.value)) {
+              state.users.passwords.push(parameter.value)
+            }
+            state.users.password = parameter.value
+            break
+          case 'access':
+            sleep(state.users.delay).then(() => {
+              const index = +parameter.title.slice(-9, -8) - 1
+  
+              if (index !== -1 ) {
+                const item = parameter.value
+                state.users.access[index] = item
+              } else if (index === -1) {
+                console.log('user not find')
+              }
+            })
+            break
+          // end common parameters  
 
         default:
           break

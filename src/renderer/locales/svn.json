@@ -1,7 +1,7 @@
 {
   "LanguageTitle": "Lokalizacija",
   "BOX": "STEBER",
-  "#": "št",
+  "#": "#",
   "VACUUM": "SESALNIK",
   "PAYMENT": "PLAČILO",
   "locales": "SVN",
@@ -142,7 +142,7 @@
   "Replace_program": "Zamenjaj program",
 
   "Cash_accounting": "Gotovinsko računovodstvo",
-  "Data": "Datum",
+  "Date": "Datum",
   "Cash": "Gotovina",
   "Cashless": "Brezgotovinsko",
   "Bonus": "Bonus",

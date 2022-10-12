@@ -142,9 +142,14 @@
   "Replace_program": "Заменить программу",
   
   "Cash_accounting": "Учет денежных средств",
-    "Data": "Дата",
+    "Date": "Дата",
     "Cash": "Наличные",
     "Cashless": "Безналичные",
     "Bonus": "Бонус",
-    "Service": "Сервис"
-}
+    "Service": "Сервис",
+
+    "__commentMessages": "TODO add messages ",
+    "Amount_more_maximum": "Сумма больше максимальной"
+
+
+  }

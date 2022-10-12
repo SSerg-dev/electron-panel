@@ -8,7 +8,6 @@
   "bill_validator": {
     "denominations": {},
     "enable_bills": [
-      10,
       50,
       100,
       200
@@ -38,7 +37,7 @@
   ],
   "country": "RU",
   "__commentCurrency": "add default currency",
-  "currency": "USD",
+  "currency": "RUB",
   "index": 2,
   "languages": {
     "default": "RU",
@@ -93,7 +92,7 @@
   "log_path": "/var/log",
   "type": "wash",
   "ui": {
-    "CNW": 0,
+    "CNW": false,
     "degreasing_enable": 0,
     "degreasing_enable2": 0,
     "degreasing_program": 0,

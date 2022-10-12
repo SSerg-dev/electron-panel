@@ -1,7 +1,7 @@
 {
   "LanguageTitle": "ローカリゼーション",
   "BOX": "ポスト",
-  "#": "いいえ",
+  "#": "#",
   "VACUUM": "掃除機",
   "PAYMENT": "支払い",
   "locales": "JPN",
@@ -142,7 +142,7 @@
   "Replace_program": "置き換える",
 
   "Cash_accounting": "現金会計",
-  "Data": "日にち",
+  "Date": "日にち",
   "Cash": "現金",
   "Cashless": "キャッシュレス",
   "Bonus": "ボーナス",

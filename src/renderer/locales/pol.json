@@ -1,7 +1,7 @@
 {
   "LanguageTitle": "Lokalizacja",
   "BOX": "STANOWISKO",
-  "#": "nie",
+  "#": "#",
   "VACUUM": "ODKURZACZ",
   "PAYMENT": "Płatność",
   "locales": "POL",
@@ -142,7 +142,7 @@
   "Replace_program": "Wymień program",
 
   "Cash_accounting": "Rachunkowość kasowa",
-  "Data": "Data",
+  "Date": "Data",
   "Cash": "Gotówka",
   "Cashless": "Bezgotówkowy",
   "Bonus": "Premia",

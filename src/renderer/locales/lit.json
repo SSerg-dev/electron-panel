@@ -1,7 +1,7 @@
 {
   "LanguageTitle": "Lokalizacija",
   "BOX": "PUNKTAS",
-  "#": "nr",
+  "#": "#",
   "VACUUM": "SIURBLYS",
   "PAYMENT": "MOKĖJIMAS",
   "locales": "LIT",
@@ -142,7 +142,7 @@
   "Replace_program": "Pakeiskite programą",
 
   "Cash_accounting": "Grynųjų pinigų apskaita",
-  "Data": "Data",
+  "Date": "Data",
   "Cash": "Gryi pinigai",
   "Cashless": "Be gryi pinigų",
   "Bonus": "Premija",
