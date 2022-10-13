@@ -47,6 +47,9 @@ import EventBus from '@/bus/EventBus'
 import BCNet from '../services/BCNetService'
 const Observer = require('../services/BCNetService/Types/Observer.js')
 
+import messages from '@/utils/messages'
+import localizeFilter from '@/filters/localize.filter'
+
 export default Vue.extend({
   name: 'setting-panel-type',
   data: () => ({
@@ -79,7 +82,7 @@ export default Vue.extend({
   watch: {
     getStatusBillMessages(flag) {},
     seconds(flag) {
-      if (flag === 0 ) {
+      if (flag === 0) {
         this.loading = false
         this.$router.push('/')
       }
@@ -135,7 +138,6 @@ export default Vue.extend({
                 seconds = 0
                 this.resolve(this.terminalType)
               }, 2000)
-
             } else {
               this.cardMessageIndex = 4
               this.setStatusBillMessagesIndex(this.cardMessageIndex)
@@ -154,7 +156,6 @@ export default Vue.extend({
     resolve(type) {
       if (type === 'vendotek') this.observer.state /= BCNet.VENDOTEK_MONEY_SCALE
 
-      console.log('Операция одобрена, сумма:', this.observer.state)
       this.cardMessageIndex = 3
       this.setStatusBillMessagesIndex(this.cardMessageIndex)
 
@@ -171,8 +172,14 @@ export default Vue.extend({
           break
       }
 
+      // this.$message(`Операция терминала ${type} одобрена, сумма:  ${this.observer.state}`)
       this.$message(
-        `Операция терминала ${type} одобрена, сумма:  ${this.observer.state}`
+        localizeFilter(
+          `${messages.Terminal_operation}
+           ${type}
+           ${messages.approved}
+           ${this.observer.state}`
+        )
       )
 
       //seconds = 0
@@ -180,7 +187,15 @@ export default Vue.extend({
       if (this.$route.name !== 'cash') this.$router.push('/cash')
     },
     reject(type) {
-      this.$message(`Операция терминала ${type} отклонена`)
+      // this.$message(`Операция терминала ${type} отклонена`)
+      this.$message(
+        localizeFilter(
+          `${messages.Terminal_operation}
+           ${type}
+           ${messages.rejected}
+           ${this.observer.state}`
+        )
+      )
       this.$router.push('/')
     },
     setCardBonusState() {

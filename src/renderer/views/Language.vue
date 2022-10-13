@@ -105,7 +105,7 @@
                 <img src="@/assets/imgs/language/lang_SVN.png" />
               </button>
             </td>
-            <!-- dev -->
+            
             <td>
               <button class="btn-small" @click="setLocale('svk-SVK')">
                 <img src="@/assets/imgs/language/lang_SVK.png" />
@@ -114,10 +114,11 @@
           </tr>
           <tr v-if="this.getPaginate === 2">
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('srb-SRB')">
                 <img src="@/assets/imgs/language/lang_SRB.png" />
-              </router-link>
+              </button>
             </td>
+            <!-- dev -->
             <td>
               <router-link class="btn-small" to="/language">
                 <img src="@/assets/imgs/language/lang_NOR.png" />

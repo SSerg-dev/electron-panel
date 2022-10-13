@@ -14,7 +14,7 @@ import tur from '../locales/tur.json'
 import blr from '../locales/blr.json'
 import svn from '../locales/svn.json'
 import svk from '../locales/svk.json'
-
+import srb from '../locales/srb.json'
 
 const locales = {
   'ru-RU': ru,
@@ -32,6 +32,7 @@ const locales = {
   'blr-BLR': blr,
   'svn-SVN': svn,
   'svk-SVK': svk,
+  'srb-SRB': srb,
 }
 
 export default function localizeFilter(key) {

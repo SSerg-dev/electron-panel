@@ -55,7 +55,7 @@ class OPCUAService extends EventEmitter {
 
     TAG_WET_MONEY_TOTAL: '::AsGlobalPV:ProcessEventExtern.washState[{0}].money',
     TAG_WET_TIME: '::AsGlobalPV:ProcessEventExtern.washState[{0}].progTime',
-    /* dev */
+  
     TAG_POST_SEND_MONEY: '::AsGlobalPV:PostBalance[{0}].prepaymentMoney',
     TAG_POST_CASH_SEND_MONEY:
       '::AsGlobalPV:PostBalance[{0}].prepaymentMoneyCash',
@@ -67,6 +67,7 @@ class OPCUAService extends EventEmitter {
     ////////////////////////////////////////////////////////////////////////
     TAG_DRY_IS_BUSY: '::AsGlobalPV:VacuumPost[{0}].busy',
     TAG_G_FIXED_CURRENCY: '::AsGlobalPV:gFixedCurrency.digits',
+    TAG_G_IS_MENU_UNLOCK: '::AsGlobalPV:gPanelSysMenuUnlockFlag',
 
     TAG_DRY_ENABLED: '::AsGlobalPV:VacuumPost[{0}].active',
     TAG_DRY_BALANCE: '::AsGlobalPV:VacuumPost[{0}].panel_money',
@@ -105,14 +106,11 @@ class OPCUAService extends EventEmitter {
 
     TAG_USER: '::AsGlobalPV:System.userActiveName',
 
-    /* TAG_USER_ACCESS: '::AsGlobalPV:User[{0}].access',
-    TAG_USER_NAME: '::AsGlobalPV:User[{0}].name',
-    TAG_USER_PASSWORD: '::AsGlobalPV:User[{0}].password', */
 
     TAG_DATE: '::AsGlobalPV:DateTime.Date',
     TAG_TIME: '::AsGlobalPV:DateTime.Time'
   }
-  /* dev */
+  
   public userNodes: { [key: string]: string } = {
     TAG_USER_ACCESS: '::AsGlobalPV:User[{0}].access',
     TAG_USER_NAME: '::AsGlobalPV:User[{0}].name',

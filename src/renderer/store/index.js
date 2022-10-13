@@ -142,7 +142,8 @@ export default new Vuex.Store({
       active: ''
     },
     globalParameters: {
-      fixedCurrency: ''
+      fixedCurrency: '',
+      isMenuUnlock: '',
     },
     kktParameters: {
       isKktInstalled: false
@@ -518,11 +519,16 @@ export default new Vuex.Store({
     getDryBusyPanel(state) {
       return state.dryParameters.busy
     },
-    /* dev */
     getFixedCurrency(state) {
       // ::AsGlobalPV:gFixedCurrency.digits
       return state.globalParameters.fixedCurrency
     },
+    /* dev */
+    getIsMenuUnlock(state) {
+      // ::AsGlobalPV:gPanelSysMenuUnlockFlag
+      return state.globalParameters.isMenuUnlock
+    },
+
     getDryOrder(state) {
       return state.dryParameters.order
     },
@@ -674,6 +680,10 @@ export default new Vuex.Store({
         case 'digits':
           state.globalParameters.fixedCurrency = parameter.value
           break
+        /* dev */
+        case '::AsGlobalPV:gPanelSysMenuUnlockFlag':
+          state.globalParameters.isMenuUnlock = parameter.value
+          break  
         case 'stopFreeCount':
           state.parameters.stopFreeCount = parameter.value
           break
@@ -757,6 +767,10 @@ export default new Vuex.Store({
         case 'digits':
           state.globalParameters.fixedCurrency = parameter.value
           break
+        /* dev */
+        case '::AsGlobalPV:gPanelSysMenuUnlockFlag':
+          state.globalParameters.isMenuUnlock = parameter.value
+          break  
         case 'order':
           state.dryParameters.order = parameter.value
           break

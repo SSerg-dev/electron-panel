@@ -148,8 +148,29 @@
     "Bonus": "Бонус",
     "Service": "Сервис",
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     "__commentMessages": "TODO add messages ",
-    "Amount_more_maximum": "Сумма больше максимальной"
-
-
+    "Amount_more_maximum": "Сумма больше максимальной",
+    "Enter_valid_phone_number": "Пожалуйста, введите действующий номер телефона",
+    "Bonuses_awarded_money_for_service_at_the_car_wash": "Бонусы не зачислены, на мойке сервисные деньги",
+    "Will_be_paid_by_credit_card": "Банковской картой будет оплачено",
+    "Payment_with_bonuses": "Оплата бонусами",
+    "Enter_the_correct_amount": "Введите правильную сумму",
+    "Terminal_operation": "Операция терминала",
+    "approved": "одобрена, сумма:",
+    "rejected": "отклонена"
   }

@@ -712,8 +712,8 @@ import { Storage } from '@/storage/index.js'
 import EventBus from '@/bus/EventBus'
 const { ipcRenderer } = require('electron')
 import { profile } from 'console'
-import messages from '@/utils/messages'
 
+import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
 
 export default {
@@ -841,9 +841,7 @@ export default {
         }, this.delay)
         if (index === 0) {
           /* dev */
-          // this.$message( localizeFilter( `Amount_more_maximum`))
           this.$message( localizeFilter( `${messages.Amount_more_maximum }`))
-
         }
         return flags.modeBlink(index)
       },
@@ -1019,7 +1017,8 @@ export default {
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
           this.emitCardMoney(card)
           this.setCardMoney(card)
-          this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)
+          // this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)
+          this.$message( localizeFilter( `${messages.Will_be_paid_by_credit_card } ${+card}`))
           this.$router.push('/status')
         }
         // payBonus
@@ -1040,11 +1039,15 @@ export default {
               break
           }
 
-          this.$message(`Оплата бонусами:  ${+card} ₽`)
+          // this.$message(`Оплата бонусами:  ${+card} ₽`)
+          this.$message( localizeFilter( `${messages.Payment_with_bonuses } ${+card}`))
         }
 
         this.display = this.title = this.body = '0'
-      } else this.$message(`Введите правильную сумму`)
+      } else {
+        // this.$message(`Введите правильную сумму`)
+        this.$message( localizeFilter( `${messages.Enter_the_correct_amount } `))
+      }
     },
     // ПОДТВЕРДИТЬ
     async payBonusMoney() {
@@ -1088,7 +1091,7 @@ export default {
         // }, this.delay)
 
         } else {
-          this.$message(`Ошибка:  ${response.error}`)
+          this.$message(`Error:  ${response.error}`)
           this.$router.push('/password')
         }
         

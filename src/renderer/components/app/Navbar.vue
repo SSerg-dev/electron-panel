@@ -9,10 +9,10 @@
       <div
         v-if="
           this.$route.name !== 'cost' &&
-            this.$route.name !== 'cash' &&
-            this.$route.name != 'language' &&
-            this.$route.name != 'program' &&
-            this.$route.name != 'setting'
+          this.$route.name !== 'cash' &&
+          this.$route.name != 'language' &&
+          this.$route.name != 'program' &&
+          this.$route.name != 'setting'
         "
       >
         <!-- getIsPayCardMoney -->
@@ -23,12 +23,11 @@
         >
           <span class="white-text">{{ 'BOX' | localize }}</span>
         </div> -->
-
       </div>
 
       <div class="row">
         <button
-          style="border: none; background-color: #121212;"
+          style="border: none; background-color: #121212"
           @click="setEnabler()"
         >
           <router-link to="/">
@@ -39,15 +38,18 @@
 
       <div class="setting">
         <button
-          style="border: none; background-color: #121212;"
+          style="border: none; background-color: #121212"
           @click="loginSetting"
         >
           <router-link
             to="/password"
             class="btn"
-            style="border: none; background-color: #121212;"
+            style="border: none; background-color: #121212"
           >
-            <img src="@/assets/imgs/svg/alles.svg" />
+            <div v-if="getIsMenuUnlock === 'true'">
+              <img src="@/assets/imgs/svg/alles.svg" />
+            </div>
+            
           </router-link>
         </button>
       </div>
@@ -55,7 +57,7 @@
       <div class="circle">
         <img src="@/assets/imgs/svg/white-circle.svg" />
         <div
-          style="position: relative; top: -6.4rem; left: 0rem; font-size: 4rem;"
+          style="position: relative; top: -6.4rem; left: 0rem; font-size: 4rem"
         >
           <div v-if="this.getPanelType === 'wash'">
             <span class="white-text">{{ this.getDefaultPanelNumber }}</span>
@@ -95,9 +97,8 @@
         <span class="white-text">{{ 'locales' | localize }}</span>
       </div>
 
-      <div>  
+      <div>
         <router-link to="/language" class="flag">
-        
           <div v-if="this.info.locale === 'ru-RU'">
             <img src="@/assets/imgs/flags/flag_RU.png" />
           </div>
@@ -109,7 +110,7 @@
           <div v-if="this.info.locale === 'kz-KZ'">
             <img src="@/assets/imgs/flags/flag_KZ.png" />
           </div>
-          
+
           <div v-if="this.info.locale === 'ua-UA'">
             <img src="@/assets/imgs/flags/flag_UA.png" />
           </div>
@@ -125,7 +126,7 @@
           <div v-if="this.info.locale === 'est-EST'">
             <img src="@/assets/imgs/flags/flag_EST.png" />
           </div>
-          
+
           <div v-if="this.info.locale === 'fra-FRA'">
             <img src="@/assets/imgs/flags/flag_FRA.png" />
           </div>
@@ -158,6 +159,9 @@
             <img src="@/assets/imgs/flags/flag_SVK.png" />
           </div>
 
+          <div v-if="this.info.locale === 'srb-SRB'">
+            <img src="@/assets/imgs/flags/flag_SRB.png" />
+          </div>
         </router-link>
       </div>
     </div>
@@ -165,12 +169,11 @@
     <div
       v-if="
         this.$route.name !== 'cost' &&
-          this.$route.name !== 'language' &&
-          this.$route.name !== 'program' &&
-          this.$route.name !== 'setting' &&
-          this.$route.name !== 'password' &&
-          this.$route.name !== 'finance'
-          
+        this.$route.name !== 'language' &&
+        this.$route.name !== 'program' &&
+        this.$route.name !== 'setting' &&
+        this.$route.name !== 'password' &&
+        this.$route.name !== 'finance'
       "
     >
       <div class="background-top">
@@ -189,7 +192,8 @@ export default {
   data: () => ({
     date: new Date(),
     interval: null,
-    locale: ''
+    locale: '',
+    isVisible: false
   }),
   computed: {
     ...mapGetters({
@@ -201,14 +205,21 @@ export default {
       getVacuumPayment: 'getVacuumPayment',
       getCurrentLocale: 'getCurrentLocale',
       info: 'info',
-      getRouter: 'getRouter'
-    })
+      getRouter: 'getRouter',
+      getIsMenuUnlock: 'getIsMenuUnlock',
+    }),
+  },
+  watch: {
+    // getIsMenuUnlock(flag) {
+    //   this.isVisible = flag
+    //   console.log('$$ flag',typeof flag)
+    // }
   },
   methods: {
     ...mapMutations({
       setCashEnabler: 'setCashEnabler',
       setIsLoginSettingPassword: 'setIsLoginSettingPassword',
-      setRouter: 'setRouter'  
+      setRouter: 'setRouter',
     }),
     setEnabler() {
       this.setCashEnabler(false)
@@ -232,7 +243,7 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.interval)
-  }
+  },
 }
 </script>
 
@@ -264,10 +275,10 @@ img {
   position: relative;
   text-align: center;
   color: #121212;
-  /* font-family: arial white; */ 
+  /* font-family: arial white; */
   /* font-size: 80%; */
-  width: 100%;/* 74em; *//* 1080px; */
-  height: 9.6em;/* 138px; */ /* 119 */
+  width: 100%; /* 74em; */ /* 1080px; */
+  height: 9.6em; /* 138px; */ /* 119 */
   z-index: 2;
 }
 /* .head-panel-label {

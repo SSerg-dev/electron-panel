@@ -428,6 +428,9 @@ import EventBus from '@/bus/EventBus'
 import { result } from 'lodash'
 import program from '../store/program'
 
+import messages from '@/utils/messages'
+import localizeFilter from '@/filters/localize.filter'
+
 const { ipcRenderer } = require('electron')
 
 import {
@@ -642,8 +645,8 @@ export default {
       if (this.phone.length === this.phoneParseLength) {
         return true
       } else {
-        this.$message(`Введите правильно номер мобильного телефона`)
-        // this.$message( enterPhoneNumber )
+        // this.$message(`Введите правильно номер мобильного телефона`)
+        this.$message( localizeFilter( `${messages.Enter_valid_phone_number }`))
         return false
       }
     },
@@ -728,7 +731,6 @@ export default {
           this.options,
           type
         )
-
         if (+response.result === 0) {
           // this.$message(
           //   `Вам начислено appendBonusQrMoney ${this.options.params.sum} бонуса(ов) `
@@ -739,7 +741,8 @@ export default {
           // this.$message(`appendBonusQrMoney Ошибка:  ${response.error}`)
         }
       } else {
-        this.$message(`Бонусы не зачислены, на мойке сервисные деньги`)
+        // this.$message(`Бонусы не зачислены, на мойке сервисные деньги`)
+        this.$message( localizeFilter( `${messages.Bonuses_awarded_money_for_service_at_the_car_wash }`))
       }
     },
 
@@ -800,8 +803,8 @@ export default {
           this.$message(`Ошибка:  ${response.error}`)
         }
       } else {
-        this.$message(`Введите правильно номер мобильного телефона`)
-        
+        // this.$message(`Введите правильно номер мобильного телефона`)
+        this.$message( localizeFilter( `${messages.Enter_valid_phone_number }`))
       }
     },
     /* dev */
@@ -950,7 +953,8 @@ export default {
           // this.$message(`Ошибка:  ${response.error}`)
         }
       } else {
-        this.$message(`Введите правильно номер мобильного телефона`)
+        // this.$message(`Введите правильно номер мобильного телефона`)
+        this.$message( localizeFilter( `${messages.Enter_valid_phone_number }`))
       }
     },
 
@@ -967,7 +971,8 @@ export default {
 
         this.$router.push('/password')
       } else {
-        this.$message(`Введите правильно номер мобильного телефона`)
+        // this.$message(`Введите правильно номер мобильного телефона`)
+        this.$message( localizeFilter( `${messages.Enter_valid_phone_number }`))
       }
     },
     // --------------------------------
