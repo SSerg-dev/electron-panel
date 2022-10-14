@@ -37,21 +37,29 @@
       </div>
 
       <div class="setting">
-        <button
-          style="border: none; background-color: #121212"
-          @click="loginSetting"
-        >
+        <div v-if="getIsMenuUnlock" style="border: none" @click="loginSetting">
           <router-link
             to="/password"
             class="btn"
-            style="border: none; background-color: #121212"
+            style="border: none; background: #121212"
           >
-            <div v-if="getIsMenuUnlock === 'true'">
-              <img src="@/assets/imgs/svg/alles.svg" />
+            <div>
+              <img src="@/assets/imgs/svg/alles-unlock.svg" />
             </div>
-            
           </router-link>
-        </button>
+        </div>
+
+        <div v-if="!getIsMenuUnlock" style="border: none">
+          <router-link
+            to="/"
+            class="btn"
+            style="border: none; background: #121212"
+          >
+            <div>
+              <img src="@/assets/imgs/svg/alles-lock.svg" />
+            </div>
+          </router-link>
+        </div>
       </div>
 
       <div class="circle">
@@ -188,12 +196,13 @@ import { setInterval, clearInterval } from 'timers'
 import { mapMutations } from 'vuex'
 import { mapGetters } from 'vuex'
 
+import createLog from 'localstorage-logger'
+
 export default {
   data: () => ({
     date: new Date(),
-    interval: null,
+    // interval: null,
     locale: '',
-    isVisible: false
   }),
   computed: {
     ...mapGetters({
@@ -207,13 +216,14 @@ export default {
       info: 'info',
       getRouter: 'getRouter',
       getIsMenuUnlock: 'getIsMenuUnlock',
+      getUserActiveName: 'getUserActiveName',
     }),
   },
   watch: {
-    // getIsMenuUnlock(flag) {
-    //   this.isVisible = flag
-    //   console.log('$$ flag',typeof flag)
-    // }
+    getIsMenuUnlock(flag) {
+      // console.log('$$ flag', flag, this.getUserActiveName)
+      this.logging(flag)
+    },
   },
   methods: {
     ...mapMutations({
@@ -226,23 +236,27 @@ export default {
     },
     loginSetting() {
       this.setIsLoginSettingPassword(true)
-      //console.log('!!!loginSetting()')
     },
-    /* setRouterHandler() {
-    } */
+    logging(flag) {
+      // localstorage-logger --------------
+      const log = createLog({
+        logName: 'electron-users-log',
+        maxLogSizeInBytes: 500 * 1024, // 500KB
+      })
+      flag
+        ? log.info('Setting Menu unlocked', this.getUserActiveName)
+        : log.info('Setting Menu locked', this.getUserActiveName)
+      // end localstorage-logger
+    },
   },
 
   mounted() {
-    //console.log('nav info-->', JSON.stringify(this.info.locale))
-    //this.locale =  this.getCurrentLocale.title
-    // console.log('this.locale-->', this.locale)
-
-    this.interval = setInterval(() => {
-      this.date = new Date()
-    }, 1000)
+    // this.interval = setInterval(() => {
+    //   this.date = new Date()
+    // }, 1000)
   },
   beforeDestroy() {
-    clearInterval(this.interval)
+    // clearInterval(this.interval)
   },
 }
 </script>
@@ -330,7 +344,7 @@ img {
 }
 .setting {
   position: absolute;
-  top: 29.8%;
+  top: 32%;
   left: 29%;
   width: 10rem;
 }
@@ -338,9 +352,9 @@ img {
   background-color: #121212;
   border: none;
 }
-.btn:hover,
+/* .btn:hover,
 .btn-large:hover,
 .btn-small:hover {
   background-color: #121212;
-}
+} */
 </style>

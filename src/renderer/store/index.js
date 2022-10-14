@@ -34,7 +34,7 @@ export default new Vuex.Store({
     info: { name: '', locale: 'ru-RU' } /* ru-RU en-GB */,
     cash_enabler: false,
     busyPanel: false,
-    secondsGotoMainMenu: 442 ,
+    secondsGotoMainMenu: 442,
     secondsGotoPopupMenu: 2,
     //secondsGotoProgramMenu: 6,
 
@@ -143,13 +143,14 @@ export default new Vuex.Store({
     },
     globalParameters: {
       fixedCurrency: '',
-      isMenuUnlock: '',
+      isMenuUnlock: ''
     },
     kktParameters: {
       isKktInstalled: false
     },
     users: {
       name: '',
+      userActiveName: '',
       names: [],
       userIndex: -1,
 
@@ -370,7 +371,7 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber0 -
               1}].paidBonus`,
             // 1}].prepaymentBonus`,
             value: bonus
@@ -396,7 +397,7 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
-
+    
     updateWetZeroMoney({ getters }, zeroMoney) {
       try {
         ipcRenderer.send(
@@ -414,7 +415,7 @@ export default new Vuex.Store({
 
     // end Платежи ----------------------
 
-    // end Wet actions ==================
+    // end Wet actions ============½=====
 
     // update config
 
@@ -454,7 +455,7 @@ export default new Vuex.Store({
     getParams(state) {
       return state.params
     },
-    // WET 
+    // WET
     // Платежи ----------------------------------------------------------------
     // Панель суммы платежей = (наличные или карта) + бонусы + сервисные деньги
     getWetBalance(state) {
@@ -633,6 +634,10 @@ export default new Vuex.Store({
     },
     getLoginSettingPassword(state) {
       return state.loginSettingPassword
+    },
+    // userActiveName
+    getUserActiveName(state) {
+      return state.users.userActiveName
     }
   },
 
@@ -682,8 +687,9 @@ export default new Vuex.Store({
           break
         /* dev */
         case '::AsGlobalPV:gPanelSysMenuUnlockFlag':
-          state.globalParameters.isMenuUnlock = parameter.value
-          break  
+          state.globalParameters.isMenuUnlock =
+            parameter.value === 'true' ? true : false
+          break
         case 'stopFreeCount':
           state.parameters.stopFreeCount = parameter.value
           break
@@ -723,7 +729,7 @@ export default new Vuex.Store({
           sleep(state.users.delay).then(() => {
             const index = +parameter.title.slice(-9, -8) - 1
 
-            if (index !== -1 ) {
+            if (index !== -1) {
               const item = parameter.value
               state.users.access[index] = item
             } else if (index === -1) {
@@ -731,7 +737,12 @@ export default new Vuex.Store({
             }
           })
           break
-        // end common parameters  
+        // userActiveName
+        case 'userActiveName':
+          state.users.userActiveName = parameter.value
+          break
+
+        // end common parameters
 
         default:
           break
@@ -770,7 +781,7 @@ export default new Vuex.Store({
         /* dev */
         case '::AsGlobalPV:gPanelSysMenuUnlockFlag':
           state.globalParameters.isMenuUnlock = parameter.value
-          break  
+          break
         case 'order':
           state.dryParameters.order = parameter.value
           break
@@ -785,32 +796,36 @@ export default new Vuex.Store({
         case 'Kkm.EnableDevice':
           state.kktParameters.isKktInstalled = JSON.parse(parameter.value)
           break
-          /* dev */
-          case 'name':
-            if (!state.users.names.includes(parameter.value)) {
-              state.users.names.push(parameter.value)
+        /* dev */
+        case 'name':
+          if (!state.users.names.includes(parameter.value)) {
+            state.users.names.push(parameter.value)
+          }
+          state.users.name = parameter.value
+          break
+        case 'password':
+          if (!state.users.passwords.includes(parameter.value)) {
+            state.users.passwords.push(parameter.value)
+          }
+          state.users.password = parameter.value
+          break
+        case 'access':
+          sleep(state.users.delay).then(() => {
+            const index = +parameter.title.slice(-9, -8) - 1
+
+            if (index !== -1) {
+              const item = parameter.value
+              state.users.access[index] = item
+            } else if (index === -1) {
+              console.log('user not find')
             }
-            state.users.name = parameter.value
-            break
-          case 'password':
-            if (!state.users.passwords.includes(parameter.value)) {
-              state.users.passwords.push(parameter.value)
-            }
-            state.users.password = parameter.value
-            break
-          case 'access':
-            sleep(state.users.delay).then(() => {
-              const index = +parameter.title.slice(-9, -8) - 1
-  
-              if (index !== -1 ) {
-                const item = parameter.value
-                state.users.access[index] = item
-              } else if (index === -1) {
-                console.log('user not find')
-              }
-            })
-            break
-          // end common parameters  
+          })
+          break
+        case 'userActiveName':
+          state.users.userActiveName = parameter.value
+          break
+
+        // end common parameters
 
         default:
           break

@@ -146,7 +146,37 @@
   "Cash": "En espèces",
   "Cashless": "Sans numéraire",
   "Bonus": "Prime",
-  "Service": "Service" 
+  "Service": "Service",
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected"
+
+
+
+
 
 
 

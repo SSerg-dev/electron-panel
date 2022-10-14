@@ -154,7 +154,6 @@ export default Vue.extend({
   },
   watch: {
     getDryActive(flag) {
-      // console.log('$$ flag', flag)
     },
     getVacuumNumber(value) {
       // console.log('$$ value', value)
