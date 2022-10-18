@@ -33,7 +33,7 @@
   "OSMOSIS": "ОСМОС",
   "STOP_PAUSE": "СТОП/ПАУСЕ",
   "AIR": "АИР",
-  "GLASS_WASHING_LIQUID": "МАШКА ЗА ПРАЊЕ",
+  "GLASS_WASHING_LIQUID": "ПЕРАЧ",
   "WAX": "ВОСАК",
   "FOAM_X2": "ПЕНА X2",
   "VACUUM_CLEANER": "УСИСИВАЧ",
@@ -87,7 +87,7 @@
 
   "Show_tooltips_when_switching_programs_during": "Прикажи савете када мењате програме током",
 
-  "Time_to_switch_to_the_main_window": "Време је за прелазак на главни прозор",
+  "Time_to_switch_to_the_main_window": "Пребаците се на главни прозор",
 
   "Setting": "Подешавања",
   "Languages": "Језици",

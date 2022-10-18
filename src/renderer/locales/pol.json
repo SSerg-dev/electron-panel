@@ -55,7 +55,7 @@
   "To_credit_Bonuses_to_your_account": "W celu zasilenia bonusów na konto wprowadź swój numer telefonu",
   "By_clicking_on_CONFIRM": "Klikając DODAĆ, wyrażasz zgodę na wysyłanie wiadomości SMS i przetwarzanie danych osobowych zgodnie z warunkami zamieszczonymi na stronie: www.alles-bonus.com",
 
-  "Authorization_using_a_QR": "Authorization using a QR",
+  "Authorization_using_a_QR": "Autoryzacja przez QR",
   "Your_balance": "Twój balans,",
   "Select_charge_amount": "Wybierz kwotę do obciążenia",
   
@@ -142,7 +142,7 @@
   "Replace_program": "Wymień program",
 
   "Cash_accounting": "Rachunkowość kasowa",
-  "Date": "Data",
+  "Date": "Date",
   "Cash": "Gotówka",
   "Cashless": "Bezgotówkowy",
   "Bonus": "Premia",

@@ -1,11 +1,6 @@
 <template>
   <div class="imgs">
     <div class="head-panel">
-      <!-- 
-        <div class="box">
-        <span class="white-text">{{ 'BOX' | localize }}</span> 
-      </div>
-       -->
       <div
         v-if="
           this.$route.name !== 'cost' &&
@@ -14,18 +9,9 @@
           this.$route.name != 'program' &&
           this.$route.name != 'setting'
         "
-      >
-        <!-- getIsPayCardMoney -->
+      ></div>
 
-        <!-- <div
-          v-if="getWetBusyPanel === 'false' && !getIsPayCardMoney"
-          class="head-panel-label"
-        >
-          <span class="white-text">{{ 'BOX' | localize }}</span>
-        </div> -->
-      </div>
-
-      <div class="row">
+      <div class="alles">
         <button
           style="border: none; background-color: #121212"
           @click="setEnabler()"
@@ -170,6 +156,14 @@
           <div v-if="this.info.locale === 'srb-SRB'">
             <img src="@/assets/imgs/flags/flag_SRB.png" />
           </div>
+
+          <div v-if="this.info.locale === 'nor-NOR'">
+            <img src="@/assets/imgs/flags/flag_NOR.png" />
+          </div>
+
+          <div v-if="this.info.locale === 'fin-FIN'">
+            <img src="@/assets/imgs/flags/flag_FIN.png" />
+          </div>
         </router-link>
       </div>
     </div>
@@ -178,7 +172,7 @@
       v-if="
         this.$route.name !== 'cost' &&
         this.$route.name !== 'language' &&
-        this.$route.name !== 'program' &&
+        this.$route.name === 'program' &&
         this.$route.name !== 'setting' &&
         this.$route.name !== 'password' &&
         this.$route.name !== 'finance'
@@ -201,7 +195,7 @@ import createLog from 'localstorage-logger'
 export default {
   data: () => ({
     date: new Date(),
-    // interval: null,
+    interval: null,
     locale: '',
   }),
   computed: {
@@ -237,26 +231,25 @@ export default {
     loginSetting() {
       this.setIsLoginSettingPassword(true)
     },
+    /* localstorage-logger */
     logging(flag) {
-      // localstorage-logger --------------
       const log = createLog({
         logName: 'electron-users-log',
         maxLogSizeInBytes: 500 * 1024, // 500KB
       })
       flag
-        ? log.info('Setting Menu unlocked', this.getUserActiveName)
-        : log.info('Setting Menu locked', this.getUserActiveName)
-      // end localstorage-logger
+        ? log.info('Setting Menu unlocked user->', this.getUserActiveName)
+        : log.info('Setting Menu locked user->', this.getUserActiveName)
     },
   },
 
   mounted() {
-    // this.interval = setInterval(() => {
-    //   this.date = new Date()
-    // }, 1000)
+    this.interval = setInterval(() => {
+      this.date = new Date()
+    }, 1000)
   },
   beforeDestroy() {
-    // clearInterval(this.interval)
+    clearInterval(this.interval)
   },
 }
 </script>
@@ -265,15 +258,12 @@ export default {
 .imgs {
   position: relative;
 }
-.row {
+.alles {
   padding-top: 4%;
-  /* background-color: black; */
+  padding-left: 4%;
   background-color: #121212;
 }
 .background-top {
-  /*   margin-left: 0em;
-  margin-top: 0em;
- */
   position: absolute;
   top: 40%;
   left: 0%;
@@ -285,22 +275,13 @@ img {
 .head-panel {
   margin-top: 0em;
   padding-top: 2em;
-  /* width: 90%; */
   position: relative;
   text-align: center;
   color: #121212;
-  /* font-family: arial white; */
-  /* font-size: 80%; */
-  width: 100%; /* 74em; */ /* 1080px; */
-  height: 9.6em; /* 138px; */ /* 119 */
+  width: 100%;
+  height: 9.6em;
   z-index: 2;
 }
-/* .head-panel-label {
-  font-size: 5rem;
-  position: absolute;
-  top: 0%;
-  left: 0%;
-} */
 .circle {
   width: 6rem;
   height: 6rem;
@@ -345,16 +326,11 @@ img {
 .setting {
   position: absolute;
   top: 32%;
-  left: 29%;
+  left: 32%; /* 32 */
   width: 10rem;
 }
 .btn {
   background-color: #121212;
   border: none;
 }
-/* .btn:hover,
-.btn-large:hover,
-.btn-small:hover {
-  background-color: #121212;
-} */
 </style>

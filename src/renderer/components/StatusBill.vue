@@ -173,14 +173,15 @@ export default Vue.extend({
       }
 
       // this.$message(`Операция терминала ${type} одобрена, сумма:  ${this.observer.state}`)
-      this.$message(
-        localizeFilter(
-          `${messages.Terminal_operation}
-           ${type}
-           ${messages.approved}
-           ${this.observer.state}`
-        )
-      )
+     this.$message(
+      localizeFilter(`${messages.Terminal_operation}`) +
+      `  ` + 
+      `${type}` +
+      `  ` +
+      localizeFilter(`${messages.approved}`) +
+      `  ` +
+      `${this.observer.state}`
+     )
 
       //seconds = 0
       this.setCardBonusState()
@@ -189,13 +190,15 @@ export default Vue.extend({
     reject(type) {
       // this.$message(`Операция терминала ${type} отклонена`)
       this.$message(
-        localizeFilter(
-          `${messages.Terminal_operation}
-           ${type}
-           ${messages.rejected}
-           ${this.observer.state}`
-        )
-      )
+      localizeFilter(`${messages.Terminal_operation}`) +
+      `  ` + 
+      `${type}` +
+      `  ` +
+      localizeFilter(`${messages.rejected}`) +
+      `  ` +
+      `${this.observer.state}`
+     )
+
       this.$router.push('/')
     },
     setCardBonusState() {

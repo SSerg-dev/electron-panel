@@ -755,7 +755,7 @@ export default {
     maxY: 1620,
 
     client: 'fetch',
-    url: '',//'https://192.168.1.3/',
+    url: '', //'https://192.168.1.3/',
     storage: null,
     options: {},
     payType: '',
@@ -840,8 +840,7 @@ export default {
           flags.modeBlink(1)
         }, this.delay)
         if (index === 0) {
-          /* dev */
-          this.$message( localizeFilter( `${messages.Amount_more_maximum }`))
+          this.$message(localizeFilter(`${messages.Amount_more_maximum}`))
         }
         return flags.modeBlink(index)
       },
@@ -1018,11 +1017,18 @@ export default {
           this.emitCardMoney(card)
           this.setCardMoney(card)
           // this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)
-          this.$message( localizeFilter( `${messages.Will_be_paid_by_credit_card } ${+card}`))
+          this.$message(
+            localizeFilter(`${messages.Will_be_paid_by_credit_card}`) +
+              `  ` +
+              `${ +card }` +
+              `  ` +
+              `${ this.currency }`
+          )
+
           this.$router.push('/status')
         }
         // payBonus
-        
+
         if (this.getIsBonusMoney && this.getIsCardMoney) {
           const type = this.getPanelType
           switch (type) {
@@ -1040,13 +1046,19 @@ export default {
           }
 
           // this.$message(`Оплата бонусами:  ${+card} ₽`)
-          this.$message( localizeFilter( `${messages.Payment_with_bonuses } ${+card}`))
+          this.$message(
+            localizeFilter(`${messages.Payment_with_bonuses}`) +
+              `  ` +
+              `${ +card }` +
+              `  ` +
+              `${ this.currency }`
+          )
         }
 
         this.display = this.title = this.body = '0'
       } else {
         // this.$message(`Введите правильную сумму`)
-        this.$message( localizeFilter( `${messages.Enter_the_correct_amount } `))
+        this.$message(localizeFilter(`${messages.Enter_the_correct_amount} `))
       }
     },
     // ПОДТВЕРДИТЬ
@@ -1058,12 +1070,11 @@ export default {
 
       let response
       this.options = this.getLoginBonusOptions()
-      
 
       this.options.params.pin.length > 0
         ? (this.payType = 'bonus')
         : (this.payType = 'card')
-      // console.log('$$ this.payType', this.payType)        
+      // console.log('$$ this.payType', this.payType)
 
       if (this.options.params.pin.length > 0) {
         this.loading = true
@@ -1086,15 +1097,13 @@ export default {
           this.setLoginBonusPhone('')
           this.setLoginBonusPassword('')
           /* dev */
-        //   this.timeoutDelay = setTimeout(() => {
-        //   this.loading = false
-        // }, this.delay)
-
+          //   this.timeoutDelay = setTimeout(() => {
+          //   this.loading = false
+          // }, this.delay)
         } else {
           this.$message(`Error:  ${response.error}`)
           this.$router.push('/password')
         }
-        
       }
     },
 

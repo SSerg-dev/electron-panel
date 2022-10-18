@@ -118,17 +118,19 @@
                 <img src="@/assets/imgs/language/lang_SRB.png" />
               </button>
             </td>
-            <!-- dev -->
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('nor-NOR')">
                 <img src="@/assets/imgs/language/lang_NOR.png" />
-              </router-link>
+              </button>
             </td>
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('fin-FIN')">
                 <img src="@/assets/imgs/language/lang_FIN.png" />
-              </router-link>
+              </button>
             </td>
+            <!-- dev -->
           </tr>
           <tr v-if="this.getPaginate === 2">
             <td>

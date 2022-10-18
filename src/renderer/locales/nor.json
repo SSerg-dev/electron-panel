@@ -1,0 +1,180 @@
+{
+  "LanguageTitle": "Lokalisering",
+  "BOX": "VASKEHALLEN",
+  "#": "#",
+  "VACUUM": "STØVSUGER",
+  "PAYMENT": "BETALING",
+  "locales": "NOR",
+  "PROGRAMS_COST": "PROGRAMKOSTNAD",
+  "CASH": "KONTANT",
+  "BANK_CARD": "BANKKORT",
+  "BONUSES": "BONUSER",
+  "Choose_your_payment_method": "Velg betalingsmåte",
+  "CONSULTANT": "HJELP",
+  "CALL_SENT_WAIT": "FORESPØRSELEN SENDT, VENT",
+  "FREE_STOP": "GRATIS STOPP",
+  "STOP": "STOPP", 
+  "CONTINUE": "FORTSETT",
+  "MAKE_A_PAYMENT": "GJENNOMFØRE EN BETALING",
+  "Insert_banknotes_or_coins": "Sett inn sedler eller mynter, når du er ferdig, klikk på knappen nedenfor",
+  "Price_per_minute": "Pris per minutt",
+  "Program": "Program",
+
+  "SHAMPOO": "SJAMPO",
+  "DISK": "FELGER",
+  "MOSQUITO": "MYGGMIDDEL",
+  "FOAM": "SKUM",
+  "FOAM_COLOR": "SKUM FARGE", 
+  "BRUSH": "BØRSTE",
+  "BRUSH_COLOR": "BØRSTE FARGE",
+  "WATER_SHAMPOO": "VANN SJAMPO",
+  "COLD_WATER": "KALD",
+  "WARM_WATER": "VARM",
+  "OSMOSIS": "OSMOSE ",
+  "STOP_PAUSE": "STOPP/PAUSE",
+  "AIR": "LUFT",
+  "GLASS_WASHING_LIQUID": "SPYLERVÆSKE",
+  "WAX": "VOKS",
+  "FOAM_X2": "SKUM X2",
+  "VACUUM_CLEANER": "STØVSUGER",
+  "BRUSH_X2": "BØRSTE X2",
+  "DISK_X2": "FELGER X2",
+  "MOSQUITO_X2": "MYGGMIDDEL X2",
+  "TURBO_DRYER": "TØRKER",
+  "DEGREASE": "AVFETTE",
+  "DISINFECTION": "DESINFISERING",
+  "BLACKING": "SVARTING",
+  "DOORSILL": "DØRSKJERMINGEN",
+  
+  "COMPLETE_PAYMENT": "FULLFØR BETALING",
+  "RETURN_BONUSES_UP": "TIL 30% BONUSER TILBAKE FULLFØR BETALING",
+  "APPEND": "TILLEGG",
+  "CONFIRM": "BEKREFTE",
+
+  "To_enter_the_system": "For å logge inn oppgi telefonnummeret ditt eller skann QR-koden", 
+  "To_credit_Bonuses_to_your_account": "For å kreditere bonuser til kontoen din, skriv inn telefonnummeret ditt",
+  "By_clicking_on_CONFIRM": "Ved å klikke på BEKREFTE knappen samtykker du til å sende deg en SMS melding og behandle dine personopplysninger i samsvar med betingelsene som er lagt ut på nettstedet: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "QR-autorisasjon",
+  "Your_balance": "Din balanse,",
+  "Select_charge_amount": "Velg belastningsbeløp",
+  
+  "Enter_your_password": "Oppgi passordet",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "innstillingsmenyen",
+  
+  "The_status_of_the_operation": "Transaksjonsstatus:",
+  "Connection_to_the_bank_terminal": "Tilkobling til en bankterminal...",
+  "Failed_to_connect_to_the_bank_terminal": "Kan ikke koble til bankterminalen",
+  "Timed_out": "Ventetiden er utløpt",
+  "Operation_approved": "Drift godkjent",
+  "Operation_rejected": "Operasjon avvist",
+  "Follow_the_instructions_on_the_terminal": "Følg instruksjonene på terminalen",
+
+  "You_want_to_complete_the_car_wash": "Vil du fullføre bilvasken og returnere saldoen med bonuser?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Ved å klikke på Ja-knappen samtykker du til sending av SMS-meldinger til deg og behandling av personopplysninger i samsvar med betingelsene som er lagt ut på nettstedet: www.alles-bonus.com",
+
+  "Display": "Skjerm",
+  "Services": "Tjenester",
+  "Service_balance": "Tjenestebalanse",
+  "Reset": "Tilbakestill",
+  "Open_the_door": "Åpne dører",
+  "Reboot": "Start på nytt",
+
+  "Software_version": "Programvare versjon",
+  "Temperature": "Temperatur",
+  "Humidity": "Fuktighet",
+
+  "Show_tooltips_when_switching_programs_during": "Vis verktøytips når du bytter program i løpet av",
+
+  "Time_to_switch_to_the_main_window": "På tide å bytte til hovedvinduet",
+
+  "Setting": "Innstillinger",
+  "Languages": "Språk",
+  "Finance": "Penger",
+  "Review": "Oversikt",
+
+  "OK": "OK",
+  "Cancel": "Kansellering",
+  "Confirm": "Bekrefte",
+  "Make_the_payment_window_the_main": "Gjør betalingsvinduet til det viktigste",
+  "Show_cursor_in_the_main_window": "Vis markøren i hovedvinduet",
+  "Direct_cash_payment": "Direkte kontantbetaling",
+  "Banking_terminal": "Bankterminal",
+  
+  "System": "System",
+  "Panel": "Panel",
+  "Bill_acceptor": "Regningsmottaker",
+  "Coin_acceptor": "Myntmottaker",
+
+  "Language": "Språk",
+  "Currency": "Valuta",
+  
+  "Type_of_panel": "Panel type",
+  "Panel_number": "Panelet nummer:",
+  "Vacuum_number": "Støvsuger nummer",
+
+  "Type": "Type",
+  "Accept_bills": "Godta sedler",
+  "Accept_coins": "Godta mynter",
+
+  "Model": "Modell",
+  "Reconciliation_Pax": "Forsoning Pax",
+
+  "Payment_limits": "Payment limits",
+  "Minimum": "Minimum",
+  "Maximum": "Maksimum",
+  "Tokens": "Tokens",
+
+  "CAR_WASH": "SELVVASK",
+  "PAYMENT_CENTER": "BETALINGSSENTER",
+  "PANEL": "PANEL",
+
+  "Cash_post": "Kassaapparat",
+  "Total_amount": "Totale mengden",
+  "Amount_of_deposit_in_banknotes": "Innskuddsbeløp i sedler",
+  "Number_of_banknotes": "Number of banknotes",
+  "Credit_amount_in_coins": "Kredittbeløp i mynter",
+  "Number_of_coins": "Antall mynter",
+  "Collection": "Samling",
+
+  "Replace_item": "Bytt ut element",
+  "Replace_program": "Bytt ut programmet",
+
+  "Cash_accounting": "Kontantregnskap",
+  "Date": "Dato",
+  "Cash": "Kontant",
+  "Cashless": "Kontantløst",
+  "Bonus": "Bonus",
+  "Service": "Service",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected"
+
+
+
+
+}

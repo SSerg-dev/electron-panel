@@ -1,0 +1,180 @@
+{
+  "LanguageTitle": "Lokalisointi",
+  "BOX": "ASEMA",
+  "#": "#",
+  "VACUUM": "IMURI",
+  "PAYMENT": "MAKSAMINEN",
+  "locales": "FIN",
+  "PROGRAMS_COST": "OHJELMIEN HINTA",
+  "CASH": "KÄTEISELLÄ",
+  "BANK_CARD": "PANKKIKORTILLA",
+  "BONUSES": "BONUKSILLA",
+  "Choose_your_payment_method": "Valitse maksamisen keino",
+  "CONSULTANT": "NEUVONANTAJA",
+  "CALL_SENT_WAIT": "PYYNTÖ ON LÄHETETTY, ODOTA",
+  "FREE_STOP": "ILMAINEN PYSÄYTYS",
+  "STOP": "STOP", 
+  "CONTINUE": "JATKA",
+  "MAKE_A_PAYMENT": "SUORITA MAKSU",
+  "Insert_banknotes_or_coins": "Syötä setelit tai kolikot ja napsauta alla olevaa painiketta",
+  "Price_per_minute": "Yhden minuutin hinta",
+  "Program": "Ohjelma",
+
+  "SHAMPOO": "SAMPOO",
+  "DISK": "VANTEET",
+  "MOSQUITO": "HYTTYNEN",
+  "FOAM": "VAAHTO",
+  "FOAM_COLOR": "VAAHTO VÄRI", 
+  "BRUSH": "HARJA",
+  "BRUSH_COLOR": "HARJA VÄRI",
+  "WATER_SHAMPOO": "VESI SAMPOO",
+  "COLD_WATER": "KYLMÄ",
+  "WARM_WATER": "LÄMMIN",
+  "OSMOSIS": "OSMOOSI",
+  "STOP_PAUSE": "STOP/PAUSE",
+  "AIR": "ILMA",
+  "GLASS_WASHING_LIQUID": "PESUNESTE",
+  "WAX": "VAHA",
+  "FOAM_X2": "VAAHTO X2",
+  "VACUUM_CLEANER": "IMURI",
+  "BRUSH_X2": "HARJA X2",
+  "DISK_X2": "VANTEET X2",
+  "MOSQUITO_X2": "HYTTYNEN X2",
+  "TURBO_DRYER": "KUIVAIN",
+  "DEGREASE": "POISTA RASVA",
+  "DISINFECTION": "DESINFIOINTI",
+  "BLACKING": "MUTTAMINEN",
+  "DOORSILL": "KYNNYS",
+  
+  "COMPLETE_PAYMENT": "SUORITA MAKSU",
+  "RETURN_BONUSES_UP": "PALAUTUSBONUKSET JOPA 30% COMPLETE PAYMENT",
+  "APPEND": "LISÄÄ",
+  "CONFIRM": "VAHVISTAA",
+
+  "To_enter_the_system": "Kirjoita puhelinnumerosi tai skannaa QR-koodi kirjautuaksesi sisään", 
+  "To_credit_Bonuses_to_your_account": "Hyvittääksesi bonuksia tilillesi, syötä puhelinnumerosi",
+  "By_clicking_on_CONFIRM": "Napsauttamalla LISÄÄ painiketta, suostut siihen, että sinulle lähetetään tekstiviesti ja henkilötietojasi käsitellään verkkosivulla www.alles-bonus.com julkaistujen ehtojen mukaisesti",
+
+  "Authorization_using_a_QR": "Kirjaudu sisään QR-koodilla",
+  "Your_balance": "Tasapainosi,",
+  "Select_charge_amount": "Valitse maksun määrä",
+  
+  "Enter_your_password": "Enter your password",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "asetusvalikko",
+  
+  "The_status_of_the_operation": "Tapahtuman toteuttamisen tila:",
+  "Connection_to_the_bank_terminal": "Yhteus pankkiterminaaliin...",
+  "Failed_to_connect_to_the_bank_terminal": "Yhdistäminen pankkiterminaaliin epäonnistui",
+  "Timed_out": "Odotusaika on loppunut",
+  "Operation_approved": "Toiminta hyväksytty",
+  "Operation_rejected": "Operaatio hylätty",
+  "Follow_the_instructions_on_the_terminal": "Seuraa terminaalin ohjeita",
+
+  "You_want_to_complete_the_car_wash": "Haluatko suorittaa auton pesun ja palauttaa saldon bonuksilla?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Klikkaamalla Kyllä-painiketta hyväksyt tekstiviestien lähettämisen sinulle ja henkilötietojen käsittelyn verkkosivustolla julkaistujen ehtojen mukaisesti: www.alles-bonus.com",
+
+  "Display": "Näyttö",
+  "Services": "Palvelut",
+  "Service_balance": "Palvelun saldo",
+  "Reset": "Nollaa",
+  "Open_the_door": "Avaa ovi",
+  "Reboot": "Käynnistä uud",
+
+  "Software_version": "Ohjelmiston versio",
+  "Temperature": "Lämpötila",
+  "Humidity": "Kosteus",
+
+  "Show_tooltips_when_switching_programs_during": "Näytä työkaluvihjeet vaihdettaessa ohjelmia",
+
+  "Time_to_switch_to_the_main_window": "Aika mennä pääikkunaan",
+
+  "Setting": "Asetukset",
+  "Languages": "Kieli",
+  "Finance": "Rahavarat",
+  "Review": "Yleiskatsaus",
+
+  "OK": "OK",
+  "Cancel": "Peruuttaa",
+  "Confirm": "Vahvistaa",
+  "Make_the_payment_window_the_main": "Aseta maksuikkuna pääikkunaan",
+  "Show_cursor_in_the_main_window": "Näytä kohdistin pääikkunassa",
+  "Direct_cash_payment": "Suora käteismaksu",
+  "Banking_terminal": "Pankkipääte",
+  
+  "System": "Järjestelmä",
+  "Panel": "Paneeli",
+  "Bill_acceptor": "Seteleiden vastaanottaja",
+  "Coin_acceptor": "Kolikon vastaanottaja",
+
+  "Language": "Kieli",
+  "Currency": "Valuutta",
+  
+  "Type_of_panel": "Paneelin tyyppi",
+  "Panel_number": "Paneelin numero",
+  "Vacuum_number": "Imuri numero",
+
+  "Type": "Tyyppi",
+  "Accept_bills": "Hyväksy seteli",
+  "Accept_coins": "Hyväksy kolikko",
+
+  "Model": "Malli",
+  "Reconciliation_Pax": "Sovittelu Pax",
+
+  "Payment_limits": "Maksurajat",
+  "Minimum": "Minimi",
+  "Maximum": "Maksimi",
+  "Tokens": "Tokenit",
+
+  "CAR_WASH": "AUTOPESULA",
+  "PAYMENT_CENTER": "MAKSUKESKUS",
+  "PANEL": "PANEELI",
+
+  "Cash_post": "Kassakone",
+  "Total_amount": "Kokonaismäärä",
+  "Amount_of_deposit_in_banknotes": "Talletuksen määrä seteleissä",
+  "Number_of_banknotes": "Seteleiden lukumäärä",
+  "Credit_amount_in_coins": "Luottosumma kolikoissa",
+  "Number_of_coins": "Kolikoiden määrä",
+  "Collection": "Maksujen perintä",
+
+  "Replace_item": "Vaihda kohde",
+  "Replace_program": "Vaihda ohjelma",
+
+  "Cash_accounting": "Kassakirjanpito",
+  "Date": "Päivämäärä",
+  "Cash": "Käteinen",
+  "Cashless": "Ei käteistä",
+  "Bonus": "Bonus",
+  "Service": "Palvelu",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected"
+
+
+
+
+}

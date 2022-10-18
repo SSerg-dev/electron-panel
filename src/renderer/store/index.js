@@ -34,7 +34,7 @@ export default new Vuex.Store({
     info: { name: '', locale: 'ru-RU' } /* ru-RU en-GB */,
     cash_enabler: false,
     busyPanel: false,
-    secondsGotoMainMenu: 442,
+    secondsGotoMainMenu: 300,
     secondsGotoPopupMenu: 2,
     //secondsGotoProgramMenu: 6,
 
@@ -397,7 +397,7 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
-    
+
     updateWetZeroMoney({ getters }, zeroMoney) {
       try {
         ipcRenderer.send(
