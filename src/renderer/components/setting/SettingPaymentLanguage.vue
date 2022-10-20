@@ -100,7 +100,7 @@ export default Vue.extend({
       const index = this.languages.findIndex(l => l.key === defaultLanguage) 
 
       const { id, title, key, emoji, currency, symbol } = this.languages[index]
-      this.current = id
+      this.current = id || 0
       this.select = title
       this.emoji = emoji
       this.currency = currency

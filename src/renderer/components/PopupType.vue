@@ -8,8 +8,8 @@
       <section>
         <div class="popup">
           <p>
-            <img v-if="isStop" src="/imgs/popup/popup-stop.png" />
-            <img v-if="isOperator" src="/imgs/popup/popup-operator.png" />
+            <img v-if="isStop" src="@/assets/imgs/popup/popup-stop.png" />
+            <img v-if="isOperator" src="@/assets/imgs/popup/popup-operator.png" />
           </p>
         </div>
 
@@ -163,5 +163,6 @@ h3 {
 }
 .popup {
   margin-top: 10em;
+  margin-left: 0.8em;
 }
 </style>

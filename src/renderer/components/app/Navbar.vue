@@ -5,9 +5,9 @@
         v-if="
           this.$route.name !== 'cost' &&
           this.$route.name !== 'cash' &&
-          this.$route.name != 'language' &&
-          this.$route.name != 'program' &&
-          this.$route.name != 'setting'
+          this.$route.name !== 'language' &&
+          this.$route.name !== 'program' &&
+          this.$route.name !== 'setting'
         "
       ></div>
 
@@ -164,6 +164,15 @@
           <div v-if="this.info.locale === 'fin-FIN'">
             <img src="@/assets/imgs/flags/flag_FIN.png" />
           </div>
+
+          <div v-if="this.info.locale === 'bgr-BGR'">
+            <img src="@/assets/imgs/flags/flag_BGR.png" />
+          </div>
+
+          <div v-if="this.info.locale === 'grc-GRC'">
+            <img src="@/assets/imgs/flags/flag_GRC.png" />
+          </div>
+
         </router-link>
       </div>
     </div>
@@ -172,7 +181,6 @@
       v-if="
         this.$route.name !== 'cost' &&
         this.$route.name !== 'language' &&
-        this.$route.name === 'program' &&
         this.$route.name !== 'setting' &&
         this.$route.name !== 'password' &&
         this.$route.name !== 'finance'

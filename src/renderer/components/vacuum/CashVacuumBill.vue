@@ -250,7 +250,7 @@ export default {
         this.setQueue(method, this.options, this.queueType)
 
         if (this.$route.name !== 'program') this.$router.push('/program')
-        this.$message(`Связь с connect cash vacuum недоступна!!!`)
+        this.$message(`Communication with connect cash vacuum is unavailable!!!`)
         return
       }
       /* dev vacuum */
@@ -258,11 +258,11 @@ export default {
       if (+response.result === 0 && +this.getDryBalance > 0) {
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(
-          `Оплата прошла успешно, внесенная сумма:  ${+this
+          `The payment was successful, the deposited amount:  ${+this
             .getDryBalance} ₽`
         )
       } else {
-        this.$message(`Оплата не прошла`)
+        this.$message(`Payment failed!`)
       }
     },
         // ----------------------------------
@@ -271,7 +271,7 @@ export default {
       this.queueType = 'setQueue'
 
       const response = this.localStorage.getClient(method, options, type)
-      console.log('$$!! response', response)
+      // console.log('$$!! response', response)
     },
     // ----------------------------------
 
@@ -311,7 +311,7 @@ export default {
 
       const response = await this.storage.getClient(method, this.options, type)
       if (+response.result === 0) {
-        this.$message(`Бонусы зачислены успешно`)
+        this.$message(`Bonuses append successfully!`)
       }
     },
 

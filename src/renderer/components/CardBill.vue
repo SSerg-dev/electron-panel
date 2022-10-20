@@ -216,9 +216,7 @@
                   >
                     <div>
                       {{
-                        `Max ${parseFloat(getPaymentLimitMax).toFixed(
-                          this.digits
-                        )}`
+                        `Max ${parseFloat(getPaymentLimitMax)}`
                       }}
                     </div>
                   </div>
@@ -234,9 +232,7 @@
                   >
                     <div>
                       {{
-                        `Max ${parseFloat(getPaymentLimitMax).toFixed(
-                          this.digits
-                        )}`
+                        `Max ${parseFloat(getPaymentLimitMax)}`
                       }}
                     </div>
                   </div>
@@ -1058,7 +1054,7 @@ export default {
         this.display = this.title = this.body = '0'
       } else {
         // this.$message(`Введите правильную сумму`)
-        this.$message(localizeFilter(`${messages.Enter_the_correct_amount} `))
+        this.$message(localizeFilter(`${messages.Enter_the_correct_amount}`))
       }
     },
     // ПОДТВЕРДИТЬ

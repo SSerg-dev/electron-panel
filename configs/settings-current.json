@@ -33,11 +33,12 @@
   "__commentCountries": "add available countries",
   "countries": [
     "RU",
-    "US"
+    "KZ",
+    "DE"
   ],
   "country": "RU",
   "__commentCurrency": "add default currency",
-  "currency": "RUB",
+  "currency": "KZT",
   "index": 6,
   "languages": {
     "default": "RU",

@@ -514,7 +514,7 @@ export default {
         this.buttonReceipt.background = 'rgb(64, 196, 255)'
         if (this.getIsKktInstalled) {
           this.$router.push('/invoice')
-        } else this.$message(`ККТ не установлен`)
+        } else this.$message(`KKT not installed`)
 
         this.setDown()
         return
@@ -607,10 +607,10 @@ export default {
       const response = await this.storage.getClient(method, this.options, type)
 
       if (+response.result === 0) {
-        this.$message(`Программа мойки закончена успешно`)
+        this.$message(`Washing program completed successfully!`)
         if (this.$route.name !== 'home') this.$router.push('/')
       } else {
-        this.$message(`Ошибка:  ${response.error}`)
+        this.$message(`Error:  ${response.error}`)
       }
     },
     // ----------------------------------
@@ -643,10 +643,10 @@ export default {
       )
       const response = await this.storage.getClient(method, this.options, type)
       if (+response.result === 0) {
-        this.$message(`У Вас СПИСАНО ${this.options.params.sum} бонуса(ов) `)
+        this.$message(`You spend ${this.options.params.sum} bonus(es)`)
         if (this.$route.name !== 'home') this.$router.push('/')
       } else {
-        this.$message(`Ошибка:  ${response.error}`)
+        this.$message(`Error:  ${response.error}`)
       }
     },
     // ----------------------------------

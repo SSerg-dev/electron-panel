@@ -130,19 +130,21 @@
                 <img src="@/assets/imgs/language/lang_FIN.png" />
               </button>
             </td>
-            <!-- dev -->
+            
           </tr>
           <tr v-if="this.getPaginate === 2">
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('bgr-BGR')">
                 <img src="@/assets/imgs/language/lang_BGR.png" />
-              </router-link>
+              </button>
             </td>
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('grc-GRC')">
                 <img src="@/assets/imgs/language/lang_GRC.png" />
-              </router-link>
+              </button>
             </td>
+            <!-- dev -->
             <td>
               <router-link class="btn-small" to="/language">
                 <img src="@/assets/imgs/language/lang_DNK.png" />
@@ -364,9 +366,9 @@ export default Vue.extend({
 .page-title {
   padding-top: 6em;
   color: white;
-  margin-left: auto;
-  margin-right: auto;
-  width: 20em;
+  /* margin-left: auto; */
+  margin-right: 2em;
+  /* width: 20em; */
 }
 .back {
   position: absolute;

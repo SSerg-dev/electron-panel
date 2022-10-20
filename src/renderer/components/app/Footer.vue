@@ -81,7 +81,6 @@
             <div
               v-if="this.isDown.operator === false"
               style="
-
                 background-image: url('./imgs/operator/operator-down.png');
                 width: 401px;
                 height: 106px;
@@ -92,6 +91,7 @@
                 {{ `CONSULTANT` | localize }}
               </div>
             </div>
+
             <div
               v-if="this.isDown.operator === true"
               style="
@@ -333,8 +333,12 @@ export default {
   padding-left: 144px;
 }
 .button-title-operator {
-  padding-top: 16px;
-  padding-left: 72px;
+  padding-top: 0.5em;
+  padding-left: 0.8em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 /* Plumb-Medium */
 .description {

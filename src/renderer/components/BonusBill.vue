@@ -800,7 +800,7 @@ export default {
           this.setIsAppendBonusMoney(false)
           if (this.$route.name !== 'program') this.$router.push('/program')
         } else {
-          this.$message(`Ошибка:  ${response.error}`)
+          this.$message(`Error:  ${response.error}`)
         }
       } else {
         // this.$message(`Введите правильно номер мобильного телефона`)
@@ -885,7 +885,7 @@ export default {
 
       if (response === undefined) {
         if (this.$route.name !== 'program') this.$router.push('/program')
-        this.$message(`Связь с connect bonus недоступна!!!`)
+        this.$message(`Communication with connect bonus is unavailable!!!`)
         return
       }
 

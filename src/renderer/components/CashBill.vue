@@ -225,7 +225,7 @@ export default {
         this.setQueue(method, this.options, this.queueType)
 
         if (this.$route.name !== 'program') this.$router.push('/program')
-        this.$message(`Связь с connect cash недоступна!!!`)
+        this.$message(`Communication with connect cash is unavailable!!!`)
         return
       }
       if (+response.result === 0 && +this.getWetBalance > 0) {
@@ -281,7 +281,7 @@ export default {
       this.options = this.getAppendBonus()
       const response = await this.storage.getClient(method, this.options, type)
       if (+response.result === 0) {
-        this.$message(`Бонусы зачислены успешно`)
+        this.$message(`Bonuses append successfully!`)
       }
     },
     setEnabler() {

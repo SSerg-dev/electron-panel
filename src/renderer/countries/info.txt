@@ -1,3 +1,0 @@
-
-
-"countries" : ["RU", "DE", "UA", "BY" ,"LV", "LT", "EE"]

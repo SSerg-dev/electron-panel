@@ -1,10 +1,10 @@
 {
-  "sumC5": 75,
-  "sumC10": 20,
+  "sumC5": 85,
+  "sumC10": 30,
   "sumC25": 0,
-  "counterC5": 15,
-  "counterC10": 2,
+  "counterC5": 17,
+  "counterC10": 3,
   "counterC25": 0,
-  "amountCoin": 95,
-  "counterCoin": 17
+  "amountCoin": 115,
+  "counterCoin": 20
 }

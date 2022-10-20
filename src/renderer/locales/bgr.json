@@ -1,0 +1,180 @@
+{
+  "LanguageTitle": "Локализация",
+  "BOX": "ПОСТ",
+  "#": "#",
+  "VACUUM": "ПРАХОСМУКАЧ",
+  "PAYMENT": "ПЛАЩАНЕ",
+  "locales": "BGR",
+  "PROGRAMS_COST": "ЦЕНА НА ПРОГРАМИТЕ",
+  "CASH": "В БРОЙ",
+  "BANK_CARD": "С БАНКОВА КАРТА",
+  "BONUSES": "С БОНУСИ",
+  "Choose_your_payment_method": "Изберете начин на плащане",
+  "CONSULTANT": "КОНСУЛЬТАНТ",
+  "CALL_SENT_WAIT": "ПОВИКВАНЕТО Е ИЗПРАТЕНО, ИЗЧАКАЙ",
+  "FREE_STOP": "БЕЗПЛАТНО СТОПАНЕ",
+  "STOP": "СТОП", 
+  "CONTINUE": "ПРОДЪЛЖЕТЕ",
+  "MAKE_A_PAYMENT": "НАПРАВЕТЕ ПЛАЩАНЕ",
+  "Insert_banknotes_or_coins": "Поставете банкноти или монети, след това натиснете бутона по-долу",
+  "Price_per_minute": "Цена на минута",
+  "Program": "Програма",
+
+  "SHAMPOO": "ШАМПОАН",
+  "DISK": "ДЖАНТИ",
+  "MOSQUITO": "НАСЕКОМИ",
+  "FOAM": "ПЯНА",
+  "FOAM_COLOR": "ПЯНА ЦВЯТ", 
+  "BRUSH": "ЧЕТКА",
+  "BRUSH_COLOR": "ЧЕТКА ЦВЯТ",
+  "WATER_SHAMPOO": "ВОДА ШАМПОАН",
+  "COLD_WATER": "СТУДЕНА",
+  "WARM_WATER": "ТОПЛА",
+  "OSMOSIS": "ОСМОЗА",
+  "STOP_PAUSE": "СТОП/ПАУЗА",
+  "AIR": "ВЪЗДУХ",
+  "GLASS_WASHING_LIQUID": "ЧИСТАЧКИ",
+  "WAX": "ВАКСА",
+  "FOAM_X2": "ПЯНА X2",
+  "VACUUM_CLEANER": "ПРАХОСМУКАЧ",
+  "BRUSH_X2": "ЧЕТКА X2",
+  "DISK_X2": "ДЖАНТИ X2",
+  "MOSQUITO_X2": "НАСЕКОМИ X2",
+  "TURBO_DRYER": "СУШИЛНЯ",
+  "DEGREASE": "ОБЕЗМАСЛЯВАНЕ",
+  "DISINFECTION": "ДЕЗИНФЕКЦИЯ",
+  "BLACKING": "ПОЧЕРНЯВАНЕ",
+  "DOORSILL": "ПРАГОВЕ",
+  
+  "COMPLETE_PAYMENT": "ПРИКЛЮЧЕТЕ ПЛАЩАНЕТО",
+  "RETURN_BONUSES_UP": "ВЪРНЕТЕ С БОНУСИ ДО 30% ПРИКЛЮЧЕТЕ ПЛАЩАНЕТО",
+  "APPEND": "ДОБАВЯНЕ",
+  "CONFIRM": "ПОТВЪРЖД",
+
+  "To_enter_the_system": "За да влезете в системата, въведете телефонния си номер или сканирайте QR кода", 
+  "To_credit_Bonuses_to_your_account": "За да кредитирате бонуси, въведете телефонния си номер",
+  "By_clicking_on_CONFIRM": "С натискане върху ПОТВЪРЖДАВАНЕ, Вие давате съгласието си за изпращане на SMS съобщение и обработване на личните Ви данни, в съответствие с условията, публикувани на уебсайта: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "QR авторизация",
+  "Your_balance": "Вашият баланс,",
+  "Select_charge_amount": "Изберете сума на задължаване",
+  
+  "Enter_your_password": "Въведете паролата",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "меню с настройки",
+  
+  "The_status_of_the_operation": "Статус на операция:",
+  "Connection_to_the_bank_terminal": "Свързване към банков терминал...",
+  "Failed_to_connect_to_the_bank_terminal": "Failed to connect to the bank terminal",
+  "Timed_out": "Времето за изчакване изтече",
+  "Operation_approved": "Операцията е одобрена",
+  "Operation_rejected": "Операцията е отхвърлена",
+  "Follow_the_instructions_on_the_terminal": "Следвайте инструкциите на терминала",
+
+  "You_want_to_complete_the_car_wash": "Искате ли да завършите автомивката и да върнете салдото в сметката си с бонуси?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "By clicking the Yes button, you consent to the sending of SMS messages to you and the processing of personal data in accordance with the conditions posted on the website: www.alles-bonus.com",
+
+  "Display": "Екран",
+  "Services": "Услуги",
+  "Service_balance": "Баланс на услугата",
+  "Reset": "Нулирайте",
+  "Open_the_door": "Отворете врата",
+  "Reboot": "Презаредете",
+
+  "Software_version": "Софтуерна версия",
+  "Temperature": "Температура",
+  "Humidity": "Влажност",
+
+  "Show_tooltips_when_switching_programs_during": "Показване на подсказки при превключване на програм",
+
+  "Time_to_switch_to_the_main_window": "Време е да отидете до прозорец",
+
+  "Setting": "Настройки",
+  "Languages": "Езици",
+  "Finance": "Финанси",
+  "Review": "Преглед",
+
+  "OK": "OK",
+  "Cancel": "Отказ",
+  "Confirm": "Потвържд",
+  "Make_the_payment_window_the_main": "Направете прозореца за плащане основен",
+  "Show_cursor_in_the_main_window": "Показване на курсора в главния прозорец",
+  "Direct_cash_payment": "Директно плащане в брой",
+  "Banking_terminal": "Банков терминал",
+  
+  "System": "Система",
+  "Panel": "Панел",
+  "Bill_acceptor": "Купюроприемник",
+  "Coin_acceptor": "Монетоприемник",
+
+  "Language": "Език",
+  "Currency": "Валута",
+  
+  "Type_of_panel": "Тип панел",
+  "Panel_number": "Номер на панела",
+  "Vacuum_number": "Номер на прахосмукачка",
+
+  "Type": "Тип",
+  "Accept_bills": "Приемайте банкноти",
+  "Accept_coins": "Приемайте монети",
+
+  "Model": "Модел",
+  "Reconciliation_Pax": "Помирение Pax",
+
+  "Payment_limits": "Лимити за плащане",
+  "Minimum": "Минимум",
+  "Maximum": "Максимум",
+  "Tokens": "Токени",
+
+  "CAR_WASH": "АВТОМИВКА",
+  "PAYMENT_CENTER": "ЦЕНТЪР ЗА ПЛАЩАНЕ",
+  "PANEL": "ПАНЕЛ",
+
+  "Cash_post": "Счетоводство",
+  "Total_amount": "Обща сума",
+  "Amount_of_deposit_in_banknotes": "Сума на депозита в банкноти",
+  "Number_of_banknotes": "Брой банкноти",
+  "Credit_amount_in_coins": "Сума на кредита в монети",
+  "Number_of_coins": "Брой монети",
+  "Collection": "Инкасо",
+
+  "Replace_item": "Замяна на елемент",
+  "Replace_program": "На програмата",
+
+  "Cash_accounting": "Касова отчетност",
+  "Date": "Датата",
+  "Cash": "В брой",
+  "Cashless": "Без в брой",
+  "Bonus": "Бонус",
+  "Service": "Обслужване",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected"
+
+
+
+
+}

@@ -340,10 +340,10 @@ export default {
       const response = await this.storage.getClient(method, this.options, type)
 
       if (+response.result === 0) {
-        this.$message(`Программа пылесоса закончена успешно`)
+        this.$message(`Vacuum cleaner program completed successfully!`)
         if (this.$route.name !== 'home') this.$router.push('/')
       } else {
-        this.$message(`Ошибка:  ${response.error}`)
+        this.$message(`Error:  ${response.error}`)
       }
     },
     createOrder() {
@@ -408,10 +408,10 @@ export default {
       )
       const response = await this.storage.getClient(method, this.options, type)
       if (+response.result === 0) {
-        this.$message(`У Вас СПИСАНО ${this.options.params.sum} бонуса(ов) `)
+        this.$message(`You spend ${this.options.params.sum} bonus(es)!`)
         if (this.$route.name !== 'home') this.$router.push('/')
       } else {
-        this.$message(`Ошибка:  ${response.error}`)
+        this.$message(`Error:  ${response.error}`)
       }
     },
     // ----------------------------------

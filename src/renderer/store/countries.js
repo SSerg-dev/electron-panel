@@ -146,7 +146,7 @@ export default {
         emojiU: 'U+1F1FA U+1F1E6'
       }, */
       
-      /* BY: {
+      BY: {
         name: 'Belarus',
         native: 'Белару́сь',
         phone: '375',
@@ -162,7 +162,7 @@ export default {
         languages: ['be', 'ru'],
         emoji: '🇧🇾',
         emojiU: 'U+1F1E7 U+1F1FE'
-      }, */
+      },
 
       /* LT: {
         name: 'Lithuania',
@@ -237,7 +237,8 @@ export default {
         emoji: '🇵🇱',
         emojiU: 'U+1F1F5 U+1F1F1'
       }, */
-      US: {
+
+      /* US: {
         name: 'United States',
         native: 'United States',
         phone: '1',
@@ -253,9 +254,9 @@ export default {
         languages: ['en', 'es-US', 'haw', 'fr'],
         emoji: '🇺🇸',
         emojiU: 'U+1F1FA U+1F1F8'
-      },
+      }, */
 
-      /* KZ: {
+      KZ: {
         name: 'Kazakhstan',
         native: 'Қазақстан',
         phone: '76,77',
@@ -271,9 +272,9 @@ export default {
         languages: ['kk', 'ru'],
         emoji: '🇰🇿',
         emojiU: 'U+1F1F0 U+1F1FF'
-      }, */
+      },
 
-      /* 
+      
       DE: {
         name: 'Germany',
         native: 'Deutschland',
@@ -291,7 +292,7 @@ export default {
         emoji: '🇩🇪',
         emojiU: 'U+1F1E9 U+1F1EA'
       },
-      */
+     
      
       /* FR: {
         name: 'France',

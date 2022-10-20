@@ -17,6 +17,8 @@ import svk from '../locales/svk.json'
 import srb from '../locales/srb.json'
 import nor from '../locales/nor.json'
 import fin from '../locales/fin.json'
+import bgr from '../locales/bgr.json'
+import grc from '../locales/grc.json'
 
 const locales = {
   'ru-RU': ru,
@@ -36,7 +38,9 @@ const locales = {
   'svk-SVK': svk,
   'srb-SRB': srb,
   'nor-NOR': nor,
-  'fin-FIN': fin
+  'fin-FIN': fin,
+  'bgr-BGR': bgr,
+  'grc-GRC': grc
 }
 
 export default function localizeFilter(key) {
