@@ -19,6 +19,7 @@ import nor from '../locales/nor.json'
 import fin from '../locales/fin.json'
 import bgr from '../locales/bgr.json'
 import grc from '../locales/grc.json'
+import dnk from '../locales/dnk.json'
 
 const locales = {
   'ru-RU': ru,
@@ -40,7 +41,8 @@ const locales = {
   'nor-NOR': nor,
   'fin-FIN': fin,
   'bgr-BGR': bgr,
-  'grc-GRC': grc
+  'grc-GRC': grc,
+  'dnk-DNK': dnk
 }
 
 export default function localizeFilter(key) {

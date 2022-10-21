@@ -173,6 +173,10 @@
             <img src="@/assets/imgs/flags/flag_GRC.png" />
           </div>
 
+          <div v-if="this.info.locale === 'dnk-DNK'">
+            <img src="@/assets/imgs/flags/flag_DNK.png" />
+          </div>
+
         </router-link>
       </div>
     </div>

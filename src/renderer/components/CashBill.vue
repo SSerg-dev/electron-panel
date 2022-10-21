@@ -215,6 +215,7 @@ export default {
         '$$ CashBill ++payCashMoney-->options-->this.options-->',
         JSON.stringify(this.options)
       )
+      // console.log('$$ this.coins', this.coins)
 
       const response = await this.storage.getClient(method, this.options, type)
       console.log('$$ CashBill response', response)
