@@ -172,5 +172,8 @@
     "Enter_the_correct_amount": "Введите правильную сумму",
     "Terminal_operation": "Операция терминала",
     "approved": "одобрена, сумма:",
-    "rejected": "отклонена"
+    "rejected": "отклонена",
+    "The_payment_successful_amount": "Оплата прошла успешно, внесенная сумма:"
+
+
   }

@@ -172,7 +172,8 @@
   "Enter_the_correct_amount": "Enter the correct amount",
   "Terminal_operation": "Terminal operation",
   "approved": "approved, amount:",
-  "rejected": "rejected"
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:"
 
 
 

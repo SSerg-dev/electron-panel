@@ -13,5 +13,6 @@ export default {
     Enter_the_correct_amount: 'Enter_the_correct_amount',
     Terminal_operation: 'Terminal_operation',
     approved: 'approved',
-    rejected: 'rejected'
+    rejected: 'rejected',
+    The_payment_successful_amount: 'The_payment_successful_amount'
 }

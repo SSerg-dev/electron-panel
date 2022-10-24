@@ -16,7 +16,7 @@
         <div class="card grey pay-input">
           <div
             class="card-content white-text noselect"
-            style="font-size: 4em; padding-right: 1.0em; padding-top: 1em"
+            style="font-size: 4em; padding-right: 1em; padding-top: 1em"
           >
             {{ `MAKE_A_PAYMENT` | localize }}
           </div>
@@ -39,7 +39,7 @@
         >
           <div
             class="card-content black-text noselect"
-            style="font-size: 4em; padding-right: 1.0em; padding-top: 0.2em"
+            style="font-size: 4em; padding-right: 1em; padding-top: 0.2em"
           >
             {{ `COMPLETE_PAYMENT` | localize }}
           </div>
@@ -60,8 +60,13 @@ import { Storage } from '@/storage/index.js'
 import { ipcRenderer } from 'electron'
 
 import { dateFilter, getRndInteger } from '@/utils/order.js'
+
 import sleep from '@/utils/sleep'
 import { Queue } from '@/queue/index.js'
+
+import messages from '@/utils/messages'
+import localizeFilter from '@/filters/localize.filter'
+
 
 export default {
   name: 'cash-bill',
@@ -74,6 +79,11 @@ export default {
       payEnd: false,
       payBonus: false,
     },
+
+    /* dev */
+    emoji: '',
+    currency: '',
+    symbol: '',
 
     sum: 0,
     // cash: true,
@@ -95,7 +105,6 @@ export default {
     localStorage: null,
   }),
   mounted() {
-    
     this.order = this.createOrder()
     this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
@@ -112,6 +121,7 @@ export default {
       getWetBalance: 'getWetBalance',
       getIsPing: 'getIsPing',
       getPayType: 'getPayType',
+      getInitCurrency: 'getInitCurrency'
     }),
     IsWetBalance: {
       get: function () {
@@ -137,6 +147,14 @@ export default {
       setWetBalance: 'setWetBalance',
     }),
     ...mapActions({}),
+
+    initCurrency() {
+      const { emoji, currency, symbol } = this.getInitCurrency
+
+      this.emoji = emoji
+      this.currency = currency
+      this.symbol = symbol
+    },
 
     payUp(program) {
       this.setDown(program)
@@ -231,8 +249,15 @@ export default {
       }
       if (+response.result === 0 && +this.getWetBalance > 0) {
         if (this.$route.name !== 'program') this.$router.push('/program')
+        // this.$message(
+        //   `Оплата прошла успешно, внесенная сумма:  ${+this.getWetBalance} ₽`
+        // )
         this.$message(
-          `Оплата прошла успешно, внесенная сумма:  ${+this.getWetBalance} ₽`
+          localizeFilter(`${messages.The_payment_successful_amount}`) +
+            `  ` +
+            `${+this.getWetBalance}` +
+            `  ` +
+            `${this.currency}`
         )
       } else {
         // this.$error('payCashMoney $error')
@@ -317,6 +342,9 @@ export default {
     },
   }, // end methods
 
+  created() {
+    this.initCurrency()
+  },
   beforeDestroy() {},
 }
 </script>
@@ -335,7 +363,7 @@ export default {
 .pay-end-bonus {
   width: 66em;
   height: 22em;
-  
+
   margin-top: -40em;
   margin-bottom: 20em;
   margin-left: -8em;
