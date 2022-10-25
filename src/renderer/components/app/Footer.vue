@@ -325,7 +325,7 @@ export default {
   opacity: 1;
   top: 4%;
   left: 0%;
-  margin-left: 46rem;
+  margin-left: 46em;
   z-index: 1;
 }
 .button-title-home {

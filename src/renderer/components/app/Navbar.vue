@@ -177,6 +177,10 @@
             <img src="@/assets/imgs/flags/flag_DNK.png" />
           </div>
 
+          <div v-if="this.info.locale === 'rou-ROU'">
+            <img src="@/assets/imgs/flags/flag_ROU.png" />
+          </div>
+
         </router-link>
       </div>
     </div>
