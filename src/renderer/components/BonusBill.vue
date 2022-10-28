@@ -11,7 +11,7 @@
             "
           >
             <p align="center">
-              {{ `${this.messages[0]}` | localize}}
+              {{ `${this.messages[0]}` | localize }}
             </p>
           </h3>
           <h3
@@ -354,13 +354,11 @@
 
                               font-size: 3.5em;
                               padding-top: 0.3em;
-                              
                             "
                           >
-                            {{ `APPEND` | localize}}
+                            {{ `APPEND` | localize }}
                             <!-- {{`Bonus`}} -->
                           </div>
-
                         </div>
                       </td>
                     </tr>
@@ -380,7 +378,7 @@
                             box-shadow: 0px 6px 10px #00b9e3;
                           "
                         >
-                        <!-- 
+                          <!-- 
                           display: flex;
                           align-items: center;
                           justify-content: center;
@@ -442,7 +440,6 @@ import {
 export default {
   name: 'bonus-bill',
   data: () => ({
-
     phone: '',
     phoneNotParse: '',
     phoneLength: 10,
@@ -470,17 +467,16 @@ export default {
     messages: [
       /* `Для входа в систему введите номер телефона
        или отсканируйте QR код` */
-       `To_enter_the_system`,
+      `To_enter_the_system`,
 
       /* `Для зачисления бонусов,
        введите номер телефона` */
-       `To_credit_Bonuses_to_your_account`,
+      `To_credit_Bonuses_to_your_account`,
 
       /* `Нажимая "Зачислить", Вы даете свое согласие на отправку
       Вам СМС-сообщения и обработку персональных данных,
       согласно условиям, размещенным на сайте: www.alles-bonus.com` */
-      `By_clicking_on_CONFIRM`
-
+      `By_clicking_on_CONFIRM`,
     ],
     messageIndex: -1,
     delay: 1000,
@@ -488,8 +484,6 @@ export default {
   }),
   created() {},
   mounted() {
-    
-    
     this.getCashMoney()
 
     this.order = this.createOrder()
@@ -538,8 +532,7 @@ export default {
 
       getProfile: 'getProfile',
       getServiceBalance: 'getServiceBalance',
-      getPayType:'getPayType'
-
+      getPayType: 'getPayType',
     }),
     IsWetBalance: {
       get: function () {
@@ -646,7 +639,7 @@ export default {
         return true
       } else {
         // this.$message(`Введите правильно номер мобильного телефона`)
-        this.$message( localizeFilter( `${messages.Enter_valid_phone_number }`))
+        this.$message(localizeFilter(`${messages.Enter_valid_phone_number}`))
         return false
       }
     },
@@ -742,7 +735,11 @@ export default {
         }
       } else {
         // this.$message(`Бонусы не зачислены, на мойке сервисные деньги`)
-        this.$message( localizeFilter( `${messages.Bonuses_awarded_money_for_service_at_the_car_wash }`))
+        this.$message(
+          localizeFilter(
+            `${messages.Bonuses_awarded_money_for_service_at_the_car_wash}`
+          )
+        )
       }
     },
 
@@ -804,25 +801,28 @@ export default {
         }
       } else {
         // this.$message(`Введите правильно номер мобильного телефона`)
-        this.$message( localizeFilter( `${messages.Enter_valid_phone_number }`))
+        this.$message(localizeFilter(`${messages.Enter_valid_phone_number}`))
       }
     },
+
     /* dev */
     getCashMoney() {
-      let isClear = false
-      const options = {}
-      ipcRenderer.send('async-cash-start', options)
+      const options = 'ipcRenderer.send from BonusBill'
+      ipcRenderer.send('async-read-once', options)
 
-      ipcRenderer.on('async-cash-reply', (event, coins, bills) => {
-        this.coins = coins
-        this.bills = bills
-
-        // if (coins || bills) {
-        //   isClear = true
-        //   event.sender.send('async-cash-clear', isClear)
-        // }
+      ipcRenderer.on('async-once-reply', (event, coins, bills) => {
+        this.coins = JSON.parse(coins) || {}
+        this.bills = JSON.parse(bills) || {}
       })
     },
+    clearCashMoney() {
+      let isClear = false
+      if (+this.coins.amountCoin > 0 || +this.bills.amountBill > 0) {
+        isClear = true
+        ipcRenderer.send('async-once-clear', isClear)
+      }
+    },
+    /*     */
 
     async payStoreMoney() {
       // console.log('++payStoreMoney')
@@ -855,23 +855,23 @@ export default {
       this.options.params.type = this.getPayType || 'cash'
       this.options.params.sum = +this.sum
 
-      // for statistic coins
-      this.options.params.detail.sum_coins = this.coins.amountCoin
-      this.options.params.detail.coins_count = this.coins.counterCoin
-      this.options.params.detail.coins_1 = 0
-      this.options.params.detail.coins_2 = 0
-      this.options.params.detail.coins_5 = this.coins.counterC5
-      this.options.params.detail.coins_10 = this.coins.counterC10
-      this.options.params.detail.coins_25 = this.coins.counterC25
+      // for coins
+      this.options.params.detail.sum_coins = +this.coins.amountCoin || 0
+      this.options.params.detail.coins_count = +this.coins.counterCoin || 0
+      this.options.params.detail.coins_1 = +this.coins.counterC1 || 0
+      this.options.params.detail.coins_2 = +this.coins.counterC2 || 0
+      this.options.params.detail.coins_5 = +this.coins.counterC5 || 0
+      this.options.params.detail.coins_10 = +this.coins.counterC10 || 0
+      this.options.params.detail.coins_25 = +this.coins.counterC25 || 0
 
-      // for statistic bills
-      this.options.params.detail.sum_bills = this.bills.amountBill
-      this.options.params.detail.bills_count = this.bills.counterBill
-      this.options.params.detail.bills_10 = this.bills.counterB10
-      this.options.params.detail.bills_50 = this.bills.counterB50
-      this.options.params.detail.bills_100 = this.bills.counterB100
-      this.options.params.detail.bills_200 = this.bills.counterB200
-      this.options.params.detail.bills_500 = this.bills.counterB500
+      // for bills
+      this.options.params.detail.sum_bills = +this.bills.amountBill || 0
+      this.options.params.detail.bills_count = +this.bills.counterBill || 0
+      this.options.params.detail.bills_10 = +this.bills.counterB10 || 0
+      this.options.params.detail.bills_50 = +this.bills.counterB50 || 0
+      this.options.params.detail.bills_100 = +this.bills.counterB100 || 0
+      this.options.params.detail.bills_200 = +this.bills.counterB200 || 0
+      this.options.params.detail.bills_500 = +this.bills.counterB500 || 0
 
       if (!this.order) this.order = this.createOrder() // 'W220220504143549'
       this.options.params.order = this.order // for compatibility
@@ -888,7 +888,7 @@ export default {
         this.$message(`Communication with connect bonus is unavailable!!!`)
         return
       }
-
+      this.clearCashMoney()
       switch (panelType) {
         case 'wash':
           if (+response.result === 0 && +this.getWetBalance > 0) {
@@ -954,7 +954,7 @@ export default {
         }
       } else {
         // this.$message(`Введите правильно номер мобильного телефона`)
-        this.$message( localizeFilter( `${messages.Enter_valid_phone_number }`))
+        this.$message(localizeFilter(`${messages.Enter_valid_phone_number}`))
       }
     },
 
@@ -972,7 +972,7 @@ export default {
         this.$router.push('/password')
       } else {
         // this.$message(`Введите правильно номер мобильного телефона`)
-        this.$message( localizeFilter( `${messages.Enter_valid_phone_number }`))
+        this.$message(localizeFilter(`${messages.Enter_valid_phone_number}`))
       }
     },
     // --------------------------------

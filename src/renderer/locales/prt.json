@@ -1,0 +1,182 @@
+{
+  "LanguageTitle": "Localização",
+  "BOX": "POSTO",
+  "#": "#",
+  "VACUUM": "ASPIRADOR",
+  "PAYMENT": "PAGAMENTO",
+  "locales": "PRT",
+  "PROGRAMS_COST": "PREÇO DE PROGRAMAS",
+  "CASH": "NUMERÁRIO",
+  "BANK_CARD": "CARTÃO BANCÁRIO",
+  "BONUSES": "BONUS",
+  "Choose_your_payment_method": "Selecione o metodo de pagamento",
+  "CONSULTANT": "CONSULTOR",
+  "CALL_SENT_WAIT": "PEDIDO ENVIADO, AGUARDE POR FAVOR",
+  "FREE_STOP": "ACESSO STOP",
+  "STOP": "STOP", 
+  "CONTINUE": "CONTINUAR",
+  "MAKE_A_PAYMENT": "FAÇA UM PAGAMENTO",
+  "Insert_banknotes_or_coins": "Inserir notas ou moedas, em seguida carregar botão abaixo",
+  "Price_per_minute": "Preço por min",
+  "Program": "Programa",
+
+  "SHAMPOO": "CHAMPÔ",
+  "DISK": "JANTES",
+  "MOSQUITO": "MOSQUITO",
+  "FOAM": "ESPUMA",
+  "FOAM_COLOR": "ESPUMA COR", 
+  "BRUSH": "ESCOVAR",
+  "BRUSH_COLOR": "ESCOVAR COR",
+  "WATER_SHAMPOO": "ÁGUA CHAMPÔ",
+  "COLD_WATER": "RESFRIADO",
+  "WARM_WATER": "CALOROSO",
+  "OSMOSIS": "OSMOSE",
+  "STOP_PAUSE": "STOP/PAUSE",
+  "AIR": "AR",
+  "GLASS_WASHING_LIQUID": "LAVAGEM",
+  "WAX": "CERA",
+  "FOAM_X2": "ESPUMA X2",
+  "VACUUM_CLEANER": "ASPIRADOR",
+  "BRUSH_X2": "ESCOVAR X2",
+  "DISK_X2": "JANTES X2",
+  "MOSQUITO_X2": "MOSQUITO X2",
+  "TURBO_DRYER": "SECADOR",
+  "DEGREASE": "SEM GORDURA",
+  "DISINFECTION": "DESINFECÇÃO",
+  "BLACKING": "ESCURECIMENTO",
+  "DOORSILL": "SOLEIRA DA PORTA",
+  
+  "COMPLETE_PAYMENT": "CONCLUIR PAGAMENTO",
+  "RETURN_BONUSES_UP": "DELVOLVER EM BÔNUS ATÉ 30% CONCLUIR PAGAMENTO",
+  "APPEND": "ACRESCENTAR",
+  "CONFIRM": "CONFIRME",
+
+  "To_enter_the_system": "Para acesso ao sistema, introduze o número de telefone ou digitalize o código QR", 
+  "To_credit_Bonuses_to_your_account": "Para creditar bônus em sua conta, insira seu número de telefone",
+  "By_clicking_on_CONFIRM": "Ao clicar em CONFIRMAR, está a dar o seu consentimento para lhe enviar mensagens SMS e tratamento de dados pessoais, de acordo com as condições indicadas no site: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "Autorização por código QR",
+  "Your_balance": "Seu balanço,",
+  "Select_charge_amount": "Selecione o valor da cobrança",
+  
+  "Enter_your_password": "Coloque sua senha",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "menu de configurações",
+  
+  "The_status_of_the_operation": "Status de execução da operação:",
+  "Connection_to_the_bank_terminal": "Conexão com terminal bancário...",
+  "Failed_to_connect_to_the_bank_terminal": "Falha na conexão com terminal bancário",
+  "Timed_out": "Tempo de espera expirou",
+  "Operation_approved": "Operação aprovada",
+  "Operation_rejected": "Operação rejeitada",
+  "Follow_the_instructions_on_the_terminal": "Siga as instruções no terminal",
+
+  "You_want_to_complete_the_car_wash": "Você quer completar a lavagem do carro e devolver o saldo com bônus?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Ao clicar no botão Sim, você concorda com o envio de mensagens SMS para você e o processamento de dados pessoais de acordo com as condições listadas no site: www.alles-bonus.com",
+
+  "Display": "Ecrã",
+  "Services": "Serviços",
+  "Service_balance": "Saldo de serviço",
+  "Reset": "Redefinir",
+  "Open_the_door": "Abrir a porta",
+  "Reboot": "Reinício",
+
+  "Software_version": "Software version",
+  "Temperature": "Temperatura",
+  "Humidity": "Umidade",
+
+  "Show_tooltips_when_switching_programs_during": "Mostrar dicas de ferramentas ao alternar programas",
+
+  "Time_to_switch_to_the_main_window": "Time to switch to the main window",
+
+  "Setting": "Configurações",
+  "Languages": "Languages",
+  "Finance": "Finanças",
+  "Review": "Vista",
+
+  "OK": "OK",
+  "Cancel": "Cancelar",
+  "Confirm": "Confirme",
+  "Make_the_payment_window_the_main": "Faça da janela de pagamento a principal",
+  "Show_cursor_in_the_main_window": "Mostrar cursor na janela principal",
+  "Direct_cash_payment": "Pagamento direto em dinheiro",
+  "Banking_terminal": "Terminal do banco",
+  
+  "System": "Sistema",
+  "Panel": "Painel",
+  "Bill_acceptor": "Aceitador de notas",
+  "Coin_acceptor": "Moedeiro",
+
+  "Language": "Idioma",
+  "Currency": "Moeda",
+  
+  "Type_of_panel": "Tipo de painel",
+  "Panel_number": "Número do painel",
+  "Vacuum_number": "Número do aspirador",
+
+  "Type": "Tipo",
+  "Accept_bills": "Aceitar notas",
+  "Accept_coins": "Aceitar moedas",
+
+  "Model": "Modelo",
+  "Reconciliation_Pax": "Reconciliação Pax",
+
+  "Payment_limits": "Limites de pagamento",
+  "Minimum": "Mínima",
+  "Maximum": "Máxima",
+  "Tokens": "Fichas",
+
+  "CAR_WASH": "LAVA-JATO",
+  "PAYMENT_CENTER": "CENTRO DE PAGAMENTO",
+  "PANEL": "PAINEL",
+
+  "Cash_post": "Caixa posto",
+  "Total_amount": "Valor total",
+  "Amount_of_deposit_in_banknotes": "Montante do depósito em notas",
+  "Number_of_banknotes": "Número de notas",
+  "Credit_amount_in_coins": "Valor do crédito em moedas",
+  "Number_of_coins": "Número de moedas",
+  "Collection": "Coleção",
+
+  "Replace_item": "Substituir item",
+  "Replace_program": "Substituir programa",
+
+  "Cash_accounting": "Contabilidade de caixa",
+  "Date": "Encontro",
+  "Cash": "Dinheiro",
+  "Cashless": "Sem dinheiro",
+  "Bonus": "Bônus",
+  "Service": "Serviço",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed"
+
+
+
+
+}

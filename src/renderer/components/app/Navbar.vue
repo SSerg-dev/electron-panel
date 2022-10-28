@@ -181,6 +181,15 @@
             <img src="@/assets/imgs/flags/flag_ROU.png" />
           </div>
 
+          <div v-if="this.info.locale === 'swe-SWE'">
+            <img src="@/assets/imgs/flags/flag_SWE.png" />
+          </div>
+
+          <div v-if="this.info.locale === 'prt-PRT'">
+            <img src="@/assets/imgs/flags/flag_PRT.png" />
+          </div>
+
+
         </router-link>
       </div>
     </div>
@@ -254,8 +263,8 @@ export default {
         maxLogSizeInBytes: 500 * 1024, // 500KB
       })
       flag
-        ? log.info('Setting Menu unlocked user->', this.getUserActiveName)
-        : log.info('Setting Menu locked user->', this.getUserActiveName)
+        ? log.info('Setting Menu unlocked user:', this.getUserActiveName)
+        : log.info('Setting Menu locked user:', this.getUserActiveName)
     },
   },
 

@@ -14,5 +14,6 @@ export default {
     Terminal_operation: 'Terminal_operation',
     approved: 'approved',
     rejected: 'rejected',
-    The_payment_successful_amount: 'The_payment_successful_amount'
+    The_payment_successful_amount: 'The_payment_successful_amount',
+    KKT_not_installed: 'KKT_not_installed'
 }

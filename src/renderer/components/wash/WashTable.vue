@@ -262,6 +262,9 @@ import WashTableDisinfection from '@/components/wash/actives/WashTableDisinfecti
 import WashTableBonus from '@/components/wash/WashTableBonus'
 
 import { dateFilter, getRndInteger, log } from '@/utils/order.js'
+import messages from '@/utils/messages'
+import localizeFilter from '@/filters/localize.filter'
+
 
 export default {
   data: () => ({
@@ -514,7 +517,10 @@ export default {
         this.buttonReceipt.background = 'rgb(64, 196, 255)'
         if (this.getIsKktInstalled) {
           this.$router.push('/invoice')
-        } else this.$message(`KKT not installed`)
+        } else {
+          //this.$message(`KKT not installed`)
+          this.$message( localizeFilter( `${messages.KKT_not_installed}`))
+        } 
 
         this.setDown()
         return

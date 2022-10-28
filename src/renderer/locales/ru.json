@@ -173,7 +173,8 @@
     "Terminal_operation": "Операция терминала",
     "approved": "одобрена, сумма:",
     "rejected": "отклонена",
-    "The_payment_successful_amount": "Оплата прошла успешно, внесенная сумма:"
+    "The_payment_successful_amount": "Оплата прошла успешно, внесенная сумма:",
+    "KKT_not_installed": "ККТ не установлен"
 
 
   }

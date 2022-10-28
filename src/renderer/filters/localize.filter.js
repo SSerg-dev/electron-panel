@@ -21,6 +21,8 @@ import bgr from '../locales/bgr.json'
 import grc from '../locales/grc.json'
 import dnk from '../locales/dnk.json'
 import rou from '../locales/rou.json'
+import swe from '../locales/swe.json'
+import prt from '../locales/prt.json'
 
 const locales = {
   'ru-RU': ru,
@@ -44,7 +46,9 @@ const locales = {
   'bgr-BGR': bgr,
   'grc-GRC': grc,
   'dnk-DNK': dnk,
-  'rou-ROU': rou
+  'rou-ROU': rou,
+  'swe-SWE': swe,
+  'prt-PRT': prt
 }
 
 export default function localizeFilter(key) {

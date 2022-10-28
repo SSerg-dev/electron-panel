@@ -103,7 +103,7 @@ export default {
     delay: 2000,
 
     client: 'fetch',
-    url: '',//'https://192.168.1.3/',
+    url: '', //'https://192.168.1.3/',
     urlLocal: 'http://127.0.0.1/',
     storage: null,
     options: {},
@@ -112,18 +112,13 @@ export default {
     queueType: '',
     localClient: 'local',
     localStorage: null,
-
-
   }),
   mounted() {
     this.order = this.createOrder()
     this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
-    
-    this.localStorage = new Storage(
-      this.localClient,
-      (this.urlLocal)
-    )
+
+    this.localStorage = new Storage(this.localClient, this.urlLocal)
   },
   computed: {
     ...mapGetters({
@@ -135,7 +130,7 @@ export default {
       getWetOrder: 'getWetOrder',
       getDryOrder: 'getDryOrder',
       getWetBalance: 'getWetBalance',
-      getPayType:'getPayType'
+      getPayType: 'getPayType',
     }),
     IsDryBalance: {
       get: function () {
@@ -186,21 +181,24 @@ export default {
       }
     },
 
+    /* dev */
     getCashMoney() {
-      let isClear = false
-      const options = 'ipcRenderer.send coin from CashBill'
-      ipcRenderer.send('async-cash-start', options)
+      const options = 'ipcRenderer.send from CashVacuumBill'
+      ipcRenderer.send('async-read-once', options)
 
-      ipcRenderer.on('async-cash-reply', (event, coins, bills) => {
-        this.coins = coins
-        this.bills = bills
-
-        // if (coins || bills) {
-        //   isClear = true
-        //   event.sender.send('async-cash-clear', isClear)
-        // }
+      ipcRenderer.on('async-once-reply', (event, coins, bills) => {
+        this.coins = JSON.parse(coins) || {}
+        this.bills = JSON.parse(bills) || {}
       })
     },
+    clearCashMoney() {
+      let isClear = false
+      if (+this.coins.amountCoin > 0 || +this.bills.amountBill > 0) {
+        isClear = true
+        ipcRenderer.send('async-once-clear', isClear)
+      }
+    },
+    /*     */
 
     async payCashMoney() {
       const method = methods[0]
@@ -215,32 +213,32 @@ export default {
       this.options.params.type = this.getPayType || 'cash'
       this.options.params.sum = +this.sum
 
-      // for statistic coins
-      this.options.params.detail.sum_coins = this.coins.amountCoin
-      this.options.params.detail.coins_count = this.coins.counterCoin
-      this.options.params.detail.coins_1 = 0
-      this.options.params.detail.coins_2 = 0
-      this.options.params.detail.coins_5 = this.coins.counterC5
-      this.options.params.detail.coins_10 = this.coins.counterC10
-      this.options.params.detail.coins_25 = this.coins.counterC25
+      // for coins
+      this.options.params.detail.sum_coins = +this.coins.amountCoin || 0
+      this.options.params.detail.coins_count = +this.coins.counterCoin || 0
+      this.options.params.detail.coins_1 = +this.coins.counterC1 || 0
+      this.options.params.detail.coins_2 = +this.coins.counterC2 || 0
+      this.options.params.detail.coins_5 = +this.coins.counterC5 || 0
+      this.options.params.detail.coins_10 = +this.coins.counterC10 || 0
+      this.options.params.detail.coins_25 = +this.coins.counterC25 || 0
 
-      // for statistic bills
-      this.options.params.detail.sum_bills = this.bills.amountBill
-      this.options.params.detail.bills_count = this.bills.counterBill
-      this.options.params.detail.bills_10 = this.bills.counterB10
-      this.options.params.detail.bills_50 = this.bills.counterB50
-      this.options.params.detail.bills_100 = this.bills.counterB100
-      this.options.params.detail.bills_200 = this.bills.counterB200
-      this.options.params.detail.bills_500 = this.bills.counterB500
+      // for bills
+      this.options.params.detail.sum_bills = +this.bills.amountBill || 0
+      this.options.params.detail.bills_count = +this.bills.counterBill || 0
+      this.options.params.detail.bills_10 = +this.bills.counterB10 || 0
+      this.options.params.detail.bills_50 = +this.bills.counterB50 || 0
+      this.options.params.detail.bills_100 = +this.bills.counterB100 || 0
+      this.options.params.detail.bills_200 = +this.bills.counterB200 || 0
+      this.options.params.detail.bills_500 = +this.bills.counterB500 || 0
 
       if (!this.order) this.order = this.createOrder()
       this.options.params.order = this.order
       this.options.params.detail.order = this.order
 
-      // console.log(
-      //   '$$ CashVacuumBill ++payCashMoney-->options-->this.options-->',
-      //   JSON.stringify(this.options)
-      // )
+      console.log(
+        '$$ CashVacuumBill ++payCashMoney-->options-->this.options-->',
+        JSON.stringify(this.options)
+      )
 
       const response = await this.storage.getClient(method, this.options, type)
 
@@ -250,12 +248,15 @@ export default {
         this.setQueue(method, this.options, this.queueType)
 
         if (this.$route.name !== 'program') this.$router.push('/program')
-        this.$message(`Communication with connect cash vacuum is unavailable!!!`)
+        this.$message(
+          `Communication with connect cash vacuum is unavailable!!!`
+        )
         return
       }
       /* dev vacuum */
 
       if (+response.result === 0 && +this.getDryBalance > 0) {
+        this.clearCashMoney()
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(
           `The payment was successful, the deposited amount:  ${+this
@@ -265,7 +266,7 @@ export default {
         this.$message(`Payment failed!`)
       }
     },
-        // ----------------------------------
+    // ----------------------------------
     setQueue(method, options, type) {
       // setQueue
       this.queueType = 'setQueue'
@@ -346,12 +347,10 @@ export default {
       )
     },
   },
-
 }
 </script>
 
 <style scoped>
-
 .pay-input {
   width: 66em;
   height: 14em;

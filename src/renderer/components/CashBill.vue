@@ -67,7 +67,6 @@ import { Queue } from '@/queue/index.js'
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
 
-
 export default {
   name: 'cash-bill',
   data: () => ({
@@ -121,7 +120,7 @@ export default {
       getWetBalance: 'getWetBalance',
       getIsPing: 'getIsPing',
       getPayType: 'getPayType',
-      getInitCurrency: 'getInitCurrency'
+      getInitCurrency: 'getInitCurrency',
     }),
     IsWetBalance: {
       get: function () {
@@ -180,21 +179,24 @@ export default {
       }
     },
 
+    /* dev */
     getCashMoney() {
-      let isClear = false
-      const options = 'ipcRenderer.send coin from CashBill'
-      ipcRenderer.send('async-cash-start', options)
+      const options = 'ipcRenderer.send from CashBill'
+      ipcRenderer.send('async-read-once', options)
 
-      ipcRenderer.on('async-cash-reply', (event, coins, bills) => {
-        this.coins = coins
-        this.bills = bills
-
-        // if (coins || bills) {
-        //   isClear = true
-        //   event.sender.send('async-cash-clear', isClear)
-        // }
+      ipcRenderer.on('async-once-reply', (event, coins, bills) => {
+        this.coins = JSON.parse(coins) || {}
+        this.bills = JSON.parse(bills) || {}
       })
     },
+    clearCashMoney() {
+      let isClear = false
+      if (+this.coins.amountCoin > 0 || +this.bills.amountBill > 0) {
+        isClear = true
+        ipcRenderer.send('async-once-clear', isClear)
+      }
+    },
+    /*     */
 
     async payCashMoney() {
       const method = methods[0]
@@ -207,23 +209,23 @@ export default {
       this.options.params.type = this.getPayType || 'cash'
       this.options.params.sum = +this.sum
 
-      // for statistic coins
-      this.options.params.detail.sum_coins = this.coins.amountCoin
-      this.options.params.detail.coins_count = this.coins.counterCoin
-      this.options.params.detail.coins_1 = 0
-      this.options.params.detail.coins_2 = 0
-      this.options.params.detail.coins_5 = this.coins.counterC5
-      this.options.params.detail.coins_10 = this.coins.counterC10
-      this.options.params.detail.coins_25 = this.coins.counterC25
+      // for coins
+      this.options.params.detail.sum_coins = +this.coins.amountCoin || 0
+      this.options.params.detail.coins_count = +this.coins.counterCoin || 0
+      this.options.params.detail.coins_1 = +this.coins.counterC1 || 0
+      this.options.params.detail.coins_2 = +this.coins.counterC2 || 0
+      this.options.params.detail.coins_5 = +this.coins.counterC5 || 0
+      this.options.params.detail.coins_10 = +this.coins.counterC10 || 0
+      this.options.params.detail.coins_25 = +this.coins.counterC25 || 0
 
-      // for statistic bills
-      this.options.params.detail.sum_bills = this.bills.amountBill
-      this.options.params.detail.bills_count = this.bills.counterBill
-      this.options.params.detail.bills_10 = this.bills.counterB10
-      this.options.params.detail.bills_50 = this.bills.counterB50
-      this.options.params.detail.bills_100 = this.bills.counterB100
-      this.options.params.detail.bills_200 = this.bills.counterB200
-      this.options.params.detail.bills_500 = this.bills.counterB500
+      // for bills
+      this.options.params.detail.sum_bills = +this.bills.amountBill || 0
+      this.options.params.detail.bills_count = +this.bills.counterBill || 0
+      this.options.params.detail.bills_10 = +this.bills.counterB10 || 0
+      this.options.params.detail.bills_50 = +this.bills.counterB50 || 0
+      this.options.params.detail.bills_100 = +this.bills.counterB100 || 0
+      this.options.params.detail.bills_200 = +this.bills.counterB200 || 0
+      this.options.params.detail.bills_500 = +this.bills.counterB500 || 0
 
       if (!this.order) this.order = this.createOrder() /* 'W220220504143549' */
       this.options.params.order = this.order // ??
@@ -248,6 +250,7 @@ export default {
         return
       }
       if (+response.result === 0 && +this.getWetBalance > 0) {
+        this.clearCashMoney()  
         if (this.$route.name !== 'program') this.$router.push('/program')
         // this.$message(
         //   `Оплата прошла успешно, внесенная сумма:  ${+this.getWetBalance} ₽`

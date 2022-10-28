@@ -1,0 +1,182 @@
+{
+  "LanguageTitle": "Lokalisering",
+  "BOX": "INLÄGG",
+  "#": "#",
+  "VACUUM": "DAMMSUGARE",
+  "PAYMENT": "BETALNING",
+  "locales": "SWE",
+  "PROGRAMS_COST": "PROGRAMMENS KOSTNAD",
+  "CASH": "MED KONTANTER",
+  "BANK_CARD": "MED BANKKORT",
+  "BONUSES": "MED BONUSPOÄNG",
+  "Choose_your_payment_method": "Välj betalningssätt",
+  "CONSULTANT": "HJÄLP",
+  "CALL_SENT_WAIT": "FÖRFRÅGAN ÄR SKICKAD, VÄNTA",
+  "FREE_STOP": "GRATIS STOPP",
+  "STOP": "STOPP", 
+  "CONTINUE": "CONTINUE",
+  "MAKE_A_PAYMENT": "BETALA",
+  "Insert_banknotes_or_coins": "Sätt in sedlar eller mynt och tryck på knappen nedan",
+  "Price_per_minute": "Pris för minut",
+  "Program": "Program",
+
+  "SHAMPOO": "SCHAMPO",
+  "DISK": "SKIVOR",
+  "MOSQUITO": "INSEKTS",
+  "FOAM": "SKUM",
+  "FOAM_COLOR": "FOAM FÄRG", 
+  "BRUSH": "BORSTA",
+  "BRUSH_COLOR": "BORSTA FÄRG",
+  "WATER_SHAMPOO": "VATTEN SCHAMPO",
+  "COLD_WATER": "KALL",
+  "WARM_WATER": "VÄRMA",
+  "OSMOSIS": "OSMOSIS",
+  "STOP_PAUSE": "STOPP/PAUS",
+  "AIR": "LUFTTRYCK",
+  "GLASS_WASHING_LIQUID": "SPOLARVÄTSKA",
+  "WAX": "VAX ",
+  "FOAM_X2": "SKUM X2",
+  "VACUUM_CLEANER": "DAMMSUGARE",
+  "BRUSH_X2": "BORSTA X2",
+  "DISK_X2": "SKIVOR X2",
+  "MOSQUITO_X2": "INSEKTS X2",
+  "TURBO_DRYER": "TORKARE",
+  "DEGREASE": "AVFETTA",
+  "DISINFECTION": "DESINFEKTION",
+  "BLACKING": "SVARTNING",
+  "DOORSILL": "DÖRRTRÖSKEL",
+  
+  "COMPLETE_PAYMENT": "AVSLUTA BETALNINGEN",
+  "RETURN_BONUSES_UP": "RETURERAR UPP TILL 30% AVSLUTA BETALNINGEN",
+  "APPEND": "BIFOGA",
+  "CONFIRM": "BEKRÄFTA",
+
+  "To_enter_the_system": "Ange ditt telefonnummer eller skanna QR-koden för att logga in", 
+  "To_credit_Bonuses_to_your_account": "För att kreditera Bonusar till ditt konto, ange ditt telefonnummer",
+  "By_clicking_on_CONFIRM": "Genom att klicka på BEKRÄFTA ger du ditt samtycke till att skicka SMS-meddelanden och personuppgiftsbehandling till dig, enligt de villkor som publiceras på webbplatsen: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "QR inloggning",
+  "Your_balance": "Din balans,",
+  "Select_charge_amount": "Välj debiterings belopp",
+  
+  "Enter_your_password": "Ange ditt lösenord",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "inställningsmeny",
+  
+  "The_status_of_the_operation": "Handlingens utförandestatus:",
+  "Connection_to_the_bank_terminal": "Anslutning till bankterminalen...",
+  "Failed_to_connect_to_the_bank_terminal": "Det gick inte att ansluta till bankterminalen",
+  "Timed_out": "Väntetiden är över",
+  "Operation_approved": "Drift godkänd",
+  "Operation_rejected": "Operationen avvisades",
+  "Follow_the_instructions_on_the_terminal": "Följ instruktionerna på terminalen",
+
+  "You_want_to_complete_the_car_wash": "Vill du slutföra biltvätten och lämna tillbaka saldot med bonusar?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Genom att klicka på Ja-knappen samtycker du till sändning av SMS-meddelanden till dig och behandling av personuppgifter i enlighet med villkoren som publiceras på webbplatsen: www.alles-bonus.com",
+
+  "Display": "Skärmen",
+  "Services": "Tjänster",
+  "Service_balance": "Servicebalans",
+  "Reset": "Återställa",
+  "Open_the_door": "Öppna dörren",
+  "Reboot": "Starta om",
+
+  "Software_version": "Mjukvaru-version",
+  "Temperature": "Temperatur",
+  "Humidity": "Fuktighet",
+
+  "Show_tooltips_when_switching_programs_during": "Visa verktygstips när du byter program",
+
+  "Time_to_switch_to_the_main_window": "Dags att gå till huvudfönstret",
+
+  "Setting": "Miljö",
+  "Languages": "Språk",
+  "Finance": "Finanser",
+  "Review": "Överblick",
+
+  "OK": "OK",
+  "Cancel": "Avbryt",
+  "Confirm": "Bekräfta",
+  "Make_the_payment_window_the_main": "Gör betalningsfönstret till det huvudsakliga",
+  "Show_cursor_in_the_main_window": "Visa markören i huvudfönstret",
+  "Direct_cash_payment": "Direkt kontant betalning",
+  "Banking_terminal": "Bankterminal",
+  
+  "System": "Systemet",
+  "Panel": "Panel",
+  "Bill_acceptor": "Sedelmottagare",
+  "Coin_acceptor": "Myntmottagare",
+
+  "Language": "Språk",
+  "Currency": "Valuta",
+  
+  "Type_of_panel": "Typ av panel",
+  "Panel_number": "Panelnummer",
+  "Vacuum_number": "Dammsugarnummer",
+
+  "Type": "Typ",
+  "Accept_bills": "Acceptera sedlar",
+  "Accept_coins": "Acceptera mynt",
+
+  "Model": "Modell",
+  "Reconciliation_Pax": "Försoning Pax",
+
+  "Payment_limits": "Betalningsgränser",
+  "Minimum": "Minimum",
+  "Maximum": "Maximal",
+  "Tokens": "Polletter",
+
+  "CAR_WASH": "BILTVÄTT",
+  "PAYMENT_CENTER": "BETALNINGSCENTRAL",
+  "PANEL": "PANEL",
+
+  "Cash_post": "Kassaregister",
+  "Total_amount": "Totala summan",
+  "Amount_of_deposit_in_banknotes": "Insättningsbelopp i sedlar",
+  "Number_of_banknotes": "Antal sedlar",
+  "Credit_amount_in_coins": "Kreditbelopp i mynt",
+  "Number_of_coins": "Antal mynt",
+  "Collection": "Samling",
+
+  "Replace_item": "Byt ut objekt",
+  "Replace_program": "Byt ut programmet",
+
+  "Cash_accounting": "Kontantredovisning",
+  "Date": "Datum",
+  "Cash": "Kontanter",
+  "Cashless": "Kontantlöst",
+  "Bonus": "Bonus",
+  "Service": "Service",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed"
+
+
+
+
+}

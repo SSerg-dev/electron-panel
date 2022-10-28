@@ -173,6 +173,7 @@
   "Terminal_operation": "Terminal operation",
   "approved": "approved, amount:",
   "rejected": "rejected",
-  "The_payment_successful_amount": "The payment was successful, the deposited amount:"
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed"
 
 }

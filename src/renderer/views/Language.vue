@@ -158,19 +158,21 @@
                 <img src="@/assets/imgs/language/lang_ROU.png" />
               </button>
             </td>
-            <!-- dev -->
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('swe-SWE')">
                 <img src="@/assets/imgs/language/lang_SWE.png" />
-              </router-link>
+              </button>
             </td>
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('prt-PRT')">
                 <img src="@/assets/imgs/language/lang_PRT.png" />
-              </router-link>
+              </button>
             </td>
           </tr>
           <tr v-if="this.getPaginate === 3">
+            <!-- dev -->
             <td>
               <router-link class="btn-small" to="/language">
                 <img src="@/assets/imgs/language/lang_NLD.png" />
