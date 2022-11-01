@@ -172,17 +172,19 @@
             </td>
           </tr>
           <tr v-if="this.getPaginate === 3">
-            <!-- dev -->
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('nld-NLD')">
                 <img src="@/assets/imgs/language/lang_NLD.png" />
-              </router-link>
+              </button>
             </td>
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('mda-MDA')">
                 <img src="@/assets/imgs/language/lang_MDA.png" />
-              </router-link>
+              </button>
             </td>
+            <!-- dev -->
             <td>
               <router-link class="btn-small" to="/language">
                 <img src="@/assets/imgs/language/lang_ITA.png" />

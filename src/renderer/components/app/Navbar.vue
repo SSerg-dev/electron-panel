@@ -189,6 +189,13 @@
             <img src="@/assets/imgs/flags/flag_PRT.png" />
           </div>
 
+          <div v-if="this.info.locale === 'nld-NLD'">
+            <img src="@/assets/imgs/flags/flag_NLD.png" />
+          </div>
+
+          <div v-if="this.info.locale === 'mda-MDA'">
+            <img src="@/assets/imgs/flags/flag_MDA.png" />
+          </div>
 
         </router-link>
       </div>

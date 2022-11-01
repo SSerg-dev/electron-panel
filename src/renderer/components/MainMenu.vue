@@ -15,6 +15,24 @@
               {{ 'PROGRAMS_COST' | localize }}
             </div>
           </div>
+        
+        <!-- dev todo -->
+        <!-- <div
+          
+          class="waves-effect price"
+          id="button-price"
+        >
+          <div
+            class="button-price-style"
+            
+          >
+            <div class="emoji">
+              {{ `📄` }}
+            </div>
+          </div>
+        </div> -->
+        <!--     -->
+
         </li>
 
         <!-- 2 -->
@@ -61,6 +79,7 @@
 <script>
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
+import { Component, Box, Circle, Button } from '@/shapes/index.js'
 
 import { ipcRenderer } from 'electron'
 
@@ -71,6 +90,14 @@ export default Vue.extend({
       isDirectCash: false,
       delay: 10000,
       timeoutDelay: null,
+
+      /* dev */
+      /* isDown: {
+      price: false,
+    }, */
+    buttonPrice: null,
+
+    emoji: '',
     }
   },
   props: ['type'],
@@ -94,6 +121,7 @@ export default Vue.extend({
   },
 
   mounted() {
+    this.initial()
     // initial timers
     /* dev */
     // this.$router.push('/finance')
@@ -189,7 +217,29 @@ export default Vue.extend({
       this.setCashEnabler(this.cash_enabler)
       ipcRenderer.send('cash_enabler', 'true')
     },
-  },
+    initial() {
+      // classes instances
+
+      /* button price */
+      /* this.buttonPrice = new Button({
+        selector: '#button-price',
+
+        width: 11,
+        height: 11,
+        background: 'rgb(255, 255, 255)',
+        border: '0.4em solid rgb(64, 196, 255)',
+        boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
+        borderRadius: 2,
+        fontSize: '1em',
+
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }) */
+
+    },
+    
+  }, // end methods
 })
 </script>
 
@@ -244,5 +294,27 @@ section {
   display: flex;
   align-items: center;
   justify-content: left;
+}
+.price {
+  /* position: absolute; */
+  margin-top: 0em;
+  margin-left: 0em;
+}
+.emoji {
+  -webkit-filter: url(#color);
+  filter: url(#color);
+
+  padding-top: -0em;
+  
+}
+.button-price-style {
+  font-size: 6.5em;
+  margin-left: 0em;
+  padding-top: 0em;
+  padding-right: 0em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

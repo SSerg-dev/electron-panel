@@ -953,8 +953,5 @@ svg {
   display: none;
 }
 
-.emoji {
-  -webkit-filter: url(#color);
-  filter: url(#color);
-}
+
 </style>

@@ -1,0 +1,182 @@
+{
+  "LanguageTitle": "Lokalisatie",
+  "BOX": "DOOS",
+  "#": "#",
+  "VACUUM": "STOFZUIGER",
+  "PAYMENT": "BETALING",
+  "locales": "NLD",
+  "PROGRAMS_COST": "PROGRAMMAKOSTEN",
+  "CASH": "CONTANT GELD",
+  "BANK_CARD": "CREDITCARD",
+  "BONUSES": "BONUSSEN",
+  "Choose_your_payment_method": "Kies een betalingswijze voor",
+  "CONSULTANT": "ADVISEUR",
+  "CALL_SENT_WAIT": "BEL VERZONDEN, WACHT EVEN ALSTUBLIEFT",
+  "FREE_STOP": "GRATIS STOP",
+  "STOP": "STOP", 
+  "CONTINUE": "DOORGAAN",
+  "MAKE_A_PAYMENT": "MAAK EEN BETALING",
+  "Insert_banknotes_or_coins": "Voer biljetten of munten in en klik op onderstaande knop wanneer u klaar bent",
+  "Price_per_minute": "Prijs voor min",
+  "Program": "Programmma",
+
+  "SHAMPOO": "SHAMPOO",
+  "DISK": "SCHIJVEN",
+  "MOSQUITO": "MOSKIT",
+  "FOAM": "SCHUIM",
+  "FOAM_COLOR": "SCHUIM KLEUR", 
+  "BRUSH": "BORSTEL",
+  "BRUSH_COLOR": "BORSTEL KLEUR",
+  "WATER_SHAMPOO": "WATER SHAMPOO",
+  "COLD_WATER": "KOUD",
+  "WARM_WATER": "WARM",
+  "OSMOSIS": "OSMOSE",
+  "STOP_PAUSE": "STOP/PAUSE",
+  "AIR": "LUCHT",
+  "GLASS_WASHING_LIQUID": "WASSEN",
+  "WAX": "WAX",
+  "FOAM_X2": "SCHUIM X2",
+  "VACUUM_CLEANER": "STOFZUIGER",
+  "BRUSH_X2": "BORSTEL X2",
+  "DISK_X2": "SCHIJVEN X2",
+  "MOSQUITO_X2": "MOSQUITO X2",
+  "TURBO_DRYER": "DROGER",
+  "DEGREASE": "DEGREASE",
+  "DISINFECTION": "DESINFECTIE",
+  "BLACKING": "BLACKING",
+  "DOORSILL": "DREMPEL",
+  
+  "COMPLETE_PAYMENT": "VOLLEDIGE BETALING",
+  "RETURN_BONUSES_UP": "RETURN BONUSES UP TO 30% VOLLEDIGE BETALING",
+  "APPEND": "APPEND",
+  "CONFIRM": "BEVESTIGEN",
+
+  "To_enter_the_system": "Voer je telefoonnummer in of scan de QR-code om in te loggen", 
+  "To_credit_Bonuses_to_your_account": "Voer uw telefoonnummer in om Bonussen op uw account te crediteren",
+  "By_clicking_on_CONFIRM": "Door op BEVESTIGEN te klikken, geeft u toestemming om sms-berichten en verwerking van persoonsgegevens naar u te verzenden, volgens de voorwaarden vermeld op de website: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "QR autorisatie",
+  "Your_balance": "Je balans,",
+  "Select_charge_amount": "Selecteer bedrag",
+  
+  "Enter_your_password": "Voer uw wachtwoord in",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "instellingenmenu",
+  
+  "The_status_of_the_operation": "Bedrijfsstatus:",
+  "Connection_to_the_bank_terminal": "Verbinding met een bankterminal...",
+  "Failed_to_connect_to_the_bank_terminal": "Kan geen verbinding maken met de bankterminal",
+  "Timed_out": "Tijdsoverschrijding",
+  "Operation_approved": "Operatie goedgekeurd",
+  "Operation_rejected": "Operatie afgewezen",
+  "Follow_the_instructions_on_the_terminal": "Follow the instructions on the terminal",
+
+  "You_want_to_complete_the_car_wash": "U wilt de wasstraat voltooien en het saldo teruggeven met bonussen?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Door op de Ja-knop te klikken, stemt u in met het verzenden van sms-berichten naar u en de verwerking van persoonlijke gegevens in overeenstemming met de voorwaarden vermeld op de website: www.alles-bonus.com",
+
+  "Display": "Scherm",
+  "Services": "Services",
+  "Service_balance": "Servicebalans",
+  "Reset": "Resetten",
+  "Open_the_door": "De deur openen",
+  "Reboot": "Herstarten",
+
+  "Software_version": "Software versie",
+  "Temperature": "Temperatuur",
+  "Humidity": "Vochtigheid",
+
+  "Show_tooltips_when_switching_programs_during": "Toon tooltips bij het wisselen van programma",
+
+  "Time_to_switch_to_the_main_window": "Overschakelen naar hoofd",
+
+  "Setting": "Instellingen",
+  "Languages": "Talen",
+  "Finance": "Financiën",
+  "Review": "Overzicht",
+
+  "OK": "OK",
+  "Cancel": "Annuleren",
+  "Confirm": "Bevestigen",
+  "Make_the_payment_window_the_main": "Stel het betalingsvenster in",
+  "Show_cursor_in_the_main_window": "Cursor weergeven in het hoofdvenster",
+  "Direct_cash_payment": "Directe contante betaling",
+  "Banking_terminal": "Bankterminal",
+  
+  "System": "Systeem",
+  "Panel": "Paneel",
+  "Bill_acceptor": "Bankbiljetacceptor",
+  "Coin_acceptor": "Muntvangers",
+
+  "Language": "Taal",
+  "Currency": "Valuta:",
+  
+  "Type_of_panel": "Paneeltype",
+  "Panel_number": "Paneelnummer",
+  "Vacuum_number": "Stofzuiger nummer",
+
+  "Type": "Type",
+  "Accept_bills": "Accepteer bankbiljetten",
+  "Accept_coins": "Accepteer munten",
+
+  "Model": "Model",
+  "Reconciliation_Pax": "Verzoening Pax",
+
+  "Payment_limits": "Limieten",
+  "Minimum": "Minimum",
+  "Maximum": "Maximaal",
+  "Tokens": "Munten",
+
+  "CAR_WASH": "CARWASH",
+  "PAYMENT_CENTER": "BETALINGSCENTRUM",
+  "PANEL": "PANEEL",
+
+  "Cash_post": "Kassa",
+  "Total_amount": "Totaalbedrag",
+  "Amount_of_deposit_in_banknotes": "Bedrag van storting in bankbiljetten",
+  "Number_of_banknotes": "Aantal bankbiljetten",
+  "Credit_amount_in_coins": "Kredietbedrag in munten",
+  "Number_of_coins": "Aantal munten",
+  "Collection": "Verzameling",
+
+  "Replace_item": "Artikel vervangen",
+  "Replace_program": "Prog. vervangen",
+
+  "Cash_accounting": "Kasboekhouding",
+  "Date": "Datum",
+  "Cash": "Contant geld",
+  "Cashless": "Zonder contant geld",
+  "Bonus": "Bonus",
+  "Service": "Service",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed"
+
+
+
+
+}

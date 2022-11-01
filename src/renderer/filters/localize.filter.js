@@ -23,6 +23,8 @@ import dnk from '../locales/dnk.json'
 import rou from '../locales/rou.json'
 import swe from '../locales/swe.json'
 import prt from '../locales/prt.json'
+import nld from '../locales/nld.json'
+import mda from '../locales/mda.json'
 
 const locales = {
   'ru-RU': ru,
@@ -48,7 +50,10 @@ const locales = {
   'dnk-DNK': dnk,
   'rou-ROU': rou,
   'swe-SWE': swe,
-  'prt-PRT': prt
+  'prt-PRT': prt,
+  'nld-NLD': nld,
+  'mda-MDA': mda
+
 }
 
 export default function localizeFilter(key) {

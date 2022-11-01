@@ -193,6 +193,7 @@ export default {
       let isClear = false
       if (+this.coins.amountCoin > 0 || +this.bills.amountBill > 0) {
         isClear = true
+        // console.log('$$ clearCashMoney', this.coins.amountCoin)
         ipcRenderer.send('async-once-clear', isClear)
       }
     },
@@ -246,7 +247,7 @@ export default {
         this.setQueue(method, this.options, this.queueType)
 
         if (this.$route.name !== 'program') this.$router.push('/program')
-        this.$message(`Communication with connect cash is unavailable!!!`)
+        this.$message(`Communication with connect cash is unavailable!`)
         return
       }
       if (+response.result === 0 && +this.getWetBalance > 0) {

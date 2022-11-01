@@ -1,0 +1,182 @@
+{
+  "LanguageTitle": "Localizare",
+  "BOX": "STAȚIE",
+  "#": "#",
+  "VACUUM": "ASPIRATOR",
+  "PAYMENT": "PLATĂ",
+  "locales": "MDA",
+  "PROGRAMS_COST": "COSTUL PROGRAMELOR",
+  "CASH": "ÎN NUMERAR",
+  "BANK_CARD": "PRIN CARD BANCAR",
+  "BONUSES": "CU BONUSURI",
+  "Choose_your_payment_method": "Alegeți metoda de plată",
+  "CONSULTANT": "CONSULTANT",
+  "CALL_SENT_WAIT": "APEL TRIMIS, AȘTEPTAȚI",
+  "FREE_STOP": "STOP GRATUIT",
+  "STOP": "STOP", 
+  "CONTINUE": "CONTINUARE",
+  "MAKE_A_PAYMENT": "FA O PLATA",
+  "Insert_banknotes_or_coins": "Introduceți bancnotele sau monedele, faceți clic pe butonul de mai jos după finalizare",
+  "Price_per_minute": "Preț per min",
+  "Program": "Program",
+
+  "SHAMPOO": "ȘAMPON",
+  "DISK": "DISCURI",
+  "MOSQUITO": "INSECTE",
+  "FOAM": "SPUMĂ",
+  "FOAM_COLOR": "SPUMĂ CULOARE", 
+  "BRUSH": "PERIE",
+  "BRUSH_COLOR": "PERIE CULOARE",
+  "WATER_SHAMPOO": "APĂ ȘAMPON",
+  "COLD_WATER": "RECE",
+  "WARM_WATER": "CALD",
+  "OSMOSIS": "OSMOZĂ",
+  "STOP_PAUSE": "STOP/PAUSE",
+  "AIR": "AER",
+  "GLASS_WASHING_LIQUID": "DE SPĂLARE",
+  "WAX": "CEARĂ",
+  "FOAM_X2": "SPUMĂ X2",
+  "VACUUM_CLEANER": "ASPIRATOR",
+  "BRUSH_X2": "PERIE X2",
+  "DISK_X2": "DISCURI X2",
+  "MOSQUITO_X2": "INSECTE X2",
+  "TURBO_DRYER": "USCATOR",
+  "DEGREASE": "DEGRESAREA",
+  "DISINFECTION": "DEZINFECTARE",
+  "BLACKING": "ÎNNEGRARE",
+  "DOORSILL": "PRAG",
+  
+  "COMPLETE_PAYMENT": "FINALIZARE PLATĂ",
+  "RETURN_BONUSES_UP": "ÎNTOARCERE PÂNĂ LA 30% FINALIZARE PLATĂ",
+  "APPEND": "ADĂUGA",
+  "CONFIRM": "CONFIRMA",
+
+  "To_enter_the_system": "Pentru conectare, introduceți numărul de telefon sau scanați codul QR", 
+  "To_credit_Bonuses_to_your_account": "Pentru a credita bonusuri în contul dvs., introduceți numărul dvs. de telefon",
+  "By_clicking_on_CONFIRM": "Făcând clic pe CONFIRMĂ, îți dai consimțământul pentru a vă trimite mesaje SMS și prelucrarea datelor cu caracter personal, conform condițiilor enumerate pe site: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "Autorizare prin QR",
+  "Your_balance": "Echilibrul tau,",
+  "Select_charge_amount": "Selectați suma de taxare",
+  
+  "Enter_your_password": "Introduceți parola",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "meniul de setări",
+  
+  "The_status_of_the_operation": "Starea operației:",
+  "Connection_to_the_bank_terminal": "Conectarea la terminalul bancar...",
+  "Failed_to_connect_to_the_bank_terminal": "Nu se poate realiza conectarea la terminalul bancar",
+  "Timed_out": "Timpul de așteptare a expirat",
+  "Operation_approved": "Operațiune aprobată",
+  "Operation_rejected": "Operațiunea respinsă",
+  "Follow_the_instructions_on_the_terminal": "Urmați instrucțiunile de pe terminal",
+
+  "You_want_to_complete_the_car_wash": "Doriți să finalizați spălătoria auto și să returnați soldul cu bonusuri?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Făcând clic pe butonul Da, sunteți de acord cu trimiterea de mesaje SMS către dvs. și prelucrarea datelor cu caracter personal în conformitate cu condițiile enumerate pe site: www.alles-bonus.com",
+
+  "Display": "Ecran",
+  "Services": "Servicii",
+  "Service_balance": "Echilibrul serviciului",
+  "Reset": "Resetare",
+  "Open_the_door": "Deschidere ușă",
+  "Reboot": "Repornire",
+
+  "Software_version": "Versiune software",
+  "Temperature": "Temperatură",
+  "Humidity": "Umiditate",
+
+  "Show_tooltips_when_switching_programs_during": "Afișați sfaturi de instrumente atunci când comutați programe",
+
+  "Time_to_switch_to_the_main_window": "Time to switch to the main window",
+
+  "Setting": "Setări",
+  "Languages": "Limbi",
+  "Finance": "Finanțe",
+  "Review": "Revizuire",
+
+  "OK": "OK",
+  "Cancel": "Anulare",
+  "Confirm": "Confirma",
+  "Make_the_payment_window_the_main": "Faceți fereastra de plată principală",
+  "Show_cursor_in_the_main_window": "Afișați cursorul în fereastra principală",
+  "Direct_cash_payment": "Plata directa in numerar",
+  "Banking_terminal": "Terminal bancar",
+  
+  "System": "Sistem",
+  "Panel": "Panou",
+  "Bill_acceptor": "Acceptator de bancnote",
+  "Coin_acceptor": "Acceptor de monede",
+
+  "Language": "Limba",
+  "Currency": "Valută",
+  
+  "Type_of_panel": "Tip panou",
+  "Panel_number": "Numărul grupului",
+  "Vacuum_number": "Numarul aspiratorului",
+
+  "Type": "Tip",
+  "Accept_bills": "Acceptă bancnote",
+  "Accept_coins": "Acceptați monede",
+
+  "Model": "Model",
+  "Reconciliation_Pax": "Reconciliere Pax",
+
+  "Payment_limits": "Limite de plată",
+  "Minimum": "Minim",
+  "Maximum": "Maxim",
+  "Tokens": "Jetoane",
+
+  "CAR_WASH": "SPĂLARE",
+  "PAYMENT_CENTER": "CENTRUL DE PLATĂ",
+  "PANEL": "PANOU",
+
+  "Cash_post": "Casă de marcat",
+  "Total_amount": "Valoare totală",
+  "Amount_of_deposit_in_banknotes": "Suma depozitului în bancnote",
+  "Number_of_banknotes": "Numărul de bancnote",
+  "Credit_amount_in_coins": "Suma creditului în monede",
+  "Number_of_coins": "Numărul de monede",
+  "Collection": "Colectie",
+
+  "Replace_item": "Înlocuiește articolul",
+  "Replace_program": "Înlocuiți programul",
+
+  "Cash_accounting": "Contabilitatea de casă",
+  "Date": "Data",
+  "Cash": "Bani lichizi",
+  "Cashless": "Fără numerar",
+  "Bonus": "Primă",
+  "Service": "Serviciu",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed"
+
+
+
+
+}

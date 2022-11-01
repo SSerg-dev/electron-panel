@@ -18,18 +18,25 @@
 
       </div>
 
+      <!-- text-align: right; -->
       <div
         v-if="cost.priceTurbo === +0"
         class="col s2"
-        style="padding-left: 1.3em"
+        style="padding-left: 1.3em;" 
       >
         {{ `${cost.price}` }}
       </div>
-      <div v-if="cost.priceTurbo > +0" class="col s3 price">
+      <div 
+      v-if="cost.priceTurbo > +0" 
+      class="col s3 price"
+      >
         {{ `${cost.price + '  /  ' + cost.priceTurbo}` }}
       </div>
 
-      <div class="col s1" v-if="this.cost.mode === 'turbo'">
+      <div 
+      v-if="this.cost.mode === 'turbo'"
+      class="col s1" 
+      >
         <div class="turbo">
           Turbo
         </div>
