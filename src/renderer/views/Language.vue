@@ -184,12 +184,13 @@
                 <img src="@/assets/imgs/language/lang_MDA.png" />
               </button>
             </td>
-            <!-- dev -->
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('ita-ITA')">
                 <img src="@/assets/imgs/language/lang_ITA.png" />
-              </router-link>
+              </button>
             </td>
+            <!-- dev -->
           </tr>
           <tr v-if="this.getPaginate === 3">
             <td>

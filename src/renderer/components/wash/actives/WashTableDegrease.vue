@@ -3,23 +3,23 @@
     <!--  degrease -->
     <!-- ОБЕЗЖИРИВАНИЕ -->
 
-    <td @click="setProgram('degrease')">
+    <td>
       <div
+      @click="setProgram('degrease')"
         class="waves-effect button-style"
         :class="[
           { 'card white': !this.isDown.degrease },
-          { 'card light-blue accent-2': this.isDown.degrease }
+          { 'card light-blue accent-2': this.isDown.degrease },
         ]"
-
       >
         <div
           class="button-content-style"
           :class="[
             { 'card-content black-text': !this.isDown.degrease },
-            { 'card-content white-text': this.isDown.degrease }
+            { 'card-content white-text': this.isDown.degrease },
           ]"
         >
-          {{ `${actives[this.activeNumber].title}` | localize }}
+          {{ `${actives[this.activeNumber - 1].title}` | localize }}
         </div>
       </div>
     </td>
@@ -27,12 +27,14 @@
 </template>
 
 <script>
+import { forEach } from 'lodash'
 import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 export default Vue.extend({
   data: () => ({
-    activeNumber: 27,
+    visible: '',
+    activeNumber: 28,
     active: '',
     timeoutPopup: null,
     timeoutSetUp: null,
@@ -41,37 +43,64 @@ export default Vue.extend({
 
     isDown: {
       degrease: false,
-      shampoo_x2: false
-    }
+    },
   }),
   props: {
     actives: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
   },
   computed: {
     ...mapGetters({
-      getWetBalance: 'getWetBalance'
-    })
+      getPanelType: 'getPanelType',
+      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getActiveProgram: 'getActiveProgram',
+      getWetBalance: 'getWetBalance',
+    }),
   },
+  watch: {
+    getWetBalance(flag) {
+      if (parseInt(flag) === 0) {
+        this.clearDown()
+      }
+      /* dev */
+      /* else if (parseInt(flag) > 0){
+        this.isDown.degrease = true
+      } */ 
+    },
+    getActiveProgram(flag) {
+      if (flag !== this.actives[this.activeNumber].name) this.clearDown()
+    },
+  },
+
   methods: {
     ...mapGetters({
-      getActiveProgram: 'getActiveProgram',
       getActiveProgramKit: 'getActiveProgramKit',
-      getIsActiveProgramKit: 'getIsActiveProgramKit'
+      getIsActiveProgramKit: 'getIsActiveProgramKit',
+    }),
+    ...mapActions({
+      updateStartProgram: 'updateStartProgram',
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setActiveProgramKit: 'setActiveProgramKit',
-      setIsActiveProgramKit: 'setIsActiveProgramKit'
+      setIsActiveProgramKit: 'setIsActiveProgramKit',
     }),
 
     setProgram(program) {
       /* dev todo */
       this.active = program
 
+      this.setActiveProgram(this.active)
       this.setDown(this.active)
+
+      this.updateStartProgram([
+        this.getPanelType,
+        this.getDefaultPanelNumber,
+        this.getActiveProgram,
+        this.getWetBalance
+      ])
 
       this.setIsActiveProgramKit(true)
       this.setActiveProgramKit(this.activeProgramKit)
@@ -85,31 +114,32 @@ export default Vue.extend({
     setDown(program) {
       this.clearDown()
       switch (program) {
-        case 'degrease':
+        case 'degrease':          
           this.isDown.degrease = true
           break
-        // case 'shampoo_x2':
-        //   this.isDown.shampoo_x2 = true
-        //   break
 
         default:
           break
       }
+      
       this.timeoutSetUp = setTimeout(() => {
         try {
-          this.clearDown()
+          if (this.getWetBalance === '0') this.clearDown()
         } catch (err) {}
-      }, 500)
+      }, 1000)
+
     },
     clearDown() {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
+      /* dev todo */
+
     },
     getKits() {
       const result = []
-      
-      Object.entries(this.actives[this.activeNumber]).map(([key, value]) => {
+
+      Object.entries(this.actives[this.activeNumber - 1]).map(([key, value]) => {
         if (
           key === 'title' ||
           key === 'name' ||
@@ -123,7 +153,7 @@ export default Vue.extend({
       })
 
       this.activeProgramKit = Object.fromEntries(result)
-    }
+    },
   }, // end methods
 
   beforeDestroy() {
@@ -133,7 +163,12 @@ export default Vue.extend({
 
   created() {
     this.getKits()
-  }
+    
+    // this.actives.forEach((act, index) => {
+    //   console.log('$$ ----------------------', index, act.title)
+    // })
+
+  },
 })
 </script>
 

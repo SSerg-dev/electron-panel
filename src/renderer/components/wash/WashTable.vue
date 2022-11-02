@@ -187,6 +187,7 @@
 
               <!-- 11 -->
               <!-- ДЕЗИНФЕКЦИЯ disinfection -->
+              
               <tr
                 v-if="this.actives[28].display !== 'none'"
                 :key="this.keys.keyDisinfection"

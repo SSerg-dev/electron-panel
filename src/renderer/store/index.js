@@ -372,7 +372,7 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber0 -
+            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
               1}].paidBonus`,
             // 1}].prepaymentBonus`,
             value: bonus

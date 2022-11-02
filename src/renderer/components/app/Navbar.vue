@@ -197,6 +197,10 @@
             <img src="@/assets/imgs/flags/flag_MDA.png" />
           </div>
 
+          <div v-if="this.info.locale === 'ita-ITA'">
+            <img src="@/assets/imgs/flags/flag_ITA.png" />
+          </div>
+
         </router-link>
       </div>
     </div>
