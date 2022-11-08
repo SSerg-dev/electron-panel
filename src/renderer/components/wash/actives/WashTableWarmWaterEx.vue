@@ -5,14 +5,14 @@
     <td>
       <div
         @click="setProgram('warmWater')"
-        class="waves-effect "
+        class="waves-effect"
         id="button-left-warm-water"
       >
         <div
           class="button-content-style"
           :class="[
             { 'card-content black-text': !this.isDown.warmWater },
-            { 'card-content white-text': this.isDown.warmWater }
+            { 'card-content white-text': this.isDown.warmWater },
           ]"
         >
           {{ `${actives[this.activeNumber].title}` | localize }}
@@ -31,10 +31,10 @@
           class="button-content-style-turbo"
           :class="[
             { 'card-content black-text': !this.isDown.warmWater_turbo },
-            { 'card-content white-text': this.isDown.warmWater_turbo }
+            { 'card-content white-text': this.isDown.warmWater_turbo },
           ]"
         >
-          <div style="font-style: italic;">
+          <div style="font-style: italic">
             {{ `${actives[this.activeNumber_turbo].name.slice(-5)}` }}
           </div>
         </div>
@@ -52,7 +52,7 @@ import {
   upStandardOptions,
   downStandardOptions,
   upTurboOptions,
-  downTurboOptions
+  downTurboOptions,
 } from '@/shapes/index.js'
 
 import { log } from '../../../../main/utils'
@@ -94,22 +94,22 @@ export default Vue.extend({
 
     isDown: {
       warmWater: false,
-      warmWater_turbo: false
-    }
+      warmWater_turbo: false,
+    },
   }),
   props: {
     actives: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
   },
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getWetBalance: 'getWetBalance'
-    })
+      getWetBalance: 'getWetBalance',
+    }),
   },
   watch: {
     getWetBalance(flag) {
@@ -123,20 +123,20 @@ export default Vue.extend({
         flag !== this.actives[this.activeNumber_turbo].name
       )
         this.clearDown()
-    }
+    },
   },
   methods: {
     ...mapGetters({
       getActiveProgramKit: 'getActiveProgramKit',
-      getIsActiveProgramKit: 'getIsActiveProgramKit'
+      getIsActiveProgramKit: 'getIsActiveProgramKit',
     }),
     ...mapActions({
-      updateStartProgram: 'updateStartProgram'
+      updateStartProgram: 'updateStartProgram',
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setActiveProgramKit: 'setActiveProgramKit',
-      setIsActiveProgramKit: 'setIsActiveProgramKit'
+      setIsActiveProgramKit: 'setIsActiveProgramKit',
     }),
 
     setProgram(program) {
@@ -149,7 +149,7 @@ export default Vue.extend({
         this.getPanelType,
         this.getDefaultPanelNumber,
         this.getActiveProgram,
-        this.getWetBalance
+        this.getWetBalance,
       ])
 
       this.setIsActiveProgramKit(true)
@@ -172,6 +172,9 @@ export default Vue.extend({
         case 'warmWater_turbo':
           this.setButtonStyle(this._downTurboOptions)
           this.isDown.warmWater_turbo = true
+
+          this.setButtonStyle(this._downStandardOptions)
+          this.isDown.warmWater = true
           break
 
         default:
@@ -224,7 +227,7 @@ export default Vue.extend({
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'left'
+        justifyContent: 'left',
       })
       /* right button */
       this.buttonRight = new Button({
@@ -237,7 +240,7 @@ export default Vue.extend({
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
       // end classes
 
@@ -312,7 +315,8 @@ export default Vue.extend({
         this.buttonLeft.fontSize = options.fontSize
         this.buttonLeft.width = options.width
 
-        this.buttonRight.background = 'rgb(255, 255, 255)'
+        if (!this.isDown.warmWater_turbo)
+          this.buttonRight.background = 'rgb(255, 255, 255)'
       }
 
       if (options.type === 'right') {
@@ -324,7 +328,7 @@ export default Vue.extend({
 
         this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
-    }
+    },
   }, // end methods
 
   beforeDestroy() {
@@ -344,7 +348,7 @@ export default Vue.extend({
     this.visibleCold_turbo = this.actives[this.activeColdNumber_turbo].display
 
     this.setup()
-  }
+  },
 })
 </script>
 

@@ -15,7 +15,7 @@
             { 'card-content white-text': this.isDown.coldWater },
           ]"
         >
-          {{ `${actives[this.activeNumber].title}` | localize}}
+          {{ `${actives[this.activeNumber].title}` | localize }}
         </div>
       </div>
     </td>
@@ -171,11 +171,11 @@ export default Vue.extend({
           this.isDown.coldWater = true
           break
         case 'coldWater_turbo':
-          /* dev */
-          // this.isDown.coldWater = true
-
           this.setButtonStyle(this._downTurboOptions)
           this.isDown.coldWater_turbo = true
+
+          this.setButtonStyle(this._downStandardOptions)
+          this.isDown.coldWater = true
           break
 
         default:
@@ -322,18 +322,11 @@ export default Vue.extend({
         this.buttonLeft.fontSize = options.fontSize
         this.buttonLeft.width = options.width
 
-        this.buttonRight.background = 'rgb(255, 255, 255)'
+        if (!this.isDown.coldWater_turbo)
+          this.buttonRight.background = 'rgb(255, 255, 255)'
       }
 
       if (options.type === 'right') {
-        /* dev */
-        // this.buttonLeft.background = options.background
-        // this.buttonLeft.border = options.border
-        // this.buttonLeft.boxShadow = options.boxShadow
-        // this.buttonLeft.fontSize = options.fontSize
-        // this.buttonLeft.width = options.width
-        /*     */
-
         this.buttonRight.background = options.background
         this.buttonRight.border = options.border
         this.buttonRight.boxShadow = options.boxShadow

@@ -204,14 +204,32 @@ export default Vue.extend({
         case 'foam':
           this.setButtonStyle(this._downRedOptions)
           this.isDown.foam = true
+
+          this.setButtonStyle(this._upX2Options)
+          this.isDown.foam_x2 = false
+
+          this.setButtonStyle(this._upColorOptions)
+          this.isDown.foam_color = false
           break
         case 'foam_x2':
           this.setButtonStyle(this._downX2Options)
           this.isDown.foam_x2 = true
+
+          this.setButtonStyle(this._downRedOptions)
+          this.isDown.foam = true
+
+          this.setButtonStyle(this._upColorOptions)
+          this.isDown.foam_color = false
           break
         case 'foam_color':
           this.setButtonStyle(this._downColorOptions)
           this.isDown.foam_color = true
+
+          this.setButtonStyle(this._downRedOptions)
+          this.isDown.foam = true
+
+          this.setButtonStyle(this._upX2Options)
+          this.isDown.foam_x2 = false
           break
 
         default:

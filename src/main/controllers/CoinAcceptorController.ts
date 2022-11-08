@@ -15,6 +15,8 @@ import { log, wait, getSerialDevicesInfo } from '../utils'
 import CCTalk from '../services/CCTalkService'
 import * as conf from '../config'
 
+import fs from 'fs' 
+
 const TAG = 'COIN ACCEPTOR'
 
 const Currencies = ['RUS']
@@ -42,15 +44,15 @@ class CoinAcceptorController extends EventEmitter {
     if (portInfo) {
       for (let i = 0; i < portInfo.length; i++) {
         _path = portInfo[i].path
+
         this.device = new CCTalk.CoinAcceptor(_path, this.bills, conf.debug)
         try {
           await this.device.connect()
-          log(TAG, 'Connected at port', _path)
+          log(TAG, 'Connected at coin port', _path)
           port_num = i
           break
         } catch (err) {
-          /* dev */
-          //log(TAG, "Connected error", err)
+          // log(TAG, "Connected error", err)
           await this.device.disconnect()
           delete this.device
           port_num = 10
@@ -115,6 +117,11 @@ class CoinAcceptorController extends EventEmitter {
   private sendCoin = (coin: number) => {
     this.emit('current-coin', coin)
   }
+  private permitAccess = (path: string) => {
+    fs.chmod(path,  fs.constants.S_IRUSR | fs.constants.S_IWUSR, () => {
+      console.log('$$ coin port mode', path, fs.statSync(path).mode)
+    })
+  } 
 }
 
 export default CoinAcceptorController

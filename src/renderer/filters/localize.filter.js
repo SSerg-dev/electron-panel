@@ -26,6 +26,7 @@ import prt from '../locales/prt.json'
 import nld from '../locales/nld.json'
 import mda from '../locales/mda.json'
 import ita from '../locales/ita.json'
+import hun from '../locales/hun.json'
 
 const locales = {
   'ru-RU': ru,
@@ -54,7 +55,8 @@ const locales = {
   'prt-PRT': prt,
   'nld-NLD': nld,
   'mda-MDA': mda,
-  'ita-ITA': ita
+  'ita-ITA': ita,
+  'hun-HUN': hun
 
 }
 

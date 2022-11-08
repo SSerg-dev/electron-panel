@@ -55,11 +55,11 @@ class BillValidatorController extends EventEmitter {
         await this.device.connect()
         this.port = i
         this.state = States.CONNECTED
-        log(TAG, 'Connected at port', port)
+        log(TAG, 'Connected at bill port', port)
         break
       } catch (err) {
         this.state = States.DISCONNECTED
-        log(TAG, 'Connected error', err)
+        // log(TAG, 'Connected error', err)
       }
     }
     if (this.state !== States.CONNECTED) {

@@ -176,7 +176,7 @@ class Pax extends EventEmitter {
         log(TAG, '$$ Connected at port', port)
       }
     } catch (err) {
-      log(TAG, '$$ Connected error', err)
+      // log(TAG, '$$ Connected error', err)
       await self.device.disconnect()
     }
   }

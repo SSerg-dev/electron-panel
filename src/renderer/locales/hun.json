@@ -1,0 +1,182 @@
+{
+  "LanguageTitle": "Lokalizáció",
+  "BOX": "ÁLLÁS",
+  "#": "#",
+  "VACUUM": "PORSZÍVÓ",
+  "PAYMENT": "FIZETÉS",
+  "locales": "HUN",
+  "PROGRAMS_COST": "PROGRAM ÁRA",
+  "CASH": "KÉSZPÉNZ",
+  "BANK_CARD": "BANKKÁRTYA",
+  "BONUSES": "BÓNUSZOK",
+  "Choose_your_payment_method": "Fizetési módszer választása",
+  "CONSULTANT": "TANÁCSADÓ",
+  "CALL_SENT_WAIT": "HÍVÁST KÜLDTE EL, VÁRJON MEG",
+  "FREE_STOP": "INGYENES STOP",
+  "STOP": "STOP", 
+  "CONTINUE": "FOLYTATÁS",
+  "MAKE_A_PAYMENT": "FIZETNI",
+  "Insert_banknotes_or_coins": "Helyezze be a bankjegyet vagy érméket, ha kész, kattintson az alábbi gombra",
+  "Price_per_minute": "Ár percért",
+  "Program": "Program",
+
+  "SHAMPOO": "SAMPON",
+  "DISK": "TÁRCSÁK",
+  "MOSQUITO": "SZÚNYOG",
+  "FOAM": "HAB",
+  "FOAM_COLOR": "HAB SZÍN", 
+  "BRUSH": "KEFE",
+  "BRUSH_COLOR": "KEFE SZÍN",
+  "WATER_SHAMPOO": "VÍZ SAMPON",
+  "COLD_WATER": "HIDEG",
+  "WARM_WATER": "MELEG",
+  "OSMOSIS": "OZMOZIS",
+  "STOP_PAUSE": "STOP/SZÜNET",
+  "AIR": "LEVEGŐ",
+  "GLASS_WASHING_LIQUID": "ÖBLÍTÉS",
+  "WAX": "VIASZ",
+  "FOAM_X2": "HAB X2",
+  "VACUUM_CLEANER": "PORSZÍVÓ",
+  "BRUSH_X2": "KEFE X2",
+  "DISK_X2": "TÁRCSÁK X2",
+  "MOSQUITO_X2": "SZÚNYOG X2",
+  "TURBO_DRYER": "SZÁRÍTÓ",
+  "DEGREASE": "ZSÍRMENTESÍTÉS",
+  "DISINFECTION": "FERTŐTLENÍTÉS",
+  "BLACKING": "FEKETE",
+  "DOORSILL": "DOORSILL",
+  
+  "COMPLETE_PAYMENT": "BEFIZETÉS VÉGZÉSE",
+  "RETURN_BONUSES_UP": "VISSZATÉRÉS 30-RA% BEFIZETÉS VÉGZÉSE",
+  "APPEND": "MELLÉKEL",
+  "CONFIRM": "MEGERŐSÍT",
+
+  "To_enter_the_system": "A rendszerbe való belépésére vezesse be a telefonszámát vagy olvassa le a QR-kódot", 
+  "To_credit_Bonuses_to_your_account": "Ha bónuszokat szeretne jóváírni a számláján, adja meg telefonszámát",
+  "By_clicking_on_CONFIRM": "A MEGERŐSÍTÉS gombra kattintva hozzájárul ahhoz, hogy a weboldalon közzétett feltételek szerint SMS-eket küldjünk Önnek és személyes adatok feldolgozásához: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "QR szerinti azonosítás",
+  "Your_balance": "Az egyensúlyod,",
+  "Select_charge_amount": "Válassza ki a díj összegét",
+  
+  "Enter_your_password": "Írd be a jelszavad",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "beállítások menü",
+  
+  "The_status_of_the_operation": "Művelet állapota:",
+  "Connection_to_the_bank_terminal": "Bankterminálhoz való csatlakozása...",
+  "Failed_to_connect_to_the_bank_terminal": "Nincs lapcsolat a bankterminálhoz",
+  "Timed_out": "Várakozási idő lejárt",
+  "Operation_approved": "A művelet jóváhagyva",
+  "Operation_rejected": "A művelet elutasítva",
+  "Follow_the_instructions_on_the_terminal": "Kövesse a terminál utasításait",
+
+  "You_want_to_complete_the_car_wash": "Szeretné befejezni az autómosást, és bónuszokkal visszaadni az egyenleget?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Az Igen gombra kattintva hozzájárul ahhoz, hogy a weboldalon közzétett feltételeknek megfelelően SMS üzeneteket küldjünk Önnek és személyes adatait kezeljük: www.alles-bonus.com",
+
+  "Display": "Kijelző",
+  "Services": "Szolgáltatások",
+  "Service_balance": "Szolgáltatási egyenleg",
+  "Reset": "Mérleg nullázása",
+  "Open_the_door": "Ajtó nyitása",
+  "Reboot": "Újraindítás",
+
+  "Software_version": "Szoftver verzió",
+  "Temperature": "Hőmérséklet",
+  "Humidity": "Nedvesség",
+
+  "Show_tooltips_when_switching_programs_during": "Programváltáskor az Eszköztippek megjelenítése",
+
+  "Time_to_switch_to_the_main_window": "Ideje váltani a főablakra",
+
+  "Setting": "Beállítások",
+  "Languages": "Nyelvek",
+  "Finance": "Pénzügyek",
+  "Review": "Áttekintés",
+
+  "OK": "OK",
+  "Cancel": "Megszünteti",
+  "Confirm": "Megerősít",
+  "Make_the_payment_window_the_main": "Legyen fő a fizetési ablak",
+  "Show_cursor_in_the_main_window": "A kurzor megjelenítése a főablakban",
+  "Direct_cash_payment": "Közvetlen készpénzes fizetés",
+  "Banking_terminal": "Bank terminál",
+  
+  "System": "Rendszer",
+  "Panel": "Panel",
+  "Bill_acceptor": "Bankjegy elfogadó",
+  "Coin_acceptor": "Érme elfogadó",
+
+  "Language": "Nyelv",
+  "Currency": "Valuta",
+  
+  "Type_of_panel": "A panel típusa",
+  "Panel_number": "A panel száma:",
+  "Vacuum_number": "Porszívó száma",
+
+  "Type": "Típus",
+  "Accept_bills": "Fogadjon el bankjegyeket",
+  "Accept_coins": "Elfogadni az érméket",
+
+  "Model": "Modell",
+  "Reconciliation_Pax": "Egyeztetés Pax",
+
+  "Payment_limits": "Fizetési korlátok",
+  "Minimum": "Minimális",
+  "Maximum": "Maximális",
+  "Tokens": "Tokenek",
+
+  "CAR_WASH": "AUTÓMOSÁS",
+  "PAYMENT_CENTER": "FIZETÉS KÖZPONTJA",
+  "PANEL": "PANEL",
+
+  "Cash_post": "Pénztárgép",
+  "Total_amount": "Teljes összeg",
+  "Amount_of_deposit_in_banknotes": "A betét összege bankjegyekben",
+  "Number_of_banknotes": "Bankjegyek száma",
+  "Credit_amount_in_coins": "Hitelösszeg érmében",
+  "Number_of_coins": "Érmék száma",
+  "Collection": "Gyűjtemény",
+
+  "Replace_item": "Cserélje ki az elemet",
+  "Replace_program": "Cserélje ki a prog.",
+
+  "Cash_accounting": "Pénztári könyvelés",
+  "Date": "Dátum",
+  "Cash": "Készpénz",
+  "Cashless": "Készpénz nélküli",
+  "Bonus": "Bónusz",
+  "Service": "Szolgáltatás",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed",
+
+  "Wash_program_completed_successfully": "Wash program completed successfully"
+
+
+}

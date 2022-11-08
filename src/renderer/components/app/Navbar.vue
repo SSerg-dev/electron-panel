@@ -201,6 +201,10 @@
             <img src="@/assets/imgs/flags/flag_ITA.png" />
           </div>
 
+          <div v-if="this.info.locale === 'hun-HUN'">
+            <img src="@/assets/imgs/flags/flag_HUN.png" />
+          </div>
+
         </router-link>
       </div>
     </div>

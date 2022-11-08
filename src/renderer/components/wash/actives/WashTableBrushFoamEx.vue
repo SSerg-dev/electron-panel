@@ -201,14 +201,35 @@ export default Vue.extend({
         case 'brushFoam':
           this.setButtonStyle(this._downGreenOptions)
           this.isDown.brushFoam = true
+
+          this.setButtonStyle(this._upX2Options)
+          this.isDown.brushFoam_x2 = false
+
+          this.setButtonStyle(this._upColorOptions)
+          this.isDown.brushFoam_color = false
+
           break
         case 'brushFoam_x2':
           this.setButtonStyle(this._downX2Options)
           this.isDown.brushFoam_x2 = true
+
+          this.setButtonStyle(this._downGreenOptions)
+          this.isDown.brushFoam = true
+
+          this.setButtonStyle(this._upColorOptions)
+          this.isDown.brushFoam_color = false
           break
         case 'brushFoam_color':
           this.setButtonStyle(this._downColorOptions)
           this.isDown.brushFoam_color = true
+
+          this.setButtonStyle(this._downGreenOptions)
+          this.isDown.brushFoam = true
+
+          this.setButtonStyle(this._upX2Options)
+          this.isDown.brushFoam_x2 = false
+
+
           break
 
         default:

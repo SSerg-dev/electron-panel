@@ -519,7 +519,6 @@ export default {
         if (this.getIsKktInstalled) {
           this.$router.push('/invoice')
         } else {
-          //this.$message(`KKT not installed`)
           this.$message( localizeFilter( `${messages.KKT_not_installed}`))
         } 
 
@@ -614,7 +613,8 @@ export default {
       const response = await this.storage.getClient(method, this.options, type)
 
       if (+response.result === 0) {
-        this.$message(`Washing program completed successfully!`)
+        this.$message(localizeFilter(`${messages.Wash_program_completed_successfully}`))
+        
         if (this.$route.name !== 'home') this.$router.push('/')
       } else {
         this.$message(`Error:  ${response.error}`)

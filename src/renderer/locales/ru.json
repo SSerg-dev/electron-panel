@@ -174,7 +174,7 @@
     "approved": "одобрена, сумма:",
     "rejected": "отклонена",
     "The_payment_successful_amount": "Оплата прошла успешно, внесенная сумма:",
-    "KKT_not_installed": "ККТ не установлен"
+    "KKT_not_installed": "ККТ не установлен",
 
-
+    "Wash_program_completed_successfully": "Программа мойка завершена успешно"
   }
