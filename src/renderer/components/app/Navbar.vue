@@ -66,18 +66,20 @@
       </div>
 
       <div v-if="this.getPanelType === 'wash'">
-        <div class="box">
-          <span class="white-text">{{ 'BOX' | localize }}</span>
+        <div class="box white-text">
+          {{ 'BOX' | localize }}
         </div>
       </div>
+
       <div v-if="this.getPanelType === 'vacuum'">
-        <div class="box">
-          <span class="white-text">{{ 'VACUUM' | localize }}</span>
+        <div class="box white-text">
+          {{ 'VACUUM' | localize }}
         </div>
       </div>
+
       <div v-if="this.getPanelType === 'payment'">
-        <div class="box">
-          <span class="white-text">{{ 'PAYMENT' | localize }}</span>
+        <div class="box white-text">
+          {{ 'PAYMENT' | localize }}
         </div>
       </div>
 
@@ -205,6 +207,9 @@
             <img src="@/assets/imgs/flags/flag_HUN.png" />
           </div>
 
+          <div v-if="this.info.locale === 'irn-IRN'">
+            <img src="@/assets/imgs/flags/flag_IRN.png" />
+          </div>
         </router-link>
       </div>
     </div>
@@ -343,6 +348,7 @@ img {
   position: absolute;
   top: 30%;
   left: 12.5%;
+  z-index: 3;
 }
 .clock {
   font-size: 2.4rem;

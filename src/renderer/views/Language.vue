@@ -198,12 +198,13 @@
                 <img src="@/assets/imgs/language/lang_HUN.png" />
               </button>
             </td>
-            <!-- dev -->
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('irn-IRN')">
                 <img src="@/assets/imgs/language/lang_IRN.png" />
-              </router-link>
+              </button>
             </td>
+            <!-- dev -->
             <td>
               <router-link class="btn-small" to="/language">
                 <img src="@/assets/imgs/language/lang_HRV.png" />

@@ -16,8 +16,7 @@
         <tr>
           <th>
             {{ this.emoji }}
-            &nbsp {{  this.currency }} &nbsp
-            {{ this.symbol }}
+            &nbsp {{  this.currency }}
           </th>
           <th>{{ `` }}</th>
         </tr>

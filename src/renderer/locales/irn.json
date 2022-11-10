@@ -1,0 +1,182 @@
+{
+  "LanguageTitle": "بومی سازی",
+  "BOX": "پست",
+  "#": "#",
+  "VACUUM": "یک جاروبرقی",
+  "PAYMENT": "پرداخت",
+  "locales": "IRN",
+  "PROGRAMS_COST": "قیمت برنامه ها",
+  "CASH": "بصورت نقدی",
+  "BANK_CARD": "از طریق کارت بانکی",
+  "BONUSES": "با کم کردن امتیازها",
+  "Choose_your_payment_method": "نحوه پرداخت را انتخاب کنید.",
+  "CONSULTANT": "مشاور",
+  "CALL_SENT_WAIT": "درخواست شما ارسال شده است. لطفا صبر کنید.درخواست شما ارسال شده است. لطفا صبر کنید",
+  "FREE_STOP": "توقف رایگان",
+  "STOP": "متوقف", 
+  "CONTINUE": "ادامه",
+  "MAKE_A_PAYMENT": "ایجاد یک پرداخت",
+  "Insert_banknotes_or_coins": "لطفا اسکناس یا سکه را داخل دستگاه گذاشته سپس دکمه پایین را فشار دهید",
+  "Price_per_minute": "قیمت  دقیقه",
+  "Program": "برنامه",
+
+  "SHAMPOO": "شامپو",
+  "DISK": "دیسک چرخ",
+  "MOSQUITO": "ضد حشره",
+  "FOAM": "کف",
+  "FOAM_COLOR": "رنگ فوم", 
+  "BRUSH": "قلم مو",
+  "BRUSH_COLOR": "رنگ قلم مو",
+  "WATER_SHAMPOO": "آب + شامپو",
+  "COLD_WATER": "سرد",
+  "WARM_WATER": "گرم",
+  "OSMOSIS": "اسمز",
+  "STOP_PAUSE": "متوقف",
+  "AIR": "هواکشی",
+  "GLASS_WASHING_LIQUID": "واشر",
+  "WAX": "موم",
+  "FOAM_X2": "X2 کف",
+  "VACUUM_CLEANER": "یک جاروبرقی",
+  "BRUSH_X2": "X2 قلم مو",
+  "DISK_X2": "X2 دیسک چرخ",
+  "MOSQUITO_X2": "X2 ضد حشره",
+  "TURBO_DRYER": "خشک کن توربو",
+  "DEGREASE": "کاهش چربی",
+  "DISINFECTION": "ضد عفونی",
+  "BLACKING": "سیاه شدن",
+  "DOORSILL": "درب",
+  
+  "COMPLETE_PAYMENT": "پرداخت کامل",
+  "RETURN_BONUSES_UP": "بازپرداخت حداکثر 30٪ پرداخت کامل",
+  "APPEND": "ضمیمه",
+  "CONFIRM": "تایید",
+
+  "To_enter_the_system": "برای ورود به سیستم، شماره تلفن را وارد کنید یا کد QR را اسکن کنید", 
+  "To_credit_Bonuses_to_your_account": "برای واریز پاداش به حساب خود، شماره تلفن خود را وارد کنید",
+  "By_clicking_on_CONFIRM": "www.alles-bonus.com با کلیک بر روی تایید، رضایت خود را برای ارسال پیامک و پردازش اطلاعات شخصی برای شما، طبق شرایط مندرج در وب سایت اعلام می کنید.",
+
+  "Authorization_using_a_QR": "شناسایی از روی QR",
+  "Your_balance": "تعادل شما",
+  "Select_charge_amount": "مقدار شارژ را انتخاب کنید",
+  
+  "Enter_your_password": "رمز عبور خود را وارد کنید",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "منوی تنظیمات",
+  
+  "The_status_of_the_operation": "وضعیت انجام پردازش",
+  "Connection_to_the_bank_terminal": "اتصال به پایانه بانک",
+  "Failed_to_connect_to_the_bank_terminal": "اتصال به پایانه بانک انجام نشد",
+  "Timed_out": "وقت تمام شد",
+  "Operation_approved": "عملیات تایید شد",
+  "Operation_rejected": "عملیات رد شد",
+  "Follow_the_instructions_on_the_terminal": "دستورالعمل های موجود در ترمینال را دنبال کنید",
+
+  "You_want_to_complete_the_car_wash": "می خواهید کارواش را کامل کنید و موجودی را با پاداش برگردانید؟",
+  "By_clicking_the_Yes_button_you_give_your_consent": "www.alles-bonus.com با کلیک بر روی دکمه بله، با ارسال پیامک به شما و پردازش اطلاعات شخصی مطابق با شرایط مندرج در وب سایت موافقت می کنید.",
+
+  "Display": "پرده",
+  "Services": "خدمات",
+  "Service_balance": "موجودی خدمات",
+  "Reset": "برای تنظیم مجدد تعادل",
+  "Open_the_door": "در رو باز کن",
+  "Reboot": "راهاندازی مجدد",
+
+  "Software_version": "نسخه نرم افزار",
+  "Temperature": "دما",
+  "Humidity": "رطوبت",
+
+  "Show_tooltips_when_switching_programs_during": "نمایش نکات راهنمای ابزار هنگام تعویض برنامهها",
+
+  "Time_to_switch_to_the_main_window": "زمان تغییر به پنجره اصلی است",
+
+  "Setting": "سفارشی سازی",
+  "Languages": "زبانها",
+  "Finance": "امور مالی",
+  "Review": "مرور",
+
+  "OK": "OK",
+  "Cancel": "لغو کنید",
+  "Confirm": "تایید",
+  "Make_the_payment_window_the_main": "پنجره پرداخت را اصلی کنید",
+  "Show_cursor_in_the_main_window": "نمایش مکان نما در پنجره اصلی",
+  "Direct_cash_payment": "پرداخت مستقیم نقدی",
+  "Banking_terminal": "پایانه بانک",
+  
+  "System": "سیستم",
+  "Panel": "تابلو",
+  "Bill_acceptor": "پذیرنده اسکناس",
+  "Coin_acceptor": "پذیرنده سکه",
+
+  "Language": "زبان",
+  "Currency": "ارز",
+  
+  "Type_of_panel": "نوع پانل",
+  "Panel_number": "شماره پنل",
+  "Vacuum_number": "شماره جاروبرقی",
+
+  "Type": "نوع",
+  "Accept_bills": "اسکناس را قبول کنید",
+  "Accept_coins": "سکه را بپذیرید",
+
+  "Model": "مدل",
+  "Reconciliation_Pax": "Pax اصلاح",
+
+  "Payment_limits": "پرداخت",
+  "Minimum": "کمترین",
+  "Maximum": "بیشترین",
+  "Tokens": "توکن ها",
+
+  "CAR_WASH": "شستشو",
+  "PAYMENT_CENTER": "مرکز پرداخت",
+  "PANEL": "تابلو",
+
+  "Cash_post": "صندوق پول",
+  "Total_amount": "مبلغ کل",
+  "Amount_of_deposit_in_banknotes": "مبلغ سپرده به اسکناس",
+  "Number_of_banknotes": "تعداد اسکناس",
+  "Credit_amount_in_coins": "مقدار اعتبار به سکه",
+  "Number_of_coins": "تعداد سکه",
+  "Collection": "مجموعه",
+
+  "Replace_item": "مورد را جایگزین کنید",
+  "Replace_program": "برنامه را جایگزین کنید",
+
+  "Cash_accounting": "حسابداری نقدی",
+  "Date": "تاریخ",
+  "Cash": "پول نقد",
+  "Cashless": "بدون نقد",
+  "Bonus": "جایزه",
+  "Service": "سرویس",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed",
+
+  "Wash_program_completed_successfully": "Wash program completed successfully"
+
+
+}
