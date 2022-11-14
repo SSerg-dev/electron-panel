@@ -210,6 +210,19 @@
           <div v-if="this.info.locale === 'irn-IRN'">
             <img src="@/assets/imgs/flags/flag_IRN.png" />
           </div>
+
+          <div v-if="this.info.locale === 'hrv-HRV'">
+            <img src="@/assets/imgs/flags/flag_HRV.png" />
+          </div>
+
+          <div v-if="this.info.locale === 'arm-ARM'">
+            <img src="@/assets/imgs/flags/flag_ARM.png" />
+          </div>
+
+          <div v-if="this.info.locale === 'cze-CZE'">
+            <img src="@/assets/imgs/flags/flag_CZE.png" />
+          </div>
+
         </router-link>
       </div>
     </div>

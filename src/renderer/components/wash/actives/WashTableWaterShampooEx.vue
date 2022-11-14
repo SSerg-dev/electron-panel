@@ -53,6 +53,8 @@ import {
   downStandardOptions,
   upTurboOptions,
   downTurboOptions,
+  buttonSizeOptions,
+
 } from '@/shapes/index.js'
 
 import { log } from '../../../../main/utils'
@@ -63,6 +65,7 @@ export default Vue.extend({
     downStandardOptions: downStandardOptions,
     upTurboOptions: upTurboOptions,
     downTurboOptions: downTurboOptions,
+    buttonSizeOptions: buttonSizeOptions,
 
     // clone
     _upStandardOptions: null,
@@ -211,10 +214,10 @@ export default Vue.extend({
       this.buttonLeft = new Button({
         selector: '#button-left-water',
 
-        width: 58,
-        height: 7,
+        width: this.buttonSizeOptions.large,//58,
+        height: this.buttonSizeOptions.height,//7,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 4,
+        borderRadius: this.buttonSizeOptions.borderRadius,//4,
 
         display: 'flex',
         alignItems: 'center',
@@ -224,10 +227,10 @@ export default Vue.extend({
       this.buttonRight = new Button({
         selector: '#button-right-water',
 
-        width: 7,
-        height: 7,
+        width: this.buttonSizeOptions.extraSmall,//7,
+        height: this.buttonSizeOptions.height,//7,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 4,
+        borderRadius: this.buttonSizeOptions.borderRadius,//4,
 
         display: 'flex',
         alignItems: 'center',
@@ -255,21 +258,27 @@ export default Vue.extend({
     restore(type) {
       if (type === 'left') {
         // console.log('left')
-        this._upStandardOptions.width = '67em'
-        this._downStandardOptions.width = '67em'
+        this._upStandardOptions.width = //'67em'
+          this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix 
+        this._downStandardOptions.width = //'67em'
+          this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix 
         this.buttonRight.hide()
       }
       if (type === 'right') {
         // console.log('right')
-        this._upStandardOptions.width = '59.5em'
-        this._downStandardOptions.width = '59.5em'
+        this._upStandardOptions.width = //'59.5em'
+          this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+        this._downStandardOptions.width = //'59.5em'
+          this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
         this.buttonRight.show()
         this.flex()
       }
       if (type === 'init') {
         // console.log('init')
-        this._upStandardOptions.width = '59.5em'
-        this._downStandardOptions.width = '59.5em'
+        this._upStandardOptions.width = //'59.5em'
+          this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+        this._downStandardOptions.width = //'59.5em'
+          this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
         this.buttonRight.show()
         this.flex()
       }
@@ -291,7 +300,7 @@ export default Vue.extend({
         this.buttonLeft.border = options.border
         this.buttonLeft.boxShadow = options.boxShadow
         this.buttonLeft.fontSize = options.fontSize
-        this.buttonLeft.width = options.width // '58em'
+        this.buttonLeft.width = options.width /* = '58em' */
 
         if (!this.isDown.waterShampoo_turbo)
           this.buttonRight.background = 'rgb(255, 255, 255)'

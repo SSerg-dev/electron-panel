@@ -204,25 +204,28 @@
                 <img src="@/assets/imgs/language/lang_IRN.png" />
               </button>
             </td>
-            <!-- dev -->
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('hrv-HRV')">
                 <img src="@/assets/imgs/language/lang_HRV.png" />
-              </router-link>
+              </button>
             </td>
+            
           </tr>
           <tr v-if="this.getPaginate === 3">
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('arm-ARM')">
                 <img src="@/assets/imgs/language/lang_ARM.png" />
-              </router-link>
+              </button>
             </td>
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('cze-CZE')">
                 <img src="@/assets/imgs/language/lang_CZE.png" />
-              </router-link>
+              </button>
             </td>
             <td>
+            <!-- dev -->  
               <router-link class="btn-small" to="/language">
                 <img src="@/assets/imgs/language/lang_UZB.png" />
               </router-link>

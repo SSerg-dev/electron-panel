@@ -28,6 +28,9 @@ import mda from '../locales/mda.json'
 import ita from '../locales/ita.json'
 import hun from '../locales/hun.json'
 import irn from '../locales/irn.json'
+import hrv from '../locales/hrv.json'
+import arm from '../locales/arm.json'
+import cze from '../locales/cze.json'
 
 const locales = {
   'ru-RU': ru,
@@ -58,7 +61,10 @@ const locales = {
   'mda-MDA': mda,
   'ita-ITA': ita,
   'hun-HUN': hun,
-  'irn-IRN': irn
+  'irn-IRN': irn,
+  'hrv-HRV': hrv,
+  'arm-ARM': arm,
+  'cze-CZE': cze
 
 }
 

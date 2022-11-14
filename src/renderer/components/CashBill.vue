@@ -253,9 +253,6 @@ export default {
       if (+response.result === 0 && +this.getWetBalance > 0) {
         this.clearCashMoney()  
         if (this.$route.name !== 'program') this.$router.push('/program')
-        // this.$message(
-        //   `Оплата прошла успешно, внесенная сумма:  ${+this.getWetBalance} ₽`
-        // )
         this.$message(
           localizeFilter(`${messages.The_payment_successful_amount}`) +
             `  ` +

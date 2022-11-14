@@ -1,0 +1,182 @@
+{
+  "LanguageTitle": "Տեղայնացում",
+  "BOX": "ՊՈՍՏ",
+  "#": "#",
+  "VACUUM": "ՓՈՇԵԿՈՒԼ",
+  "PAYMENT": "ՎՃԱՐՈՒՄ",
+  "locales": "ARM",
+  "PROGRAMS_COST": "ԾՐԱԳՐԵՐԻ ԱՐԺԵՔՆԵՐԸ",
+  "CASH": "ԱՌՁԵՌՆ",
+  "BANK_CARD": "ԲԱՆԿԱՅԻՆ ՔԱՐՏՈՎ",
+  "BONUSES": "ԲՈՆՈՒՍՆԵՐՈՎ",
+  "Choose_your_payment_method": "Ընտրեք վճարման եղանակը",
+  "CONSULTANT": "ԽՈՐՀՐԴԱՏՈՒ",
+  "CALL_SENT_WAIT": "ԿԱՆՉՆ ՈՒՂԱՐԿՎԱԾ Է, ՍՊԱՍԵՔ",
+  "FREE_STOP": "ԱՆՎԱՐ ՍՏՈՊ",
+  "STOP": "ՍՏՈՊ", 
+  "CONTINUE": "ՇԱՐՈՒՆԱԿԵԼ",
+  "MAKE_A_PAYMENT": "ԿԱՏԱՐԵՔ ՎՃԱՐՈՒՄ",
+  "Insert_banknotes_or_coins": "Մտցրեք թղթադրամը կամ մետաղադրամը, ապա ստորև սեղմեք կոճակը",
+  "Price_per_minute": "Րոպեի գինը",
+  "Program": "Ծրագիր",
+
+  "SHAMPOO": "ՇԱՄՊՈՒՆ",
+  "DISK": "ՍԿՍԱՎՈՐ",
+  "MOSQUITO": "ՄՈԾԱՆ",
+  "FOAM": "ՓՐՓՈՒՐ",
+  "FOAM_COLOR": "ՓՐՓՈՒ ԳՈՒՅՆ", 
+  "BRUSH": "ԽՈԶԱՆԱԿ",
+  "BRUSH_COLOR": "ԽՈԶԱՆԱԿ ԳՈՒՅՆ",
+  "WATER_SHAMPOO": "ՋՈՒՐ ՇԱՄՊՈՒՆ",
+  "COLD_WATER": "ՑՈՒՐՏ",
+  "WARM_WATER": "ՋԵՐՄ",
+  "OSMOSIS": "ՕՍՄՈԶ",
+  "STOP_PAUSE": "ՍՏՈՊ",
+  "AIR": "ՕԴ",
+  "GLASS_WASHING_LIQUID": "ԼՎԱՑՈՒՄ",
+  "WAX": "ՄՈՄ",
+  "FOAM_X2": "ՓՐՓՈՒՐ X2",
+  "VACUUM_CLEANER": "ՓՈՇԵԿՈՒԼ",
+  "BRUSH_X2": "ԽՈԶԱՆԱԿ X2",
+  "DISK_X2": "ՍԿՍԱՎՈՐ X2",
+  "MOSQUITO_X2": "ՄՈԾԱՆ X2",
+  "TURBO_DRYER": "ՉՈՐՈՑՈՂ",
+  "DEGREASE": "ՉԻ ՃԱՐՊ",
+  "DISINFECTION": "Ախտահանում",
+  "BLACKING": "ՍԵՎՈՒՄ",
+  "DOORSILL": "ԴՌՆԱԼ",
+  
+  "COMPLETE_PAYMENT": "ԱՎԱՐՏԵԼ ՎՃԱՐՈՒՄԸ",
+  "RETURN_BONUSES_UP": "ՎԵՐԱԴԱՐՁՆԵԼ ԲՈՆՈՒՍՆԵՐՈՎ ՄԻՆՉԵՎ 30% ԱՎԱՐՏԵԼ ՎՃԱՐՈՒՄԸ",
+  "APPEND": "ՀԱՎԵԼՎԱԾ",
+  "CONFIRM": "ՀԱՍՏԱՏԵԼ",
+
+  "To_enter_the_system": "Համակարգ մուտք գործելու համար ներմուծեք հեռախոսի համարը կամ սկանավորեք QR կոդը", 
+  "To_credit_Bonuses_to_your_account": "Գրեք Ձեր մուտքաբառը/հեռախոսահամարը",
+  "By_clicking_on_CONFIRM": "Սեղմելով ՀԱՍՏԱՏԵԼ՝ Դուք տալիս եք Ձեր համաձայնությունը SMS հաղորդագրություններ ուղարկելու և անձնական տվյալների մշակման համար՝ համաձայն կայքում նշված պայմանների:: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "Հաստատում QR կոդով",
+  "Your_balance": "Ձեր հաշվեկշիռը,",
+  "Select_charge_amount": "Ընտրեք փոխանցվող գումարը",
+  
+  "Enter_your_password": "Գաղտնաբառ",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "կարգավորումներ",
+  
+  "The_status_of_the_operation": "Գործողության կատարման կարգավիճակը:",
+  "Connection_to_the_bank_terminal": "Միացում բանկային տերմինալին...",
+  "Failed_to_connect_to_the_bank_terminal": "Չի հաջողվել միանալ բանկային տերմինալին",
+  "Timed_out": "Սպասման ժամանակը լրացել է",
+  "Operation_approved": "Գործողությունը հաստատված է",
+  "Operation_rejected": "Գործողությունը մերժվեց",
+  "Follow_the_instructions_on_the_terminal": "Հետևեք տերմինալի ցուցումներին",
+
+  "You_want_to_complete_the_car_wash": "Ցանկանու՞մ եք ավարտել մեքենայի լվացումը և վերադարձնել մնացորդը բոնուսներով?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Սեղմելով Այո կոճակը, դուք համաձայնում եք Ձեզ SMS հաղորդագրություններ ուղարկելու և անձնական տվյալների մշակմանը՝ կայքում նշված պայմաններին համապատասխան: www.alles-bonus.com",
+
+  "Display": "Էկրան",
+  "Services": "Ծառայություններ",
+  "Service_balance": "Ծառայության հաշվեկշիռը",
+  "Reset": "Զրոյացնել",
+  "Open_the_door": "Բացել դուռը",
+  "Reboot": "Վերագործարկել",
+
+  "Software_version": "Ծրագրային ապահովում",
+  "Temperature": "Ջերմություն",
+  "Humidity": "Խոնավություն",
+
+  "Show_tooltips_when_switching_programs_during": "Ցույց տալ pop-up խորհուրդներ, երբ անցնում ծրագրեր",
+
+  "Time_to_switch_to_the_main_window": "Հիմնական պատուհան",
+
+  "Setting": "Կարգավորում",
+  "Languages": "Լեզուներ",
+  "Finance": "Ֆինանսներ",
+  "Review": "Տեսադաշտ",
+
+  "OK": "OK",
+  "Cancel": "Չեղյալ",
+  "Confirm": "Հաստատել",
+  "Make_the_payment_window_the_main": "Make the payment window the main",
+  "Show_cursor_in_the_main_window": "Ցուցադրել կուրսորը հիմնական պատուհանում",
+  "Direct_cash_payment": "Ուղղակի կանխիկ վճարում",
+  "Banking_terminal": "Բանկային տերմինալ",
+  
+  "System": "Համակարգ",
+  "Panel": "Վահանակ",
+  "Bill_acceptor": "Թղթադրամների ընդունող",
+  "Coin_acceptor": "Մետաղադրամ ընդունող",
+
+  "Language": "Լեզու",
+  "Currency": "Արժույթ",
+  
+  "Type_of_panel": "Վահանակի տեսակը",
+  "Panel_number": "Վահանակի համարը",
+  "Vacuum_number": "Փոշեկուլի համարը",
+
+  "Type": "Տիպ",
+  "Accept_bills": "Ընդունել թղթադրամներ",
+  "Accept_coins": "Ընդունեք մետաղադրամներ",
+
+  "Model": "Մոդել",
+  "Reconciliation_Pax": "Հաշտեցում Pax",
+
+  "Payment_limits": "Վճարում",
+  "Minimum": "Նվազագույն",
+  "Maximum": "Մաքսիմ",
+  "Tokens": "Նշաններ",
+
+  "CAR_WASH": "ԼՎԱՑՈՒՄ",
+  "PAYMENT_CENTER": "ՎՃԱՐՄԱՆ ԿԵՆՏՐՈՆ",
+  "PANEL": "Վահանակ",
+
+  "Cash_post": "Դրամարկղ",
+  "Total_amount": "Ընդհանուր գումարը",
+  "Amount_of_deposit_in_banknotes": "Ավանդի գումարը թղթադրամներով",
+  "Number_of_banknotes": "Թղթադրամների քանակը",
+  "Credit_amount_in_coins": "Վարկի գումարը մետաղադրամներով",
+  "Number_of_coins": "Մետաղադրամների քանակը",
+  "Collection": "Հավաքածու",
+
+  "Replace_item": "Փոխարինել Նյութ",
+  "Replace_program": "Ծրագիր",
+
+  "Cash_accounting": "Կանխիկի հաշվառում",
+  "Date": "Ամսաթիվ",
+  "Cash": "Կանխիկ",
+  "Cashless": "Անկանխիկ",
+  "Bonus": "Բոնուս",
+  "Service": "Ծառայութ",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed",
+
+  "Wash_program_completed_successfully": "Wash program completed successfully"
+
+
+}

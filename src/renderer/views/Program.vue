@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <section>
+  <div class="post">
+    <div>
       <div v-if="this.getPanelType === 'wash'">
         <WashTable :actives="actives" :delay="delay" />
       </div>
@@ -8,7 +8,7 @@
       <div v-if="this.getPanelType === 'vacuum'">
         <VacuumTable :actives="activesVacuum" />
       </div>
-    </section>
+    </div>
   </div>
 </template>
 
@@ -139,11 +139,11 @@ export default Vue.extend({
         .slice(1)
       this.showProg = [...this.getDryShowProgBit()].reverse().join('').slice(1)
 
-      // add to and zero symbols 
+      // add to and zero symbols
       const deltaIndex = this.activesVacuum.length - this.showProg.length
       for (let index = 0; index < deltaIndex; index++)
         this.showProg = this.showProg + '0'
-      // console.log('$$ after this.showProg', this.showProg)  
+      // console.log('$$ after this.showProg', this.showProg)
 
       for (let i = 0; i < this.showProg.length; i++) {
         if (this.showProg.toString().slice(i, i + 1) === '0') {
@@ -217,13 +217,16 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-section {
+.post {
+  position: relative;
   background-color: #121212;
   margin-top: 2.6em;
   margin-left: 1.5em;
+
 }
+
 .page-title {
-  color: #ffffff;
+  color: #fff;
   font-family: 'PlumbSoft-Black';
   font-size: 140px;
   font-weight: 400;

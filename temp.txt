@@ -3,3 +3,19 @@
     "build": "vue-cli-service electron:build --linux deb --armv7l",
     "rebuild": "./node_modules/.bin/electron-rebuild -f -a armv7l"
   }
+
+  DEtJAp3FLsWmJmAT8QDn
+
+  $(npm bin)/electron-rebuild
+
+  16:19:52.294 › getWetProgShow 132120575
+  16:19:53.293 › getWetProgShow 266338303
+
+                 getWetProgStatus
+
+
+  
+
+
+
+

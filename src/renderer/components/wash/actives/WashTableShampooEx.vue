@@ -256,15 +256,15 @@ export default Vue.extend({
       }
       if (type === 'right') {
         // console.log('right')
-        this._upStandardOptions.width = '58em'
-        this._downStandardOptions.width = '58em'
+        this._upStandardOptions.width = '59.5em'
+        this._downStandardOptions.width = '59.5em'
         this.buttonRight.show()
         this.flex()
       }
       if (type === 'init') {
         // console.log('init')
-        this._upStandardOptions.width = '58em'
-        this._downStandardOptions.width = '58em'
+        this._upStandardOptions.width = '59.5em'
+        this._downStandardOptions.width = '59.5em'
         this.buttonRight.show()
         this.flex()
       }
@@ -324,6 +324,7 @@ tr,
 td {
   border: none;
   padding-top: 0.5em;
+  padding-right: 10px;
 }
 
 .button-content-style {

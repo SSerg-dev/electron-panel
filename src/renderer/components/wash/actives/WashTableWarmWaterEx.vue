@@ -53,6 +53,7 @@ import {
   downStandardOptions,
   upTurboOptions,
   downTurboOptions,
+  buttonSizeOptions,
 } from '@/shapes/index.js'
 
 import { log } from '../../../../main/utils'
@@ -63,6 +64,7 @@ export default Vue.extend({
     downStandardOptions: downStandardOptions,
     upTurboOptions: upTurboOptions,
     downTurboOptions: downTurboOptions,
+    buttonSizeOptions: buttonSizeOptions,
 
     // clone
     _upStandardOptions: null,
@@ -220,10 +222,10 @@ export default Vue.extend({
       this.buttonLeft = new Button({
         selector: '#button-left-warm-water',
 
-        width: 25.5,
-        height: 7,
+        width: this.buttonSizeOptions.small,//25.5,
+        height: this.buttonSizeOptions.height,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 4,
+        borderRadius: this.buttonSizeOptions.borderRadius,//4,
 
         display: 'flex',
         alignItems: 'center',
@@ -233,10 +235,10 @@ export default Vue.extend({
       this.buttonRight = new Button({
         selector: '#button-right-warm-water',
 
-        width: 7,
-        height: 7,
+        width: this.buttonSizeOptions.extraSmall,
+        height: this.buttonSizeOptions.height,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 4,
+        borderRadius: this.buttonSizeOptions.borderRadius,//4,
 
         display: 'flex',
         alignItems: 'center',
@@ -269,24 +271,32 @@ export default Vue.extend({
     restore(type) {
       switch (type) {
         case 'left':
-          this._upStandardOptions.width = '32em'
-          this._downStandardOptions.width = '32em'
+          this._upStandardOptions.width = //'32.5em'
+            this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix 
+          this._downStandardOptions.width = //'32.5em'
+            this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix 
           this.buttonRight.hide()
           break
         case 'right':
-          this._upStandardOptions.width = '25.5em'
-          this._downStandardOptions.width = '25.5em'
+          this._upStandardOptions.width = //'25.5em'
+            this.buttonSizeOptions.small + this.buttonSizeOptions.suffix 
+          this._downStandardOptions.width = //'25.5em'
+            this.buttonSizeOptions.small + this.buttonSizeOptions.suffix 
           this.buttonRight.show()
           this.flex()
           break
         case 'leftCold':
-          this._upStandardOptions.width = '67em'
-          this._downStandardOptions.width = '67em'
+          this._upStandardOptions.width = //'67em'
+            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix 
+          this._downStandardOptions.width = //'67em'
+            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix 
           this.buttonRight.hide()
           break
         case 'rightCold':
-          this._upStandardOptions.width = '59.5em'
-          this._downStandardOptions.width = '59.5em'
+          this._upStandardOptions.width = //'59.5em'
+            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+          this._downStandardOptions.width = //'59.5em'
+            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
           this.buttonRight.show()
           this.flex()
           break

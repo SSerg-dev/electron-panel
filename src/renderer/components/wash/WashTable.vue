@@ -404,7 +404,7 @@ export default {
     }, */
     
     getWetProgShow(flag) {
-      // console.log('getWetProgShow', flag, this.actives[14])
+      console.log('$$ getWetProgShow', flag, /* this.actives[27] */)
     },
     seconds(flag) {
       // console.log('++this.seconds-->flag--> ', flag)
@@ -881,18 +881,13 @@ export default {
 
 table {
   position: absolute;
-  /* position: relative; */
-  margin-top: 18em; /*8em 17.5em 18em; */
-  margin-left: 2.5em; /* 33em; */
+  margin-top: 18em; 
+  margin-left: 2.5em;
 
   font-family: 'Plumb-Medium';
   font-weight: bold;
   z-index: 1;
-
-  /* margin: auto; */
   text-align: left;
-
-  /* table-layout: fixed; */
 }
 
 tr {
@@ -912,7 +907,7 @@ td {
   padding-right: 0px;
   padding-left: 0px;
 
-  width: 32em;
+  width: 32.5em;
   height: 7em;
 
   /* float: left; */

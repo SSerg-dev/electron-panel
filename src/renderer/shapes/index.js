@@ -16,7 +16,8 @@ import {
   upTurboOptions,
   downTurboOptions,
   upDryOptions,
-  downDryOptions
+  downDryOptions,
+  buttonSizeOptions
 
 } from '@/shapes/options.js'
 
@@ -35,5 +36,6 @@ export {
   upTurboOptions,
   downTurboOptions,
   upDryOptions,
-  downDryOptions
+  downDryOptions,
+  buttonSizeOptions
 }

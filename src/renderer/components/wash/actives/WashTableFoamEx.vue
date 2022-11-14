@@ -365,8 +365,8 @@ export default Vue.extend({
           break
 
         case 'right_color':
-          this._upRedOptions.width = '59em'
-          this._downRedOptions.width = '59em'
+          this._upRedOptions.width = '59.5em'
+          this._downRedOptions.width = '59.5em'
           this.buttonLeft.show()
           this.buttonCenter.show()
           this.flex()
@@ -374,8 +374,8 @@ export default Vue.extend({
           break
 
         case 'right_x2':
-          this._upRedOptions.width = '59em'
-          this._downRedOptions.width = '59em'
+          this._upRedOptions.width = '59.5em'
+          this._downRedOptions.width = '59.5em'
           this.buttonLeft.show()
           this.buttonRight.show()
           this.flex()

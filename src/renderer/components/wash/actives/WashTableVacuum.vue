@@ -198,8 +198,8 @@ export default Vue.extend({
     restore(type) {
       switch (type) {
         case 'left':
-          this._upDryOptions.width = this.upDryOptions.width =  '33em'//'32em'
-          this._downDryOptions.width = this.downDryOptions.width =  '33em'//'32em'
+          this._upDryOptions.width = this.upDryOptions.width =  '33em'
+          this._downDryOptions.width = this.downDryOptions.width =  '33em'
           this.buttonLeft.show()
           this.flex()
           break

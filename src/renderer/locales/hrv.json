@@ -1,0 +1,182 @@
+{
+  "LanguageTitle": "Lokalizacija",
+  "BOX": "POST",
+  "#": "#",
+  "VACUUM": "USISIVAČ",
+  "PAYMENT": "PLAĆANJE",
+  "locales": "HRV",
+  "PROGRAMS_COST": "VRIJEDNOST PROGRAMA",
+  "CASH": "GOTOVINOM",
+  "BANK_CARD": "BANKOVNOM KARTICOM",
+  "BONUSES": "BONUSIMA",
+  "Choose_your_payment_method": "Izaberite način plaćanja",
+  "CONSULTANT": "KONZULTANT",
+  "CALL_SENT_WAIT": "POZIV JE POSLAN, ČEKAJTE",
+  "FREE_STOP": "BESPLATNO STOP",
+  "STOP": "STOP", 
+  "CONTINUE": "NASTAVITI",
+  "MAKE_A_PAYMENT": "PLATITI",
+  "Insert_banknotes_or_coins": "Umetnite novčanice ili kovanice, kad završite, kliknite donji gumb",
+  "Price_per_minute": "Cijena za minutu",
+  "Program": "Program",
+
+  "SHAMPOO": "ŠAMPON",
+  "DISK": "DISKOVI",
+  "MOSQUITO": "MOSKIT",
+  "FOAM": "PJENA",
+  "FOAM_COLOR": "PJENA BOJA", 
+  "BRUSH": "ČETKA",
+  "BRUSH_COLOR": "ČETKA BOJA",
+  "WATER_SHAMPOO": "VODA ŠAMPON",
+  "COLD_WATER": "HLADNO",
+  "WARM_WATER": "TOPLO",
+  "OSMOSIS": "OSMOZA",
+  "STOP_PAUSE": "STOP/PAUSE",
+  "AIR": "VAZDUH",
+  "GLASS_WASHING_LIQUID": "SPREJ",
+  "WAX": "VOSAK",
+  "FOAM_X2": "PJENA X2",
+  "VACUUM_CLEANER": "USISIVAČ",
+  "BRUSH_X2": "ČETKA X2",
+  "DISK_X2": "DISKOVI X2",
+  "MOSQUITO_X2": "MOSKIT X2",
+  "TURBO_DRYER": "SUŠALICA",
+  "DEGREASE": "ODMASTI",
+  "DISINFECTION": "DEZINFEKCIJA",
+  "BLACKING": "CRNJENJE",
+  "DOORSILL": "PRAG VRATA",
+  
+  "COMPLETE_PAYMENT": "ZAVRŠITI PLAĆANJE",
+  "RETURN_BONUSES_UP": "VRATITI BODOVIMA DO 30% ZAVRŠITI PLAĆANJE",
+  "APPEND": "DODATI",
+  "CONFIRM": "POTVRDI",
+
+  "To_enter_the_system": "Da uđete u sistem treba da unesite broj telefona ili da skenirajte QR kod", 
+  "To_credit_Bonuses_to_your_account": "Da biste dodali bonuse na svoj račun, unesite svoj broj telefona",
+  "By_clicking_on_CONFIRM": "Klikom na POTVRDI dajete suglasnost za slanje SMS poruka i obradu Vaših osobnih podataka, prema uvjetima navedenim na web stranici: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "Autorizacija preko QR",
+  "Your_balance": "Vaša ravnoteža,",
+  "Select_charge_amount": "Izaberite iznos terećenja sredstava s računa",
+  
+  "Enter_your_password": "Unesite svoju lozinku",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "izbornik postavki",
+  
+  "The_status_of_the_operation": "Status ispunjavanja operacije:",
+  "Connection_to_the_bank_terminal": "Spajanje sa bankovnim terminalom...",
+  "Failed_to_connect_to_the_bank_terminal": "Nije uspjelo povezivanje sa bankovnim terminalom",
+  "Timed_out": "Vrijeme očekivanja je istjeklo",
+  "Operation_approved": "Operacija je odobrena",
+  "Operation_rejected": "Operacija je odbijena",
+  "Follow_the_instructions_on_the_terminal": "Slijedite upute na terminalu",
+
+  "You_want_to_complete_the_car_wash": "Želite dovršiti pranje automobila i vratiti ostatak s bonusima?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Klikom na gumb Da pristajete na slanje SMS poruka i obradu osobnih podataka u skladu s uvjetima navedenim na web stranici: www.alles-bonus.com",
+
+  "Display": "Ekran",
+  "Services": "Usluge",
+  "Service_balance": "Stanje usluge",
+  "Reset": "Resetiraj",
+  "Open_the_door": "Otvoriti vrata",
+  "Reboot": "Pokrenuti",
+
+  "Software_version": "Verzija PO",
+  "Temperature": "Temperatura",
+  "Humidity": "Vlažnost",
+
+  "Show_tooltips_when_switching_programs_during": "Prikaži skočne savjete prilikom prebacivanja programa",
+
+  "Time_to_switch_to_the_main_window": "Vrijeme je za glavni prozor",
+
+  "Setting": "Postavke",
+  "Languages": "Jezici",
+  "Finance": "Finansi",
+  "Review": "Pregled",
+
+  "OK": "OK",
+  "Cancel": "Otkazati",
+  "Confirm": "Potvrdi",
+  "Make_the_payment_window_the_main": "Prozor za plaćanje učinite glavnim",
+  "Show_cursor_in_the_main_window": "Prikaži kursor u glavnom prozoru",
+  "Direct_cash_payment": "Izravno gotovinsko plaćanje",
+  "Banking_terminal": "Bankovni terminal",
+  
+  "System": "Sustav",
+  "Panel": "Ploča",
+  "Bill_acceptor": "Prihvatnik novčanica",
+  "Coin_acceptor": "Prihvatnik kovanica",
+
+  "Language": "Jezik",
+  "Currency": "Valuta",
+  
+  "Type_of_panel": "Vrsta ploče",
+  "Panel_number": "Broj ploče",
+  "Vacuum_number": "Broj usisavača",
+
+  "Type": "Tip",
+  "Accept_bills": "Prihvatite novčanice",
+  "Accept_coins": "Prihvatite kovanice",
+
+  "Model": "Model",
+  "Reconciliation_Pax": "Pomirenje Pax",
+
+  "Payment_limits": "Plaćanje",
+  "Minimum": "Minimum",
+  "Maximum": "Maksimum",
+  "Tokens": "Tokeni",
+
+  "CAR_WASH": "МОЙКА",
+  "PAYMENT_CENTER": "CENTAR PLAĆANJA",
+  "PANEL": "PLOČA",
+
+  "Cash_post": "Blagajna",
+  "Total_amount": "Ukupni iznos",
+  "Amount_of_deposit_in_banknotes": "Iznos depozita u novčanicama",
+  "Number_of_banknotes": "Broj novčanica",
+  "Credit_amount_in_coins": "Iznos kredita u kovanicama",
+  "Number_of_coins": "Broj kovanica",
+  "Collection": "Unovčavanje",
+
+  "Replace_item": "Zamijeni stavku",
+  "Replace_program": "Zamijenite program",
+
+  "Cash_accounting": "Računovodstvo gotovine",
+  "Date": "Datum",
+  "Cash": "Unovčiti",
+  "Cashless": "Bezgotovinski",
+  "Bonus": "Bonus",
+  "Service": "Servis",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed",
+
+  "Wash_program_completed_successfully": "Wash program completed successfully"
+
+
+}

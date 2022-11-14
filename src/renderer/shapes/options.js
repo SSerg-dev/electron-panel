@@ -107,7 +107,7 @@ const upDryOptions = {
   border: '0.4em solid rgb(29,233,182)',
   boxShadow: 'rgb(29,233,182) 0px 10px 20px',
   fontSize: '1em',
-  width: '32em'
+  width: '32.5em'
 }
 const downDryOptions = {
   type: 'left',
@@ -115,7 +115,20 @@ const downDryOptions = {
   border: '0.4em solid rgb(29,233,182)',
   boxShadow: 'rgb(29,233,182) 0px 10px 20px',
   fontSize: '1em',
-  width: '32em'
+  width: '32.5em'
+}
+const buttonSizeOptions = {
+  borderRadius: 4, //2
+  height: 7,
+  
+  extraSmall: 7,
+  small: 25.5,
+  medium: 32.5,
+  extraMedium: 52,
+  large: 59.5,
+  extraLarge: 67,
+
+  suffix: 'em'
 }
 
 export {
@@ -132,6 +145,7 @@ export {
   upTurboOptions,
   downTurboOptions,
   upDryOptions,
-  downDryOptions
+  downDryOptions,
+  buttonSizeOptions
 
 }

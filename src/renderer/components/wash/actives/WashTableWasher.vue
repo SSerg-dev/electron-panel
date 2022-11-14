@@ -212,8 +212,8 @@ export default Vue.extend({
         case 'left':
         case 'combo':
         /* case 'last': */  
-          this._upDryOptions.width = this.upDryOptions.width =  '33em'// '32em'
-          this._downDryOptions.width = this.downDryOptions.width =  '33em'// '32em'
+          this._upDryOptions.width = this.upDryOptions.width =  '33em'
+          this._downDryOptions.width = this.downDryOptions.width =  '33em'
           this.buttonLeft.show()
           this.flex()
           break

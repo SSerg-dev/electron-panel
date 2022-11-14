@@ -473,7 +473,9 @@ export default new Vuex.Store({
     // Статус программ (маска по которой отображают работающие)
     // progStatusMask
     getWetProgStatus(state) {
+      /* dev */
       return state.parameters.progStatusMask
+      // return state.parameters.progShowMask
     },
     // Прайс программ (маска по которой отображают доступные)
     getWetProgShow(state) {
