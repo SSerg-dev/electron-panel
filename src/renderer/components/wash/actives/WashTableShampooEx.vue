@@ -46,23 +46,29 @@
 <script>
 import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
+import messages from '@/utils/messages'
+import localizeFilter from '@/filters/localize.filter'
+
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
 import {
   upStandardOptions,
   downStandardOptions,
   upX2Options,
-  downX2Options
+  downX2Options,
+  buttonSizeOptions,
 } from '@/shapes/index.js'
 
 import { log } from '../../../../main/utils'
 
 export default Vue.extend({
   data: () => ({
+    // options
     upStandardOptions: upStandardOptions,
     downStandardOptions: downStandardOptions,
     upX2Options: upX2Options,
     downX2Options: downX2Options,
+    buttonSizeOptions: buttonSizeOptions,
 
     // clone
     _upStandardOptions: null,
@@ -148,7 +154,7 @@ export default Vue.extend({
         this.timeoutPopup = setTimeout(() => {
           // this.$router.push('/popup')
         }, 1000)
-      } else this.$message(`Недостаточно средств`)
+      } else this.$message(localizeFilter(`${messages.Not_enough_money}`))
     },
     setDown(program) {
       this.clearDown()
@@ -206,10 +212,10 @@ export default Vue.extend({
       this.buttonLeft = new Button({
         selector: '#button-left-shampoo',
 
-        width: 58,
-        height: 7,
+        width: this.buttonSizeOptions.large,
+        height: this.buttonSizeOptions.height,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 4,
+        borderRadius: this.buttonSizeOptions.borderRadius,
 
         display: 'flex',
         alignItems: 'center',
@@ -219,10 +225,10 @@ export default Vue.extend({
       this.buttonRight = new Button({
         selector: '#button-right-shampoo',
 
-        width: 7,
-        height: 7,
+        width: this.buttonSizeOptions.extraSmall,
+        height: this.buttonSizeOptions.height,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 4,
+        borderRadius: this.buttonSizeOptions.borderRadius,
 
         display: 'flex',
         alignItems: 'center',
@@ -250,21 +256,27 @@ export default Vue.extend({
     restore(type) {
       if (type === 'left') {
         // console.log('left')
-        this._upStandardOptions.width = '67em'
-        this._downStandardOptions.width = '67em'
+        this._upStandardOptions.width = //'67em'
+          this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix 
+        this._downStandardOptions.width = //'67em'
+          this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix 
         this.buttonRight.hide()
       }
       if (type === 'right') {
         // console.log('right')
-        this._upStandardOptions.width = '59.5em'
-        this._downStandardOptions.width = '59.5em'
+        this._upStandardOptions.width = //'59.5em'
+          this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+        this._downStandardOptions.width = //'59.5em'
+          this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
         this.buttonRight.show()
         this.flex()
       }
       if (type === 'init') {
         // console.log('init')
-        this._upStandardOptions.width = '59.5em'
-        this._downStandardOptions.width = '59.5em'
+        this._upStandardOptions.width = //'59.5em'
+          this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+        this._downStandardOptions.width = //'59.5em'
+          this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
         this.buttonRight.show()
         this.flex()
       }

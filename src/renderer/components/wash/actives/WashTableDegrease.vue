@@ -14,6 +14,7 @@
             { 'card-content black-text': !this.isDown.degrease },
             { 'card-content white-text': this.isDown.degrease },
           ]"
+          
         >
           {{ `${actives[this.activeNumber - 1].title}` | localize}}
         </div>
@@ -27,23 +28,40 @@
 <script>
 import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
+import messages from '@/utils/messages'
+import localizeFilter from '@/filters/localize.filter'
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
 import {
   upStandardOptions,
   downStandardOptions,
+
+  upDryOptions,
+  downDryOptions,
+
+  buttonSizeOptions,
+
 } from '@/shapes/index.js'
 
 import { log } from '../../../../main/utils'
 
 export default Vue.extend({
   data: () => ({
-    upStandardOptions: upStandardOptions,
-    downStandardOptions: downStandardOptions,
+    // options
+    // upStandardOptions: upStandardOptions,
+    // downStandardOptions: downStandardOptions,
+
+    upDryOptions: upDryOptions,
+    downDryOptions: downDryOptions,
+
+    buttonSizeOptions: buttonSizeOptions,
 
     // clone
-    _upStandardOptions: null,
-    _downStandardOptions: null,
+    // _upStandardOptions: null,
+    // _downStandardOptions: null,
+
+    _upDryOptions: null,
+    _downDryOptions: null,
 
     // classes
     buttonDegrease: null,
@@ -125,14 +143,14 @@ export default Vue.extend({
         this.timeoutPopup = setTimeout(() => {
           // this.$router.push('/popup')
         }, 2000)
-      } else this.$message(`Недостаточно средств`)
+      } else this.$message(localizeFilter(`${messages.Not_enough_money}`))
     },
     setDown(program) {
       this.clearDown()
 
       switch (program) {
         case 'degrease':
-          this.setButtonStyle(this._downStandardOptions)
+          this.setButtonStyle(this._downDryOptions)
           this.isDown.degrease = true
           break
 
@@ -150,7 +168,7 @@ export default Vue.extend({
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
 
-      this.setButtonStyle(this._upStandardOptions)
+      this.setButtonStyle(this._upDryOptions)
     },
     getKits() {
       const result = []
@@ -179,10 +197,10 @@ export default Vue.extend({
       this.buttonDegrease = new Button({
         selector: '#button-degrease',
 
-        width: 58,
-        height: 7,
+        width: this.buttonSizeOptions.large,
+        height: this.buttonSizeOptions.height,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 4,
+        borderRadius: this.buttonSizeOptions.borderRadius + this.buttonSizeOptions.oneMore,
 
         display: 'flex',
         alignItems: 'center',
@@ -194,6 +212,11 @@ export default Vue.extend({
       // clone
       this._upStandardOptions = { ...upStandardOptions }
       this._downStandardOptions = { ...downStandardOptions }
+
+      this._upDryOptions = { ...upDryOptions }
+      this._downDryOptions = { ...downDryOptions }
+      // upDryOptions
+
       // end clone
 
       this.restore('left')
@@ -203,15 +226,17 @@ export default Vue.extend({
     restore(type) {
       switch (type) {
         case 'left':
-          this._upStandardOptions.width = '67em'
-          this._downStandardOptions.width = '67em'
+          this._upDryOptions.width = //'67em'
+            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix 
+          this._downDryOptions.width = //'67em'
+            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix 
           break
         
         default:
           break
       }
 
-      this.setButtonStyle(this._upStandardOptions)
+      this.setButtonStyle(this._upDryOptions)
       
       return
     },
@@ -220,7 +245,7 @@ export default Vue.extend({
       this.buttonDegrease.display = 'flex'
       this.buttonDegrease.alignItems = 'center'
       this.buttonDegrease.justifyContent = 'left'
-
+      
     },
 
     setButtonStyle(options) {
@@ -246,11 +271,6 @@ export default Vue.extend({
   mounted() {
     // native
     this.visible = this.actives[this.activeNumber].display
-    //this.visible_turbo = this.actives[this.activeNumber_turbo].display
-
-    // neighbor warm
-    //this.visibleWarm = this.actives[this.activeWarmNumber].display
-    //this.visibleWarm_turbo = this.actives[this.activeWarmNumber_turbo].display
 
     this.setup()
   },
@@ -264,18 +284,16 @@ td {
   border: none;
   padding-top: 0.5em;
   padding-right: 10px;
+  position: relative;
 }
 
 .button-content-style {
   font-size: 3.5em;
-  margin-left: 1.2em;
-  padding-top: 0em;
-  padding-right: 0em;
+  /* margin-left: 1.2em; */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
-/* .button-content-style-turbo {
-  font-size: 2.4em;
-  margin-left: -0.15em;
-  padding-top: 0em;
-  padding-right: 0em;
-} */
+
 </style>

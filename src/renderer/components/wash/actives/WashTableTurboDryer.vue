@@ -26,14 +26,23 @@
 <script>
 import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
+import messages from '@/utils/messages'
+import localizeFilter from '@/filters/localize.filter'
+
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
-import { upDryOptions, downDryOptions } from '@/shapes/index.js'
+import { 
+  upDryOptions, 
+  downDryOptions, 
+  buttonSizeOptions 
+  } from '@/shapes/index.js'
 
 export default Vue.extend({
   data: () => ({
     upDryOptions: upDryOptions,
     downDryOptions: downDryOptions,
+
+    buttonSizeOptions: buttonSizeOptions,
 
     // clone
     _upDryOptions: null,
@@ -124,7 +133,7 @@ export default Vue.extend({
         this.timeoutPopup = setTimeout(() => {
           // this.$router.push('/popup')
         }, 1000)
-      } else this.$message(`Недостаточно средств`)
+      } else this.$message(localizeFilter(`${messages.Not_enough_money}`))
     },
     setDown(program) {
       this.clearDown()
@@ -177,14 +186,14 @@ export default Vue.extend({
       this.buttonLeft = new Button({
         selector: '#button-turbo-dryer',
 
-        width: 32,
-        height: 7,
+        width: this.buttonSizeOptions.medium,
+        height: this.buttonSizeOptions.height,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 4,
+        borderRadius: this.buttonSizeOptions.borderRadius + this.buttonSizeOptions.oneMore,
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'left'
+        justifyContent: 'center'
       })
       // clone
       this._upDryOptions = { ...upDryOptions }
@@ -219,15 +228,19 @@ export default Vue.extend({
       switch (type) {
         case 'left':
         case 'combo':
-          this._upDryOptions.width = this.upDryOptions.width = '33em'
-          this._downDryOptions.width = this.downDryOptions.width = '33em'
+          this._upDryOptions.width = this.upDryOptions.width = 
+            this.buttonSizeOptions.medium + this.buttonSizeOptions.halfMore + this.buttonSizeOptions.suffix
+          this._downDryOptions.width = this.downDryOptions.width = 
+            this.buttonSizeOptions.medium + this.buttonSizeOptions.halfMore + this.buttonSizeOptions.suffix
           this.buttonLeft.show()
           this.flex()
           break
         case 'right':
         case 'last':
-          this._upDryOptions.width = '33em'//'67em'
-          this._downDryOptions.width = '33em'//'67em'
+          this._upDryOptions.width = 
+            this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix
+          this._downDryOptions.width = 
+            this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix
           this.buttonLeft.show()
           this.flex()
           break
@@ -242,7 +255,7 @@ export default Vue.extend({
     flex() {
       this.buttonLeft.display = 'flex'
       this.buttonLeft.alignItems = 'center'
-      this.buttonLeft.justifyContent = 'left'
+      this.buttonLeft.justifyContent = 'center'
     },
     setButtonStyle(options) {
       if (options.type === 'left') {
@@ -285,11 +298,11 @@ tr,
 td {
   border: none;
   padding-top: 0.5em;
-  padding-right: 10px;
+  padding-right: 1em;
 }
 
 .button-content-style {
   font-size: 3.5em;
-  margin-left: 1.2em;
+  /* margin-left: 1.2em; */
 }
 </style>

@@ -31,6 +31,8 @@ import irn from '../locales/irn.json'
 import hrv from '../locales/hrv.json'
 import arm from '../locales/arm.json'
 import cze from '../locales/cze.json'
+import uzb from '../locales/uzb.json'
+
 
 const locales = {
   'ru-RU': ru,
@@ -64,7 +66,8 @@ const locales = {
   'irn-IRN': irn,
   'hrv-HRV': hrv,
   'arm-ARM': arm,
-  'cze-CZE': cze
+  'cze-CZE': cze,
+  'uzb-UZB': uzb
 
 }
 

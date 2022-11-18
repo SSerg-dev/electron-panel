@@ -98,7 +98,8 @@ export default new Vuex.Store({
       'disk_x2',
       'mosquito_x2',
       'turboDryer',
-      'degrease' // ?
+      'degrease', 
+      'disinfection' // ?
     ],
     /* dryPrograms: [
       'vacuum',

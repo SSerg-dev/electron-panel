@@ -1,11 +1,12 @@
 <template>
   <div v-if="getIsFooter">
     <div class="footer-panel white-text">
-      <div class="row">
+      
         <!-- {{ `ДОМОЙ` }} -->
         <!-- home keyboard_backspace -->
 
-        <!-- <div class="col s4">
+        <!-- 
+        <div>
           <div class="home">
             <div
               v-if="this.isDown.home === false"
@@ -33,50 +34,35 @@
               </div>
             </div>
           </div>
-        </div> -->
+        </div> 
+        -->
 
-        <div class="col s4" v-if="this.$route.name === 'program'">
-          <div class="stop" style="z-index: 0">
-            <div
-              v-if="this.isDown.stop === false"
-              style="
-                background-image: url('./imgs/stop/stop-down.png');
-                width: 460px;
-                height: 120px;
-              "
-              @click="setProgram('stop')"
-            >
-              <div class="button-title-long button-title-stop">
-                {{ `STOP` | localize }}
-              </div>
+        <!-- background-image: url('./imgs/stop/stop-down.png'); -->
+        <div v-if="this.$route.name === 'program'">
+          <div
+            v-if="this.isDown.stop === false"
+            class="stop"
+            style="background-image: url('./imgs/stop/stop-down.svg')"
+            @click="setProgram('stop')"
+          >
+            <div class="button-title-long button-title-stop">
+              {{ `STOP` | localize }}
             </div>
-            <div
-              v-if="this.isDown.stop === true"
-              style="
-                background-image: url('./imgs/stop/stop-up.png');
-                width: 460px;
-                height: 120px;
-              "
-              @click="setProgram('stop')"
-            >
-              <div class="button-title-long button-title-stop">
-                {{ `STOP` | localize }}
-              </div>
+          </div> 
+
+          <div
+            v-if="this.isDown.stop === true"
+            class="stop"
+            style="background-image: url('./imgs/stop/stop-up.svg')"
+          >
+            <div class="button-title-long button-title-stop">
+              {{ `STOP` | localize }}
             </div>
           </div>
         </div>
 
-        <div class="col s4">
+        <div>
           <div class="operator">
-            <!-- <div
-              v-if="this.isDown.operator === false"
-              style="
-                background-image: url('./imgs/operator/operator-down.png');
-                width: 401px;
-                height: 106px;
-              "
-              @click="setProgram('operator')"
-            > -->
             <!-- ./../src/renderer/assets/imgs/operator/operator-down.png -->
             <div
               v-if="this.isDown.operator === false"
@@ -107,7 +93,7 @@
             </div>
           </div>
         </div>
-      </div>
+      
     </div>
   </div>
 </template>
@@ -183,6 +169,8 @@ export default {
     } */
   },
   mounted() {
+    this.setup()
+
     // this.setIsMoneyToBonus(false)
     // this.setMoneyToBonus(0)
   },
@@ -198,6 +186,11 @@ export default {
       updateStartProgram: 'updateStartProgram',
       updateDryStartProgram: 'updateDryStartProgram',
     }),
+    setup() {
+      // onmousemove
+      // 300 440 - 760 560
+      // onmousedown = (evt) => console.log("mouse location:", evt.x, evt.y)
+    },
 
     goHome(program) {
       this.isDown.home = true
@@ -217,6 +210,14 @@ export default {
 
       switch (type) {
         case 'wash':
+          console.log(
+            '$$ this.updateStartProgram',
+            this.getPanelType,
+            this.getDefaultPanelNumber,
+            this.getActiveProgram,
+            this.getWetBalance
+          )
+
           this.updateStartProgram([
             this.getPanelType,
             this.getDefaultPanelNumber,
@@ -278,7 +279,7 @@ export default {
 
 <style scoped>
 .footer-panel {
-  height: 106px;
+  height: 108px;
   width: 100%;
   position: fixed;
   left: 0em;
@@ -293,44 +294,51 @@ export default {
 }
 
 .button-title-long {
-  position: relative;
-  top: 0%;
-  left: 0%;
+  top: 0;
+  left: 0;
   color: white;
   text-transform: uppercase;
-  font-size: 3rem;
+  font-size: 3em;
   font-weight: bold;
   font-family: 'Plumb-Medium';
 }
 .stop {
+  /* background-image: url('./../src/renderer/assets/imgs/operator/operator-down.png'); */
   width: 460px;
   height: 120px;
-  position: absolute;
-  background-color: none;
-  top: 0%;
-  left: 0%;
-  padding-left: 300px;
-  padding-top: 0px;
-  z-index: 1;
+
+  position: fixed;
+  top: 30.5em;
+  /* bottom: 0; */
+  left: 20.8em;
+
+  z-index: 1000;
+  /* background: yellowgreen; */
+  cursor: pointer;
 }
+/* .stop:hover {
+  background: blanchedalmond;
+} */
+
 .button-title-stop {
-  padding-top: 24px;
-  padding-left: 180px;
+  padding-top: 0.5em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* background: blanchedalmond; */
 }
 .operator {
-  width: 401px;
-  height: 106px;
-  position: absolute;
-  background-color: none;
-  opacity: 1;
-  top: 4%;
-  left: 0%;
-  margin-left: 46em;
-  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  left: 46.6em;
 }
 .button-title-home {
-  padding-top: 8px;
-  padding-left: 144px;
+  padding-top: 0.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .button-title-operator {
   padding-top: 0.5em;
@@ -340,21 +348,14 @@ export default {
   align-items: center;
   justify-content: center;
 }
-/* Plumb-Medium */
 .description {
   font-size: 20px;
   font-family: 'Plumb-Medium';
   font-weight: bold;
 }
 .home {
-  width: 401px;
-  height: 106px;
-  position: absolute;
-  background-color: none;
-  opacity: 1;
-  top: 4%;
-  left: 0%;
-  margin-left: -0.6rem;
-  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  left: -1em;
 }
 </style>

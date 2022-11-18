@@ -118,7 +118,8 @@ const downDryOptions = {
   width: '32.5em'
 }
 const buttonSizeOptions = {
-  borderRadius: 4, //2
+  borderRadius: 2, //2
+  
   height: 7,
   
   extraSmall: 7,
@@ -127,6 +128,15 @@ const buttonSizeOptions = {
   extraMedium: 52,
   large: 59.5,
   extraLarge: 67,
+
+  halfMore: 0.5,
+  halfLess: -0.5,
+
+  oneMore: 1,
+  twoMore: 2,
+  
+  oneLess: -1,
+  twoLess: -2,
 
   suffix: 'em'
 }

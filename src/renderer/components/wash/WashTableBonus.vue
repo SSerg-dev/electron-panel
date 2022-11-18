@@ -81,6 +81,9 @@
 <script>
 import Vue from 'vue'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+import messages from '@/utils/messages'
+import localizeFilter from '@/filters/localize.filter'
+
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
 import {
@@ -204,7 +207,7 @@ export default {
         this.timeoutPopup = setTimeout(() => {
           // this.$router.push('/popup')
         }, this.delay)
-      } else this.$message(`Недостаточно средств`)
+      } else this.$message(localizeFilter(`${messages.Not_enough_money}`))
     },
 
     saveMoney() {

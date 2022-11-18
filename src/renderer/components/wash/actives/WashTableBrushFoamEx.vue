@@ -67,6 +67,9 @@
 <script>
 import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
+import messages from '@/utils/messages'
+import localizeFilter from '@/filters/localize.filter'
+
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
 import {
@@ -77,7 +80,8 @@ import {
   upColorOptions,
   downColorOptions,
   upGreenOptions,
-  downGreenOptions
+  downGreenOptions,
+  buttonSizeOptions,
 } from '@/shapes/index.js'
 
 import { log } from '../../../../main/utils'
@@ -93,6 +97,7 @@ export default Vue.extend({
     downColorOptions: downColorOptions,
     upGreenOptions: upGreenOptions,
     downGreenOptions: downGreenOptions,
+    buttonSizeOptions: buttonSizeOptions,
 
     // clone
     _upStandardOptions: null,
@@ -192,7 +197,7 @@ export default Vue.extend({
         this.timeoutPopup = setTimeout(() => {
           // this.$router.push('/popup')
         }, 1000)
-      } else this.$message(`Недостаточно средств`)
+      } else this.$message(localizeFilter(`${messages.Not_enough_money}`))
     },
     setDown(program) {
       this.clearDown()
@@ -278,10 +283,10 @@ export default Vue.extend({
       this.buttonLeft = new Button({
         selector: '#button-left-brush',
 
-        width: 51,
-        height: 7,
+        width: this.buttonSizeOptions.extraMedium,
+        height: this.buttonSizeOptions.height,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 4,
+        borderRadius: this.buttonSizeOptions.borderRadius,
 
         display: 'flex',
         alignItems: 'center',
@@ -292,10 +297,10 @@ export default Vue.extend({
       this.buttonCenter = new Button({
         selector: '#button-center-brush',
 
-        width: 7,
-        height: 7,
+        width: this.buttonSizeOptions.extraSmall,
+        height: this.buttonSizeOptions.height,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 4,
+        borderRadius: this.buttonSizeOptions.borderRadius,
 
         display: 'flex',
         alignItems: 'center',
@@ -306,10 +311,10 @@ export default Vue.extend({
       this.buttonRight = new Button({
         selector: '#button-right-brush',
 
-        width: 7,
-        height: 7,
+        width: this.buttonSizeOptions.extraSmall,
+        height: this.buttonSizeOptions.height,
         background: 'rgb(255, 255, 255)',
-        borderRadius: 4,
+        borderRadius: this.buttonSizeOptions.borderRadius,
 
         display: 'flex',
         alignItems: 'center',
@@ -359,8 +364,10 @@ export default Vue.extend({
     restore(type) {
       switch (type) {
         case 'left':
-          this._upGreenOptions.width = '67em'
-          this._downGreenOptions.width = '67em'
+          this._upGreenOptions.width = //'67em'
+            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix
+          this._downGreenOptions.width = //'67em'
+            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix 
           this.buttonLeft.show()
           this.flex()
           this.buttonCenter.hide()
@@ -368,8 +375,10 @@ export default Vue.extend({
           break
 
         case 'right_color':
-          this._upGreenOptions.width = '59.5em'
-          this._downGreenOptions.width = '59.5em'
+          this._upGreenOptions.width = //'59.5em'
+            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+          this._downGreenOptions.width = //'59.5em'
+            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
           this.buttonLeft.show()
           this.buttonCenter.show()
           this.flex()
@@ -377,8 +386,10 @@ export default Vue.extend({
           break
 
         case 'right_x2':
-          this._upGreenOptions.width = '59.5em'
-          this._downGreenOptions.width = '59.5em'
+          this._upGreenOptions.width = //'59.5em'
+            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+          this._downGreenOptions.width = //'59.5em'
+            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
           this.buttonLeft.show()
           this.buttonRight.show()
           this.flex()
@@ -386,8 +397,10 @@ export default Vue.extend({
           break
 
         case 'right_color_x2':
-          this._upGreenOptions.width = '52em'
-          this._downGreenOptions.width = '52em'
+          this._upGreenOptions.width = //'52em'
+            this.buttonSizeOptions.extraMedium + this.buttonSizeOptions.suffix 
+          this._downGreenOptions.width = //'52em'
+            this.buttonSizeOptions.extraMedium + this.buttonSizeOptions.suffix 
           this.buttonLeft.show()
           this.buttonCenter.show()
           this.buttonRight.show()

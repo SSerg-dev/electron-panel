@@ -419,7 +419,6 @@ export default {
     }),
   },
   methods: {
-    /* dev */
     setup() {
       const overlay = this.$refs.overlay
       overlay.onclick = (evt) => {

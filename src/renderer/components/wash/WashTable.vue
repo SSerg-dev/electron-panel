@@ -18,7 +18,8 @@
             ]"
           >
             <div class="emoji">
-              {{ `📄` }}
+              <!-- {{ `📄` }} -->
+              {{`🤑`}}
             </div>
           </div>
         </div>
@@ -38,6 +39,7 @@
           >
             <div v-if="this.getIsKktInstalled">
               {{ `🧾` }}
+              
             </div>
             <div v-else style="opacity: 0.2">
               {{ `🧾` }}
@@ -86,14 +88,7 @@
         <div v-else :key="getWetProgShow">
           <table border="0" width="100%" cellpadding="0" cellspacing="0">
             <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
-              <!-- 0 -->
-              <!-- ОБЕЗЖИРИВАНИЕ degrease -->
-              <tr
-                v-if="this.actives[27].display !== 'none'"
-                :key="this.keys.keyDegrease"
-              >
-                <WashTableDegrease :actives="actives" />
-              </tr>
+              
 
               <!-- 1 -->
               <!-- ДИСКИ -->
@@ -181,19 +176,30 @@
               <tr
                 v-if="this.actives[4].display !== 'none'"
                 :key="this.keys.keyDryShineEx"
+                style="height: 140px;"
               >
                 <WashTableDryShineEx :actives="actives" />
               </tr>
 
               <!-- 11 -->
-              <!-- ДЕЗИНФЕКЦИЯ disinfection -->
-              
+              <!-- ОБЕЗЖИРИВАНИЕ degrease -->
               <tr
+                v-if="this.actives[27].display !== 'none'"
+                :key="this.keys.keyDegrease"
+              >
+                <WashTableDegrease :actives="actives" />
+              </tr>
+
+              <!-- todo hidden -->
+              <!-- 12 -->
+              <!-- ДЕЗИНФЕКЦИЯ disinfection -->
+              <!-- <tr
                 v-if="this.actives[28].display !== 'none'"
                 :key="this.keys.keyDisinfection"
               >
                 <WashTableDisinfection :actives="actives" />
-              </tr>
+              </tr> -->
+
 
               <!-- dry group -->
               <!-- vacuum air washer turboDryer -->
@@ -682,7 +688,7 @@ export default {
         background: 'rgb(255, 255, 255)',
         border: '0.4em solid rgb(64, 196, 255)',
         boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
-        borderRadius: 2,
+        borderRadius: 1, // 2
         fontSize: '1em',
 
         display: 'flex',
@@ -699,7 +705,7 @@ export default {
         background: 'rgb(255, 255, 255)',
         border: '0.4em solid rgb(64, 196, 255)',
         boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
-        borderRadius: 2,
+        borderRadius: 1, // 2
         fontSize: '1em',
 
         display: 'flex',
@@ -876,12 +882,12 @@ export default {
   font-family: 'Plumb-Medium';
   font-weight: normal; /* bold; */
   text-align: justify;
-  z-index: 1;
+  z-index: 0;
 }
 
 table {
   position: absolute;
-  margin-top: 18em; 
+  margin-top: 27.5em; /* 18em */ 
   margin-left: 2.5em;
 
   font-family: 'Plumb-Medium';
@@ -939,6 +945,8 @@ td {
   margin-left: 0em;
   padding-top: 0em;
   padding-right: 0em;
+
+  /* border-radius: 4em; */
 
   /* display: flex;
   align-items: center;

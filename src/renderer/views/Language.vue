@@ -225,13 +225,13 @@
               </button>
             </td>
             <td>
-            <!-- dev -->  
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('uzb-UZB')">
                 <img src="@/assets/imgs/language/lang_UZB.png" />
-              </router-link>
+              </button>
             </td>
           </tr>
           <tr v-if="this.getPaginate === 3">
+            <!-- dev -->
             <td>
               <router-link class="btn-small" to="/language">
                 <img src="@/assets/imgs/language/lang_TJK.png" />

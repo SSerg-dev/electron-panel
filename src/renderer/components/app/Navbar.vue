@@ -223,6 +223,10 @@
             <img src="@/assets/imgs/flags/flag_CZE.png" />
           </div>
 
+          <div v-if="this.info.locale === 'uzb-UZB'">
+            <img src="@/assets/imgs/flags/flag_UZB.png" />
+          </div>
+
         </router-link>
       </div>
     </div>
@@ -324,8 +328,8 @@ export default {
 .background-top {
   position: absolute;
   top: 40%;
-  left: 0%;
-  z-index: 1;
+  left: 0;
+  z-index: 0;
 }
 img {
   width: 100%;

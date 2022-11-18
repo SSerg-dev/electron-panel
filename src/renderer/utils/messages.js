@@ -16,5 +16,6 @@ export default {
     rejected: 'rejected',
     The_payment_successful_amount: 'The_payment_successful_amount',
     KKT_not_installed: 'KKT_not_installed',
-    Wash_program_completed_successfully: 'Wash_program_completed_successfully'
+    Wash_program_completed_successfully: 'Wash_program_completed_successfully',
+    Not_enough_money: 'Not_enough_money'
 }
