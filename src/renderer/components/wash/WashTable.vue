@@ -887,7 +887,7 @@ export default {
 
 table {
   position: absolute;
-  margin-top: 27.5em; /* 18em */ 
+  margin-top: 27.0em; /* 18em */ 
   margin-left: 2.5em;
 
   font-family: 'Plumb-Medium';

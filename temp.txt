@@ -14,6 +14,544 @@
                  getWetProgStatus
 
 
+// ----------------------------
+footer
+<template>
+  <div v-if="getIsFooter">
+    <div class="footer-panel white-text">
+      <!-- <div v-if="this.$route.name === 'program'">
+          
+          <div
+            v-if="this.isDown.stop === false"
+            class="stop"
+            style="background-image: url('./imgs/stop/stop-down.svg')"
+            @click="setProgram('stop')"
+          >
+            <div class="button-title-long button-title-stop">
+              {{ `STOP` | localize }}
+            </div>
+          </div> 
+
+          <div
+            v-if="this.isDown.stop === true"
+            class="stop"
+            style="background-image: url('./imgs/stop/stop-up.svg')"
+          >
+            <div class="button-title-long button-title-stop">
+              {{ `STOP` | localize }}
+            </div>
+          </div>
+
+        </div> -->
+
+      <!-- STOP -->
+      <!-- <div v-if="getRouter === '/program'"> -->
+      <!-- <div v-if="this.$route.name === 'program'"> -->
+      <div v-if="getRouter === '/program'">
+        <div
+          @click="setProgram('stop')"
+          class="waves-effect stop"
+          id="button-program-stop"
+        >
+          <div
+            class="button-title-long button-title-stop"
+            :class="[
+              { 'card-content black-text': !this.isDown.stop },
+              { 'card-content white-text': this.isDown.stop },
+            ]"
+            style="font-size: 4em; background: yellow;"
+          >
+            {{ `STOP` | localize }}
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="operator">
+          <div
+            v-if="this.isDown.operator === false"
+            style="
+              background-image: url('./imgs/operator/operator-down.png');
+              width: 401px;
+              height: 106px;
+            "
+            @click="setProgram('operator')"
+          >
+            <div class="button-title-long button-title-operator">
+              {{ `CONSULTANT` | localize }}
+            </div>
+          </div>
+
+          <div
+            v-if="this.isDown.operator === true"
+            style="
+              background-image: url('./imgs/operator/operator-up.png');
+              width: 401px;
+              height: 106px;
+            "
+            @click="setProgram('operator')"
+          >
+            <div class="button-title-long button-title-operator">
+              {{ `CONSULTANT` | localize }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Vue from 'vue'
+import { mapMutations, mapGetters, mapActions } from 'vuex'
+
+import { Queue } from '@/queue/index.js'
+import { log } from '../../../main/utils'
+import messages from '@/utils/messages'
+import localizeFilter from '@/filters/localize.filter'
+
+import { Component, Box, Circle, Button } from '@/shapes/index.js'
+import {
+  upStopOptions,
+  downStopOptions,
+  buttonSizeOptions,
+} from '@/shapes/index.js'
+
+// import {} from '../../../renderer/assets/imgs/operator/'
+
+export default {
+  data: () => ({
+    // options
+    upStopOptions: upStopOptions,
+    downStopOptions: downStopOptions,
+
+    buttonSizeOptions: buttonSizeOptions,
+
+    // clone
+    _upStopOptions: null,
+    _downStopOptions: null,
+    // _buttonSizeOptions: null,
+
+    // classes
+    buttonStop: null,
+    buttonInput: null,
+    buttonExit: null,
+    buttonOperator: null,
+
+    // native
+
+    // visible_stop: '',
+    // activeNumber_stop: 999,
+
+    // visible_input: '',
+    // activeNumber_input: 999,
+
+    // visible_exit: '',
+    // activeNumber_exit: 999,
+
+    // visible_operator: '',
+    // activeNumber_operator: 999,
+
+    // programs: ['stop', 'input', 'exit', 'operator'],
+
+    // end init button
+
+    active: '',
+    timeoutPopup: null,
+    timeoutDelay: null,
+    delay: 500,
+    isDown: {
+      stop: false,
+      input: false,
+      exit: false,
+      operator: false,
+      home: false,
+    },
+    type: '',
+  }),
+  computed: {
+    ...mapGetters({
+      getRouter: 'getRouter',
+      getVacuumNumber: 'getVacuumNumber',
+      getWetBalance: 'getWetBalance',
+
+      getPanelType: 'getPanelType',
+      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getActiveProgram: 'getActiveProgram',
+      getWetBalance: 'getWetBalance',
+      getPanelType: 'getPanelType',
+      getIsFooter: 'getIsFooter',
+      getWetStopFreeCount: 'getWetStopFreeCount',
+      getIsMoneyToBonus: 'getIsMoneyToBonus',
+
+      getIsMoneyToBonusNo: 'getIsMoneyToBonusNo',
+      getMoneyToBonus: 'getMoneyToBonus',
+      getSecondsBonusTimer: 'getSecondsBonusTimer',
+      getIsFirstTimer: 'getIsFirstTimer',
+    }),
+  },
+  watch: {
+    getWetBalance(flag) {
+      if (parseInt(flag) === 0) {
+        this.clearDown()
+      }
+    },
+    // getActiveProgram(flag) {
+    //   if (flag !== this.actives[this.activeNumber - 1].name) this.clearDown()
+    // },
+    getRouter(flag) {
+      if (this.getRouter === '/program') {
+        // this.setup()
+        //this.initial()
+        // this.restore('stop')
+      }
+    },
+
+    /* dev */
+    getWetStopFreeCount(flag) {
+      try {
+        if (
+          parseInt(flag) > 0 &&
+          +this.getMoneyToBonus === 0 &&
+          this.getIsFirstTimer
+        ) {
+          this.setMoneyToBonus(this.getWetBalance)
+          this.setIsMoneyToBonus(true)
+        }
+      } catch (err) {}
+    },
+
+    /* dev */
+    /* getSecondsBonusTimer(flag) {
+      try {
+        if (
+          parseInt(flag) > 0 &&
+          +this.getMoneyToBonus === 0 &&
+          this.getIsFirstTimer
+        ) {
+          this.setMoneyToBonus(this.getWetBalance)
+          this.setIsMoneyToBonus(true)
+        }
+      } catch (err) {}
+    } */
+  },
+  created() {
+    // clone
+    // this._upStopOptions = { ...upStopOptions }
+    // this._downStopOptions = { ...downStopOptions }
+  },
+  mounted() {
+    this.setup()
+    // this.setIsMoneyToBonus(false)
+    // this.setMoneyToBonus(0)
+  },
+
+  methods: {
+    ...mapMutations({
+      setActiveProgram: 'setActiveProgram',
+      setIsMoneyToBonus: 'setIsMoneyToBonus',
+      setMoneyToBonus: 'setMoneyToBonus',
+    }),
+    ...mapGetters({}),
+    ...mapActions({
+      updateStartProgram: 'updateStartProgram',
+      updateDryStartProgram: 'updateDryStartProgram',
+    }),
+    setup() {
+      this.initial()
+    },
+    initial() {
+      this.type = 'stop'
+
+      // clone
+      this._upStopOptions = { ...upStopOptions }
+      this._downStopOptions = { ...downStopOptions }
+      // this._buttonSizeOptions = { ...buttonSizeOptions }
+
+      // console.log('$$ initial', this.type, this._upStopOptions)
+
+      // classes instances
+      switch (this.type) {
+        case 'stop':
+
+          this.buttonStop = new Button({
+            selector: '#button-program-stop',
+
+            width: this.buttonSizeOptions.medium,
+            height: this.buttonSizeOptions.height,
+            background: 'rgb(255, 255, 255)',
+            borderRadius: this.buttonSizeOptions.borderRadius,
+            fontSize: '1em',
+
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          })
+
+          this.restore(this.type)
+
+          /*     */
+          break
+
+        case 'input':
+        case 'exit':
+        case 'operator':
+          break
+
+        default:
+          break
+      }
+
+      /* input button */
+      // this.buttonInput = new Button({
+      //   selector: '#button-input',
+
+      /* exit button */
+      // this.buttonExit = new Button({
+      //   selector: '#button-exit',
+
+      /* operator button */
+      // this.buttonOperator = new Button({
+      //   selector: '#button-operator',
+
+      // end classes
+
+      // clone
+      // this._upStopOptions = { ...upStopOptions }
+      // this._downStopOptions = { ...downStopOptions }
+
+      // this.restore('stop')
+      // this.restore('input')
+      // this.restore('exit')
+      // this.restore('operator')
+    }, // end initial()
+
+    restore(type) {
+      switch (type) {
+        case 'stop':
+          console.log('$$ restore', type)
+
+          this._upStopOptions.width =
+            this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix
+          this._downStopOptions.width =
+            this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix
+
+          this.setButtonStyle(this.upStopOptions)
+
+          break
+        case 'input':
+        case 'exit':
+        case 'operator':
+          // this._upStopOptions.width =
+          //   this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix
+          // this._downStopOptions.width =
+          //   this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix
+          break
+
+        default:
+          break
+      }
+
+      return
+    },
+
+    flex() {
+      this.buttonStop.display = 'flex'
+      this.buttonStop.alignItems = 'center'
+      this.buttonStop.justifyContent = 'center'
+    },
+
+    setButtonStyle(options) {
+
+      if (options.type === 'stop') {
+
+        this.buttonStop.background = options.background
+        this.buttonStop.border = options.border
+        this.buttonStop.boxShadow = options.boxShadow
+        this.buttonStop.fontSize = options.fontSize
+        this.buttonStop.width = options.width
+
+        // console.log('$$ this.buttonStop'
+        // , this.buttonStop.background
+        // , this.buttonStop.border
+        // , this.buttonStop.boxShadow
+        // , this.buttonStop.fontSize
+        // , this.buttonStop.width)
+
+        this.flex()
+      }
+    },
+
+    /*     */
+
+    goHome(program) {
+      this.isDown.home = true
+      this.timeoutDelay = setTimeout(() => {
+        this.isDown.home = false
+        try {
+          if (this.$route.name !== 'home') this.$router.push('/')
+        } catch (err) {}
+      }, this.delay)
+    },
+
+    setProgram(program) {
+      this.active = program
+
+      this.setActiveProgram(this.active)
+      this.setDown(program)
+
+      const type = this.getPanelType
+
+      switch (type) {
+        case 'wash':
+          this.updateStartProgram([
+            this.getPanelType,
+            this.getDefaultPanelNumber,
+            this.getActiveProgram,
+            this.getWetBalance,
+          ])
+          break
+        case 'vacuum':
+          this.updateDryStartProgram([
+            this.getPanelType,
+            this.getVacuumNumber,
+            this.getActiveProgram,
+            this.getDryBalance,
+          ])
+          break
+
+        default:
+          console.warn('no panel type')
+          break
+      }
+      if (program === 'operator') {
+        this.timeoutPopup = setTimeout(() => {
+          try {
+            this.$router.push('/popup')
+          } catch (err) {}
+        }, (this.delay = 400))
+      }
+    },
+    setDown(program) {
+      this.clearDown()
+
+      switch (program) {
+        case 'stop':
+          this.setButtonStyle(this._downStopOptions)
+          this.isDown.stop = true
+          break
+
+        default:
+          break
+      }
+    },
+    clearDown() {
+      this.isDown = Object.fromEntries(
+        Object.entries(this.isDown).map(([key, value]) => [key, false])
+      )
+      this.setButtonStyle(this._upStopOptions)
+    },
+  },
+  beforeDestroy() {
+    clearTimeout(this.timeoutDelay)
+    clearTimeout(this.timeoutPopup)
+  },
+}
+</script>
+
+<style scoped>
+.footer-panel {
+  height: 108px;
+  width: 100%;
+  position: fixed;
+  left: 0em;
+  bottom: -0.2em;
+  opacity: 1;
+  /* #121212 */
+  background: linear-gradient(180deg, #505cad 1.62%, #5b68bb 100%);
+}
+.row {
+  position: fixed;
+  left: 0.8em;
+}
+
+.button-title-long {
+  top: 0;
+  left: 0;
+  /* color: white; */
+  text-transform: uppercase;
+  font-size: 3em;
+  font-weight: bold;
+  font-family: 'Plumb-Medium';
+}
+.stop {
+  /* width: 460px;
+  height: 120px; */
+
+  position: fixed;
+  top: 30.5em;
+  /* bottom: 0; */
+  left: 20em;
+
+  cursor: pointer;
+  /* background: yellowgreen; */
+  z-index: 99;
+}
+
+/* .button-title-stop {
+  font-size: 3.5em;
+} */
+.operator {
+  position: fixed;
+  bottom: 0;
+  left: 46.6em;
+}
+.button-title-home {
+  padding-top: 0.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button-title-operator {
+  padding-top: 0.5em;
+  padding-left: 0.8em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.description {
+  font-size: 20px;
+  font-family: 'Plumb-Medium';
+  font-weight: bold;
+}
+.home {
+  position: fixed;
+  bottom: 0;
+  left: -1em;
+}
+
+/* dev */
+/* td {
+  border: none;
+  padding-top: 40.5em;
+  padding-right: 300px;
+  position: relative;
+  background: yellowgreen;
+  z-index: 4;
+} */
+
+/* .button-content-style {
+  font-size: 3.5em;
+  margin-left: 1.2em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+} */
+</style>
+
+//-----------------------------
   
 
 

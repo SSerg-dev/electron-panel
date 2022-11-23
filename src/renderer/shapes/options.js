@@ -117,6 +117,25 @@ const downDryOptions = {
   fontSize: '1em',
   width: '32.5em'
 }
+/* dev */
+/* StopOptions */
+const upStopOptions = {
+  type: 'stop',
+  background: 'rgb(255, 255, 255)',
+  border: '0.4em solid rgb(255,3,3)',
+  boxShadow: 'rgb(255,3,3) 0px 10px 20px',
+  fontSize: '1em',
+  width: '32.5em'
+}
+const downStopOptions = {
+  type: 'stop',
+  background: 'rgb(255,3,3)',
+  border: '0.4em solid rgb(255,3,3)',
+  boxShadow: 'rgb(255,3,3) 0px 10px 20px',
+  fontSize: '1em',
+  width: '32.5'
+}
+
 const buttonSizeOptions = {
   borderRadius: 2, //2
   
@@ -156,6 +175,8 @@ export {
   downTurboOptions,
   upDryOptions,
   downDryOptions,
-  buttonSizeOptions
+  buttonSizeOptions,
+  upStopOptions,
+  downStopOptions
 
 }

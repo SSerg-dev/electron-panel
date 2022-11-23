@@ -51,15 +51,15 @@
   "APPEND": "QO‘SHIMCHA",
   "CONFIRM": "TASDIQLASH",
 
-  "To_enter_the_system": "To enter the system, enter the number phone or scan the QR code", 
-  "To_credit_Bonuses_to_your_account": "To credit Bonuses to your account, enter your phone number",
-  "By_clicking_on_CONFIRM": "By clicking on CONFIRM, you give your consent to send SMS messages and personal data processing to you, according to the conditions posted on the website: www.alles-bonus.com",
+  "To_enter_the_system": "Tizimga kirish uchun telefon raqamingizni kiriting yoki QR kodini skanerlang", 
+  "To_credit_Bonuses_to_your_account": "Hisobingizga Bonuslarni kiritish uchun telefon raqamingizni kiriting",
+  "By_clicking_on_CONFIRM": "Tasdiqlash tugmasini bosish orqali siz veb-saytda ko'rsatilgan shartlarga muvofiq SMS xabarlarni yuborish va shaxsiy ma'lumotlarni qayta ishlashga roziligingizni bildirasiz.: www.alles-bonus.com",
 
-  "Authorization_using_a_QR": "Authorization using a QR",
-  "Your_balance": "Your balance,",
-  "Select_charge_amount": "Select charge amount",
+  "Authorization_using_a_QR": "QR avtorizatsiyasi",
+  "Your_balance": "Sizning balansingiz,",
+  "Select_charge_amount": "Yechib olinadigan summani tanlang",
   
-  "Enter_your_password": "Enter your password",
+  "Enter_your_password": "Parolingizni kiriting",
   "for_Alles_Bonus": "for Alles Bonus",
   "to_enter_the_settings_menu": "to enter the settings menu",
   
