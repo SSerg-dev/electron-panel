@@ -8,12 +8,15 @@
         
       </h3>
     </div>
-    <router-link to="/">
-      <div class="back">
-        <img src="@/assets/imgs/key/back.png" />
-      </div>
-    </router-link>
 
+    <div class="back">
+        <router-link to="/">
+          <div>
+            <img src="@/assets/imgs/key/back.png" />
+          </div>
+        </router-link>
+      </div>
+      
     <section>
       <!-- <form @submit.prevent=""> -->
       <div class="row">
@@ -231,23 +234,23 @@
             </td>
           </tr>
           <tr v-if="this.getPaginate === 3">
-            <!-- dev -->
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('tjk-TJK')">
                 <img src="@/assets/imgs/language/lang_TJK.png" />
-              </router-link>
+              </button>
             </td>
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('kgz-KGZ')">
                 <img src="@/assets/imgs/language/lang_KGZ.png" />
-              </router-link>
+              </button>
             </td>
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('aze-AZE')">
                 <img src="@/assets/imgs/language/lang_AZE.png" />
-              </router-link>
+              </button>
             </td>
           </tr>
+          <!-- dev -->
           <tr v-if="this.getPaginate === 4">
             <td>
               <router-link class="btn-small" to="/language">
@@ -383,10 +386,10 @@ export default Vue.extend({
   /* width: 20em; */
 }
 .back {
-  position: absolute;
-  margin-top: -0.8em;
-  margin-left: 2.2em;
-  z-index: 1;
+  position: fixed;
+  top: 11em;
+  left: 2.5em;
+  z-index: 99;
 }
 
 table {

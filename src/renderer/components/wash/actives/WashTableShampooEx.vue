@@ -112,12 +112,15 @@ export default Vue.extend({
     getWetBalance(flag) {
       if (parseInt(flag) === 0) {
         this.clearDown()
-        this.buttonLeft.background = 'white'
-        this.buttonRight.background = 'white'
       }
     },
     getActiveProgram(flag) {
-      if (flag !== this.actives[this.activeNumber].name) this.clearDown()
+      if (
+        flag !== this.actives[this.activeNumber].name &&
+        flag !== this.actives[this.activeNumber_x2].name
+        ) 
+      
+      this.clearDown()
     }
   },
   methods: {
@@ -165,9 +168,11 @@ export default Vue.extend({
           this.isDown.shampoo = true
           break
         case 'shampoo_x2':
-          this.setButtonStyle(this._downStandardOptions)
           this.setButtonStyle(this._downX2Options)
           this.isDown.shampoo_x2 = true
+
+          this.setButtonStyle(this._downStandardOptions)
+          this.isDown.shampoo = true
           break
 
         default:
@@ -301,7 +306,8 @@ export default Vue.extend({
         this.buttonLeft.fontSize = options.fontSize
         this.buttonLeft.width = options.width
 
-        this.buttonRight.background = 'rgb(255, 255, 255)'
+        // if (!this.isDown.shampoo_x2)
+        // this.buttonRight.background = 'rgb(255, 255, 255)'
       }
 
       if (options.type === 'right') {
@@ -311,7 +317,7 @@ export default Vue.extend({
         this.buttonRight.fontSize = options.fontSize
         this.buttonRight.width = options.width
 
-        this.buttonLeft.background = 'rgb(255, 255, 255)'
+        // this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
     }
   }, // end methods

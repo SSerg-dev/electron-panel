@@ -14,7 +14,7 @@
             { 'card-content black-text': !this.isDown.disk },
             { 'card-content white-text': this.isDown.disk },
           ]"
-        >
+        > 
           {{ `${actives[this.activeNumber].title}` | localize }}
         </div>
       </div>

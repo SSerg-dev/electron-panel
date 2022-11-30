@@ -27,6 +27,7 @@
   "FOAM_COLOR": "SPUMĂ CULOARE", 
   "BRUSH": "PERIE",
   "BRUSH_COLOR": "PERIE CULOARE",
+  "SHAMPOO_X2": "ȘAMPON X2",
   "WATER_SHAMPOO": "APĂ ȘAMPON",
   "COLD_WATER": "RECE",
   "WARM_WATER": "CALD",
@@ -147,6 +148,9 @@
   "Cashless": "Fără numerar",
   "Bonus": "Primă",
   "Service": "Serviciu",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
   
   

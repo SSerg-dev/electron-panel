@@ -27,13 +27,14 @@
   "FOAM_COLOR": "ПЕНА ЦВЕТ",
   "BRUSH": "ЩЕТКА",
   "BRUSH_COLOR": "ЩЕТКА ЦВЕТ",
+  "SHAMPOO_X2": "ШАМПУНЬ Х2",
   "WATER_SHAMPOO": "ВОДА ШАМПУНЬ",
   "COLD_WATER": "ХОЛОДНАЯ",
   "WARM_WATER": "ТЕПЛАЯ",
   "OSMOSIS": "ОСМОС",
   "STOP_PAUSE": "СТОП/ПАУЗА",
   "AIR": "ВОЗДУХ",
-  "GLASS_WASHING_LIQUID": "ОМЫВАТЕЛЬ",
+  "GLASS_WASHING_LIQUID": "НЕЗАМЕРЗАЙКА",
   "WAX": "ВОСК",
   "FOAM_X2": "ПЕНА Х2",
   "VACUUM_CLEANER": "ПЫЛЕСОС",
@@ -148,6 +149,9 @@
     "Bonus": "Бонус",
     "Service": "Сервис",
 
+    "INPUT": "ВЪЕЗД",
+    "EXIT": "ВЫЕЗД",
+    
     
     
     

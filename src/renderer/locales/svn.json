@@ -27,6 +27,7 @@
   "FOAM_COLOR": "PENA BARVA", 
   "BRUSH": "KRTAČA",
   "BRUSH_COLOR": "KRTAČA BARVA",
+  "SHAMPOO_X2": "ŠAMPON X2",
   "WATER_SHAMPOO": "VODA ŠAMPON",
   "COLD_WATER": "HLADNA",
   "WARM_WATER": "TOPLA",
@@ -147,6 +148,9 @@
   "Cashless": "Brezgotovinsko",
   "Bonus": "Bonus",
   "Service": "Storitev",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
 
 

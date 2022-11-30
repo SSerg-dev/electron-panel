@@ -1,11 +1,13 @@
 <template>
   <div>
     <div class="locate">
-      <router-link to="/">
-        <div class="back">
-          <img src="@/assets/imgs/key/back.png" />
-        </div>
-      </router-link>
+      <div class="back">
+        <router-link to="/">
+          <div>
+            <img src="@/assets/imgs/key/back.png" />
+          </div>
+        </router-link>
+      </div>
 
       <div align="justify" class="message">
         <div><Message /></div>
@@ -30,19 +32,19 @@ import EventBus from '@/bus/EventBus'
 
 export default Vue.extend({
   data: () => ({
-    intervalMainMenu: null
+    intervalMainMenu: null,
   }),
   computed: {
     ...mapGetters({
       getWetBusyPanel: 'getWetBusyPanel',
       getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
-    })
+    }),
   },
   methods: {
     ...mapMutations({
       setRouter: 'setRouter',
       setPayType: 'setPayType',
-      setIsBonusMoney: 'setIsBonusMoney'
+      setIsBonusMoney: 'setIsBonusMoney',
     }),
 
     gotoMainMenu(seconds) {
@@ -51,13 +53,13 @@ export default Vue.extend({
           this.$router.push('/')
         }
       }, 1000)
-    }
+    },
   },
 
   mounted() {
     this.setRouter('/bonus')
     this.setIsBonusMoney(true)
-    
+
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },
   beforeDestroy() {
@@ -66,8 +68,8 @@ export default Vue.extend({
 
   components: {
     BonusBill,
-    Message
-  }
+    Message,
+  },
 })
 </script>
 
@@ -76,10 +78,10 @@ export default Vue.extend({
   position: relative;
 }
 .back {
-  position: absolute;
-  margin-top: -18em;
-  margin-left: 1.5em;
-  z-index: 1;
+  position: fixed;
+  top: 11em;
+  left: 2.5em;
+  z-index: 99;
 }
 .message {
   position: absolute;

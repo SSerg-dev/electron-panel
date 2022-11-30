@@ -27,6 +27,7 @@
   "FOAM_COLOR": "PĚNA BARVA", 
   "BRUSH": "KARTÁČ",
   "BRUSH_COLOR": "KARTÁČ BARVA",
+  "SHAMPOO_X2": "ŠAMPÓN X2",
   "WATER_SHAMPOO": "VODA ŠAMPÓN",
   "COLD_WATER": "STUDENÝ",
   "WARM_WATER": "TEPLÝ",
@@ -147,6 +148,9 @@
   "Cashless": "Bezhotovostně",
   "Bonus": "Bonus",
   "Service": "Servis",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
   
   

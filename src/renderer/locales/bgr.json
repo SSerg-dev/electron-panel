@@ -27,6 +27,7 @@
   "FOAM_COLOR": "ПЯНА ЦВЯТ", 
   "BRUSH": "ЧЕТКА",
   "BRUSH_COLOR": "ЧЕТКА ЦВЯТ",
+  "SHAMPOO_X2": "ШАМПОАН X2",
   "WATER_SHAMPOO": "ВОДА ШАМПОАН",
   "COLD_WATER": "СТУДЕНА",
   "WARM_WATER": "ТОПЛА",
@@ -147,6 +148,9 @@
   "Cashless": "Без в брой",
   "Bonus": "Бонус",
   "Service": "Обслужване",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
   
   

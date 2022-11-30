@@ -3,7 +3,7 @@
     <div class="footer-panel white-text">
       
       <!-- stop -->
-      <div v-if="this.$route.name === 'program'" class="stop-position">
+      <div v-if="this.$route.name === 'program' && getWetProgramName.length > 0" class="stop-position">
         <div
           v-if="this.isDown.stop === false"
           class="button-up-style"
@@ -55,8 +55,8 @@
             @click="setProgram('input')"
           >
             <div class="button-title">
-              <!-- {{`CONSULTANT` | localize }} -->
-              {{`🚘 INPUT`}}
+              <div style="margin-top: -0.3em;">🚘 &nbsp;</div>
+              {{`INPUT` | localize }}
             </div>
           </div>
 
@@ -65,7 +65,8 @@
             class="button-input-down-style"
           >
             <div class="button-title">
-              {{`🚘 INPUT`}}
+              <div style="margin-top: -0.3em;">🚘 &nbsp;</div>
+              {{`INPUT` | localize }}
             </div>
           </div>
         </div>
@@ -80,7 +81,8 @@
             @click="setProgram('exit')"
           >
             <div class="button-title">
-              {{`🏁 EXIT`}}
+              <div>🏁 &nbsp;</div>
+              {{`EXIT` | localize}}
             </div>
           </div>
 
@@ -89,7 +91,8 @@
             class="button-exit-down-style"
           >
             <div class="button-title">
-              {{`🏁 EXIT`}}
+              <div>🏁 &nbsp;</div>
+              {{`EXIT` | localize}}
             </div>
           </div>
         </div>
@@ -140,10 +143,18 @@ export default {
       getMoneyToBonus: 'getMoneyToBonus',
       getSecondsBonusTimer: 'getSecondsBonusTimer',
       getIsFirstTimer: 'getIsFirstTimer',
+
+      getWetProgramName: 'getWetProgramName'
+
     }),
   },
   watch: {
+    getWetProgramName(flag) {
+      // console.log('$$ flag.length', flag.length)
+    },
+    
     /* dev */
+
     getWetStopFreeCount(flag) {
       try {
         if (
@@ -285,14 +296,17 @@ export default {
 
 <style scoped>
 .footer-panel {
-  height: 9em;
+  height: 8em;
   width: 100%;
   position: fixed;
   left: 0;
   bottom: -0.2em;
   opacity: 1;
   /* #121212 */
-  background: linear-gradient(180deg, #505cad 1.62%, #5b68bb 100%);
+  /* background: linear-gradient(180deg, #505cad 1.62%, #5b68bb 100%); */
+  /* #262531  #353450*/
+  background: linear-gradient(180deg, #323232, #131313 100%);
+  box-shadow: 0px -15px 10px #393758;
 }
 
 /* .button-title-long {
@@ -306,7 +320,7 @@ export default {
 
 /* common footer */
 .button-title {
-  padding-top: 0.5em;
+  padding-top: 0.3em;
   padding-left: 0;
   font-size: 3em;
   text-shadow:
@@ -328,7 +342,7 @@ export default {
 .button-operator-up-style {
   padding-left: 0em;
   width: 24em;
-  height: 7.2em;
+  height: 6.2em;
   color: #fff;
   background: linear-gradient(45deg, #00e5ff,#bfe5f5, #18ffff);
   border: 0.2em solid #fff;
@@ -338,7 +352,7 @@ export default {
 .button-operator-down-style {
   padding-left: 0em;
   width: 24em;
-  height: 7.2em;
+  height: 6.2em;
   color: #18ffff;
   background: rgb(255, 255, 255);
   border: 0.2em solid  #18ffff; 
@@ -356,7 +370,7 @@ export default {
 .button-input-up-style {
   padding-left: 0em;
   width: 24em;
-  height: 7.2em;
+  height: 6.2em;
   color: #fff;
 
   background: linear-gradient(45deg, #00e5ff,#bfe5f5, #18ffff);
@@ -369,7 +383,7 @@ export default {
 .button-input-down-style {
   padding-left: 0em;
   width: 24em;
-  height: 7.2em;
+  height: 6.2em;
   color: #18ffff;
   background: rgb(255, 255, 255);
   border: 0.2em solid  #18ffff; /* #00b9e3; */
@@ -387,7 +401,7 @@ export default {
 .button-exit-up-style {
   padding-left: 0em;
   width: 24em;
-  height: 7.2em;
+  height: 6.2em;
   color: #fff;
   background: linear-gradient(45deg, #00e5ff,#bfe5f5, #18ffff);
   border: 0.2em solid #fff;
@@ -397,7 +411,7 @@ export default {
 .button-exit-down-style {
   padding-left: 0em;
   width: 24em;
-  height: 7.2em;
+  height: 6.2em;
   color: #18ffff;
   background: rgb(255, 255, 255);
   border: 0.2em solid  #18ffff; /* #00b9e3; */
@@ -414,7 +428,7 @@ export default {
   z-index: 999;
 }
 .button-title-stop {
-  padding-top: 0.1em;
+  padding-top: 0.02em;
   font-size: 4em;
   text-shadow:
     1px 1px 1px red,
@@ -425,22 +439,23 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.button-up-style {
+
+.button-down-style {
   padding-left: 0em;
   width: 40em;
-  height: 7.5em;
+  height: 6.8em;
   color: #fff;
 
-  background: linear-gradient(45deg, rgb(255, 3, 3), coral, rgb(255, 3, 3));
+  background: linear-gradient(45deg, rgb(255, 3, 3), rgb(255, 154, 118), rgb(255, 3, 3));
   border: 0.4em solid rgb(255, 3, 3);
   border-radius: 4em;
   box-shadow: rgb(255, 3, 3) 0px 10px 20px;
 }
-.button-down-style {
+.button-up-style {
   padding-left: 0em;
   width: 40em;
-  height: 8em;
-  color: rgb(255, 3, 3);
+  height: 7em;
+  color: rgb(0, 0, 0);
   background: rgb(255, 255, 255);
   border: 0.4em solid rgb(255, 3, 3);
   border-radius: 4em;

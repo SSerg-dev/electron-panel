@@ -27,6 +27,7 @@
   "FOAM_COLOR": "泡の色", 
   "BRUSH": "みがきます",
   "BRUSH_COLOR": "みがきます色",
+  "SHAMPOO_X2": "シャンプー X2",
   "WATER_SHAMPOO": "水+シャンプー",
   "COLD_WATER": "冷水",
   "WARM_WATER": "温水",
@@ -147,6 +148,9 @@
   "Cashless": "キャッシュレス",
   "Bonus": "ボーナス",
   "Service": "サービス",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
 
 

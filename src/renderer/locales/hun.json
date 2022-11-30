@@ -27,6 +27,7 @@
   "FOAM_COLOR": "HAB SZÍN", 
   "BRUSH": "KEFE",
   "BRUSH_COLOR": "KEFE SZÍN",
+  "SHAMPOO_X2": "SAMPON X2",
   "WATER_SHAMPOO": "VÍZ SAMPON",
   "COLD_WATER": "HIDEG",
   "WARM_WATER": "MELEG",
@@ -147,6 +148,9 @@
   "Cashless": "Készpénz nélküli",
   "Bonus": "Bónusz",
   "Service": "Szolgáltatás",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
   
   

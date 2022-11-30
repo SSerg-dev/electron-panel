@@ -27,6 +27,7 @@
   "FOAM_COLOR": "PUTŲ SPALVA", 
   "BRUSH": "ŠEPETYS",
   "BRUSH_COLOR": "ŠEPEČIO SPALVA",
+  "SHAMPOO_X2": "ŠAMPŪNAS X2",
   "WATER_SHAMPOO": "VANDUO ŠAMPŪNAS",
   "COLD_WATER": "ŠALTA",
   "WARM_WATER": "ŠILTA",
@@ -147,6 +148,9 @@
   "Cashless": "Be gryi pinigų",
   "Bonus": "Premija",
   "Service": "Aptarnavimas",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
   
   
 

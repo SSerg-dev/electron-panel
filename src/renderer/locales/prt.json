@@ -27,6 +27,7 @@
   "FOAM_COLOR": "ESPUMA COR", 
   "BRUSH": "ESCOVAR",
   "BRUSH_COLOR": "ESCOVAR COR",
+  "SHAMPOO_X2": "CHAMPÔ X2",
   "WATER_SHAMPOO": "ÁGUA CHAMPÔ",
   "COLD_WATER": "RESFRIADO",
   "WARM_WATER": "CALOROSO",
@@ -147,6 +148,9 @@
   "Cashless": "Sem dinheiro",
   "Bonus": "Bônus",
   "Service": "Serviço",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
   
   

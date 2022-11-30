@@ -27,6 +27,7 @@
   "FOAM_COLOR": "КӨБІК ТҮСІ", 
   "BRUSH": "ЩЕТКА",
   "BRUSH_COLOR": "ЩЕТКА ТҮСІ",
+  "SHAMPOO_X2": "СУСАБЫН X2",
   "WATER_SHAMPOO": "СУ СУСАБЫН",
   "COLD_WATER": "СУЫҚ СУ",
   "WARM_WATER": "ЖЫЛЫ СУ",
@@ -147,6 +148,9 @@
   "Cashless": "Ақшасыз",
   "Bonus": "Бонус",
   "Service": "Қызмет",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
   
   
 

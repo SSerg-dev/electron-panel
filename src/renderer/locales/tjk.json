@@ -1,0 +1,187 @@
+{
+  "LanguageTitle": "Маҳаллисозӣ",
+  "BOX": "ПОСТ",
+  "#": "#",
+  "VACUUM": "ЧАНЧАКОЗА",
+  "PAYMENT": "ПАРДОХТ",
+  "locales": "TJK",
+  "PROGRAMS_COST": "АРЗИШИ БАРНОМАҲО",
+  "CASH": "БО ПУЛИ НАҚД",
+  "BANK_CARD": "БО КОРТИ БОНКӢ",
+  "BONUSES": "БО БОНУСҲО",
+  "Choose_your_payment_method": "Тарзи пардохтро интихоб намоед",
+  "CONSULTANT": "МУШОВИР",
+  "CALL_SENT_WAIT": "ДАЪВАТ РАВОН ШУДААСТ, ИНТИЗОР ШАВЕД",
+  "FREE_STOP": "ОЗОДИ ОЗОД",
+  "STOP": "СТОП", 
+  "CONTINUE": "ИДОМА ДОДАН",
+  "MAKE_A_PAYMENT": "ПАРДОХТ КУНЕД",
+  "Insert_banknotes_or_coins": "Пули қоғазин ё тангаҳоро ворид кунед, ҳангоми итмом тугмаро дар зер пахш намоед",
+  "Price_per_minute": "Нарх барои дақиқа",
+  "Program": "Барнома",
+
+  "SHAMPOO": "ШАМПУН",
+  "DISK": "ДИСКҲО",
+  "MOSQUITO": "МОСКИТ",
+  "FOAM": "КАФК",
+  "FOAM_COLOR": "КАФК РАНГ", 
+  "BRUSH": "ЧУТКА",
+  "BRUSH_COLOR": "ЧУТКА РАНГ",
+  "SHAMPOO_X2": "ШАМПУН X2",
+  "WATER_SHAMPOO": "ОБ ШАМПУН",
+  "COLD_WATER": "ХУНДА",
+  "WARM_WATER": "ГАРМ",
+  "OSMOSIS": "ОСМОС ",
+  "STOP_PAUSE": "СТОП/ПАУЗА",
+  "AIR": "ҲАВО",
+  "GLASS_WASHING_LIQUID": "ШУЯШ",
+  "WAX": "МУМИ",
+  "FOAM_X2": "КАФК X2",
+  "VACUUM_CLEANER": "ЧАНЧАКОЗА",
+  "BRUSH_X2": "ЧУТКА X2",
+  "DISK_X2": "ДИСКҲО X2",
+  "MOSQUITO_X2": "МОСКИТ X2",
+  "TURBO_DRYER": "ХУШК",
+  "DEGREASE": "ФАРБ НЕ",
+  "DISINFECTION": "ДЕЗИНФЕКЦИЯ",
+  "BLACKING": "СИЁХ КАРДАН",
+  "DOORSILL": "ДАРХО",
+  
+  "COMPLETE_PAYMENT": "АНҶОМИ ПАРДОХТ",
+  "RETURN_BONUSES_UP": "БОЗГАШТ ТО 30% АНҶОМИ ПАРДОХТ",
+  "APPEND": "ЗАМИМАИ",
+  "CONFIRM": "ТАСДИҚ",
+
+  "To_enter_the_system": "Барои ворид шудан  ба низом  рақами телефони худро ворид намоед ё QR рамзи онро хонед", 
+  "To_credit_Bonuses_to_your_account": "Барои гирифтани Бонусҳо ба ҳисоби худ, рақами телефони худро ворид кунед",
+  "By_clicking_on_CONFIRM": "Бо клик кардани ТАСДИҚ, шумо мувофиқи шартҳои дар вебсайт овардашуда барои ирсоли SMS ва коркарди маълумоти шахсӣ ба шумо розигии худро медиҳед.: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "МушаххасгардонӢ тибқи  QR",
+  "Your_balance": "Тавозуни шумо,",
+  "Select_charge_amount": "Маблағи пардохтро интихоб кунед",
+  
+  "Enter_your_password": "Рамзи худро ворид кунед",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "менюи танзимот",
+  
+  "The_status_of_the_operation": "Мақоми иҷроиши барнома:",
+  "Connection_to_the_bank_terminal": "Корти бонкиро ба терминал ворид  ё наздик намоед...",
+  "Failed_to_connect_to_the_bank_terminal": "Ба терминали бонкӣ пайваст шудан имконнопазир аст",
+  "Timed_out": "Вақти интизорӣ ба итмом расид",
+  "Operation_approved": "Амалиёт тасдиқ карда шуд",
+  "Operation_rejected": "Амалиёт рад карда шуд",
+  "Follow_the_instructions_on_the_terminal": "Дастурҳоро дар терминал риоя кунед",
+
+  "You_want_to_complete_the_car_wash": "Мехоҳед шустушӯи мошинро ба анҷом расонед ва бақияи онро бо бонусҳо баргардонед?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Бо пахш кардани тугмаи Ҳа, шумо ба фиристодани SMS-паёмҳо ба шумо ва коркарди маълумоти шахсӣ мувофиқи шартҳои дар вебсайт овардашуда розӣ мешавед: www.alles-bonus.com",
+
+  "Display": "Лавҳ",
+  "Services": "Хизматҳо",
+  "Service_balance": "Тавозуни хидмат",
+  "Reset": "Бекор кардан",
+  "Open_the_door": "Дарро кушодан",
+  "Reboot": "Бозсозӣ",
+
+  "Software_version": "Фарзияи ТБ",
+  "Temperature": "Ҳарорат",
+  "Humidity": "Намӣ",
+
+  "Show_tooltips_when_switching_programs_during": "Нишон поп то маслиҳатҳо ҳангоми переключении барномаҳои",
+
+  "Time_to_switch_to_the_main_window": "Вақти рафтан ба равзанаи асосӣ",
+
+  "Setting": "Танзимоти",
+  "Languages": "Забонҳо",
+  "Finance": "Молия",
+  "Review": "Ташреҳ",
+
+  "OK": "OK",
+  "Cancel": "Бекор кардан",
+  "Confirm": "Тасдиқ",
+  "Make_the_payment_window_the_main": "Равзанаи пардохтро асосӣ гардонед",
+  "Show_cursor_in_the_main_window": "Курсорро дар равзанаи асосӣ нишон диҳед",
+  "Direct_cash_payment": "Пардохти мустақими нақд",
+  "Banking_terminal": "Терминали бонкӣ",
+  
+  "System": "Система",
+  "Panel": "Панел",
+  "Bill_acceptor": "Аксептори банкнот",
+  "Coin_acceptor": "Қабулкунандаи танга",
+
+  "Language": "Забон",
+  "Currency": "Асъори",
+  
+  "Type_of_panel": "Навъи панели",
+  "Panel_number": "Шумораи панели",
+  "Vacuum_number": "Рақами чангкашак",
+
+  "Type": "Навъи",
+  "Accept_bills": "Банкноталарни қабул қилиш",
+  "Accept_coins": "Тангаҳоро қабул кунед",
+
+  "Model": "Модели",
+  "Reconciliation_Pax": "Муросо кардан Pax",
+
+  "Payment_limits": "Маҳдудият",
+  "Minimum": "Ҳадди ақал",
+  "Maximum": "Максимум",
+  "Tokens": "Токенҳо",
+
+  "CAR_WASH": "ШУСТУШӮЙ",
+  "PAYMENT_CENTER": "МАРКАЗИ ПАРДОХТ",
+  "PANEL": "ПАНЕЛИ",
+
+  "Cash_post": "Кассаи нақдина",
+  "Total_amount": "Ҳамагӣ",
+  "Amount_of_deposit_in_banknotes": "Маблағи пасандоз дар коғазҳо",
+  "Number_of_banknotes": "Шумораи коғазҳои қиматнок",
+  "Credit_amount_in_coins": "Маблағи қарз дар танга",
+  "Number_of_coins": "Шумораи тангаҳо",
+  "Collection": "Коллексия",
+
+  "Replace_item": "Иваз ашё",
+  "Replace_program": "Иваз барнома",
+
+  "Cash_accounting": "Баҳисобгирии пули нақд",
+  "Date": "Сана",
+  "Cash": "Пули нақд",
+  "Cashless": "Бепул",
+  "Bonus": "Бонус",
+  "Service": "Хизмат",
+
+  "INPUT": "ВУРУД",
+  "EXIT": "БАРОМАД",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed",
+
+  "Wash_program_completed_successfully": "Wash program completed successfully",
+  "Not_enough_money": "Not enough money"
+
+
+}

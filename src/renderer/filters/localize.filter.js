@@ -32,6 +32,9 @@ import hrv from '../locales/hrv.json'
 import arm from '../locales/arm.json'
 import cze from '../locales/cze.json'
 import uzb from '../locales/uzb.json'
+import tjk from '../locales/tjk.json'
+import kgz from '../locales/kgz.json'
+import aze from '../locales/aze.json'
 
 
 const locales = {
@@ -67,7 +70,10 @@ const locales = {
   'hrv-HRV': hrv,
   'arm-ARM': arm,
   'cze-CZE': cze,
-  'uzb-UZB': uzb
+  'uzb-UZB': uzb,
+  'tjk-TJK': tjk,
+  'kgz-KGZ': kgz,
+  'aze-AZE': aze
 
 }
 

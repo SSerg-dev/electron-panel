@@ -358,7 +358,8 @@ export default {
       {
         id: 23,
         order: 100 /* 22 */,
-        title: 'ШАМПУНЬ Х2',
+        /* title: 'ШАМПУНЬ Х2', */
+        title: 'SHAMPOO_X2',
         name: 'shampoo_x2',
         price: 0,
         priceTurbo: 0,

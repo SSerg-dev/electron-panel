@@ -17,7 +17,9 @@
           @click="setEnabler()"
         >
           <router-link to="/">
-            <img src="@/assets/imgs/svg/head-panel.svg" />
+            <div style="width: 90%; height: 90%">
+              <img src="@/assets/imgs/svg/head-panel.svg" style="width: 80%" />
+            </div>
           </router-link>
         </button>
       </div>
@@ -49,9 +51,10 @@
       </div>
 
       <div class="circle">
-        <img src="@/assets/imgs/svg/white-circle.svg" />
-        <div
-          style="position: relative; top: -6.4rem; left: 0rem; font-size: 4rem"
+        <div style="width: 90%; height: 90%">
+          <img src="@/assets/imgs/svg/white-circle.svg" style="width: 100%"/>
+        </div>
+        <div class="circle-title"
         >
           <div v-if="this.getPanelType === 'wash'">
             <span class="white-text">{{ this.getDefaultPanelNumber }}</span>
@@ -67,13 +70,14 @@
 
       <div v-if="this.getPanelType === 'wash'">
         <div class="box white-text">
-          {{ 'BOX' | localize }}
+          <!-- &nbsp;🚿 -->
+          <p>{{ 'BOX' | localize }}</p>
         </div>
       </div>
 
       <div v-if="this.getPanelType === 'vacuum'">
         <div class="box white-text">
-          {{ 'VACUUM' | localize }}
+          <p>{{ 'VACUUM' | localize }}&nbsp;🧹</p>
         </div>
       </div>
 
@@ -227,6 +231,20 @@
             <img src="@/assets/imgs/flags/flag_UZB.png" />
           </div>
 
+          <div v-if="this.info.locale === 'tjk-TJK'">
+            <img src="@/assets/imgs/flags/flag_TJK.png" />
+          </div>
+          
+          <div v-if="this.info.locale === 'kgz-KGZ'">
+            <img src="@/assets/imgs/flags/flag_KGZ.png" />
+          </div>
+
+          <div v-if="this.info.locale === 'aze-AZE'">
+            <img src="@/assets/imgs/flags/flag_AZE.png" />
+          </div>
+
+
+
         </router-link>
       </div>
     </div>
@@ -319,10 +337,11 @@ export default {
 <style scoped>
 .imgs {
   position: relative;
+  margin-top: -1em;
 }
 .alles {
   padding-top: 4%;
-  padding-left: 4%;
+  padding-left: 8%;
   background-color: #121212;
 }
 .background-top {
@@ -345,33 +364,31 @@ img {
   z-index: 2;
 }
 .circle {
-  width: 6rem;
-  height: 6rem;
-  position: absolute;
-  top: 32%;
-  left: 3%;
+  width: 6em;
+  height: 6em;
+  position: fixed;
+  top: 2em;
+  left: 2.2em;
 }
 .circle-title {
-  position: relative;
-  top: 32%;
-  left: -12%;
-  color: #121212;
-  font-size: 3.5rem;
-  font-weight: bold;
+  position: fixed; 
+  top: 0.45em; 
+  left: 0.95em; 
+  font-size: 4em
 }
 
 .box {
   font-size: 2.4rem;
-  position: absolute;
-  top: 30%;
-  left: 12.5%;
+  position: fixed;
+  top: 0.75em;
+  left: 3.5em;
   z-index: 3;
 }
 .clock {
   font-size: 2.4rem;
-  position: absolute;
-  top: 60%;
-  left: 12%;
+  position: fixed;
+  top: 1.8em;
+  left: 3.4em;
   color: white;
 }
 .title {

@@ -27,6 +27,7 @@
   "FOAM_COLOR": "رنگ فوم", 
   "BRUSH": "قلم مو",
   "BRUSH_COLOR": "رنگ قلم مو",
+  "SHAMPOO_X2": "X2 شامپو",
   "WATER_SHAMPOO": "آب + شامپو",
   "COLD_WATER": "سرد",
   "WARM_WATER": "گرم",
@@ -147,6 +148,9 @@
   "Cashless": "بدون نقد",
   "Bonus": "جایزه",
   "Service": "سرویس",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
   
   

@@ -27,6 +27,7 @@
   "FOAM_COLOR": "ПІНА КОЛІР", 
   "BRUSH": "ЩІТКА",
   "BRUSH_COLOR": "ЩІТКА КОЛІР",
+  "SHAMPOO_X2": "ШАМПУНЬ X2",
   "WATER_SHAMPOO": "ВОДА + ШАМПУНЬ",
   "COLD_WATER": "ХОЛОДНА",
   "WARM_WATER": "ТЕПЛА",
@@ -147,6 +148,9 @@
   "Cashless": "Безготівковий",
   "Bonus": "Бонус",
   "Service": "Сервіс",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
   
   
 

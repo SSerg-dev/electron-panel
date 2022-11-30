@@ -27,6 +27,7 @@
   "FOAM_COLOR": "ΑΦΡΟΣ ΧΡΩΜΑ", 
   "BRUSH": "ΒΟΥΡΤΣΑ",
   "BRUSH_COLOR": "ΒΟΥΡΤΣΑ ΧΡΩΜΑ",
+  "SHAMPOO_X2": "ΣΑΠΟΥΝΙ X2",
   "WATER_SHAMPOO": "ΝΕΡΟ ΣΑΠΟΥΝΙ",
   "COLD_WATER": "ΚΡΥΟ",
   "WARM_WATER": "ΧΛΙΑΡΟ",
@@ -147,6 +148,9 @@
   "Cashless": "Χωρίς μετρητά",
   "Bonus": "Δώρο",
   "Service": "Υπηρεσία",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
   
   

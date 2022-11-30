@@ -2,9 +2,11 @@
   <div>
     <div class="locate">
       <section>
+
         <div class="message">
           <div><Message /></div>
         </div>
+
         <div
           @click="setProgram('price')"
           class="waves-effect price"
@@ -18,14 +20,20 @@
             ]"
           >
             <div class="emoji">
-              <!-- {{ `📄` }} -->
-              {{`🤑`}}
+              <img
+                src="@/assets/imgs/price/price.png"
+                width="70px"
+                style="margin-top: 30px; margin-right: 2px"
+              />
+
             </div>
           </div>
         </div>
 
+
         <!-- v-if="!getIsReceiptRead" -->
-        <div
+        <div v-if="this.getIsKktInstalled">
+          <div
           @click="setProgram('receipt')"
           class="waves-effect receipt"
           id="button-receipt"
@@ -37,15 +45,18 @@
               { 'card-content white-text': this.isDown.receipt },
             ]"
           >
-            <div v-if="this.getIsKktInstalled">
-              {{ `🧾` }}
-              
+            <div>
+              <img
+                src="@/assets/imgs/price/invoice.png"
+                width="70px"
+                style="margin-top: 30px; margin-right: 2px"
+              />
             </div>
-            <div v-else style="opacity: 0.2">
-              {{ `🧾` }}
-            </div>
+            
           </div>
         </div>
+        </div>
+        
 
         <!-- v-if="!getIsMoneyToBonus" -->
         <!-- dev hidden -->
@@ -80,7 +91,7 @@
           </div>
         </div>
         -->
-        
+
         <div v-if="this.isVisibleWashTableBonus" class="savemoney">
           <WashTableBonus :actives="actives" />
         </div>
@@ -88,8 +99,6 @@
         <div v-else :key="getWetProgShow">
           <table border="0" width="100%" cellpadding="0" cellspacing="0">
             <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
-              
-
               <!-- 1 -->
               <!-- ДИСКИ -->
               <tr
@@ -176,7 +185,7 @@
               <tr
                 v-if="this.actives[4].display !== 'none'"
                 :key="this.keys.keyDryShineEx"
-                style="height: 140px;"
+                style="height: 132px"
               >
                 <WashTableDryShineEx :actives="actives" />
               </tr>
@@ -200,10 +209,10 @@
                 <WashTableDisinfection :actives="actives" />
               </tr> -->
 
-
               <!-- dry group -->
               <!-- vacuum air washer turboDryer -->
 
+              <!-- 
               <tr
                 v-if="this.actives[16].display !== 'none'"
                 :key="this.keys.keyVacuum"
@@ -230,7 +239,45 @@
                 :key="this.keys.keyWasher"
               >
                 <WashTableWasher :actives="actives" />
-              </tr>
+              </tr> 
+              -->
+
+              <!-- dev -->
+              <div class="dry-items">
+                <tr
+                  class="dry-item"
+                  v-if="this.actives[16].display !== 'none'"
+                  :key="this.keys.keyVacuum"
+                >
+                  <WashTableVacuum :actives="actives" />
+                </tr>
+
+                <tr
+                  class="dry-item"
+                  v-if="this.actives[26].display !== 'none'"
+                  :key="this.keys.keyTurboDryer"
+                >
+                  <WashTableTurboDryer :actives="actives" />
+                </tr>
+
+                <tr
+                  class="dry-item"
+                  v-if="this.actives[17].display !== 'none'"
+                  :key="this.keys.keyAir"
+                >
+                  <WashTableAir :actives="actives" />
+                </tr>
+
+                <tr
+                  class="dry-item"
+                  v-if="this.actives[18].display !== 'none'"
+                  :key="this.keys.keyWasher"
+                >
+                  <WashTableWasher :actives="actives" />
+                </tr>
+              </div>
+
+              <!--     -->
             </tbody>
           </table>
         </div>
@@ -271,7 +318,6 @@ import WashTableBonus from '@/components/wash/WashTableBonus'
 import { dateFilter, getRndInteger, log } from '@/utils/order.js'
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
-
 
 export default {
   data: () => ({
@@ -367,9 +413,8 @@ export default {
 
   watch: {
     getWetBalance(flag) {
-      
       if (+flag <= 1) {
-      // if (+flag === 0) {  
+        // if (+flag === 0) {
         // console.log('$$ WashTable', this.getWetPaidBonus, this.getIsBonusMoney)
         this.completeWash()
         if (this.getWetPaidBonus > 0 && this.getIsBonusMoney) {
@@ -378,23 +423,6 @@ export default {
         }
       }
     },
-
-    // getIsReceiptRead(flag) {
-    //   console.log('getIsReceiptRead', flag)
-    //   if (flag) {
-    //     this.buttonReceipt.show()
-    //     this.flex()
-    //   } else this.buttonReceipt.hide()
-    // },
-
-    // getIsKktInstalled(flag) {
-    //   if (flag) {
-    //     this.buttonReceipt.show()
-    //     this.flex()
-    //   } else {
-    //     this.buttonReceipt.hide()
-    //   }
-    // },
 
     /* dev hidden */
     /* getIsMoneyToBonus(flag) {
@@ -408,9 +436,9 @@ export default {
         this.buttonBonus.hide()
       }
     }, */
-    
+
     getWetProgShow(flag) {
-      console.log('$$ getWetProgShow', flag, /* this.actives[27] */)
+      console.log('$$ getWetProgShow', flag /* this.actives[27] */)
     },
     seconds(flag) {
       // console.log('++this.seconds-->flag--> ', flag)
@@ -420,7 +448,7 @@ export default {
         clearInterval(this.intervalFirstTimer)
       }
     },
-    /* dev hidden */ 
+    /* dev hidden */
     /* getWetStopFreeCount(flag) {
       if (flag > 0) {
         this.buttonBonus.show()
@@ -512,6 +540,7 @@ export default {
       // getIsReceiptPrint: 'getIsReceiptPrint'
     }),
     setProgram(program) {
+      // console.log('$$ program', program)
       if (program === 'price') {
         this.isDown.price = true
         this.buttonPrice.background = 'rgb(64, 196, 255)'
@@ -525,8 +554,8 @@ export default {
         if (this.getIsKktInstalled) {
           this.$router.push('/invoice')
         } else {
-          this.$message( localizeFilter( `${messages.KKT_not_installed}`))
-        } 
+          this.$message(localizeFilter(`${messages.KKT_not_installed}`))
+        }
 
         this.setDown()
         return
@@ -555,7 +584,7 @@ export default {
       }, this.popupDelay)
     },
     setDown(program) {
-      this.clearDown()
+      // this.clearDown()
 
       switch (program) {
         case 'washer':
@@ -570,6 +599,15 @@ export default {
         case 'air':
           this.isDown.air = true
           break
+        case 'price':
+          this.isDown.price = true
+          break  
+        case 'receipt':
+          this.isDown.receipt = true
+          break  
+        case 'bonus':
+          this.isDown.bonus = true
+          break  
 
         default:
           break
@@ -619,8 +657,10 @@ export default {
       const response = await this.storage.getClient(method, this.options, type)
 
       if (+response.result === 0) {
-        this.$message(localizeFilter(`${messages.Wash_program_completed_successfully}`))
-        
+        this.$message(
+          localizeFilter(`${messages.Wash_program_completed_successfully}`)
+        )
+
         if (this.$route.name !== 'home') this.$router.push('/')
       } else {
         this.$message(`Error:  ${response.error}`)
@@ -697,7 +737,8 @@ export default {
       })
 
       // button-receipt
-      this.buttonReceipt = new Button({
+      if (this.getIsKktInstalled) {
+        this.buttonReceipt = new Button({
         selector: '#button-receipt',
 
         width: 8.5,
@@ -713,6 +754,8 @@ export default {
         justifyContent: 'center',
       })
 
+      }
+      
       // button bonus
       /* dev hidden */
 
@@ -735,7 +778,7 @@ export default {
       if (!+this.getWetBalance > 0) this.buttonPrice.hide()
       /* dev */
       // if (!this.getIsReceiptRead) this.buttonReceipt.hide()
-      
+
       /* dev hidden */
       // if (!this.getIsMoneyToBonus) this.buttonBonus.hide()
 
@@ -847,15 +890,15 @@ export default {
   mounted() {
     this.storage = new Storage(this.client, this.url)
     this.order = this.getCompleteWash().params.order
-
     if (!this.isVisible) {
       this.timeoutDelay = setTimeout(() => {
         this.isVisible = true
         // rerender after 1 sec.
         this.setKeys()
+        this.setup()
       }, (this.delay = 1000))
     }
-    this.setup()
+    // this.setup()
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
@@ -887,7 +930,7 @@ export default {
 
 table {
   position: absolute;
-  margin-top: 27.0em; /* 18em */ 
+  margin-top: 27em; /* 18em */
   margin-left: 2.5em;
 
   font-family: 'Plumb-Medium';
@@ -953,9 +996,20 @@ td {
   justify-content: center; */
 }
 /* dev */
-svg {
+/* svg {
   display: none;
-}
+} */
 
+/* dev */
+/* .dry-items .dry-item:last-child {
+  background: lightcoral;
+} */
 
+/* .dry-items .dry-item:nth-child(even) {
+  background: blanchedalmond;
+} */
+
+/* .dry-items .dry-item:nth-child(odd) {
+  background: coral;
+} */
 </style>

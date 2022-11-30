@@ -27,6 +27,7 @@
   "FOAM_COLOR": "ПЕНА КОЛЕР", 
   "BRUSH": "ШЧОТКА",
   "BRUSH_COLOR": "ШЧОТКА КОЛЕР",
+  "SHAMPOO_X2": "ШАМПУНЬ X2",
   "WATER_SHAMPOO": "ВАДА ШАМПУНЬ",
   "COLD_WATER": "ХАЛОДНАЯ",
   "WARM_WATER": "ЦЁПЛАЯ",
@@ -147,6 +148,9 @@
   "Cashless": "Безнаяўныя",
   "Bonus": "Бонус",
   "Service": "Сэрвіс",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
 
 

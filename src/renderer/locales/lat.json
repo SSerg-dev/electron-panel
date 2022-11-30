@@ -27,6 +27,7 @@
   "FOAM_COLOR": "PUTU KRĀSA", 
   "BRUSH": "SLOTA",
   "BRUSH_COLOR": "SLOTA KRĀSA",
+  "SHAMPOO_X2": "ŠAMPŪNS X2",
   "WATER_SHAMPOO": "ŪDENS ŠAMPŪNS",
   "COLD_WATER": "AUKSTS",
   "WARM_WATER": "SILTS",
@@ -147,6 +148,9 @@
   "Cashless": "Bez naudas",
   "Bonus": "Bonuss",
   "Service": "Apkalpošana",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
   
   
 

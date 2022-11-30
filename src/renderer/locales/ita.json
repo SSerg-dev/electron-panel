@@ -27,6 +27,7 @@
   "FOAM_COLOR": "SCHIUMA COLORE", 
   "BRUSH": "SPAZZOLA",
   "BRUSH_COLOR": "SPAZZOLA COLORE",
+  "SHAMPOO_X2": "SHAMPOO X2",
   "WATER_SHAMPOO": "ACQUA SHAMPOO",
   "COLD_WATER": "FREDDA",
   "WARM_WATER": "CALDA",
@@ -147,6 +148,9 @@
   "Cashless": "Senza soldi",
   "Bonus": "Bonus",
   "Service": "Servizio",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
   
   

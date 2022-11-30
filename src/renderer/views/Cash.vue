@@ -1,12 +1,14 @@
 <template>
   <div>
     <div class="locate">
-      <router-link to="/">
-        <div class="back">
+      <div class="back">
+        <router-link to="/">
+        <div>
           <img src="@/assets/imgs/key/back.png" />
         </div>
       </router-link>
-
+      </div>
+      
       <div align="justify" class="message">
         <div><Message /></div>
       </div>
@@ -136,12 +138,14 @@ export default Vue.extend({
   position: relative;
   text-align: center;
 }
+
 .back {
-  position: absolute;
-  margin-top: 8em;
-  margin-left: 1.5em;
-  z-index: 1;
+  position: fixed;
+  top: 11em;
+  left: 2.5em;
+  z-index: 99;
 }
+
 .message {
   position: absolute;
   margin-top: -7em;

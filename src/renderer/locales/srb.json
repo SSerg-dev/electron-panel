@@ -27,6 +27,7 @@
   "FOAM_COLOR": "ПЕНЕ ЦОЛОР", 
   "BRUSH": "ЧЕТКА",
   "BRUSH_COLOR": "ЧЕТКЕ ЦОЛОР",
+  "SHAMPOO_X2": "ШАМПОН X2",
   "WATER_SHAMPOO": "ВОДА ШАМПОН",
   "COLD_WATER": "ХЛАДНО",
   "WARM_WATER": "ВАРМ",
@@ -147,6 +148,9 @@
   "Cashless": "Безготовински",
   "Bonus": "Бонус",
   "Service": "Услуга",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
   
   

@@ -27,6 +27,7 @@
   "FOAM_COLOR": "PENA FARBA", 
   "BRUSH": "KEFA",
   "BRUSH_COLOR": "KEFA FARBA",
+  "SHAMPOO_X2": "ŠAMPON X2",
   "WATER_SHAMPOO": "VODA ŠAMPON",
   "COLD_WATER": "STUDENÁ",
   "WARM_WATER": "TEPLÁ ",
@@ -147,6 +148,9 @@
   "Cashless": "Bezhotovostne",
   "Bonus": "Bonus",
   "Service": "Servis",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
 
 

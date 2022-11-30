@@ -20,19 +20,6 @@
 
     </div>
 
-    <!-- <div class="list-title">
-      <div class="row">
-        <div class="col s9">Программа</div>
-        <div class="col s1">
-          {{ this.emoji }}
-        </div>
-        <div class="col s2">
-          {{ this.currency }}
-        </div>
-      </div>
-    </div> -->
-
-    <!-- <p align="center">{{ `${this.messages[0]}` }}</p> -->
     <ul>
       <CostItem v-for="(cost, index) in costs" :cost="cost" :key="index" />
     </ul>
@@ -86,9 +73,9 @@ export default Vue.extend({
 
 <style scoped>
 .cost-title {
-  position: absolute;
-  left: 30%;
-  top:15%;
+  position: fixed;
+  left: 6em;
+  top:4em;
   color: white;
   font-size: 3.5em;
   z-index: 1000;

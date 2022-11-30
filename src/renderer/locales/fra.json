@@ -27,6 +27,7 @@
   "FOAM_COLOR": "MOUSSE COULEUR", 
   "BRUSH": "BROSSER",
   "BRUSH_COLOR": "BROSSER COULEUR",
+  "SHAMPOO_X2": "SHAMPOOING X2",
   "WATER_SHAMPOO": "EAU SHAMPOOING",
   "COLD_WATER": "FROID",
   "WARM_WATER": "CHAUD",
@@ -147,6 +148,9 @@
   "Cashless": "Sans numéraire",
   "Bonus": "Prime",
   "Service": "Service",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
   
   
 

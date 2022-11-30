@@ -27,6 +27,7 @@
   "FOAM_COLOR": "VAHT VÄRV", 
   "BRUSH": "HARI",
   "BRUSH_COLOR": "HARI VÄRV",
+  "SHAMPOO_X2": "ŠAMPOON X2",
   "WATER_SHAMPOO": "VESI ŠAMPOON",
   "COLD_WATER": "KÜLM",
   "WARM_WATER": "SOE",
@@ -147,6 +148,9 @@
     "Cashless": "Sularahata",
     "Bonus": "Boonus",
     "Service": "Teenindus",
+
+    "INPUT": "INPUT",
+    "EXIT": "EXIT",
 
 
 

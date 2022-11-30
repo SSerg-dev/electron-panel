@@ -215,9 +215,7 @@
                     "
                   >
                     <div>
-                      {{
-                        `Max ${parseFloat(getPaymentLimitMax)}`
-                      }}
+                      {{ `Max ${parseFloat(getPaymentLimitMax)}` }}
                     </div>
                   </div>
 
@@ -231,9 +229,7 @@
                     "
                   >
                     <div>
-                      {{
-                        `Max ${parseFloat(getPaymentLimitMax)}`
-                      }}
+                      {{ `Max ${parseFloat(getPaymentLimitMax)}` }}
                     </div>
                   </div>
                 </div>
@@ -1016,9 +1012,9 @@ export default {
           this.$message(
             localizeFilter(`${messages.Will_be_paid_by_credit_card}`) +
               `  ` +
-              `${ +card }` +
+              `${+card}` +
               `  ` +
-              `${ this.currency }`
+              `${this.currency}`
           )
 
           this.$router.push('/status')
@@ -1045,9 +1041,9 @@ export default {
           this.$message(
             localizeFilter(`${messages.Payment_with_bonuses}`) +
               `  ` +
-              `${ +card }` +
+              `${+card}` +
               `  ` +
-              `${ this.currency }`
+              `${this.currency}`
           )
         }
 

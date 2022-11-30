@@ -20,7 +20,7 @@
       </div>
     </td>
 
-    <!-- ШАМПУНЬ X2-->
+    <!-- ВОДА + ШАМПУНЬ X2-->
     <td>
       <div
         @click="setProgram('waterShampoo_turbo')"
@@ -305,8 +305,8 @@ export default Vue.extend({
         this.buttonLeft.fontSize = options.fontSize
         this.buttonLeft.width = options.width /* = '58em' */
 
-        if (!this.isDown.waterShampoo_turbo)
-          this.buttonRight.background = 'rgb(255, 255, 255)'
+        // if (!this.isDown.waterShampoo_turbo)
+        //   this.buttonRight.background = 'rgb(255, 255, 255)'
       }
 
       if (options.type === 'right') {
@@ -316,7 +316,7 @@ export default Vue.extend({
         this.buttonRight.fontSize = options.fontSize
         this.buttonRight.width = options.width
 
-        this.buttonLeft.background = 'rgb(255, 255, 255)'
+        // this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
     },
   }, // end methods

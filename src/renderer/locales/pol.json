@@ -27,6 +27,7 @@
   "FOAM_COLOR": "PIANKA KOLOR", 
   "BRUSH": "SZCZOTKA",
   "BRUSH_COLOR": "SZCZOTKA  KOLOR",
+  "SHAMPOO_X2": "SZAMPON X2",
   "WATER_SHAMPOO": "WODA SZAMPON",
   "COLD_WATER": "ZIMNA",
   "WARM_WATER": "CIEPŁA",
@@ -147,6 +148,9 @@
   "Cashless": "Bezgotówkowy",
   "Bonus": "Premia",
   "Service": "Usługa",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
 
 

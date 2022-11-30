@@ -27,6 +27,7 @@
     "FOAM_COLOR": "FOAM COLOR", 
     "BRUSH": "BRUSH",
     "BRUSH_COLOR": "BRUSH COLOR",
+    "SHAMPOO_X2": "SHAMPOO X2",
     "WATER_SHAMPOO": "WATER SHAMPOO",
     "COLD_WATER": "COLD",
     "WARM_WATER": "WARM",
@@ -147,6 +148,9 @@
     "Cashless": "Cashless",
     "Bonus": "Bonus",
     "Service": "Service",
+
+    "INPUT": "INPUT",
+    "EXIT": "EXIT",
  
     
     

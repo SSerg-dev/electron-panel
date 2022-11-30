@@ -27,6 +27,7 @@
   "FOAM_COLOR": "FOAM FÄRG", 
   "BRUSH": "BORSTA",
   "BRUSH_COLOR": "BORSTA FÄRG",
+  "SHAMPOO_X2": "SCHAMPO X2",
   "WATER_SHAMPOO": "VATTEN SCHAMPO",
   "COLD_WATER": "KALL",
   "WARM_WATER": "VÄRMA",
@@ -147,6 +148,9 @@
   "Cashless": "Kontantlöst",
   "Bonus": "Bonus",
   "Service": "Service",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
   
   

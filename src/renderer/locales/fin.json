@@ -26,7 +26,7 @@
   "FOAM": "VAAHTO",
   "FOAM_COLOR": "VAAHTO VÄRI", 
   "BRUSH": "HARJA",
-  "BRUSH_COLOR": "HARJA VÄRI",
+  "SHAMPOO_X2": "SAMPOO X2",
   "WATER_SHAMPOO": "VESI SAMPOO",
   "COLD_WATER": "KYLMÄ",
   "WARM_WATER": "LÄMMIN",
@@ -147,6 +147,9 @@
   "Cashless": "Ei käteistä",
   "Bonus": "Bonus",
   "Service": "Palvelu",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
   
   

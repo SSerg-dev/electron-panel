@@ -98,7 +98,7 @@ export default new Vuex.Store({
       'disk_x2',
       'mosquito_x2',
       'turboDryer',
-      'degrease', 
+      'degrease',
       'disinfection' // ?
     ],
     /* dryPrograms: [
@@ -130,7 +130,8 @@ export default new Vuex.Store({
       zeroMoney: '',
       order: '',
       paidBonus: '',
-      active: ''
+      active: '',
+      programName: ''
     },
 
     dryParameters: {
@@ -503,6 +504,10 @@ export default new Vuex.Store({
     getWetActive(state) {
       return state.parameters.active
     },
+    // programName
+    getWetProgramName(state) {
+      return state.parameters.programName
+    },
     // DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Список всех Dry программ
     getDryProgStatus(state) {
@@ -711,6 +716,9 @@ export default new Vuex.Store({
           break
         case 'active':
           state.parameters.active = parameter.value
+          break
+        case 'programName':
+          state.parameters.programName = parameter.value
           break
 
         // common parameters

@@ -63,6 +63,7 @@ class OPCUAService extends EventEmitter {
       '::AsGlobalPV:PostBalance[{0}].prepaymentMoneyCard',
     TAG_POST_SERV_SEND_MONEY: '::AsGlobalPV:PostBalance[{0}].prepaymentService',
     TAG_POST_BONUS_SEND_MONEY: '::AsGlobalPV:PostBalance[{0}].prepaymentBonus',
+    TAG_WET_PROGRAM_NAME: '::AsGlobalPV:PostN[{0}].programName',
 
     ////////////////////////////////////////////////////////////////////////
     TAG_DRY_IS_BUSY: '::AsGlobalPV:VacuumPost[{0}].busy',

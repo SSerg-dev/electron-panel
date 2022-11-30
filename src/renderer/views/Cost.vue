@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col s2">
+      <div  class="back">
         <router-link to="/">
-          <div class="back">
+          <div>
             <img src="@/assets/imgs/key/back.png" />
           </div>
         </router-link>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col"><CostList :costs="items" /></div>
+    
+    <div class="list">
+      <div>
+        <CostList :costs="items" />
+      </div>
     </div>
     
     <div v-if="getPanelType !== 'vacuum'" class="paginate" style="padding-left: 8em;">
@@ -24,6 +24,7 @@
         :container-class="'pagination'"
       />
     </div>
+
   </div>
 </template>
 
@@ -234,10 +235,19 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.row {
-  padding-top: 4em;
-  margin-bottom: 10em;
-  margin-left: 4em;
+.back {
+  position: fixed;
+  top: 11em;
+  left: 2.5em;
+  z-index: 99;
+}
+
+.list {
+  position: fixed;
+  top: 21em;
+  left: 4em;
+  /* margin-bottom: 10em; */
+  /* margin-left: 4em; */
   width: 100%;
 
   color: white;
@@ -260,12 +270,7 @@ h4 {
   color: white;
 }
 
-.back {
-  position: absolute;
-  margin-top: 4.5em;
-  margin-left: -2.5em;
-  z-index: 1;
-}
+
 
 .paginate {
   font-size: 1em;

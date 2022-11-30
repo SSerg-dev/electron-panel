@@ -1,0 +1,187 @@
+{
+  "LanguageTitle": "Локалдаштыруу",
+  "BOX": "ПОСТ",
+  "#": "#",
+  "VACUUM": "ЧАҢ СОРГУЧ",
+  "PAYMENT": "ТӨЛӨМ",
+  "locales": "KGZ",
+  "PROGRAMS_COST": "ПРОГРАММАЛАРДЫН БААСЫ",
+  "CASH": "НАКТА АКЧА МЕНЕН",
+  "BANK_CARD": "БАНК КАРТАСЫ МЕНЕН",
+  "BONUSES": "БОНУСТАР МЕНЕН",
+  "Choose_your_payment_method": "Төлөө ыкмасын тандаңыз",
+  "CONSULTANT": "КОНСУЛЬТАНТ",
+  "CALL_SENT_WAIT": "ЧАКЫРУУ ЖӨНОТҮЛДҮ, КҮТҮҢҮЗ",
+  "FREE_STOP": "АКЫСЫЗ ТОКТО",
+  "STOP": "ТОКТО", 
+  "CONTINUE": "УЛАНТУУ",
+  "MAKE_A_PAYMENT": "ТӨЛӨМ ТӨЛӨҢҮЗ",
+  "Insert_banknotes_or_coins": "Акчаны же тыйынды киргизиңиз, аяктагандан кийин төмөнкү баскычты басыңыз",
+  "Price_per_minute": "Мүн үчүн баасы",
+  "Program": "Программа",
+
+  "SHAMPOO": "ШАМПУНЬ",
+  "DISK": "ДИСКТЕР",
+  "MOSQUITO": "МОСКИТ",
+  "FOAM": "КӨБҮК",
+  "FOAM_COLOR": "КӨБҮК ТҮС", 
+  "BRUSH": "КЫЛ КАЛЕМ",
+  "BRUSH_COLOR": "КЫЛ КАЛЕМ ТҮС",
+  "SHAMPOO_X2": "ШАМПУНЬ X2",
+  "WATER_SHAMPOO": "СУУ ШАМПУНЬ",
+  "COLD_WATER": "СУУК",
+  "WARM_WATER": "ЖЫЛУУ",
+  "OSMOSIS": "ОСМОССУУ",
+  "STOP_PAUSE": "ТОКТО/ПАУЗА",
+  "AIR": "АБА",
+  "GLASS_WASHING_LIQUID": "ЖУУ",
+  "WAX": "WAX",
+  "FOAM_X2": "КӨБҮК X2",
+  "VACUUM_CLEANER": "ЧАҢ СОРГУЧ",
+  "BRUSH_X2": "КЫЛ КАЛЕМ X2",
+  "DISK_X2": "ДИСКТЕР X2",
+  "MOSQUITO_X2": "МОСКИТ X2",
+  "TURBO_DRYER": "КУРГАТУУЧУ",
+  "DEGREASE": "АЗАЙУУ",
+  "DISINFECTION": "ДЕЗИНФЕКЦИЯ",
+  "BLACKING": "КАРАЛУУ",
+  "DOORSILL": "ЭШИК",
+  
+  "COMPLETE_PAYMENT": "ТОЛУК ТӨЛӨӨ",
+  "RETURN_BONUSES_UP": "30ГА ЧЕЙИН КАЙТАРУУ% ТОЛУК ТӨЛӨӨ",
+  "APPEND": "КОШУУ",
+  "CONFIRM": "ЫРАСТОО",
+
+  "To_enter_the_system": "Тутумга кирүү үчүн телефон номериңизди киргизиңиз же QR кодду сканерлеңиз", 
+  "To_credit_Bonuses_to_your_account": "Бонустарды эсепке алуу үчүн телефон номериңизди киргизиңиз",
+  "By_clicking_on_CONFIRM": "ЖАКШЫРУУ баскычын чыкылдатуу менен, сиз веб-сайтта көрсөтүлгөн шарттарга ылайык, сизге SMS билдирүүлөрдү жөнөтүүгө жана жеке маалыматтарды иштетүүгө макулдугуңузду бересиз.: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "QR боюнча авторлоштуруу",
+  "Your_balance": "Сиздин балансыңыз,",
+  "Select_charge_amount": "Төлөмдүн суммасын тандаңыз",
+  
+  "Enter_your_password": "Сырсөзүңүздү киргизиңиз",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "орнотуулар менюсу",
+  
+  "The_status_of_the_operation": "Оепрациянын аткаруу статусу:",
+  "Connection_to_the_bank_terminal": "Банк терминалына туташуу...",
+  "Failed_to_connect_to_the_bank_terminal": "Банктык терминалга кошулууга мүмкүн болгон жок",
+  "Timed_out": "Күтүү убакыты бүттү",
+  "Operation_approved": "Иш бекитилди",
+  "Operation_rejected": "Операция четке кагылды",
+  "Follow_the_instructions_on_the_terminal": "Терминалдагы көрсөтмөлөрдү аткарыңыз",
+
+  "You_want_to_complete_the_car_wash": "Унааны жууп бүтүрүп, балансты бонустар менен кайтаргыңыз келеби?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Ооба баскычын чыкылдатуу менен сиз сизге SMS билдирүүлөрдү жөнөтүүгө жана веб-сайтта көрсөтүлгөн шарттарга ылайык жеке маалыматтарды иштетүүгө макулдугуңузду билдиресиз: www.alles-bonus.com",
+
+  "Display": "Экран",
+  "Services": "Кызматтар",
+  "Service_balance": "Кызмат балансы",
+  "Reset": "Калыбына",
+  "Open_the_door": "Эшикти ачуу",
+  "Reboot": "Жүктөө",
+
+  "Software_version": "ПК версиясы",
+  "Temperature": "Температурасы",
+  "Humidity": "Нымдуулугу",
+
+  "Show_tooltips_when_switching_programs_during": "Программа өтүү учурунда калкыма аркы-терки көрсөтүү",
+
+  "Time_to_switch_to_the_main_window": "Негизги терезеге өтүү",
+
+  "Setting": "Орнотуу",
+  "Languages": "Тилдер",
+  "Finance": "Каржы",
+  "Review": "Cереп",
+
+  "OK": "OK",
+  "Cancel": "Айынуу",
+  "Confirm": "Ырастоо",
+  "Make_the_payment_window_the_main": "Төлөм терезесин негизги кылыңыз",
+  "Show_cursor_in_the_main_window": "Курсорду негизги терезеде көрсөтүү",
+  "Direct_cash_payment": "Түздөн-түз накталай төлөм",
+  "Banking_terminal": "Банк терминалы",
+  
+  "System": "Система",
+  "Panel": "Панел",
+  "Bill_acceptor": "Банкнотторду кабыл алуучу",
+  "Coin_acceptor": "Монеталарды кабыл алуучу",
+
+  "Language": "Тил",
+  "Currency": "Валюта",
+  
+  "Type_of_panel": "Панели түрү",
+  "Panel_number": "Панель номуру",
+  "Vacuum_number": "Чаң соргучтун номери",
+
+  "Type": "Type",
+  "Accept_bills": "Банкнотторду кабыл алуу",
+  "Accept_coins": "Монеталарды кабыл алуу",
+
+  "Model": "Модел",
+  "Reconciliation_Pax": "Элдештирүү Pax",
+
+  "Payment_limits": "Лимиттер",
+  "Minimum": "Минималдуу",
+  "Maximum": "Максималдуу",
+  "Tokens": "Токендер",
+
+  "CAR_WASH": "АВТОЖУУГУЧ",
+  "PAYMENT_CENTER": "ТӨЛӨӨ БОРБОРУ",
+  "PANEL": "ПАНЕЛЬ",
+
+  "Cash_post": "Кассалык",
+  "Total_amount": "Жалпы суммасы",
+  "Amount_of_deposit_in_banknotes": "Банкноттордогу депозиттин саны",
+  "Number_of_banknotes": "Банкноттордун саны",
+  "Credit_amount_in_coins": "Монеталардагы кредиттин суммасы",
+  "Number_of_coins": "Монеталардын саны",
+  "Collection": "Коллекция",
+
+  "Replace_item": "Элементти",
+  "Replace_program": "Программаны",
+
+  "Cash_accounting": "Акча эсепке алуу",
+  "Date": "Дата",
+  "Cash": "Накталай",
+  "Cashless": "Накталай акчасыз",
+  "Bonus": "Бонус",
+  "Service": "Кызмат",
+
+  "INPUT": "КИРҮҮ",
+  "EXIT": "КЕТҮҮ",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed",
+
+  "Wash_program_completed_successfully": "Wash program completed successfully",
+  "Not_enough_money": "Not enough money"
+
+
+}

@@ -27,6 +27,7 @@
   "FOAM_COLOR": "SKUM FARGE", 
   "BRUSH": "BØRSTE",
   "BRUSH_COLOR": "BØRSTE FARGE",
+  "SHAMPOO_X2": "SJAMPO X2",
   "WATER_SHAMPOO": "VANN SJAMPO",
   "COLD_WATER": "KALD",
   "WARM_WATER": "VARM",
@@ -147,6 +148,9 @@
   "Cashless": "Kontantløst",
   "Bonus": "Bonus",
   "Service": "Service",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
   
   

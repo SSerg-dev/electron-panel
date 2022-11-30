@@ -27,6 +27,7 @@
   "FOAM_COLOR": "SCHUIM KLEUR", 
   "BRUSH": "BORSTEL",
   "BRUSH_COLOR": "BORSTEL KLEUR",
+  "SHAMPOO_X2": "SHAMPOO X2",
   "WATER_SHAMPOO": "WATER SHAMPOO",
   "COLD_WATER": "KOUD",
   "WARM_WATER": "WARM",
@@ -147,6 +148,9 @@
   "Cashless": "Zonder contant geld",
   "Bonus": "Bonus",
   "Service": "Service",
+
+  "INPUT": "INPUT",
+  "EXIT": "EXIT",
 
   
   
