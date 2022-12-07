@@ -1,0 +1,187 @@
+{
+  "LanguageTitle": "本土化",
+  "BOX": "洗车店",
+  "#": "#",
+  "VACUUM": "吸尘器",
+  "PAYMENT": "支付",
+  "locales": "CHN",
+  "PROGRAMS_COST": "程序费用",
+  "CASH": "现汇结算",
+  "BANK_CARD": "银行卡结算",
+  "BONUSES": "积分结算",
+  "Choose_your_payment_method": "选择付款方式",
+  "CONSULTANT": "顾问",
+  "CALL_SENT_WAIT": "通话已发送，请稍候！",
+  "FREE_STOP": "自由停车",
+  "STOP": "停止", 
+  "CONTINUE": "续订",
+  "MAKE_A_PAYMENT": "进行付款",
+  "Insert_banknotes_or_coins": "放入纸币或硬币 完成后单击下面的按钮",
+  "Price_per_minute": "分钟的价格",
+  "Program": "程序",
+
+  "SHAMPOO": "洗发水",
+  "DISK": "轮辋",
+  "MOSQUITO": "防白蛉子",
+  "FOAM": "泡沫",
+  "FOAM_COLOR": "泡沫 颜色", 
+  "BRUSH": "刷子",
+  "BRUSH_COLOR": "刷子 颜色",
+  "SHAMPOO_X2": "洗发水 X2",
+  "WATER_SHAMPOO": "水 洗发水",
+  "COLD_WATER": "寒冷的",
+  "WARM_WATER": "温暖的",
+  "OSMOSIS": "渗透",
+  "STOP_PAUSE": "运算完成信号",
+  "AIR": "空气",
+  "GLASS_WASHING_LIQUID": "清洗液",
+  "WAX": "蜡",
+  "FOAM_X2": "泡沫 X2",
+  "VACUUM_CLEANER": "吸尘器",
+  "BRUSH_X2": "刷子 X2",
+  "DISK_X2": "轮辋 X2",
+  "MOSQUITO_X2": "防白蛉子 X2",
+  "TURBO_DRYER": "涡轮干燥机",
+  "DEGREASE": "脱脂",
+  "DISINFECTION": "消毒",
+  "BLACKING": "涂黑",
+  "DOORSILL": "门槛",
+  
+  "COMPLETE_PAYMENT": "完成支付",
+  "RETURN_BONUSES_UP": "返还积分高达 30％ 完成支付",
+  "APPEND": "附加",
+  "CONFIRM": "确认",
+
+  "To_enter_the_system": "输入您的电话号码或扫描QR码以登录", 
+  "To_credit_Bonuses_to_your_account": "要将奖金记入您的帐户，请输入您的电话号码",
+  "By_clicking_on_CONFIRM": "点击确认，即表示您同意根据网站上列出的条件向您发送短信和个人数据处理: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "QR授权",
+  "Your_balance": "您的余额,",
+  "Select_charge_amount": "选择充值金额",
+  
+  "Enter_your_password": "输入您的密码",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "设置菜单",
+  
+  "The_status_of_the_operation": "运行状态：",
+  "Connection_to_the_bank_terminal": "连接到银行终端...",
+  "Failed_to_connect_to_the_bank_terminal": "连接银行终端失败",
+  "Timed_out": "超时时间已到",
+  "Operation_approved": "批准运营",
+  "Operation_rejected": "操作被拒绝",
+  "Follow_the_instructions_on_the_terminal": "请按照终端上的说明进行操作",
+
+  "You_want_to_complete_the_car_wash": "您想完成洗车并用奖金退还余额吗？",
+  "By_clicking_the_Yes_button_you_give_your_consent": "单击“是”按钮，即表示您同意根据网站上列出的条件向您发送 SMS 消息并处理个人数据: www.alles-bonus.com",
+
+  "Display": "显示",
+  "Services": "服务",
+  "Service_balance": "服务余额",
+  "Reset": "重置",
+  "Open_the_door": "开门",
+  "Reboot": "重启",
+
+  "Software_version": "软件版本",
+  "Temperature": "温度",
+  "Humidity": "湿度",
+
+  "Show_tooltips_when_switching_programs_during": "切换程序时显示工具提示",
+
+  "Time_to_switch_to_the_main_window": "是时候去主窗口了",
+
+  "Setting": "环境",
+  "Languages": "语言",
+  "Finance": "金融",
+  "Review": "审查",
+
+  "OK": "好的",
+  "Cancel": "取消",
+  "Confirm": "确认",
+  "Make_the_payment_window_the_main": "将付款窗口设为主要",
+  "Show_cursor_in_the_main_window": "在主窗口中显示光标",
+  "Direct_cash_payment": "直接现金支付",
+  "Banking_terminal": "银行终端",
+  
+  "System": "系统",
+  "Panel": "面板",
+  "Bill_acceptor": "钞票接受器",
+  "Coin_acceptor": "硬币接受器",
+
+  "Language": "语",
+  "Currency": "货币",
+  
+  "Type_of_panel": "面板类型",
+  "Panel_number": "面板编号",
+  "Vacuum_number": "吸尘器编号",
+
+  "Type": "类型",
+  "Accept_bills": "接受账单",
+  "Accept_coins": "接受硬币",
+
+  "Model": "模型",
+  "Reconciliation_Pax": "和解 Pax",
+
+  "Payment_limits": "付款限额",
+  "Minimum": "最低限度",
+  "Maximum": "最大",
+  "Tokens": "代币",
+
+  "CAR_WASH": "洗车机",
+  "PAYMENT_CENTER": "付款中心",
+  "PANEL": "面板",
+
+  "Cash_post": "现金邮寄",
+  "Total_amount": "总金额",
+  "Amount_of_deposit_in_banknotes": "存款金额",
+  "Number_of_banknotes": "纸币张数",
+  "Credit_amount_in_coins": "以硬币为单位的信用额度",
+  "Number_of_coins": "硬币数量",
+  "Collection": "收藏",
+
+  "Replace_item": "替换项目",
+  "Replace_program": "替换程序",
+
+  "Cash_accounting": "现金会计",
+  "Date": "日期",
+  "Cash": "现金",
+  "Cashless": "无现金",
+  "Bonus": "奖金",
+  "Service": "服务",
+
+  "INPUT": "输入",
+  "EXIT": "出口",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed",
+
+  "Wash_program_completed_successfully": "Wash program completed successfully",
+  "Not_enough_money": "Not enough money"
+
+
+}

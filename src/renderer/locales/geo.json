@@ -1,0 +1,187 @@
+{
+  "LanguageTitle": "ლოკალიზაცია",
+  "BOX": "ბოქსი",
+  "#": "#",
+  "VACUUM": "მტვერსასრუტი",
+  "PAYMENT": "გადახდა",
+  "locales": "GEO",
+  "PROGRAMS_COST": "პროგრამების ღირებულება",
+  "CASH": "ნაღდი ფულით",
+  "BANK_CARD": "საბანკო ბარათით",
+  "BONUSES": "ბონუსებით",
+  "Choose_your_payment_method": "აირჩიეთ გადახის ხერხი",
+  "CONSULTANT": "კონსულტანტი",
+  "CALL_SENT_WAIT": "გამოძახება გაგზავნილია, დაელოდეთ",
+  "FREE_STOP": "უფასო გაჩერება",
+  "STOP": "შეჩერდი", 
+  "CONTINUE": "გაგრძელება",
+  "MAKE_A_PAYMENT": "გადაიხადეთ",
+  "Insert_banknotes_or_coins": "შეიტანეთ კუპიურები ან მონეტები, დასრულებისას დააჭირეთ ღილაკს ქვევით",
+  "Price_per_minute": "წუთის ღირებულება",
+  "Program": "პროგრამა",
+
+  "SHAMPOO": "შამპუნი",
+  "DISK": "დისკოები",
+  "MOSQUITO": "კოღო",
+  "FOAM": "ქაფი",
+  "FOAM_COLOR": "ქაფი ფერი", 
+  "BRUSH": "ჯაგრისი",
+  "BRUSH_COLOR": "ჯაგრისი ფერი",
+  "SHAMPOO_X2": "შამპუნი X2",
+  "WATER_SHAMPOO": "წყალი შამპუნი",
+  "COLD_WATER": "ცივი",
+  "WARM_WATER": "თბილი",
+  "OSMOSIS": "ოსმოსი",
+  "STOP_PAUSE": "შეჩერდი/პაუზა",
+  "AIR": "საჰაერო",
+  "GLASS_WASHING_LIQUID": "სარეცხი სითხე",
+  "WAX": "ცვილი",
+  "FOAM_X2": "ქაფი X2",
+  "VACUUM_CLEANER": "მტვერსასრუტი",
+  "BRUSH_X2": "ჯაგრისი X2",
+  "DISK_X2": "დისკოები X2",
+  "MOSQUITO_X2": "კოღო X2",
+  "TURBO_DRYER": "საშრობი",
+  "DEGREASE": "დეგრადაცია",
+  "DISINFECTION": "დეზინფექცია",
+  "BLACKING": "გაშავება",
+  "DOORSILL": "კარები",
+  
+  "COMPLETE_PAYMENT": "გადახდის დასრულება",
+  "RETURN_BONUSES_UP": "დაბრუნება მდე 30% გადახდის დასრულება",
+  "APPEND": "დამატება",
+  "CONFIRM": "დაადასტურეთ",
+
+  "To_enter_the_system": "სისტემაში შესასვლელად შეიყვანეთ ტელეფონის ნომერი ან დაასკანირეთ QR კოდი", 
+  "To_credit_Bonuses_to_your_account": "თქვენს ანგარიშზე ბონუსების დასარიცხად შეიყვანეთ თქვენი ტელეფონის ნომერი",
+  "By_clicking_on_CONFIRM": "დადასტურებაზე დაწკაპუნებით თქვენ თანხმობას აძლევთ SMS შეტყობინებების გაგზავნას და პერსონალური მონაცემების დამუშავებას, ვებსაიტზე ჩამოთვლილი პირობების შესაბამისად.: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "ავტორიზაცია QR მიხედვით",
+  "Your_balance": "შენი ბალანსი,",
+  "Select_charge_amount": "აირჩიეთ გადახდის თანხა",
+  
+  "Enter_your_password": "შეიყვანეთ თქვენი პაროლი",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "პარამეტრების მენიუ",
+  
+  "The_status_of_the_operation": "ოპერაციის შესრულების სტატუსი:",
+  "Connection_to_the_bank_terminal": "კავშირი საბანკო ტერმინალთან...",
+  "Failed_to_connect_to_the_bank_terminal": "ვერ მოხერხდა საბანკო ტერმინალთან დაკავშირება",
+  "Timed_out": "მოლოდინის დრო ამოიწურა",
+  "Operation_approved": "ოპერაცია დამტკიცებულია",
+  "Operation_rejected": "ოპერაცია უარყო",
+  "Follow_the_instructions_on_the_terminal": "მიჰყევით ტერმინალის მითითებებს",
+
+  "You_want_to_complete_the_car_wash": "გსურთ დაასრულოთ მანქანის რეცხვა და დააბრუნოთ ნაშთი ბონუსებით?",
+  "By_clicking_the_Yes_button_you_give_your_consent": "დიახ ღილაკზე დაწკაპუნებით თქვენ ეთანხმებით თქვენთვის SMS შეტყობინებების გაგზავნას და პერსონალური მონაცემების დამუშავებას ვებგვერდზე ჩამოთვლილი პირობების შესაბამისად: www.alles-bonus.com",
+
+  "Display": "ეკრანი",
+  "Services": "სერვისები",
+  "Service_balance": "სერვისის ბალანსი",
+  "Reset": "გაუქმება",
+  "Open_the_door": "კარების გაღება",
+  "Reboot": "გადატვირთვა",
+
+  "Software_version": "პუ ვერსია",
+  "Temperature": "ტემპერატურა",
+  "Humidity": "ტენიანობა",
+
+  "Show_tooltips_when_switching_programs_during": "ინსტრუმენტების რჩევების ჩვენება პროგრამების გადართვის დროს",
+
+  "Time_to_switch_to_the_main_window": "მთავარ ფანჯარამდე",
+
+  "Setting": "დაყენება",
+  "Languages": "ენები",
+  "Finance": "ფინანსები",
+  "Review": "მიმოხილვა",
+
+  "OK": "კარგი",
+  "Cancel": "გაუქმება",
+  "Confirm": "დაადასტურეთ",
+  "Make_the_payment_window_the_main": "გახადეთ გადახდის ფანჯარა მთავარი",
+  "Show_cursor_in_the_main_window": "აჩვენეთ კურსორი მთავარ ფანჯარაში",
+  "Direct_cash_payment": "პირდაპირი ნაღდი ანგარიშსწორება",
+  "Banking_terminal": "ბანკის ტერმინალი",
+  
+  "System": "სისტემა",
+  "Panel": "პანელი",
+  "Bill_acceptor": "ბანკნოტების მიმღები",
+  "Coin_acceptor": "მონეტების მიმღები",
+
+  "Language": "ენა",
+  "Currency": "ვალუტა",
+  
+  "Type_of_panel": "Тип",
+  "Panel_number": "პანელის ნომერი:",
+  "Vacuum_number": "მტვერსასრუტის ნომერი",
+
+  "Type": "ტიპი",
+  "Accept_bills": "ბანკნოტის მიღება",
+  "Accept_coins": "მიიღეთ მონეტები",
+
+  "Model": "მოდელი",
+  "Reconciliation_Pax": "შერიგება Pax",
+
+  "Payment_limits": "საზღვრები",
+  "Minimum": "მინიმალური",
+  "Maximum": "მაქსიმალური",
+  "Tokens": "ჟეტონები",
+
+  "CAR_WASH": "რეცხვა",
+  "PAYMENT_CENTER": "გადახდის ცენტრი",
+  "PANEL": "პანელი",
+
+  "Cash_post": "ფულადი პოსტი",
+  "Total_amount": "მთლიანი რაოდენობა",
+  "Amount_of_deposit_in_banknotes": "დეპოზიტის ოდენობა ბანკნოტებში",
+  "Number_of_banknotes": "ბანკნოტების რაოდენობა",
+  "Credit_amount_in_coins": "საკრედიტო თანხა მონეტებში",
+  "Number_of_coins": "მონეტების რაოდენობა",
+  "Collection": "კოლექცია",
+
+  "Replace_item": "შეცვალეთ ნივთი",
+  "Replace_program": "პროგრამა",
+
+  "Cash_accounting": "ფულადი აღრიცხვა",
+  "Date": "თარიღი",
+  "Cash": "ნაღდი ფული",
+  "Cashless": "უნაღდო",
+  "Bonus": "ბონუსი",
+  "Service": "სერვისი",
+
+  "INPUT": "შეყვანა",
+  "EXIT": "გასვლა",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed",
+
+  "Wash_program_completed_successfully": "Wash program completed successfully",
+  "Not_enough_money": "Not enough money"
+
+
+}

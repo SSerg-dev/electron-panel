@@ -10,6 +10,7 @@ import options from './options'
 import status from './status'
 import countries from './countries'
 import languages from './languages'
+import alarms from './alarms'
 import sleep from '@/utils/sleep'
 
 import { ipcRenderer } from 'electron'
@@ -533,9 +534,7 @@ export default new Vuex.Store({
       // ::AsGlobalPV:gFixedCurrency.digits
       return state.globalParameters.fixedCurrency
     },
-    /* dev */
     getIsMenuUnlock(state) {
-      // ::AsGlobalPV:gPanelSysMenuUnlockFlag
       return state.globalParameters.isMenuUnlock
     },
 
@@ -695,7 +694,8 @@ export default new Vuex.Store({
           state.globalParameters.fixedCurrency = parameter.value
           break
         /* dev */
-        case '::AsGlobalPV:gPanelSysMenuUnlockFlag':
+        // case '::AsGlobalPV:gPanelSysMenuUnlockFlag':
+        case 'PanelSysMenuUnlockFlag':  
           state.globalParameters.isMenuUnlock =
             parameter.value === 'true' ? true : false
           break
@@ -791,7 +791,7 @@ export default new Vuex.Store({
           state.globalParameters.fixedCurrency = parameter.value
           break
         /* dev */
-        case '::AsGlobalPV:gPanelSysMenuUnlockFlag':
+        case 'PanelSysMenuUnlockFlag':
           state.globalParameters.isMenuUnlock = parameter.value
           break
         case 'order':
@@ -937,6 +937,7 @@ export default new Vuex.Store({
     options,
     status,
     countries,
-    languages
+    languages,
+    alarms
   }
 })

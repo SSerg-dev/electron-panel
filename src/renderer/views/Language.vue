@@ -250,30 +250,34 @@
               </button>
             </td>
           </tr>
-          <!-- dev -->
+          
           <tr v-if="this.getPaginate === 4">
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('spa-SPA')">
                 <img src="@/assets/imgs/language/lang_SPA.png" />
-              </router-link>
+              </button>
             </td>
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('geo-GEO')">
                 <img src="@/assets/imgs/language/lang_GEO.png" />
-              </router-link>
+              </button>
             </td>
+          
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('chn-CHN')">
                 <img src="@/assets/imgs/language/lang_CHN.png" />
-              </router-link>
+              </button>
             </td>
           </tr>
+            
           <tr v-if="this.getPaginate === 4">
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('isr-ISR')">
                 <img src="@/assets/imgs/language/lang_ISR.png" />
-              </router-link>
+              </button>
             </td>
+            <!-- dev -->
             <td>
               <router-link class="btn-small" to="/language">
                 <img src="@/assets/imgs/language/lang_ARB.png" />

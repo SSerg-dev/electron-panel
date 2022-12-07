@@ -30,7 +30,7 @@ export default Vue.extend({
   /* dev */
   watch: {
     getParamsChange(flag) {
-      this.setActiveProg()
+      // this.setActiveProg()
     }
   },
   computed: {
@@ -56,7 +56,9 @@ export default Vue.extend({
     getActiveProgBit() {
       return (this.getWetProgStatus >>> 0).toString(2)
     },
+    /* 
     setActiveProg() {
+      
       let activeProgNames = []
       this.activeProg = [...this.getActiveProgBit()]
         .reverse()
@@ -77,6 +79,7 @@ export default Vue.extend({
 
       return this.actives
     }
+   */
   },
   created() {
     this.actives = this.getPrograms()

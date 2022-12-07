@@ -92,11 +92,18 @@
         </div>
         -->
 
-        <div v-if="this.isVisibleWashTableBonus" class="savemoney">
+        <!-- <div v-if="this.isVisibleWashTableBonus && !this.isVisibleWashTableAlarm " class="savemoney">
           <WashTableBonus :actives="actives" />
+        </div> -->
+
+        <div v-if="!this.isVisibleWashTableBonus && this.isVisibleWashTableAlarm" class="alarm">
+          <WashTableAlarm :actives="actives" />
         </div>
 
-        <div v-else :key="getWetProgShow">
+
+        <!-- to do Bonus -->
+        <!-- <div v-if="!this.isVisibleWashTableAlarm && !this.isVisibleWashTableBonus" :key="getWetProgShow"> -->
+        <div v-if="!this.isVisibleWashTableAlarm" :key="getWetProgShow">
           <table border="0" width="100%" cellpadding="0" cellspacing="0">
             <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
               <!-- 1 -->
@@ -314,6 +321,8 @@ import WashTableTurboDryer from '@/components/wash/actives/WashTableTurboDryer'
 import WashTableDegrease from '@/components/wash/actives/WashTableDegrease'
 import WashTableDisinfection from '@/components/wash/actives/WashTableDisinfection'
 import WashTableBonus from '@/components/wash/WashTableBonus'
+import WashTableAlarm from '@/components/wash/WashTableAlarm'
+
 
 import { dateFilter, getRndInteger, log } from '@/utils/order.js'
 import messages from '@/utils/messages'
@@ -331,6 +340,7 @@ export default {
     timeoutDelay: null,
     isVisible: false,
     isVisibleWashTableBonus: false,
+    isVisibleWashTableAlarm: true,
 
     /*  */
     keys: {
@@ -399,6 +409,7 @@ export default {
     WashTableDegrease,
     WashTableDisinfection,
     WashTableBonus,
+    WashTableAlarm
   },
   props: {
     actives: {
@@ -423,7 +434,6 @@ export default {
         }
       }
     },
-
     /* dev hidden */
     /* getIsMoneyToBonus(flag) {
       console.log('++getIsMoneyToBonus', flag)
@@ -436,9 +446,21 @@ export default {
         this.buttonBonus.hide()
       }
     }, */
-
+    /* 
+    getWetProgStatus(flag) {
+      console.log('$$ getWetProgStatus', flag)
+    },
+     */
     getWetProgShow(flag) {
-      console.log('$$ getWetProgShow', flag /* this.actives[27] */)
+      // vacuum +
+      //console.log(this.actives[16].title, '-->',this.actives[16].display)
+      
+      // air
+      // console.log(this.actives[17].title, '-->',this.actives[17].display)
+
+      // turboDryer
+      // console.log(this.actives[26]?.title, '-->',this.actives[26]?.display)
+
     },
     seconds(flag) {
       // console.log('++this.seconds-->flag--> ', flag)
@@ -978,6 +1000,11 @@ td {
   margin-left: 62em;
 }
 .savemoney {
+  position: absolute;
+  margin-top: 12em;
+  margin-left: 2em;
+}
+.alarm {
   position: absolute;
   margin-top: 12em;
   margin-left: 2em;

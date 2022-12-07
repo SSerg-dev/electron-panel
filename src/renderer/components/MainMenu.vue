@@ -16,23 +16,6 @@
             </div>
           </div>
         
-        <!-- dev todo -->
-        <!-- <div
-          
-          class="waves-effect price"
-          id="button-price"
-        >
-          <div
-            class="button-price-style"
-            
-          >
-            <div class="emoji">
-              {{ `📄` }}
-            </div>
-          </div>
-        </div> -->
-        <!--     -->
-
         </li>
 
         <!-- 2 -->
@@ -64,7 +47,7 @@
           </div>
         </li>
 
-        <!-- 5 ₿ 🎁 -->
+        <!-- 5 ₿ -->
         <li v-if="getIsPing" class="collection-item" @click="payUp('bonus')">
           <div class="card white waves-effect button-style-bonus">
             <div class="card-content black-text button-content-style">
@@ -124,7 +107,7 @@ export default Vue.extend({
     this.initial()
     // initial timers
     /* dev */
-    // this.$router.push('/program')
+    this.$router.push('/program')
 
     if (this.getWetBalance > 0) this.$router.push('/cash')
 

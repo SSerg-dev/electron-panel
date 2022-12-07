@@ -16,33 +16,37 @@
         "
       >
         <li class="tab col s3">
-          <a active class="black-text" href="#swipe-1" style="font-size: 32px"
+          <a
+            active
+            class="black-text"
+            href="#swipe-1"
+            style="font-size: 32px"
             >{{ `Display` | localize }}</a
           >
         </li>
 
         <li class="tab col s3">
-          <a class="black-text" href="#swipe-2" style="font-size: 32px"
-            >{{ `Setting` | localize }}</a
-          >
+          <a class="black-text" href="#swipe-2" style="font-size: 32px">{{
+            `Setting` | localize
+          }}</a>
         </li>
         <li class="tab col s3">
-          <a class="black-text" href="#swipe-3" style="font-size: 32px"
-            >{{ `Languages` | localize }}</a
-          >
+          <a class="black-text" href="#swipe-3" style="font-size: 32px">{{
+            `Languages` | localize
+          }}</a>
         </li>
 
         <!-- v-if="JSON.parse(getUsersIsAccess.mainFinance)" -->
-        <li 
-           @click="setProgram('finance')" 
-           class="tab col s3">
-          <a class="black-text" href="#swipe-4" style="font-size: 32px"
-            >{{ `Finance` | localize }}</a
-          >
-          <!-- dev -->
-          
+        <li @click="setProgram('finance')" class="tab col s3">
+          <a class="black-text" href="#swipe-4" style="font-size: 32px">{{
+            `Finance` | localize
+          }}</a>
+        </li>
 
-          <!--     -->
+        <li @click="setProgram('alarms')" class="tab col s3">
+          <a class="black-text" href="#swipe-5" style="font-size: 32px">{{
+            `Alarms`
+          }}</a>
         </li>
       </ul>
       <!-- end ul -->
@@ -113,7 +117,9 @@
                       </div>
                       <!-- Заменить пункт / программу -->
                       <div class="change-item-title">
-                        <span class="card-title">{{`Replace_item` | localize}}</span>
+                        <span class="card-title">{{
+                          `Replace_item` | localize
+                        }}</span>
                       </div>
                     </div>
                   </div>
@@ -177,7 +183,9 @@
                         </label>
                       </div>
                       <div class="change-item-title">
-                        <span class="card-title">{{`Replace_program` | localize}}</span>
+                        <span class="card-title">{{
+                          `Replace_program` | localize
+                        }}</span>
                       </div>
                     </div>
                   </div>
@@ -245,7 +253,9 @@
                         </label>
                       </div>
                       <div class="change-item-title">
-                        <span class="card-title">{{`Replace_program` | localize }}</span>
+                        <span class="card-title">{{
+                          `Replace_program` | localize
+                        }}</span>
                       </div>
                     </div>
                   </div>
@@ -312,9 +322,9 @@
                       </div>
 
                       <div class="pay-screen-title">
-                        <span class="card-title"
-                          >{{ `Make_the_payment_window_the_main` | localize }}</span
-                        >
+                        <span class="card-title">{{
+                          `Make_the_payment_window_the_main` | localize
+                        }}</span>
                       </div>
                     </div>
                   </div>
@@ -378,9 +388,9 @@
                       </div>
 
                       <div class="pay-screen-title">
-                        <span class="card-title"
-                          >{{ `Show_cursor_in_the_main_window` | localize }}</span
-                        >
+                        <span class="card-title">{{
+                          `Show_cursor_in_the_main_window` | localize
+                        }}</span>
                       </div>
                     </div>
                   </div>
@@ -423,7 +433,7 @@
                 <div class="panel">
                   <div class="page-title white-text">
                     <!-- <h4>СИСТЕМА</h4> -->
-                    <h4>{{`System` | localize}}</h4>
+                    <h4>{{ `System` | localize }}</h4>
                   </div>
                 </div>
               </td>
@@ -473,9 +483,9 @@
                     </div>
 
                     <div class="pay-screen-title">
-                      <span class="card-title"
-                        >{{`Show_cursor_in_the_main_window` | localize}}</span
-                      >
+                      <span class="card-title">{{
+                        `Show_cursor_in_the_main_window` | localize
+                      }}</span>
                     </div>
                   </div>
                 </div>
@@ -486,7 +496,7 @@
               <td>
                 <div class="panel">
                   <div class="page-title white-text">
-                    <h4>{{`Panel` | localize}}</h4>
+                    <h4>{{ `Panel` | localize }}</h4>
                   </div>
                 </div>
               </td>
@@ -537,7 +547,9 @@
                     </div>
 
                     <div class="pay-screen-title">
-                      <span class="card-title">{{`Direct_cash_payment` | localize}}</span>
+                      <span class="card-title">{{
+                        `Direct_cash_payment` | localize
+                      }}</span>
                     </div>
                   </div>
                 </div>
@@ -568,9 +580,9 @@
                     </div>
 
                     <div class="pay-screen-title panel">
-                      <span class="card-title" style="font-size: 33.06px"
-                        >{{ `Bill_acceptor` | localize }}</span
-                      >
+                      <span class="card-title" style="font-size: 33.06px">{{
+                        `Bill_acceptor` | localize
+                      }}</span>
                     </div>
                   </div>
                 </div>
@@ -622,9 +634,9 @@
                     </div>
 
                     <div class="pay-screen-title panel">
-                      <span class="card-title" style="font-size: 33.06px"
-                        >{{`Coin_acceptor` | localize}}</span
-                      >
+                      <span class="card-title" style="font-size: 33.06px">{{
+                        `Coin_acceptor` | localize
+                      }}</span>
                     </div>
                   </div>
                 </div>
@@ -683,7 +695,9 @@
                     </div>
 
                     <div class="pay-screen-title">
-                      <span class="card-title">{{`Banking_terminal` | localize}}</span>
+                      <span class="card-title">{{
+                        `Banking_terminal` | localize
+                      }}</span>
                     </div>
                   </div>
                 </div>
@@ -713,7 +727,6 @@
                 </td>
               </tr>
             </div>
-
           </tbody>
         </table>
         <div style="margin-top: 2em">
@@ -792,6 +805,24 @@
         <hr /> -->
 
         <!-- end Финансы -->
+      </div>
+
+      <!-- dev to do alarms-->
+      <div
+        id="swipe-5"
+        class="col s8 black"
+        style="box-shadow: 10px 10px 10px #00b9e3"
+      >
+        <div style="height: 80px; margin-left: 6.5em; margin-top: 2em;">
+          <div>
+            <div class="panel">
+              <div class="page-title white-text">
+                <h4>Alarms</h4>
+              </div>
+              
+            </div>
+          </div>
+        </div>
 
       </div>
 
@@ -909,7 +940,7 @@ export default Vue.extend({
     isDown: false,
     tabs: null,
 
-    config: {}
+    config: {},
   }),
   components: {
     SettingPanelType,
@@ -963,7 +994,11 @@ export default Vue.extend({
     },
     /* dev */
     setProgram(program) {
-      this.$router.push('/finance')
+      if (program === 'finance') {
+        this.$router.push('/finance')
+      } else if (program === 'alarms') {
+        // console.log('$$ show alarms')
+      }
     },
 
     setLanguage() {},
@@ -1005,7 +1040,7 @@ export default Vue.extend({
     },
     applyHandler() {
       this.config = this.getConfig()
-      
+
       this.updateConfig(this.config)
 
       // this.setLanguage()
@@ -1028,7 +1063,7 @@ export default Vue.extend({
       getPanelType: 'getPanelType',
       getAcceptorInstalled: 'getAcceptorInstalled',
       getCoinAcceptorInstalled: 'getCoinAcceptorInstalled',
-      getUsersIsAccess: 'getUsersIsAccess'
+      getUsersIsAccess: 'getUsersIsAccess',
     }),
   },
   watch: {

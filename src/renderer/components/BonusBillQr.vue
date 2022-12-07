@@ -165,17 +165,17 @@ export default {
 
 <style scoped>
 .qr-title {
-  position: absolute;
-  margin-top: 10em;
-  margin-left: 45.5em;
+  position: fixed;
+  width: 400px;
+  top: 64em;
+  left: 42em;
   color: white;
   font-family: 'Plumb-Medium';
-
-  width: 40%;
+  margin-bottom: 0em;
 }
 .qr-code {
-  position: absolute;
-  margin-top: 20em;
-  margin-left: 44em;
+  position: fixed;
+  top: 75em;
+  left: 46em;
 }
 </style>

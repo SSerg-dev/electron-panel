@@ -243,7 +243,21 @@
             <img src="@/assets/imgs/flags/flag_AZE.png" />
           </div>
 
+          <div v-if="this.info.locale === 'spa-SPA'">
+            <img src="@/assets/imgs/flags/flag_SPA.png" />
+          </div>
 
+          <div v-if="this.info.locale === 'geo-GEO'">
+            <img src="@/assets/imgs/flags/flag_GEO.png" />
+          </div>
+
+          <div v-if="this.info.locale === 'chn-CHN'">
+            <img src="@/assets/imgs/flags/flag_CHN.png" />
+          </div>
+
+          <div v-if="this.info.locale === 'isr-ISR'">
+            <img src="@/assets/imgs/flags/flag_ISR.png" />
+          </div>
 
         </router-link>
       </div>

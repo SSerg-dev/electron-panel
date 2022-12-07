@@ -35,6 +35,10 @@ import uzb from '../locales/uzb.json'
 import tjk from '../locales/tjk.json'
 import kgz from '../locales/kgz.json'
 import aze from '../locales/aze.json'
+import spa from '../locales/spa.json'
+import geo from '../locales/geo.json'
+import chn from '../locales/chn.json'
+import isr from '../locales/isr.json'
 
 
 const locales = {
@@ -73,7 +77,11 @@ const locales = {
   'uzb-UZB': uzb,
   'tjk-TJK': tjk,
   'kgz-KGZ': kgz,
-  'aze-AZE': aze
+  'aze-AZE': aze,
+  'spa-SPA': spa,
+  'geo-GEO': geo,
+  'chn-CHN': chn,
+  'isr-ISR': isr
 
 }
 

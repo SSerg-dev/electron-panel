@@ -1,0 +1,187 @@
+{
+  "LanguageTitle": "Localización",
+  "BOX": "PUESTO",
+  "#": "#",
+  "VACUUM": "ASPIRADOR",
+  "PAYMENT": "PAGO",
+  "locales": "SPA",
+  "PROGRAMS_COST": "VALOR DE LOS PROGRAMAS",
+  "CASH": "DINERO EFECTIVO",
+  "BANK_CARD": "TARJETA BANCARIA",
+  "BONUSES": "BONOS",
+  "Choose_your_payment_method": "Elija el modo de pago",
+  "CONSULTANT": "ASESOR",
+  "CALL_SENT_WAIT": "LLAMADA ENVIADA, ESPERE",
+  "FREE_STOP": "PARADA GRATUITA",
+  "STOP": "PARADA", 
+  "CONTINUE": "CONTINUAR",
+  "MAKE_A_PAYMENT": "REALIZAR UN PAGO",
+  "Insert_banknotes_or_coins": "Deposite los billetes o monedas, al acabar pulse el botón debajo",
+  "Price_per_minute": "Precio por minuto",
+  "Program": "Programa",
+
+  "SHAMPOO": "CHAMPÚ",
+  "DISK": "DISCOS",
+  "MOSQUITO": "MOSQUITO",
+  "FOAM": "ESPUMA",
+  "FOAM_COLOR": "ESPUMA COLOR", 
+  "BRUSH": "CEPILLO",
+  "BRUSH_COLOR": "CEPILLO COLOR",
+  "SHAMPOO_X2": "CHAMPÚ X2",
+  "WATER_SHAMPOO": "AGUA CHAMPÚ",
+  "COLD_WATER": "FRÍA",
+  "WARM_WATER": "CÁLIDA",
+  "OSMOSIS": "ÓSMOSIS",
+  "STOP_PAUSE": "PARADA/PAUSA",
+  "AIR": "AIRE",
+  "GLASS_WASHING_LIQUID": "LAVAPARABRISAS",
+  "WAX": "CERA",
+  "FOAM_X2": "ESPUMA X2",
+  "VACUUM_CLEANER": "ASPIRADOR",
+  "BRUSH_X2": "CEPILLO X2",
+  "DISK_X2": "DISCOS X2",
+  "MOSQUITO_X2": "MOSQUITO X2",
+  "TURBO_DRYER": "SECADOR",
+  "DEGREASE": "DESENGRASAR",
+  "DISINFECTION": "DESINFECCIÓN",
+  "BLACKING": "BETÚN",
+  "DOORSILL": "TRAVESAÑO",
+  
+  "COMPLETE_PAYMENT": "ACABAR EL PAGO",
+  "RETURN_BONUSES_UP": "DEVOLUCIONES HASTA 30% ACABAR EL PAGO",
+  "APPEND": "ADJUNTAR",
+  "CONFIRM": "CONFIRMAR",
+
+  "To_enter_the_system": "Para el acceso al sistema ponga el número de teléfono o escanee el código QR", 
+  "To_credit_Bonuses_to_your_account": "Para acreditar Bonos a su cuenta, ingrese su número de teléfono",
+  "By_clicking_on_CONFIRM": "Al hacer clic en CONFIRMAR, usted da su consentimiento para enviarle mensajes SMS y procesamiento de datos personales, de acuerdo con las condiciones enumeradas en el sitio web: www.alles-bonus.com",
+
+  "Authorization_using_a_QR": "Autorización por QR",
+  "Your_balance": "Tu balance,",
+  "Select_charge_amount": "Seleccione el monto del cargo",
+  
+  "Enter_your_password": "Ingresa tu contraseña",
+  "for_Alles_Bonus": "Alles Bonus",
+  "to_enter_the_settings_menu": "menú de configuración",
+  
+  "The_status_of_the_operation": "Estado de operación:",
+  "Connection_to_the_bank_terminal": "Conexión al terminal bancario...",
+  "Failed_to_connect_to_the_bank_terminal": "No se puede conectar al terminal bancario",
+  "Timed_out": "Tiempo de espera ha pasado",
+  "Operation_approved": "Operación aprobada",
+  "Operation_rejected": "Operación rechazada",
+  "Follow_the_instructions_on_the_terminal": "Siga las instrucciones del terminal",
+
+  "You_want_to_complete_the_car_wash": "¿Quieres completar el lavado de autos y devolver el saldo con bonos",
+  "By_clicking_the_Yes_button_you_give_your_consent": "Al hacer clic en el botón Confirmar, Usted da su consentimiento para enviar un SMS-mensaje  y procesar datos personales, de acuerdo con los términos publicados en el sitio: www.alles-bonus.com: www.alles-bonus.com",
+
+  "Display": "Pantalla",
+  "Services": "Servicios",
+  "Service_balance": "Saldo de servicio",
+  "Reset": "Reiniciar",
+  "Open_the_door": "Abrir puerta",
+  "Reboot": "Recargar",
+
+  "Software_version": "Versión de software",
+  "Temperature": "Temperatura",
+  "Humidity": "Humedad",
+
+  "Show_tooltips_when_switching_programs_during": "Mostrar información sobre herramientas al cambiar de programa",
+
+  "Time_to_switch_to_the_main_window": "Hora de ir a la ventana principal",
+
+  "Setting": "Ajuste",
+  "Languages": "Idiomas",
+  "Finance": "Finanzas",
+  "Review": "Revisar",
+
+  "OK": "OK",
+  "Cancel": "Cancelar",
+  "Confirm": "Confirmar",
+  "Make_the_payment_window_the_main": "Haz que la ventana de pago sea la principal",
+  "Show_cursor_in_the_main_window": "Mostrar cursor en la ventana principal",
+  "Direct_cash_payment": "Pago directo en efectivo",
+  "Banking_terminal": "Terminal bancaria",
+  
+  "System": "Sistema",
+  "Panel": "Panel",
+  "Bill_acceptor": "Aceptador de billetes",
+  "Coin_acceptor": "Aceptadora de monedas",
+
+  "Language": "Idioma",
+  "Currency": "Moneda",
+  
+  "Type_of_panel": "Tipo de panel",
+  "Panel_number": "Número de panel",
+  "Vacuum_number": "Número de aspiradora",
+
+  "Type": "El tipo",
+  "Accept_bills": "Aceptar facturas",
+  "Accept_coins": "Aceptar monedas",
+
+  "Model": "Modelo",
+  "Reconciliation_Pax": "Reconciliación Pax",
+
+  "Payment_limits": "Límites de pago",
+  "Minimum": "Mínima",
+  "Maximum": "Máxima",
+  "Tokens": "Fichas",
+
+  "CAR_WASH": "LAVADO",
+  "PAYMENT_CENTER": "CENTRO DE PAGO",
+  "PANEL": "PANEL",
+
+  "Cash_post": "Puesto de efectivo",
+  "Total_amount": "Cantidad total",
+  "Amount_of_deposit_in_banknotes": "Importe del depósito en billetes",
+  "Number_of_banknotes": "Número de billetes",
+  "Credit_amount_in_coins": "Cantidad de crédito en monedas",
+  "Number_of_coins": "Número de monedas",
+  "Collection": "Recopilación",
+
+  "Replace_item": "Reemplazar artículo",
+  "Replace_program": "Reemplazar prog.",
+
+  "Cash_accounting": "Contabilidad de caja",
+  "Date": "Fecha",
+  "Cash": "Dinero",
+  "Cashless": "Sin efectivo",
+  "Bonus": "Prima",
+  "Service": "Servicio",
+
+  "INPUT": "APORTE",
+  "EXIT": "SALIDA",
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed",
+
+  "Wash_program_completed_successfully": "Wash program completed successfully",
+  "Not_enough_money": "Not enough money"
+
+
+}

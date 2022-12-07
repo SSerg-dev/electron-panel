@@ -48,7 +48,6 @@ export default Vue.extend({
   },
   watch: {
     getParamsChange(flag) {
-      // const actives = this.setActiveProg()
 
       const type = this.getPanelType
       switch (type) {
@@ -81,40 +80,29 @@ export default Vue.extend({
       return (this.getWetProgShow >>> 0).toString(2)
     },
     setActiveProg() {
+      
+      /* dev */
       let activeProgNames = []
-      this.activeProg = [...this.getActiveProgBit()].reverse().join('').slice(1)
+      this.showProg = [...this.getShowProgBit()].reverse().join('')
 
-      this.showProg = [...this.getShowProgBit()].reverse().join('').slice(1)
-
-      for (let i = 0; i <= this.activeProg.length; i++) {
-        if (this.activeProg.toString().slice(i, i + 1) === '0') {
+      for (let i = 0; i < this.showProg.length; i++) {
+        if (this.showProg.toString().slice(i, i + 1) === '0') {
           this.actives[i].display = 'none'
         } else {
           this.actives[i].display = 'block'
           activeProgNames.push(this.actives[i].name)
         }
+        // console.log(i, '  ', this.actives[i].name, ' -->', this.actives[i].display)
+      } 
+
+      // crutch for :( degrease program
+      if (this.showProg.length === 27) {
+        const index = this.showProg.length
+        this.actives[index].display = 'none'
+        activeProgNames.push(this.actives[index].name)
       }
-      this.setActiveProgNames(activeProgNames)
-
-      // crutch :(
-
-      // turboDryer
-      if (this.showProg.length !== 25) this.actives[26].display = 'block'
-      else this.actives[26].display = 'none'
-
-      // washer
-      let displayBit
-      this.showProg.length === 25
-        ? (displayBit = this.showProg.slice(-8, -7))
-        : (displayBit = this.showProg.slice(-9, -8))
-
-      displayBit === '1'
-        ? (this.actives[18].display = 'block')
-        : (this.actives[18].display = 'none')
-
-      if (this.showProg.length === 0) this.actives[18].display = 'block'
-
       // end crutch :(
+      this.setActiveProgNames(activeProgNames)
 
       return this.actives
     },
