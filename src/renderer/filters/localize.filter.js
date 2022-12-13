@@ -39,7 +39,8 @@ import spa from '../locales/spa.json'
 import geo from '../locales/geo.json'
 import chn from '../locales/chn.json'
 import isr from '../locales/isr.json'
-
+import arb from '../locales/arb.json'
+import che from '../locales/che.json'
 
 const locales = {
   'ru-RU': ru,
@@ -81,7 +82,9 @@ const locales = {
   'spa-SPA': spa,
   'geo-GEO': geo,
   'chn-CHN': chn,
-  'isr-ISR': isr
+  'isr-ISR': isr,
+  'arb-ARB': arb,
+  'che-CHE': che
 
 }
 

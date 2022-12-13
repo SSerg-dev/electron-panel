@@ -277,18 +277,20 @@
                 <img src="@/assets/imgs/language/lang_ISR.png" />
               </button>
             </td>
-            <!-- dev -->
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('arb-ARB')">
                 <img src="@/assets/imgs/language/lang_ARB.png" />
-              </router-link>
+              </button>
             </td>
+            
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('che-CHE')">
                 <img src="@/assets/imgs/language/lang_CHE.png" />
-              </router-link>
+              </button>
             </td>
           </tr>
+          <!-- dev -->
           <tr v-if="this.getPaginate === 4">
             <td>
               <router-link class="btn-small" to="/language">

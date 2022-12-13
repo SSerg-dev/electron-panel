@@ -13,7 +13,7 @@
   "CONSULTANT": "KONSULTANTS",
   "CALL_SENT_WAIT": "NOTIEK IZSAUKŠANA, LŪDZU, GAIDIET",
   "FREE_STOP": "BEZMAKSAS PIETURA",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "TURPINĀT",
   "MAKE_A_PAYMENT": "VEIKT MAKSĀJUMU",
   "Insert_banknotes_or_coins": "Ievietojiet banknoti vai monētas,kad esat pabeidzis, noklikšķiniet uz zemāk redzamās pogas",
@@ -24,7 +24,7 @@
   "DISK": "DISKI",
   "MOSQUITO": "ANTIMOSK",
   "FOAM": "PUTAS",
-  "FOAM_COLOR": "PUTU KRĀSA", 
+  "FOAM_COLOR": "PUTU KRĀSA",
   "BRUSH": "SLOTA",
   "BRUSH_COLOR": "SLOTA KRĀSA",
   "SHAMPOO_X2": "ŠAMPŪNS X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DEZINFEKCIJA",
   "BLACKING": "MELNINĀŠANA",
   "DOORSILL": "SLIEKŠŅI",
-  
+
   "COMPLETE_PAYMENT": "PABEIGTU MAKSĀJUMU",
   "RETURN_BONUSES_UP": "ATGRIEŠANA AR BONUSIEM LĪDZ 30% UN PABEIGTU MAKSĀJUMU",
   "APPEND": "REĢISTRĒTIES",
   "CONFIRM": "APSTIPRINĀT",
 
-  "To_enter_the_system": "Lai ievadītu sistēmu, ievadiet numuru pa tālruni vai skenēt QR kodu", 
+  "To_enter_the_system": "Lai ievadītu sistēmu, ievadiet numuru pa tālruni vai skenēt QR kodu",
   "To_credit_Bonuses_to_your_account": "Lai ieskaitītu bonus savā kontā, ievadiet savu tālruņa numuru",
   "By_clicking_on_CONFIRM": "Noklikšķinot uz “Apstiprināt”, jūs piekrītat sūtīšanai SMS īsziņas un personas datu apstrāde jums, saskaņā ar nosacījumiem, kas publicēti tīmekļa vietnē: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "QR autorizācija",
   "Your_balance": "Jūsu bilance,",
   "Select_charge_amount": "Atlasīt noņemšanas summu",
-  
+
   "Enter_your_password": "Ievadiet savu paroli",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "lai atvērtu iestatījumu izvēlni",
-  
+
   "The_status_of_the_operation": "Operācijas izpildes statuss:",
   "Connection_to_the_bank_terminal": "Veidojās savienojums ar bankas termināli...",
   "Failed_to_connect_to_the_bank_terminal": "Neizdevās izveidot savienojumu uz bankas termināli",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Rādīt kursoru galvenajā logā",
   "Direct_cash_payment": "Tiešā skaidra nauda",
   "Banking_terminal": "Bankas terminālis",
-  
+
   "System": "Sistēma",
   "Panel": "Panelis",
   "Bill_acceptor": "Rēķinu pieņēmējs",
@@ -110,7 +110,7 @@
 
   "Language": "Valoda",
   "Currency": "Valūta",
-  
+
   "Type_of_panel": "Paneļa tips",
   "Panel_number": "Numurs paneļi",
   "Vacuum_number": "Putekļsūcēja numurs",
@@ -151,21 +151,11 @@
 
   "INPUT": "IEVADE",
   "EXIT": "IZEJA",
-  
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
+  "Check_out_another_post": "Atvainojiet, ka kaut kas nogāja greizi. Pārbaudiet citu ziņu",
+  "Take_screenshot_of_ your_balance": "Uzņemiet ekrānuzņēmumu ar atlikušo bilanci",
+  "Contact_the_operator": "Sazinieties ar operatoru",
+  "Call_tech_support": "Zvaniet tehniskajam atbalstam",
 
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
@@ -182,11 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
-
-
-
-
 }

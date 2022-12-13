@@ -13,7 +13,7 @@
   "CONSULTANT": "ԽՈՐՀՐԴԱՏՈՒ",
   "CALL_SENT_WAIT": "ԿԱՆՉՆ ՈՒՂԱՐԿՎԱԾ Է, ՍՊԱՍԵՔ",
   "FREE_STOP": "ԱՆՎԱՐ ՍՏՈՊ",
-  "STOP": "ՍՏՈՊ", 
+  "STOP": "ՍՏՈՊ",
   "CONTINUE": "ՇԱՐՈՒՆԱԿԵԼ",
   "MAKE_A_PAYMENT": "ԿԱՏԱՐԵՔ ՎՃԱՐՈՒՄ",
   "Insert_banknotes_or_coins": "Մտցրեք թղթադրամը կամ մետաղադրամը, ապա ստորև սեղմեք կոճակը",
@@ -24,7 +24,7 @@
   "DISK": "ՍԿՍԱՎՈՐ",
   "MOSQUITO": "ՄՈԾԱՆ",
   "FOAM": "ՓՐՓՈՒՐ",
-  "FOAM_COLOR": "ՓՐՓՈՒ ԳՈՒՅՆ", 
+  "FOAM_COLOR": "ՓՐՓՈՒ ԳՈՒՅՆ",
   "BRUSH": "ԽՈԶԱՆԱԿ",
   "BRUSH_COLOR": "ԽՈԶԱՆԱԿ ԳՈՒՅՆ",
   "SHAMPOO_X2": "ՇԱՄՊՈՒՆ X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "Ախտահանում",
   "BLACKING": "ՍԵՎՈՒՄ",
   "DOORSILL": "ԴՌՆԱԼ",
-  
+
   "COMPLETE_PAYMENT": "ԱՎԱՐՏԵԼ ՎՃԱՐՈՒՄԸ",
   "RETURN_BONUSES_UP": "ՎԵՐԱԴԱՐՁՆԵԼ ԲՈՆՈՒՍՆԵՐՈՎ ՄԻՆՉԵՎ 30% ԱՎԱՐՏԵԼ ՎՃԱՐՈՒՄԸ",
   "APPEND": "ՀԱՎԵԼՎԱԾ",
   "CONFIRM": "ՀԱՍՏԱՏԵԼ",
 
-  "To_enter_the_system": "Համակարգ մուտք գործելու համար ներմուծեք հեռախոսի համարը կամ սկանավորեք QR կոդը", 
+  "To_enter_the_system": "Համակարգ մուտք գործելու համար ներմուծեք հեռախոսի համարը կամ սկանավորեք QR կոդը",
   "To_credit_Bonuses_to_your_account": "Գրեք Ձեր մուտքաբառը/հեռախոսահամարը",
   "By_clicking_on_CONFIRM": "Սեղմելով ՀԱՍՏԱՏԵԼ՝ Դուք տալիս եք Ձեր համաձայնությունը SMS հաղորդագրություններ ուղարկելու և անձնական տվյալների մշակման համար՝ համաձայն կայքում նշված պայմանների:: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "Հաստատում QR կոդով",
   "Your_balance": "Ձեր հաշվեկշիռը,",
   "Select_charge_amount": "Ընտրեք փոխանցվող գումարը",
-  
+
   "Enter_your_password": "Գաղտնաբառ",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "կարգավորումներ",
-  
+
   "The_status_of_the_operation": "Գործողության կատարման կարգավիճակը:",
   "Connection_to_the_bank_terminal": "Միացում բանկային տերմինալին...",
   "Failed_to_connect_to_the_bank_terminal": "Չի հաջողվել միանալ բանկային տերմինալին",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Ցուցադրել կուրսորը հիմնական պատուհանում",
   "Direct_cash_payment": "Ուղղակի կանխիկ վճարում",
   "Banking_terminal": "Բանկային տերմինալ",
-  
+
   "System": "Համակարգ",
   "Panel": "Վահանակ",
   "Bill_acceptor": "Թղթադրամների ընդունող",
@@ -110,7 +110,7 @@
 
   "Language": "Լեզու",
   "Currency": "Արժույթ",
-  
+
   "Type_of_panel": "Վահանակի տեսակը",
   "Panel_number": "Վահանակի համարը",
   "Vacuum_number": "Փոշեկուլի համարը",
@@ -152,21 +152,11 @@
   "INPUT": "ՄՈՒՏՔ",
   "EXIT": "ԵԼՔ",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,6 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
 }

@@ -13,7 +13,7 @@
   "CONSULTANT": "კონსულტანტი",
   "CALL_SENT_WAIT": "გამოძახება გაგზავნილია, დაელოდეთ",
   "FREE_STOP": "უფასო გაჩერება",
-  "STOP": "შეჩერდი", 
+  "STOP": "შეჩერდი",
   "CONTINUE": "გაგრძელება",
   "MAKE_A_PAYMENT": "გადაიხადეთ",
   "Insert_banknotes_or_coins": "შეიტანეთ კუპიურები ან მონეტები, დასრულებისას დააჭირეთ ღილაკს ქვევით",
@@ -24,7 +24,7 @@
   "DISK": "დისკოები",
   "MOSQUITO": "კოღო",
   "FOAM": "ქაფი",
-  "FOAM_COLOR": "ქაფი ფერი", 
+  "FOAM_COLOR": "ქაფი ფერი",
   "BRUSH": "ჯაგრისი",
   "BRUSH_COLOR": "ჯაგრისი ფერი",
   "SHAMPOO_X2": "შამპუნი X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "დეზინფექცია",
   "BLACKING": "გაშავება",
   "DOORSILL": "კარები",
-  
+
   "COMPLETE_PAYMENT": "გადახდის დასრულება",
   "RETURN_BONUSES_UP": "დაბრუნება მდე 30% გადახდის დასრულება",
   "APPEND": "დამატება",
   "CONFIRM": "დაადასტურეთ",
 
-  "To_enter_the_system": "სისტემაში შესასვლელად შეიყვანეთ ტელეფონის ნომერი ან დაასკანირეთ QR კოდი", 
+  "To_enter_the_system": "სისტემაში შესასვლელად შეიყვანეთ ტელეფონის ნომერი ან დაასკანირეთ QR კოდი",
   "To_credit_Bonuses_to_your_account": "თქვენს ანგარიშზე ბონუსების დასარიცხად შეიყვანეთ თქვენი ტელეფონის ნომერი",
   "By_clicking_on_CONFIRM": "დადასტურებაზე დაწკაპუნებით თქვენ თანხმობას აძლევთ SMS შეტყობინებების გაგზავნას და პერსონალური მონაცემების დამუშავებას, ვებსაიტზე ჩამოთვლილი პირობების შესაბამისად.: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "ავტორიზაცია QR მიხედვით",
   "Your_balance": "შენი ბალანსი,",
   "Select_charge_amount": "აირჩიეთ გადახდის თანხა",
-  
+
   "Enter_your_password": "შეიყვანეთ თქვენი პაროლი",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "პარამეტრების მენიუ",
-  
+
   "The_status_of_the_operation": "ოპერაციის შესრულების სტატუსი:",
   "Connection_to_the_bank_terminal": "კავშირი საბანკო ტერმინალთან...",
   "Failed_to_connect_to_the_bank_terminal": "ვერ მოხერხდა საბანკო ტერმინალთან დაკავშირება",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "აჩვენეთ კურსორი მთავარ ფანჯარაში",
   "Direct_cash_payment": "პირდაპირი ნაღდი ანგარიშსწორება",
   "Banking_terminal": "ბანკის ტერმინალი",
-  
+
   "System": "სისტემა",
   "Panel": "პანელი",
   "Bill_acceptor": "ბანკნოტების მიმღები",
@@ -110,7 +110,7 @@
 
   "Language": "ენა",
   "Currency": "ვალუტა",
-  
+
   "Type_of_panel": "Тип",
   "Panel_number": "პანელის ნომერი:",
   "Vacuum_number": "მტვერსასრუტის ნომერი",
@@ -152,21 +152,11 @@
   "INPUT": "შეყვანა",
   "EXIT": "გასვლა",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,6 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
 }

@@ -13,7 +13,7 @@
   "CONSULTANT": "САВЕТНИК",
   "CALL_SENT_WAIT": "ПОЗИВ ПОСЛАТ, САЧЕКАЈ",
   "FREE_STOP": "ФРЕЕ СТОП",
-  "STOP": "СТОП", 
+  "STOP": "СТОП",
   "CONTINUE": "НАСТАВИ",
   "MAKE_A_PAYMENT": "УПЛАТИ",
   "Insert_banknotes_or_coins": "Убаците новчанице или новчиће, кликните на дугме испод када завршите",
@@ -24,7 +24,7 @@
   "DISK": "ДИСКОВИ",
   "MOSQUITO": "КОМАРАЦ",
   "FOAM": "ПЕНА",
-  "FOAM_COLOR": "ПЕНЕ ЦОЛОР", 
+  "FOAM_COLOR": "ПЕНЕ ЦОЛОР",
   "BRUSH": "ЧЕТКА",
   "BRUSH_COLOR": "ЧЕТКЕ ЦОЛОР",
   "SHAMPOO_X2": "ШАМПОН X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "ДЕЗИНФЕКЦИЈА",
   "BLACKING": "ЦРАЊЕ",
   "DOORSILL": "ПРАГОВИ",
-  
+
   "COMPLETE_PAYMENT": "ЗАВРШЕНА ПЛАЋАЊЕ",
   "RETURN_BONUSES_UP": "ПОВРАТИТЕ БОНУСЕ ДО 30% И ЗАВРШИТЕ ПЛАЋАЊЕ",
   "APPEND": "АППЕНД",
   "CONFIRM": "ПОТВРДИ",
 
-  "To_enter_the_system": "Да бисте ушли у систем, унесите свој број телефона или скенирајте QR код", 
+  "To_enter_the_system": "Да бисте ушли у систем, унесите свој број телефона или скенирајте QR код",
   "To_credit_Bonuses_to_your_account": "Да бисте кредитирали бонусе, унесите свој број телефона",
   "By_clicking_on_CONFIRM": "Кликом на АППЕНД СЕ, пристајете на слање СМС порука и обраду личних података у складу са условима постављеним на сајту: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "Овлашћење преко QR",
   "Your_balance": "Ваше стање,",
   "Select_charge_amount": "Изаберите износ наплате",
-  
+
   "Enter_your_password": "Унесите своју лозинку",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "мени подешавања",
-  
+
   "The_status_of_the_operation": "Статус извршења операције:",
   "Connection_to_the_bank_terminal": "Повезивање са банковним терминалом...",
   "Failed_to_connect_to_the_bank_terminal": "Повезивање са банковним терминалом није успело",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Прикажи курсор у главном прозору",
   "Direct_cash_payment": "Директно готовинско плаћање",
   "Banking_terminal": "Банкарски терминал",
-  
+
   "System": "Систем",
   "Panel": "Панел",
   "Bill_acceptor": "Прималац рачуна",
@@ -110,7 +110,7 @@
 
   "Language": "Језик",
   "Currency": "Валута",
-  
+
   "Type_of_panel": "Тип панела",
   "Panel_number": "Број панела",
   "Vacuum_number": "Број усисивача",
@@ -152,21 +152,11 @@
   "INPUT": "УЛАЗНИ",
   "EXIT": "ИЗЛАЗ",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,8 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
-
 }

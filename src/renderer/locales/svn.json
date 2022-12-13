@@ -13,7 +13,7 @@
   "CONSULTANT": "SVETOVALEC",
   "CALL_SENT_WAIT": "POKLIC JE POSLAN, ČAKAJTE",
   "FREE_STOP": "BREZPLAČNO STOP",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "NAPREJ",
   "MAKE_A_PAYMENT": "IZVEDITE PLAČILO",
   "Insert_banknotes_or_coins": "Vložite bankovce in kovance, potem pritisnite spodnji gumb",
@@ -24,7 +24,7 @@
   "DISK": "PLATIŠČA",
   "MOSQUITO": "KOMARJEM",
   "FOAM": "PENA",
-  "FOAM_COLOR": "PENA BARVA", 
+  "FOAM_COLOR": "PENA BARVA",
   "BRUSH": "KRTAČA",
   "BRUSH_COLOR": "KRTAČA BARVA",
   "SHAMPOO_X2": "ŠAMPON X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DEZINFEKCIJA",
   "BLACKING": "POTEMNITEV",
   "DOORSILL": "PRAGOVI",
-  
+
   "COMPLETE_PAYMENT": "DOKONČATI PLAČILO",
   "RETURN_BONUSES_UP": "POVRATEK Z BONUSI DO 30% DOKONČATI PLAČILO",
   "APPEND": "PRIPODAJ",
   "CONFIRM": "POTRDI",
 
-  "To_enter_the_system": "Vnesite svojo telefonsko številko ali skenirajte QR kodo, da se prijavite", 
+  "To_enter_the_system": "Vnesite svojo telefonsko številko ali skenirajte QR kodo, da se prijavite",
   "To_credit_Bonuses_to_your_account": "Za pridobitev bonusov vnesite številko telefona",
   "By_clicking_on_CONFIRM": "S klikom na POTRDI soglašate, da vam pošljemo SMS sporočilo in obdelujemo vaše osebne podatke v skladu s pogoji, objavljenimi na spletni strani: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "QR avtorizacija",
   "Your_balance": "Vaše stanje,",
   "Select_charge_amount": "Izberite znesek",
-  
+
   "Enter_your_password": "Vnesite geslo",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "nastavitveni meni",
-  
+
   "The_status_of_the_operation": "Stanje operacije:",
   "Connection_to_the_bank_terminal": "Povezava z bančnim terminalom...",
   "Failed_to_connect_to_the_bank_terminal": "Povezava z bančnim terminalom ni uspela",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Prikaži kazalec v glavnem oknu",
   "Direct_cash_payment": "Neposredno gotovinsko plačilo",
   "Banking_terminal": "Bančni terminal",
-  
+
   "System": "Sistem",
   "Panel": "Plošča",
   "Bill_acceptor": "Sprejemnik bankovcev",
@@ -110,7 +110,7 @@
 
   "Language": "Jezik",
   "Currency": "Valuta",
-  
+
   "Type_of_panel": "Vrsta plošče:",
   "Panel_number": "Številka plošče:",
   "Vacuum_number": "Številka sesalnika",
@@ -152,20 +152,10 @@
   "INPUT": "VNOS",
   "EXIT": "IZHOD",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
 
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
@@ -182,5 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
 }

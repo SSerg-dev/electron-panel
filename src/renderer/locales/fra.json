@@ -13,7 +13,7 @@
   "CONSULTANT": "CONSULTANT",
   "CALL_SENT_WAIT": "APPEL ENVOYÉ, ATTENDEZ-VOUS",
   "FREE_STOP": "ARRÊT GRATUIT",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "CONTINUER",
   "MAKE_A_PAYMENT": "EFFECTUER UN PAIEMENT",
   "Insert_banknotes_or_coins": "Choisissez des billets ou des pièces, une fois terminé, cliquez sur le bouton ci-dessous",
@@ -24,7 +24,7 @@
   "DISK": "JANTES",
   "MOSQUITO": "MOUSTIQU",
   "FOAM": "MOUSSE",
-  "FOAM_COLOR": "MOUSSE COULEUR", 
+  "FOAM_COLOR": "MOUSSE COULEUR",
   "BRUSH": "BROSSER",
   "BRUSH_COLOR": "BROSSER COULEUR",
   "SHAMPOO_X2": "SHAMPOOING X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DÉSINFECTION",
   "BLACKING": "LE NOIR",
   "DOORSILL": "PAS",
-  
+
   "COMPLETE_PAYMENT": "FINIR LE PAIEMENT",
   "RETURN_BONUSES_UP": "RETOUR JUSQU'À 30% FINIR LE PAIEMENT",
   "APPEND": "AJOUTER",
   "CONFIRM": "CONFIRMER",
 
-  "To_enter_the_system": "Entrez votre numéro de téléphone ou scannez le code QR pour vous connecter", 
+  "To_enter_the_system": "Entrez votre numéro de téléphone ou scannez le code QR pour vous connecter",
   "To_credit_Bonuses_to_your_account": "Pour créditer des bonus sur votre compte, entrez votre numéro de téléphone",
   "By_clicking_on_CONFIRM": "En cliquant sur CONFIRMER, vous acceptez de vous envoyer un SMS et le traitement des données personnelles, selon les conditions affichées sur le site: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "Autorisation QR",
   "Your_balance": "Votre solde,",
   "Select_charge_amount": "Sélectionnez le montant des frais",
-  
+
   "Enter_your_password": "Tapez votre mot de passe",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "menu des paramètres",
-  
+
   "The_status_of_the_operation": "Message de statut d'operation:",
   "Connection_to_the_bank_terminal": "Connexion au terminal bancaire...",
   "Failed_to_connect_to_the_bank_terminal": "Impossible de se connecter au terminal bancaire",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Afficher le curseur dans la fenêtre principale",
   "Direct_cash_payment": "Paiement direct en espèces",
   "Banking_terminal": "Terminal bancaire",
-  
+
   "System": "Système",
   "Panel": "Panneau",
   "Bill_acceptor": "Accepteur de billets",
@@ -110,7 +110,7 @@
 
   "Language": "Langue",
   "Currency": "Devise",
-  
+
   "Type_of_panel": "Type de panneau",
   "Panel_number": "Numéro de panneau",
   "Vacuum_number": "Numéro aspirateur",
@@ -151,21 +151,11 @@
 
   "INPUT": "SAISIR",
   "EXIT": "SORTIR",
-  
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
+  "Check_out_another_post": "Nous sommes désolés que quelque chose se soit mal passé. Consulter un autre article",
+  "Take_screenshot_of_ your_balance": "Prenez une capture d'écran du reste de votre solde",
+  "Contact_the_operator": "Contactez l'opérateur",
+  "Call_tech_support": "Appelez le support technique",
 
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
@@ -182,12 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
-
-
-
-
-
 }

@@ -13,7 +13,7 @@
   "CONSULTANT": "コンサルタント",
   "CALL_SENT_WAIT": "呼び出しは 送信されまし た。お待ちください",
   "FREE_STOP": "フリーストップ",
-  "STOP": "ストップ", 
+  "STOP": "ストップ",
   "CONTINUE": "続ける",
   "MAKE_A_PAYMENT": "支払いをする",
   "Insert_banknotes_or_coins": "紙幣やコインを入力し、完了 したら下のボタンを押す",
@@ -24,7 +24,7 @@
   "DISK": "ディスク",
   "MOSQUITO": "防蚊剤",
   "FOAM": "泡沫",
-  "FOAM_COLOR": "泡の色", 
+  "FOAM_COLOR": "泡の色",
   "BRUSH": "みがきます",
   "BRUSH_COLOR": "みがきます色",
   "SHAMPOO_X2": "シャンプー X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "消毒",
   "BLACKING": "黒染め",
   "DOORSILL": "しきい値",
-  
+
   "COMPLETE_PAYMENT": "お支払いを完了する",
   "RETURN_BONUSES_UP": "30％まで戻る お支払いを完了する",
   "APPEND": "追記",
   "CONFIRM": "確認",
 
-  "To_enter_the_system": "ログインするには、電話番号を入力するか、QRコードをスキャンする", 
+  "To_enter_the_system": "ログインするには、電話番号を入力するか、QRコードをスキャンする",
   "To_credit_Bonuses_to_your_account": "ボーナスをアカウントに入金するには 電話番号を入力してください",
   "By_clicking_on_CONFIRM": "「入金する」をクリックすることで、www.alles-bonus.com ウェブサイトに掲載されている条件に従って、SMSメッセージをあな たに送信し、個人情報を処理することに同意するものとします",
 
   "Authorization_using_a_QR": "QRで認証",
   "Your_balance": "あなたのバランス,",
   "Select_charge_amount": "請求される金額を選択する",
-  
+
   "Enter_your_password": "パスワードを入力してください",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "設定メニュー",
-  
+
   "The_status_of_the_operation": "操作の実行の状態：",
   "Connection_to_the_bank_terminal": "銀行のターミナルに接続中...",
   "Failed_to_connect_to_the_bank_terminal": "銀行のターミナルに接続することができなかった",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "メインウィンドウにカーソルを表示",
   "Direct_cash_payment": "直接現金支払い",
   "Banking_terminal": "銀行端末",
-  
+
   "System": "システム",
   "Panel": "パネル",
   "Bill_acceptor": "請求書受領者",
@@ -110,7 +110,7 @@
 
   "Language": "言語",
   "Currency": "通貨",
-  
+
   "Type_of_panel": "パネルの種類",
   "Panel_number": "パネル番号",
   "Vacuum_number": "掃除機番号",
@@ -152,20 +152,10 @@
   "INPUT": "入力",
   "EXIT": "出口",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  "Check_out_another_post": "問題が発生したことをお詫び申し上げます。 別の投稿をチェックアウトする",
+  "Take_screenshot_of_ your_balance": "残りの残高のスクリーンショットを撮る",
+  "Contact_the_operator": "オペレーターに連絡する",
+  "Call_tech_support": "テクニカル サポートに電話する",
 
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
@@ -182,8 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
-
 }

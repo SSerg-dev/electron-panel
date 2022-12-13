@@ -13,7 +13,7 @@
   "CONSULTANT": "КОНСУЛЬТАНТ",
   "CALL_SENT_WAIT": "ВИКЛИК ВІДПРАВЛЕНИЙ, ОЧЕКАЙТЕ",
   "FREE_STOP": "БЕЗКОШТОВНИЙ СТОП",
-  "STOP": "СТОП", 
+  "STOP": "СТОП",
   "CONTINUE": "ПРОДОВЖИТИ",
   "MAKE_A_PAYMENT": "ВНЕСІТЬ ОПЛАТУ",
   "Insert_banknotes_or_coins": "Внесіть купюри або монети, після чого натисніть кнопку нижче",
@@ -24,7 +24,7 @@
   "DISK": "ДИСКИ",
   "MOSQUITO": "МОСКІТ",
   "FOAM": "ПІНА",
-  "FOAM_COLOR": "ПІНА КОЛІР", 
+  "FOAM_COLOR": "ПІНА КОЛІР",
   "BRUSH": "ЩІТКА",
   "BRUSH_COLOR": "ЩІТКА КОЛІР",
   "SHAMPOO_X2": "ШАМПУНЬ X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "ДЕЗИНФЕКЦІЯ",
   "BLACKING": "ЧЕРНЕННЯ",
   "DOORSILL": "ПОРОГИ",
-  
+
   "COMPLETE_PAYMENT": "ЗАВЕРШИТИ ОПЛАТУ",
   "RETURN_BONUSES_UP": "ПОВЕРНУТИ БОНУСАМИ ДО 30% І ЗАВЕРШИТИ ОПЛАТУ",
   "APPEND": "ЗАЧИСЛИТИ",
   "CONFIRM": "ПІДТВЕРДИТИ",
 
-  "To_enter_the_system": "Для входу в систему введіть номер телефону або відскануйте QR-код", 
+  "To_enter_the_system": "Для входу в систему введіть номер телефону або відскануйте QR-код",
   "To_credit_Bonuses_to_your_account": "Щоб зарахувати бонуси, введіть номер телефону",
   "By_clicking_on_CONFIRM": "Натискаючи ЗАЧИСЛИТИ, Ви даєте свою згоду на відправку Вам СМС-повідомлення та обробку персональних даних згідно умов, розміщених на сайті: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "Авторизація через QR",
   "Your_balance": "Ваш баланс,",
   "Select_charge_amount": "Виберіть суму списання",
-  
+
   "Enter_your_password": "Введіть пароль",
   "for_Alles_Bonus": "запису Alles Bonus",
   "to_enter_the_settings_menu": "в меню налаштувань",
-  
+
   "The_status_of_the_operation": "Статус виконання операції:",
   "Connection_to_the_bank_terminal": "Підключення до банківського терміналу...",
   "Failed_to_connect_to_the_bank_terminal": "Не вдалося підключитися до банківського терміналу",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Показати курсор в основному вікні",
   "Direct_cash_payment": "Пряма оплата готівкою",
   "Banking_terminal": "Банківський термінал",
-  
+
   "System": "Система",
   "Panel": "Панель",
   "Bill_acceptor": "Купюроприймач",
@@ -110,7 +110,7 @@
 
   "Language": "Мова",
   "Currency": "Валюта",
-  
+
   "Type_of_panel": "Тип панелі",
   "Panel_number": "Номер панелі",
   "Vacuum_number": "Номер пилососу",
@@ -151,40 +151,25 @@
 
   "INPUT": "ВХІД",
   "EXIT": "ВИХІД",
-  
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
+  "Check_out_another_post": "Вибачте, що щось пішло не так. Перегляньте інший пост",
+  "Take_screenshot_of_ your_balance": "Зробіть скріншот решти вашого балансу",
+  "Contact_the_operator": "Зв'яжіться з оператором",
+  "Call_tech_support": "Телефонуйте в техпідтримку",
 
   "__commentMessages": "TODO add messages ",
-    "Amount_more_maximum": "Amount more maximum",
-    "Enter_valid_phone_number": "Please enter a valid phone number",
-    "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
-    "Will_be_paid_by_credit_card": "Will be paid by credit card",
-    "Payment_with_bonuses": "Payment with bonuses",
-    "Enter_the_correct_amount": "Enter the correct amount",
-    "Terminal_operation": "Terminal operation",
-    "approved": "approved, amount:",
-    "rejected": "rejected",
-    "The_payment_successful_amount": "The payment was successful, the deposited amount:",
-    "KKT_not_installed": "KKT not installed",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed",
 
-    "Wash_program_completed_successfully": "Wash program completed successfully",
-    "Not_enough_money": "Not enough money"
-
-
-
-
-
+  "Wash_program_completed_successfully": "Wash program completed successfully",
+  "Not_enough_money": "Not enough money"
 }

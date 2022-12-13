@@ -13,7 +13,7 @@
   "CONSULTANT": "KONZULTANT",
   "CALL_SENT_WAIT": "POŽADAVEK BYL ODESLÁN, ČEKEJTE",
   "FREE_STOP": "ZDARMA STOP",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "POKRAČOVAT",
   "MAKE_A_PAYMENT": "ZAPLATIT",
   "Insert_banknotes_or_coins": "Vložte bankovky nebo mince, po dokončení stisknete tlačítko níže",
@@ -24,7 +24,7 @@
   "DISK": "DISKY",
   "MOSQUITO": "MOSKYT",
   "FOAM": "PĚNA",
-  "FOAM_COLOR": "PĚNA BARVA", 
+  "FOAM_COLOR": "PĚNA BARVA",
   "BRUSH": "KARTÁČ",
   "BRUSH_COLOR": "KARTÁČ BARVA",
   "SHAMPOO_X2": "ŠAMPÓN X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DEZINFEKCE",
   "BLACKING": "ČERNÁNÍ",
   "DOORSILL": "PARAPETU",
-  
+
   "COMPLETE_PAYMENT": "DOKONČIT PLATBU",
   "RETURN_BONUSES_UP": "NÁVRAT DO 30% DOKONČIT PLATBU",
   "APPEND": "PŘIPOJIT",
   "CONFIRM": "POTVRDIT",
 
-  "To_enter_the_system": "Pro vstup do systému zadejte číslo telefonu nebo oskenujte QR kód", 
+  "To_enter_the_system": "Pro vstup do systému zadejte číslo telefonu nebo oskenujte QR kód",
   "To_credit_Bonuses_to_your_account": "Chcete-li připsat bonusy na svůj účet, zadejte své telefonní číslo",
   "By_clicking_on_CONFIRM": "Kliknutím na POTVRDIT dáváte souhlas se zasíláním SMS zpráv a zpracováním osobních údajů Vám, dle podmínek uvedených na webu: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "Autorizace prostřednictvím QR",
   "Your_balance": "Tvůj zůstatek,",
   "Select_charge_amount": "Vyberte částku poplatku",
-  
+
   "Enter_your_password": "Zadejte heslo",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "menu nastavení",
-  
+
   "The_status_of_the_operation": "Stav plnění operace:",
   "Connection_to_the_bank_terminal": "Připojení k bankovnímu terminálu...",
   "Failed_to_connect_to_the_bank_terminal": "Nepodařilo se připojit k bankovnímu terminálu",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Zobrazit kurzor v hlavním okně",
   "Direct_cash_payment": "Přímá platba v hotovosti",
   "Banking_terminal": "Bankovní terminál",
-  
+
   "System": "Systém",
   "Panel": "Panel",
   "Bill_acceptor": "Přijímač bankovek",
@@ -110,7 +110,7 @@
 
   "Language": "Jazyk",
   "Currency": "Měna",
-  
+
   "Type_of_panel": "Typ panelu",
   "Panel_number": "Číslo panelu:",
   "Vacuum_number": "Číslo vysavače",
@@ -152,21 +152,11 @@
   "INPUT": "VSTUP",
   "EXIT": "VÝSTUP",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,6 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
 }

@@ -13,7 +13,7 @@
   "CONSULTANT": "KONSULTANT",
   "CALL_SENT_WAIT": "POŁĄCZENIE WYSŁANE, POCZEKAJ",
   "FREE_STOP": "BEZPŁATNY PRZYSTANEK",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "KONTYNUOWAĆ",
   "MAKE_A_PAYMENT": "WPISZ PŁATNOŚĆ",
   "Insert_banknotes_or_coins": "Wprowadź banknoty lub monety, kliknij przycisk poniżej",
@@ -24,7 +24,7 @@
   "DISK": "FELGI",
   "MOSQUITO": "MOSKIT",
   "FOAM": "PIANKA",
-  "FOAM_COLOR": "PIANKA KOLOR", 
+  "FOAM_COLOR": "PIANKA KOLOR",
   "BRUSH": "SZCZOTKA",
   "BRUSH_COLOR": "SZCZOTKA  KOLOR",
   "SHAMPOO_X2": "SZAMPON X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "ODKAŻANIE",
   "BLACKING": "CZERNIENIE",
   "DOORSILL": "PROGI",
-  
+
   "COMPLETE_PAYMENT": "ZAKOŃCZ PŁATNOŚĆ",
   "RETURN_BONUSES_UP": "BONUSY ZWROTNE DO 30% ZAKOŃCZ PŁATNOŚĆ",
   "APPEND": "DODAĆ",
   "CONFIRM": "POTWIERDZAĆ",
 
-  "To_enter_the_system": "Aby się zalogować, wprowadź numer lub zeskanować kod QR", 
+  "To_enter_the_system": "Aby się zalogować, wprowadź numer lub zeskanować kod QR",
   "To_credit_Bonuses_to_your_account": "W celu zasilenia bonusów na konto wprowadź swój numer telefonu",
   "By_clicking_on_CONFIRM": "Klikając DODAĆ, wyrażasz zgodę na wysyłanie wiadomości SMS i przetwarzanie danych osobowych zgodnie z warunkami zamieszczonymi na stronie: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "Autoryzacja przez QR",
   "Your_balance": "Twój balans,",
   "Select_charge_amount": "Wybierz kwotę do obciążenia",
-  
+
   "Enter_your_password": "Введите свой пароль",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "menu ustawień",
-  
+
   "The_status_of_the_operation": "Status operacji:",
   "Connection_to_the_bank_terminal": "Podłączenie do terminalu bankowego...",
   "Failed_to_connect_to_the_bank_terminal": "Nie można połączyć do terminalu bankowego",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Pokaż kursor w głównym oknie",
   "Direct_cash_payment": "Bezpośrednia płatność gotówkowa",
   "Banking_terminal": "Terminal bankowy",
-  
+
   "System": "System",
   "Panel": "Panel",
   "Bill_acceptor": "Akceptant rachunków",
@@ -110,7 +110,7 @@
 
   "Language": "Język ",
   "Currency": "Dewiza",
-  
+
   "Type_of_panel": "Typ panelu",
   "Panel_number": "Numer panelu",
   "Vacuum_number": "Numer odkurzacza",
@@ -152,20 +152,10 @@
   "INPUT": "WEJŚCIE",
   "EXIT": "WYJŚCIE",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  "Check_out_another_post": "Przykro nam, że coś poszło nie tak. Sprawdź inny post",
+  "Take_screenshot_of_ your_balance": "Zrób zrzut ekranu pozostałego salda",
+  "Contact_the_operator": "Skontaktuj się z operatorem",
+  "Call_tech_support": "Zadzwoń do pomocy technicznej",
 
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
@@ -182,9 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
-
-
 }

@@ -13,7 +13,7 @@
   "CONSULTANT": "МУШОВИР",
   "CALL_SENT_WAIT": "ДАЪВАТ РАВОН ШУДААСТ, ИНТИЗОР ШАВЕД",
   "FREE_STOP": "ОЗОДИ ОЗОД",
-  "STOP": "СТОП", 
+  "STOP": "СТОП",
   "CONTINUE": "ИДОМА ДОДАН",
   "MAKE_A_PAYMENT": "ПАРДОХТ КУНЕД",
   "Insert_banknotes_or_coins": "Пули қоғазин ё тангаҳоро ворид кунед, ҳангоми итмом тугмаро дар зер пахш намоед",
@@ -24,7 +24,7 @@
   "DISK": "ДИСКҲО",
   "MOSQUITO": "МОСКИТ",
   "FOAM": "КАФК",
-  "FOAM_COLOR": "КАФК РАНГ", 
+  "FOAM_COLOR": "КАФК РАНГ",
   "BRUSH": "ЧУТКА",
   "BRUSH_COLOR": "ЧУТКА РАНГ",
   "SHAMPOO_X2": "ШАМПУН X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "ДЕЗИНФЕКЦИЯ",
   "BLACKING": "СИЁХ КАРДАН",
   "DOORSILL": "ДАРХО",
-  
+
   "COMPLETE_PAYMENT": "АНҶОМИ ПАРДОХТ",
   "RETURN_BONUSES_UP": "БОЗГАШТ ТО 30% АНҶОМИ ПАРДОХТ",
   "APPEND": "ЗАМИМАИ",
   "CONFIRM": "ТАСДИҚ",
 
-  "To_enter_the_system": "Барои ворид шудан  ба низом  рақами телефони худро ворид намоед ё QR рамзи онро хонед", 
+  "To_enter_the_system": "Барои ворид шудан  ба низом  рақами телефони худро ворид намоед ё QR рамзи онро хонед",
   "To_credit_Bonuses_to_your_account": "Барои гирифтани Бонусҳо ба ҳисоби худ, рақами телефони худро ворид кунед",
   "By_clicking_on_CONFIRM": "Бо клик кардани ТАСДИҚ, шумо мувофиқи шартҳои дар вебсайт овардашуда барои ирсоли SMS ва коркарди маълумоти шахсӣ ба шумо розигии худро медиҳед.: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "МушаххасгардонӢ тибқи  QR",
   "Your_balance": "Тавозуни шумо,",
   "Select_charge_amount": "Маблағи пардохтро интихоб кунед",
-  
+
   "Enter_your_password": "Рамзи худро ворид кунед",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "менюи танзимот",
-  
+
   "The_status_of_the_operation": "Мақоми иҷроиши барнома:",
   "Connection_to_the_bank_terminal": "Корти бонкиро ба терминал ворид  ё наздик намоед...",
   "Failed_to_connect_to_the_bank_terminal": "Ба терминали бонкӣ пайваст шудан имконнопазир аст",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Курсорро дар равзанаи асосӣ нишон диҳед",
   "Direct_cash_payment": "Пардохти мустақими нақд",
   "Banking_terminal": "Терминали бонкӣ",
-  
+
   "System": "Система",
   "Panel": "Панел",
   "Bill_acceptor": "Аксептори банкнот",
@@ -110,7 +110,7 @@
 
   "Language": "Забон",
   "Currency": "Асъори",
-  
+
   "Type_of_panel": "Навъи панели",
   "Panel_number": "Шумораи панели",
   "Vacuum_number": "Рақами чангкашак",
@@ -152,21 +152,11 @@
   "INPUT": "ВУРУД",
   "EXIT": "БАРОМАД",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,6 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
 }

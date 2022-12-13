@@ -13,7 +13,7 @@
   "CONSULTANT": "NEUVONANTAJA",
   "CALL_SENT_WAIT": "PYYNTÖ ON LÄHETETTY, ODOTA",
   "FREE_STOP": "ILMAINEN PYSÄYTYS",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "JATKA",
   "MAKE_A_PAYMENT": "SUORITA MAKSU",
   "Insert_banknotes_or_coins": "Syötä setelit tai kolikot ja napsauta alla olevaa painiketta",
@@ -24,8 +24,9 @@
   "DISK": "VANTEET",
   "MOSQUITO": "HYTTYNEN",
   "FOAM": "VAAHTO",
-  "FOAM_COLOR": "VAAHTO VÄRI", 
+  "FOAM_COLOR": "VAAHTO VÄRI",
   "BRUSH": "HARJA",
+  "BRUSH_COLOR": "HARJA VÄRI",
   "SHAMPOO_X2": "SAMPOO X2",
   "WATER_SHAMPOO": "VESI SAMPOO",
   "COLD_WATER": "KYLMÄ",
@@ -45,24 +46,24 @@
   "DISINFECTION": "DESINFIOINTI",
   "BLACKING": "MUTTAMINEN",
   "DOORSILL": "KYNNYS",
-  
+
   "COMPLETE_PAYMENT": "SUORITA MAKSU",
   "RETURN_BONUSES_UP": "PALAUTUSBONUKSET JOPA 30% COMPLETE PAYMENT",
   "APPEND": "LISÄÄ",
   "CONFIRM": "VAHVISTAA",
 
-  "To_enter_the_system": "Kirjoita puhelinnumerosi tai skannaa QR-koodi kirjautuaksesi sisään", 
+  "To_enter_the_system": "Kirjoita puhelinnumerosi tai skannaa QR-koodi kirjautuaksesi sisään",
   "To_credit_Bonuses_to_your_account": "Hyvittääksesi bonuksia tilillesi, syötä puhelinnumerosi",
   "By_clicking_on_CONFIRM": "Napsauttamalla LISÄÄ painiketta, suostut siihen, että sinulle lähetetään tekstiviesti ja henkilötietojasi käsitellään verkkosivulla www.alles-bonus.com julkaistujen ehtojen mukaisesti",
 
   "Authorization_using_a_QR": "Kirjaudu sisään QR-koodilla",
   "Your_balance": "Tasapainosi,",
   "Select_charge_amount": "Valitse maksun määrä",
-  
+
   "Enter_your_password": "Enter your password",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "asetusvalikko",
-  
+
   "The_status_of_the_operation": "Tapahtuman toteuttamisen tila:",
   "Connection_to_the_bank_terminal": "Yhteus pankkiterminaaliin...",
   "Failed_to_connect_to_the_bank_terminal": "Yhdistäminen pankkiterminaaliin epäonnistui",
@@ -101,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Näytä kohdistin pääikkunassa",
   "Direct_cash_payment": "Suora käteismaksu",
   "Banking_terminal": "Pankkipääte",
-  
+
   "System": "Järjestelmä",
   "Panel": "Paneeli",
   "Bill_acceptor": "Seteleiden vastaanottaja",
@@ -109,7 +110,7 @@
 
   "Language": "Kieli",
   "Currency": "Valuutta",
-  
+
   "Type_of_panel": "Paneelin tyyppi",
   "Panel_number": "Paneelin numero",
   "Vacuum_number": "Imuri numero",
@@ -151,21 +152,11 @@
   "INPUT": "INPUT",
   "EXIT": "POISTU",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -181,8 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
-
 }

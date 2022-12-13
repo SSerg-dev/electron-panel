@@ -13,7 +13,7 @@
   "CONSULTANT": "KONSULTANT",
   "CALL_SENT_WAIT": "SO'ROV YUBORILDI, KUTING",
   "FREE_STOP": "BEPUL TO'XTASH",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "DAVOM ETTIRISH",
   "MAKE_A_PAYMENT": "TO'LOV OLISH",
   "Insert_banknotes_or_coins": "Banknotalarni yoki tangalarni kiriting, tugatganingizdan so'ng quyidagi tugmani bosing",
@@ -24,7 +24,7 @@
   "DISK": "DISKLAR",
   "MOSQUITO": "MOSKIT",
   "FOAM": "KO'PIK",
-  "FOAM_COLOR": "KO'PIK RANG", 
+  "FOAM_COLOR": "KO'PIK RANG",
   "BRUSH": "CHO'TKA",
   "BRUSH_COLOR": "CHO'TKA  RANG",
   "SHAMPOO_X2": "SHAMPUN X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DEZINFEKTSION",
   "BLACKING": "QORALASH",
   "DOORSILL": "ESHIK",
-  
+
   "COMPLETE_PAYMENT": "TO'LIQ TO'LOV",
   "RETURN_BONUSES_UP": "TO'LIQ TO'LOVNING 30% QAYTISH BONUSLARI",
   "APPEND": "QO‘SHIMCHA",
   "CONFIRM": "TASDIQLASH",
 
-  "To_enter_the_system": "Tizimga kirish uchun telefon raqamingizni kiriting yoki QR kodini skanerlang", 
+  "To_enter_the_system": "Tizimga kirish uchun telefon raqamingizni kiriting yoki QR kodini skanerlang",
   "To_credit_Bonuses_to_your_account": "Hisobingizga Bonuslarni kiritish uchun telefon raqamingizni kiriting",
   "By_clicking_on_CONFIRM": "Tasdiqlash tugmasini bosish orqali siz veb-saytda ko'rsatilgan shartlarga muvofiq SMS xabarlarni yuborish va shaxsiy ma'lumotlarni qayta ishlashga roziligingizni bildirasiz.: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "QR avtorizatsiyasi",
   "Your_balance": "Sizning balansingiz,",
   "Select_charge_amount": "Yechib olinadigan summani tanlang",
-  
+
   "Enter_your_password": "Parolingizni kiriting",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "sozlamalar menyusi",
-  
+
   "The_status_of_the_operation": "Operatsiyaning bajarilish holati:",
   "Connection_to_the_bank_terminal": "Bank terminaliga ulanish...",
   "Failed_to_connect_to_the_bank_terminal": "Bank terminaliga ulanib bo'lmadi",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Kursorni asosiy oynada ko'rsatish",
   "Direct_cash_payment": "To'g'ridan-to'g'ri naqd to'lov",
   "Banking_terminal": "Bank terminali",
-  
+
   "System": "Tizim",
   "Panel": "Panel",
   "Bill_acceptor": "Banknot qabul qiluvchi",
@@ -110,7 +110,7 @@
 
   "Language": "Til",
   "Currency": "Valyuta",
-  
+
   "Type_of_panel": "Panel turi",
   "Panel_number": "Panel raqami:",
   "Vacuum_number": "Changyutgich raqami",
@@ -152,21 +152,11 @@
   "INPUT": "KIRITISH",
   "EXIT": "CHIQISH",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,6 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
 }

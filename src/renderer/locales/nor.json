@@ -13,7 +13,7 @@
   "CONSULTANT": "HJELP",
   "CALL_SENT_WAIT": "FORESPØRSELEN SENDT, VENT",
   "FREE_STOP": "GRATIS STOPP",
-  "STOP": "STOPP", 
+  "STOP": "STOPP",
   "CONTINUE": "FORTSETT",
   "MAKE_A_PAYMENT": "GJENNOMFØRE EN BETALING",
   "Insert_banknotes_or_coins": "Sett inn sedler eller mynter, når du er ferdig, klikk på knappen nedenfor",
@@ -24,7 +24,7 @@
   "DISK": "FELGER",
   "MOSQUITO": "MYGG",
   "FOAM": "SKUM",
-  "FOAM_COLOR": "SKUM FARGE", 
+  "FOAM_COLOR": "SKUM FARGE",
   "BRUSH": "BØRSTE",
   "BRUSH_COLOR": "BØRSTE FARGE",
   "SHAMPOO_X2": "SJAMPO X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DESINFISERING",
   "BLACKING": "SVARTING",
   "DOORSILL": "DØRSKJERMINGEN",
-  
+
   "COMPLETE_PAYMENT": "FULLFØR BETALING",
   "RETURN_BONUSES_UP": "TIL 30% BONUSER TILBAKE FULLFØR BETALING",
   "APPEND": "TILLEGG",
   "CONFIRM": "BEKREFTE",
 
-  "To_enter_the_system": "For å logge inn oppgi telefonnummeret ditt eller skann QR-koden", 
+  "To_enter_the_system": "For å logge inn oppgi telefonnummeret ditt eller skann QR-koden",
   "To_credit_Bonuses_to_your_account": "For å kreditere bonuser til kontoen din, skriv inn telefonnummeret ditt",
   "By_clicking_on_CONFIRM": "Ved å klikke på BEKREFTE knappen samtykker du til å sende deg en SMS melding og behandle dine personopplysninger i samsvar med betingelsene som er lagt ut på nettstedet: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "QR-autorisasjon",
   "Your_balance": "Din balanse,",
   "Select_charge_amount": "Velg belastningsbeløp",
-  
+
   "Enter_your_password": "Oppgi passordet",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "innstillingsmenyen",
-  
+
   "The_status_of_the_operation": "Transaksjonsstatus:",
   "Connection_to_the_bank_terminal": "Tilkobling til en bankterminal...",
   "Failed_to_connect_to_the_bank_terminal": "Kan ikke koble til bankterminalen",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Vis markøren i hovedvinduet",
   "Direct_cash_payment": "Direkte kontantbetaling",
   "Banking_terminal": "Bankterminal",
-  
+
   "System": "System",
   "Panel": "Panel",
   "Bill_acceptor": "Regningsmottaker",
@@ -110,7 +110,7 @@
 
   "Language": "Språk",
   "Currency": "Valuta",
-  
+
   "Type_of_panel": "Panel type",
   "Panel_number": "Panelet nummer:",
   "Vacuum_number": "Støvsuger nummer",
@@ -152,21 +152,11 @@
   "INPUT": "INNGANG",
   "EXIT": "EXIT",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,8 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
-
 }

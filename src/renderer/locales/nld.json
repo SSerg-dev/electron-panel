@@ -13,7 +13,7 @@
   "CONSULTANT": "ADVISEUR",
   "CALL_SENT_WAIT": "BEL VERZONDEN, WACHT EVEN ALSTUBLIEFT",
   "FREE_STOP": "GRATIS STOP",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "DOORGAAN",
   "MAKE_A_PAYMENT": "MAAK EEN BETALING",
   "Insert_banknotes_or_coins": "Voer biljetten of munten in en klik op onderstaande knop wanneer u klaar bent",
@@ -24,7 +24,7 @@
   "DISK": "SCHIJVEN",
   "MOSQUITO": "MOSKIT",
   "FOAM": "SCHUIM",
-  "FOAM_COLOR": "SCHUIM KLEUR", 
+  "FOAM_COLOR": "SCHUIM KLEUR",
   "BRUSH": "BORSTEL",
   "BRUSH_COLOR": "BORSTEL KLEUR",
   "SHAMPOO_X2": "SHAMPOO X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DESINFECTIE",
   "BLACKING": "BLACKING",
   "DOORSILL": "DREMPEL",
-  
+
   "COMPLETE_PAYMENT": "VOLLEDIGE BETALING",
   "RETURN_BONUSES_UP": "RETURN BONUSES UP TO 30% VOLLEDIGE BETALING",
   "APPEND": "APPEND",
   "CONFIRM": "BEVESTIGEN",
 
-  "To_enter_the_system": "Voer je telefoonnummer in of scan de QR-code om in te loggen", 
+  "To_enter_the_system": "Voer je telefoonnummer in of scan de QR-code om in te loggen",
   "To_credit_Bonuses_to_your_account": "Voer uw telefoonnummer in om Bonussen op uw account te crediteren",
   "By_clicking_on_CONFIRM": "Door op BEVESTIGEN te klikken, geeft u toestemming om sms-berichten en verwerking van persoonsgegevens naar u te verzenden, volgens de voorwaarden vermeld op de website: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "QR autorisatie",
   "Your_balance": "Je balans,",
   "Select_charge_amount": "Selecteer bedrag",
-  
+
   "Enter_your_password": "Voer uw wachtwoord in",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "instellingenmenu",
-  
+
   "The_status_of_the_operation": "Bedrijfsstatus:",
   "Connection_to_the_bank_terminal": "Verbinding met een bankterminal...",
   "Failed_to_connect_to_the_bank_terminal": "Kan geen verbinding maken met de bankterminal",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Cursor weergeven in het hoofdvenster",
   "Direct_cash_payment": "Directe contante betaling",
   "Banking_terminal": "Bankterminal",
-  
+
   "System": "Systeem",
   "Panel": "Paneel",
   "Bill_acceptor": "Bankbiljetacceptor",
@@ -110,7 +110,7 @@
 
   "Language": "Taal",
   "Currency": "Valuta:",
-  
+
   "Type_of_panel": "Paneeltype",
   "Panel_number": "Paneelnummer",
   "Vacuum_number": "Stofzuiger nummer",
@@ -152,21 +152,11 @@
   "INPUT": "INVOER",
   "EXIT": "UITGANG",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,8 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
-
 }

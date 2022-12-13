@@ -13,7 +13,7 @@
           class="button-content-style"
           :class="[
             { 'card-content black-text': !this.isDown.washer },
-            { 'card-content white-text': this.isDown.washer }
+            { 'card-content white-text': this.isDown.washer },
           ]"
         >
           {{ `${actives[this.activeNumber].title}` | localize }}
@@ -29,13 +29,11 @@ import { mapMutations, mapGetters, mapActions } from 'vuex'
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
 
-
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
-import { 
-  upDryOptions, 
+import {
+  upDryOptions,
   downDryOptions,
-  buttonSizeOptions 
-
+  buttonSizeOptions,
 } from '@/shapes/index.js'
 
 export default Vue.extend({
@@ -58,12 +56,15 @@ export default Vue.extend({
     activeNumber: 18,
 
     // neighbors
-    //Air
+    // Air
     visibleAir: '',
     activeAirNumber: 17,
     // Vacuum
     visibleVacuum: '',
     activeVacuumNumber: 16,
+    // TurboDryer
+    visibleTurboDryer: '',
+    activeTurboDryerNumber: 26,
 
     active: '',
     timeoutPopup: null,
@@ -73,43 +74,44 @@ export default Vue.extend({
 
     isDown: {
       washer: false,
-      washer_color: false
-    }
+      washer_color: false,
+    },
   }),
   props: {
     actives: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
+    // width: ['width']
   },
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getWetBalance: 'getWetBalance'
-    })
+      getWetBalance: 'getWetBalance',
+    }),
   },
   watch: {
     getWetBalance(flag) {
       if (parseInt(flag) === 0) {
         this.clearDown()
       }
-    }
+    },
   },
   methods: {
     ...mapGetters({
       // getActiveProgram: 'getActiveProgram',
       getActiveProgramKit: 'getActiveProgramKit',
-      getIsActiveProgramKit: 'getIsActiveProgramKit'
+      getIsActiveProgramKit: 'getIsActiveProgramKit',
     }),
     ...mapActions({
-      updateStartProgram: 'updateStartProgram'
+      updateStartProgram: 'updateStartProgram',
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setActiveProgramKit: 'setActiveProgramKit',
-      setIsActiveProgramKit: 'setIsActiveProgramKit'
+      setIsActiveProgramKit: 'setIsActiveProgramKit',
     }),
 
     setProgram(program) {
@@ -122,7 +124,7 @@ export default Vue.extend({
         this.getPanelType,
         this.getDefaultPanelNumber,
         this.getActiveProgram,
-        this.getWetBalance
+        this.getWetBalance,
       ])
 
       this.setIsActiveProgramKit(true)
@@ -188,18 +190,24 @@ export default Vue.extend({
         width: this.buttonSizeOptions.medium,
         height: this.buttonSizeOptions.height,
         background: 'rgb(255, 255, 255)',
-        borderRadius: this.buttonSizeOptions.borderRadius + this.buttonSizeOptions.oneMore,
+        borderRadius:
+          this.buttonSizeOptions.borderRadius + this.buttonSizeOptions.oneMore,
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
       // clone
       this._upDryOptions = { ...upDryOptions }
       this._downDryOptions = { ...downDryOptions }
       // end clone
 
-      if (this.visibleAir === 'block') {
+      /* dev */
+      const widthSize = this.parseMask()
+      console.log('$$ widthSize', widthSize)
+      this.restore(widthSize)
+
+      /* if (this.visibleAir === 'block') {
         this.restore('left')
       } else if (
         (this.visibleAir === 'none' && this.visibleVacuum !== 'none') ||
@@ -208,35 +216,41 @@ export default Vue.extend({
         this.restore('right')
       } else if (this.visibleAir === 'none' && this.visibleVacuum === 'none') {
         this.restore('combo')
-      } /* else if (
-        this.visibleVacuum === 'block' &&
-        this.visibleAir === 'block' &&
-        this.visibleWasher === 'block'
-      ) {
-        this.restore('last')
-      } */
-
+      } */ 
     }, // end initial()
     restore(type) {
+      console.log('$$ this.buttonSizeOptions', this.buttonSizeOptions)
+
       switch (type) {
-        case 'left':
-        case 'combo':
-        /* case 'last': */  
-          this._upDryOptions.width = this.upDryOptions.width = 
-            this.buttonSizeOptions.medium + this.buttonSizeOptions.halfMore + this.buttonSizeOptions.suffix
-          this._downDryOptions.width = this.downDryOptions.width = 
-            this.buttonSizeOptions.medium + this.buttonSizeOptions.halfMore + this.buttonSizeOptions.suffix
+        case 'large':
           this.buttonLeft.show()
           this.flex()
           break
-        case 'right':
-          this._upDryOptions.width = //'67em'
-            this.buttonSizeOptions.medium + this.buttonSizeOptions.halfMore + this.buttonSizeOptions.suffix
-          this._downDryOptions.width = //'67em'
-            this.buttonSizeOptions.medium + this.buttonSizeOptions.halfMore + this.buttonSizeOptions.suffix
+
+        /* case 'combo':
+          this._upDryOptions.width = this.upDryOptions.width =
+            this.buttonSizeOptions.medium +
+            this.buttonSizeOptions.halfMore +
+            this.buttonSizeOptions.suffix
+          this._downDryOptions.width = this.downDryOptions.width =
+            this.buttonSizeOptions.medium +
+            this.buttonSizeOptions.halfMore +
+            this.buttonSizeOptions.suffix
           this.buttonLeft.show()
           this.flex()
-          break
+          break */
+        /* case 'right':
+          this._upDryOptions.width = 
+            this.buttonSizeOptions.medium +
+            this.buttonSizeOptions.halfMore +
+            this.buttonSizeOptions.suffix
+          this._downDryOptions.width = 
+            this.buttonSizeOptions.medium +
+            this.buttonSizeOptions.halfMore +
+            this.buttonSizeOptions.suffix
+          this.buttonLeft.show()
+          this.flex()
+          break */
 
         default:
           break
@@ -258,7 +272,33 @@ export default Vue.extend({
         this.buttonLeft.fontSize = options.fontSize
         this.buttonLeft.width = options.width
       }
-    }
+    },
+    parseMask() {
+      let result
+      let visibleMask =
+        this.visible +
+        this.visibleAir +
+        this.visibleVacuum +
+        this.visibleTurboDryer
+
+      if (visibleMask.length > 0) {
+        visibleMask = visibleMask.replace(/block/g, '1').replace(/none/g, '0')
+      }
+      switch (visibleMask) {
+        case '1000':
+        case '1011':
+        case '1101':
+        case '1110':
+          result = 'large'   
+          break
+
+        default:
+          result = 'small'
+          break
+      }
+      // console.log('$$ result', result)
+      return result
+    },
   }, // end methods
 
   beforeDestroy() {
@@ -277,9 +317,32 @@ export default Vue.extend({
     this.visibleAir = this.actives[this.activeAirNumber].display
     // Vacuum
     this.visibleVacuum = this.actives[this.activeVacuumNumber].display
+    // TurboDryer
+    this.visibleTurboDryer = this.actives[this.activeTurboDryerNumber].display
+
+    /* let visibleMask = 
+    this.visible +  
+    this.visibleAir + 
+    this.visibleVacuum + 
+    this.visibleTurboDryer
+
+    if (visibleMask.length > 0) {
+      visibleMask = visibleMask.replace(/block/g, '1').replace(/none/g, '0')
+    }
+    switch (visibleMask) {
+      case '1000':
+      case '1011':
+      case '1101':
+      case '1110':
+        console.log('$$ washer width large')
+      break
+
+      default:
+        console.log('$$ washer width small')
+    } */
 
     this.setup()
-  }
+  },
 })
 </script>
 

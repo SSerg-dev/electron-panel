@@ -13,7 +13,7 @@
   "CONSULTANT": "ΣΥΜΒΟΥΛΟΣ",
   "CALL_SENT_WAIT": "ΚΛΗΣΗ ΣΤΑΛΘΗΚΕ, ΑΝΑΜΕΝΑΤΕ",
   "FREE_STOP": "ΔΩΡΕΑΝ ΣΤΑΣΗ",
-  "STOP": "ΣΤΑΣΗ", 
+  "STOP": "ΣΤΑΣΗ",
   "CONTINUE": "ΣΥΝΕΧΕΙΑ",
   "MAKE_A_PAYMENT": "ΚΑΝΩ ΜΙΑ ΠΛΗΡΩΜΗ",
   "Insert_banknotes_or_coins": "Εισαγάγετε τα χαρτονομίσματα ή κέρματα, στο τέλος πατήστε το κάτω κουμπί",
@@ -24,7 +24,7 @@
   "DISK": "ΔΙΣΚΟΙ",
   "MOSQUITO": "ΚΟΥΝΟΥΠ",
   "FOAM": "ΑΦΡΟΣ",
-  "FOAM_COLOR": "ΑΦΡΟΣ ΧΡΩΜΑ", 
+  "FOAM_COLOR": "ΑΦΡΟΣ ΧΡΩΜΑ",
   "BRUSH": "ΒΟΥΡΤΣΑ",
   "BRUSH_COLOR": "ΒΟΥΡΤΣΑ ΧΡΩΜΑ",
   "SHAMPOO_X2": "ΣΑΠΟΥΝΙ X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "ΑΠΟΛΥΜΑΝΣΗ",
   "BLACKING": "ΜΑΥΡΟΣ",
   "DOORSILL": "ΠΟΡΤΑ",
-  
+
   "COMPLETE_PAYMENT": "ΟΛΟΚΛΗΡΩΣΗ ΠΛΗΡΩΜΗΣ",
   "RETURN_BONUSES_UP": "ΕΠΙΣΤΡΟΦΗ ΕΩΣ 30% ΟΛΟΚΛΗΡΩΣΗ ΠΛΗΡΩΜΗΣ",
   "APPEND": "ΠΡΟΣΑΡΤΩ",
   "CONFIRM": "ΕΠΙΒΕΒΑΙΩΝΩ",
 
-  "To_enter_the_system": "Για είσοδο στο σύστημα πληκτρολογήστε τον αριθμό τηλεφώνου ή σαρώστε τον QR κωδικό", 
+  "To_enter_the_system": "Για είσοδο στο σύστημα πληκτρολογήστε τον αριθμό τηλεφώνου ή σαρώστε τον QR κωδικό",
   "To_credit_Bonuses_to_your_account": "Για να πιστώσετε Μπόνους στον λογαριασμό σας, εισαγάγετε τον αριθμό τηλεφώνου σας",
   "By_clicking_on_CONFIRM": "Κάνοντας κλικ στο ΕΠΙΒΕΒΑΙΩΣΗ, δίνετε τη συγκατάθεσή σας για αποστολή μηνυμάτων SMS και επεξεργασία προσωπικών δεδομένων σε εσάς, σύμφωνα με τους όρους που δημοσιεύονται στον ιστότοπο: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "Σύνεση μέσω QR",
   "Your_balance": "Η ισορροπία σου,",
   "Select_charge_amount": "Επιλέξτε το ποσό πίστωσης",
-  
+
   "Enter_your_password": "Εισάγετε τον κωδικό σας",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "μενού ρυθμίσεων",
-  
+
   "The_status_of_the_operation": "Κατάσταση της συναλλαγής:",
   "Connection_to_the_bank_terminal": "Σύνδεση με το τερματικό της τράπεζας...",
   "Failed_to_connect_to_the_bank_terminal": "Δεν είναι δυνατή η σύνδεση με το τερματικό τράπεζας",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Εμφάνιση κέρσορα στο κύριο παράθυρο",
   "Direct_cash_payment": "Άμεση πληρωμή σε μετρητά",
   "Banking_terminal": "Τραπεζικό τερματικό",
-  
+
   "System": "Σύστημα",
   "Panel": "Πίνακας",
   "Bill_acceptor": "Δέκτης τραπεζογραμματίων",
@@ -110,7 +110,7 @@
 
   "Language": "Γλώσσες",
   "Currency": "Νόμισμα",
-  
+
   "Type_of_panel": "Τύπος πίνακα",
   "Panel_number": "Αριθμός πίνακα",
   "Vacuum_number": "Αριθμός ελ. σκούπας",
@@ -152,21 +152,11 @@
   "INPUT": "ΕΙΣΑΓΩΓΗ",
   "EXIT": "ΕΞΟΔΟΣ",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,8 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
-
 }

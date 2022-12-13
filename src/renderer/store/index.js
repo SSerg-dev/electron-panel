@@ -32,6 +32,14 @@ export default new Vuex.Store({
     paginate: 1,
     router: '/',
 
+    orderData: {
+      address: '',
+      name: '',
+      number: '',
+      serialNumber: '',
+      upName: ''
+    },
+
     info: { name: '', locale: 'ru-RU' } /* ru-RU en-GB */,
     cash_enabler: false,
     busyPanel: false,
@@ -646,6 +654,9 @@ export default new Vuex.Store({
     // userActiveName
     getUserActiveName(state) {
       return state.users.userActiveName
+    },
+    getSerialNumber(state) {
+      return state.orderData.serialNumber
     }
   },
 
@@ -695,7 +706,7 @@ export default new Vuex.Store({
           break
         /* dev */
         // case '::AsGlobalPV:gPanelSysMenuUnlockFlag':
-        case 'PanelSysMenuUnlockFlag':  
+        case 'PanelSysMenuUnlockFlag':
           state.globalParameters.isMenuUnlock =
             parameter.value === 'true' ? true : false
           break
@@ -749,9 +760,12 @@ export default new Vuex.Store({
             }
           })
           break
-        // userActiveName
         case 'userActiveName':
           state.users.userActiveName = parameter.value
+          break
+
+        case 'orderData.serialNumber':
+          state.orderData.serialNumber = parameter.value
           break
 
         // end common parameters

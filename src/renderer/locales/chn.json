@@ -13,7 +13,7 @@
   "CONSULTANT": "顾问",
   "CALL_SENT_WAIT": "通话已发送，请稍候！",
   "FREE_STOP": "自由停车",
-  "STOP": "停止", 
+  "STOP": "停止",
   "CONTINUE": "续订",
   "MAKE_A_PAYMENT": "进行付款",
   "Insert_banknotes_or_coins": "放入纸币或硬币 完成后单击下面的按钮",
@@ -24,7 +24,7 @@
   "DISK": "轮辋",
   "MOSQUITO": "防白蛉子",
   "FOAM": "泡沫",
-  "FOAM_COLOR": "泡沫 颜色", 
+  "FOAM_COLOR": "泡沫 颜色",
   "BRUSH": "刷子",
   "BRUSH_COLOR": "刷子 颜色",
   "SHAMPOO_X2": "洗发水 X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "消毒",
   "BLACKING": "涂黑",
   "DOORSILL": "门槛",
-  
+
   "COMPLETE_PAYMENT": "完成支付",
   "RETURN_BONUSES_UP": "返还积分高达 30％ 完成支付",
   "APPEND": "附加",
   "CONFIRM": "确认",
 
-  "To_enter_the_system": "输入您的电话号码或扫描QR码以登录", 
+  "To_enter_the_system": "输入您的电话号码或扫描QR码以登录",
   "To_credit_Bonuses_to_your_account": "要将奖金记入您的帐户，请输入您的电话号码",
   "By_clicking_on_CONFIRM": "点击确认，即表示您同意根据网站上列出的条件向您发送短信和个人数据处理: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "QR授权",
   "Your_balance": "您的余额,",
   "Select_charge_amount": "选择充值金额",
-  
+
   "Enter_your_password": "输入您的密码",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "设置菜单",
-  
+
   "The_status_of_the_operation": "运行状态：",
   "Connection_to_the_bank_terminal": "连接到银行终端...",
   "Failed_to_connect_to_the_bank_terminal": "连接银行终端失败",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "在主窗口中显示光标",
   "Direct_cash_payment": "直接现金支付",
   "Banking_terminal": "银行终端",
-  
+
   "System": "系统",
   "Panel": "面板",
   "Bill_acceptor": "钞票接受器",
@@ -110,7 +110,7 @@
 
   "Language": "语",
   "Currency": "货币",
-  
+
   "Type_of_panel": "面板类型",
   "Panel_number": "面板编号",
   "Vacuum_number": "吸尘器编号",
@@ -152,21 +152,11 @@
   "INPUT": "输入",
   "EXIT": "出口",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,6 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
 }

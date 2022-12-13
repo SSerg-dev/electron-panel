@@ -9,7 +9,11 @@
 
     <!-- !getIsPingUrl && -->
     <div
-      v-if="this.$route.name != 'language' && this.$route.name != 'setting'"
+      v-if="
+        this.$route.name != 'language' &&
+        this.$route.name != 'setting' &&
+        this.$route.name != 'cost'
+      "
       class="footer"
     >
       <Footer />

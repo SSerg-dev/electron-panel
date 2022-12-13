@@ -13,7 +13,7 @@
   "CONSULTANT": "KONZULTANT",
   "CALL_SENT_WAIT": "HOVOR BOL ODOSLANÝ, PROSÍM ČAKAJTE",
   "FREE_STOP": "ZADARMO STOP",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "POKRAČOVAŤ",
   "MAKE_A_PAYMENT": "VYKONAŤ PLATBU",
   "Insert_banknotes_or_coins": "Po dokončení vkladania bankoviek alebo mincí kliknite na tlačítko nižšie",
@@ -24,7 +24,7 @@
   "DISK": "DISKY",
   "MOSQUITO": "MOSKIT",
   "FOAM": "PENA",
-  "FOAM_COLOR": "PENA FARBA", 
+  "FOAM_COLOR": "PENA FARBA",
   "BRUSH": "KEFA",
   "BRUSH_COLOR": "KEFA FARBA",
   "SHAMPOO_X2": "ŠAMPON X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DEZINFEKCIA",
   "BLACKING": "KRESLENIE",
   "DOORSILL": "PRAH",
-  
+
   "COMPLETE_PAYMENT": "UKONČIŤ PLATBU",
   "RETURN_BONUSES_UP": "VRÁTIŤ BONUSMI DO 30% UKONČIŤ PLATBU",
   "APPEND": "PRIDAŤ",
   "CONFIRM": "POTVRDIŤ",
 
-  "To_enter_the_system": "Pre prihlásenie do systému, zadajte svoje telefónne číslo alebo naskenujte kód QR", 
+  "To_enter_the_system": "Pre prihlásenie do systému, zadajte svoje telefónne číslo alebo naskenujte kód QR",
   "To_credit_Bonuses_to_your_account": "Zadajte svoje telefónne číslo a pridajte bonusy na svoj účet",
   "By_clicking_on_CONFIRM": "Kliknutím na POTVRDIŤ dávate súhlas so zasielaním SMS správ a spracovaním osobných údajov podľa podmienok zverejnených na stránke: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "Autorizácia podľa QR",
   "Your_balance": "Váš zostatok,",
   "Select_charge_amount": "Vyberte si sumu, ktorá má byť odpísaná",
-  
+
   "Enter_your_password": "Zadajte svoje heslo",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "menu nastavení",
-  
+
   "The_status_of_the_operation": "Stav vyplnenia operácie:",
   "Connection_to_the_bank_terminal": "Pripojenie k bankovému terminálu...",
   "Failed_to_connect_to_the_bank_terminal": "Nepodarilo sa pripojiť k bankovému terminálu",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Zobraziť kurzor v hlavnom okne",
   "Direct_cash_payment": "Priama platba v hotovosti",
   "Banking_terminal": "Bankový terminál",
-  
+
   "System": "Systém",
   "Panel": "Panel",
   "Bill_acceptor": "Akceptor bankoviek",
@@ -110,7 +110,7 @@
 
   "Language": "Jazyk",
   "Currency": "Mene",
-  
+
   "Type_of_panel": "Typ panelu",
   "Panel_number": "Číslo panelu:",
   "Vacuum_number": "Číslo vysávača",
@@ -152,36 +152,24 @@
   "INPUT": "VSTUP",
   "EXIT": "VÝCHOD",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
 
   "__commentMessages": "TODO add messages ",
-    "Amount_more_maximum": "Amount more maximum",
-    "Enter_valid_phone_number": "Please enter a valid phone number",
-    "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
-    "Will_be_paid_by_credit_card": "Will be paid by credit card",
-    "Payment_with_bonuses": "Payment with bonuses",
-    "Enter_the_correct_amount": "Enter the correct amount",
-    "Terminal_operation": "Terminal operation",
-    "approved": "approved, amount:",
-    "rejected": "rejected",
-    "The_payment_successful_amount": "The payment was successful, the deposited amount:",
-    "KKT_not_installed": "KKT not installed",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed",
 
-    "Wash_program_completed_successfully": "Wash program completed successfully",
-    "Not_enough_money": "Not enough money"
-
-
+  "Wash_program_completed_successfully": "Wash program completed successfully",
+  "Not_enough_money": "Not enough money"
 }

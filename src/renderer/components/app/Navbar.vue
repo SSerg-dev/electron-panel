@@ -16,15 +16,16 @@
           style="border: none; background-color: #121212"
           @click="setEnabler()"
         >
+          <!-- head-panel-small.svg --> 
           <router-link to="/">
             <div style="width: 90%; height: 90%">
-              <img src="@/assets/imgs/svg/head-panel.svg" style="width: 80%" />
+              <img src="@/assets/imgs/svg/head-panel-small.svg" style=" width: 70%" />
             </div>
           </router-link>
         </button>
       </div>
 
-      <div class="setting">
+      <div class="logo">
         <div v-if="getIsMenuUnlock" style="border: none" @click="loginSetting">
           <router-link
             to="/password"
@@ -32,7 +33,7 @@
             style="border: none; background: #121212"
           >
             <div>
-              <img src="@/assets/imgs/svg/alles-unlock.svg" />
+              <img src="@/assets/imgs/svg/alles-unlock.svg" style="width: 85%"/>
             </div>
           </router-link>
         </div>
@@ -44,18 +45,20 @@
             style="border: none; background: #121212"
           >
             <div>
-              <img src="@/assets/imgs/svg/alles-lock.svg" />
+              <img src="@/assets/imgs/svg/alles-unlock.svg" style="width: 85%" />
             </div>
           </router-link>
         </div>
+
       </div>
 
       <div class="circle">
         <div style="width: 90%; height: 90%">
-          <img src="@/assets/imgs/svg/white-circle.svg" style="width: 100%"/>
+          <img src="@/assets/imgs/svg/white-circle.svg" style="width: 85%"/>
         </div>
         <div class="circle-title"
         >
+
           <div v-if="this.getPanelType === 'wash'">
             <span class="white-text">{{ this.getDefaultPanelNumber }}</span>
           </div>
@@ -65,37 +68,26 @@
           <div v-if="this.getPanelType === 'payment'">
             <span class="white-text">{{ getVacuumPayment }}</span>
           </div>
+          
         </div>
       </div>
 
-      <div v-if="this.getPanelType === 'wash'">
-        <div class="box white-text">
-          <!-- &nbsp;🚿 -->
-          <p>{{ 'BOX' | localize }}</p>
-        </div>
+
+      <div class="date">
+        <p >{{ date | date('date') }}</p>
       </div>
-
-      <div v-if="this.getPanelType === 'vacuum'">
-        <div class="box white-text">
-          <p>{{ 'VACUUM' | localize }}&nbsp;🧹</p>
-        </div>
-      </div>
-
-      <div v-if="this.getPanelType === 'payment'">
-        <div class="box white-text">
-          {{ 'PAYMENT' | localize }}
-        </div>
-      </div>
-
-      <!--     -->
-
+      
       <div class="clock">
-        <span class="white-text">{{ date | date('time') }}</span>
+        <p>{{ date | date('time') }}</p>
       </div>
 
       <div class="title">
-        <span class="white-text">{{ 'locales' | localize }}</span>
+        <p>{{ 'locales' | localize }}</p>
       </div>
+      
+      <!-- <div class="serial">
+        <p>{{ `${getSerialNumber}` }}</p>
+      </div> -->
 
       <div>
         <router-link to="/language" class="flag">
@@ -259,6 +251,14 @@
             <img src="@/assets/imgs/flags/flag_ISR.png" />
           </div>
 
+          <div v-if="this.info.locale === 'arb-ARB'">
+            <img src="@/assets/imgs/flags/flag_ARB.png" />
+          </div>
+
+          <div v-if="this.info.locale === 'che-CHE'">
+            <img src="@/assets/imgs/flags/flag_CHE.png" />
+          </div>
+
         </router-link>
       </div>
     </div>
@@ -305,6 +305,7 @@ export default {
       getRouter: 'getRouter',
       getIsMenuUnlock: 'getIsMenuUnlock',
       getUserActiveName: 'getUserActiveName',
+      getSerialNumber: 'getSerialNumber'
     }),
   },
   watch: {
@@ -318,6 +319,7 @@ export default {
       setCashEnabler: 'setCashEnabler',
       setIsLoginSettingPassword: 'setIsLoginSettingPassword',
       setRouter: 'setRouter',
+      setInfo: 'setInfo'
     }),
     setEnabler() {
       this.setCashEnabler(false)
@@ -354,13 +356,22 @@ export default {
   margin-top: -1em;
 }
 .alles {
-  padding-top: 4%;
-  padding-left: 8%;
-  background-color: #121212;
+  position: absolute;
+  top: 3em;
+  left: 9em;
+  z-index: 0;
+  
+  background-color:  #121212;
+}
+.logo {
+  position: absolute;
+  top: 1.2em;
+  left: 24.8em; /* 32 */
+  width: 10rem;
 }
 .background-top {
   position: absolute;
-  top: 40%;
+  top: 3.5em;
   left: 0;
   z-index: 0;
 }
@@ -368,7 +379,7 @@ img {
   width: 100%;
 }
 .head-panel {
-  margin-top: 0em;
+  padding-right: 1em;
   padding-top: 2em;
   position: relative;
   text-align: center;
@@ -378,51 +389,65 @@ img {
   z-index: 2;
 }
 .circle {
-  width: 6em;
-  height: 6em;
-  position: fixed;
-  top: 2em;
-  left: 2.2em;
+  width: 5em;
+  height: 5em;
+  position: absolute;
+  top: 1.5em;
+  left: 1em;
 }
 .circle-title {
-  position: fixed; 
-  top: 0.45em; 
-  left: 0.95em; 
-  font-size: 4em
+  position: absolute; 
+  top: -0.1em; 
+  left: 0.45em; 
+  font-size: 3em
 }
 
 .box {
-  font-size: 2.4rem;
+  font-size: 2em;
   position: fixed;
-  top: 0.75em;
-  left: 3.5em;
+  top: 1em;
+  left: 5em;
   z-index: 3;
 }
+.date {
+  font-size: 1.8em;
+  position: absolute;
+  top: 0.6em;
+  left: 3em;
+  color: white;
+}
 .clock {
-  font-size: 2.4rem;
-  position: fixed;
-  top: 1.8em;
-  left: 3.4em;
+  font-size: 1.8em;
+  position: absolute;
+  top: 1.7em;
+  left: 3em;
   color: white;
 }
 .title {
-  font-size: 2.4rem;
+  font-size: 2em;
   position: absolute;
-  top: 42%;
-  left: 83%;
+  top: 1em;
+  left: 33em;
+  color: white;
+}
+.serial {
+  width: 7em;
+  border: solid 1px lightGrey ;
+  border-radius: 0.2em;
+  
+  font-size: 2em;
+  position: absolute;
+  top: 0.9em;
+  left: 24.2em;
+  color: white;
 }
 .flag {
   position: absolute;
-  top: 34%;
-  left: 90%;
-  width: 5rem;
+  top: 1.5em;
+  left: 70em;
+  width: 4em;
 }
-.setting {
-  position: absolute;
-  top: 32%;
-  left: 32%; /* 32 */
-  width: 10rem;
-}
+
 .btn {
   background-color: #121212;
   border: none;

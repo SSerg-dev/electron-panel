@@ -13,7 +13,7 @@
   "CONSULTANT": "КОНСУЛЬТАНТ",
   "CALL_SENT_WAIT": "ПОВИКВАНЕТО Е ИЗПРАТЕНО, ИЗЧАКАЙ",
   "FREE_STOP": "БЕЗПЛАТНО СТОПАНЕ",
-  "STOP": "СТОП", 
+  "STOP": "СТОП",
   "CONTINUE": "ПРОДЪЛЖЕТЕ",
   "MAKE_A_PAYMENT": "НАПРАВЕТЕ ПЛАЩАНЕ",
   "Insert_banknotes_or_coins": "Поставете банкноти или монети, след това натиснете бутона по-долу",
@@ -24,7 +24,7 @@
   "DISK": "ДЖАНТИ",
   "MOSQUITO": "НАСЕКОМИ",
   "FOAM": "ПЯНА",
-  "FOAM_COLOR": "ПЯНА ЦВЯТ", 
+  "FOAM_COLOR": "ПЯНА ЦВЯТ",
   "BRUSH": "ЧЕТКА",
   "BRUSH_COLOR": "ЧЕТКА ЦВЯТ",
   "SHAMPOO_X2": "ШАМПОАН X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "ДЕЗИНФЕКЦИЯ",
   "BLACKING": "ПОЧЕРНЯВАНЕ",
   "DOORSILL": "ПРАГОВЕ",
-  
+
   "COMPLETE_PAYMENT": "ПРИКЛЮЧЕТЕ ПЛАЩАНЕТО",
   "RETURN_BONUSES_UP": "ВЪРНЕТЕ С БОНУСИ ДО 30% ПРИКЛЮЧЕТЕ ПЛАЩАНЕТО",
   "APPEND": "ДОБАВЯНЕ",
   "CONFIRM": "ПОТВЪРЖД",
 
-  "To_enter_the_system": "За да влезете в системата, въведете телефонния си номер или сканирайте QR кода", 
+  "To_enter_the_system": "За да влезете в системата, въведете телефонния си номер или сканирайте QR кода",
   "To_credit_Bonuses_to_your_account": "За да кредитирате бонуси, въведете телефонния си номер",
   "By_clicking_on_CONFIRM": "С натискане върху ПОТВЪРЖДАВАНЕ, Вие давате съгласието си за изпращане на SMS съобщение и обработване на личните Ви данни, в съответствие с условията, публикувани на уебсайта: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "QR авторизация",
   "Your_balance": "Вашият баланс,",
   "Select_charge_amount": "Изберете сума на задължаване",
-  
+
   "Enter_your_password": "Въведете паролата",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "меню с настройки",
-  
+
   "The_status_of_the_operation": "Статус на операция:",
   "Connection_to_the_bank_terminal": "Свързване към банков терминал...",
   "Failed_to_connect_to_the_bank_terminal": "Failed to connect to the bank terminal",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Показване на курсора в главния прозорец",
   "Direct_cash_payment": "Директно плащане в брой",
   "Banking_terminal": "Банков терминал",
-  
+
   "System": "Система",
   "Panel": "Панел",
   "Bill_acceptor": "Купюроприемник",
@@ -110,7 +110,7 @@
 
   "Language": "Език",
   "Currency": "Валута",
-  
+
   "Type_of_panel": "Тип панел",
   "Panel_number": "Номер на панела",
   "Vacuum_number": "Номер на прахосмукачка",
@@ -152,21 +152,11 @@
   "INPUT": "ВХОД",
   "EXIT": "ИЗХОД",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,8 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
-
 }

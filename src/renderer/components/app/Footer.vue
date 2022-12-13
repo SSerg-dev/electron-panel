@@ -4,6 +4,7 @@
       
       <!-- stop -->
       <div v-if="this.$route.name === 'program' && getWetProgramName.length > 0" class="stop-position">
+      <!-- <div class="stop-position"> -->
         <div
           v-if="this.isDown.stop === false"
           class="button-up-style"
@@ -300,7 +301,7 @@ export default {
   width: 100%;
   position: fixed;
   left: 0;
-  bottom: -0.2em;
+  bottom: 1em;
   opacity: 1;
   /* #121212 */
   /* background: linear-gradient(180deg, #505cad 1.62%, #5b68bb 100%); */
@@ -335,15 +336,15 @@ export default {
 /* operator */
 .operator-position {
   position: fixed;
-  bottom: 1em;
+  bottom: 3em;
   /* left: 0; */
   right: 25.25em;
 }
 .button-operator-up-style {
   padding-left: 0em;
   width: 24em;
-  height: 6.2em;
-  color: #fff;
+  height: 6em;
+  color: #000;
   background: linear-gradient(45deg, #00e5ff,#bfe5f5, #18ffff);
   border: 0.2em solid #fff;
   border-radius: 1em;
@@ -363,17 +364,17 @@ export default {
 /* input */
 .input-position {
   position: fixed;
-  bottom: 1em;
+  bottom: 3em;
   left: 0.5em;
   /* right: 23em; */
 }
 .button-input-up-style {
   padding-left: 0em;
-  width: 24em;
-  height: 6.2em;
-  color: #fff;
+  width: 23.5em;
+  height: 6em;
+  color: #000;
 
-  background: linear-gradient(45deg, #00e5ff,#bfe5f5, #18ffff);
+  background: linear-gradient(45deg, #0066ff,#bfe5f5, #0066ff);
   /* background: #18ffff ; */
 
   border: 0.2em solid #fff;
@@ -394,16 +395,16 @@ export default {
 /* exit */
 .exit-position {
   position: fixed;
-  bottom: 1em;
+  bottom: 3em;
   /* left: 0; */
   right: 0.5em;
 }
 .button-exit-up-style {
   padding-left: 0em;
-  width: 24em;
-  height: 6.2em;
-  color: #fff;
-  background: linear-gradient(45deg, #00e5ff,#bfe5f5, #18ffff);
+  width: 23.5em;
+  height: 6em;
+  color: #000;
+  background: linear-gradient(45deg, #0066ff,#bfe5f5, #0066ff);
   border: 0.2em solid #fff;
   border-radius: 1em;
   box-shadow: #18ffff 5px 5px 10px;
@@ -422,7 +423,7 @@ export default {
 /* stop */
 .stop-position {
   position: fixed;
-  top: 30.5em;
+  top: 29em;
   /* bottom: 0; */
   left: 16em;
   z-index: 999;
@@ -433,7 +434,6 @@ export default {
   text-shadow:
     1px 1px 1px red,
     -1px 1px 1px red;
-
 
   display: flex;
   align-items: center;

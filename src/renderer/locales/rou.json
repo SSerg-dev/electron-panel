@@ -13,7 +13,7 @@
   "CONSULTANT": "CONSULTANT",
   "CALL_SENT_WAIT": "APEL TRIMIS, AȘTEPTAȚI",
   "FREE_STOP": "STOP GRATUIT",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "CONTINUARE",
   "MAKE_A_PAYMENT": "FA O PLATA",
   "Insert_banknotes_or_coins": "Introduceți bancnotele sau monedele, faceți clic pe butonul de mai jos după finalizare",
@@ -24,7 +24,7 @@
   "DISK": "DISCURI",
   "MOSQUITO": "INSECTE",
   "FOAM": "SPUMĂ",
-  "FOAM_COLOR": "SPUMĂ CULOARE", 
+  "FOAM_COLOR": "SPUMĂ CULOARE",
   "BRUSH": "PERIE",
   "BRUSH_COLOR": "PERIE CULOARE",
   "SHAMPOO_X2": "ȘAMPON X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DISINFECTION",
   "BLACKING": "ÎNNEGRARE",
   "DOORSILL": "PRAGURI",
-  
+
   "COMPLETE_PAYMENT": "FINALIZARE PLATĂ",
   "RETURN_BONUSES_UP": "ÎNTOARCERE PÂNĂ LA 30% FINALIZARE PLATĂ",
   "APPEND": "ADĂUGA",
   "CONFIRM": "A CONFIRMA",
 
-  "To_enter_the_system": "Pentru conectare, introduceți numărul de telefon sau scanați codul QR", 
+  "To_enter_the_system": "Pentru conectare, introduceți numărul de telefon sau scanați codul QR",
   "To_credit_Bonuses_to_your_account": "Pentru a credita bonusuri în contul dvs., introduceți numărul dvs. de telefon",
   "By_clicking_on_CONFIRM": "Făcând clic pe CONFIRMĂ, îți dai consimțământul pentru a vă trimite mesaje SMS și prelucrarea datelor cu caracter personal, conform condițiilor postate pe site: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "Autorizare prin QR",
   "Your_balance": "Echilibrul tau,",
   "Select_charge_amount": "Selectați suma de taxare",
-  
+
   "Enter_your_password": "Introduceți parola",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "meniul de setări",
-  
+
   "The_status_of_the_operation": "Starea operației:",
   "Connection_to_the_bank_terminal": "Conectarea la terminalul bancar...",
   "Failed_to_connect_to_the_bank_terminal": "Nu se poate realiza conectarea la terminalul bancar",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Afișați cursorul în fereastra principală",
   "Direct_cash_payment": "Plata directa in numerar",
   "Banking_terminal": "Terminal bancar",
-  
+
   "System": "Sistem",
   "Panel": "Panou",
   "Bill_acceptor": "Acceptator de bancnote",
@@ -110,7 +110,7 @@
 
   "Language": "Limbi",
   "Currency": "Valută",
-  
+
   "Type_of_panel": "Tip panou",
   "Panel_number": "Numărul panou",
   "Vacuum_number": "Numarul aspiratorului",
@@ -152,21 +152,11 @@
   "INPUT": "INTRARE",
   "EXIT": "IEȘIRE",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,8 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
-
 }

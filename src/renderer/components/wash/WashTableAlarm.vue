@@ -49,12 +49,12 @@
             style="height: 4em"
           >
             <td>
-              <p style="width: 90%" align="left">
+              <p style="width: 90%; margin-bottom: 0.4em;" align="left">
                 {{`✔️ 📱 `}}
                 {{ `${getAlarmsMessages[3]}` | localize}}
                 {{`&nbsp;&nbsp;`}}
-                {{`${getAlarmsPhone}`}}
               </p>
+              <p class="phone-title" align="center"> {{`${getAlarmsPhone}`}}</p>
             </td>
           </tr>
 
@@ -74,7 +74,7 @@
                     { 'button-white-title': this.isDown.yes },
                   ]"
                 >
-                  {{ `${this.buttonTitle[this.buttonTitleIndex]}` }}
+                  {{ `${this.buttonTitle[this.buttonTitleIndex]}` | localize}}
                 </div>
               </div>
             </td>
@@ -140,6 +140,7 @@ export default {
     ],
     messageIndex: -1,
 
+    // buttonTitle: [`OK`, `Cancel`],
     buttonTitle: [`OK`, `Cancel`],
     buttonTitleIndex: -1,
 
@@ -242,7 +243,7 @@ export default {
         selector: '#button-right',
 
         width: 16,
-        height: 13,
+        height: 10,
         background: 'rgb(255, 255, 255)',
         borderRadius: 2,
 
@@ -371,11 +372,22 @@ p {
   font-size: 3em;
   color: black;
 }
+.phone-title {
+  /* 
+  style="    " 
+  */
+  margin-left: 3.7em;
+  width: 10em;
+  border: solid 1px lightGrey ;
+  background: #fff;
+  border-radius: 0.2em;
+
+}
 
 .button-group {
   position: fixed;
-  left: 45em;
-  bottom: 20.5em;
+  left: 46em;
+  bottom: 20em;
 }
 
 .button-black-title {

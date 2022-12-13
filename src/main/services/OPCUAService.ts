@@ -69,6 +69,7 @@ class OPCUAService extends EventEmitter {
     TAG_DRY_IS_BUSY: '::AsGlobalPV:VacuumPost[{0}].busy',
     TAG_G_FIXED_CURRENCY: '::AsGlobalPV:gFixedCurrency.digits',
     TAG_IS_MENU_UNLOCK: '::AsGlobalPV:Recipe.PanelSysMenuUnlockFlag',
+    TAG_ORDER_DATA: '::AsGlobalPV:Config.orderData.serialNumber',
 
     TAG_DRY_ENABLED: '::AsGlobalPV:VacuumPost[{0}].active',
     TAG_DRY_BALANCE: '::AsGlobalPV:VacuumPost[{0}].panel_money',

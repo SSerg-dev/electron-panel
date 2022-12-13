@@ -13,7 +13,7 @@
   "CONSULTANT": "BERATER",
   "CALL_SENT_WAIT": "ANFRAGE GESENDET, WARTEN SIE BITTE",
   "FREE_STOP": "KOSTENLOSER STOP",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "FORTFAHREN",
   "MAKE_A_PAYMENT": "EINE ZAHLUNG TÄTIGEN",
   "Insert_banknotes_or_coins": "Führen Sie Banknoten oder werfen Sie Münzen ein, danach betätigen Sie die Taste unten",
@@ -24,7 +24,7 @@
   "DISK": "FELGEN",
   "MOSQUITO": "MÜCKE",
   "FOAM": "SCHAUM",
-  "FOAM_COLOR": "SCHAUM FARBE", 
+  "FOAM_COLOR": "SCHAUM FARBE",
   "BRUSH": "BÜRSTE",
   "BRUSH_COLOR": "BÜRSTE FARBE",
   "SHAMPOO_X2": "SCHAMPOO X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DESINFEKTION",
   "BLACKING": "SCHWÄRZUNG",
   "DOORSILL": "THRESHOLD",
-  
+
   "COMPLETE_PAYMENT": "VOLLSTÄNDIGE ZAHLUNG",
   "RETURN_BONUSES_UP": "RETURN BONI BIS ZU 30% VOLLSTÄNDIGE ZAHLUNG",
   "APPEND": "ANHÄNGEN",
   "CONFIRM": "BESTÄTIGEN",
 
-  "To_enter_the_system": "Geben Sie die Nummer ein, um sich anzumelden Telefon oder Scannen QR Code", 
+  "To_enter_the_system": "Geben Sie die Nummer ein, um sich anzumelden Telefon oder Scannen QR Code",
   "To_credit_Bonuses_to_your_account": "Geben Sie Ihre Telefonnummer ein",
   "By_clicking_on_CONFIRM": "Wenn Sie auf BESTÄTIGEN klicken, Stimmen Sie dem Versand zu Sie SMS-Nachrichten und Verarbeitung personenbezogener Daten, gemäß den auf der Website veröffentlichten Bedingungen: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "Autorisation nach QR",
   "Your_balance": "Dein Kontostand,",
   "Select_charge_amount": "Auswählen von Abschreibungen",
-  
+
   "Enter_your_password": "Geben Sie das Passwort",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "Einstellungsmenü",
-  
+
   "The_status_of_the_operation": "Stand der Operationsdurchführung:",
   "Connection_to_the_bank_terminal": "Verbindung zum Bankterminal...",
   "Failed_to_connect_to_the_bank_terminal": "Verbindung konnte nicht hergestellt werden zum Bankterminal",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Cursor im Hauptfenster anzeigen",
   "Direct_cash_payment": "Direkte Barauszahlung",
   "Banking_terminal": "Bankterminal",
-  
+
   "System": "System",
   "Panel": "Panel",
   "Bill_acceptor": "Banknoten annehmen",
@@ -110,7 +110,7 @@
 
   "Language": "Sprache",
   "Currency": "Währung",
-  
+
   "Type_of_panel": "Art der Platte",
   "Panel_number": "Tafel nummer",
   "Vacuum_number": "Staubsaugers nummer",
@@ -150,22 +150,12 @@
   "Service": "Service",
 
   "INPUT": "EINGANG",
-  "EXIT": "AUSFAHRT", 
+  "EXIT": "AUSFAHRT",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  "Check_out_another_post": "Es tut uns leid, dass etwas schief gelaufen ist. Schau dir einen anderen Beitrag an",
+  "Take_screenshot_of_ your_balance": "Machen Sie einen Screenshot Ihres Restguthabens",
+  "Contact_the_operator": "Wenden Sie sich an den Betreiber",
+  "Call_tech_support": "Rufen Sie den technischen Support an",
 
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
@@ -182,7 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
 }

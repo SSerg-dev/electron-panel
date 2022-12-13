@@ -13,7 +13,7 @@
   "CONSULTANT": "КАНСУЛЬТАНТ",
   "CALL_SENT_WAIT": "ВЫКЛІК АДПРАЎЛЕНЫ, ЧАКАЙЦЕ",
   "FREE_STOP": "БЯСПЛАТНЫ СТОП",
-  "STOP": "СТОП", 
+  "STOP": "СТОП",
   "CONTINUE": "ПРАЦЯГНУЦЬ",
   "MAKE_A_PAYMENT": "УНЕСІЦЕ АПЛАТУ",
   "Insert_banknotes_or_coins": "Унясіце купюры ці манеты, па завяршэнні націсніце кнопку ніжэй",
@@ -24,7 +24,7 @@
   "DISK": "ДЫСКІ",
   "MOSQUITO": "МАСКІТ",
   "FOAM": "ПЕНА",
-  "FOAM_COLOR": "ПЕНА КОЛЕР", 
+  "FOAM_COLOR": "ПЕНА КОЛЕР",
   "BRUSH": "ШЧОТКА",
   "BRUSH_COLOR": "ШЧОТКА КОЛЕР",
   "SHAMPOO_X2": "ШАМПУНЬ X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "ДЭЗІНФЕКЦЫЯ",
   "BLACKING": "ЧАРНЕННЕ",
   "DOORSILL": "ПАРОГІ",
-  
+
   "COMPLETE_PAYMENT": "ЗАВЯРШЫЦЬ АПЛАТУ",
   "RETURN_BONUSES_UP": "ВЯРНУЦЬ БОНУСАМІ ДА 30% ЗАВЯРШЫЦЬ АПЛАТУ",
   "APPEND": "ЗАЛІЧЫЦЬ",
   "CONFIRM": "ПАДЦЯРЗІЦЬ",
 
-  "To_enter_the_system": "Для ўваходу ў сістэму ўвядзіце нумар тэлефона ці адсканіруйце QR код", 
+  "To_enter_the_system": "Для ўваходу ў сістэму ўвядзіце нумар тэлефона ці адсканіруйце QR код",
   "To_credit_Bonuses_to_your_account": "Для залічэння бонусаў, увядзіце нумар тэлефона",
   "By_clicking_on_CONFIRM": "Націскаючы ПАДЦЯРЗІЦЬ, Вы даеце сваю згоду на адпраўку Вам СМС-паведамленняў і апрацоўку персанальных даных, паводле ўмоў, размешчаных на сайце: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "Аўтарызацыя па QR",
   "Your_balance": "Ваш баланс,",
   "Select_charge_amount": "Выберыце суму спісання",
-  
+
   "Enter_your_password": "Увядзіце ваш пароль",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "у меню налад",
-  
+
   "The_status_of_the_operation": "Статус выканання аперацыі:",
   "Connection_to_the_bank_terminal": "Падключэнне да банкаўскага тэрмінала...",
   "Failed_to_connect_to_the_bank_terminal": "Не атрымалася падключыцца да банкаўскага тэрмінала",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Паказаць курсор у асноўным акне",
   "Direct_cash_payment": "Прамая аплата наяўнымі",
   "Banking_terminal": "Банкаўскі тэрмінал",
-  
+
   "System": "Сістэма",
   "Panel": "Панэль",
   "Bill_acceptor": "Купюрапрымальнік",
@@ -110,7 +110,7 @@
 
   "Language": "Мова",
   "Currency": "Валюта",
-  
+
   "Type_of_panel": "Тып панэлі",
   "Panel_number": "Нумар панэлі",
   "Vacuum_number": "Нумар пыласоса",
@@ -152,20 +152,10 @@
   "INPUT": "УВОД",
   "EXIT": "ВЫХОД",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
 
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
@@ -182,5 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
 }

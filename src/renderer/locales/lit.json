@@ -13,7 +13,7 @@
   "CONSULTANT": "KONSULTANTAS",
   "CALL_SENT_WAIT": "KVIETIMAS IŠSIUSTAS - LAUKITE",
   "FREE_STOP": "NEMOKAMAS SUSTOJIMAS",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "TĘSTI",
   "MAKE_A_PAYMENT": "APMOKĖTI",
   "Insert_banknotes_or_coins": "Įneškite kupiūras arba monetas, o pabaigus paspauskite žemiau esantį mygtuką",
@@ -24,7 +24,7 @@
   "DISK": "DISKAI",
   "MOSQUITO": "VABALŲ",
   "FOAM": "PUTOS",
-  "FOAM_COLOR": "PUTŲ SPALVA", 
+  "FOAM_COLOR": "PUTŲ SPALVA",
   "BRUSH": "ŠEPETYS",
   "BRUSH_COLOR": "ŠEPEČIO SPALVA",
   "SHAMPOO_X2": "ŠAMPŪNAS X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DEZINFEKCIJA",
   "BLACKING": "JUODAVIMAS",
   "DOORSILL": "SLENKSTIS",
-  
+
   "COMPLETE_PAYMENT": "UŽBAIGTI MOKESTĮ",
   "RETURN_BONUSES_UP": "GRĮŽTI PREMIJOS IKI 30% UŽBAIGTI MOKESTĮ",
   "APPEND": "PAPILDYTI",
   "CONFIRM": "PATVIRTINTI",
 
-  "To_enter_the_system": "Norėdami įvesti sistemą, įveskite numerį telefonu arba nuskaitykite QR kodą", 
+  "To_enter_the_system": "Norėdami įvesti sistemą, įveskite numerį telefonu arba nuskaitykite QR kodą",
   "To_credit_Bonuses_to_your_account": "Tam, kad būtų įskaičiuoti taškai įveskite savo telefono numerį",
   "By_clicking_on_CONFIRM": "Spustelėdami PAPILDYTI, jūs sutinkate su siuntimu SMS žinutės ir asmeninių duomenų tvarkymas jums, pagal sąlygas, paskelbtas svetainėje: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "Autorizavimas naudojantis QR kodu",
   "Your_balance": "Jūsų balansas,",
   "Select_charge_amount": "Select charge amount",
-  
+
   "Enter_your_password": "Įvesti slaptažodį",
   "for_Alles_Bonus": " Alles Bonus",
   "to_enter_the_settings_menu": "nustatymų meniu",
-  
+
   "The_status_of_the_operation": "Operacijos įvykdymo lygis:",
   "Connection_to_the_bank_terminal": "Prisijungimas prie banko terminalo...",
   "Failed_to_connect_to_the_bank_terminal": "Nepavyko prisijungti prie banko terminalo",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Rodyti žymeklį pagrindiniame lange",
   "Direct_cash_payment": "Tiesioginis mokėjimas grynaisiais",
   "Banking_terminal": "Banko terminalas",
-  
+
   "System": "Sistema",
   "Panel": "Panelis",
   "Bill_acceptor": "Vekselio priėmėjas",
@@ -110,7 +110,7 @@
 
   "Language": "Kalba",
   "Currency": "Valiuta",
-  
+
   "Type_of_panel": "Skydelio tipas",
   "Panel_number": "Skydelio numeris",
   "Vacuum_number": "Dulkių siurblio numeris",
@@ -151,21 +151,11 @@
 
   "INPUT": "ĮVESTIS",
   "EXIT": "IŠĖJIMAS",
-  
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
+  "Check_out_another_post": "Atsiprašome, kad kažkas nutiko. Patikrinkite kitą įrašą",
+  "Take_screenshot_of_ your_balance": "Padarykite likusio balanso ekrano kopiją",
+  "Contact_the_operator": "Susisiekite su operatoriumi",
+  "Call_tech_support": "Skambinkite techninei pagalbai",
 
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
@@ -182,17 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

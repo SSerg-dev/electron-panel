@@ -43,11 +43,11 @@
           }}</a>
         </li>
 
-        <li @click="setProgram('alarms')" class="tab col s3">
+        <!-- <li @click="setProgram('alarms')" class="tab col s3">
           <a class="black-text" href="#swipe-5" style="font-size: 32px">{{
             `Alarms`
           }}</a>
-        </li>
+        </li> -->
       </ul>
       <!-- end ul -->
 
@@ -808,7 +808,8 @@
       </div>
 
       <!-- dev to do alarms-->
-      <div
+
+      <!-- <div
         id="swipe-5"
         class="col s8 black"
         style="box-shadow: 10px 10px 10px #00b9e3"
@@ -824,7 +825,7 @@
           </div>
         </div>
 
-      </div>
+      </div> -->
 
       <!-- valign="center" -->
       <div class="row right">

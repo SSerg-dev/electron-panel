@@ -13,7 +13,7 @@
   "CONSULTANT": "KONSULTANT",
   "CALL_SENT_WAIT": "SORĞU GÖNDƏRILDI, GÖZLƏYIN",
   "FREE_STOP": "PULSUZ DAYANDIR",
-  "STOP": "DAYANDIR", 
+  "STOP": "DAYANDIR",
   "CONTINUE": "DAVAM",
   "MAKE_A_PAYMENT": "ÖDƏNİŞ EDİN",
   "Insert_banknotes_or_coins": "Əskinasları və qəpikləri daxil etdikdən sonra aşağıdakı düyməni sıxın",
@@ -24,7 +24,7 @@
   "DISK": "DİSKLƏR",
   "MOSQUITO": "AĞCAQANAD",
   "FOAM": "KÖPÜK",
-  "FOAM_COLOR": "KÖPÜK RƏNG", 
+  "FOAM_COLOR": "KÖPÜK RƏNG",
   "BRUSH": "FIRÇA",
   "BRUSH_COLOR": "FIRÇA RƏNG",
   "SHAMPOO_X2": "ŞAMPUN X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DEZİNFEKSİYA",
   "BLACKING": "QARALMA",
   "DOORSILL": "QAPI",
-  
+
   "COMPLETE_PAYMENT": "ÖDƏNİŞİ TAMAMLA",
   "RETURN_BONUSES_UP": "QAYIDIR UP 30% ÖDƏNİŞİ TAMAMLA",
   "APPEND": "ƏLAVƏ EDİN",
   "CONFIRM": "TƏSDİQ EDİN",
 
-  "To_enter_the_system": "Sistemə daxil olmaq üçün telefon nömrənizi daxil edin və ya QR-kodu skan edin", 
+  "To_enter_the_system": "Sistemə daxil olmaq üçün telefon nömrənizi daxil edin və ya QR-kodu skan edin",
   "To_credit_Bonuses_to_your_account": "Bonusları hesabınıza köçürmək üçün telefon nömrənizi daxil edin",
   "By_clicking_on_CONFIRM": "TƏSDİQ et üzərinə klikləməklə, siz internet səhifəsində qeyd olunan şərtlərə uyğun olaraq sizə SMS mesajları göndərməyə və şəxsi məlumatların emalına razılığınızı verirsiniz: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "QR ilə avtorizasiya",
   "Your_balance": "Balansınız,",
   "Select_charge_amount": "Ödəniş məbləğini seçin",
-  
+
   "Enter_your_password": "Şifrənizi daxil edin",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "parametrlər menyusu",
-  
+
   "The_status_of_the_operation": "Əməliyyatın yerinə yetirilmə statusu:",
   "Connection_to_the_bank_terminal": "Bank terminalı ilə bağlantı...",
   "Failed_to_connect_to_the_bank_terminal": "Bank terminalı ilə bağlantı yaratmaq mümkün olmadı",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Kursoru əsas pəncərədə göstərin",
   "Direct_cash_payment": "Birbaşa nağd ödəniş",
   "Banking_terminal": "Bank terminalı",
-  
+
   "System": "Sistem",
   "Panel": "Panel",
   "Bill_acceptor": "Banknot qəbul edən",
@@ -110,7 +110,7 @@
 
   "Language": "Dil",
   "Currency": "Valyuta",
-  
+
   "Type_of_panel": "Panel növü:",
   "Panel_number": "Panel nömrəsi:",
   "Vacuum_number": "Tozsoran nömrəsi",
@@ -152,21 +152,11 @@
   "INPUT": "GİRİŞ",
   "EXIT": "ÇIXIŞ",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,6 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
 }

@@ -13,7 +13,7 @@
   "CONSULTANT": "КОНСУЛЬТАНТ",
   "CALL_SENT_WAIT": "ЧАКЫРУУ ЖӨНОТҮЛДҮ, КҮТҮҢҮЗ",
   "FREE_STOP": "АКЫСЫЗ ТОКТО",
-  "STOP": "ТОКТО", 
+  "STOP": "ТОКТО",
   "CONTINUE": "УЛАНТУУ",
   "MAKE_A_PAYMENT": "ТӨЛӨМ ТӨЛӨҢҮЗ",
   "Insert_banknotes_or_coins": "Акчаны же тыйынды киргизиңиз, аяктагандан кийин төмөнкү баскычты басыңыз",
@@ -24,7 +24,7 @@
   "DISK": "ДИСКТЕР",
   "MOSQUITO": "МОСКИТ",
   "FOAM": "КӨБҮК",
-  "FOAM_COLOR": "КӨБҮК ТҮС", 
+  "FOAM_COLOR": "КӨБҮК ТҮС",
   "BRUSH": "КЫЛ КАЛЕМ",
   "BRUSH_COLOR": "КЫЛ КАЛЕМ ТҮС",
   "SHAMPOO_X2": "ШАМПУНЬ X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "ДЕЗИНФЕКЦИЯ",
   "BLACKING": "КАРАЛУУ",
   "DOORSILL": "ЭШИК",
-  
+
   "COMPLETE_PAYMENT": "ТОЛУК ТӨЛӨӨ",
   "RETURN_BONUSES_UP": "30ГА ЧЕЙИН КАЙТАРУУ% ТОЛУК ТӨЛӨӨ",
   "APPEND": "КОШУУ",
   "CONFIRM": "ЫРАСТОО",
 
-  "To_enter_the_system": "Тутумга кирүү үчүн телефон номериңизди киргизиңиз же QR кодду сканерлеңиз", 
+  "To_enter_the_system": "Тутумга кирүү үчүн телефон номериңизди киргизиңиз же QR кодду сканерлеңиз",
   "To_credit_Bonuses_to_your_account": "Бонустарды эсепке алуу үчүн телефон номериңизди киргизиңиз",
   "By_clicking_on_CONFIRM": "ЖАКШЫРУУ баскычын чыкылдатуу менен, сиз веб-сайтта көрсөтүлгөн шарттарга ылайык, сизге SMS билдирүүлөрдү жөнөтүүгө жана жеке маалыматтарды иштетүүгө макулдугуңузду бересиз.: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "QR боюнча авторлоштуруу",
   "Your_balance": "Сиздин балансыңыз,",
   "Select_charge_amount": "Төлөмдүн суммасын тандаңыз",
-  
+
   "Enter_your_password": "Сырсөзүңүздү киргизиңиз",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "орнотуулар менюсу",
-  
+
   "The_status_of_the_operation": "Оепрациянын аткаруу статусу:",
   "Connection_to_the_bank_terminal": "Банк терминалына туташуу...",
   "Failed_to_connect_to_the_bank_terminal": "Банктык терминалга кошулууга мүмкүн болгон жок",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Курсорду негизги терезеде көрсөтүү",
   "Direct_cash_payment": "Түздөн-түз накталай төлөм",
   "Banking_terminal": "Банк терминалы",
-  
+
   "System": "Система",
   "Panel": "Панел",
   "Bill_acceptor": "Банкнотторду кабыл алуучу",
@@ -110,7 +110,7 @@
 
   "Language": "Тил",
   "Currency": "Валюта",
-  
+
   "Type_of_panel": "Панели түрү",
   "Panel_number": "Панель номуру",
   "Vacuum_number": "Чаң соргучтун номери",
@@ -152,21 +152,11 @@
   "INPUT": "КИРҮҮ",
   "EXIT": "КЕТҮҮ",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,6 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
 }

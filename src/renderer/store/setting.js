@@ -14,7 +14,8 @@ export default {
     vacuumNumber: 1,
     payment: 1,
     isTooltipInstalled: true,
-    cardLimitMax: 0
+    cardLimitMax: 0,
+
   }, // end state
 
   // getters
@@ -145,7 +146,7 @@ export default {
     },
     getIncrement(state) {
       return state.increment
-    }
+    },
   }, // end getters
 
   // mutations
@@ -251,11 +252,10 @@ export default {
     },
     setConfig(state, config) {
       state.config = config
-      /* dev */
       state.cardLimitMax = state.config.bank_terminal.max_sum
-      
-      //console.log('!!++state.config-->', state.config.languages.default)
-    }
+    },
+    
+    
     /* setTooltipInstalled(state, isTooltipInstalled) {
       state.isTooltipInstalled = isTooltipInstalled
     }, */

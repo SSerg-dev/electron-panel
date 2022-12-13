@@ -13,7 +13,7 @@
   "CONSULTANT": "KONZULTANT",
   "CALL_SENT_WAIT": "POZIV JE POSLAN, ČEKAJTE",
   "FREE_STOP": "BESPLATNO STOP",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "NASTAVITI",
   "MAKE_A_PAYMENT": "PLATITI",
   "Insert_banknotes_or_coins": "Umetnite novčanice ili kovanice, kad završite, kliknite donji gumb",
@@ -24,7 +24,7 @@
   "DISK": "DISKOVI",
   "MOSQUITO": "MOSKIT",
   "FOAM": "PJENA",
-  "FOAM_COLOR": "PJENA BOJA", 
+  "FOAM_COLOR": "PJENA BOJA",
   "BRUSH": "ČETKA",
   "BRUSH_COLOR": "ČETKA BOJA",
   "SHAMPOO_X2": "ŠAMPON X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DEZINFEKCIJA",
   "BLACKING": "CRNJENJE",
   "DOORSILL": "PRAG VRATA",
-  
+
   "COMPLETE_PAYMENT": "ZAVRŠITI PLAĆANJE",
   "RETURN_BONUSES_UP": "VRATITI BODOVIMA DO 30% ZAVRŠITI PLAĆANJE",
   "APPEND": "DODATI",
   "CONFIRM": "POTVRDI",
 
-  "To_enter_the_system": "Da uđete u sistem treba da unesite broj telefona ili da skenirajte QR kod", 
+  "To_enter_the_system": "Da uđete u sistem treba da unesite broj telefona ili da skenirajte QR kod",
   "To_credit_Bonuses_to_your_account": "Da biste dodali bonuse na svoj račun, unesite svoj broj telefona",
   "By_clicking_on_CONFIRM": "Klikom na POTVRDI dajete suglasnost za slanje SMS poruka i obradu Vaših osobnih podataka, prema uvjetima navedenim na web stranici: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "Autorizacija preko QR",
   "Your_balance": "Vaša ravnoteža,",
   "Select_charge_amount": "Izaberite iznos terećenja sredstava s računa",
-  
+
   "Enter_your_password": "Unesite svoju lozinku",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "izbornik postavki",
-  
+
   "The_status_of_the_operation": "Status ispunjavanja operacije:",
   "Connection_to_the_bank_terminal": "Spajanje sa bankovnim terminalom...",
   "Failed_to_connect_to_the_bank_terminal": "Nije uspjelo povezivanje sa bankovnim terminalom",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Prikaži kursor u glavnom prozoru",
   "Direct_cash_payment": "Izravno gotovinsko plaćanje",
   "Banking_terminal": "Bankovni terminal",
-  
+
   "System": "Sustav",
   "Panel": "Ploča",
   "Bill_acceptor": "Prihvatnik novčanica",
@@ -110,7 +110,7 @@
 
   "Language": "Jezik",
   "Currency": "Valuta",
-  
+
   "Type_of_panel": "Vrsta ploče",
   "Panel_number": "Broj ploče",
   "Vacuum_number": "Broj usisavača",
@@ -152,21 +152,11 @@
   "INPUT": "ULAZNI",
   "EXIT": "IZLAZ",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,6 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
 }

@@ -13,7 +13,7 @@
   "CONSULTANT": "КЕҢЕСШІ",
   "CALL_SENT_WAIT": "ШАҚЫРУ ЖІБЕРІЛДІ, КҮТІҢІЗ",
   "FREE_STOP": "ТОҚТАУСЫЗ ТОҚТАТУ",
-  "STOP": "ТОҚТАУ", 
+  "STOP": "ТОҚТАУ",
   "CONTINUE": "ЖҮРГІЗІЛДІ",
   "MAKE_A_PAYMENT": "ТӨЛЕМ ЕТІҢІЗ",
   "Insert_banknotes_or_coins": "Купюралар немесе монеталар жасаңыз, соңында төмендегі түймені басыңыз",
@@ -24,7 +24,7 @@
   "DISK": "ДИСКІЛЕР",
   "MOSQUITO": "АНТИМОСК",
   "FOAM": "КӨБІК",
-  "FOAM_COLOR": "КӨБІК ТҮСІ", 
+  "FOAM_COLOR": "КӨБІК ТҮСІ",
   "BRUSH": "ЩЕТКА",
   "BRUSH_COLOR": "ЩЕТКА ТҮСІ",
   "SHAMPOO_X2": "СУСАБЫН X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "ДЕЗИНФЕКЦИЯ",
   "BLACKING": "ҚАРАТУ",
   "DOORSILL": "ЕСІК",
-  
+
   "COMPLETE_PAYMENT": "ТӨЛЕМДІ АЯҚТАУ",
   "RETURN_BONUSES_UP": "30 ДЕЙІН ҚАЙТАРУ% ТӨЛЕМДІ АЯҚТАУ",
   "APPEND": "ТІРКЕЛУ",
   "CONFIRM": "РАСТАУ",
 
-  "To_enter_the_system": "Жүйеге кіру үшін нөмірді енгізіңіз немесе QR кодын сканерлеу", 
+  "To_enter_the_system": "Жүйеге кіру үшін нөмірді енгізіңіз немесе QR кодын сканерлеу",
   "To_credit_Bonuses_to_your_account": "Сіздің шотыңызға бонустарды есептеу үшін телефон нөмірін енгізіңіз",
   "By_clicking_on_CONFIRM": "ТІРКЕЛУ түймесін басу арқылы сіз жіберуге келісесіз Сіз SMS хабарламалар мен жеке деректерді өңдейсіз, веб-сайтта орналастырылған шарттарға сәйкес: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "QR бойынша авторизация",
   "Your_balance": "Сіздің балансыңыз,",
   "Select_charge_amount": "Есептен шығару сомасын таңдаңыз",
-  
+
   "Enter_your_password": "Құпия сөзді еңгізіңіз",
   "for_Alles_Bonus": "ALLES Bonus-тың",
   "to_enter_the_settings_menu": "параметрлер мәзірі",
-  
+
   "The_status_of_the_operation": "Операцияның орындалу мәртебесі:",
   "Connection_to_the_bank_terminal": "Банк терминалына қосылу...",
   "Failed_to_connect_to_the_bank_terminal": "Қосылу мүмкін емес банк терминалына",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Курсорды негізгі терезеде көрсету",
   "Direct_cash_payment": "Тікелей қолма-қол төлем",
   "Banking_terminal": "Банк терминалы",
-  
+
   "System": "Жүйе",
   "Panel": "Панель",
   "Bill_acceptor": "Вексельді қабылдаушы",
@@ -110,7 +110,7 @@
 
   "Language": "Тілдер",
   "Currency": "Валюта",
-  
+
   "Type_of_panel": "Панель түрі",
   "Panel_number": "Панель нөмірі",
   "Vacuum_number": "Шаңсорғыштың нөмірі",
@@ -151,21 +151,11 @@
 
   "INPUT": "INPUT",
   "EXIT": "ШЫҒУ",
-  
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
+  "Check_out_another_post": "Бірдеңе дұрыс болмады деп өкінеміз. Басқа постты тексеріңіз",
+  "Take_screenshot_of_ your_balance": "Қалған баланстың скриншотын алыңыз",
+  "Contact_the_operator": "Операторға хабарласыңыз",
+  "Call_tech_support": "Техникалық қолдау қызметіне қоңырау шалыңыз",
 
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
@@ -182,10 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
-
-
-
-
 }

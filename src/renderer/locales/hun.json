@@ -13,7 +13,7 @@
   "CONSULTANT": "TANÁCSADÓ",
   "CALL_SENT_WAIT": "HÍVÁST KÜLDTE EL, VÁRJON MEG",
   "FREE_STOP": "INGYENES STOP",
-  "STOP": "STOP", 
+  "STOP": "STOP",
   "CONTINUE": "FOLYTATÁS",
   "MAKE_A_PAYMENT": "FIZETNI",
   "Insert_banknotes_or_coins": "Helyezze be a bankjegyet vagy érméket, ha kész, kattintson az alábbi gombra",
@@ -24,7 +24,7 @@
   "DISK": "TÁRCSÁK",
   "MOSQUITO": "SZÚNYOG",
   "FOAM": "HAB",
-  "FOAM_COLOR": "HAB SZÍN", 
+  "FOAM_COLOR": "HAB SZÍN",
   "BRUSH": "KEFE",
   "BRUSH_COLOR": "KEFE SZÍN",
   "SHAMPOO_X2": "SAMPON X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "FERTŐTLENÍTÉS",
   "BLACKING": "FEKETE",
   "DOORSILL": "DOORSILL",
-  
+
   "COMPLETE_PAYMENT": "BEFIZETÉS VÉGZÉSE",
   "RETURN_BONUSES_UP": "VISSZATÉRÉS 30-RA% BEFIZETÉS VÉGZÉSE",
   "APPEND": "MELLÉKEL",
   "CONFIRM": "MEGERŐSÍT",
 
-  "To_enter_the_system": "A rendszerbe való belépésére vezesse be a telefonszámát vagy olvassa le a QR-kódot", 
+  "To_enter_the_system": "A rendszerbe való belépésére vezesse be a telefonszámát vagy olvassa le a QR-kódot",
   "To_credit_Bonuses_to_your_account": "Ha bónuszokat szeretne jóváírni a számláján, adja meg telefonszámát",
   "By_clicking_on_CONFIRM": "A MEGERŐSÍTÉS gombra kattintva hozzájárul ahhoz, hogy a weboldalon közzétett feltételek szerint SMS-eket küldjünk Önnek és személyes adatok feldolgozásához: www.alles-bonus.com",
 
   "Authorization_using_a_QR": "QR szerinti azonosítás",
   "Your_balance": "Az egyensúlyod,",
   "Select_charge_amount": "Válassza ki a díj összegét",
-  
+
   "Enter_your_password": "Írd be a jelszavad",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "beállítások menü",
-  
+
   "The_status_of_the_operation": "Művelet állapota:",
   "Connection_to_the_bank_terminal": "Bankterminálhoz való csatlakozása...",
   "Failed_to_connect_to_the_bank_terminal": "Nincs lapcsolat a bankterminálhoz",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "A kurzor megjelenítése a főablakban",
   "Direct_cash_payment": "Közvetlen készpénzes fizetés",
   "Banking_terminal": "Bank terminál",
-  
+
   "System": "Rendszer",
   "Panel": "Panel",
   "Bill_acceptor": "Bankjegy elfogadó",
@@ -110,7 +110,7 @@
 
   "Language": "Nyelv",
   "Currency": "Valuta",
-  
+
   "Type_of_panel": "A panel típusa",
   "Panel_number": "A panel száma:",
   "Vacuum_number": "Porszívó száma",
@@ -152,21 +152,11 @@
   "INPUT": "BEMENET",
   "EXIT": "KIJÁRAT",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,6 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
 }

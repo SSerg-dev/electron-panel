@@ -36,7 +36,7 @@
                       { 'button-white-title': this.isDown.yes }
                     ]"
                   >
-                    {{ `${this.buttonTitle[this.buttonTitleIndex]}` }}
+                    {{ `${this.buttonTitle[this.buttonTitleIndex]}` | localize}}
                   </div>
                 </div>
               </td>
@@ -58,7 +58,7 @@
                       { 'button-white-title': this.isDown.no }
                     ]"
                   >
-                    {{ `${this.buttonTitle[this.buttonTitleIndex + 1]}` }}
+                    {{ `${this.buttonTitle[this.buttonTitleIndex + 1]}` | localize}}
                   </div>
                 </div>
               </td>
@@ -132,7 +132,8 @@ export default {
     ],
     messageIndex: -1,
 
-    buttonTitle: [`ДА`, `НЕТ`],
+    // buttonTitle: [`ДА`, `НЕТ`],
+    buttonTitle: [`OK`, `Cancel`],
     buttonTitleIndex: -1,
 
     programName: '',

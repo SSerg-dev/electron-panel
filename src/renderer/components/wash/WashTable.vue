@@ -2,7 +2,6 @@
   <div>
     <div class="locate">
       <section>
-
         <div class="message">
           <div><Message /></div>
         </div>
@@ -25,38 +24,34 @@
                 width="70px"
                 style="margin-top: 30px; margin-right: 2px"
               />
-
             </div>
           </div>
         </div>
-
 
         <!-- v-if="!getIsReceiptRead" -->
         <div v-if="this.getIsKktInstalled">
           <div
-          @click="setProgram('receipt')"
-          class="waves-effect receipt"
-          id="button-receipt"
-        >
-          <div
-            class="button-content-style"
-            :class="[
-              { 'card-content black-text': !this.isDown.receipt },
-              { 'card-content white-text': this.isDown.receipt },
-            ]"
+            @click="setProgram('receipt')"
+            class="waves-effect receipt"
+            id="button-receipt"
           >
-            <div>
-              <img
-                src="@/assets/imgs/price/invoice.png"
-                width="70px"
-                style="margin-top: 30px; margin-right: 2px"
-              />
+            <div
+              class="button-content-style"
+              :class="[
+                { 'card-content black-text': !this.isDown.receipt },
+                { 'card-content white-text': this.isDown.receipt },
+              ]"
+            >
+              <div>
+                <img
+                  src="@/assets/imgs/price/invoice.png"
+                  width="70px"
+                  style="margin-top: 30px; margin-right: 2px"
+                />
+              </div>
             </div>
-            
           </div>
         </div>
-        </div>
-        
 
         <!-- v-if="!getIsMoneyToBonus" -->
         <!-- dev hidden -->
@@ -96,10 +91,12 @@
           <WashTableBonus :actives="actives" />
         </div> -->
 
-        <div v-if="!this.isVisibleWashTableBonus && this.isVisibleWashTableAlarm" class="alarm">
+        <div
+          v-if="!this.isVisibleWashTableBonus && this.isVisibleWashTableAlarm"
+          class="alarm"
+        >
           <WashTableAlarm :actives="actives" />
         </div>
-
 
         <!-- to do Bonus -->
         <!-- <div v-if="!this.isVisibleWashTableAlarm && !this.isVisibleWashTableBonus" :key="getWetProgShow"> -->
@@ -192,7 +189,7 @@
               <tr
                 v-if="this.actives[4].display !== 'none'"
                 :key="this.keys.keyDryShineEx"
-                style="height: 132px"
+                style="height: 150px"
               >
                 <WashTableDryShineEx :actives="actives" />
               </tr>
@@ -280,7 +277,9 @@
                   v-if="this.actives[18].display !== 'none'"
                   :key="this.keys.keyWasher"
                 >
-                  <WashTableWasher :actives="actives" />
+                  <WashTableWasher
+                    :actives="actives"
+                  />
                 </tr>
               </div>
 
@@ -323,10 +322,11 @@ import WashTableDisinfection from '@/components/wash/actives/WashTableDisinfecti
 import WashTableBonus from '@/components/wash/WashTableBonus'
 import WashTableAlarm from '@/components/wash/WashTableAlarm'
 
-
 import { dateFilter, getRndInteger, log } from '@/utils/order.js'
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
+
+import { buttonSizeOptions } from '@/shapes/index.js'
 
 export default {
   data: () => ({
@@ -340,7 +340,7 @@ export default {
     timeoutDelay: null,
     isVisible: false,
     isVisibleWashTableBonus: false,
-    isVisibleWashTableAlarm: true,
+    isVisibleWashTableAlarm: false,
 
     /*  */
     keys: {
@@ -389,6 +389,24 @@ export default {
     currency: '',
     symbol: '',
     currencies: [],
+
+    /* dev */
+    /* 
+    buttonDryWidth: {
+      vacuum: null,
+      turboDryer: null,
+      air: null,
+      washer: null,
+    },
+    buttonSizeOptions: buttonSizeOptions,
+
+    // clone
+    _buttonSizeOptions: null */
+    
+    /*     */
+
+
+    
   }),
   components: {
     Message,
@@ -409,7 +427,7 @@ export default {
     WashTableDegrease,
     WashTableDisinfection,
     WashTableBonus,
-    WashTableAlarm
+    WashTableAlarm,
   },
   props: {
     actives: {
@@ -454,13 +472,10 @@ export default {
     getWetProgShow(flag) {
       // vacuum +
       //console.log(this.actives[16].title, '-->',this.actives[16].display)
-      
       // air
       // console.log(this.actives[17].title, '-->',this.actives[17].display)
-
       // turboDryer
       // console.log(this.actives[26]?.title, '-->',this.actives[26]?.display)
-
     },
     seconds(flag) {
       // console.log('++this.seconds-->flag--> ', flag)
@@ -623,13 +638,13 @@ export default {
           break
         case 'price':
           this.isDown.price = true
-          break  
+          break
         case 'receipt':
           this.isDown.receipt = true
-          break  
+          break
         case 'bonus':
           this.isDown.bonus = true
-          break  
+          break
 
         default:
           break
@@ -761,23 +776,22 @@ export default {
       // button-receipt
       if (this.getIsKktInstalled) {
         this.buttonReceipt = new Button({
-        selector: '#button-receipt',
+          selector: '#button-receipt',
 
-        width: 8.5,
-        height: 8.5,
-        background: 'rgb(255, 255, 255)',
-        border: '0.4em solid rgb(64, 196, 255)',
-        boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
-        borderRadius: 1, // 2
-        fontSize: '1em',
+          width: 8.5,
+          height: 8.5,
+          background: 'rgb(255, 255, 255)',
+          border: '0.4em solid rgb(64, 196, 255)',
+          boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
+          borderRadius: 1, // 2
+          fontSize: '1em',
 
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      })
-
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        })
       }
-      
+
       // button bonus
       /* dev hidden */
 
@@ -952,7 +966,7 @@ export default {
 
 table {
   position: absolute;
-  margin-top: 27em; /* 18em */
+  margin-top: 25.5em; /* 18em */
   margin-left: 2.5em;
 
   font-family: 'Plumb-Medium';

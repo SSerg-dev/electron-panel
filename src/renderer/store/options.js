@@ -186,7 +186,8 @@ export default {
       balance: 0,
       firstname: '',
       lastname: ''
-    }
+    },
+    
 
   }, // end state
   // Options

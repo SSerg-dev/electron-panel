@@ -13,7 +13,7 @@
   "CONSULTANT": "مشاور",
   "CALL_SENT_WAIT": "درخواست شما ارسال شده است. لطفا صبر کنید.درخواست شما ارسال شده است. لطفا صبر کنید",
   "FREE_STOP": "توقف رایگان",
-  "STOP": "متوقف", 
+  "STOP": "متوقف",
   "CONTINUE": "ادامه",
   "MAKE_A_PAYMENT": "ایجاد یک پرداخت",
   "Insert_banknotes_or_coins": "لطفا اسکناس یا سکه را داخل دستگاه گذاشته سپس دکمه پایین را فشار دهید",
@@ -24,7 +24,7 @@
   "DISK": "دیسک چرخ",
   "MOSQUITO": "ضد حشره",
   "FOAM": "کف",
-  "FOAM_COLOR": "رنگ فوم", 
+  "FOAM_COLOR": "رنگ فوم",
   "BRUSH": "قلم مو",
   "BRUSH_COLOR": "رنگ قلم مو",
   "SHAMPOO_X2": "X2 شامپو",
@@ -46,24 +46,24 @@
   "DISINFECTION": "ضد عفونی",
   "BLACKING": "سیاه شدن",
   "DOORSILL": "درب",
-  
+
   "COMPLETE_PAYMENT": "پرداخت کامل",
   "RETURN_BONUSES_UP": "بازپرداخت حداکثر 30٪ پرداخت کامل",
   "APPEND": "ضمیمه",
   "CONFIRM": "تایید",
 
-  "To_enter_the_system": "برای ورود به سیستم، شماره تلفن را وارد کنید یا کد QR را اسکن کنید", 
+  "To_enter_the_system": "برای ورود به سیستم، شماره تلفن را وارد کنید یا کد QR را اسکن کنید",
   "To_credit_Bonuses_to_your_account": "برای واریز پاداش به حساب خود، شماره تلفن خود را وارد کنید",
   "By_clicking_on_CONFIRM": "www.alles-bonus.com با کلیک بر روی تایید، رضایت خود را برای ارسال پیامک و پردازش اطلاعات شخصی برای شما، طبق شرایط مندرج در وب سایت اعلام می کنید.",
 
   "Authorization_using_a_QR": "شناسایی از روی QR",
   "Your_balance": "تعادل شما",
   "Select_charge_amount": "مقدار شارژ را انتخاب کنید",
-  
+
   "Enter_your_password": "رمز عبور خود را وارد کنید",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "منوی تنظیمات",
-  
+
   "The_status_of_the_operation": "وضعیت انجام پردازش",
   "Connection_to_the_bank_terminal": "اتصال به پایانه بانک",
   "Failed_to_connect_to_the_bank_terminal": "اتصال به پایانه بانک انجام نشد",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "نمایش مکان نما در پنجره اصلی",
   "Direct_cash_payment": "پرداخت مستقیم نقدی",
   "Banking_terminal": "پایانه بانک",
-  
+
   "System": "سیستم",
   "Panel": "تابلو",
   "Bill_acceptor": "پذیرنده اسکناس",
@@ -110,7 +110,7 @@
 
   "Language": "زبان",
   "Currency": "ارز",
-  
+
   "Type_of_panel": "نوع پانل",
   "Panel_number": "شماره پنل",
   "Vacuum_number": "شماره جاروبرقی",
@@ -152,21 +152,11 @@
   "INPUT": "ورودی",
   "EXIT": "خروج",
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
+  "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
+  "Contact_the_operator": "Contact the operator",
+  "Call_tech_support": "Call tech support",
+
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",
   "Enter_valid_phone_number": "Please enter a valid phone number",
@@ -182,6 +172,4 @@
 
   "Wash_program_completed_successfully": "Wash program completed successfully",
   "Not_enough_money": "Not enough money"
-
-
 }

@@ -13,7 +13,7 @@
   "CONSULTANT": "DANIŞMAN",
   "CALL_SENT_WAIT": "ÇAĞRI GÖNDERİLDİ, BEKLEYİN",
   "FREE_STOP": "ÜCRETSİZ DUR",
-  "STOP": "DUR", 
+  "STOP": "DUR",
   "CONTINUE": "DEVAM ET",
   "MAKE_A_PAYMENT": "BİR ÖDEME YAPMAK",
   "Insert_banknotes_or_coins": "Kağıt veya madeni paraları ekleyin, bittiğinde aşağıdaki düğmeyi tıklayın",
@@ -24,7 +24,7 @@
   "DISK": "DİSKLER",
   "MOSQUITO": "MOSKIT",
   "FOAM": "KÖPÜK",
-  "FOAM_COLOR": "KÖPÜK RENK", 
+  "FOAM_COLOR": "KÖPÜK RENK",
   "BRUSH": "FIRÇA",
   "BRUSH_COLOR": "FIRÇA RENK",
   "SHAMPOO_X2": "ŞAMPUAN X2",
@@ -46,24 +46,24 @@
   "DISINFECTION": "DEZENFEKSİYON",
   "BLACKING": "SİYAH",
   "DOORSILL": "KAPI EŞİĞİ",
-  
+
   "COMPLETE_PAYMENT": "ÖDEMEYİ TAMAMLA",
   "RETURN_BONUSES_UP": "30'A KADAR GERİ DÖN% ÖDEMEYİ TAMAMLA",
   "APPEND": "EKLE",
   "CONFIRM": "ONAYLAMAK",
 
-  "To_enter_the_system": "Sisteme giriş yapmak için telefon numaranızı girin veya  QR kodunu tarayın", 
+  "To_enter_the_system": "Sisteme giriş yapmak için telefon numaranızı girin veya  QR kodunu tarayın",
   "To_credit_Bonuses_to_your_account": "Bonusları hesabınıza yatırmak için telefon numaranızı girin",
   "By_clicking_on_CONFIRM": "EKLE u tıklayarak, www.alles-bonus.com web sitesinde yayınlanan koşullara uygun olarak size SMS mesajı gönderilmesini ve kişisel verilerinizin işlenmesini kabul ediyorsunuz",
 
   "Authorization_using_a_QR": "QR Yetkilendirme",
   "Your_balance": "Bakiyeniz,",
   "Select_charge_amount": "Borçlandırılacak tutarı seçin",
-  
+
   "Enter_your_password": "Şifrenizi girin",
   "for_Alles_Bonus": "Alles Bonus",
   "to_enter_the_settings_menu": "ayarlar menüsü",
-  
+
   "The_status_of_the_operation": "İşlem yerine getirme durumu:",
   "Connection_to_the_bank_terminal": "Banka terminaline bağlantı...",
   "Failed_to_connect_to_the_bank_terminal": "Banka terminaline bağlanılamadı",
@@ -102,7 +102,7 @@
   "Show_cursor_in_the_main_window": "Ana pencerede imleci göster",
   "Direct_cash_payment": "Doğrudan nakit ödeme",
   "Banking_terminal": "Banka terminali",
-  
+
   "System": "Sistem",
   "Panel": "Panel",
   "Bill_acceptor": "Fatura alıcısı",
@@ -110,7 +110,7 @@
 
   "Language": "Dil",
   "Currency": "Para birimi",
-  
+
   "Type_of_panel": "Panel türü",
   "Panel_number": "Panel numarası",
   "Vacuum_number": "E. süpürge numarası",
@@ -152,37 +152,24 @@
   "INPUT": "GİRİŞ",
   "EXIT": "ÇIKIŞ",
 
+  "Check_out_another_post": "Bir şeyler ters gittiği için üzgünüz. Başka bir gönderiye göz atın",
+  "Take_screenshot_of_ your_balance": "Kalan bakiyenizin ekran görüntüsünü alın",
+  "Contact_the_operator": "Operatörle iletişim kurun",
+  "Call_tech_support": "Teknik desteği arayın",
 
+  "__commentMessages": "TODO add messages ",
+  "Amount_more_maximum": "Amount more maximum",
+  "Enter_valid_phone_number": "Please enter a valid phone number",
+  "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
+  "Will_be_paid_by_credit_card": "Will be paid by credit card",
+  "Payment_with_bonuses": "Payment with bonuses",
+  "Enter_the_correct_amount": "Enter the correct amount",
+  "Terminal_operation": "Terminal operation",
+  "approved": "approved, amount:",
+  "rejected": "rejected",
+  "The_payment_successful_amount": "The payment was successful, the deposited amount:",
+  "KKT_not_installed": "KKT not installed",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-"__commentMessages": "TODO add messages ",
-    "Amount_more_maximum": "Amount more maximum",
-    "Enter_valid_phone_number": "Please enter a valid phone number",
-    "Bonuses_awarded_money_for_service_at_the_car_wash": "Bonuses are not awarded, money for service at the car wash",
-    "Will_be_paid_by_credit_card": "Will be paid by credit card",
-    "Payment_with_bonuses": "Payment with bonuses",
-    "Enter_the_correct_amount": "Enter the correct amount",
-    "Terminal_operation": "Terminal operation",
-    "approved": "approved, amount:",
-    "rejected": "rejected",
-    "The_payment_successful_amount": "The payment was successful, the deposited amount:",
-    "KKT_not_installed": "KKT not installed",
-
-    "Wash_program_completed_successfully": "Wash program completed successfully",
-    "Not_enough_money": "Not enough money"
-
-
+  "Wash_program_completed_successfully": "Wash program completed successfully",
+  "Not_enough_money": "Not enough money"
 }
- 
