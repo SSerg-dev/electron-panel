@@ -84,6 +84,12 @@ export default Vue.extend({
       /* dev */
       let activeProgNames = []
       this.showProg = [...this.getShowProgBit()].reverse().join('')
+      /* dev */
+      if (this.showProg.length === 26) {
+        this.showProg = this.showProg + '0'
+      }
+      // console.log('$$ this.showProg', this.showProg.length, this.showProg)
+      
 
       for (let i = 0; i < this.showProg.length; i++) {
         if (this.showProg.toString().slice(i, i + 1) === '0') {
@@ -96,11 +102,12 @@ export default Vue.extend({
       } 
 
       // crutch for :( degrease program
-      if (this.showProg.length === 27) {
-        const index = this.showProg.length
-        this.actives[index].display = 'none'
-        activeProgNames.push(this.actives[index].name)
-      }
+      // if (this.showProg.length === 27) {
+      //   const index = this.showProg.length
+      //   this.actives[index].display = 'none'
+      //   activeProgNames.push(this.actives[index].name)
+
+      // }
       // end crutch :(
       this.setActiveProgNames(activeProgNames)
 

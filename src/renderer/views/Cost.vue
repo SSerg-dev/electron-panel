@@ -272,7 +272,7 @@ h4 {
 
   position: absolute; /*  absolute; relative;*/
   left: 17em;
-  bottom: 11em;
+  bottom: 10em;
 
   background: #121212;
 

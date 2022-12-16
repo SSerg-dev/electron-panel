@@ -100,7 +100,7 @@
                     class="card grey lighten-3"
                     style="
                       border: solid 3px #00b9e3;
-                      width: 360px;
+                      width: 380px;
                       height: 80px;
                       border-top-left-radius: 2em;
                       border-bottom-left-radius: 2em;
@@ -164,7 +164,7 @@
                     class="card grey lighten-3"
                     style="
                       border: solid 3px #00b9e3;
-                      width: 360px;
+                      width: 380px;
                       height: 80px;
                       border-top-left-radius: 2em;
                       border-bottom-left-radius: 2em;
@@ -234,7 +234,7 @@
                     class="card grey lighten-3"
                     style="
                       border: solid 3px #00b9e3;
-                      width: 360px;
+                      width: 380px;
                       height: 80px;
                       border-top-left-radius: 2em;
                       border-bottom-left-radius: 2em;

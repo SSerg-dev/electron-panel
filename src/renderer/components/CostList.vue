@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
 
     <div class="cost-title">
        <p align="center">
@@ -73,8 +73,9 @@ export default Vue.extend({
 
 <style scoped>
 .cost-title {
+  width: 100%;
   position: fixed;
-  left: 6em;
+  left: 0em;
   top:4em;
   color: white;
   font-size: 3.5em;
@@ -101,11 +102,11 @@ ul {
 }
 ul li {
   list-style: none;
-  padding-top: 0.5em; /* 30px */
+  padding-top: 0.5em; 
   background: #121212;
 }
 ul li:nth-child(even) {
-  color: white; /* #00b9e3; */
+  color: white; 
   background: #212121;
 }
 

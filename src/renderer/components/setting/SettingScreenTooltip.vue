@@ -29,7 +29,7 @@
         <!-- row 02 -->
         <div v-if="isTooltipInstalled" class="row">
           <!-- {{`during` | localize}} -->
-          <div class="col s5">
+          <div class="col s6">
             <span
               class="card-title"
               style="padding-top: 6px; padding-left: 12em"

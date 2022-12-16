@@ -122,7 +122,7 @@
   "Model": "Үлгі",
   "Reconciliation_Pax": "Reconciliation Pax",
 
-  "Payment_limits": "Төлем шектеулері",
+  "Payment_limits": "Төлем",
   "Minimum": "Ең аз",
   "Maximum": "Максималды",
   "Tokens": "Токендер",
@@ -140,7 +140,7 @@
   "Collection": "Жинақ",
 
   "Replace_item": "Элементті ауыстыру",
-  "Replace_program": "Бағдарлам ауыстыру",
+  "Replace_program": "Бағдарлам",
 
   "Cash_accounting": "Ақшаны есепке алу",
   "Date": "Күн",

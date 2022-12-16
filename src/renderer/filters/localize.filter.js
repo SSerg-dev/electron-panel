@@ -41,6 +41,8 @@ import chn from '../locales/chn.json'
 import isr from '../locales/isr.json'
 import arb from '../locales/arb.json'
 import che from '../locales/che.json'
+import tat from '../locales/tat.json'
+import kor from '../locales/kor.json'
 
 const locales = {
   'ru-RU': ru,
@@ -84,7 +86,9 @@ const locales = {
   'chn-CHN': chn,
   'isr-ISR': isr,
   'arb-ARB': arb,
-  'che-CHE': che
+  'che-CHE': che,
+  'tat-TAT': tat,
+  'kor-KOR': kor
 
 }
 

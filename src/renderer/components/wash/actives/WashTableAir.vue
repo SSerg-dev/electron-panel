@@ -12,7 +12,7 @@
             { 'card-content white-text': this.isDown.air }
           ]"
         >
-          {{ `${actives[this.activeNumber].title}` | localize }}
+          {{ `${actives[this.activeAirNumber].title}` | localize }}
         </div>
       </div>
     </td>
@@ -24,7 +24,7 @@ import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
-
+import { parseMask } from '@/utils/wash.functions.js'
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
 import { 
@@ -41,6 +41,8 @@ export default Vue.extend({
 
     buttonSizeOptions: buttonSizeOptions,
 
+    extraLargeSizeMasks: ['0100', '0111', '', ''],    
+
     // clone
     _upDryOptions: null,
     _downDryOptions: null,
@@ -50,12 +52,18 @@ export default Vue.extend({
     buttonRight: null,
 
     // native
-    visible: '',
-    activeNumber: 17,
+    visibleAir: '',
+    activeAirNumber: 17,
 
     // neighbor Washer
     visibleWasher: '',
     activeWasherNumber: 18,
+    // Vacuum
+    visibleVacuum: '',
+    activeVacuumNumber: 16,
+    // TurboDryer
+    visibleTurboDryer: '',
+    activeTurboDryerNumber: 26,
 
     active: '',
     timeoutPopup: null,
@@ -151,7 +159,7 @@ export default Vue.extend({
     },
     getKits() {
       const result = []
-      Object.entries(this.actives[this.activeNumber]).map(([key, value]) => {
+      Object.entries(this.actives[this.activeAirNumber]).map(([key, value]) => {
         if (
           key === 'title' ||
           key === 'name' ||
@@ -190,38 +198,46 @@ export default Vue.extend({
       this._downDryOptions = { ...downDryOptions }
       // end clone
 
-      // console.log('++this.visibleAir', this.visibleAir)
+      /* dev */
+      const visibleMask =
+        this.visibleWasher +
+        this.visibleAir +
+        this.visibleTurboDryer +
+        this.visibleVacuum
+        
 
-      if (this.visibleWasher === 'block') {
-        this.restore('left')
-      } else if (
-        this.visibleWasher === 'none' || 
-        this.visibleWasher === 0
-      )  { 
-        this.restore('right')
-      }
-    }, // end initial()
+      const widthSize = parseMask(visibleMask, this.extraLargeSizeMasks)
+      // console.log('$$ Air widthSize', widthSize, visibleMask)
+      this.restore(widthSize)
+
+}, // end initial()
 
     restore(type) {
-      // console.log('++type', type)
 
       switch (type) {
-        case 'left':
-          this._upDryOptions.width = this.upDryOptions.width = 
-            this.buttonSizeOptions.medium + this.buttonSizeOptions.halfMore + this.buttonSizeOptions.suffix
-          this._downDryOptions.width = this.downDryOptions.width = 
-            this.buttonSizeOptions.medium + this.buttonSizeOptions.halfMore + this.buttonSizeOptions.suffix
+        case 'extraLarge':
+          this._upDryOptions.width = this.upDryOptions.width =
+            this.buttonSizeOptions.extraLarge +
+            this.buttonSizeOptions.suffix
+          this._downDryOptions.width = this.downDryOptions.width =
+            this.buttonSizeOptions.extraLarge +
+            this.buttonSizeOptions.suffix
+
           this.buttonLeft.show()
           this.flex()
           break
-        case 'right':
-          this._upDryOptions.width = //'67em'
-            this.buttonSizeOptions.medium + this.buttonSizeOptions.halfMore + this.buttonSizeOptions.suffix
-          this._downDryOptions.width = //'67em'
-            this.buttonSizeOptions.medium + this.buttonSizeOptions.halfMore + this.buttonSizeOptions.suffix
+
+        case 'medium':
+          this._upDryOptions.width = this.upDryOptions.width =
+            this.buttonSizeOptions.medium +
+            this.buttonSizeOptions.suffix
+          this._downDryOptions.width = this.downDryOptions.width =
+            this.buttonSizeOptions.medium +
+            this.buttonSizeOptions.suffix
+
           this.buttonLeft.show()
           this.flex()
-          break
+          break  
 
         default:
           break
@@ -256,10 +272,16 @@ export default Vue.extend({
   },
   mounted() {
     // native
-    this.visible = this.actives[this.activeNumber].display
-    // neighbor Washer
-    this.visibleWasher = this.actives[this.activeWasherNumber].display
+    // Air
+    this.visibleAir = this.actives[this.activeAirNumber].display
 
+    // neighbors
+    // Washer
+    this.visibleWasher = this.actives[this.activeWasherNumber].display
+    // Vacuum
+    this.visibleVacuum = this.actives[this.activeVacuumNumber].display
+    // TurboDryer
+    this.visibleTurboDryer = this.actives[this.activeTurboDryerNumber].display
     this.setup()
   }
 })

@@ -8,8 +8,11 @@
 
   $(npm bin)/electron-rebuild
 
+  // Program.vue 99
+   
   16:19:52.294 › getWetProgShow 132120575
   16:19:53.293 › getWetProgShow 266338303
+
 
   getWetProgStatus
 
@@ -19,3 +22,7 @@
 
 15:31:28.481 › $$ 01 this.getShowProgBit() 111111111111111111111111111
 15:31:28.481 › $$ 02         this.showProg 111111111111111111111111111
+
+// TurboDryer
+132120575  0111 1101
+65011711   0011 1101

@@ -107,7 +107,7 @@ export default Vue.extend({
     this.initial()
     // initial timers
     /* dev */
-    this.$router.push('/program')
+    // this.$router.push('/program')
 
     if (this.getWetBalance > 0) this.$router.push('/cash')
 

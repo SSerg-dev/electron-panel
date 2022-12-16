@@ -13,10 +13,10 @@
           class="button-content-style"
           :class="[
             { 'card-content black-text': !this.isDown.turboDryer },
-            { 'card-content white-text': this.isDown.turboDryer }
+            { 'card-content white-text': this.isDown.turboDryer },
           ]"
         >
-          {{ `${actives[this.activeNumber].title}` | localize}}
+          {{ `${actives[this.activeTurboDryerNumber].title}` | localize }}
         </div>
       </div>
     </td>
@@ -28,14 +28,14 @@ import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
-
+import { parseMask } from '@/utils/wash.functions.js'
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
-import { 
-  upDryOptions, 
-  downDryOptions, 
-  buttonSizeOptions 
-  } from '@/shapes/index.js'
+import {
+  upDryOptions,
+  downDryOptions,
+  buttonSizeOptions,
+} from '@/shapes/index.js'
 
 export default Vue.extend({
   data: () => ({
@@ -43,6 +43,8 @@ export default Vue.extend({
     downDryOptions: downDryOptions,
 
     buttonSizeOptions: buttonSizeOptions,
+
+    extraLargeSizeMasks: ['0010', '', '', ''],
 
     // clone
     _upDryOptions: null,
@@ -53,8 +55,8 @@ export default Vue.extend({
     buttonRight: null,
 
     // native
-    visible: '',
-    activeNumber: 26,
+    visibleTurboDryer: '',
+    activeTurboDryerNumber: 26,
 
     // neighbors
     // Vacuum
@@ -75,42 +77,42 @@ export default Vue.extend({
 
     isDown: {
       turboDryer: false,
-      turboDryer_color: false
-    }
+      turboDryer_color: false,
+    },
   }),
   props: {
     actives: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
   },
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getWetBalance: 'getWetBalance'
-    })
+      getWetBalance: 'getWetBalance',
+    }),
   },
   watch: {
     getWetBalance(flag) {
       if (parseInt(flag) === 0) {
         this.clearDown()
       }
-    }
+    },
   },
   methods: {
     ...mapGetters({
       getActiveProgramKit: 'getActiveProgramKit',
-      getIsActiveProgramKit: 'getIsActiveProgramKit'
+      getIsActiveProgramKit: 'getIsActiveProgramKit',
     }),
     ...mapActions({
-      updateStartProgram: 'updateStartProgram'
+      updateStartProgram: 'updateStartProgram',
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setActiveProgramKit: 'setActiveProgramKit',
-      setIsActiveProgramKit: 'setIsActiveProgramKit'
+      setIsActiveProgramKit: 'setIsActiveProgramKit',
     }),
 
     setProgram(program) {
@@ -123,7 +125,7 @@ export default Vue.extend({
         this.getPanelType,
         this.getDefaultPanelNumber,
         this.getActiveProgram,
-        this.getWetBalance
+        this.getWetBalance,
       ])
 
       this.setIsActiveProgramKit(true)
@@ -150,7 +152,7 @@ export default Vue.extend({
         try {
           this.clearDown()
         } catch (err) {}
-      }, 500)
+      }, 1000)
     },
     clearDown() {
       this.isDown = Object.fromEntries(
@@ -161,18 +163,20 @@ export default Vue.extend({
     },
     getKits() {
       const result = []
-      Object.entries(this.actives[this.activeNumber]).map(([key, value]) => {
-        if (
-          key === 'title' ||
-          key === 'name' ||
-          key === 'x2' ||
-          key === 'color' ||
-          key === 'turbo'
-        ) {
-          result.push([key, value])
+      Object.entries(this.actives[this.activeTurboDryerNumber]).map(
+        ([key, value]) => {
+          if (
+            key === 'title' ||
+            key === 'name' ||
+            key === 'x2' ||
+            key === 'color' ||
+            key === 'turbo'
+          ) {
+            result.push([key, value])
+          }
+          return
         }
-        return
-      })
+      )
 
       this.activeProgramKit = Object.fromEntries(result)
     },
@@ -189,58 +193,47 @@ export default Vue.extend({
         width: this.buttonSizeOptions.medium,
         height: this.buttonSizeOptions.height,
         background: 'rgb(255, 255, 255)',
-        borderRadius: this.buttonSizeOptions.borderRadius + this.buttonSizeOptions.oneMore,
+        borderRadius:
+          this.buttonSizeOptions.borderRadius + this.buttonSizeOptions.oneMore,
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
       // clone
       this._upDryOptions = { ...upDryOptions }
       this._downDryOptions = { ...downDryOptions }
       // end clone
 
-      if (this.visibleVacuum === 'block') {
-        this.restore('left')
-      } else if (
-        (this.visibleVacuum === 'none' && this.visibleAir !== 'none') ||
-        this.visibleVacuum === 0
-      ) {
-        this.restore('right')
-      } 
-      /* else if (
-        this.visibleVacuum === 'none' &&
-        this.visibleAir === 'none' &&
-        this.visibleWasher !== 'none'
-      ) {
-        this.restore('combo')
-      } */ 
-      /* else if (
-        this.visibleVacuum === 'none' &&
-        this.visibleAir === 'none' &&
-        this.visibleWasher === 'none'
-      ) {
-        this.restore('last')
-      } */
+      const visibleMask =
+        this.visibleWasher +
+        this.visibleAir +
+        this.visibleTurboDryer +
+        this.visibleVacuum
+
+      const widthSize = parseMask(visibleMask, this.extraLargeSizeMasks)
+      // console.log('$$ TyrboDryer widthSize', widthSize, visibleMask)
+      this.restore(widthSize)
     }, // end initial()
 
     restore(type) {
       switch (type) {
-        case 'left':
-        case 'combo':
-          this._upDryOptions.width = this.upDryOptions.width = 
-            this.buttonSizeOptions.medium + this.buttonSizeOptions.halfMore + this.buttonSizeOptions.suffix
-          this._downDryOptions.width = this.downDryOptions.width = 
-            this.buttonSizeOptions.medium + this.buttonSizeOptions.halfMore + this.buttonSizeOptions.suffix
+        case 'extraLarge':
+          this._upDryOptions.width = this.upDryOptions.width =
+            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix
+          this._downDryOptions.width = this.downDryOptions.width =
+            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix
+
           this.buttonLeft.show()
           this.flex()
           break
-        case 'right':
-        case 'last':
-          this._upDryOptions.width = 
+
+        case 'medium':
+          this._upDryOptions.width = this.upDryOptions.width =
             this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix
-          this._downDryOptions.width = 
+          this._downDryOptions.width = this.downDryOptions.width =
             this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix
+
           this.buttonLeft.show()
           this.flex()
           break
@@ -252,6 +245,7 @@ export default Vue.extend({
 
       return
     },
+
     flex() {
       this.buttonLeft.display = 'flex'
       this.buttonLeft.alignItems = 'center'
@@ -265,7 +259,7 @@ export default Vue.extend({
         this.buttonLeft.fontSize = options.fontSize
         this.buttonLeft.width = options.width
       }
-    }
+    },
   }, // end methods
 
   beforeDestroy() {
@@ -278,17 +272,17 @@ export default Vue.extend({
   },
   mounted() {
     // native
-    this.visible = this.actives[this.activeNumber].display
+    this.visibleTurboDryer = this.actives[this.activeTurboDryerNumber].display
     // neighbors
     // Vacuum
     this.visibleVacuum = this.actives[this.activeVacuumNumber].display
     // Air
-    // this.visibleAir = this.actives[this.activeAirNumber].display
+    this.visibleAir = this.actives[this.activeAirNumber].display
     // Washer
-    // this.visibleWasher = this.actives[this.activeWasherNumber].display
+    this.visibleWasher = this.actives[this.activeWasherNumber].display
 
     this.setup()
-  }
+  },
 })
 </script>
 

@@ -189,9 +189,13 @@
               <tr
                 v-if="this.actives[4].display !== 'none'"
                 :key="this.keys.keyDryShineEx"
-                style="height: 150px"
+                
               >
                 <WashTableDryShineEx :actives="actives" />
+              </tr>
+
+              <tr style="height: 30px" >
+                <td></td>
               </tr>
 
               <!-- 11 -->

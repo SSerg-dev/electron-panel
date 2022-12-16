@@ -290,17 +290,18 @@
               </button>
             </td>
           </tr>
-          <!-- dev -->
+          
           <tr v-if="this.getPaginate === 4">
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('tat-TAT')">
                 <img src="@/assets/imgs/language/lang_TAT.png" />
-              </router-link>
+              </button>
             </td>
+
             <td>
-              <router-link class="btn-small" to="/language">
+              <button class="btn-small" @click="setLocale('kor-KOR')">
                 <img src="@/assets/imgs/language/lang_KOR.png" />
-              </router-link>
+              </button>
             </td>
             <td>
               <!-- <button class="btn-large" @click="getCountry()">

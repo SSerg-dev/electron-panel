@@ -46,7 +46,7 @@
               </tr>
               <tr>
                 <td>
-                  <div class="display">
+                  <!-- <div class="display">
                     <input
                       type="password"
                       class="password"
@@ -58,6 +58,22 @@
                         width: 3.4em;
                         border-bottom: 4px solid #fff;
                         padding-left: 0.36em;
+                        padding-top: 0.2em;
+                      "
+                    />
+                  </div> -->
+                  <div class="display">
+                    <input
+                      type="password"
+                      class="password"
+                      v-model="password"
+                      autocomplete="tel"
+                      required
+                      style="
+                        font-size: 8.2rem;
+                        width: 3.3em;
+                        border-bottom: 4px solid #fff;
+                        padding-left: 0;
                         padding-top: 0.2em;
                       "
                     />
@@ -528,8 +544,8 @@ export default {
   padding-bottom: 0em;
 
   margin-top: 0em;
-  margin-left: -7.5em;
-  font-size: 3em;
+  margin-left: -8em;
+  font-size: 2.8em;
 
   color: #ffffff;
   text-align: center;
@@ -552,7 +568,7 @@ export default {
   width: 220px;
   height: 125px;
   color: #ffffff;
-  text-align: left;
+  text-align: center;
   font-family: 'Plumb-Medium';
   text-transform: uppercase;
 }

@@ -23,7 +23,7 @@ export default Vue.extend({
   data: () => ({
     intervalControllerWork: null,
     isControllerWork: false,
-    delay: 5000
+    delay: 5000,
   }),
   computed: {
     layout() {
@@ -34,24 +34,24 @@ export default Vue.extend({
       /* dev */
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getVacuumNumber: 'getVacuumNumber',
-      getPanelType: 'getPanelType'
-    })
+      getPanelType: 'getPanelType',
+    }),
   },
   watch: {
     getDefaultPanelNumber(flag) {},
     getVacuumNumber(flag) {},
-    getPanelType(flag) {}
+    getPanelType(flag) {},
   },
   components: {
     EmptyLayout,
-    MainLayout
+    MainLayout,
   },
   methods: {
     ...mapMutations({
       setConfig: 'setConfig',
       setWetBalance: 'setWetBalance',
       setDryBalance: 'setDryBalance',
-      setIsPingUrl: 'setIsPingUrl'
+      setIsPingUrl: 'setIsPingUrl',
     }),
     /*  */
     checkControllerWork() {
@@ -77,11 +77,10 @@ export default Vue.extend({
     /* dev */
     // emitCardMoneyInitial(card = 0) {
     //   EventBus.$emit('CardMoneyInitial', card)
-    // },    
+    // },
 
     initial() {
       // this.emitCardMoneyInitial()
-
     },
     setup() {
       /*
@@ -105,7 +104,7 @@ export default Vue.extend({
           const parameter = {
             id: Date.now(),
             title: tag.param,
-            value: tag.value
+            value: tag.value,
           }
 
           if (parameter.title !== `::AsGlobalPV:DateTime.Time`) {
@@ -169,14 +168,13 @@ export default Vue.extend({
       })
 
       this.initial()
-
     },
 
     ...mapMutations({
       setParameters: 'setParameters',
       setHumidity: 'setHumidity',
       setTemperature: 'setTemperature',
-      setDryParameters: 'setDryParameters'
+      setDryParameters: 'setDryParameters',
     }),
     ...mapGetters({
       // getPanelType: 'getPanelType'
@@ -189,8 +187,8 @@ export default Vue.extend({
       updateDryBanknoteBalance: 'updateDryBanknoteBalance',
 
       updateCoinBalance: 'updateCoinBalance',
-      updateBanknoteBalance: 'updateBanknoteBalance'
-    })
+      updateBanknoteBalance: 'updateBanknoteBalance',
+    }),
   },
 
   mounted() {
@@ -206,7 +204,7 @@ export default Vue.extend({
   },
   beforeDestroy() {
     clearInterval(this.intervalControllerWork)
-  }
+  },
 })
 </script>
 
@@ -214,9 +212,33 @@ export default Vue.extend({
 @import '~materialize-css/dist/css/materialize.min.css';
 @import 'assets/css/index.css';
 
+/* 
+Plumb-Medium
+Roboto-Regular
+Roboto-Medium
+ARIALUNI
+*/
+
+
 @font-face {
   font-family: 'Plumb-Medium';
   src: local('Plumb-Medium'),
-    url(./assets/fonts/Plumb-Medium.ttf) format('truetype');
-}
+    url(./assets/fonts/Roboto-Regular.ttf) format('truetype');
+} 
+
+
+/* 
+ArialRegular
+ArialBold
+
+ArialBlack
+ArialBoldItalic
+
+*/
+
+/* @font-face {
+  font-family: 'Plumb-Medium';
+  src: local('Plumb-Medium'),
+    url(./assets/fonts/arial/ArialBold.ttf) format('truetype');
+} */
 </style>

@@ -16,7 +16,7 @@
             { 'card-content white-text': this.isDown.washer },
           ]"
         >
-          {{ `${actives[this.activeNumber].title}` | localize }}
+          {{ `${actives[this.activeWasherNumber].title}` | localize }}
         </div>
       </div>
     </td>
@@ -28,6 +28,7 @@ import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
+import { parseMask } from '@/utils/wash.functions.js'
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
 import {
@@ -43,6 +44,8 @@ export default Vue.extend({
 
     buttonSizeOptions: buttonSizeOptions,
 
+    extraLargeSizeMasks: ['1000', '1011', '1101', '1110'],
+
     // clone
     _upDryOptions: null,
     _downDryOptions: null,
@@ -52,8 +55,8 @@ export default Vue.extend({
     buttonRight: null,
 
     // native
-    visible: '',
-    activeNumber: 18,
+    visibleWasher: '',
+    activeWasherNumber: 18,
 
     // neighbors
     // Air
@@ -82,7 +85,6 @@ export default Vue.extend({
       required: true,
       type: Array,
     },
-    // width: ['width']
   },
   computed: {
     ...mapGetters({
@@ -101,7 +103,6 @@ export default Vue.extend({
   },
   methods: {
     ...mapGetters({
-      // getActiveProgram: 'getActiveProgram',
       getActiveProgramKit: 'getActiveProgramKit',
       getIsActiveProgramKit: 'getIsActiveProgramKit',
     }),
@@ -151,7 +152,7 @@ export default Vue.extend({
         try {
           this.clearDown()
         } catch (err) {}
-      }, 500)
+      }, 1000)
     },
     clearDown() {
       this.isDown = Object.fromEntries(
@@ -162,7 +163,7 @@ export default Vue.extend({
     },
     getKits() {
       const result = []
-      Object.entries(this.actives[this.activeNumber]).map(([key, value]) => {
+      Object.entries(this.actives[this.activeWasherNumber]).map(([key, value]) => {
         if (
           key === 'title' ||
           key === 'name' ||
@@ -203,54 +204,44 @@ export default Vue.extend({
       // end clone
 
       /* dev */
-      const widthSize = this.parseMask()
-      console.log('$$ widthSize', widthSize)
+      const visibleMask =
+        this.visibleWasher +
+        this.visibleAir +
+        this.visibleTurboDryer +
+        this.visibleVacuum
+        
+
+      const widthSize = parseMask(visibleMask, this.extraLargeSizeMasks)
+      // console.log('$$ Washer widthSize', widthSize, visibleMask)
       this.restore(widthSize)
 
-      /* if (this.visibleAir === 'block') {
-        this.restore('left')
-      } else if (
-        (this.visibleAir === 'none' && this.visibleVacuum !== 'none') ||
-        this.visibleAir === 0
-      ) {
-        this.restore('right')
-      } else if (this.visibleAir === 'none' && this.visibleVacuum === 'none') {
-        this.restore('combo')
-      } */ 
     }, // end initial()
     restore(type) {
-      console.log('$$ this.buttonSizeOptions', this.buttonSizeOptions)
 
       switch (type) {
-        case 'large':
+        case 'extraLarge':
+          this._upDryOptions.width = this.upDryOptions.width =
+            this.buttonSizeOptions.extraLarge +
+            this.buttonSizeOptions.suffix
+          this._downDryOptions.width = this.downDryOptions.width =
+            this.buttonSizeOptions.extraLarge +
+            this.buttonSizeOptions.suffix
+
           this.buttonLeft.show()
           this.flex()
           break
 
-        /* case 'combo':
+        case 'medium':
           this._upDryOptions.width = this.upDryOptions.width =
             this.buttonSizeOptions.medium +
-            this.buttonSizeOptions.halfMore +
             this.buttonSizeOptions.suffix
           this._downDryOptions.width = this.downDryOptions.width =
             this.buttonSizeOptions.medium +
-            this.buttonSizeOptions.halfMore +
             this.buttonSizeOptions.suffix
+
           this.buttonLeft.show()
           this.flex()
-          break */
-        /* case 'right':
-          this._upDryOptions.width = 
-            this.buttonSizeOptions.medium +
-            this.buttonSizeOptions.halfMore +
-            this.buttonSizeOptions.suffix
-          this._downDryOptions.width = 
-            this.buttonSizeOptions.medium +
-            this.buttonSizeOptions.halfMore +
-            this.buttonSizeOptions.suffix
-          this.buttonLeft.show()
-          this.flex()
-          break */
+          break  
 
         default:
           break
@@ -259,6 +250,7 @@ export default Vue.extend({
 
       return
     },
+
     flex() {
       this.buttonLeft.display = 'flex'
       this.buttonLeft.alignItems = 'center'
@@ -273,32 +265,7 @@ export default Vue.extend({
         this.buttonLeft.width = options.width
       }
     },
-    parseMask() {
-      let result
-      let visibleMask =
-        this.visible +
-        this.visibleAir +
-        this.visibleVacuum +
-        this.visibleTurboDryer
 
-      if (visibleMask.length > 0) {
-        visibleMask = visibleMask.replace(/block/g, '1').replace(/none/g, '0')
-      }
-      switch (visibleMask) {
-        case '1000':
-        case '1011':
-        case '1101':
-        case '1110':
-          result = 'large'   
-          break
-
-        default:
-          result = 'small'
-          break
-      }
-      // console.log('$$ result', result)
-      return result
-    },
   }, // end methods
 
   beforeDestroy() {
@@ -311,7 +278,8 @@ export default Vue.extend({
   },
   mounted() {
     // native
-    this.visible = this.actives[this.activeNumber].display
+    this.visibleWasher = this.actives[this.activeWasherNumber].display
+
     // neighbors
     // Air
     this.visibleAir = this.actives[this.activeAirNumber].display
@@ -319,27 +287,6 @@ export default Vue.extend({
     this.visibleVacuum = this.actives[this.activeVacuumNumber].display
     // TurboDryer
     this.visibleTurboDryer = this.actives[this.activeTurboDryerNumber].display
-
-    /* let visibleMask = 
-    this.visible +  
-    this.visibleAir + 
-    this.visibleVacuum + 
-    this.visibleTurboDryer
-
-    if (visibleMask.length > 0) {
-      visibleMask = visibleMask.replace(/block/g, '1').replace(/none/g, '0')
-    }
-    switch (visibleMask) {
-      case '1000':
-      case '1011':
-      case '1101':
-      case '1110':
-        console.log('$$ washer width large')
-      break
-
-      default:
-        console.log('$$ washer width small')
-    } */
 
     this.setup()
   },

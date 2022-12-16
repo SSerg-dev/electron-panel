@@ -324,6 +324,7 @@ export default {
   padding-top: 0.3em;
   padding-left: 0;
   font-size: 3em;
+  /* font-family: 'arial'; */
   text-shadow:
     2px 2px 2px silver,
     -2px 2px 2px silver;

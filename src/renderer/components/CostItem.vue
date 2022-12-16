@@ -12,7 +12,7 @@
             { 'card-content white-text': !cost.color }
           ]"
         >
-          {{ `${cost.title}` | localize }}
+          {{ `${cost.title}` | localize | uppercase }}
         </div>
 
 
