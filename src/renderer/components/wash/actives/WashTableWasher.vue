@@ -16,7 +16,12 @@
             { 'card-content white-text': this.isDown.washer },
           ]"
         >
-          {{ `${actives[this.activeWasherNumber].title}` | localize }}
+          <div v-if="this.getIsChangeProgramFirst()">
+            {{`${this.items[this.index].title}` | localize}}
+          </div>
+          <div v-else>
+            {{ `${actives[this.activeWasherNumber].title}` | localize }}
+          </div>
         </div>
       </div>
     </td>
@@ -45,6 +50,11 @@ export default Vue.extend({
     buttonSizeOptions: buttonSizeOptions,
 
     extraLargeSizeMasks: ['1000', '1011', '1101', '1110'],
+
+    title: '',
+
+    index: -1,
+    items: [],
 
     // clone
     _upDryOptions: null,
@@ -105,6 +115,9 @@ export default Vue.extend({
     ...mapGetters({
       getActiveProgramKit: 'getActiveProgramKit',
       getIsActiveProgramKit: 'getIsActiveProgramKit',
+      getAssignProgramTo: 'getAssignProgramTo',
+      getIsChangeProgramFirst: 'getIsChangeProgramFirst',
+      getAssignItems: 'getAssignItems',
     }),
     ...mapActions({
       updateStartProgram: 'updateStartProgram',
@@ -163,20 +176,30 @@ export default Vue.extend({
     },
     getKits() {
       const result = []
-      Object.entries(this.actives[this.activeWasherNumber]).map(([key, value]) => {
-        if (
-          key === 'title' ||
-          key === 'name' ||
-          key === 'x2' ||
-          key === 'color' ||
-          key === 'turbo'
-        ) {
-          result.push([key, value])
+      Object.entries(this.actives[this.activeWasherNumber]).map(
+        ([key, value]) => {
+          if (
+            key === 'title' ||
+            key === 'name' ||
+            key === 'x2' ||
+            key === 'color' ||
+            key === 'turbo'
+          ) {
+            result.push([key, value])
+          }
+          return
         }
-        return
-      })
+      )
 
       this.activeProgramKit = Object.fromEntries(result)
+    },
+
+    getIndex() {
+      if (this.getIsChangeProgramFirst()) {
+        this.index = this.getAssignProgramTo() - 1
+        return true
+      }
+      return false
     },
     setup() {
       this.initial()
@@ -209,23 +232,18 @@ export default Vue.extend({
         this.visibleAir +
         this.visibleTurboDryer +
         this.visibleVacuum
-        
 
       const widthSize = parseMask(visibleMask, this.extraLargeSizeMasks)
       // console.log('$$ Washer widthSize', widthSize, visibleMask)
       this.restore(widthSize)
-
     }, // end initial()
     restore(type) {
-
       switch (type) {
         case 'extraLarge':
           this._upDryOptions.width = this.upDryOptions.width =
-            this.buttonSizeOptions.extraLarge +
-            this.buttonSizeOptions.suffix
+            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix
           this._downDryOptions.width = this.downDryOptions.width =
-            this.buttonSizeOptions.extraLarge +
-            this.buttonSizeOptions.suffix
+            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix
 
           this.buttonLeft.show()
           this.flex()
@@ -233,15 +251,13 @@ export default Vue.extend({
 
         case 'medium':
           this._upDryOptions.width = this.upDryOptions.width =
-            this.buttonSizeOptions.medium +
-            this.buttonSizeOptions.suffix
+            this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix
           this._downDryOptions.width = this.downDryOptions.width =
-            this.buttonSizeOptions.medium +
-            this.buttonSizeOptions.suffix
+            this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix
 
           this.buttonLeft.show()
           this.flex()
-          break  
+          break
 
         default:
           break
@@ -265,7 +281,6 @@ export default Vue.extend({
         this.buttonLeft.width = options.width
       }
     },
-
   }, // end methods
 
   beforeDestroy() {
@@ -274,6 +289,8 @@ export default Vue.extend({
   },
 
   created() {
+    this.items = this.getAssignItems()
+    this.getIndex()
     this.getKits()
   },
   mounted() {
@@ -287,6 +304,10 @@ export default Vue.extend({
     this.visibleVacuum = this.actives[this.activeVacuumNumber].display
     // TurboDryer
     this.visibleTurboDryer = this.actives[this.activeTurboDryerNumber].display
+
+    // console.log('$$ getAssignProgramTo', this.getAssignProgramTo())
+    // console.log('$$ getIsChangeProgramFirst', this.getIsChangeProgramFirst())
+    // this.index = this.getAssignProgramTo() - 1
 
     this.setup()
   },

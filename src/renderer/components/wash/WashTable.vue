@@ -344,7 +344,7 @@ export default {
     timeoutDelay: null,
     isVisible: false,
     isVisibleWashTableBonus: false,
-    isVisibleWashTableAlarm: false,
+    isVisibleWashTableAlarm: true,
 
     /*  */
     keys: {

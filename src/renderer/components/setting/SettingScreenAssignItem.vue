@@ -3,20 +3,19 @@
     <div
       class="card grey lighten-3"
       style="
-      height: 80px; 
-      border: solid 3px #00B9E3; 
-      border-top-right-radius: 2em;
-      border-bottom-right-radius: 2em; 
-      margin-left:7.5em;
-      border-left-style: hidden;
+        height: 80px;
+        border: solid 3px #00b9e3;
+        border-top-right-radius: 2em;
+        border-bottom-right-radius: 2em;
+        margin-left: 7.5em;
+        border-left-style: hidden;
       "
     >
       <div class="card-content black-text">
-        <div class="input-field" style="margin-top: -0.5em;">
+        <div class="input-field" style="margin-top: -0.5em">
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(n, index) in items" :key="index" :value="n.id">
               <div class="dropdown-setting">
-                <!-- {{ n.title }} -->
                 {{ `${n.title}` | localize }}
               </div>
             </option>
@@ -34,49 +33,53 @@ import { mapGetters, mapMutations } from 'vuex'
 export default Vue.extend({
   name: 'setting-panel-item',
 
-  props: ['assignItemIds'],
+  props: ['assignItemIds', 'degreasingProgram'],
 
   data: () => ({
     select: null,
     current: null,
     title: '',
 
-    items: [
-      { id: 1, title: `FOAM_COLOR` },
-      { id: 2, title: `DEGREASE` },
-      { id: 3, title: `DOORSILL` }
-    ]
+    index: -1,
+    items: [],
   }),
   mounted() {
-    1,
-      (this.select = M.FormSelect.init(this.$refs.select, {
-        constrainWidth: true
-      }))
+    this.select = M.FormSelect.init(this.$refs.select, {
+      constrainWidth: true,
+    })
     M.updateTextFields()
   },
   methods: {
     ...mapGetters({
-      //getDefaultPanelNumber: "getDefaultPanelNumber",
+      getAssignProgramTo: 'getAssignProgramTo',
+      getAssignItems: 'getAssignItems'
     }),
     ...mapMutations({
-      //setDefaultPanelNumber: "setDefaultPanelNumber",
-    })
+      setAssignProgramTo: 'setAssignProgramTo',
+    }),
   },
   computed: {
-    ...mapGetters({
-      //getPanelType: "getPanelType",
-    })
+    ...mapGetters({}),
   },
   watch: {
     current(itemId) {
-      //console.log('itemId-->', itemId)
-      const { id, title } = this.items.find(n => n.id === itemId)
+      const { id, title } = this.items.find((n) => n.id === itemId)
       this.select = title
-      //this.setDefaultPanelNumber(id);
-    }
+      this.setAssignProgramTo(id)
+    },
   },
   created() {
-    let selected = []
+    this.items = this.getAssignItems()
+
+    this.index = this.getAssignProgramTo() - 1
+
+    if (this.items[this.index]) {
+      const { id, title } = this.items[this.index]
+      this.current = id
+      this.select = title
+    }
+
+    /* let selected = []
 
     if (this.assignItemIds !== undefined) {
       selected = this.assignItemIds.map(id => {
@@ -91,13 +94,13 @@ export default Vue.extend({
       const { id, title } = this.items[0]
       this.current = id
       this.select = title
-    }
+    } */
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {
       this.select.destroy()
     }
-  }
+  },
 })
 </script>
 

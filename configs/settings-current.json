@@ -1,6 +1,6 @@
 {
   "bank_terminal": {
-    "hardware": "pax",
+    "hardware": "vendotek",
     "installed": true,
     "max_sum": 500,
     "min_sum": 0
@@ -93,12 +93,15 @@
   "log_path": "/var/log",
   "type": "wash",
   "ui": {
-    "CNW": false,
+    "CNW": true,
+    "isEnable": false,
+    "isProgram": true,
+    "isProgram2": false,
     "degreasing_enable": 0,
     "degreasing_enable2": 0,
-    "degreasing_program": 0,
+    "degreasing_program": 1,
     "degreasing_program2": 0,
-    "degreasing_program_to": 0,
+    "degreasing_program_to": 4,
     "degreasing_program_to2": 0,
     "direct_cash": true,
     "disk_color": 0,
@@ -112,5 +115,9 @@
     "splash_timeout": 30,
     "touch_threshold": 200,
     "window_timeout": 30
+  },
+  "alarms": {
+   "messages": [true, true, false, false],
+   "phone": "x-xxx-xxx-xx-xx" 
   }
 }

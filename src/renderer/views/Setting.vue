@@ -94,7 +94,12 @@
                 </td>
               </tr>
               <!-- row 03 -->
-              <tr style="margin-top: 0.5em; opacity: 0.2">
+              <!-- <tr style="margin-top: 0.5em;"
+              :class="[
+                { 'first-opacity': isChangeItem },
+                { 'second-opacity': !isChangeItem },
+              ]"
+              >
                 <td style="border: none; width: 360px; height: 80px">
                   <div
                     class="card grey lighten-3"
@@ -115,7 +120,7 @@
                           <span class="lever"></span>
                         </label>
                       </div>
-                      <!-- Заменить пункт / программу -->
+                      
                       <div class="change-item-title">
                         <span class="card-title">{{
                           `Replace_item` | localize
@@ -156,9 +161,16 @@
                     </div>
                   </div>
                 </td>
-              </tr>
+              </tr> -->
+              <!-- end row 03 -->
+
               <!-- row 04 -->
-              <tr style="margin-top: 0.8em; opacity: 0.2">
+              <tr style="margin-top: 0.8em;"
+              :class="[
+                { 'first-opacity': isChangeProgramFirst },
+                { 'second-opacity': !isChangeProgramFirst },
+              ]"
+              >
                 <td style="border: none; width: 360px; height: 80px">
                   <div
                     class="card grey lighten-3"
@@ -204,6 +216,7 @@
                     <div>
                       <SettingScreenChangeItem
                         :changeItemIds="changeProgramIds"
+                        :degreasingProgram="degreasingProgram" 
                       />
                     </div>
                   </div>
@@ -222,13 +235,20 @@
                     <div>
                       <SettingScreenAssignItem
                         :assignItemIds="assignProgramIds"
+                        :degreasingProgram="degreasingProgram"
                       />
                     </div>
                   </div>
                 </td>
               </tr>
               <!-- row 05 -->
-              <tr style="margin-top: 0.8em; opacity: 0.2">
+
+              <!-- <tr style="margin-top: 0.8em;"
+              :class="[
+                { 'first-opacity': isChangeProgramSecond },
+                { 'second-opacity': !isChangeProgramSecond },
+              ]"
+              >
                 <td style="border: none; width: 360px; height: 80px">
                   <div
                     class="card grey lighten-3"
@@ -274,6 +294,7 @@
                     <div>
                       <SettingScreenChangeItem
                         :changeItemIds="changeProgramIds"
+                        :degreasingProgram="degreasingProgram2"
                       />
                     </div>
                   </div>
@@ -296,7 +317,8 @@
                     </div>
                   </div>
                 </td>
-              </tr>
+              </tr> -->
+
               <!-- row 06 -->
               <tr style="margin-top: 0.5em">
                 <!-- td 01 -->
@@ -919,17 +941,22 @@ export default Vue.extend({
 
     isPayScreenMain: false,
     //isTooltipInstalled: false,
-    isChangeItem: true,
-    isChangeProgramFirst: true,
-    isChangeProgramSecond: true,
+    
+    isChangeItem: false,
+    isChangeProgramFirst: false,
+    isChangeProgramSecond: false,
+
+    degreasingProgram: '',
+    degreasingProgram2: '',
+
     isCnw: true,
     isCursor: true,
 
     changeItemIds: [1, 2],
     assignItemIds: [1],
 
-    changeProgramIds: [1, 2, 3],
-    assignProgramIds: [1, 2, 3],
+    changeProgramIds: [1, 2, 3, 4],
+    assignProgramIds: [1, 2, 3, 4],
 
     isTerminalInstalled: false,
     isDirectCash: false,
@@ -977,7 +1004,7 @@ export default Vue.extend({
     FinanceTable,
   },
   mounted() {
-    /* dev */
+
     EventBus.$on('submitSelect', this.submitHandler)
 
     this.setRouter('/setting')
@@ -1018,6 +1045,16 @@ export default Vue.extend({
       setCursor: 'setCursor',
       setPayScreenMain: 'setPayScreenMain',
       setCnw: 'setCnw',
+      /* dev */
+      setIsChangeProgramFirst: 'setIsChangeProgramFirst',
+      setIsChangeProgramSecond: 'setIsChangeProgramSecond',
+      setIsChangeItem: 'setIsChangeItem',
+
+      setChangeProgram: 'setChangeProgram',
+      setAssignProgramTo: 'setAssignProgramTo',
+      setChangeItem: 'setChangeItem',
+
+
     }),
     setDown() {
       this.isDown = !this.isDown
@@ -1057,6 +1094,15 @@ export default Vue.extend({
       getCursor: 'getCursor',
       getPayScreenMain: 'getPayScreenMain',
       getCnw: 'getCnw',
+      /* dev */
+      getIsChangeProgramFirst: 'getIsChangeProgramFirst',
+      getIsChangeProgramSecond: 'getIsChangeProgramSecond',
+      getIsChangeItem: 'getIsChangeItem',
+
+      getChangeProgram: 'getChangeProgram',
+      getAssignProgramTo: 'getAssignProgramTo',
+      getChangeItem: 'getChangeItem',
+
     }),
   },
   computed: {
@@ -1065,38 +1111,46 @@ export default Vue.extend({
       getAcceptorInstalled: 'getAcceptorInstalled',
       getCoinAcceptorInstalled: 'getCoinAcceptorInstalled',
       getUsersIsAccess: 'getUsersIsAccess',
+      
     }),
   },
   watch: {
     /* dev */
+    isChangeProgramFirst(flag) {
+      this.setIsChangeProgramFirst(flag)
+    },
+    isChangeProgramSecond(flag) {
+      this.setIsChangeProgramSecond(flag)
+    },
+    isChangeItem(flag) {
+      this.setIsChangeItem(flag)
+    },
+
+    getChangeProgram(flag) {
+      console.log('$$ getChangeProgram', flag)
+    },
+
+
     isCnw(flag) {
-      //console.log('isCnw-->', flag)
       this.setCnw(flag)
     },
 
     isPayScreenMain(flag) {
-      //console.log('isPayScreenMain-->', flag)
       this.setPayScreenMain(flag)
     },
     isCursor(flag) {
-      //console.log('isCursor-->', flag)
       this.setCursor(flag)
     },
     isDirectCash(flag) {
-      //console.log('isDirectCash-->', flag)
       this.setDirectCash(flag)
     },
     isTerminalInstalled(flag) {
-      // console.log('isTerminalInstalled-->', flag)
       this.setTerminalInstalled(flag)
     },
     isAcceptorInstalled(flag) {
-      //console.log('isAcceptorInstalled-->', flag)
-      // ??? is false --> this.onSerialPortClose
       this.setAcceptorInstalled(flag)
     },
     isCoinAcceptorInstalled(flag) {
-      //console.log('isCoinAcceptorInstalled-->', flag)
       this.setCoinAcceptorInstalled(flag)
     },
   },
@@ -1116,7 +1170,12 @@ export default Vue.extend({
     // coin
     this.isCoinAcceptorInstalled = this.getCoinAcceptorInstalled
 
-    // console.log('this.isCoinAcceptorInstalled-->', this.isCoinAcceptorInstalled)
+    /* dev */
+    this.isChangeItem = this.getIsChangeItem()
+    this.isChangeProgramFirst = this.getIsChangeProgramFirst()
+    this.isChangeProgramSecond = this.getIsChangeProgramSecond()   
+
+
   },
   beforeDestroy() {
     if (this.tabs && this.tabs.destroy) {
@@ -1151,8 +1210,8 @@ export default Vue.extend({
   /* background-color: #26a69a; */
 }
 .right {
-  padding-right: 0rem;
-  padding-top: 0rem;
+  padding-right: 0em;
+  padding-top: 1em;
 }
 .terminal-type {
   padding-bottom: 0rem;

@@ -7,19 +7,35 @@
   },
   "bill_validator": {
     "denominations": {},
-    "enable_bills": [50, 100, 200, 500],
+    "enable_bills": [
+      50,
+      100, 
+      200, 
+      500],
     "installed": true,
     "type": "default"
   },
   "coin_acceptor": {
     "denominations": {},
-    "enable_coins": [5, 10, 25],
+    "enable_coins": [
+      5, 
+      10, 
+      25
+    ],
     "installed": true,
-    "tokens": [2, 4, 8],
+    "tokens": [
+      2, 
+      4, 
+      8
+    ],
     "type": "CCTALK1"
   },
   "__commentCountries": "add available countries",
-  "countries": ["RU", "US"],
+  "countries": [
+    "RU", 
+    "US",
+    "DE"
+  ],
   "country": "RU",
   "__commentCurrency": "add default currency",
   "currency": "RUB",
@@ -78,6 +94,9 @@
   "type": "wash",
   "ui": {
     "CNW": 0,
+    "isEnable": true,
+    "isProgram": true,
+    "isProgram2": true,
     "degreasing_enable": 0,
     "degreasing_enable2": 0,
     "degreasing_program": 0,
@@ -96,5 +115,9 @@
     "splash_timeout": 30,
     "touch_threshold": 200,
     "window_timeout": 30
+  },
+  "alarms": {
+   "messages": [true, true, false, false],
+   "phone": "x-xxx-xxx-xx-xx" 
   }
 }

@@ -220,11 +220,11 @@ ARIALUNI
 */
 
 
-@font-face {
+/* @font-face {
   font-family: 'Plumb-Medium';
   src: local('Plumb-Medium'),
     url(./assets/fonts/Roboto-Regular.ttf) format('truetype');
-} 
+} */ 
 
 
 /* 
@@ -236,9 +236,9 @@ ArialBoldItalic
 
 */
 
-/* @font-face {
+@font-face {
   font-family: 'Plumb-Medium';
   src: local('Plumb-Medium'),
     url(./assets/fonts/arial/ArialBold.ttf) format('truetype');
-} */
+}
 </style>

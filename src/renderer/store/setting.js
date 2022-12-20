@@ -5,6 +5,13 @@ export default {
   state: {
     config: {},
 
+    assignItems: [
+      { id: 1, title: `FOAM_COLOR` },
+      { id: 2, title: `DEGREASE` },
+      { id: 3, title: `DOORSILL` },
+      { id: 4, title: `ANTIFREEZE` },
+    ],
+
     temperature: '',
     humidity: '',
     serviceBalance: 0,
@@ -20,6 +27,10 @@ export default {
 
   // getters
   getters: {
+    getAssignItems(state) {
+      return state.assignItems
+    },
+
     getPaymentLimitMin(state) {
       return state.config.bank_terminal.min_sum
     },
@@ -62,6 +73,29 @@ export default {
     },
 
     /* dev */
+
+    getIsChangeProgramFirst(state) {
+      return state.config.ui.isProgram
+    },
+    getIsChangeProgramSecond(state) {
+      return state.config.ui.isProgram2
+    },
+    getIsChangeItem(state) {
+      return state.config.ui.isEnable
+    },
+
+
+    getChangeProgram(state) {
+      return state.config.ui.degreasing_program
+    },
+    getAssignProgramTo(state) {
+      return state.config.ui.degreasing_program_to
+    },
+    getChangeItem(state) {
+      return state.config.ui.degreasing_enable
+    },
+
+
     getCnw(state) {
       return state.config.ui.CNW
     },
@@ -152,6 +186,27 @@ export default {
   // mutations
   mutations: {
     /* dev */
+    setIsChangeProgramFirst(state, isProgram) {
+      state.config.ui.isProgram = isProgram
+    },
+    setIsChangeProgramSecond(state, isProgram2) {
+      state.config.ui.isProgram2 = isProgram2
+    },
+    setIsChangeItem(state, isEnable) {
+      state.config.ui.isEnable = isEnable
+    },
+
+
+    setChangeProgram(state, program) {
+      state.config.ui.degreasing_program = program
+    },
+    setAssignProgramTo(state, program_to) {
+      state.config.ui.degreasing_program_to = program_to
+    },
+    setChangeItem(state, degreasing_enable) {
+      state.config.ui.degreasing_enable = degreasing_enable
+    },
+
     setCnw(state, Cnw) {
       state.config.ui.CNW = Cnw
     },

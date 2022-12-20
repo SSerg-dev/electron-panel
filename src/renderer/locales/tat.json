@@ -35,6 +35,7 @@
   "STOP_PAUSE": "ТУКТАТУ",
   "AIR": "ҺАВА",
   "GLASS_WASHING_LIQUID": "Чистарту",
+  "ANTIFREEZE": "ANTIFREEZE",
   "WAX": "БАЛАВЫЗ",
   "FOAM_X2": "КҮБЕК X2",
   "VACUUM_CLEANER": "ЧИСТАРТКЫЧ",
@@ -139,8 +140,8 @@
   "Number_of_coins": "Монеталар саны",
   "Collection": "Коллекция",
 
-  "Replace_item": "Предметны алыштырыгыз",
-  "Replace_program": "Программаны алыштырыгыз",
+  "Replace_item": "Предмет алыштыры",
+  "Replace_program": "Прогр алыштыры",
 
   "Cash_accounting": "Акча исәбе",
   "Date": "Дата",
