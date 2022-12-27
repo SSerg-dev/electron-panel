@@ -153,6 +153,9 @@
   "INPUT": "EINGANG",
   "EXIT": "AUSFAHRT",
 
+  "Show_alert_message": "Show alert message",
+  "Show_alert_phone": "Show alert phone",
+
   "Check_out_another_post": "Es tut uns leid, dass etwas schief gelaufen ist. Schau dir einen anderen Beitrag an",
   "Take_screenshot_of_ your_balance": "Machen Sie einen Screenshot Ihres Restguthabens",
   "Contact_the_operator": "Wenden Sie sich an den Betreiber",

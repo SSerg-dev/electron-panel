@@ -38,7 +38,7 @@
   ],
   "country": "RU",
   "__commentCurrency": "add default currency",
-  "currency": "RUB",
+  "currency": "KZT",
   "index": 6,
   "languages": {
     "default": "RU",
@@ -117,7 +117,12 @@
     "window_timeout": 30
   },
   "alarms": {
-   "messages": [true, true, false, false],
-   "phone": "x-xxx-xxx-xx-xx" 
+    "messages": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "phone": "+7 (900) 111-22-42"
   }
 }

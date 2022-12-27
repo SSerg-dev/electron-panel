@@ -17,7 +17,7 @@ export default {
         `Call_tech_support`,
       ],
       messageIndex: -1,
-      phone: ''//'+7 (900) 000-00-00'
+      phone: ''
     },
 
   }, // end state
@@ -37,8 +37,8 @@ export default {
     setAlarmsPhone(state, phone) {
       state.alarms.phone = phone
     },
-    setAlarmsMessagesIndex(state, messageIndex) {
-      state.alarms.messageIndex = +messageIndex/* 0 - 3 */
-    }
+    setAlarmsMessages(state, messages) {
+      state.alarms.messages = messages 
+    },
   }
 }

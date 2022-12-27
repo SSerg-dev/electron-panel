@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.isVisible.alarm" class="locate">
+  <div class="locate">
     <div class="form">
       <div class="info-alarm">
         <div style="padding-left: 0em; padding-bottom: 0em">
@@ -10,51 +10,60 @@
       <table>
         <tbody>
           <!-- row 01 -->
-          <tr class="info-title" style="height: 4em">
+          <tr
+            v-if="this.messages.isFirst"
+            class="info-title"
+            style="height: 4em"
+          >
             <td>
-              <!-- <p style="width: 90%;" align="center">{{ `${this.messages[0]}` | localize }}</p> -->
-              <!--   -->
               <p style="width: 90%" align="left">
-                {{`✔️ ❗`}}
+                {{ `✔️ ❗` }}
                 {{ `${getAlarmsMessages[0]}` | localize }}
               </p>
             </td>
           </tr>
           <!-- row 02 -->
-          <tr class="info-title" style="height: 4em">
+          <tr
+            v-if="this.messages.isSecond"
+            class="info-title"
+            style="height: 4em"
+          >
             <td>
               <p style="width: 90%" align="left">
-                {{`✔️ 📷 `}}
+                {{ `✔️ 📷 ` }}
                 {{ `${getAlarmsMessages[1]}` | localize }}
               </p>
             </td>
           </tr>
           <!-- row 03 -->
           <tr
-            v-if="this.isVisible.operator"
+            v-if="this.messages.isThird"
             class="info-title"
             style="height: 3em"
           >
             <td>
               <p style="width: 90%" align="left">
-                {{`✔️ 🧑‍✈️ `}}
-                {{ `${getAlarmsMessages[2]}` | localize}}
+                {{ `✔️ 🧑‍✈️ ` }}
+                {{ `${getAlarmsMessages[2]}` | localize }}
               </p>
             </td>
           </tr>
           <!-- row 04 -->
           <tr
-            v-if="this.isVisible.support"
+            v-if="this.messages.isFourth"
             class="info-title"
             style="height: 4em"
           >
             <td>
-              <p style="width: 90%; margin-bottom: 0.4em;" align="left">
-                {{`✔️ 📱 `}}
-                {{ `${getAlarmsMessages[3]}` | localize}}
-                {{`&nbsp;&nbsp;`}}
+              <p style="width: 90%; margin-bottom: 0.4em" align="left">
+                {{ `✔️ 📱 ` }}
+                {{ `${getAlarmsMessages[3]}` | localize }}
+                {{ `&nbsp;&nbsp;` }}
               </p>
-              <p class="phone-title" align="center"> {{`${getAlarmsPhone}`}}</p>
+              <p class="phone-title" align="center">
+                <!-- {{ `${getAlarmsPhone}` }} -->
+                {{ `${this.phone}` }}
+              </p>
             </td>
           </tr>
 
@@ -74,17 +83,11 @@
                     { 'button-white-title': this.isDown.yes },
                   ]"
                 >
-                  {{ `${this.buttonTitle[this.buttonTitleIndex]}` | localize}}
+                  {{ `${this.buttonTitle[this.buttonTitleIndex]}` | localize }}
                 </div>
               </div>
             </td>
           </tr>
-
-          <!-- <tr>
-              <td colspan="2" style="padding-left: 2em;" class="legal-title" >
-                <p style="width: 85%;"  align="center">{{ `${this.messages[1]}` | localize }}</p>
-              </td>
-            </tr> -->
 
           <!-- end turbo -->
         </tbody>
@@ -104,6 +107,16 @@ import { upRedOptions, downRedOptions } from '@/shapes/index.js'
 
 export default {
   data: () => ({
+    config: {},
+    alarms: {},
+    phone: '',
+    messages: {
+      isFirst: true,
+      isSecond: true,
+      isThird: false,
+      isFourth: false,
+    },
+
     // options
     upRedOptions: upRedOptions,
     downRedOptions: downRedOptions,
@@ -124,23 +137,6 @@ export default {
       yes: false,
     },
 
-    isVisible: {
-      alarm: true,
-      operator: true,
-      support: true,
-    },
-
-    messages: [
-      /* 'Вы хотите завершить мойку и вернуть остаток бонусами на счет?', */
-      `You_want_to_complete_the_car_wash`,
-      /* 'Нажимая кнопку Да, Вы даете свое согласие на отправку Вам СМС-сообщения 
-      и обработку персональных данных согласно условиям, 
-      размещенным на сайте: www.alles-bonus.com' */
-      `By_clicking_the_Yes_button_you_give_your_consent`,
-    ],
-    messageIndex: -1,
-
-    // buttonTitle: [`OK`, `Cancel`],
     buttonTitle: [`OK`, `Cancel`],
     buttonTitleIndex: -1,
 
@@ -161,7 +157,7 @@ export default {
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
       getAlarmsMessages: 'getAlarmsMessages',
-      getAlarmsPhone: 'getAlarmsPhone'
+      getAlarmsPhone: 'getAlarmsPhone',
     }),
   },
 
@@ -174,25 +170,22 @@ export default {
   },
 
   methods: {
-    ...mapGetters({}),
+    ...mapGetters({
+      getConfig: 'getConfig',
+    }),
     ...mapActions({
       updateStartProgram: 'updateStartProgram',
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setAlarmsMessagesIndex: 'setAlarmsMessagesIndex',
-      setAlarmsPhone: 'setAlarmsPhone'
+      setAlarmsPhone: 'setAlarmsPhone',
     }),
     setProgram(program) {
       this.active = program
 
       this.setActiveProgram(this.active)
       this.setDown(this.active)
-
-      // this.$message(localizeFilter(`${messages.Not_enough_money}`))
-      this.timeoutDelay = setTimeout(() => {
-        this.isVisible.alarm = !this.isVisible.alarm
-      }, this.delay)
     },
 
     setDown(program) {
@@ -200,8 +193,6 @@ export default {
 
       switch (program) {
         case 'yes':
-          // console.log('++yes')
-
           this.setButtonStyle(this._downRedOptions)
           this.isDown.yes = true
 
@@ -230,8 +221,6 @@ export default {
       this.setButtonStyle(this._upRedOptions)
     },
     setup() {
-      // this.setAlarmsMessagesIndex(3)
-      this.setAlarmsPhone('х ххх ххх хх хх')  
       this.initial()
     },
 
@@ -295,8 +284,6 @@ export default {
         this.buttonRight.boxShadow = options.boxShadow
         this.buttonRight.fontSize = options.fontSize
         this.buttonRight.width = options.width
-
-        // this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
     },
 
@@ -306,9 +293,21 @@ export default {
       )
       this.setButtonStyle(this._upRedOptions)
     },
+
+    show() {
+      this.config = this.getConfig()
+
+      this.messages.isFirst = this.config.alarms.messages.includes(1)
+      this.messages.isSecond = this.config.alarms.messages.includes(2)
+      this.messages.isThird = this.config.alarms.messages.includes(3)
+      this.messages.isFourth = this.config.alarms.messages.includes(4)
+      this.phone = this.config.alarms.phone
+    },
   }, // end methods
 
-  created() {},
+  created() {
+    this.show()
+  },
   mounted() {
     this.setup()
   },
@@ -353,13 +352,6 @@ td {
   text-align: center;
 }
 
-/* table,
-tr,
-td,
-p {
-  background: yellow;
-
-} */
 .info-alarm {
   position: absolute;
   top: 0.4em;
@@ -378,10 +370,9 @@ p {
   */
   margin-left: 3.7em;
   width: 10em;
-  border: solid 1px lightGrey ;
+  border: solid 1px lightGrey;
   background: #fff;
   border-radius: 0.2em;
-
 }
 
 .button-group {

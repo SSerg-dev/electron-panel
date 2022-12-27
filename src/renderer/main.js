@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Invoice from 'vue-invoice'
+// import Invoice from 'vue-invoice'
 import Paginate from 'vuejs-paginate'
 import App from './App.vue'
 import './registerServiceWorker'
@@ -25,7 +25,7 @@ Vue.config.productionTip = false
 
 Vue.use(messagePlugin)
 Vue.use(loader)
-Vue.use(Invoice, { store } )
+// Vue.use(Invoice, { store } )
 
 Vue.filter('date', dateFilter)
 Vue.filter('localize', localizeFilter)

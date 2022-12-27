@@ -323,7 +323,7 @@ export default {
 .button-title {
   padding-top: 0.3em;
   padding-left: 0;
-  font-size: 3em;
+  font-size: 2.8em;
   /* font-family: 'arial'; */
   text-shadow:
     2px 2px 2px silver,

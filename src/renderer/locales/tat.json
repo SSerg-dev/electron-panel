@@ -153,6 +153,9 @@
   "INPUT": "КЕРҮ",
   "EXIT": "ЧЫГУ",
 
+  "Show_alert_message": "Show alert message",
+  "Show_alert_phone": "Show alert phone",
+
   "Check_out_another_post": "Гафу итегез, нәрсәдер дөрес булмаган. Башка язманы карагыз",
   "Take_screenshot_of_ your_balance": "Сделайте фото экрана с остатком вашего баланса",
   "Contact_the_operator": "Обратитесь к оператору",

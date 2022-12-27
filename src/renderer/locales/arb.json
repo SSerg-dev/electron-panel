@@ -153,6 +153,9 @@
   "INPUT": "الإدخال",
   "EXIT": "خروج",
 
+  "Show_alert_message": "Show alert message",
+  "Show_alert_phone": "Show alert phone",
+
   "Check_out_another_post": "نأسف لحدوث خطأ ما. تحقق من وظيفة أخرى",
   "Take_screenshot_of_ your_balance": "خذ لقطة شاشة لبقية رصيدك",
   "Contact_the_operator": "اتصل بالمشغل",

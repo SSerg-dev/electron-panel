@@ -1,9 +1,10 @@
 <template>
-  <div class="col s12">
+  <div>
     <div
       class="card grey lighten-3"
       style="
         height: 80px;
+        
         border: solid 3px #00b9e3;
         border-radius: 0em;
         margin-left: 7.5em;

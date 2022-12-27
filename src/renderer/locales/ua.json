@@ -153,6 +153,9 @@
   "INPUT": "ВХІД",
   "EXIT": "ВИХІД",
 
+  "Show_alert_message": "Show alert message",
+  "Show_alert_phone": "Show alert phone",
+
   "Check_out_another_post": "Вибачте, що щось пішло не так. Перегляньте інший пост",
   "Take_screenshot_of_ your_balance": "Зробіть скріншот решти вашого балансу",
   "Contact_the_operator": "Зв'яжіться з оператором",

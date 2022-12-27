@@ -153,6 +153,9 @@
   "INPUT": "INMATNING",
   "EXIT": "UTGÅNG",
 
+  "Show_alert_message": "Show alert message",
+  "Show_alert_phone": "Show alert phone",
+
   "Check_out_another_post": "We're sorry that something went wrong. Check out another post",
   "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
   "Contact_the_operator": "Contact the operator",

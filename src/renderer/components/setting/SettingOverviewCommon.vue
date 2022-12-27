@@ -1,9 +1,9 @@
 <template>
-  <div class="col s6">
+  <div>
     <!-- style="border: solid 3px #00B9E3;" -->
     <div
       class="card grey lighten-3"
-      style="height: 220px; border: solid 3px #00b9e3; border-radius: 2rem"
+      style="height: 220px; width: 48%; border: solid 3px #00b9e3; border-radius: 2rem"
     >
       <div class="card-content black-text">
         <span class="card-title"

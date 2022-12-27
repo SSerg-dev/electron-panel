@@ -153,6 +153,9 @@
   "INPUT": "IEVADE",
   "EXIT": "IZEJA",
 
+  "Show_alert_message": "Show alert message",
+  "Show_alert_phone": "Show alert phone",
+
   "Check_out_another_post": "Atvainojiet, ka kaut kas nogāja greizi. Pārbaudiet citu ziņu",
   "Take_screenshot_of_ your_balance": "Uzņemiet ekrānuzņēmumu ar atlikušo bilanci",
   "Contact_the_operator": "Sazinieties ar operatoru",

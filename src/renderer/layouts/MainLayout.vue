@@ -1,5 +1,19 @@
 <template>
   <div class="app-main-layout">
+
+    <!-- <Snowf
+      :amount="50"
+      :size="5"
+      :speed="1.5"
+      :wind="0"
+      :opacity="0.8"
+      :swing="1"
+      :image="null"
+      :zIndex="null"
+      :resize="true"
+      color="#fff"
+    /> -->
+
     <Navbar @click="isOpen = !isOpen" />
     <main class="app-content" :class="{ full: !isOpen }">
       <div class="app-page">

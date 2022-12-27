@@ -344,7 +344,7 @@ export default {
     timeoutDelay: null,
     isVisible: false,
     isVisibleWashTableBonus: false,
-    isVisibleWashTableAlarm: true,
+    isVisibleWashTableAlarm: false,
 
     /*  */
     keys: {
@@ -1004,7 +1004,7 @@ td {
 
 .price {
   position: absolute;
-  margin-top: 0em;
+  margin-top: -0.8em;
   margin-left: 0.5em;
 }
 .receipt {

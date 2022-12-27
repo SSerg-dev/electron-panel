@@ -58,17 +58,22 @@
         style="box-shadow: 10px 10px 10px #00b9e3"
       >
         <!-- Обзор -->
-        <div>
+        <div style="width: 96%; margin-left: 1em;">
           <h2 class="white-text page-subtitle">{{ `Review` | localize }}</h2>
           <br />
-          <div class="row panel">
-            <div class="page-title white-text" style="padding-left: 1em"></div>
-            <SettingOverviewService />
-            <SettingOverviewCommon />
+          <div class="panel page-title white-text">
+            <div><SettingOverviewService /></div>
+            <div
+            style="
+            position: fixed;
+            top: 21.5em;
+            left: 37.5em;
+            width: 98%;
+            "
+            ><SettingOverviewCommon /></div>
           </div>
         </div>
         <!-- <hr /> -->
-        <!-- end Обзор -->
         <!-- Экран -->
         <div>
           <h2 class="white-text page-subtitle">{{ `Display` | localize }}</h2>
@@ -165,11 +170,12 @@
               <!-- end row 03 -->
 
               <!-- row 04 -->
-              <tr style="margin-top: 0.8em;"
-              :class="[
-                { 'first-opacity': isChangeProgramFirst },
-                { 'second-opacity': !isChangeProgramFirst },
-              ]"
+              <tr
+                style="margin-top: 0.8em"
+                :class="[
+                  { 'first-opacity': isChangeProgramFirst },
+                  { 'second-opacity': !isChangeProgramFirst },
+                ]"
               >
                 <td style="border: none; width: 360px; height: 80px">
                   <div
@@ -216,7 +222,7 @@
                     <div>
                       <SettingScreenChangeItem
                         :changeItemIds="changeProgramIds"
-                        :degreasingProgram="degreasingProgram" 
+                        :degreasingProgram="degreasingProgram"
                       />
                     </div>
                   </div>
@@ -418,15 +424,20 @@
                   </div>
                 </td>
               </tr>
+
               <!-- end row -->
 
-              <!--     -->
+              <!-- alarms row -->
+              <tr style="width: 1040px; margin-top: 0em; margin-bottom: 6em">
+                <td>
+                  <SettingAlarmMessage />
+                </td>
 
-              <!-- <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr> -->
+                <td>
+                  <SettingAlarmPhone />
+                </td>
+              </tr>
+              <!-- end alarms -->
             </tbody>
           </table>
           <div style="margin-top: -0.6em">
@@ -930,6 +941,8 @@ import SettingScreenChangeItem from '@/components/setting/SettingScreenChangeIte
 import SettingScreenAssignItem from '@/components/setting/SettingScreenAssignItem'
 
 import FinanceTable from '@/components/FinanceTable'
+import SettingAlarmMessage from '@/components/setting/SettingAlarmMessage'
+import SettingAlarmPhone from '@/components/setting/SettingAlarmPhone'
 
 import cost from '../store/cost'
 import EventBus from '@/bus/EventBus'
@@ -941,7 +954,7 @@ export default Vue.extend({
 
     isPayScreenMain: false,
     //isTooltipInstalled: false,
-    
+
     isChangeItem: false,
     isChangeProgramFirst: false,
     isChangeProgramSecond: false,
@@ -1002,9 +1015,11 @@ export default Vue.extend({
     SettingScreenAssignItem,
 
     FinanceTable,
+
+    SettingAlarmMessage,
+    SettingAlarmPhone,
   },
   mounted() {
-
     EventBus.$on('submitSelect', this.submitHandler)
 
     this.setRouter('/setting')
@@ -1053,8 +1068,6 @@ export default Vue.extend({
       setChangeProgram: 'setChangeProgram',
       setAssignProgramTo: 'setAssignProgramTo',
       setChangeItem: 'setChangeItem',
-
-
     }),
     setDown() {
       this.isDown = !this.isDown
@@ -1078,6 +1091,7 @@ export default Vue.extend({
     },
     applyHandler() {
       this.config = this.getConfig()
+      // console.log('$$ this.config', this.config)
 
       this.updateConfig(this.config)
 
@@ -1102,7 +1116,6 @@ export default Vue.extend({
       getChangeProgram: 'getChangeProgram',
       getAssignProgramTo: 'getAssignProgramTo',
       getChangeItem: 'getChangeItem',
-
     }),
   },
   computed: {
@@ -1111,7 +1124,6 @@ export default Vue.extend({
       getAcceptorInstalled: 'getAcceptorInstalled',
       getCoinAcceptorInstalled: 'getCoinAcceptorInstalled',
       getUsersIsAccess: 'getUsersIsAccess',
-      
     }),
   },
   watch: {
@@ -1129,7 +1141,6 @@ export default Vue.extend({
     getChangeProgram(flag) {
       console.log('$$ getChangeProgram', flag)
     },
-
 
     isCnw(flag) {
       this.setCnw(flag)
@@ -1173,9 +1184,7 @@ export default Vue.extend({
     /* dev */
     this.isChangeItem = this.getIsChangeItem()
     this.isChangeProgramFirst = this.getIsChangeProgramFirst()
-    this.isChangeProgramSecond = this.getIsChangeProgramSecond()   
-
-
+    this.isChangeProgramSecond = this.getIsChangeProgramSecond()
   },
   beforeDestroy() {
     if (this.tabs && this.tabs.destroy) {

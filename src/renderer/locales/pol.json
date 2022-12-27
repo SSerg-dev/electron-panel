@@ -153,6 +153,9 @@
   "INPUT": "WEJŚCIE",
   "EXIT": "WYJŚCIE",
 
+  "Show_alert_message": "Show alert message",
+  "Show_alert_phone": "Show alert phone",
+
   "Check_out_another_post": "Przykro nam, że coś poszło nie tak. Sprawdź inny post",
   "Take_screenshot_of_ your_balance": "Zrób zrzut ekranu pozostałego salda",
   "Contact_the_operator": "Skontaktuj się z operatorem",

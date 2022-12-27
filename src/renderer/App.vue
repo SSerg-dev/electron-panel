@@ -235,6 +235,11 @@ ArialBlack
 ArialBoldItalic
 
 */
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: local('Roboto-Regular'),
+    url(./assets/fonts/Plumb-Medium.ttf) format('truetype');
+}
 
 @font-face {
   font-family: 'Plumb-Medium';

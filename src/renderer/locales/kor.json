@@ -153,6 +153,9 @@
   "INPUT": "입력",
   "EXIT": "출구",
 
+  "Show_alert_message": "Show alert message",
+  "Show_alert_phone": "Show alert phone",
+
   "Check_out_another_post": "문제가 발생하여 죄송합니다. 다른 게시물 확인",
   "Take_screenshot_of_ your_balance": "나머지 잔액의 스크린샷을 찍습니다.",
   "Contact_the_operator": "교환원에게 연락하기",

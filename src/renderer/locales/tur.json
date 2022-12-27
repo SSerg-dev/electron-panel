@@ -153,6 +153,9 @@
   "INPUT": "GİRİŞ",
   "EXIT": "ÇIKIŞ",
 
+  "Show_alert_message": "Show alert message",
+  "Show_alert_phone": "Show alert phone",
+
   "Check_out_another_post": "Bir şeyler ters gittiği için üzgünüz. Başka bir gönderiye göz atın",
   "Take_screenshot_of_ your_balance": "Kalan bakiyenizin ekran görüntüsünü alın",
   "Contact_the_operator": "Operatörle iletişim kurun",
