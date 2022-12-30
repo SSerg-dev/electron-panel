@@ -124,8 +124,8 @@ class Vendotek extends EventEmitter {
 
     /* dev */
     this.responseBankInfo = params
-    
-    if (this.responseBankInfo.amount > 0) {
+
+    if (+this.responseBankInfo.amount > 0) {
       this.subscribe(Observer.item)
       this.fire({ type: 'RESOLVE', payload: this.responseBankInfo.amount })
       this.unsubscribe(Observer.item)
@@ -206,7 +206,7 @@ class Vendotek extends EventEmitter {
         clearTimeout(timeoutFunc)
         resolve(data)
       }
-      
+
       let timeoutFunc = () => {
         this.removeListener(event, check_response)
         reject(new Error(`Timeout response ${event}`))

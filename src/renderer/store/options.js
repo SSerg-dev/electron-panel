@@ -19,6 +19,7 @@ export default {
         sum: 0,
         // nl::json – структура доп. данных
         detail: {
+          
           order: '', 
           // сумма зачисления в монетах
           sum_coins: 0,

@@ -4,11 +4,11 @@
       class="card grey lighten-3"
       style="height: 80px; border: solid 3px #00b9e3; border-radius: 2rem"
     >
-      <div class="card-content black-text">
-        <span class="card-title col s2" style="margin-top: -0em">{{`Model` | localize}} {{`:`}}</span>
+      <div class="card-content black-text section-card" >
+        <span class="card-title col s2" style="margin-left: -0.4em;">{{`Model` | localize}} {{`:`}}</span>
 
-        <div class="input-field col s5" style="margin-top: -0.5em">
-          <select class="page-title white-text" ref="select" v-model="current">
+        <div class="input-field section-model">
+          <select class="white-text" ref="select" v-model="current">
             <option v-for="(t, index) in types" :key="index" :value="t.id">
               <div class="dropdown-setting">
                 {{ t.title }}
@@ -42,6 +42,7 @@
           </button>
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -120,7 +121,22 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.section-card {
+  position: relative;
+}
+.section-model {
+  position: absolute;
+  top: 0;
+  left: 11em;
+  width: 28.5em;
+  /* margin-top: -0.5em; */
+  /* margin-right: -1em; */
+  
+}
 .button-setting {
+  position: absolute;
+  top: 1em;
+  left: 29.5em;
   border: solid 1px white;
   font-size: 1.4em;
   border-radius: 2em;

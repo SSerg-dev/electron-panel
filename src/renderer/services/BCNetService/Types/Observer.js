@@ -13,6 +13,8 @@ class Observer {
   }
 
   update(action) {
+    console.log('$$ action', action)
+
     switch (action.type) {
       case 'CONNECTING':
         this.state = this.state

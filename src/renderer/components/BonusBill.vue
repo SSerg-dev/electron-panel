@@ -378,11 +378,6 @@
                             box-shadow: 0px 6px 10px #00b9e3;
                           "
                         >
-                          <!-- 
-                          display: flex;
-                          align-items: center;
-                          justify-content: center;
-                         -->
                           <div
                             class="card-content black-text"
                             style="
@@ -785,20 +780,26 @@ export default {
       )
 
       if (this.phone.length === this.phoneParseLength) {
-        const response = await this.storage.getClient(
-          method,
-          this.options,
-          type
-        )
-        if (+response.result === 0) {
-          // this.$message(
-          //   `Вам начислено appendBonusMoney ${this.options.params.sum} бонуса(ов) `
-          // )
-          this.setIsAppendBonusMoney(false)
-          if (this.$route.name !== 'program') this.$router.push('/program')
+        /* dev */
+        if (!this.getServiceBalance) {
+          const response = await this.storage.getClient(
+            method,
+            this.options,
+            type
+          )
+          if (+response.result === 0) {
+            this.setIsAppendBonusMoney(false)
+            if (this.$route.name !== 'program') this.$router.push('/program')
+          } else {
+            this.$message(`Error:  ${response.error}`)
+          }
         } else {
-          this.$message(`Error:  ${response.error}`)
-        }
+        this.$message(
+          localizeFilter(
+            `${messages.Bonuses_awarded_money_for_service_at_the_car_wash}`
+          )
+        )
+      }
       } else {
         // this.$message(`Введите правильно номер мобильного телефона`)
         this.$message(localizeFilter(`${messages.Enter_valid_phone_number}`))

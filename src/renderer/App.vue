@@ -244,6 +244,7 @@ ArialBoldItalic
 @font-face {
   font-family: 'Plumb-Medium';
   src: local('Plumb-Medium'),
-    url(./assets/fonts/arial/ArialBold.ttf) format('truetype');
+    /* url(./assets/fonts/arial/ArialBold.ttf) format('truetype'); */
+    url(./assets/fonts/Roboto-Medium.ttf) format('truetype');
 }
 </style>

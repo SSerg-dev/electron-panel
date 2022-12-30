@@ -1,16 +1,6 @@
 <template>
   <div>
-    <div
-      class="card grey lighten-3"
-      style="
-        border: none;
-        width: 420px;
-        height: 100px;
-        margin-left: 0em;
-        margin-top: -0.4em;
-        padding-left: 1em;
-      "
-    >
+    <div class="card grey lighten-3 payment-card">
       <div class="card-content black-text">
         <div class="row" style="margin-top: -0.8em">
           <div class="col s5" style="padding-top: 0.5em">
@@ -36,7 +26,7 @@
           </div>
 
           <div class="col s2" style="padding-top: 0.5em">
-            <div align="center" class="display">
+            <div align="center" class="display number">
               {{ display }}
             </div>
           </div>
@@ -150,14 +140,24 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.payment-card {
+  border: none;
+  width: 410px;
+  height: 90px;
+  margin-left: 1em;
+  margin-top: -0.4em;
+  padding-left: 1em;
+}
 .display {
   font-size: 1.6em;
+  padding-left: 0em;
+  padding-top: 0.2em;
 }
-/* .btn {
-  font-size: 1em;
-  border: solid 1px black;
-  background-color: #26a69a;
-} */
+.number {
+  padding-left: 1.8em;
+  padding-top: 0.2em;
+}
+
 td {
   width: 128px;
 }
@@ -169,5 +169,6 @@ td {
   height: 2.5em;
   width: 2.5em;
   padding-bottom: 0em;
+  margin-left: 1em;
 }
 </style>

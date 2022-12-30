@@ -244,8 +244,8 @@ export default new Vuex.Store({
           'OPCUA',
           JSON.stringify({
             node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
-              1}].paidMoney`,
-            // 1}].prepaymentMoney`,
+            // 1}].paidMoney`,
+            1}].prepaymentMoney`,
             value: cash
           })
         )
@@ -345,15 +345,17 @@ export default new Vuex.Store({
     },
     // Платежи --------------------------
     // (наличные или карта)
+
     updateWetMoney({ getters }, cash) {
       console.log('!!!updateWetMoney-->', cash)
+      
       try {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
             node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
-              1}].paidMoney`,
-            /* 1}].prepaymentMoney`, */
+            /*   1}].paidMoney`, */
+            1}].prepaymentMoney`,
             value: cash
           })
         )
@@ -361,6 +363,10 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
+
+    /* 
+    updateWetCardMoney
+    */
     // сервисные деньги
     updateWetServMoney({ getters }, service) {
       try {
@@ -409,7 +415,7 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
-
+    
     updateWetZeroMoney({ getters }, zeroMoney) {
       try {
         ipcRenderer.send(
@@ -704,8 +710,6 @@ export default new Vuex.Store({
         case 'digits':
           state.globalParameters.fixedCurrency = parameter.value
           break
-        /* dev */
-        // case '::AsGlobalPV:gPanelSysMenuUnlockFlag':
         case 'PanelSysMenuUnlockFlag':
           state.globalParameters.isMenuUnlock =
             parameter.value === 'true' ? true : false

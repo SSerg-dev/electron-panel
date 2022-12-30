@@ -1,31 +1,6 @@
 <template>
-  <div
-    class="overlay"
-    ref="overlay"
-    style="
-      background: none;
-      width: 80em;
-      height: 90em;
-      padding-top: 14em;
-      padding-left: 4em;
-      margin-top: -2em;
-      margin-left: -4em;
-      z-index: 1;
-    "
-  >
-    <section
-      style="
-        width: 66em;
-        height: 72em;
-        margin-left: 0.2em;
-        margin-top: -6em;
-        padding-left: 1.8em;
-        padding-top: 8em;
-        border: solid 3px #00b9e3;
-        border-radius: 2em;
-        box-shadow: 0px 0px 20px 15px #00b9e3;
-      "
-    >
+  <div class="overlay overlay-style" ref="overlay">
+    <section class="section-style">
       <form @submit.prevent="">
         <div v-if="loading">
           <loader
@@ -85,37 +60,17 @@
               <td>
                 <div
                   @click="setNumber('')"
-                  class="card black waves-effect"
-                  style="
-                    width: 220px;
-                    height: 120px;
-                    border: none;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card black limit-card waves-effect"
                 >
                   <div
                     v-if="isMinBlinking && isMin"
                     id="blink"
-                    class="card-content"
-                    style="
-                      font-size: 3rem;
-                      padding-left: 2.4rem;
-                      padding-top: 1.4rem;
-                    "
+                    class="card-content limit-title"
                   >
                     {{ `Min ${getPaymentLimitMin}` }}
                   </div>
 
-                  <div
-                    v-else
-                    class="card-content white-text"
-                    style="
-                      font-size: 3rem;
-                      padding-left: 2.4rem;
-                      padding-top: 1.4rem;
-                    "
-                  >
+                  <div v-else class="card-content white-text limit-title">
                     {{ `Min ${getPaymentLimitMin}` }}
                   </div>
                 </div>
@@ -123,23 +78,9 @@
               <td>
                 <div
                   @click="setNumber('1')"
-                  class="card white waves-effect"
-                  style="
-                    width: 125px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white small-button waves-effect"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text small-button-title">
                     1
                   </div>
                 </div>
@@ -147,23 +88,9 @@
               <td>
                 <div
                   @click="setNumber('2')"
-                  class="card white waves-effect"
-                  style="
-                    width: 125px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect small-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text small-button-title">
                     2
                   </div>
                 </div>
@@ -171,23 +98,9 @@
               <td>
                 <div
                   @click="setNumber('3')"
-                  class="card white waves-effect"
-                  style="
-                    width: 125px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect small-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text small-button-title">
                     3
                   </div>
                 </div>
@@ -195,39 +108,19 @@
               <td>
                 <div
                   @click="setNumber('')"
-                  class="card black waves-effect"
-                  style="
-                    width: 220px;
-                    height: 120px;
-                    border: none;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card black limit-card waves-effect"
                 >
                   <div
                     v-if="isMaxBlinking && isMax"
                     id="blink"
-                    class="card-content"
-                    style="
-                      font-size: 3rem;
-                      padding-left: 1.5rem;
-                      padding-top: 1.4rem;
-                    "
+                    class="card-content limit-title"
                   >
                     <div>
                       {{ `Max ${parseFloat(getPaymentLimitMax)}` }}
                     </div>
                   </div>
 
-                  <div
-                    v-else
-                    class="card-content white-text"
-                    style="
-                      font-size: 3rem;
-                      padding-left: 1.5rem;
-                      padding-top: 1.4rem;
-                    "
-                  >
+                  <div v-else class="card-content white-text limit-title">
                     <div>
                       {{ `Max ${parseFloat(getPaymentLimitMax)}` }}
                     </div>
@@ -241,23 +134,9 @@
               <td>
                 <div
                   @click="setNumber('100', (fixed = true))"
-                  class="card white waves-effect"
-                  style="
-                    width: 220px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect medium-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text medium-button-title">
                     100
                   </div>
                 </div>
@@ -265,23 +144,9 @@
               <td>
                 <div
                   @click="setNumber('4')"
-                  class="card white waves-effect"
-                  style="
-                    width: 125px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect small-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text small-button-title">
                     4
                   </div>
                 </div>
@@ -289,23 +154,9 @@
               <td>
                 <div
                   @click="setNumber('5')"
-                  class="card white waves-effect"
-                  style="
-                    width: 125px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect small-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text small-button-title">
                     5
                   </div>
                 </div>
@@ -313,23 +164,9 @@
               <td>
                 <div
                   @click="setNumber('6')"
-                  class="card white waves-effect"
-                  style="
-                    width: 125px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect small-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text small-button-title">
                     6
                   </div>
                 </div>
@@ -337,23 +174,9 @@
               <td>
                 <div
                   @click="setNumber('500', (fixed = true))"
-                  class="card white waves-effect"
-                  style="
-                    width: 220px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect medium-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text medium-button-title">
                     500
                   </div>
                 </div>
@@ -363,23 +186,9 @@
               <td>
                 <div
                   @click="setNumber('200', (fixed = true))"
-                  class="card white waves-effect"
-                  style="
-                    width: 220px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect medium-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text medium-button-title">
                     200
                   </div>
                 </div>
@@ -387,23 +196,9 @@
               <td>
                 <div
                   @click="setNumber('7')"
-                  class="card white waves-effect"
-                  style="
-                    width: 125px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect small-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text small-button-title">
                     7
                   </div>
                 </div>
@@ -411,23 +206,9 @@
               <td>
                 <div
                   @click="setNumber('8')"
-                  class="card white waves-effect"
-                  style="
-                    width: 125px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect small-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text small-button-title">
                     8
                   </div>
                 </div>
@@ -435,23 +216,9 @@
               <td>
                 <div
                   @click="setNumber('9')"
-                  class="card white waves-effect"
-                  style="
-                    width: 125px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect small-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text small-button-title">
                     9
                   </div>
                 </div>
@@ -459,23 +226,9 @@
               <td>
                 <div
                   @click="setNumber('600', (fixed = true))"
-                  class="card white waves-effect"
-                  style="
-                    width: 220px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect medium-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text medium-button-title">
                     600
                   </div>
                 </div>
@@ -486,23 +239,9 @@
               <td>
                 <div
                   @click="setNumber('300', (fixed = true))"
-                  class="card white waves-effect"
-                  style="
-                    width: 220px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect medium-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text medium-button-title">
                     300
                   </div>
                 </div>
@@ -510,24 +249,11 @@
               <td>
                 <div
                   @click="setNumber('.')"
-                  class="card white waves-effect"
-                  style="
-                    width: 125px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                    opacity: 1;
-                  "
+                  class="card white waves-effect small-button"
                 >
                   <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 3rem;
-                      padding-top: 0rem;
-                      padding-bottom: 0rem;
-                    "
+                    class="card-content black-text small-button-title"
+                    style="padding-left: 3.2rem"
                   >
                     .
                   </div>
@@ -536,23 +262,9 @@
               <td>
                 <div
                   @click="setNumber('0')"
-                  class="card white waves-effect"
-                  style="
-                    width: 125px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect small-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text small-button-title">
                     0
                   </div>
                 </div>
@@ -560,14 +272,8 @@
               <td>
                 <div
                   @click="backspace"
-                  class="card white waves-effect"
-                  style="
-                    width: 125px;
-                    height: 120px;
-                    border: solid 6px red;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px red;
-                  "
+                  class="card white waves-effect small-button"
+                  style="border: solid 6px red; box-shadow: 0px 6px 10px red"
                 >
                   <div
                     class="card-content black-text"
@@ -585,23 +291,9 @@
               <td>
                 <div
                   @click="setNumber('700', (fixed = true))"
-                  class="card white waves-effect"
-                  style="
-                    width: 220px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect medium-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text medium-button-title">
                     700
                   </div>
                 </div>
@@ -612,23 +304,9 @@
               <td>
                 <div
                   @click="setNumber('400', (fixed = true))"
-                  class="card white waves-effect"
-                  style="
-                    width: 220px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                  "
+                  class="card white waves-effect medium-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 2.5rem;
-                      padding-top: 0em;
-                    "
-                  >
+                  <div class="card-content black-text medium-button-title">
                     400
                   </div>
                 </div>
@@ -636,27 +314,10 @@
               <td colspan="3">
                 <div
                   @click="payUp('append')"
-                  class="card white waves-effect"
-                  style="
-                    width: 420px;
-                    height: 120px;
-                    border: solid 6px rgb(118, 255, 3);
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px rgb(118, 255, 3);
-                  "
+                  class="card white waves-effect large-button"
                 >
-                  <div
-                    class="card-content black-text"
-                    style="
-                      display: flex;
-                      justify-content: center;
-
-                      font-size: 4em;
-                      padding-top: 0.2em;
-                    "
-                  >
+                  <div class="card-content black-text large-button-title">
                     {{ `APPEND` | localize }}
-                    <!-- {{`Card`}} -->
                   </div>
                 </div>
               </td>
@@ -664,23 +325,12 @@
               <td>
                 <div
                   @click="setNumber('', (fixed = true))"
-                  class="card white waves-effect"
-                  style="
-                    width: 220px;
-                    height: 120px;
-                    border: solid 6px #00b9e3;
-                    border-radius: 2.5em;
-                    box-shadow: 0px 6px 10px #00b9e3;
-                    opacity: 0.2;
-                  "
+                  class="card white waves-effect medium-button"
+                  style="opacity: 0.2"
                 >
                   <div
-                    class="card-content black-text"
-                    style="
-                      font-size: 5.2rem;
-                      padding-left: 1.2rem;
-                      padding-top: 0em;
-                    "
+                    class="card-content black-text medium-button-title"
+                    style="padding-left: 1.2rem"
                   >
                     1000
                   </div>
@@ -1167,6 +817,29 @@ export default {
   width: 20em;
 }
 
+.overlay-style {
+  background: none;
+  width: 80em;
+  height: 90em;
+  padding-top: 14em;
+  padding-left: 4em;
+  margin-top: -2em;
+  margin-left: -4em;
+  z-index: 1;
+}
+
+.section-style {
+  width: 66em;
+  height: 72em;
+  margin-left: 0.2em;
+  margin-top: -6em;
+  padding-left: 1.8em;
+  padding-top: 8em;
+  border: solid 3px #00b9e3;
+  border-radius: 2em;
+  box-shadow: 0px 0px 20px 15px #00b9e3;
+}
+
 table {
   margin-top: -3em;
   margin-left: -0.2em;
@@ -1181,14 +854,58 @@ td {
   padding-right: 1.5em;
   /* border-color: #121212; */
 }
-
-.btn {
-  height: 150px;
-  width: 150px;
-
-  background-color: #121212;
-  z-index: 1;
+.limit-card {
+  width: 220px;
+  height: 120px;
+  border: none;
+  border-radius: 2.5em;
+  box-shadow: 0px 6px 10px #00b9e3;
 }
+
+.limit-title {
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2.5rem;
+}
+
+.small-button {
+  width: 125px;
+  height: 120px;
+  border: solid 6px #00b9e3;
+  border-radius: 2.5em;
+  box-shadow: 0px 6px 10px #00b9e3;
+}
+.small-button-title,
+.medium-button-title {
+  font-size: 5.2rem;
+  padding-left: 2.5rem;
+  padding-top: 0em;
+}
+
+.medium-button {
+  width: 220px;
+  height: 120px;
+  border: solid 6px #00b9e3;
+  border-radius: 2.5em;
+  box-shadow: 0px 6px 10px #00b9e3;
+}
+
+.large-button {
+  width: 420px;
+  height: 120px;
+  border: solid 6px rgb(118, 255, 3);
+  border-radius: 2.5em;
+  box-shadow: 0px 6px 10px rgb(118, 255, 3);
+}
+.large-button-title {
+  display: flex;
+  justify-content: center;
+  font-size: 4em;
+  padding-top: 0.2em;
+}
+
 .pay-up {
   margin-top: -12em;
   margin-left: 24em;

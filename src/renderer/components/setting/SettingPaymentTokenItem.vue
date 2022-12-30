@@ -4,8 +4,8 @@
       class="card grey lighten-3"
       style="
       border: none; 
-      width: 280px; height: 80px; 
-      margin-left: 0em;
+      width: 260px; height: 80px; 
+      margin-left: 1.6em;
       margin-top: -0.4em;
       padding-left: 1em; 
       "

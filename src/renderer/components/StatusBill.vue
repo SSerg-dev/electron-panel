@@ -98,6 +98,7 @@ export default Vue.extend({
       } while (currentDate - date < ms)
     },
     gotoMainMenu(seconds) {
+      // console.log('$$ seconds', seconds)
       this.intervalMainMenu = setInterval(() => {
         this.seconds = seconds--
         this.observer = Observer.item
@@ -127,9 +128,11 @@ export default Vue.extend({
             }
             break
           case 'vendotek':
+            // console.log('$$ this.observer.state', this.observer.state)  
             if (
-              +this.observer.state > 0
+              +this.observer.state > 0 
               // && +this.observer.state === +this.card
+
             ) {
               this.cardMessageIndex = 3
               this.setStatusBillMessagesIndex(this.cardMessageIndex)
@@ -138,13 +141,16 @@ export default Vue.extend({
                 seconds = 0
                 this.resolve(this.terminalType)
               }, 2000)
-            } else {
+            } else if (this.seconds === 0) {
               this.cardMessageIndex = 4
               this.setStatusBillMessagesIndex(this.cardMessageIndex)
 
+              this.timeoutRejectDelay = setTimeout(() => {
+                this.reject(this.terminalType)
+              }, 2000)
+
               if (this.$route.name !== 'home') this.$router.push('/')
 
-              // this.reject(this.terminalType)
             }
             break
 
@@ -223,6 +229,7 @@ export default Vue.extend({
   },
   mounted() {
     this.card = this.getCardMoney()
+    // console.log('$$ this.card', this.card)
     this.terminalType = this.getDefaultTerminalType()
 
     switch (this.terminalType) {

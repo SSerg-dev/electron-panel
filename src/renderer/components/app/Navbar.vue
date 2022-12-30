@@ -29,17 +29,19 @@
       </div>
 
       <div class="logo">
+        <!-- dev -->
         <div v-if="getIsMenuUnlock" style="border: none" @click="loginSetting">
           <router-link to="/password">
             <img src="@/assets/imgs/svg/alles-unlock.svg" />
           </router-link>
         </div>
 
-        <div v-if="!getIsMenuUnlock" style="border: none">
+        <div v-if="!getIsMenuUnlock" style="border: none; opacity: 0.7;">
           <router-link to="/">
             <img src="@/assets/imgs/svg/alles-unlock.svg" />
           </router-link>
         </div>
+
       </div>
 
       <div class="circle">
@@ -333,7 +335,9 @@ export default {
     this.interval = setInterval(() => {
       this.date = new Date()
     }, 1000)
+    // console.log('$$ getIsMenuUnlock', this.getIsMenuUnlock)
   },
+  
   beforeDestroy() {
     clearInterval(this.interval)
   },

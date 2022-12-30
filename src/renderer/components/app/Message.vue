@@ -190,7 +190,7 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.wet-balance {
+.wet-balance, .dry-balance {
   padding-top: 0.02em;
   padding-right: 2.5em;
   width: 4em;
@@ -204,7 +204,7 @@ export default Vue.extend({
   align-items: center;
   justify-content: center;
 }
-.dry-balance {
+/* .dry-balance {
   padding-top: 0.02em;
   padding-right: 2.5em;
   width: 4em;
@@ -216,7 +216,7 @@ export default Vue.extend({
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 ul {
   width: 4em;
   height: 1.6em;

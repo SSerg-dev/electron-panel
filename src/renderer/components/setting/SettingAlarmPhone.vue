@@ -15,7 +15,7 @@
       <div class="card-content black-text">
         <div class="card-title">
           <div style="margin-bottom: 0.5em">
-            {{ `Show_alert_phone` | localize}} {{ `:` }}
+            {{ `Show_alert_phone` | localize }} {{ `:` }}
           </div>
         </div>
 
@@ -24,7 +24,6 @@
           align="left"
           contenteditable="true"
           v-model="phone"
-          
         />
       </div>
     </div>
@@ -65,7 +64,7 @@ export default Vue.extend({
       this.config = this.getConfig()
       this.config.alarms.phone = value
       this.setConfig(this.config)
-    }
+    },
   },
   created() {
     this.show()
@@ -107,8 +106,20 @@ export default Vue.extend({
   z-index: 1;
 }
 
+input:not([type]):focus:not([readonly]),
+input[type='text']:not(.browser-default):focus:not([readonly]),
+input[type='password']:not(.browser-default):focus:not([readonly]),
+input[type='email']:not(.browser-default):focus:not([readonly]),
+input[type='url']:not(.browser-default):focus:not([readonly]),
+input[type='time']:not(.browser-default):focus:not([readonly]),
+input[type='date']:not(.browser-default):focus:not([readonly]),
+input[type='datetime']:not(.browser-default):focus:not([readonly]),
+input[type='datetime-local']:not(.browser-default):focus:not([readonly]),
+input[type='tel']:not(.browser-default):focus:not([readonly]),
+input[type='number']:not(.browser-default):focus:not([readonly]),
+input[type='search']:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #00B9E3;
-  box-shadow: 0px 2px 4px #00b9e3;
+  border-bottom: 1px solid #00b9e3;
+  box-shadow: 0 1px 0 0 #00b9e3;
 }
 </style>
