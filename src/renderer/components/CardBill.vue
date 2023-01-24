@@ -29,7 +29,8 @@
                 {{ `${this.firstname}` }}
               </p>
               <p align="center" style="font-size: 140px">
-                {{ parseFloat(this.balance).toFixed(this.digits) }}
+                <!-- {{ parseFloat(this.balance).toFixed(this.digits) }} -->
+                {{ parseFloat(this.balance) }}
               </p>
               <p align="center">
                 {{ `${this.messages[1]}` | localize }}

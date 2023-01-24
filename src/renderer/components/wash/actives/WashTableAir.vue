@@ -95,7 +95,13 @@ export default Vue.extend({
       if (parseInt(flag) === 0) {
         this.clearDown()
       }
-    }
+    },
+    getActiveProgram(flag) {
+      if (
+        flag !== this.actives[this.activeAirNumber].name
+      )
+        this.clearDown()
+    },
   },
   methods: {
     ...mapGetters({
@@ -135,9 +141,10 @@ export default Vue.extend({
     },
     setDown(program) {
       this.clearDown()
-      this.setButtonStyle(this._downDryOptions)
+      
       switch (program) {
         case 'air':
+          this.setButtonStyle(this._downDryOptions)
           this.isDown.air = true
           break
 
@@ -146,9 +153,9 @@ export default Vue.extend({
       }
       this.timeoutSetUp = setTimeout(() => {
         try {
-          this.clearDown()
+          if (this.getWetBalance === '0') this.clearDown()
         } catch (err) {}
-      }, 500)
+      }, 2000)
     },
     clearDown() {
       this.isDown = Object.fromEntries(

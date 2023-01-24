@@ -1057,4 +1057,7 @@ td {
 /* .dry-items .dry-item:nth-child(odd) {
   background: coral;
 } */
+.dry-item {
+  padding-right: 1em;
+}
 </style>
