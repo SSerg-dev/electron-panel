@@ -7,8 +7,17 @@
   "type": "commonjs",
   "scripts": {
     "start": "NODE_NO_WARNINGS=1 vue-cli-service  electron:serve ./src/renderer/main.js --enable-logging --openssl-legacy-provider serve",
-    "build": "vue-cli-service electron:build --linux deb --armv7l",
-    "rebuild": "./node_modules/.bin/electron-rebuild -f -a armv7l"
+    "build": "vue-cli-service electron:build --linux --armv7l",
+    "rebuild": "./node_modules/.bin/electron-rebuild -f -a armv7l",
+
+    "electron:serve": "vue-cli-service electron:serve",
+    "electron:build": "vue-cli-service electron:build",
+
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps",
+    
+    "electron:rebuild": "./node_modules/.bin/electron-rebuild -f",
+    "electron:rebuild2": "./node_modules/.bin/electron-builder -c.npmRebuild=false"
   },
   "keywords": [],
   "author": {
