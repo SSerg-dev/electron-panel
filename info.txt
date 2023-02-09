@@ -1,0 +1,15 @@
+"scripts": {
+    "start": "NODE_NO_WARNINGS=1 vue-cli-service  electron:serve ./src/renderer/main.js --enable-logging --openssl-legacy-provider serve",
+    "build": "vue-cli-service electron:build --linux deb --armv7l",
+    "rebuild": "./node_modules/.bin/electron-rebuild -f -a armv7l"
+  }
+
+  DEtJAp3FLsWmJmAT8QDn
+  git push origin
+
+  git push gitlab
+
+
+  $(npm bin)/electron-rebuild
+
+
