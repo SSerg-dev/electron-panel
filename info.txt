@@ -4,10 +4,15 @@
     "rebuild": "./node_modules/.bin/electron-rebuild -f -a armv7l"
   }
 
+  sudo ./electron-panel-1.0.0.AppImage --no-sandbox
+
   DEtJAp3FLsWmJmAT8QDn
   git push origin
 
+  Sergei_Shabailov
+  A11e$_!+
   git push gitlab
+
 
 
   $(npm bin)/electron-rebuild

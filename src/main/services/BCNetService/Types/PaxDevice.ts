@@ -109,8 +109,10 @@ class PaxDevice extends EventEmitter {
     this.isSend = false
 
     /* Create comport driver.  */
+    let serialport = require("serialport")
+    let SerialPort = serialport.SerialPort
     this.serial = null
-    this.serial = new SerialPort(this.port, this.portOptions, err =>
+    this.serial = new SerialPort(this.port, this.portOptions, (err: any) =>
       this.debug(err)
     )
     /* On serial open event. */

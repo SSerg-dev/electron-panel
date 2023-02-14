@@ -78,6 +78,9 @@ export const execShellCommand = (cmd: string) => {
 export const getSerialDevicesInfo = async (toSearch: string) => {
   let portInfo
   try {
+    let serialport = require("serialport")
+    let SerialPort = serialport.SerialPort
+
     portInfo = await SerialPort.list()
     portInfo = portInfo.filter((port: any) => port.pnpId !== undefined)
     return portInfo.filter((port: any) => port.path.indexOf(toSearch) > -1)

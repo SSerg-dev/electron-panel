@@ -286,7 +286,7 @@ class OPCUAService extends EventEmitter {
         }
       )
     } catch (err) {
-      log(TAG, 'Fault while connecting:', err)
+      log(TAG, 'Fault while connecting OPCUAService:', err)
       setTimeout(() => this.start(), 4000)
     }
   }
