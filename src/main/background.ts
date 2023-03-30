@@ -1,7 +1,7 @@
 import './terminate'
 
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
-import { app, screen, BrowserWindow, ipcMain, remote } from 'electron'
+import { app, screen, BrowserWindow, ipcMain } from 'electron'
 import { exec } from 'child_process'
 
 import {
@@ -325,8 +325,6 @@ app.commandLine.appendSwitch('--enable-logging')
 
 /* */
 app.on('ready', () => {
-  /* dev */
-  app.allowRendererProcessReuse = false
   createWindow()
   log(TAG, 'Created window')
 
@@ -356,11 +354,10 @@ const createWindow = () => {
     webPreferences: {
       webSecurity: false,
       nodeIntegration: true,
-      enableRemoteModule: true
     },
     x: isDevelopment ? externalDisplay?.bounds.x : 0,
     y: isDevelopment ? externalDisplay?.bounds.y : 0,
-    frame: false,
+    frame: true,
     show: false
   })
 
@@ -400,5 +397,5 @@ function toUpperCase(arg0: string) {
 }
 
 function writeConfig(data: any) {
-  writeFileSync('./configs/settings-current.json', data)
+  writeFileSync('./configs/settings-current.json', data)   
 }

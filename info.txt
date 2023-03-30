@@ -14,8 +14,6 @@
   A11e$_!+
   git push gitlab
 
-
-
   $(npm bin)/electron-rebuild
 
   
