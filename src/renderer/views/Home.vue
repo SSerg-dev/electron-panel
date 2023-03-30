@@ -1,13 +1,14 @@
 <template>
   <section>
     <div>
-      <div
+      <!-- <div
         v-if="
           this.getPanelType === 'wash' &&
           getIsPingUrl &&
           getWetActive === 'true'
         "
-      >
+      > -->
+      <div>
         <Wash />
       </div>
 

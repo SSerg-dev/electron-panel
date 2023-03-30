@@ -156,6 +156,7 @@ export default Vue.extend({
     // ----------------------------------
 
     async ping() {
+      console.log('ping')
       const method = methods[3]
       const type = types[4]
 
@@ -175,6 +176,7 @@ export default Vue.extend({
       }
     },
     async pingUrl() {
+      console.log('pingUrl')
       const method = methods[12]
       const type = types[5]
 

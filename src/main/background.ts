@@ -348,7 +348,7 @@ const createWindow = () => {
   // Create the browser window.
   const displays = screen.getAllDisplays()
   const externalDisplay = displays.find(display => {
-    return display.bounds.x !== 0
+    return display.bounds.x !== 0 || display.bounds.y !== 0
   })
   const { width, height } = screen.getPrimaryDisplay().size
 
@@ -358,13 +358,8 @@ const createWindow = () => {
       nodeIntegration: true,
       enableRemoteModule: true
     },
-    x: isDevelopment ? externalDisplay?.bounds.x : width,
-    y: 0,
-    width: isDevelopment ? externalDisplay?.workArea.height : height,
-    height: isDevelopment ? externalDisplay?.workArea.width : width,
-    // width: 1920,
-    // height: 1080,
-
+    x: isDevelopment ? externalDisplay?.bounds.x : 0,
+    y: isDevelopment ? externalDisplay?.bounds.y : 0,
     frame: false,
     show: false
   })
@@ -382,6 +377,7 @@ const createWindow = () => {
   })
 
   mainWindow.once('ready-to-show', () => {
+    mainWindow.maximize();
     mainWindow.show()
     exec(
       "xinput -set-prop 6 'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1"
