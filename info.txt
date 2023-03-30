@@ -4,17 +4,21 @@
     "rebuild": "./node_modules/.bin/electron-rebuild -f -a armv7l"
   }
 
-  // ------------------------------------
-  sudo ./electron-panel-1.0.0.AppImage --no-sandbox
+// ------------------------------------
+## push gitlab
+Sergei_Shabailov
+A11e$_!+
+git push gitlab master
 
-  DEtJAp3FLsWmJmAT8QDn
-  git push origin
+## push bitbucket
+DEtJAp3FLsWmJmAT8QDn
+git push bitbucket master
 
-  Sergei_Shabailov
-  A11e$_!+
-  git push gitlab
+// --------------------------------------
+module.exports = require("events")
 
-  $(npm bin)/electron-rebuild
+
+$(npm bin)/electron-rebuild
 
   
 

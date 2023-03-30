@@ -355,11 +355,12 @@ const createWindow = () => {
     webPreferences: {
       webSecurity: false,
       nodeIntegration: true,
+      contextIsolation: false,
     },
     x: isDevelopment ? externalDisplay?.bounds.x : 0,
     y: isDevelopment ? externalDisplay?.bounds.y : 0,
-    frame: true,
-    show: false
+    frame: false,
+    show: true
   })
 
   if (isDevelopment) {
