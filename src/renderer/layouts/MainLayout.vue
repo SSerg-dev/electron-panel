@@ -156,7 +156,7 @@ export default Vue.extend({
     // ----------------------------------
 
     async ping() {
-      console.log('ping')
+      // console.log('ping')
       const method = methods[3]
       const type = types[4]
 
@@ -184,10 +184,10 @@ export default Vue.extend({
       const response = await this.storage.getClient(method, this.options, type)
       if (response < 1000) {
         this.setIsPingUrl(true)
-        // this.$message(`ping ${this.urlController} выполнен успешно`)
+        this.$message(`ping ${this.urlController} выполнен успешно`)
       } else {
         this.setIsPingUrl(false)
-        // this.$message(`ping ${this.urlController} недоступен`)
+        this.$message(`ping ${this.urlController} недоступен`)
       }
     },
 

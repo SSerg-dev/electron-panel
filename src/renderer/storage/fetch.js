@@ -55,6 +55,7 @@ class Fetch {
         response = await this.commonRequest(url, options)
         break
       case 'ping':
+        console.log('$$ this.pingUrl', )
         response = await this.pingUrl(
           //(url = 'https://192.168.1.2:4840'),
           (url = process.env.VUE_APP_URL_CONTROLLER),
