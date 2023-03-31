@@ -1,13 +1,7 @@
 <template>
   <section>
     <div>
-      <div
-        v-if="
-          this.getPanelType === 'wash' && 
-          getIsPingUrl &&
-          getWetActive === 'true'
-        "
-      >
+      <div v-if="this.getPanelType === 'wash'">
         <Wash />
       </div>
 
@@ -18,7 +12,7 @@
             getDryActive === 'true'
         "
       >
-        <Vacuum />
+        <Vacuum /> 
       </div> -->
 
       <div v-if="this.getPanelType === 'vacuum'">
@@ -55,7 +49,7 @@ export default Vue.extend({
 
   components: {
     Wash,
-    Vacuum,
+    Vacuum
     // loader
   },
 
@@ -65,18 +59,18 @@ export default Vue.extend({
       setIsPingUrl: 'setIsPingUrl',
 
       setIsCardMoney: 'setIsCardMoney',
-      setIsBonusMoney: 'setIsBonusMoney',
+      setIsBonusMoney: 'setIsBonusMoney'
     }),
     setup() {
       this.setIsCardMoney(false)
       this.setIsBonusMoney(false)
 
       // console.log(
-      //   `$$ Home.vue 
+      //   `$$ Home.vue
       //   getIsCardMoney: ${this.getIsCardMoney}
       //   getIsBonusMoney: ${this.getIsBonusMoney}`
       // )
-    },
+    }
   },
   computed: {
     ...mapGetters({
@@ -87,13 +81,13 @@ export default Vue.extend({
 
       /* dev */
       getIsCardMoney: 'getIsCardMoney',
-      getIsBonusMoney: 'getIsBonusMoney',
-    }),
+      getIsBonusMoney: 'getIsBonusMoney'
+    })
   },
   mounted() {
     this.setRouter('/')
     this.setup()
-  },
+  }
 })
 </script>
 

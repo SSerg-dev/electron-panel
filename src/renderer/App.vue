@@ -23,7 +23,7 @@ export default Vue.extend({
   data: () => ({
     intervalControllerWork: null,
     isControllerWork: false,
-    delay: 5000,
+    delay: 5000
   }),
   computed: {
     layout() {
@@ -34,24 +34,24 @@ export default Vue.extend({
       /* dev */
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getVacuumNumber: 'getVacuumNumber',
-      getPanelType: 'getPanelType',
-    }),
+      getPanelType: 'getPanelType'
+    })
   },
   watch: {
     getDefaultPanelNumber(flag) {},
     getVacuumNumber(flag) {},
-    getPanelType(flag) {},
+    getPanelType(flag) {}
   },
   components: {
     EmptyLayout,
-    MainLayout,
+    MainLayout
   },
   methods: {
     ...mapMutations({
       setConfig: 'setConfig',
       setWetBalance: 'setWetBalance',
       setDryBalance: 'setDryBalance',
-      setIsPingUrl: 'setIsPingUrl',
+      setIsPingUrl: 'setIsPingUrl'
     }),
     /*  */
     checkControllerWork() {
@@ -60,7 +60,6 @@ export default Vue.extend({
         this.isControllerWork = false
       }, this.delay)
     },
-
     clear(flag) {
       this.updateClearBalance()
       switch (flag) {
@@ -83,15 +82,11 @@ export default Vue.extend({
       // this.emitCardMoneyInitial()
     },
     setup() {
-      /*
-       * Get global setings from settings.json in main (electron) process
-       *
-       */
+      // Get global setings from settings.json in main (electron) process
+
       ipcRenderer.on('settings', (evt, data) => {
         try {
           data = JSON.parse(data)
-          /* dev */
-          //console.log('++data-->', JSON.stringify(data))
           this.setConfig(data)
         } catch (err) {
           console.warn('Error? while parse settings -', err)
@@ -104,7 +99,7 @@ export default Vue.extend({
           const parameter = {
             id: Date.now(),
             title: tag.param,
-            value: tag.value,
+            value: tag.value
           }
 
           if (parameter.title !== `::AsGlobalPV:DateTime.Time`) {
@@ -121,6 +116,7 @@ export default Vue.extend({
                 break
             }
           } else {
+            // console.log('$$ controller time', tag.value)
             this.isControllerWork = true
             this.setIsPingUrl(true)
           }
@@ -174,7 +170,7 @@ export default Vue.extend({
       setParameters: 'setParameters',
       setHumidity: 'setHumidity',
       setTemperature: 'setTemperature',
-      setDryParameters: 'setDryParameters',
+      setDryParameters: 'setDryParameters'
     }),
     ...mapGetters({
       // getPanelType: 'getPanelType'
@@ -187,8 +183,8 @@ export default Vue.extend({
       updateDryBanknoteBalance: 'updateDryBanknoteBalance',
 
       updateCoinBalance: 'updateCoinBalance',
-      updateBanknoteBalance: 'updateBanknoteBalance',
-    }),
+      updateBanknoteBalance: 'updateBanknoteBalance'
+    })
   },
 
   mounted() {
@@ -204,7 +200,7 @@ export default Vue.extend({
   },
   beforeDestroy() {
     clearInterval(this.intervalControllerWork)
-  },
+  }
 })
 </script>
 
@@ -219,13 +215,11 @@ Roboto-Medium
 ARIALUNI
 */
 
-
 /* @font-face {
   font-family: 'Plumb-Medium';
   src: local('Plumb-Medium'),
     url(./assets/fonts/Roboto-Regular.ttf) format('truetype');
-} */ 
-
+} */
 
 /* 
 ArialRegular
@@ -245,6 +239,6 @@ ArialBoldItalic
   font-family: 'Plumb-Medium';
   src: local('Plumb-Medium'),
     /* url(./assets/fonts/arial/ArialBold.ttf) format('truetype'); */
-    url(./assets/fonts/Roboto-Medium.ttf) format('truetype');
+      url(./assets/fonts/Roboto-Medium.ttf) format('truetype');
 }
 </style>

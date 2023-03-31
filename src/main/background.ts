@@ -127,7 +127,6 @@ const idle = async (config: any) => {
     mConfig.type !== config.type ||
     mConfig.index !== config.index
   ) {
-
     OPCUAClient.start(config.type, config.index)
 
     // crutch :((
@@ -139,10 +138,9 @@ const idle = async (config: any) => {
       })
       OPCUAClient.start(config.type, +options.index)
     })
-
   }
   /* dev hidden */
-  
+
   /* if (config.bill_validator) {
     if (
       !mConfig ||
@@ -346,8 +344,8 @@ const createWindow = () => {
   // Create the browser window.
   const displays = screen.getAllDisplays()
   const externalDisplay = displays.find(display => {
-    const { width, height } = display.size;
-    return width < height && display.bounds.x !== 0 || display.bounds.y !== 0
+    const { width, height } = display.size
+    return (width < height && display.bounds.x !== 0) || display.bounds.y !== 0
   })
   //const { width, height } = screen.getPrimaryDisplay().size
 
@@ -355,10 +353,12 @@ const createWindow = () => {
     webPreferences: {
       webSecurity: false,
       nodeIntegration: true,
+
+      contextIsolation: false
     },
     x: isDevelopment ? externalDisplay?.bounds.x : 0,
     y: isDevelopment ? externalDisplay?.bounds.y : 0,
-    frame: true,
+    frame: false,
     show: false
   })
 
@@ -374,8 +374,9 @@ const createWindow = () => {
     mainWindow = null
   })
 
+  // ------------------------------------
   mainWindow.once('ready-to-show', () => {
-    mainWindow.maximize();
+    mainWindow.maximize()
     mainWindow.show()
     exec(
       "xinput -set-prop 6 'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1"
@@ -388,6 +389,7 @@ const createWindow = () => {
   mainWindow.webContents.on('did-finish-load', () => {
     sendEventToView(mainWindow, 'settings', JSON.stringify(settings))
   })
+  // -----------------------------------
 } // end createWindow
 
 const sendEventToView = (view: any, evt: string, data: string) => {
@@ -398,5 +400,5 @@ function toUpperCase(arg0: string) {
 }
 
 function writeConfig(data: any) {
-  writeFileSync('./configs/settings-current.json', data)   
+  writeFileSync('./configs/settings-current.json', data)
 }

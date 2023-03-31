@@ -163,7 +163,7 @@ export default {
       return state.isTooltipInstalled
     },
     getDirectCash(state) {
-      return state.config.ui.direct_cash
+      return state.config.ui.direct_cash  
     },
     getConfig(state) {
       return state.config
