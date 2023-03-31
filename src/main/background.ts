@@ -349,18 +349,17 @@ const createWindow = () => {
     const { width, height } = display.size;
     return width < height && display.bounds.x !== 0 || display.bounds.y !== 0
   })
-  const { width, height } = screen.getPrimaryDisplay().size
+  //const { width, height } = screen.getPrimaryDisplay().size
 
   mainWindow = new BrowserWindow({
     webPreferences: {
       webSecurity: false,
       nodeIntegration: true,
-      contextIsolation: false,
     },
     x: isDevelopment ? externalDisplay?.bounds.x : 0,
     y: isDevelopment ? externalDisplay?.bounds.y : 0,
-    frame: false,
-    show: true
+    frame: true,
+    show: false
   })
 
   if (isDevelopment) {
