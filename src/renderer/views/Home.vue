@@ -9,7 +9,7 @@
         v-if="
           this.getPanelType === 'vacuum' &&
             getIsPingUrl &&
-            getDryActive === 'true'
+            getWetActive === 'true'
         "
       >
         <Vacuum /> 
@@ -42,6 +42,7 @@ import { mapGetters, mapMutations } from 'vuex'
 
 import Wash from '@/components/wash/Wash'
 import Vacuum from '@/components/vacuum/Vacuum'
+import { update } from 'lodash'
 
 export default Vue.extend({
   name: 'home',
@@ -51,6 +52,17 @@ export default Vue.extend({
     Wash,
     Vacuum
     // loader
+  },
+  watch: {
+    getPanelType(value) {
+      // console.log('$$ getPanelType', value)
+    },
+    getIsPingUrl(value) {
+      // console.log('$$ getIsPingUrl', value)
+    },
+    getWetActive(value) {
+      // console.log('$$ getWetActive', value)
+    }
   },
 
   methods: {
@@ -87,7 +99,8 @@ export default Vue.extend({
   mounted() {
     this.setRouter('/')
     this.setup()
-  }
+  },
+  
 })
 </script>
 
