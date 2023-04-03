@@ -59,7 +59,7 @@ class BillValidatorController extends EventEmitter {
         break
       } catch (err) {
         this.state = States.DISCONNECTED
-        // log(TAG, 'Connected error', err)
+        log(TAG, 'Connected error', err)
       }
     }
     if (this.state !== States.CONNECTED) {

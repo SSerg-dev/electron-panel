@@ -131,7 +131,7 @@ const idle = async (config: any) => {
 
     // crutch :((
     ipcMain.on('async-relaunch-start', (event: any, options: any) => {
-      OPCUAClient = new OPCUAService(opcURL)
+      // OPCUAClient = new OPCUAService(opcURL)
       OPCUAClient.on('change', (payload: any) => {
         isOPCUAConnected = true
         sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))

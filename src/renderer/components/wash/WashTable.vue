@@ -12,7 +12,7 @@
           id="button-price"
         >
           <div
-            class="button-content-style"
+            class="button-content-style" 
             :class="[
               { 'card-content black-text': !this.isDown.price },
               { 'card-content white-text': this.isDown.price },
@@ -22,7 +22,7 @@
               <img
                 src="@/assets/imgs/price/price.png"
                 width="70px"
-                style="margin-top: 30px; margin-right: 2px"
+                style="margin-top: 30px; margin-right: 2px" 
               />
             </div>
           </div>

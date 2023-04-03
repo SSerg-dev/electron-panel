@@ -277,6 +277,7 @@ import { mapMutations } from 'vuex'
 import { mapGetters } from 'vuex'
 
 import createLog from 'localstorage-logger'
+import { setHours, setMinutes, setSeconds } from 'date-fns'
 
 export default {
   data: () => ({
@@ -298,6 +299,7 @@ export default {
       getIsMenuUnlock: 'getIsMenuUnlock',
       getUserActiveName: 'getUserActiveName',
       getSerialNumber: 'getSerialNumber',
+      getControllerTime: 'getControllerTime'
     }),
   },
   watch: {
@@ -334,8 +336,14 @@ export default {
   mounted() {
     this.interval = setInterval(() => {
       this.date = new Date()
+
+      // set controller time to panel
+      const { hour, minute, second} = this.getControllerTime
+      this.date.setHours(+hour)
+      this.date.setMinutes(+minute)
+      this.date.setSeconds(+second)
+
     }, 1000)
-    // console.log('$$ getIsMenuUnlock', this.getIsMenuUnlock)
   },
   
   beforeDestroy() {

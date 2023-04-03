@@ -7,7 +7,7 @@
 
 import { EventEmitter } from 'events'
 import SerialPort from 'serialport'
-import { ADR_CARD_READER, CRC_POLY_PAX, TERMINAL_ID } from '../Constants'
+import { ADR_CARD_READER, CRC_POLY_PAX, TERMINAL_ID, TERMINAL_TYPE } from '../Constants'
 import BCNetParser from '../BCNetParser'
 import CMDS from '../Commands'
 import { wait } from '../../../utils'
@@ -68,7 +68,7 @@ class PaxDevice extends EventEmitter {
   currency: string
   date: any
   terminalId: string
-  terminalType: string = 'VM00080951'
+  terminalType: string = TERMINAL_TYPE || 'VM00080951'
   paxRequest: any
   paxMessage: any
   dataLength: number = 0

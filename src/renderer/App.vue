@@ -31,10 +31,10 @@ export default Vue.extend({
     },
     ...mapGetters({
       getConfig: 'getConfig',
-      /* dev */
       getDefaultPanelNumber: 'getDefaultPanelNumber',
       getVacuumNumber: 'getVacuumNumber',
-      getPanelType: 'getPanelType'
+      getPanelType: 'getPanelType',
+      getControllerTime: 'getControllerTime'
     })
   },
   watch: {
@@ -51,9 +51,9 @@ export default Vue.extend({
       setConfig: 'setConfig',
       setWetBalance: 'setWetBalance',
       setDryBalance: 'setDryBalance',
-      setIsPingUrl: 'setIsPingUrl'
+      setIsPingUrl: 'setIsPingUrl',
+      setControllerTime: 'setControllerTime'
     }),
-    /*  */
     checkControllerWork() {
       this.intervalControllerWork = setInterval(() => {
         if (this.isControllerWork === false) this.setIsPingUrl(false)
@@ -106,7 +106,6 @@ export default Vue.extend({
             const type = this.getPanelType
             switch (type) {
               case 'wash':
-                // console.log('parameter-->', parameter)
                 this.setParameters(parameter)
                 break
               case 'vacuum':
@@ -116,7 +115,16 @@ export default Vue.extend({
                 break
             }
           } else {
-            // console.log('$$ controller time', tag.value)
+            if (parameter.value) {
+              const time = parameter.value.split(':')
+
+              const options = {}
+              options.hour = +time[0]
+              options.minute = +time[1]
+              options.second = +time[2] 
+
+              this.setControllerTime(options)
+            }
             this.isControllerWork = true
             this.setIsPingUrl(true)
           }
@@ -173,10 +181,8 @@ export default Vue.extend({
       setDryParameters: 'setDryParameters'
     }),
     ...mapGetters({
-      // getPanelType: 'getPanelType'
     }),
     ...mapActions({
-      /* dev */
       updateClearBalance: 'updateClearBalance',
 
       updateDryCoinBalance: 'updateDryCoinBalance',
@@ -188,15 +194,10 @@ export default Vue.extend({
   },
 
   mounted() {
-    /* this.intervalControllerWork = setInterval(() => {
-      if (this.isControllerWork === false) this.setIsPingUrl(false)
-      this.isControllerWork = false
-    }, this.delay) */
     this.checkControllerWork()
   },
   created() {
     this.setup()
-    // this.setLanguageNatives(this.getConfig.countries)
   },
   beforeDestroy() {
     clearInterval(this.intervalControllerWork)

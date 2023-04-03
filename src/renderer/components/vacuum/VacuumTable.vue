@@ -13,7 +13,11 @@
           id="button-price"
         >
           <div class="emoji">
-            {{ `📄` }}
+            <img
+                src="@/assets/imgs/price/price.png"
+                width="70px"
+                style="margin-top: 30px; margin-right: 2px"
+              />
           </div>
         </div>
       </section>

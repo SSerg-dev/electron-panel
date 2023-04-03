@@ -188,6 +188,11 @@ export default {
       firstname: '',
       lastname: ''
     },
+    controllerTime: {
+      hour: 0,
+      minute: 0,
+      second: 0
+    }
     
 
   }, // end state
@@ -306,6 +311,9 @@ export default {
     },
     getProfile(state) {
       return state.profile
+    },
+    getControllerTime(state) {
+      return state.controllerTime
     }
 
     /* getPanelMoneyOptions(state) {
@@ -402,6 +410,10 @@ export default {
     setReadReceiptOptions(state, id) {
       state.readReceipt.params.id = id
     },
+    setControllerTime(state, time) {
+      return state.controllerTime = time
+    }
+
     /* setLoginSettingPassword(state, password) {
       state.loginSettingPassword = password
     }, */

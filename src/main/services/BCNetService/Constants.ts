@@ -17,6 +17,8 @@ export const PAX_PORT = '/dev/ttyPos0'
 // export const TERMINAL_ID = '00322346'
 export const TERMINAL_ID = '00311159' // wi-fi work
 
+export const TERMINAL_TYPE = 'VM00080951'
+
 // from Qt src -------------------------- 
 export const ACK_RES = 0x06
 export const NAK_RES = 0x15
