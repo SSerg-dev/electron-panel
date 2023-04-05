@@ -319,7 +319,7 @@ export default new Vuex.Store({
           ipcRenderer.send(
             'OPCUA',
             JSON.stringify({
-              node: `::AsGlobalPV:PostN[${getters.getDefaultPanelNumber -
+              node: `::AsGlobalPV:PostN[${getters.getPanelNumber -
                 1}].prog`,
               value: getters.getActiveProgramNumber
             })
@@ -334,7 +334,7 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostN[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostN[${getters.getPanelNumber -
               1}].operatorCall`,
             value: true
           })
@@ -353,7 +353,7 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
             /*   1}].paidMoney`, */
             1}].prepaymentMoney`,
             value: cash
@@ -373,7 +373,7 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
               1}].paidService`,
             value: service
           })
@@ -389,7 +389,7 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
               1}].paidBonus`,
             // 1}].prepaymentBonus`,
             value: bonus
@@ -406,7 +406,7 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
               1}].paidMoneyCard`,
             value: card
           })
@@ -421,7 +421,7 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostN[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostN[${getters.getPanelNumber -
               1}].cmdZeroMoney`,
             value: zeroMoney
           })
@@ -677,8 +677,8 @@ export default new Vuex.Store({
       state.loginSettingPassword = password
     },
     // set one parameter
-    setParameters(state, parameter) {
-      // console.log('$$ --setParameters', parameter)
+    setWetParameters(state, parameter) {
+      // console.log('$$ --setWetParameters', parameter)
 
       state.isParamsChange = !state.isParamsChange
 

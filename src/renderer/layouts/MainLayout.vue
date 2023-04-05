@@ -61,9 +61,9 @@ export default Vue.extend({
     intervalPing: null,
     // dev
     client: 'fetch',
-    url: '', //'https://192.168.1.3/',
-    // urlController: 'https://192.168.1.2:4840',
-    urlLocal: 'http://127.0.0.1/',
+    url: '', 
+    urlController: '',
+    urlLocal:'',
 
     storage: null,
     options: {},
@@ -77,7 +77,7 @@ export default Vue.extend({
 
   computed: {
     ...mapGetters({
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       //getWetBusyPanel: 'getWetBusyPanel',
       getPanelType: 'getPanelType',
       getIsPingUrl: 'getIsPingUrl',
@@ -180,6 +180,8 @@ export default Vue.extend({
       const method = methods[12]
       const type = types[5]
 
+      this.urlController = this.urlLocal = process.env.VUE_APP_URL_CONTROLLER
+
       this.options = this.getPingOptions()
       const response = await this.storage.getClient(method, this.options, type)
       if (response < 1000) {
@@ -227,6 +229,7 @@ export default Vue.extend({
     this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
 
+    this.urlLocal = process.env.VUE_APP_URL_LOCAL
     this.localStorage = new Storage(this.localClient, this.urlLocal)
 
     this.intervalPing = setInterval(() => {

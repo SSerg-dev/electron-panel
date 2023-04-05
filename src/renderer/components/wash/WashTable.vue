@@ -368,7 +368,7 @@ export default {
     },
 
     client: 'fetch',
-    url: 'https://192.168.1.3/',
+    url: '',
     storage: null,
     options: {},
     order: '',
@@ -517,7 +517,7 @@ export default {
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getVacuumNumber: 'getVacuumNumber',
 
       getActiveProgram: 'getActiveProgram',
@@ -615,7 +615,7 @@ export default {
 
       this.updateStartProgram([
         this.getPanelType,
-        this.getDefaultPanelNumber,
+        this.getPanelNumber,
         this.getActiveProgram,
         this.getWetBalance,
       ])
@@ -905,7 +905,7 @@ export default {
         case 'wash':
           if (this.getWetOrder === '') {
             prefix = 'W'
-            index = this.getDefaultPanelNumber
+            index = this.getPanelNumber
             result = prefix + index + date
             // result = prefix + index + date + '_' + suffix.toString()
           } else result = this.getWetOrder
@@ -928,8 +928,11 @@ export default {
     /*     */
   }, // end methods
   mounted() {
+    this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
+
     this.order = this.getCompleteWash().params.order
+
     if (!this.isVisible) {
       this.timeoutDelay = setTimeout(() => {
         this.isVisible = true

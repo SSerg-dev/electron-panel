@@ -115,7 +115,7 @@ export default {
       return state.config.currency
     },
 
-    getDefaultPanelNumber(state) {
+    getPanelNumber(state) {
       return state.config.index
     },
     getVacuumNumber(state) {
@@ -270,7 +270,7 @@ export default {
       state.config.coin_acceptor.tokens[payload.index - 1] = payload.value
     },
 
-    setDefaultPanelNumber(state, index) {
+    setPanelNumber(state, index) {
       state.config.index = index
     },
     setVacuumNumber(state, vacuumNumber) {
@@ -319,13 +319,13 @@ export default {
   //actions
   actions: {
     updateOpenDoor({ getters }) {
-      //console.log('getters.getDefaultPanelNumber-->', `${index}`)
+      //console.log('getters.getPanelNumber-->', `${index}`)
       try {
         ipcRenderer.send(
           'OPCUA',
           //JSON.stringify({ node: '::AsGlobalPV:PostN[4].door', value: true })
           JSON.stringify({
-            node: `::AsGlobalPV:PostN[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostN[${getters.getPanelNumber -
               1}].door`,
             value: true
           })
@@ -347,7 +347,7 @@ export default {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
               1}].paidService`,
             value: getters.getServiceBalance
           })
@@ -371,7 +371,7 @@ export default {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
               1}].paidService`,
             value: '0'
           })
@@ -380,7 +380,7 @@ export default {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
               1}].paidMoney`,
             value: '0'
           })
@@ -389,7 +389,7 @@ export default {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
               1}].paidBonus`,
             value: '0'
           })

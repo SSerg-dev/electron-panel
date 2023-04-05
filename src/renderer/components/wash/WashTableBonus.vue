@@ -150,7 +150,7 @@ export default {
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
       getWetStopFreeCount: 'getWetStopFreeCount',

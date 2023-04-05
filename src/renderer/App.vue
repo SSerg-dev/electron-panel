@@ -31,14 +31,14 @@ export default Vue.extend({
     },
     ...mapGetters({
       getConfig: 'getConfig',
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getVacuumNumber: 'getVacuumNumber',
       getPanelType: 'getPanelType',
       getControllerTime: 'getControllerTime'
     })
   },
   watch: {
-    getDefaultPanelNumber(flag) {},
+    getPanelNumber(flag) {}, 
     getVacuumNumber(flag) {},
     getPanelType(flag) {}
   },
@@ -106,7 +106,7 @@ export default Vue.extend({
             const type = this.getPanelType
             switch (type) {
               case 'wash':
-                this.setParameters(parameter)
+                this.setWetParameters(parameter)
                 break
               case 'vacuum':
                 this.setDryParameters(parameter)
@@ -121,7 +121,7 @@ export default Vue.extend({
               const options = {}
               options.hour = +time[0]
               options.minute = +time[1]
-              options.second = +time[2] 
+              options.second = +time[2]  
 
               this.setControllerTime(options)
             }
@@ -175,7 +175,7 @@ export default Vue.extend({
     },
 
     ...mapMutations({
-      setParameters: 'setParameters',
+      setWetParameters: 'setWetParameters',
       setHumidity: 'setHumidity',
       setTemperature: 'setTemperature',
       setDryParameters: 'setDryParameters'

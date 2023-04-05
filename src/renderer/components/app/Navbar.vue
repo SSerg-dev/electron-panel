@@ -47,7 +47,7 @@
       <div class="circle">
         <div class="circle-title">
           <div v-if="this.getPanelType === 'wash'">
-            <span class="white-text">{{ this.getDefaultPanelNumber }}</span>
+            <span class="white-text">{{ this.getPanelNumber }}</span>
           </div>
           <div v-if="this.getPanelType === 'vacuum'">
             <span class="white-text">{{ getVacuum }}</span>
@@ -287,7 +287,7 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getWetBusyPanel: 'getWetBusyPanel',
       getIsPayCardMoney: 'getIsPayCardMoney',
       getPanelType: 'getPanelType',

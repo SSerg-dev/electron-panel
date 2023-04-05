@@ -21,7 +21,7 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getReceiptResult: 'getReceiptResult',
       getReadReceiptOptions: 'getReadReceiptOptions'
     }),

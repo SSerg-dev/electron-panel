@@ -65,10 +65,10 @@ export default Vue.extend({
   },
   methods: {
     ...mapGetters({
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
     }),
     ...mapMutations({
-      setDefaultPanelNumber: 'setDefaultPanelNumber',
+      setPanelNumber: 'setPanelNumber',
     }),
   },
   computed: {
@@ -81,11 +81,11 @@ export default Vue.extend({
       //console.log('numberId-->', numberId)
       const { id, title } = this.numbers.find((n) => n.id === numberId)
       this.select = title
-      this.setDefaultPanelNumber(id)
+      this.setPanelNumber(id)
     },
   },
   created() {
-    const defaultPanelNumber = this.getDefaultPanelNumber()
+    const defaultPanelNumber = this.getPanelNumber()
     const { id, title } = this.numbers[defaultPanelNumber - 1]
     this.current = id
     this.select = title

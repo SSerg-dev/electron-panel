@@ -37,7 +37,7 @@ export default Vue.extend({
     id: 0,
 
     client: 'fetch',
-    url: '',//'https://192.168.1.3/',
+    url: '',
     storage: null,
     options: {},
   }),
@@ -47,7 +47,7 @@ export default Vue.extend({
       getPanelType: 'getPanelType',
       getWetBalance: 'getWetBalance',
       getDryBalance: 'getDryBalance',
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getVacuumNumber: 'getVacuumNumber',
       getWetOrder: 'getWetOrder',
       getDryOrder: 'getDryOrder',
@@ -86,7 +86,7 @@ export default Vue.extend({
       const panelType = this.getPanelType
       switch (panelType) {
         case 'wash':
-          this.id = this.getDefaultPanelNumber - 1
+          this.id = this.getPanelNumber - 1
           this.sum = this.getWetBalance
           break
         case 'vacuum':
@@ -168,7 +168,7 @@ export default Vue.extend({
         case 'wash':
           if (this.getWetOrder === '') {
             prefix = 'W'
-            index = this.getDefaultPanelNumber
+            index = this.getPanelNumber
             result = prefix + index + date
             // result = prefix + index + date + '_' + suffix.toString()
           } else result = this.getWetOrder

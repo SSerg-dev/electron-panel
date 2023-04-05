@@ -92,8 +92,8 @@ export default {
     delay: 2000,
 
     client: 'fetch',
-    url: '', // 'https://192.168.1.3/',
-    urlLocal: 'http://127.0.0.1/',
+    url: '',
+    urlLocal: '',
 
     storage: null,
     options: {},
@@ -108,11 +108,13 @@ export default {
     this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
 
+    this.urlLocal = process.env.VUE_APP_URL_LOCAL
     this.localStorage = new Storage(this.localClient, this.urlLocal)
+
   },
   computed: {
     ...mapGetters({
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getVacuumNumber: 'getVacuumNumber',
       getPanelType: 'getPanelType',
       getWetOrder: 'getWetOrder',
@@ -206,7 +208,7 @@ export default {
       this.options = this.getStoreMoneyOptions()
       this.sum = this.getWetBalance
 
-      this.options.params.unit_id = this.getDefaultPanelNumber - 1
+      this.options.params.unit_id = this.getPanelNumber - 1
       this.options.params.type = this.getPayType || 'cash'
       this.options.params.sum = +this.sum
 
@@ -282,7 +284,7 @@ export default {
         case 'wash':
           if (this.getWetOrder === '') {
             prefix = 'W'
-            index = this.getDefaultPanelNumber
+            index = this.getPanelNumber
             result = prefix + index + date
           } else result = this.getWetOrder
           break

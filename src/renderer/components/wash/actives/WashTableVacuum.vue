@@ -91,7 +91,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance'
     })
@@ -132,7 +132,7 @@ export default Vue.extend({
 
       this.updateStartProgram([
         this.getPanelType,
-        this.getDefaultPanelNumber,
+        this.getPanelNumber,
         this.getActiveProgram,
         this.getWetBalance
       ])

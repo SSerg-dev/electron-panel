@@ -50,7 +50,7 @@ export default {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
               1}].paidMoney`,
             value: getters.getCoinBalance + getters.getBanknoteBalance
           })
@@ -70,7 +70,7 @@ export default {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getDefaultPanelNumber -
+            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
               1}].paidMoney`,
             value: getters.getCoinBalance + getters.getBanknoteBalance
           })

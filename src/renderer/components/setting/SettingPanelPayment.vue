@@ -60,10 +60,10 @@ export default Vue.extend({
   },
   methods: {
     ...mapGetters({
-      // getDefaultPanelNumber: 'getDefaultPanelNumber'
+      // getPanelNumber: 'getPanelNumber'
     }),
     ...mapMutations({
-      // setDefaultPanelNumber: 'setDefaultPanelNumber'
+      // setPanelNumber: 'setPanelNumber'
       setVacuumPayment: 'setVacuumPayment'
     })
   },

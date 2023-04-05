@@ -240,7 +240,7 @@ export default {
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
       /* dev */
@@ -395,7 +395,7 @@ export default {
       /* dev */
       this.updateStartProgram([
         this.getPanelType,
-        this.getDefaultPanelNumber,
+        this.getPanelNumber,
         this.getActiveProgram,
         this.getWetBalance
       ])

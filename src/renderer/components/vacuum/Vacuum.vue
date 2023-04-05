@@ -140,7 +140,7 @@ export default Vue.extend({
       getWetBalance: 'getWetBalance',
 
       getPanelType: 'getPanelType',
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
 
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',

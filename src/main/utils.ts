@@ -1,7 +1,8 @@
 import { exec } from 'child_process'
 import { format } from 'date-fns'
 import { networkInterfaces } from 'os'
-import SerialPort from 'serialport'
+
+const serialport = require("serialport")
 
 export const getFileName = (filename: string) => {
   return filename!
@@ -78,8 +79,7 @@ export const execShellCommand = (cmd: string) => {
 export const getSerialDevicesInfo = async (toSearch: string) => {
   let portInfo
   try {
-    let serialport = require("serialport")
-    let SerialPort = serialport.SerialPort
+    const SerialPort = serialport.SerialPort
 
     portInfo = await SerialPort.list()
     portInfo = portInfo.filter((port: any) => port.pnpId !== undefined)
@@ -88,23 +88,5 @@ export const getSerialDevicesInfo = async (toSearch: string) => {
     console.log('SerialPort list Error:', err) 
     return []
   }
-}
+} 
 
-export const getSerialPaxInfo = async (path: string) => {
-
-  const SerialPort = require('serialport')
-
-  const port = new SerialPort(path, function(err: any) {
-    if (err) {
-      return console.log('Error: ', err.message)
-    }
-  })
-
-  port.write('main screen turn on', function(err: any) {
-    if (err) {
-      return console.log('Error on write: ', err.message)
-    }
-    console.log(`message written to --> ${path}`)
-  })
-  return port
-}

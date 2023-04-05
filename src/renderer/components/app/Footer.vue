@@ -132,7 +132,7 @@ export default {
       getWetBalance: 'getWetBalance',
 
       getPanelType: 'getPanelType',
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
       getPanelType: 'getPanelType',
@@ -224,7 +224,7 @@ export default {
         case 'wash':
           this.updateStartProgram([
             this.getPanelType,
-            this.getDefaultPanelNumber,
+            this.getPanelNumber,
             this.getActiveProgram,
             this.getWetBalance,
           ])

@@ -452,7 +452,7 @@ export default {
     bills: {},
 
     client: 'fetch',
-    url: '', //'https://192.168.1.3/',
+    url: '',
     storage: null,
     options: {},
 
@@ -515,7 +515,7 @@ export default {
       getMoneyToBonus: 'getMoneyToBonus',
       getWetZeroMoney: 'getWetZeroMoney',
 
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getVacuumNumber: 'getVacuumNumber',
       getPanelType: 'getPanelType',
       getWetOrder: 'getWetOrder',
@@ -596,7 +596,7 @@ export default {
       type = this.getPanelType, 
       wetOrder = this.getWetOrder, 
       dryOrder = this.getDryOrder, 
-      panelNumber = this.getDefaultPanelNumber, 
+      panelNumber = this.getPanelNumber, 
       vacuumNumber = this.getVacuumNumber)
      */
 
@@ -610,7 +610,7 @@ export default {
         case 'wash':
           if (this.getWetOrder === '') {
             prefix = 'W'
-            index = this.getDefaultPanelNumber
+            index = this.getPanelNumber
             result = prefix + index + date
             // result = prefix + index + date + '_' + suffix.toString()
           } else result = this.getWetOrder
@@ -836,7 +836,7 @@ export default {
       const panelType = this.getPanelType
       switch (type) {
         case 'wash':
-          this.id = this.getDefaultPanelNumber - 1
+          this.id = this.getPanelNumber - 1
           this.getMoneyToBonus === 0
             ? (this.sum = this.getWetBalance)
             : (this.sum = this.getMoneyToBonus)
@@ -851,7 +851,7 @@ export default {
           break
       }
       /* dev */
-      this.options.params.unit_id = this.id //this.getDefaultPanelNumber - 1
+      this.options.params.unit_id = this.id //this.getPanelNumber - 1
       console.log('$$ BonusBill this.getPayType', this.getPayType)
       this.options.params.type = this.getPayType || 'cash'
       this.options.params.sum = +this.sum

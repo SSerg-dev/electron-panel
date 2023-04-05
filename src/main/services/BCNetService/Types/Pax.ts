@@ -9,13 +9,12 @@ import { ipcMain } from 'electron'
 
 import {
   log,
-  wait,
-  getSerialDevicesInfo,
-  getSerialPaxInfo
+  // wait,
+  // getSerialDevicesInfo
 } from '../../../utils'
 import * as conf from '../../../config'
 import BCNet from '../../../services/BCNetService'
-import { compile } from 'vue/types/umd'
+// import { compile } from 'vue/types/umd'
 
 const TAG = 'PAX TERMINAL'
 
@@ -100,7 +99,7 @@ class Pax extends EventEmitter {
           // --------------------------
           function submitAmountHandler(amount: any, status: any) {
             self.sleep(2000).then(() => {
-              // console.log('$$ Pax.ts amount', amount)
+              // console.log('Pax.ts amount', amount)
               event.reply(
                 'async-amount-reply',
                 amount.toString(),
@@ -156,10 +155,10 @@ class Pax extends EventEmitter {
         await self.device.disconnect()
 
         await self.device.connect()
-        log(TAG, '$$ reconnect to pax at port', port)
+        log(TAG, 'Reconnect to pax at port', port)
       }
     } catch (err) {
-      log(TAG, '$$ reconnect to pax error', err)
+      log(TAG, 'Reconnect to pax error', err)
     }
   }
 
@@ -173,7 +172,7 @@ class Pax extends EventEmitter {
     try {
       if (!self.device.isOpen) {
         await self.device.connect()
-        log(TAG, '$$ Connected at port', port)
+        log(TAG, 'Connected at port', port)
       }
     } catch (err) {
       // log(TAG, '$$ Connected error', err)
@@ -187,10 +186,10 @@ class Pax extends EventEmitter {
 
       if (self.device.isOpen) {
         await self.device.disconnect()
-        log(TAG, '$$ Disconnected', port)
+        log(TAG, 'Disconnected', port)
       }
     } catch (err) {
-      log(TAG, '$$ Disconnected error', err)
+      log(TAG, 'Disconnected error', err)
     }
   }
   // end methods

@@ -18,7 +18,7 @@ const methods = [
   'checkBonusQr' // выполняется при авторизации Qr code
 ]
 
-const types = [
+const types = [ 
   'cash',
   'card',
   'bonus',
@@ -31,8 +31,6 @@ const types = [
 
 class Fetch {
   async request(url, options, type) {
-    /* dev */
-    //console.log('request-->type-->options-->', type, options)
     let response
     switch (type) {
       case 'cash':
@@ -47,7 +45,6 @@ class Fetch {
       /* case 'service':
         response = await this.serviceRequest(url, options)
         break */
-      /* dev */
       case 'finance':
         response = await this.financeRequest(url, options)
         break
@@ -55,9 +52,8 @@ class Fetch {
         response = await this.commonRequest(url, options)
         break
       case 'ping':
-        console.log('$$ this.pingUrl', )
+        console.log('$$ this.pingUrl')
         response = await this.pingUrl(
-          //(url = 'https://192.168.1.2:4840'),
           (url = process.env.VUE_APP_URL_CONTROLLER),
           options
         )
@@ -67,7 +63,6 @@ class Fetch {
         break
 
       default:
-      // alert('pay method not exist')
     }
 
     return response
@@ -77,9 +72,6 @@ class Fetch {
 
   async cashRequest(url, body) {
     let res
-
-    //console.log('method-->', JSON.stringify(body.method))
-
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
     })
@@ -87,7 +79,6 @@ class Fetch {
       .post(url, body, { httpsAgent }, { timeout: 2000 })
       .then(res => {
         this.res = res.data
-        // console.log('Returned data:', JSON.stringify(res.data))
       })
       .catch(e => {
         console.log('Axios request failed:', JSON.stringify(e))
@@ -98,9 +89,6 @@ class Fetch {
 
   async bonusRequest(url, body) {
     let res
-
-    //console.log('method-->', JSON.stringify(body.method))
-
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
     })
@@ -108,7 +96,6 @@ class Fetch {
       .post(url, body, { httpsAgent }, { timeout: 2000 })
       .then(res => {
         this.res = res.data
-        // console.log('Returned data:', JSON.stringify(res.data))
       })
       .catch(e => {
         console.log('Axios request failed:', JSON.stringify(e))
@@ -120,8 +107,6 @@ class Fetch {
   /* dev */
   async financeRequest(url, body) {
     let res
-    //console.log('financeRequest method-->', JSON.stringify(body.method))
-
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
     })
@@ -129,7 +114,6 @@ class Fetch {
       .post(url, body, { httpsAgent }, { timeout: 2000 })
       .then(res => {
         this.res = res.data
-        // console.log('Returned data:', JSON.stringify(res.data))
       })
       .catch(e => {
         console.log('Axios request failed:', JSON.stringify(e))
@@ -159,12 +143,9 @@ class Fetch {
   async pingUrl(url, body) {
     let start = Date.now()
 
-    /* dev */
     try {
       await fetch(url)
-    } catch (err) {
-      // console.log('fetch-->', err)
-    }
+    } catch (err) {}
 
     return Date.now() - start
   }
@@ -180,7 +161,6 @@ class FetchClient {
     this.fetch = new Fetch()
   }
   async getClient() {
-    // console.log('fetch-->method-->',  this.method)
     return await this.fetch.request(this.url, this.options, this.type)
   }
 }

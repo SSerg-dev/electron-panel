@@ -84,7 +84,7 @@ export default Vue.extend({
   name: 'finance',
   data: () => ({
     client: 'fetch',
-    url: '', //'https://192.168.1.3/',
+    url: '', 
     storage: null,
     options: {},
     id: 0,
@@ -100,7 +100,7 @@ export default Vue.extend({
   }),
   computed: {
     ...mapGetters({
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getAllCoins: 'getAllCoins',
       getAllBills: 'getAllBills',
       getFinanceCollect: 'getFinanceCollect',
@@ -154,7 +154,7 @@ export default Vue.extend({
 
       if (+response.result === 0) {
         this.$message(
-          `Запрос наличных средств панели № ${this.getDefaultPanelNumber} выполнен успешно`
+          `Запрос наличных средств панели № ${this.getPanelNumber} выполнен успешно`
         )
       }
     },
@@ -196,7 +196,7 @@ export default Vue.extend({
       const panelType = this.getPanelType
       switch (panelType) {
         case 'wash':
-          this.id = this.getDefaultPanelNumber - 1
+          this.id = this.getPanelNumber - 1
           break
         case 'vacuum':
           this.id = this.getVacuumNumber - 1
@@ -211,7 +211,7 @@ export default Vue.extend({
 
       if (+response.result === 0) {
         this.$message(
-          `Инкассация поста № ${this.getDefaultPanelNumber} выполнена успешно`
+          `Инкассация поста № ${this.getPanelNumber} выполнена успешно`
         )
         //this.clearCash()
       }

@@ -39,7 +39,7 @@ export default {
   data: () => ({
     qr: '',
     client: 'fetch',
-    url: '',//'https://192.168.1.3/',
+    url: '',
     storage: null,
     options: {},
     intervalCheckBonusQr: null,
@@ -58,7 +58,7 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getIsAppendBonusMoney: 'getIsAppendBonusMoney',
       getIsPayBonusMoney: 'getIsPayBonusMoney',
       getWetBalance: 'getWetBalance',

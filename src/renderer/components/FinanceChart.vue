@@ -2,7 +2,7 @@
   <div>
     <div class="page-title">
       <h1>
-        <p>Диаграмма поста №{{ getDefaultPanelNumber }}</p>
+        <p>Диаграмма поста №{{ getPanelNumber }}</p>
       </h1>
 
       <div align="justify" style="margin-left: 14em; margin-bottom: 4em;">
@@ -154,7 +154,7 @@ export default Vue.extend({
       /* dev */
       getInitCurrency: 'getInitCurrency',
 
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getDefaultCurrency: 'getDefaultCurrency',
       getLanguageNatives: 'getLanguageNatives',
 

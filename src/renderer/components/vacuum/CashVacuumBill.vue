@@ -103,8 +103,8 @@ export default {
     delay: 2000,
 
     client: 'fetch',
-    url: '', //'https://192.168.1.3/',
-    urlLocal: 'http://127.0.0.1/',
+    url: '',
+    urlLocal: '',
     storage: null,
     options: {},
 
@@ -118,13 +118,14 @@ export default {
     this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
 
+    this.urlLocal = process.env.VUE_APP_URL_LOCAL
     this.localStorage = new Storage(this.localClient, this.urlLocal)
   },
   computed: {
     ...mapGetters({
       getDryBalance: 'getDryBalance',
       getIsPing: 'getIsPing',
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getVacuumNumber: 'getVacuumNumber',
       getPanelType: 'getPanelType',
       getWetOrder: 'getWetOrder',
@@ -286,7 +287,7 @@ export default {
         case 'wash':
           if (this.getWetOrder === '') {
             prefix = 'W'
-            index = this.getDefaultPanelNumber
+            index = this.getPanelNumber
             result = prefix + index + date
           } else result = this.getWetOrder
           break

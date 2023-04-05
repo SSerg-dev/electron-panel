@@ -73,7 +73,7 @@ export default Vue.extend({
       getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
       getDefaultTerminalType: 'getDefaultTerminalType',
       getTerminalInstalled: 'getTerminalInstalled',
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getIsCardMoney: 'getIsCardMoney',
       getProfile: 'getProfile',
       getPayType: 'getPayType',
@@ -88,7 +88,7 @@ export default Vue.extend({
       if (this.getTerminalInstalled) {
         const options = {
           type: this.getDefaultTerminalType,
-          number: this.getDefaultPanelNumber,
+          number: this.getPanelNumber,
         }
         bankTerminal.connect(options)
 

@@ -2,11 +2,11 @@
   <div>
     <div class="page-title">
       <h1>
-        <!-- <p align="center" >Касса поста №{{ getDefaultPanelNumber }}</p> -->
+        <!-- <p align="center" >Касса поста №{{ getPanelNumber }}</p> -->
         <p align="center">
           {{ `Cash_post` | localize }}
           {{ `#` | localize }}
-          {{ getDefaultPanelNumber }}
+          {{ getPanelNumber }}
         </p>
       </h1>
     </div>
@@ -130,7 +130,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getInitCurrency: 'getInitCurrency',
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
       getDefaultCurrency: 'getDefaultCurrency',
       getLanguageNatives: 'getLanguageNatives',
 

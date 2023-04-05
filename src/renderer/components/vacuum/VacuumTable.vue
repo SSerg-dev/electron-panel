@@ -222,7 +222,7 @@ export default {
     //loading: true,
     //records: [],
     client: 'fetch',
-    url: '',//'https://192.168.1.3/',
+    url: '',
     storage: null,
     options: {},
     order: '',
@@ -264,7 +264,7 @@ export default {
       getDryPaidBonus: 'getDryPaidBonus',
 
       getPanelType: 'getPanelType',
-      getDefaultPanelNumber: 'getDefaultPanelNumber',
+      getPanelNumber: 'getPanelNumber',
 
       getActiveProgram: 'getActiveProgram',
       getActiveProgramNumber: 'getActiveProgramNumber',
@@ -360,7 +360,7 @@ export default {
         case 'wash':
           if (this.getWetOrder === '') {
             prefix = 'W'
-            index = this.getDefaultPanelNumber
+            index = this.getPanelNumber
             result = prefix + index + date
             // result = prefix + index + date + '_' + suffix.toString()
           } else result = this.getWetOrder

@@ -398,7 +398,7 @@ export default {
     maxY: 1620,
 
     client: 'fetch',
-    url: '', //'https://192.168.1.3/',
+    url: '', 
     storage: null,
     options: {},
     payType: '',
