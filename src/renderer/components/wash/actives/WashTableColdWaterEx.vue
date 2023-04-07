@@ -163,7 +163,6 @@ export default Vue.extend({
 
       if (parseInt(this.getWetBalance) > 0) {
         this.timeoutPopup = setTimeout(() => {
-          // this.$router.push('/popup')
         }, 2000)
       } else this.$message(localizeFilter(`${messages.Not_enough_money}`))
     },

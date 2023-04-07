@@ -11,7 +11,7 @@ import {
   DataValue,
   coerceNodeId,
   resolveNodeId,
-  /* dev */
+
   UserIdentityInfoUserName,
   UserTokenType
 } from 'node-opcua'
@@ -27,6 +27,8 @@ class OPCUAService extends EventEmitter {
   private maxUsersNumber = 6
 
   public nodes: { [key: string]: string } = {
+    // ----------------------------------
+    // WET
     TAG_WET_ZERO_MONEY: '::AsGlobalPV:PostN[{0}].cmdZeroMoney',
     TAG_WET_STOP_TIME: '::AsGlobalPV:PostN[{0}].stopFreeCount',
     TAG_WET_IS_BUSY: '::AsGlobalPV:PostN[{0}].busy',
@@ -55,7 +57,10 @@ class OPCUAService extends EventEmitter {
 
     TAG_WET_MONEY_TOTAL: '::AsGlobalPV:ProcessEventExtern.washState[{0}].money',
     TAG_WET_TIME: '::AsGlobalPV:ProcessEventExtern.washState[{0}].progTime',
-  
+    TAG_WET_PROGRAM_NAME: '::AsGlobalPV:PostN[{0}].programName',
+
+    // ----------------------------------
+    // POST
     TAG_POST_SEND_MONEY: '::AsGlobalPV:PostBalance[{0}].prepaymentMoney',
     TAG_POST_CASH_SEND_MONEY:
       '::AsGlobalPV:PostBalance[{0}].prepaymentMoneyCash',
@@ -63,14 +68,11 @@ class OPCUAService extends EventEmitter {
       '::AsGlobalPV:PostBalance[{0}].prepaymentMoneyCard',
     TAG_POST_SERV_SEND_MONEY: '::AsGlobalPV:PostBalance[{0}].prepaymentService',
     TAG_POST_BONUS_SEND_MONEY: '::AsGlobalPV:PostBalance[{0}].prepaymentBonus',
-    TAG_WET_PROGRAM_NAME: '::AsGlobalPV:PostN[{0}].programName',
+    
+    // ----------------------------------
+    // DRY
 
-    ////////////////////////////////////////////////////////////////////////
     TAG_DRY_IS_BUSY: '::AsGlobalPV:VacuumPost[{0}].busy',
-    TAG_G_FIXED_CURRENCY: '::AsGlobalPV:gFixedCurrency.digits',
-    TAG_IS_MENU_UNLOCK: '::AsGlobalPV:Recipe.PanelSysMenuUnlockFlag',
-    TAG_ORDER_DATA: '::AsGlobalPV:Config.orderData.serialNumber',
-
     TAG_DRY_ENABLED: '::AsGlobalPV:VacuumPost[{0}].active',
     TAG_DRY_BALANCE: '::AsGlobalPV:VacuumPost[{0}].panel_money',
     TAG_DRY_PROGRAM: '::AsGlobalPV:VacuumPost[{0}].program',
@@ -96,23 +98,28 @@ class OPCUAService extends EventEmitter {
       '::AsGlobalPV:ProcessEventExtern.vacuumState[{0}].money',
     TAG_DRY_TIME: '::AsGlobalPV:ProcessEventExtern.vacuumState[{0}].progTime',
 
-    ////////////////////////////////////////////////////////////////////////////
-
+    // ----------------------------------
+    // KKT
     TAG_KKT_RECEIPT_ENABLED: '::AsGlobalPV:Recipe.Kkm.PrintReceipt',
     TAG_KKT_INSTALLED: '::AsGlobalPV:Recipe.Kkm.EnableDevice',
     TAG_KKT_IS_ONLINE: '::AsGlobalPV:DiagnosticExtern.Kitcash.iLife',
 
-    TAG_BONUS_ENABLED: '::AsGlobalPV:Recipe.Bonus.Enable',
-
-    TAG_SERVICE_MONEY: '::AsGlobalPV:Recipe.ServiceMoneyAmount',
-
-    TAG_USER: '::AsGlobalPV:System.userActiveName',
-
-
+    // ----------------------------------
+    // COMMON
     TAG_DATE: '::AsGlobalPV:DateTime.Date',
-    TAG_TIME: '::AsGlobalPV:DateTime.Time'
+    TAG_TIME: '::AsGlobalPV:DateTime.Time',
+
+    TAG_G_FIXED_CURRENCY: '::AsGlobalPV:gFixedCurrency.digits',
+    TAG_IS_MENU_UNLOCK: '::AsGlobalPV:Recipe.PanelSysMenuUnlockFlag',
+    TAG_ORDER_DATA: '::AsGlobalPV:Config.orderData.serialNumber',
+    TAG_BONUS_ENABLED: '::AsGlobalPV:Recipe.Bonus.Enable',
+    TAG_SERVICE_MONEY: '::AsGlobalPV:Recipe.ServiceMoneyAmount',
+    TAG_USER: '::AsGlobalPV:System.userActiveName',
+    TAG_IS_STAND_FREE: '::AsGlobalPV:Recipe.StandbyFreeEnable',
   }
   
+  // ------------------------------------
+  // USER
   public userNodes: { [key: string]: string } = {
     TAG_USER_ACCESS: '::AsGlobalPV:User[{0}].access',
     TAG_USER_NAME: '::AsGlobalPV:User[{0}].name',

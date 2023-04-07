@@ -234,6 +234,9 @@ export default {
       this.options.params.order = this.order // ??
       this.options.params.detail.order = this.order
 
+      /* dev */
+      // this.options.params.detail.kkt_enable = true
+
       console.log(
         '$$ CashBill ++payCashMoney-->options-->this.options-->',
         JSON.stringify(this.options)

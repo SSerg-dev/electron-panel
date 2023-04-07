@@ -15,7 +15,6 @@
               {{ 'PROGRAMS_COST' | localize }}
             </div>
           </div>
-        
         </li>
 
         <!-- 2 -->
@@ -78,9 +77,9 @@ export default Vue.extend({
       /* isDown: {
       price: false,
     }, */
-    buttonPrice: null,
+      buttonPrice: null,
 
-    emoji: '',
+      emoji: ''
     }
   },
   props: ['type'],
@@ -90,27 +89,30 @@ export default Vue.extend({
       getMoneyToBonus: 'getMoneyToBonus',
       getIsPing: 'getIsPing',
       getTerminalInstalled: 'getTerminalInstalled',
-    }),
+      getIsStandbyFreeEnable: 'getIsStandbyFreeEnable'
+    })
   },
   watch: {
     getWetBalance(value) {
-      if (value > 0 && this.getMoneyToBonus === 0) {
+      console.log('$$ MainMenu: 97', value, this.getMoneyToBonus, this.getIsStandbyFreeEnable)
+      if (
+        (value > 0 && this.getMoneyToBonus === 0) ||
+        (value > 0 && this.getMoneyToBonus === 0 && this.getIsStandbyFreeEnable)
+      ) {
         /* dev */
         // this.setIsMoneyToBonusYes(false)
         this.setIsMoneyToBonus(false)
         this.$router.push('/cash')
       }
-    },
+    }
   },
 
   mounted() {
     this.initial()
-    // initial timers
-    /* dev */
-    // this.$router.push('/program')
 
     if (this.getWetBalance > 0) this.$router.push('/cash')
 
+    // initial timers
     this.setIsFirstTimer(true)
     this.setSecondsFirstTimer(15)
 
@@ -142,7 +144,7 @@ export default Vue.extend({
       getCashEnabler: 'getCashEnabler',
       getIsPayCardMoney: 'getIsPayCardMoney',
       getDirectCash: 'getDirectCash',
-      getSecondsFirstTimer: 'getSecondsFirstTimer',
+      getSecondsFirstTimer: 'getSecondsFirstTimer'
     }),
     ...mapMutations({
       setCashEnabler: 'setCashEnabler',
@@ -158,7 +160,7 @@ export default Vue.extend({
 
       setIsCardMoney: 'setIsCardMoney',
       setIsBonusMoney: 'setIsBonusMoney',
-      setPayType: 'setPayType',
+      setPayType: 'setPayType'
     }),
 
     payUp(program) {
@@ -202,7 +204,6 @@ export default Vue.extend({
     },
     initial() {
       // classes instances
-
       /* button price */
       /* this.buttonPrice = new Button({
         selector: '#button-price',
@@ -219,10 +220,8 @@ export default Vue.extend({
         alignItems: 'center',
         justifyContent: 'center',
       }) */
-
-    },
-    
-  }, // end methods
+    }
+  } // end methods
 })
 </script>
 
@@ -288,7 +287,6 @@ section {
   filter: url(#color);
 
   padding-top: -0em;
-  
 }
 .button-price-style {
   font-size: 6.5em;

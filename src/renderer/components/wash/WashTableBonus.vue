@@ -206,7 +206,6 @@ export default {
 
       if (parseInt(this.getWetBalance) > 0) {
         this.timeoutPopup = setTimeout(() => {
-          // this.$router.push('/popup')
         }, this.delay)
       } else this.$message(localizeFilter(`${messages.Not_enough_money}`))
     },

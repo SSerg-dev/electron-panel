@@ -155,7 +155,8 @@ export default new Vuex.Store({
     },
     globalParameters: {
       fixedCurrency: '',
-      isMenuUnlock: ''
+      isMenuUnlock: '',
+      isStandFree: ''
     },
     kktParameters: {
       isKktInstalled: false
@@ -551,6 +552,10 @@ export default new Vuex.Store({
     getIsMenuUnlock(state) {
       return state.globalParameters.isMenuUnlock
     },
+    // StandbyFreeEnable
+    getIsStandbyFreeEnable(state) {
+      return state.globalParameters.isStandFree || false
+    },
 
     getDryOrder(state) {
       return state.dryParameters.order
@@ -767,12 +772,14 @@ export default new Vuex.Store({
         case 'userActiveName':
           state.users.userActiveName = parameter.value
           break
-
         case 'orderData.serialNumber':
           state.orderData.serialNumber = parameter.value
           break
-
-        // end common parameters
+        case 'StandbyFreeEnable':
+          state.globalParameters.isStandFree = 
+          parameter.value === 'true' ? true : false
+        
+          // end common parameters
 
         default:
           break

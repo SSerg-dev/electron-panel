@@ -219,8 +219,8 @@ try {
 
   rawdata = readFileSync('./configs/settings-current.json')
   if (!rawdata.length) {
-    rawdata = readFileSync('./configs/settings.json')
-    log(TAG, 'SETTINGS FROM settings.json')
+    rawdata = readFileSync('./configs/settings-default.json')
+    log(TAG, 'SETTINGS FROM settings-default.json')
   }
 
   settings = JSON.parse(rawdata.toString())

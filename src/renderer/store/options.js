@@ -19,8 +19,7 @@ export default {
         sum: 0,
         // nl::json – структура доп. данных
         detail: {
-          
-          order: '', 
+          order: '',
           // сумма зачисления в монетах
           sum_coins: 0,
           // общее количество монет
@@ -45,6 +44,8 @@ export default {
           bills_200: 0,
           // количество купюр наминала 500
           bills_500: 0
+          /* dev */
+          // kkt_enable: true
         }
       }
     },
@@ -106,7 +107,7 @@ export default {
     /* dev */
     createReceipt: {
       method: 'kkt::receipt.create',
-      params: { unit_id: 0, sum: 0, cash: false, order: ''  }
+      params: { unit_id: 0, sum: 0, cash: false, order: '' }
     },
     readReceipt: {
       method: 'kkt::receipt.read',
@@ -137,17 +138,19 @@ export default {
     completeWash: {
       method: 'bonus::wash.complete',
       params: {
-        order: '', 
-        programs: [{
-          program_id: 0, 
-          program_name: '', 
-          program_quantity: 0 
-        }]
+        order: '',
+        programs: [
+          {
+            program_id: 0,
+            program_name: '',
+            program_quantity: 0
+          }
+        ]
       }
     },
     checkBonusQr: {
       method: 'bonus::qr.check',
-      params: { qr: ''}
+      params: { qr: '' }
     },
     /* dev */
     receipt: {},
@@ -165,7 +168,7 @@ export default {
     },
     isCardMoney: false,
     isPing: false,
-    isPingUrl: false, 
+    isPingUrl: false,
     // loginSettingPassword: '',
     isLoginSettingPassword: false,
     isReceipt: {
@@ -193,8 +196,6 @@ export default {
       minute: 0,
       second: 0
     }
-    
-
   }, // end state
   // Options
   //actions: {},
@@ -411,13 +412,12 @@ export default {
       state.readReceipt.params.id = id
     },
     setControllerTime(state, time) {
-      return state.controllerTime = time
+      return (state.controllerTime = time)
     }
 
     /* setLoginSettingPassword(state, password) {
       state.loginSettingPassword = password
     }, */
-
 
     /* setPanelMoneyNumber(state, unit_id) {
       state.options.params.unit_id = unit_id

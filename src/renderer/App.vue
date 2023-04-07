@@ -34,13 +34,18 @@ export default Vue.extend({
       getPanelNumber: 'getPanelNumber',
       getVacuumNumber: 'getVacuumNumber',
       getPanelType: 'getPanelType',
-      getControllerTime: 'getControllerTime'
+      getControllerTime: 'getControllerTime',
+      getIsStandbyFreeEnable: 'getIsStandbyFreeEnable'
     })
   },
   watch: {
     getPanelNumber(flag) {}, 
     getVacuumNumber(flag) {},
-    getPanelType(flag) {}
+    getPanelType(flag) {},
+    getIsStandbyFreeEnable(flag) {
+      // console.log('$$ App.vue: 46', flag)
+    }
+
   },
   components: {
     EmptyLayout,
@@ -82,7 +87,7 @@ export default Vue.extend({
       // this.emitCardMoneyInitial()
     },
     setup() {
-      // Get global setings from settings.json in main (electron) process
+      // Get global setings in main (electron) process
 
       ipcRenderer.on('settings', (evt, data) => {
         try {
