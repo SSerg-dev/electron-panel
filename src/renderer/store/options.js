@@ -43,9 +43,9 @@ export default {
           // количество купюр наминала 200
           bills_200: 0,
           // количество купюр наминала 500
-          bills_500: 0
+          bills_500: 0,
           /* dev */
-          // kkt_enable: true
+          kkt_enabled: false
         }
       }
     },
@@ -112,7 +112,7 @@ export default {
     readReceipt: {
       method: 'kkt::receipt.read',
       /* dev */
-      params: { id: 2410 }
+      params: { id: 0 }
     },
     printReceipt: {
       method: 'kkt::receipt.print',
@@ -410,6 +410,7 @@ export default {
     },
     setReadReceiptOptions(state, id) {
       state.readReceipt.params.id = id
+      console.log('$$ options.js: 413', state.readReceipt.params.id)
     },
     setControllerTime(state, time) {
       return (state.controllerTime = time)

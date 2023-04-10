@@ -83,6 +83,7 @@ export default Vue.extend({
       const type = types[4]
 
       this.options = this.getCreateReceiptOptions()
+
       const panelType = this.getPanelType
       switch (panelType) {
         case 'wash':
@@ -100,6 +101,8 @@ export default Vue.extend({
       this.options.params.sum = +this.sum
       this.options.params.cash = true
       this.options.params.order = this.order
+
+      console.log('$$ Invoice.vue:105', JSON.stringify(this.options) )
 
       const response = await this.storage.getClient(method, this.options, type)
       if (+response.result === 0) {
@@ -120,6 +123,8 @@ export default Vue.extend({
       const type = types[4]
 
       this.options = this.getReadReceiptOptions()
+      console.log('$$ Invoice.vue:126', JSON.stringify(this.options) )
+
       const response = await this.storage.getClient(method, this.options, type)
       if (response) {
         if (response.receipt && +response.result === 0) {

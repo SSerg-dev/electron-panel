@@ -132,6 +132,7 @@ export default {
       getDryOrder: 'getDryOrder',
       getWetBalance: 'getWetBalance',
       getPayType: 'getPayType',
+      getIsKktInstalled: 'getIsKktInstalled'
     }),
     IsDryBalance: {
       get: function () {
@@ -147,10 +148,6 @@ export default {
       getStoreMoneyOptions: 'getStoreMoneyOptions',
       getDryStoreMoneyOptions: 'getDryStoreMoneyOptions',
       getAppendBonus: 'getAppendBonus',
-      /* dev */
-      getCreateReceiptOptions: 'getCreateReceiptOptions',
-      getReadReceiptOptions: 'getReadReceiptOptions',
-      getPrintReceiptOptions: 'getPrintReceiptOptions',
     }),
     ...mapMutations({
       //createCash: 'cash/createCash',
@@ -236,8 +233,11 @@ export default {
       this.options.params.order = this.order
       this.options.params.detail.order = this.order
 
+      /* dev */
+      this.options.params.detail.kkt_enabled = this.getIsKktInstalled
+
       console.log(
-        '$$ CashVacuumBill ++payCashMoney-->options-->this.options-->',
+        '$$ CashVacuumBill.vue: 240',
         JSON.stringify(this.options)
       )
 

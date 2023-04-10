@@ -94,10 +94,10 @@ export default Vue.extend({
   },
   watch: {
     getWetBalance(value) {
-      console.log('$$ MainMenu: 97', value, this.getMoneyToBonus, this.getIsStandbyFreeEnable)
+      // console.log('$$ MainMenu: 97', value, this.getMoneyToBonus, this.getIsStandbyFreeEnable)
       if (
-        (value > 0 && this.getMoneyToBonus === 0) ||
-        (value > 0 && this.getMoneyToBonus === 0 && this.getIsStandbyFreeEnable)
+        (value > 0 && +this.getMoneyToBonus === 0) 
+        // || (value > 0 && this.getMoneyToBonus === 0 && this.getIsStandbyFreeEnable)
       ) {
         /* dev */
         // this.setIsMoneyToBonusYes(false)

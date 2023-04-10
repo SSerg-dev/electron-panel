@@ -105,16 +105,12 @@ export default Vue.extend({
     },
     // ----------------------------------
     async payCashMoney(index) {
-      // console.log('$$ MainLayout payCashMoney')
       const method = methods[0]
       const type = types[0]
       const options = this.options[index]
 
       const response = await this.storage.getClient(method, options, type)
-
-      // console.log('$$ payCashMoney response response.result', response, response.result)
-      // this.$message(`$$ payCashMoney response.result ${response} `)
-
+      
       if (response) {
         if (response.result === 0) {
           this.removeQueue(index)

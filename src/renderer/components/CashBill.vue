@@ -123,6 +123,7 @@ export default {
       getIsPing: 'getIsPing',
       getPayType: 'getPayType',
       getInitCurrency: 'getInitCurrency',
+      getIsKktInstalled: 'getIsKktInstalled'
     }),
     IsWetBalance: {
       get: function () {
@@ -235,16 +236,14 @@ export default {
       this.options.params.detail.order = this.order
 
       /* dev */
-      // this.options.params.detail.kkt_enable = true
+      this.options.params.detail.kkt_enabled = this.getIsKktInstalled 
 
       console.log(
-        '$$ CashBill ++payCashMoney-->options-->this.options-->',
-        JSON.stringify(this.options)
+        '$$ CashBill.vue: 242',
+        JSON.stringify(this.options) 
       )
-      // console.log('$$ this.coins', this.coins)
-
       const response = await this.storage.getClient(method, this.options, type)
-      console.log('$$ CashBill response', response)
+      console.log('$$ CashBill response', JSON.stringify(response))
 
       if (response === undefined) {
         /* dev */

@@ -17,13 +17,15 @@
           "
         > -->
         <!-- instead show wet balance -->
-        <div
+        
+          <div
           v-if="
-            ((+getWetBalance >= 0 && +this.getWetStopFreeCount === 0) ||
-              (+getWetBalance >= 0 && this.getIsStandbyFreeEnable)) &&
-              (this.$route.name === 'cash' || this.$route.name === 'program')
-          "
-        >
+            (
+               (+getWetBalance >= 0 && +this.getWetStopFreeCount === 0) 
+               || (+getWetBalance >= 0 && this.getIsStandbyFreeEnable && this.$route.name === 'cash')
+            ) 
+            && (this.$route.name === 'cash' || this.$route.name === 'program')
+          ">
           <!-- end instead show wet balance  -->
 
           {{

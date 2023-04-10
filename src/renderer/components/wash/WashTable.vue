@@ -30,6 +30,7 @@
 
         <!-- v-if="!getIsReceiptRead" -->
         <div v-if="this.getIsKktInstalled">
+          
           <div
             @click="setProgram('receipt')"
             class="waves-effect receipt"
@@ -513,6 +514,9 @@ export default {
       if (flag) this.isVisibleWashTableBonus = false
       // else this.isVisibleWashTableBonus = true
     },
+    getIsKktInstalled(flag) {
+      // console.log('$$ WashTable.vue: 520', flag)
+    }
   },
   computed: {
     ...mapGetters({
