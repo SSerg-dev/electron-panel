@@ -960,7 +960,7 @@ export default Vue.extend({
     isChangeProgramSecond: false,
 
     degreasingProgram: '',
-    degreasingProgram2: '',
+    degreasingProgram2: '', 
 
     isCnw: true,
     isCursor: true,
@@ -982,6 +982,9 @@ export default Vue.extend({
     tabs: null,
 
     config: {},
+
+    prevRouter: ''
+
   }),
   components: {
     SettingPanelType,
@@ -1022,6 +1025,7 @@ export default Vue.extend({
   mounted() {
     EventBus.$on('submitSelect', this.submitHandler)
 
+    this.prevRouter = this.getRouter
     this.setRouter('/setting')
     this.tabs = M.Tabs.init(this.$refs.tabs, {})
   },
@@ -1075,31 +1079,24 @@ export default Vue.extend({
     okHandler() {
       this.config = this.getConfig()
       this.updateConfig(this.config)
-
-      // this.setLanguage()
       this.$router.push('/')
-
-      //const panelType = this.getPanelType
-      //if (panelType === 'wash') this.$router.push('/')
-      //if (panelType === 'vacuum') this.$router.push('/password')
-      //if (panelType === 'payment') this.$router.push('/')
+      // this.pushRouter()
     },
     cancelHandler() {
       window.location.reload()
-      //console.log('!!!updateCancel')
-      //this.$router.push('/')
+      // this.pushRouter()
     },
     applyHandler() {
       this.config = this.getConfig()
-      // console.log('$$ this.config', this.config)
-
       this.updateConfig(this.config)
-
-      // this.setLanguage()
-
-      //console.log('!!!updateApply')
-      // this.$router.push('/setting')
+      // this.pushRouter()
     },
+    pushRouter() {
+      //this.$router.push(this.getRouter)
+      // console.log('$$ Setting: 1096', this.prevRouter)
+      // this.$router.push(this.prevRouter)
+    },
+
     ...mapGetters({
       getTerminalInstalled: 'getTerminalInstalled',
 
@@ -1124,6 +1121,7 @@ export default Vue.extend({
       getAcceptorInstalled: 'getAcceptorInstalled',
       getCoinAcceptorInstalled: 'getCoinAcceptorInstalled',
       getUsersIsAccess: 'getUsersIsAccess',
+      getRouter: 'getRouter'
     }),
   },
   watch: {

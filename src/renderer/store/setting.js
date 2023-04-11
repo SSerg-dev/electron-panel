@@ -23,10 +23,16 @@ export default {
     isTooltipInstalled: true,
     cardLimitMax: 0,
 
+    prevRouter: ''
+
   }, // end state
 
   // getters
   getters: {
+    getPrevRouter(state) {
+      return state.prevRouter
+    },
+
     getAssignItems(state) {
       return state.assignItems
     },
@@ -186,6 +192,10 @@ export default {
   // mutations
   mutations: {
     /* dev */
+    setPrevRouter(state, prevRouter) {
+      state.prevRouter = prevRouter
+    },
+
     setIsChangeProgramFirst(state, isProgram) {
       state.config.ui.isProgram = isProgram
     },

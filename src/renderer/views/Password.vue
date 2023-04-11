@@ -424,6 +424,9 @@ export default {
   }),
   mounted() {
     this.setup()
+    // this.$route.name
+    this.setPrevRouter(this.$route.name)
+    console.log('$$ Password: 429', /* this.getPrevRouter */ this.$route.name)
 
     this.setRouter('/password')
     this.settingPassword = this.getLoginSettingPassword()
@@ -432,6 +435,7 @@ export default {
   computed: {
     ...mapGetters({
       getRouter: 'getRouter',
+      getPrevRouter: 'getPrevRouter'
     }),
   },
   methods: {
@@ -465,6 +469,7 @@ export default {
       setIsPayBonusMoney: 'setIsPayBonusMoney',
       setIsLoginSettingPassword: 'setIsLoginSettingPassword',
       setRouter: 'setRouter',
+      setPrevRouter: 'setPrevRouter'
     }),
     ...mapActions({}),
 

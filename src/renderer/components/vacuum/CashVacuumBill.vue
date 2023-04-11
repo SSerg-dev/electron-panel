@@ -132,7 +132,8 @@ export default {
       getDryOrder: 'getDryOrder',
       getWetBalance: 'getWetBalance',
       getPayType: 'getPayType',
-      getIsKktInstalled: 'getIsKktInstalled'
+      getIsKktInstalled: 'getIsKktInstalled',
+      getCnw: 'getCnw'
     }),
     IsDryBalance: {
       get: function () {
@@ -233,13 +234,14 @@ export default {
       this.options.params.order = this.order
       this.options.params.detail.order = this.order
 
-      /* dev */
-      this.options.params.detail.kkt_enabled = this.getIsKktInstalled
+      this.getCnw
+        ? (this.options.params.detail.kkt_enabled = false)
+        : (this.options.params.detail.kkt_enabled = this.getIsKktInstalled)
 
-      console.log(
-        '$$ CashVacuumBill.vue: 240',
-        JSON.stringify(this.options)
-      )
+      // console.log(
+      //   '$$ CashVacuumBill.vue: 240',
+      //   JSON.stringify(this.options)
+      // )
 
       const response = await this.storage.getClient(method, this.options, type)
 

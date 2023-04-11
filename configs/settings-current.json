@@ -93,7 +93,7 @@
   "log_path": "/var/log",
   "type": "wash",
   "ui": {
-    "CNW": true,
+    "CNW": false,
     "isEnable": false,
     "isProgram": true,
     "isProgram2": false,

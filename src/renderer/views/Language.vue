@@ -303,11 +303,7 @@
                 <img src="@/assets/imgs/language/lang_KOR.png" />
               </button>
             </td>
-            <td>
-              <!-- <button class="btn-large" @click="getCountry()">
-                    getCountry
-                  </button> -->
-            </td>
+            
           </tr>
         </table>
 
@@ -373,12 +369,7 @@ export default Vue.extend({
       this.pushRouter()
     },
     pushRouter() {
-      //console.log('+++getRouter-->', this.getRouter)
       this.$router.push(this.getRouter)
-    },
-    getCountry() {
-      ipcRenderer.send('country', 'RU')
-      //ipcRenderer.send('config', JSON.stringufy(config))
     },
   },
 })

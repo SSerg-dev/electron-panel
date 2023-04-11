@@ -40,6 +40,9 @@ export default Vue.extend({
     url: '',
     storage: null,
     options: {},
+
+    delay: 2000,
+    timeoutDelay: null,
   }),
   computed: {
     ...mapGetters({
@@ -102,11 +105,10 @@ export default Vue.extend({
       this.options.params.cash = true
       this.options.params.order = this.order
 
-      console.log('$$ Invoice.vue:105', JSON.stringify(this.options) )
-
       const response = await this.storage.getClient(method, this.options, type)
       if (+response.result === 0) {
         this.setIsReceiptCreate(true)
+
         this.setReadReceiptOptions(response.id)
         this.$message(
           `02 Выполняется createReceipt result--> ${+response.result}`
@@ -123,7 +125,6 @@ export default Vue.extend({
       const type = types[4]
 
       this.options = this.getReadReceiptOptions()
-      console.log('$$ Invoice.vue:126', JSON.stringify(this.options) )
 
       const response = await this.storage.getClient(method, this.options, type)
       if (response) {
@@ -160,7 +161,10 @@ export default Vue.extend({
 
     doInvoice() {
       this.createReceipt()
+      this.timeoutDelay = setTimeout(() => {
       this.readReceipt()
+      }, this.delay)
+    
       // this.printReceipt()
     },
     createOrder() {
@@ -200,6 +204,9 @@ export default Vue.extend({
     this.storage = new Storage(this.client, this.url)
     this.order = this.createOrder()
     this.doInvoice()
+  },
+  beforeDestroy() {
+    clearTimeout(this.timeoutDelay)
   },
   components: {
     InvoiceBill,

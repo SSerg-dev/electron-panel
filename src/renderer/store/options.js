@@ -409,8 +409,7 @@ export default {
       state.profile = profile
     },
     setReadReceiptOptions(state, id) {
-      state.readReceipt.params.id = id
-      console.log('$$ options.js: 413', state.readReceipt.params.id)
+      state.readReceipt.params.id = id + 1
     },
     setControllerTime(state, time) {
       return (state.controllerTime = time)

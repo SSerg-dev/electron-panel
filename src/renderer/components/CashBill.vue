@@ -76,7 +76,7 @@ export default {
     cash_enabler: false,
     isDown: {
       payEnd: false,
-      payBonus: false,
+      payBonus: false
     },
 
     /* dev */
@@ -101,7 +101,7 @@ export default {
     queue: null,
     queueType: '',
     localClient: 'local',
-    localStorage: null,
+    localStorage: null
   }),
   mounted() {
     this.order = this.createOrder()
@@ -110,7 +110,6 @@ export default {
 
     this.urlLocal = process.env.VUE_APP_URL_LOCAL
     this.localStorage = new Storage(this.localClient, this.urlLocal)
-
   },
   computed: {
     ...mapGetters({
@@ -123,22 +122,23 @@ export default {
       getIsPing: 'getIsPing',
       getPayType: 'getPayType',
       getInitCurrency: 'getInitCurrency',
-      getIsKktInstalled: 'getIsKktInstalled'
+      getIsKktInstalled: 'getIsKktInstalled',
+      getCnw: 'getCnw'
     }),
     IsWetBalance: {
-      get: function () {
+      get: function() {
         let flag
         this.getWetBalance > 0 ? (flag = true) : (flag = false)
         return flag
-      },
-    },
+      }
+    }
   },
 
   methods: {
     ...mapGetters({
       getCashEnabler: 'getCashEnabler',
       getStoreMoneyOptions: 'getStoreMoneyOptions',
-      getAppendBonus: 'getAppendBonus',
+      getAppendBonus: 'getAppendBonus'
     }),
     ...mapMutations({
       setCashEnabler: 'setCashEnabler',
@@ -146,7 +146,7 @@ export default {
       setIsAppendBonusMoney: 'setIsAppendBonusMoney',
 
       setIsMoneyToBonus: 'setIsMoneyToBonus',
-      setWetBalance: 'setWetBalance',
+      setWetBalance: 'setWetBalance'
     }),
     ...mapActions({}),
 
@@ -235,15 +235,11 @@ export default {
       this.options.params.order = this.order // ??
       this.options.params.detail.order = this.order
 
-      /* dev */
-      this.options.params.detail.kkt_enabled = this.getIsKktInstalled 
+      this.getCnw
+        ? (this.options.params.detail.kkt_enabled = false)
+        : (this.options.params.detail.kkt_enabled = this.getIsKktInstalled)
 
-      console.log(
-        '$$ CashBill.vue: 242',
-        JSON.stringify(this.options) 
-      )
       const response = await this.storage.getClient(method, this.options, type)
-      console.log('$$ CashBill response', JSON.stringify(response))
 
       if (response === undefined) {
         /* dev */
@@ -255,7 +251,7 @@ export default {
         return
       }
       if (+response.result === 0 && +this.getWetBalance > 0) {
-        this.clearCashMoney()  
+        this.clearCashMoney()
         if (this.$route.name !== 'program') this.$router.push('/program')
         this.$message(
           localizeFilter(`${messages.The_payment_successful_amount}`) +
@@ -344,13 +340,13 @@ export default {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-    },
+    }
   }, // end methods
 
   created() {
     this.initCurrency()
   },
-  beforeDestroy() {},
+  beforeDestroy() {}
 }
 </script>
 
