@@ -16,13 +16,11 @@ export default {
     humidity: '',
     serviceBalance: 0,
     increment: 10,
-    // panel type,
     vacuum: 1,
     vacuumNumber: 1,
     payment: 1,
     isTooltipInstalled: true,
     cardLimitMax: 0,
-
     prevRouter: ''
 
   }, // end state
@@ -32,11 +30,9 @@ export default {
     getPrevRouter(state) {
       return state.prevRouter
     },
-
     getAssignItems(state) {
       return state.assignItems
     },
-
     getPaymentLimitMin(state) {
       return state.config.bank_terminal.min_sum
     },
@@ -195,7 +191,6 @@ export default {
     setPrevRouter(state, prevRouter) {
       state.prevRouter = prevRouter
     },
-
     setIsChangeProgramFirst(state, isProgram) {
       state.config.ui.isProgram = isProgram
     },

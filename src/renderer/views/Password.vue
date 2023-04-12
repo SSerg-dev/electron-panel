@@ -422,13 +422,13 @@ export default {
     maxX: 880,
     maxY: 1600,
   }),
+  created() {
+    this.setPrevRouter(this.getRouter)
+  },
   mounted() {
     this.setup()
-    // this.$route.name
-    this.setPrevRouter(this.$route.name)
-    console.log('$$ Password: 429', /* this.getPrevRouter */ this.$route.name)
-
     this.setRouter('/password')
+
     this.settingPassword = this.getLoginSettingPassword()
   },
   components: {},

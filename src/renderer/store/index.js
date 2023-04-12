@@ -307,7 +307,7 @@ export default new Vuex.Store({
 
     // Wet actions ======================
     updateStartProgram({ commit, dispatch, getters, state }, params) {
-      console.log('updateStartProgram-->', JSON.stringify(params))
+      console.log('$$ index.js: 310', JSON.stringify(params))
 
       if (params[2] === 'operator') dispatch('updateCallOperator')
       const number = state.programs.findIndex(p => p === params[2]) + 1
@@ -385,7 +385,6 @@ export default new Vuex.Store({
     },
     // бонусы
     updateWetBonusMoney({ getters }, bonus) {
-      console.log('WET Bonus update-->', bonus)
       try {
         ipcRenderer.send(
           'OPCUA',
@@ -633,9 +632,7 @@ export default new Vuex.Store({
     getSecondsThirdTimer(state) {
       return state.secondsThirdTimer
     },
-
     getActiveProgramNumber(state) {
-      console.log('state.activeProgramNumber-->', state.activeProgramNumber)
       return state.activeProgramNumber
     },
     getCurrentMessage(state) {

@@ -982,8 +982,7 @@ export default Vue.extend({
     tabs: null,
 
     config: {},
-
-    prevRouter: ''
+    prevConfig: {}
 
   }),
   components: {
@@ -1025,7 +1024,7 @@ export default Vue.extend({
   mounted() {
     EventBus.$on('submitSelect', this.submitHandler)
 
-    this.prevRouter = this.getRouter
+    this.prevConfig = this.getConfig()
     this.setRouter('/setting')
     this.tabs = M.Tabs.init(this.$refs.tabs, {})
   },
@@ -1079,22 +1078,19 @@ export default Vue.extend({
     okHandler() {
       this.config = this.getConfig()
       this.updateConfig(this.config)
-      this.$router.push('/')
-      // this.pushRouter()
+      // this.$router.push('/')
+      this.pushRouter()
     },
     cancelHandler() {
-      window.location.reload()
-      // this.pushRouter()
+      // window.location.reload()
+      this.updateConfig(this.prevConfig)
     },
     applyHandler() {
       this.config = this.getConfig()
       this.updateConfig(this.config)
-      // this.pushRouter()
     },
     pushRouter() {
-      //this.$router.push(this.getRouter)
-      // console.log('$$ Setting: 1096', this.prevRouter)
-      // this.$router.push(this.prevRouter)
+      this.$router.push(this.getPrevRouter)
     },
 
     ...mapGetters({
@@ -1121,7 +1117,8 @@ export default Vue.extend({
       getAcceptorInstalled: 'getAcceptorInstalled',
       getCoinAcceptorInstalled: 'getCoinAcceptorInstalled',
       getUsersIsAccess: 'getUsersIsAccess',
-      getRouter: 'getRouter'
+      getRouter: 'getRouter',
+      getPrevRouter: 'getPrevRouter'
     }),
   },
   watch: {
@@ -1165,21 +1162,13 @@ export default Vue.extend({
   },
   created() {
     this.isPayScreenMain = this.getPayScreenMain()
-    /* dev */
-    // isCnw
     this.isCnw = this.getCnw()
-    // isCursor
     this.isCursor = this.getCursor()
-    // isTerminalInstalled
     this.isTerminalInstalled = this.getTerminalInstalled()
-    // isDirectCash
     this.isDirectCash = this.getDirectCash()
-    // bill
     this.isAcceptorInstalled = this.getAcceptorInstalled
-    // coin
     this.isCoinAcceptorInstalled = this.getCoinAcceptorInstalled
 
-    /* dev */
     this.isChangeItem = this.getIsChangeItem()
     this.isChangeProgramFirst = this.getIsChangeProgramFirst()
     this.isChangeProgramSecond = this.getIsChangeProgramSecond()

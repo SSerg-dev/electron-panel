@@ -18,7 +18,27 @@ const methods = [
   'checkBonusQr' // выполняется при авторизации Qr code
 ]
 
-const types = [ 
+const suffix = 'Direct'
+
+const methodsDirect = [
+  'storeMoneyDirect', // выполняется при окончании оплаты клиентом
+  'collectDirect', // выполняется инкассации панели
+  'readCashDirect', // выполняется при запросе наличных средств находящихся в панели
+  'pingDirect', // выполняется панелью ping коннекта
+  'registerKktDirect', // выполняется при регистрации ККТ. Производится отправка данных предприятия на коннект
+  'createReceiptDirect', // выполняется при запросе чека панелью
+  'readReceiptDirect', //  выполняется панелью при формировании чека
+  'printReceiptDirect', // выполняется панелью  на запрос печати чека
+  'loginBonusDirect', // выполняется при авторизации в бонусной системе
+  'getQrDirect', // выполняется панелью для получения QR-кода
+  'appendBonusDirect', // выполняется панелью для зачисления бонусов клиенту
+  'completeWashDirect', // выполняется панелью после  окончания мойки клиентом
+  'pingUrlDirect', // выполняется панелью ping Url
+  'chargeBonusDirect', // выполняется панелью для изменения суммы бонусов на облаке
+  'checkBonusQrDirect' // выполняется при авторизации Qr code
+]
+
+const types = [
   'cash',
   'card',
   'bonus',
@@ -31,20 +51,16 @@ const types = [
 
 class Fetch {
   async request(url, options, type) {
+    let isDirect = false
     let response
+
     switch (type) {
       case 'cash':
         response = await this.cashRequest(url, options)
         break
-      /* case 'card':
-        response = await this.cardRequest(url, options)
-        break */
       case 'bonus':
         response = await this.bonusRequest(url, options)
         break
-      /* case 'service':
-        response = await this.serviceRequest(url, options)
-        break */
       case 'finance':
         response = await this.financeRequest(url, options)
         break
@@ -52,14 +68,20 @@ class Fetch {
         response = await this.commonRequest(url, options)
         break
       case 'ping':
-        console.log('$$ this.pingUrl')
         response = await this.pingUrl(
           (url = process.env.VUE_APP_URL_CONTROLLER),
           options
         )
         break
       case 'qr':
-        response = await this.commonRequest(url, options)
+        // console.log('$$ fetch.js: 76', suffix , url, JSON.stringify(options), type)
+        if (isDirect) {
+          url = process.env.VUE_APP_URL_BONUS
+          response = await this.commonRequestDirect(url, options)
+        } else {
+          response = await this.commonRequest(url, options)
+        }
+
         break
 
       default:
@@ -85,7 +107,9 @@ class Fetch {
       })
 
     return this.res
-  } // end cashRequest
+  }
+
+  // end cashRequest
 
   async bonusRequest(url, body) {
     let res
@@ -104,7 +128,6 @@ class Fetch {
     return this.res
   } // end bonusReques
 
-  /* dev */
   async financeRequest(url, body) {
     let res
     const httpsAgent = new require('https').Agent({
@@ -121,9 +144,9 @@ class Fetch {
 
     return this.res
   } // end financeRequest
-  /*     */
 
   async commonRequest(url, body) {
+    console.log('$$ fetch.js: 153', JSON.stringify(body))
     let res
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
@@ -149,6 +172,29 @@ class Fetch {
 
     return Date.now() - start
   }
+
+  // end methods
+
+  // ------------------------------------
+  // methodsDirect
+
+  async commonRequestDirect(url, body) {
+    console.log('$$ fetch.js: 180')
+    let res
+    const httpsAgent = new require('https').Agent({
+      rejectUnauthorized: false
+    })
+    const response = await axios
+      .post(url, body, { httpsAgent }, { timeout: 2000 })
+      .then(res => {
+        this.res = res.data
+      })
+      .catch(e => {
+        console.log('Axios request failed:', JSON.stringify(e))
+      })
+
+    return this.res
+  } // end commonRequestDirect
 } // end class Fetch
 
 class FetchClient {

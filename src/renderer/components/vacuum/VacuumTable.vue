@@ -383,7 +383,6 @@ export default {
     // СПИСАТЬ БОНУСЫ ИЗ ОБЛАКА
     // ----------------------------------
     async chargeBonusMoney() {
-      // console.log('++chargeBonusMoney')
 
       const method = methods[13]
       const type = types[4]
@@ -403,13 +402,7 @@ export default {
 
       this.setChargeBonus(this.options.params)
       this.options = this.getChargeBonus()
-      /* dev */
-      // this.options.params.sum = 4
-
-      console.log(
-        '++chargeBonusMoney-->options-->this.options-->',
-        JSON.stringify(this.options)
-      )
+      
       const response = await this.storage.getClient(method, this.options, type)
       if (+response.result === 0) {
         this.$message(`You spend ${this.options.params.sum} bonus(es)!`)
