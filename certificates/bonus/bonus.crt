@@ -1,0 +1,50 @@
+Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number: 245 (0xf5)
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=RU, ST=Moscow, L=Moscow, O=Alles, OU=Alles, CN=Alles/emailAddress=support@alles-bonus.com
+        Validity
+            Not Before: Dec 24 14:03:52 2021 GMT
+            Not After : Dec 22 14:03:52 2031 GMT
+        Subject: C=RU, ST=SPB, L=SPB, O=AllesBonus_20211224170352, OU=AllesBonus_20211224170352, CN=admin.alles-bonus.com/emailAddress=tigroidit@mail.ru
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (1024 bit)
+                Modulus:
+                    00:df:99:46:05:10:11:74:44:69:7c:93:af:75:e7:
+                    2e:93:01:33:74:3f:11:d8:0e:11:37:4e:4c:cb:3f:
+                    7f:05:10:91:66:fc:f6:2f:1c:f3:e8:5a:16:40:58:
+                    05:04:37:69:5f:af:1d:43:d7:49:5d:26:20:2c:3a:
+                    5c:fa:e1:7a:60:2a:b4:ad:61:84:a3:cd:24:a7:1e:
+                    4a:c4:47:c6:0d:59:fb:0b:ae:d5:b8:1a:45:70:71:
+                    fd:73:fa:68:54:2d:53:f1:2c:c8:b1:1a:bb:7f:b7:
+                    db:42:34:39:0c:96:21:36:41:f7:8c:7d:2d:0f:86:
+                    30:31:4e:12:f1:35:ea:ee:0d
+                Exponent: 65537 (0x10001)
+    Signature Algorithm: sha256WithRSAEncryption
+         4a:69:c0:14:27:2d:2b:8a:52:21:38:1d:5b:44:71:1d:82:6b:
+         80:77:37:3d:27:fb:08:b5:29:6d:2e:47:2e:ff:71:bc:a8:21:
+         05:cd:64:1e:92:d2:f5:e4:09:eb:af:8b:88:68:d7:c4:48:eb:
+         13:10:36:e9:9e:5c:30:b0:58:42:4b:59:18:16:90:a1:8b:70:
+         f5:8a:10:69:d5:89:60:39:7a:5b:9a:b7:94:d3:7e:f3:d4:f8:
+         29:22:eb:48:d2:1b:15:4f:05:4a:71:63:d1:1a:0e:52:e8:1f:
+         84:59:9c:b0:36:c7:62:ee:3b:b7:ab:7d:e0:72:eb:0b:8b:9f:
+         03:80
+-----BEGIN CERTIFICATE-----
+MIICrDCCAhUCAgD1MA0GCSqGSIb3DQEBCwUAMIGHMQswCQYDVQQGEwJSVTEPMA0G
+A1UECAwGTW9zY293MQ8wDQYDVQQHDAZNb3Njb3cxDjAMBgNVBAoMBUFsbGVzMQ4w
+DAYDVQQLDAVBbGxlczEOMAwGA1UEAwwFQWxsZXMxJjAkBgkqhkiG9w0BCQEWF3N1
+cHBvcnRAYWxsZXMtYm9udXMuY29tMB4XDTIxMTIyNDE0MDM1MloXDTMxMTIyMjE0
+MDM1MlowgbMxCzAJBgNVBAYTAlJVMQwwCgYDVQQIDANTUEIxDDAKBgNVBAcMA1NQ
+QjEiMCAGA1UECgwZQWxsZXNCb251c18yMDIxMTIyNDE3MDM1MjEiMCAGA1UECwwZ
+QWxsZXNCb251c18yMDIxMTIyNDE3MDM1MjEeMBwGA1UEAwwVYWRtaW4uYWxsZXMt
+Ym9udXMuY29tMSAwHgYJKoZIhvcNAQkBFhF0aWdyb2lkaXRAbWFpbC5ydTCBnzAN
+BgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA35lGBRARdERpfJOvdecukwEzdD8R2A4R
+N05Myz9/BRCRZvz2Lxzz6FoWQFgFBDdpX68dQ9dJXSYgLDpc+uF6YCq0rWGEo80k
+px5KxEfGDVn7C67VuBpFcHH9c/poVC1T8SzIsRq7f7fbQjQ5DJYhNkH3jH0tD4Yw
+MU4S8TXq7g0CAwEAATANBgkqhkiG9w0BAQsFAAOBgQBKacAUJy0rilIhOB1bRHEd
+gmuAdzc9J/sItSltLkcu/3G8qCEFzWQektL15Anrr4uIaNfESOsTEDbpnlwwsFhC
+S1kYFpChi3D1ihBp1YlgOXpbmreU037z1PgpIutI0hsVTwVKcWPRGg5S6B+EWZyw
+Nsdi7ju3q33gcusLi58DgA==
+-----END CERTIFICATE-----

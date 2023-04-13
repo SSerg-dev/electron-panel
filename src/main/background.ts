@@ -225,6 +225,7 @@ try {
 
   settings = JSON.parse(rawdata.toString())
   log(TAG, 'SETTINGS', JSON.stringify(settings))
+  
   idle(settings)
 
   redis.start(settings)

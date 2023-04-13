@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, Method } from 'axios'
 
+
 const methods = [
   'storeMoney', // выполняется при окончании оплаты клиентом
   'collect', // выполняется инкассации панели
@@ -51,7 +52,9 @@ const types = [
 
 class Fetch {
   async request(url, options, type) {
-    let isDirect = false
+    const isDirect =
+      process.env.VUE_APP_IS_BONUS_DIRECT === 'true' ? true : false
+
     let response
 
     switch (type) {
@@ -74,13 +77,16 @@ class Fetch {
         )
         break
       case 'qr':
-        // console.log('$$ fetch.js: 76', suffix , url, JSON.stringify(options), type)
-        if (isDirect) {
+        
+        /* if (isDirect) {
           url = process.env.VUE_APP_URL_BONUS
           response = await this.commonRequestDirect(url, options)
         } else {
           response = await this.commonRequest(url, options)
-        }
+        } */
+        // ------------------------------
+        response = await this.commonRequest(url, options)
+        response = await this.commonRequestDirect(url, options)
 
         break
 
@@ -146,7 +152,7 @@ class Fetch {
   } // end financeRequest
 
   async commonRequest(url, body) {
-    console.log('$$ fetch.js: 153', JSON.stringify(body))
+    // console.log('$$ fetch.js: 153', JSON.stringify(body))
     let res
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
@@ -179,7 +185,9 @@ class Fetch {
   // methodsDirect
 
   async commonRequestDirect(url, body) {
-    console.log('$$ fetch.js: 180')
+    // console.log('$$ fetch.js: 188 async-certificate-start')
+
+    
     let res
     const httpsAgent = new require('https').Agent({
       rejectUnauthorized: false
@@ -192,8 +200,28 @@ class Fetch {
       .catch(e => {
         console.log('Axios request failed:', JSON.stringify(e))
       })
+    return this.res 
+   
 
-    return this.res
+    /* 
+    const fs = require('fs')
+    const axios = require('axios').create({
+      httpsAgent: new https.Agent({
+        cert: fs.readFileSync('certificates/bonus/bonus.crt'),
+        key: fs.readFileSync('certificates/bonus/bonus.pkcs8')
+
+      })
+    })
+
+    axios
+      .get('https://example.com/path/to/resource')
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.error(error)
+      }) 
+    */
   } // end commonRequestDirect
 } // end class Fetch
 

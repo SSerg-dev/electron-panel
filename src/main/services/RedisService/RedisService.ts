@@ -29,8 +29,14 @@ class RedisService extends EventEmitter {
   static coinOncePath = './data/coin-once.json'
   static billOncePath = './data/bill-once.json'
 
+  static bonusCertPath = './certificates/bonus/bonus.crt'
+  static bonusKeyPath = './certificates/bonus/bonus.pkcs8'
+
   static collectMax = 12
 
+  BonusCert: any = null
+  BonusKey: any = null
+  
   coins: any = null
 
   Coins: any = {
@@ -160,6 +166,9 @@ class RedisService extends EventEmitter {
   private setup() {
     this.initCoins()
     this.initBills()
+
+    this.initBonusCert()
+    this.initBonusKey()
   }
   private initCoins() {
     const coins = this.readData(RedisService.coinPath)
@@ -169,8 +178,30 @@ class RedisService extends EventEmitter {
     const bills = this.readData(RedisService.billPath)
     this.Bills = JSON.parse(bills.toString())
   }
+  // ------------------------------------
+  private initBonusCert() {
+    const bonusCert = this.readData(RedisService.bonusCertPath)
+    this.BonusCert = bonusCert.toString()
+    // console.log('$$ RedisService.ts: 183', this.BonusCert)
+  }
+  // ------------------------------------
+  private initBonusKey() {
+    const bonusKey = this.readData(RedisService.bonusKeyPath)
+    this.BonusKey = bonusKey.toString()
+    // console.log('$$ RedisService.ts: 189', this.BonusKey)
+  }
+  // ------------------------------------
 
   public start(options: any) {
+    // ----------------------------------
+    ipcMain.on('async-certificate-start', (event: any, options: any) => {
+      console.log('$$ RedisService.ts: 198', options)
+      const bonusCert = this.BonusCert
+      const bonusKey = this.BonusKey
+
+      event.sender.send('async-certificate-reply', bonusCert, bonusKey)
+    })
+    // ----------------------------------
 
     ipcMain.on('async-cash-start', (event: any, options: any) => {
       const coins = this.readData(RedisService.coinPath)
