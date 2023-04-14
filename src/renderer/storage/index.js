@@ -6,28 +6,39 @@ import { ipcRenderer } from 'electron'
 //---------------------------------------
 class Storage {
   constructor(client, url) {
-    this.client = client  
+    this.client = client
     this.url = url
-  }
-  getClient(method, options, type) { 
-    // console.log('storage-->method-->', method)
-    this.getCertificate()
 
-    if (this.client === 'local') 
-      this.data = new Database(new LocalStorageClient(method, options, type))
-    else if (this.client === 'fetch') 
-      this.data = new Database(new FetchClient(this.url, method, options, type))
-    else {
-        console.warn('database not exist')
-        return
+    this.certificate = {
+      cert: null,
+      key: null
     }
-    return this.data.getData()  
+    this.getCertificate()
+  }
+
+  getClient(method, options, type) {
+
+    if (this.client === 'local')
+      this.data = new Database(new LocalStorageClient(method, options, type))
+    else if (this.client === 'fetch')
+      this.data = new Database(new FetchClient(this.url, method, options, type, this.certificate))
+    else {
+      console.warn('database not exist')
+      return
+    }
+    return this.data.getData()
   }
   getCertificate() {
-    const options = 'ipcRenderer.send getCertificate'
+    const options = {
+      isCertificate: true
+    }
     ipcRenderer.send('async-certificate-start', options)
-    // console.log('$$++ index.js: 25 async-certificate-start')
-    
+
+    ipcRenderer.on('async-certificate-reply', (event, bonusCert, bonusKey) => {
+      this.certificate.cert = bonusCert || {}
+      this.certificate.key = bonusKey || {}
+
+    })
   }
 }
 

@@ -1,6 +1,5 @@
 <template>
   <div class="app-main-layout">
-
     <!-- <Snowf
       :amount="50"
       :size="5"
@@ -25,8 +24,8 @@
     <div
       v-if="
         this.$route.name != 'language' &&
-        this.$route.name != 'setting' &&
-        this.$route.name != 'cost'
+          this.$route.name != 'setting' &&
+          this.$route.name != 'cost'
       "
       class="footer"
     >
@@ -49,7 +48,6 @@ import { Storage } from '@/storage/index.js'
 import sleep from '@/utils/sleep'
 
 import Snowf from 'vue-snowf'
-// import createLog from 'localstorage-logger'
 
 import { response } from 'express'
 import { forEach } from 'lodash'
@@ -61,9 +59,9 @@ export default Vue.extend({
     intervalPing: null,
     // dev
     client: 'fetch',
-    url: '', 
+    url: '',
     urlController: '',
-    urlLocal:'',
+    urlLocal: '',
 
     storage: null,
     options: {},
@@ -72,7 +70,7 @@ export default Vue.extend({
 
     queueType: '',
     localClient: 'local',
-    localStorage: null,
+    localStorage: null
   }),
 
   computed: {
@@ -81,14 +79,14 @@ export default Vue.extend({
       //getWetBusyPanel: 'getWetBusyPanel',
       getPanelType: 'getPanelType',
       getIsPingUrl: 'getIsPingUrl',
-      getIsPing: 'getIsPing',
-    }),
+      getIsPing: 'getIsPing'
+    })
   },
 
   methods: {
     ...mapGetters({
       getPingOptions: 'getPingOptions',
-      getCompleteWash: 'getCompleteWash',
+      getCompleteWash: 'getCompleteWash'
     }),
 
     async restorePayment() {
@@ -110,7 +108,7 @@ export default Vue.extend({
       const options = this.options[index]
 
       const response = await this.storage.getClient(method, options, type)
-      
+
       if (response) {
         if (response.result === 0) {
           this.removeQueue(index)
@@ -152,15 +150,11 @@ export default Vue.extend({
     // ----------------------------------
 
     async ping() {
-      // console.log('ping')
       const method = methods[3]
-      const type = types[4]
-
+      const type = types[5]
       this.options = this.getPingOptions()
 
       const response = await this.storage.getClient(method, this.options, type)
-      // console.log('ping this.options-->', this.options)
-
       if (response === undefined) {
         this.setIsPing(false)
         // this.$message(`ping ${this.url} недоступен`)
@@ -168,59 +162,36 @@ export default Vue.extend({
       }
       if (+response.result === 0) {
         this.setIsPing(true)
-        // this.$message(`ping ${this.url} выполнен успешно`)
+        // this.$message(`ping ${this.url} выполнен успешно`) 
       }
     },
-    async pingUrl() {
-      console.log('pingUrl')
+
+    /* async pingUrl() {
+      console.log('$$ MainLayout.vue: 169')
       const method = methods[12]
       const type = types[5]
-
       this.urlController = this.urlLocal = process.env.VUE_APP_URL_CONTROLLER
-
       this.options = this.getPingOptions()
+
       const response = await this.storage.getClient(method, this.options, type)
       if (response < 1000) {
         this.setIsPingUrl(true)
-        this.$message(`ping ${this.urlController} выполнен успешно`)
       } else {
         this.setIsPingUrl(false)
-        this.$message(`ping ${this.urlController} недоступен`)
       }
-    },
+    }, */
 
     ...mapMutations({
       setIsPing: 'setIsPing',
-      setIsPingUrl: 'setIsPingUrl',
-    }),
+      setIsPingUrl: 'setIsPingUrl'
+    })
   },
   created() {
-    //console.log('!!++this.getPanelType-->', this.getPanelType)
     this.getIsPing = true
     this.getIsPingUrl = true
   },
 
   async mounted() {
-    // localstorage-logger --------------
-    /* 
-    const log = createLog({
-      logName: 'electron-panel-log',
-      maxLogSizeInBytes: 500 * 1024, // 500KB
-    })
-
-    // Log something
-    // debug | info | warn | error
-    log.info(
-      'MainLayout.vue',
-      {
-        start: 'start',
-      },
-      42
-    )
-    // Export the log entries
-    const logEntries = log.exportToArray()
-    */
-    // end localstorage-logger
 
     this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
@@ -229,7 +200,6 @@ export default Vue.extend({
     this.localStorage = new Storage(this.localClient, this.urlLocal)
 
     this.intervalPing = setInterval(() => {
-      /* dev hidden */
       this.ping()
     }, (this.delay = 2000))
 
@@ -246,13 +216,13 @@ export default Vue.extend({
   components: {
     Navbar,
     Footer,
-    Snowf,
+    Snowf
   },
   computed: {
     locale() {
       return this.$store.getters.info.locale
-    },
-  },
+    }
+  }
 })
 </script>
 

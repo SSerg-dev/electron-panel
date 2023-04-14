@@ -120,6 +120,9 @@ export default Vue.extend({
                 break
             }
           } else {
+            this.isControllerWork = true
+            this.setIsPingUrl(true)
+  
             if (parameter.value) {
               const time = parameter.value.split(':')
 
@@ -130,8 +133,6 @@ export default Vue.extend({
 
               this.setControllerTime(options)
             }
-            this.isControllerWork = true
-            this.setIsPingUrl(true)
           }
         } catch (err) {
           console.warn('App.vue setup() error:', err)

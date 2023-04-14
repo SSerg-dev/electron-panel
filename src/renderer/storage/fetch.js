@@ -1,6 +1,5 @@
 import axios, { AxiosInstance, Method } from 'axios'
 
-
 const methods = [
   'storeMoney', // выполняется при окончании оплаты клиентом
   'collect', // выполняется инкассации панели
@@ -51,7 +50,19 @@ const types = [
 ]
 
 class Fetch {
-  async request(url, options, type) {
+  constructor(certificate) {
+    this.httpsAgent = new require('https').Agent({
+      // rejectUnauthorized: false
+      cert: certificate.cert,
+      key: certificate.key
+    })
+    this.httpsAgentDirect = new require('https').Agent({
+      cert: certificate.cert,
+      key: certificate.key
+    })
+  }
+
+  async request(url, options, type, certificate) {
     const isDirect =
       process.env.VUE_APP_IS_BONUS_DIRECT === 'true' ? true : false
 
@@ -72,22 +83,19 @@ class Fetch {
         break
       case 'ping':
         response = await this.pingUrl(
-          (url = process.env.VUE_APP_URL_CONTROLLER),
+          // (url = process.env.VUE_APP_URL_CONTROLLER),
+          url,
           options
         )
         break
       case 'qr':
-        
-        /* if (isDirect) {
+        if (isDirect) {
           url = process.env.VUE_APP_URL_BONUS
-          response = await this.commonRequestDirect(url, options)
+          response = await this.commonRequestDirect(url, options, certificate)
         } else {
-          response = await this.commonRequest(url, options)
-        } */
-        // ------------------------------
-        response = await this.commonRequest(url, options)
-        response = await this.commonRequestDirect(url, options)
-
+          url = process.env.VUE_APP_URL_CONNECT
+          response = await this.commonRequest(url, options, certificate)
+        }
         break
 
       default:
@@ -100,9 +108,10 @@ class Fetch {
 
   async cashRequest(url, body) {
     let res
-    const httpsAgent = new require('https').Agent({
-      rejectUnauthorized: false
-    })
+    // const httpsAgent = new require('https').Agent({
+    //   rejectUnauthorized: false
+    // })
+    const httpsAgent = this.httpsAgent
     const response = await axios
       .post(url, body, { httpsAgent }, { timeout: 2000 })
       .then(res => {
@@ -119,9 +128,10 @@ class Fetch {
 
   async bonusRequest(url, body) {
     let res
-    const httpsAgent = new require('https').Agent({
-      rejectUnauthorized: false
-    })
+    // const httpsAgent = new require('https').Agent({
+    //   rejectUnauthorized: false
+    // })
+    const httpsAgent = this.httpsAgent
     const response = await axios
       .post(url, body, { httpsAgent }, { timeout: 2000 })
       .then(res => {
@@ -136,9 +146,10 @@ class Fetch {
 
   async financeRequest(url, body) {
     let res
-    const httpsAgent = new require('https').Agent({
-      rejectUnauthorized: false
-    })
+    // const httpsAgent = new require('https').Agent({
+    //   rejectUnauthorized: false
+    // })
+    const httpsAgent = this.httpsAgent
     const response = await axios
       .post(url, body, { httpsAgent }, { timeout: 2000 })
       .then(res => {
@@ -152,11 +163,38 @@ class Fetch {
   } // end financeRequest
 
   async commonRequest(url, body) {
+    let res
+    // const httpsAgent = new require('https').Agent({
+    //   rejectUnauthorized: false
+    // })
+    const httpsAgent = this.httpsAgent
+    const response = await axios
+      .post(url, body, { httpsAgent }, { timeout: 2000 })
+      .then(res => {
+        this.res = res.data
+      })
+      .catch(e => {
+        console.log('Axios request failed:', JSON.stringify(e))
+      })
+    return this.res
+  } // end commonRequest
+
+  /* async pingUrl(url, body) {
+    let start = Date.now()
+
+    try {
+      await fetch(url)
+    } catch (err) {}
+
+    return Date.now() - start
+  } */
+  async pingUrl(url, body) {
     // console.log('$$ fetch.js: 153', JSON.stringify(body))
     let res
-    const httpsAgent = new require('https').Agent({
-      rejectUnauthorized: false
-    })
+    // const httpsAgent = new require('https').Agent({
+    //   rejectUnauthorized: false
+    // })
+    const httpsAgent = this.httpsAgent
     const response = await axios
       .post(url, body, { httpsAgent }, { timeout: 2000 })
       .then(res => {
@@ -169,73 +207,44 @@ class Fetch {
     return this.res
   } // end commonRequest
 
-  async pingUrl(url, body) {
-    let start = Date.now()
-
-    try {
-      await fetch(url)
-    } catch (err) {}
-
-    return Date.now() - start
-  }
-
   // end methods
 
   // ------------------------------------
   // methodsDirect
 
-  async commonRequestDirect(url, body) {
-    // console.log('$$ fetch.js: 188 async-certificate-start')
-
-    
+  async commonRequestDirect(url, body, certificate) {
     let res
-    const httpsAgent = new require('https').Agent({
-      rejectUnauthorized: false
-    })
+    const httpsAgentDirect = this.httpsAgentDirect
     const response = await axios
-      .post(url, body, { httpsAgent }, { timeout: 2000 })
+      .post(url, body, { httpsAgentDirect }, { timeout: 2000 })
       .then(res => {
         this.res = res.data
       })
       .catch(e => {
         console.log('Axios request failed:', JSON.stringify(e))
       })
-    return this.res 
-   
 
-    /* 
-    const fs = require('fs')
-    const axios = require('axios').create({
-      httpsAgent: new https.Agent({
-        cert: fs.readFileSync('certificates/bonus/bonus.crt'),
-        key: fs.readFileSync('certificates/bonus/bonus.pkcs8')
-
-      })
-    })
-
-    axios
-      .get('https://example.com/path/to/resource')
-      .then(response => {
-        console.log(response.data)
-      })
-      .catch(error => {
-        console.error(error)
-      }) 
-    */
+    return this.res
   } // end commonRequestDirect
 } // end class Fetch
 
 class FetchClient {
-  constructor(url, method, options, type) {
+  constructor(url, method, options, type, certificate) {
     this.url = url
     this.method = method
     this.options = options
     this.type = type
+    this.certificate = certificate
 
-    this.fetch = new Fetch()
+    this.fetch = new Fetch(certificate)
   }
   async getClient() {
-    return await this.fetch.request(this.url, this.options, this.type)
+    return await this.fetch.request(
+      this.url,
+      this.options,
+      this.type,
+      this.certificate
+    )
   }
 }
 

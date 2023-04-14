@@ -1,51 +1,43 @@
-const path = require('path');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const path = require('path')
+// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   devServer: {
-    host: "0.0.0.0",
-    port: 8080,
+    host: '0.0.0.0',
+    port: 8080
   },
   configureWebpack: {
-    devtool: "source-map",
+    devtool: 'source-map'
   },
   chainWebpack: config => {
-    config.resolve.alias.set('@', path.join(__dirname, './src/renderer'));
+    config.resolve.alias.set('@', path.join(__dirname, './src/renderer'))
   },
   pages: {
     index: {
-      entry: "./src/renderer/main.js",
-    },
+      entry: './src/renderer/main.js'
+    }
   },
   pluginOptions: {
     electronBuilder: {
-      mainProcessFile: "./src/main/background.ts",
+      mainProcessFile: './src/main/background.ts',
       nodeIntegration: true,
-      externals: [
-        'serialport'
-      ] 
-    },
+      externals: ['serialport']
+    }
   },
   /* dev */
   configureWebpack: config => {
+    // const existingForkTsChecker = config.plugins.filter(
+    //   p => p instanceof ForkTsCheckerWebpackPlugin
+    // )[0]
 
-    // get a reference to the existing ForkTsCheckerWebpackPlugin
-    const existingForkTsChecker = config.plugins.filter(
-      p => p instanceof ForkTsCheckerWebpackPlugin,
-    )[0];
+    // config.plugins = config.plugins.filter(
+    //   p => !(p instanceof ForkTsCheckerWebpackPlugin)
+    // )
 
-    // remove the existing ForkTsCheckerWebpackPlugin
-    // so that we can replace it with our modified version
-    config.plugins = config.plugins.filter(
-      p => !(p instanceof ForkTsCheckerWebpackPlugin),
-    );
+    // const forkTsCheckerOptions = existingForkTsChecker.options
+    // forkTsCheckerOptions.memoryLimit = 8192
 
-    // copy the options from the original ForkTsCheckerWebpackPlugin
-    // instance and add the memoryLimit property
-    const forkTsCheckerOptions = existingForkTsChecker.options;
-    forkTsCheckerOptions.memoryLimit = 8192;
-
-    config.plugins.push(new ForkTsCheckerWebpackPlugin(forkTsCheckerOptions));
-  },
+    // config.plugins.push(new ForkTsCheckerWebpackPlugin(forkTsCheckerOptions))
+  }
   /*     */
-};
+}

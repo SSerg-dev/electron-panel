@@ -1,21 +1,7 @@
 import { exec } from 'child_process'
 import { EventEmitter } from 'events'
 import { ipcMain } from 'electron'
-
-import CoinAcceptorController from '../../controllers/CoinAcceptorController'
-import BillValidatorController from '../../controllers/BillValidatorController'
-
-import { wait } from '../../utils'
 import { readFileSync, writeFileSync } from 'fs'
-
-/* redis */
-// import { createClient } from 'redis'
-// import { Client } from 'redis-om'
-// import { Entity, Schema } from 'redis-om'
-// import { client } from './server.js'
-// import client from './server.js'
-
-// import { plus } from './server.js'
 
 class RedisService extends EventEmitter {
   // coins
@@ -178,30 +164,25 @@ class RedisService extends EventEmitter {
     const bills = this.readData(RedisService.billPath)
     this.Bills = JSON.parse(bills.toString())
   }
-  // ------------------------------------
   private initBonusCert() {
     const bonusCert = this.readData(RedisService.bonusCertPath)
     this.BonusCert = bonusCert.toString()
-    // console.log('$$ RedisService.ts: 183', this.BonusCert)
   }
-  // ------------------------------------
   private initBonusKey() {
     const bonusKey = this.readData(RedisService.bonusKeyPath)
     this.BonusKey = bonusKey.toString()
-    // console.log('$$ RedisService.ts: 189', this.BonusKey)
   }
-  // ------------------------------------
 
   public start(options: any) {
-    // ----------------------------------
     ipcMain.on('async-certificate-start', (event: any, options: any) => {
-      console.log('$$ RedisService.ts: 198', options)
-      const bonusCert = this.BonusCert
-      const bonusKey = this.BonusKey
 
-      event.sender.send('async-certificate-reply', bonusCert, bonusKey)
+      if (options.isCertificate) {
+        const bonusCert = this.BonusCert
+        const bonusKey = this.BonusKey
+  
+        event.sender.send('async-certificate-reply', bonusCert, bonusKey)
+      }
     })
-    // ----------------------------------
 
     ipcMain.on('async-cash-start', (event: any, options: any) => {
       const coins = this.readData(RedisService.coinPath)
@@ -215,7 +196,6 @@ class RedisService extends EventEmitter {
         this.clearBills()
       }
     })
-    /* dev */
     ipcMain.on('async-once-clear', (event: any, options: any) => {
       if (options) {
     this.clearCoinsOnce()
@@ -225,9 +205,7 @@ class RedisService extends EventEmitter {
 
     ipcMain.on('async-cash-collect', (event: any, options: any) => {
       if (options) {
-        // console.log('$$ Redis options', options)
         this.collect()
-        
       }
     })
     ipcMain.on('async-read-collect', (event: any, options: any) => {
@@ -236,7 +214,6 @@ class RedisService extends EventEmitter {
         event.sender.send('async-collect-reply', collect)
       }
     })
-    /* dev */
     ipcMain.on('async-read-once', (event: any, options: any) => {
       const coins = this.readData(RedisService.coinOncePath)
       const bills = this.readData(RedisService.billOncePath)
@@ -248,15 +225,12 @@ class RedisService extends EventEmitter {
 
   async create() {
     console.log('[... start redis]')
-    // console.log('redis function-->', plus(40, 2))
   }
-  /* dev */
   private collect() {
     this.initCoins()
     this.initBills()
 
     // ----------------------------------
-    // this.Collect.timestamp = new Date().getTime()
     const date = new Date()
     this.Collect.timestamp = date.toLocaleString('ru-RU')
 

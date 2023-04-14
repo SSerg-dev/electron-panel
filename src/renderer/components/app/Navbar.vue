@@ -16,7 +16,6 @@
           style="border: none; background-color: #121212"
           @click="setEnabler()"
         >
-          <!-- head-panel-small.svg -->
           <router-link to="/">
             <div style="width: 90%; height: 90%">
               <img
@@ -304,7 +303,6 @@ export default {
   },
   watch: {
     getIsMenuUnlock(flag) {
-      // console.log('$$ flag', flag, this.getUserActiveName)
       this.logging(flag)
     },
   },

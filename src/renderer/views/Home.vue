@@ -1,12 +1,13 @@
 <template>
   <section>
     <div>
-
-      <div v-if="this.getPanelType === 'wash'">
-        <!-- 
-            && getIsPingUrl 
-            && getWetActive === 'true' 
-        -->
+      <div
+        v-if="
+          this.getPanelType === 'wash' &&
+            getIsPingUrl &&
+            getWetActive === 'true'
+        "
+      >
         <Wash />
       </div>
 
@@ -60,13 +61,13 @@ export default Vue.extend({
   },
   watch: {
     getPanelType(value) {
-      // console.log('$$ getPanelType', value)
+      console.log('$$ getPanelType',value)
     },
     getIsPingUrl(value) {
-      // console.log('$$ getIsPingUrl', value)
+      console.log('$$ getIsPingUrl',value)
     },
     getWetActive(value) {
-      // console.log('$$ getWetActive', value)
+      console.log('$$ getWetActive',value)
     }
   },
 
@@ -104,8 +105,7 @@ export default Vue.extend({
   mounted() {
     this.setRouter('/')
     this.setup()
-  },
-  
+  }
 })
 </script>
 
