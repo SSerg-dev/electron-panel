@@ -41,7 +41,8 @@ variables:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx inspect --bootstrap
     - echo $CONTAINER_RELEASE_IMAGE
-    - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform linux/arm/v7 --push -f Dockerfile -t $CONTAINER_RELEASE_IMAGE .
+    - docker pull $CONTAINER_RELEASE_IMAGE || true
+    - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --cache-from $CONTAINER_RELEASE_IMAGE --platform linux/arm/v7 --push -f Dockerfile -t $CONTAINER_RELEASE_IMAGE .
 
 # End of templates, the real jobs start here
 # ---

@@ -28,6 +28,10 @@ WORKDIR /app/
 
 COPY . ./
 
+RUN npm install || true
+
+RUN sed -i 's/\"dependencies\".*/\"dependencies\" : \{\},/' ./node_modules/accounting/package.json
+
 RUN npm install
 
 RUN npx electron-builder --dir --armv7l --linux deb
