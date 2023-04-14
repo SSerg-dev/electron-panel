@@ -22,7 +22,9 @@ variables:
     DOCKER_CLI_EXPERIMENTAL: enabled
     BUILDX_VERSION: "0.4.2"
   before_script:
-    - apk --no-cache add curl
+    - apk --no-cache add curl nodejs=16.19.1 npm
+    - npm install
+    - npx electron-builder --dir --armv7l --linux deb
   script:
     - export ARCH=$(uname -m)
     - case $ARCH in
