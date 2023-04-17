@@ -155,11 +155,13 @@
 
   "Show_alert_message": "Показать cообщения при аварии",
   "Show_alert_phone": "Показать телефон при аварии",
-  
+
   "Check_out_another_post": "Извиняемся, что то пошло не так. Воспользуйтесь другим постом",
   "Take_screenshot_of_ your_balance": "Сделайте фото экрана с остатком вашего баланса",
   "Contact_the_operator": "Обратитесь к оператору",
   "Call_tech_support": "Позвоните по номеру техподдержки",
+  "No_connection_to_car_wash": "Ошибка: нет связи с мойкой",
+  "POST_DISABLED": "ПОСТ ОТКЛЮЧЕН",
 
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Сумма больше максимальной",

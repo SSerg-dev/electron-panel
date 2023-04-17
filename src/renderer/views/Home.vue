@@ -29,14 +29,16 @@
         v-if="!getIsPingUrl"
         style="color: red; font-size: 5em; margin-top: 10em"
       >
-        <p align="center">{{ `Ошибка: нет связи с мойкой` }}</p>
+        <p align="center">{{ `No_connection_to_car_wash` | localize }}</p>
       </div>
 
+      
       <div
         v-if="getWetActive === 'false' && getIsPingUrl"
         style="color: red; font-size: 5em; margin-top: 10em"
       >
-        <p align="center">{{ `ПОСТ ОТКЛЮЧЕН` }}</p>
+        <p align="center">{{ `POST_DISABLED` | localize }}</p>
+
       </div>
     </div>
   </section>
@@ -50,6 +52,9 @@ import Wash from '@/components/wash/Wash'
 import Vacuum from '@/components/vacuum/Vacuum'
 import { update } from 'lodash'
 
+import messages from '@/utils/messages'
+import localizeFilter from '@/filters/localize.filter'
+
 export default Vue.extend({
   name: 'home',
   data: () => ({}),
@@ -61,13 +66,13 @@ export default Vue.extend({
   },
   watch: {
     getPanelType(value) {
-      console.log('$$ getPanelType',value)
+      // console.log('$$ getPanelType', value)
     },
     getIsPingUrl(value) {
-      console.log('$$ getIsPingUrl',value)
+      // console.log('$$ getIsPingUrl', value)
     },
     getWetActive(value) {
-      console.log('$$ getWetActive',value)
+      // console.log('$$ getWetActive', value)
     }
   },
 

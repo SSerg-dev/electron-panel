@@ -1,5 +1,5 @@
 const path = require('path')
-// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   devServer: {
@@ -26,18 +26,18 @@ module.exports = {
   },
   /* dev */
   configureWebpack: config => {
-    // const existingForkTsChecker = config.plugins.filter(
-    //   p => p instanceof ForkTsCheckerWebpackPlugin
-    // )[0]
+    const existingForkTsChecker = config.plugins.filter(
+      p => p instanceof ForkTsCheckerWebpackPlugin
+    )[0]
 
-    // config.plugins = config.plugins.filter(
-    //   p => !(p instanceof ForkTsCheckerWebpackPlugin)
-    // )
+    config.plugins = config.plugins.filter(
+      p => !(p instanceof ForkTsCheckerWebpackPlugin)
+    )
 
-    // const forkTsCheckerOptions = existingForkTsChecker.options
-    // forkTsCheckerOptions.memoryLimit = 8192
+    const forkTsCheckerOptions = existingForkTsChecker.options
+    forkTsCheckerOptions.memoryLimit = 8192
 
-    // config.plugins.push(new ForkTsCheckerWebpackPlugin(forkTsCheckerOptions))
+    config.plugins.push(new ForkTsCheckerWebpackPlugin(forkTsCheckerOptions))
   }
   /*     */
 }

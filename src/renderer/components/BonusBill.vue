@@ -775,7 +775,7 @@ export default {
       this.setAppendBonus(this.options.params)
       this.options = this.getAppendBonus()
       console.log(
-        '++appendBonusMoney-->options-->this.options-->',
+        '$$ BonusBill: 777',
         JSON.stringify(this.options)
       )
 
@@ -831,7 +831,7 @@ export default {
       const method = methods[0]
       const type = types[0]
 
-      this.options = this.getStoreMoneyOptions()
+      this.options = this.getStoreMoneyOptions() 
 
       const panelType = this.getPanelType
       switch (type) {
@@ -852,7 +852,6 @@ export default {
       }
       /* dev */
       this.options.params.unit_id = this.id //this.getPanelNumber - 1
-      console.log('$$ BonusBill this.getPayType', this.getPayType)
       this.options.params.type = this.getPayType || 'cash'
       this.options.params.sum = +this.sum
 
@@ -879,7 +878,7 @@ export default {
       this.options.params.detail.order = this.order
 
       console.log(
-        '++payStoreMoney-->options-->this.options-->',
+        'BonusBill.vue: 880',
         JSON.stringify(this.options)
       )
       const response = await this.storage.getClient(method, this.options, type)

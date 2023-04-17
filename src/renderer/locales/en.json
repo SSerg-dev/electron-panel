@@ -160,6 +160,8 @@
   "Take_screenshot_of_ your_balance": "Take a screenshot of the rest of your balance",
   "Contact_the_operator": "Contact the operator",
   "Call_tech_support": "Call tech support",
+  "No_connection_to_car_wash": "Error: No connection to car wash",
+  "POST_DISABLED": "POST DISABLED",
 
   "__commentMessages": "TODO add messages ",
   "Amount_more_maximum": "Amount more maximum",

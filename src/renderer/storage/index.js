@@ -17,11 +17,12 @@ class Storage {
   }
 
   getClient(method, options, type) {
-
     if (this.client === 'local')
       this.data = new Database(new LocalStorageClient(method, options, type))
     else if (this.client === 'fetch')
-      this.data = new Database(new FetchClient(this.url, method, options, type, this.certificate))
+      this.data = new Database(
+        new FetchClient(this.url, method, options, type, this.certificate)
+      )
     else {
       console.warn('database not exist')
       return
@@ -37,7 +38,6 @@ class Storage {
     ipcRenderer.on('async-certificate-reply', (event, bonusCert, bonusKey) => {
       this.certificate.cert = bonusCert || {}
       this.certificate.key = bonusKey || {}
-
     })
   }
 }
