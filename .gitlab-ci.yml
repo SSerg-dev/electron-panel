@@ -1,0 +1,50 @@
+stages:
+  - build
+
+variables:
+  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+  CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
+
+.template: &docker_template
+  image: docker:19.03.13-dind
+  services:
+    - name: docker:19.03.13-dind
+      command: ["--experimental"]
+
+.template: &docker_buildx
+  <<: *docker_template
+  stage: build
+  variables:
+    # Use TLS https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#tls-enabled
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_CLI_EXPERIMENTAL: enabled
+    BUILDX_VERSION: "0.4.2"
+  before_script:
+    - apk --no-cache add curl
+  script:
+    - export ARCH=$(uname -m)
+    - case $ARCH in
+        armv6*) ARCH="arm-v6";;
+        armv7*) ARCH="arm-v7";;
+        aarch64) ARCH="arm64";;
+        x86_64) ARCH="amd64";;
+      esac
+    - curl -L --fail --output /docker-buildx "https://github.com/docker/buildx/releases/download/v${BUILDX_VERSION}/buildx-v${BUILDX_VERSION}.linux-${ARCH}"
+    - chmod a+x /docker-buildx
+    - mkdir -p /usr/lib/docker/cli-plugins
+    - cp /docker-buildx /usr/lib/docker/cli-plugins/docker-buildx
+    - docker context create something
+    - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+    - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx create --use --name buildx-builder something
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx inspect --bootstrap
+    - echo $CONTAINER_RELEASE_IMAGE
+    - docker pull $CONTAINER_RELEASE_IMAGE || true
+    - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --cache-from $CONTAINER_RELEASE_IMAGE --platform linux/arm/v7 --push -f Dockerfile -t $CONTAINER_RELEASE_IMAGE .
+
+# End of templates, the real jobs start here
+# ---
+build:
+  <<: *docker_buildx
