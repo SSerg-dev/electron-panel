@@ -41,7 +41,8 @@
         >
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
-              💳 {{ 'BANK_CARD' | localize }}
+              💳 {{ 'BANK_CARD' | localize }} 
+              <!-- &nbsp <img src="@/assets/imgs/sbp/sbp.svg"  style="width: 5%"/> -->
             </div>
           </div>
         </li>

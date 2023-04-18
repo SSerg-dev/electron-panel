@@ -99,7 +99,7 @@ OPCUAClient.on('change', (payload: any) => {
 const BillValidator = new BillValidatorController()
 BillValidator.on('connect', () => (isBillValidatorConnected = true))
 BillValidator.on('stacked', bill =>
-  sendEventToView(mainWindow, 'banknot', bill)
+  sendEventToView(mainWindow, 'banknote', bill)
 )
 
 /* ----------------------------------------------------------------------- */
@@ -225,7 +225,7 @@ try {
 
   settings = JSON.parse(rawdata.toString())
   log(TAG, 'SETTINGS', JSON.stringify(settings))
-  
+
   idle(settings)
 
   redis.start(settings)

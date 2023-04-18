@@ -1,4 +1,4 @@
-<template>
+с<template>
   <div>
     <div class="locate">
       <section>

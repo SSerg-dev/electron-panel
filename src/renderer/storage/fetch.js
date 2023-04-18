@@ -108,9 +108,6 @@ class Fetch {
 
   async cashRequest(url, body) {
     let res
-    // const httpsAgent = new require('https').Agent({
-    //   rejectUnauthorized: false
-    // })
     const httpsAgent = this.httpsAgent
     const response = await axios
       .post(url, body, { httpsAgent }, { timeout: 2000 })
@@ -128,9 +125,6 @@ class Fetch {
 
   async bonusRequest(url, body) {
     let res
-    // const httpsAgent = new require('https').Agent({
-    //   rejectUnauthorized: false
-    // })
     const httpsAgent = this.httpsAgent
     const response = await axios
       .post(url, body, { httpsAgent }, { timeout: 2000 })
@@ -146,9 +140,6 @@ class Fetch {
 
   async financeRequest(url, body) {
     let res
-    // const httpsAgent = new require('https').Agent({
-    //   rejectUnauthorized: false
-    // })
     const httpsAgent = this.httpsAgent
     const response = await axios
       .post(url, body, { httpsAgent }, { timeout: 2000 })
@@ -164,9 +155,6 @@ class Fetch {
 
   async commonRequest(url, body) {
     let res
-    // const httpsAgent = new require('https').Agent({
-    //   rejectUnauthorized: false
-    // })
     const httpsAgent = this.httpsAgent
     const response = await axios
       .post(url, body, { httpsAgent }, { timeout: 2000 })
@@ -191,9 +179,6 @@ class Fetch {
   async pingUrl(url, body) {
     // console.log('$$ fetch.js: 153', JSON.stringify(body))
     let res
-    // const httpsAgent = new require('https').Agent({
-    //   rejectUnauthorized: false
-    // })
     const httpsAgent = this.httpsAgent
     const response = await axios
       .post(url, body, { httpsAgent }, { timeout: 2000 })

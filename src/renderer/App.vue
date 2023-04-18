@@ -23,7 +23,7 @@ export default Vue.extend({
   data: () => ({
     intervalControllerWork: null,
     isControllerWork: false,
-    delay: 5000
+    delay: 6000
   }),
   computed: {
     layout() {
@@ -39,13 +39,12 @@ export default Vue.extend({
     })
   },
   watch: {
-    getPanelNumber(flag) {}, 
+    getPanelNumber(flag) {},
     getVacuumNumber(flag) {},
     getPanelType(flag) {},
     getIsStandbyFreeEnable(flag) {
       // console.log('$$ App.vue: 46', flag)
     }
-
   },
   components: {
     EmptyLayout,
@@ -122,14 +121,14 @@ export default Vue.extend({
           } else {
             this.isControllerWork = true
             this.setIsPingUrl(true)
-  
+
             if (parameter.value) {
               const time = parameter.value.split(':')
 
               const options = {}
               options.hour = +time[0]
               options.minute = +time[1]
-              options.second = +time[2]  
+              options.second = +time[2]
 
               this.setControllerTime(options)
             }
@@ -155,7 +154,7 @@ export default Vue.extend({
         }
       })
 
-      ipcRenderer.on('banknot', (event, args) => {
+      ipcRenderer.on('banknote', (event, args) => {
         const type = this.getPanelType
         switch (type) {
           case 'wash':
@@ -186,8 +185,7 @@ export default Vue.extend({
       setTemperature: 'setTemperature',
       setDryParameters: 'setDryParameters'
     }),
-    ...mapGetters({
-    }),
+    ...mapGetters({}),
     ...mapActions({
       updateClearBalance: 'updateClearBalance',
 

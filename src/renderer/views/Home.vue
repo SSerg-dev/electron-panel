@@ -32,13 +32,11 @@
         <p align="center">{{ `No_connection_to_car_wash` | localize }}</p>
       </div>
 
-      
       <div
         v-if="getWetActive === 'false' && getIsPingUrl"
         style="color: red; font-size: 5em; margin-top: 10em"
       >
         <p align="center">{{ `POST_DISABLED` | localize }}</p>
-
       </div>
     </div>
   </section>
@@ -54,6 +52,7 @@ import { update } from 'lodash'
 
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
+import { type } from 'os'
 
 export default Vue.extend({
   name: 'home',
@@ -66,13 +65,16 @@ export default Vue.extend({
   },
   watch: {
     getPanelType(value) {
-      // console.log('$$ getPanelType', value)
+      // string
+      // console.log('$$ getPanelType',typeof value)
     },
     getIsPingUrl(value) {
-      // console.log('$$ getIsPingUrl', value)
+      // boolean
+      // console.log('$$ getIsPingUrl',typeof value)
     },
     getWetActive(value) {
-      // console.log('$$ getWetActive', value)
+      // string
+      // console.log('$$ getWetActive',typeof value)
     }
   },
 

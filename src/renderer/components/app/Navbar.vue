@@ -4,10 +4,10 @@
       <div
         v-if="
           this.$route.name !== 'cost' &&
-          this.$route.name !== 'cash' &&
-          this.$route.name !== 'language' &&
-          this.$route.name !== 'program' &&
-          this.$route.name !== 'setting'
+            this.$route.name !== 'cash' &&
+            this.$route.name !== 'language' &&
+            this.$route.name !== 'program' &&
+            this.$route.name !== 'setting'
         "
       ></div>
 
@@ -40,7 +40,6 @@
             <img src="@/assets/imgs/svg/alles-unlock.svg" />
           </router-link>
         </div>
-
       </div>
 
       <div class="circle">
@@ -257,10 +256,10 @@
     <div
       v-if="
         this.$route.name !== 'cost' &&
-        this.$route.name !== 'language' &&
-        this.$route.name !== 'setting' &&
-        this.$route.name !== 'password' &&
-        this.$route.name !== 'finance'
+          this.$route.name !== 'language' &&
+          this.$route.name !== 'setting' &&
+          this.$route.name !== 'password' &&
+          this.$route.name !== 'finance'
       "
     >
       <div class="background-top">
@@ -282,7 +281,7 @@ export default {
   data: () => ({
     date: new Date(),
     interval: null,
-    locale: '',
+    locale: ''
   }),
   computed: {
     ...mapGetters({
@@ -299,19 +298,19 @@ export default {
       getUserActiveName: 'getUserActiveName',
       getSerialNumber: 'getSerialNumber',
       getControllerTime: 'getControllerTime'
-    }),
+    })
   },
   watch: {
     getIsMenuUnlock(flag) {
       this.logging(flag)
-    },
+    }
   },
   methods: {
     ...mapMutations({
       setCashEnabler: 'setCashEnabler',
       setIsLoginSettingPassword: 'setIsLoginSettingPassword',
       setRouter: 'setRouter',
-      setInfo: 'setInfo',
+      setInfo: 'setInfo'
     }),
     setEnabler() {
       this.setCashEnabler(false)
@@ -323,12 +322,12 @@ export default {
     logging(flag) {
       const log = createLog({
         logName: 'electron-users-log',
-        maxLogSizeInBytes: 500 * 1024, // 500KB
+        maxLogSizeInBytes: 500 * 1024 // 500KB
       })
       flag
         ? log.info('Setting Menu unlocked user:', this.getUserActiveName)
         : log.info('Setting Menu locked user:', this.getUserActiveName)
-    },
+    }
   },
 
   mounted() {
@@ -336,17 +335,16 @@ export default {
       this.date = new Date()
 
       // set controller time to panel
-      const { hour, minute, second} = this.getControllerTime
+      const { hour, minute, second } = this.getControllerTime
       this.date.setHours(+hour)
       this.date.setMinutes(+minute)
       this.date.setSeconds(+second)
-
     }, 1000)
   },
-  
+
   beforeDestroy() {
     clearInterval(this.interval)
-  },
+  }
 }
 </script>
 
@@ -411,7 +409,7 @@ img {
   /* top: -0.04em; 
   left: 0.35em; */
 
-  font-size: 2.8em;
+  font-size: 2.5em;
 }
 
 .box {
@@ -464,7 +462,7 @@ img {
   top: 1em;
   right: 1em;
   list-style: none;
-  
+
   display: flex;
 }
 </style>
