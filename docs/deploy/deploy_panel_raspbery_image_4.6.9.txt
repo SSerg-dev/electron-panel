@@ -1,0 +1,193 @@
+          Развертывание ВЭБпанели.
+1. Подготовка
+1.1. Записываем образ alles_4.6.9.zip на SSD карту, после записи копируем в папку /alles раздела FAT32 файл panel.json
+Запускаем распбери. Разбери будет доступна по SSH-протоколу. IP=192.168.1.[номер панели + 10].
+1.2. Увеличиваем размер раздела диска /alles.
+PWD=`pwd`
+### alles backup
+systemctl stop alles-loader.service
+systemctl stop postgresql
+[[ ! -f /alles/config/connect.json ]] && systemctl disable postgresql || systemctl enable postgresql
+systemctl stop rc.local
+systemctl stop docker
+systemctl stop containerd
+
+mkdir -p /tmp/alles
+
+cp -r /alles/bin /tmp/alles
+cp -r /alles/commands /tmp/alles
+cp -r /alles/config /tmp/alles
+cp -r /alles/data /tmp/alles
+cp -r /alles/db /tmp/alles
+cp -r /alles/log /tmp/alles
+
+sync
+
+### parted
+let "FREESPACE_MIN=1073741824*4"
+
+umount -l /dev/mmcblk0p3
+
+parted /dev/mmcblk0 rm 3
+
+echo "Ignore" | parted /dev/mmcblk0 -- mkpart primary ext4 -"$FREESPACE_MIN"B 100%
+
+umount -l /dev/mmcblk0p3
+
+echo "yes" | mkfs -t ext4 -F /dev/mmcblk0p3
+
+umount -l /dev/mmcblk0p3
+
+mount /dev/mmcblk0p3 /alles
+
+cp -r /tmp/alles/* /alles
+
+rm -rf /tmp/alles
+
+# Расширяем другой раздел.
+START_POSITION=`parted /dev/mmcblk0 unit B print free | tail -n2 | awk '{print $2}' | grep -Eo '[0-9]+'`
+let END_POSITION=$START_POSITION-1
+
+echo "Yes" | parted /dev/mmcblk0 -- resizepart 2 "$END_POSITION"B
+
+resize2fs /dev/mmcblk0p2
+
+
+1.3. Настроить путь репозитория 
+sudo nano /etc/apt/sources.list
+Содержимое файла должно быть таким:
+deb http://raspbian.raspberrypi.org/raspbian/ stretch main contrib non-free rpi
+# Uncomment line below then 'apt-get update' to enable 'apt-get source'
+#deb-src http://raspbian.raspberrypi.org/raspbian/ stretch main contrib non-free rpi
+
+2. Выполнить команды:
+sudo apt update
+sudo apt upgrade
+sudo apt install mc
+sudo apt install git
+#sudo apt install htop
+#sudo apt install curl
+//Удаленное управление через клиента TightVNC:
+//sudo apt install sudo apt install xfce4 xfce4-goodies
+//Развернуть дисплей вертикально:
+//xrandr --output $(xrandr |grep eDP|cut -d" " -f1) --rotate left
+//Вернуть разворот дисплея в обычное положение:
+//xrandr --output $(xrandr |grep eDP|cut -d" " -f1) --rotate normal
+
+3. Скачать репозиторий ВЭБ-панели
+sudo mkdir /alles/web_panel
+cd /alles/web_panel
+
+4. Скачать проект вэб-панели.
+4.1. Скачать на другой компьютер с Убунтой репозиторий: (Временно, поскольку гит здесь очень старый, 
+и скорее всего не понимает доступ через токен. В будущем упростить процесс, получать проект сразу из репы либо фтп).
+git clone https://alles-good.gitlab.yandexcloud.net/owners/electron-panel.git
+Если нет доступа к репозиторию, то:
+а) создать пару ssh ключей в папке ~/.ssh, если ее нет
+sudo ssh-keygen.
+в) Перезагрузить службу ssh
+sudo systemctl restart ssh
+Почему-то этого недстаточно, пришлось перезагрузить ОС!
+г) через настройки в профиле gitbucket (Settings->Security->Keys) добавить публичный ключ (содержимое файла ~/.ssh/id_rsa.pub)
+//4. установить X11
+//sudo apt-get install xorg
+//Next install a Window Manager:
+//sudo apt-get install openbox
+// Проверить, достаточно ли места на диске, переразбить диск, если надо. ?????????????????????????
+4.2. Скопировать проект на панель в папку /alles/electron-panel
+// sudo ssh -t root@192.168.1.127 "mkdir /alles/electron-panel"
+sudo scp -r electron-panel root@192.168.1.127:/alles/
+
+
+//5. Установка docker
+//(см. https://docs.docker.com/engine/install/ubuntu/)
+//а) Удаляем старую версию.
+//sudo apt-get remove docker docker-engine docker.io containerd runc
+
+//б) 
+//sudo apt-get install \
+//    ca-certificates \
+//    curl \
+//    gnupg \
+//    lsb-release
+//sudo mkdir -p /etc/apt/keyrings
+//curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+//echo \
+//  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+//  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+//в) Install Docker Engine
+//sudo apt-get update
+//sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+//Проверяем:
+//sudo docker run hello-world
+
+//г)
+//Set up the repository
+//mkdir -p /alles/docker
+//mkdir -p /etc/docker
+//filename=/etc/docker/daemon.json
+//test -f $filename || touch $filename
+//cat > $filename <<EOL
+//{
+//  "data-root": "/alles/docker",
+//  "storage-driver": "overlay2"
+//}
+//EOL
+
+4. Установить NODEJS нужной версии.
+#4.1. 
+#sudo apt autoremove nodejs
+#4.2. 
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
+Здесь вместо 16.x подставить нужную версию (x в версии оставить, 
+поменять только первое число). Например, 17.x, 18.x.
+Мы ставим 16.x
+4.3. 
+Проверить текущую версию 
+node --version
+Если версия не та, то убедиться, что curl установлена согласно п. 2 и 
+проделать п.п. 4.1-4.3 еще раз.
+
+5. Установить yarn.
+Удалить предварительно cmdtest и yarn, если установлены, затем установить yarn.
+#sudo apt remove --autoremove yarn cmdtest
+npm install --global yarn
+
+6. Установить electron
+npm install --save-dev electron@latest
+Если выдаст ошибки, то ввести:
+sudo npm audit fix --force
+
+7. Установить зависимости проекта.
+cd ~/electron-panel
+yarn
+
+После появления ошибки:
+⨯ node_modules.Dependency.Dependencies: ReadMapCB: expect { or n, but found [, error found in #10 byte of ...|ncies" : [],
+        "repos|..., bigger context ...|://www.josscrowcroft.com)"
+        ],
+	"dependencies" : [],
+	"repository" : {"type": "git", "url": "git://g|...
+Error reading package.json: /home/petr/projects/electron-panel/node_modules/accounting/package.json  
+  ⨯ /home/petr/projects/electron-panel/node_modules/app-builder-bin/linux/x64/app-builder exited with code ERR_ELECTRON_BUILDER_CANNOT_EXECUTE  failedTask=installAppDeps stackTrace=Error: /home/petr/projects/electron-panel/node_modules/app-builder-bin/linux/x64/app-builder exited with code ERR_ELECTRON_BUILDER_CANNOT_EXECUTE
+    at ChildProcess.<anonymous> (/home/petr/projects/electron-panel/node_modules/builder-util/src/util.ts:249:14)
+    at Object.onceWrapper (node:events:628:26)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1100:16)
+    at Process.ChildProcess._handle.onexit (node:internal/child_process:304:5)
+error Command failed with exit code 1.
+
+заменить строчку файла ./node_modules/accounting/package.json
+"dependencies" : [],
+на
+"dependencies" : {},
+nano ./node_modules/accounting/package.json
+
+и затем выполнить еще раз команду
+yarn
+
+8. Запустить проект:
+yarn electron:serve

@@ -1,0 +1,146 @@
+          Развертывание ВЭБпанели (на последней версии raspbian x64 ).
+
+1. Скопировать образ 2023-02-21-raspios-bullseye-arm64.img.xz на micro-sd карту (минимум 8 ГБ):
+- Запустить операционку
+- Выбрать английский язык,
+- создать пользователя webpanel, паролем как у QT панелей.
+- установить ssh.
+2. После установки ОС выполнить команды:
+sudo apt update
+sudo apt upgrade
+sudo apt install openssh-server (если ssh не был выбран при установки ОС)
+sudo systemctl enable ssh (если ssh не был выбран при установки ОС)
+Выключить энергосберегающие режимы.
+// sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+sudo apt install mc
+sudo apt install git
+sudo apt  install htop
+sudo apt install curl
+//Удаленное управление через клиента TightVNC:
+//sudo apt install sudo apt install xfce4 xfce4-goodies
+//Развернуть дисплей вертикально:
+//xrandr --output $(xrandr |grep eDP|cut -d" " -f1) --rotate left
+//Вернуть разворот дисплея в обычное положение:
+//xrandr --output $(xrandr |grep eDP|cut -d" " -f1) --rotate normal
+
+3. Скачать репозиторий ВЭБ-панели
+cd ~/projects
+git clone https://alles-good.gitlab.yandexcloud.net/owners/electron-panel.git
+Если нет доступа к репозиторию, то:
+а) создать пару ssh ключей в папке ~/.ssh, если ее нет
+sudo ssh-keygen.
+в) Перезагрузить службу ssh
+sudo systemctl restart ssh
+Почему-то этого недстаточно, пришлось перезагрузить ОС!
+г) через настройки в профиле gitbucket (Settings->Security->Keys) добавить публичный ключ (содержимое файла ~/.ssh/id_rsa.pub)
+//4. установить X11
+//sudo apt-get install xorg
+//Next install a Window Manager:
+//sudo apt-get install openbox
+
+// Проверить, достаточно ли места на диске, переразбить диск, если надо. ?????????????????????????
+
+
+//5. Установка docker
+//(см. https://docs.docker.com/engine/install/ubuntu/)
+//а) Удаляем старую версию.
+//sudo apt-get remove docker docker-engine docker.io containerd runc
+
+//б) 
+//sudo apt-get install \
+//    ca-certificates \
+//    curl \
+//    gnupg \
+//    lsb-release
+//sudo mkdir -p /etc/apt/keyrings
+//curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+//echo \
+//  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+//  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+//в) Install Docker Engine
+//sudo apt-get update
+//sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+//Проверяем:
+//sudo docker run hello-world
+
+//г)
+//Set up the repository
+//mkdir -p /alles/docker
+//mkdir -p /etc/docker
+//filename=/etc/docker/daemon.json
+//test -f $filename || touch $filename
+//cat > $filename <<EOL
+//{
+//  "data-root": "/alles/docker",
+//  "storage-driver": "overlay2"
+//}
+//EOL
+
+4. Установить NODEJS нужной версии.
+4.1. 
+sudo apt autoremove nodejs
+4.2. 
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
+Здесь вместо 16.x подставить нужную версию (x в версии оставить, 
+поменять только первое число). Например, 17.x, 18.x.
+4.3. 
+Проверить текущую версию 
+node --version
+Если версия не та, то убедиться, что curl установлена согласно п. 2 и 
+проделать п.п. 4.1-4.3 еще раз.
+
+5. Установить yarn.
+Удалить предварительно cmdtest и yarn, если установлены, затем установить yarn.
+sudo apt remove --autoremove yarn cmdtest
+sudo npm install --global yarn
+
+6. Установить electron
+npm install --save-dev electron@latest
+Если выдаст ошибки, то ввести:
+sudo npm audit fix --force
+
+7. Установить зависимости проекта.
+cd ~/projects/electron-panel
+yarn
+
+После появления ошибки:
+⨯ node_modules.Dependency.Dependencies: ReadMapCB: expect { or n, but found [, error found in #10 byte of ...|ncies" : [],
+        "repos|..., bigger context ...|://www.josscrowcroft.com)"
+        ],
+	"dependencies" : [],
+	"repository" : {"type": "git", "url": "git://g|...
+Error reading package.json: /home/petr/projects/electron-panel/node_modules/accounting/package.json  
+  ⨯ /home/petr/projects/electron-panel/node_modules/app-builder-bin/linux/x64/app-builder exited with code ERR_ELECTRON_BUILDER_CANNOT_EXECUTE  failedTask=installAppDeps stackTrace=Error: /home/petr/projects/electron-panel/node_modules/app-builder-bin/linux/x64/app-builder exited with code ERR_ELECTRON_BUILDER_CANNOT_EXECUTE
+    at ChildProcess.<anonymous> (/home/petr/projects/electron-panel/node_modules/builder-util/src/util.ts:249:14)
+    at Object.onceWrapper (node:events:628:26)
+    at ChildProcess.emit (node:events:513:28)
+    at maybeClose (node:internal/child_process:1100:16)
+    at Process.ChildProcess._handle.onexit (node:internal/child_process:304:5)
+error Command failed with exit code 1.
+
+заменить строчку файла ./node_modules/accounting/package.json
+"dependencies" : [],
+на
+"dependencies" : {},
+sudo nano ./node_modules/accounting/package.json
+и затем выполнить еще раз команду
+yarn
+
+8. Запустить проект:
+yarn electron:serve
+
+
+**************** Запуск тестового проекта Electron ********************
+1. 
+cd ~/projects/
+git clone https://github.com/Yukun-Guo/vite-vue3-electron-ts-template.git
+
+2. install packages
+cd vite-vue3-electron-ts-template
+yarn
+
+3. run
+yarn app:dev
