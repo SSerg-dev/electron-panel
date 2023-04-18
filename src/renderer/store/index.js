@@ -517,7 +517,7 @@ export default new Vuex.Store({
       return state.parameters.order
     },
     getWetActive(state) {
-      return state.parameters.active
+      return state.parameters.active || 'true'
     },
     // programName
     getWetProgramName(state) {
@@ -560,7 +560,7 @@ export default new Vuex.Store({
       return state.dryParameters.order
     },
     getDryActive(state) {
-      return state.dryParameters.active
+      return state.dryParameters.active || 'true'
     },
 
     getIsOddVacuumNumber(state) {

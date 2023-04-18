@@ -12,17 +12,17 @@
           id="button-price"
         >
           <div
-            class="button-content-style" 
+            class="button-content-style"
             :class="[
               { 'card-content black-text': !this.isDown.price },
-              { 'card-content white-text': this.isDown.price },
+              { 'card-content white-text': this.isDown.price }
             ]"
           >
             <div class="emoji">
               <img
                 src="@/assets/imgs/price/price.png"
                 width="70px"
-                style="margin-top: 30px; margin-right: 2px" 
+                style="margin-top: 30px; margin-right: 2px"
               />
             </div>
           </div>
@@ -30,7 +30,6 @@
 
         <!-- v-if="!getIsReceiptRead" -->
         <div v-if="this.getIsKktInstalled">
-          
           <div
             @click="setProgram('receipt')"
             class="waves-effect receipt"
@@ -40,7 +39,7 @@
               class="button-content-style"
               :class="[
                 { 'card-content black-text': !this.isDown.receipt },
-                { 'card-content white-text': this.isDown.receipt },
+                { 'card-content white-text': this.isDown.receipt }
               ]"
             >
               <div>
@@ -190,12 +189,11 @@
               <tr
                 v-if="this.actives[4].display !== 'none'"
                 :key="this.keys.keyDryShineEx"
-                
               >
                 <WashTableDryShineEx :actives="actives" />
               </tr>
 
-              <tr style="height: 30px" >
+              <tr style="height: 30px">
                 <td></td>
               </tr>
 
@@ -282,9 +280,7 @@
                   v-if="this.actives[18].display !== 'none'"
                   :key="this.keys.keyWasher"
                 >
-                  <WashTableWasher
-                    :actives="actives"
-                  />
+                  <WashTableWasher :actives="actives" />
                 </tr>
               </div>
 
@@ -365,7 +361,7 @@ export default {
       keyVacuum: 13,
       keyTurboDryer: 14,
       keyAir: 15,
-      keyWasher: 16,
+      keyWasher: 16
     },
 
     client: 'fetch',
@@ -384,7 +380,7 @@ export default {
       air: false,
       price: false,
       receipt: false,
-      bonus: false,
+      bonus: false
     },
     buttonPrice: null,
     buttonReceipt: null,
@@ -393,7 +389,7 @@ export default {
     emoji: '',
     currency: '',
     symbol: '',
-    currencies: [],
+    currencies: []
 
     /* dev */
     /* 
@@ -407,11 +403,8 @@ export default {
 
     // clone
     _buttonSizeOptions: null */
-    
+
     /*     */
-
-
-    
   }),
   components: {
     Message,
@@ -432,17 +425,17 @@ export default {
     WashTableDegrease,
     WashTableDisinfection,
     WashTableBonus,
-    WashTableAlarm,
+    WashTableAlarm
   },
   props: {
     actives: {
       required: true,
-      type: Array,
+      type: Array
     },
     delay: {
       required: true,
-      type: Number,
-    },
+      type: Number
+    }
   },
 
   watch: {
@@ -552,15 +545,15 @@ export default {
       getDryOrder: 'getDryOrder',
 
       getIsBonusMoney: 'getIsBonusMoney',
-      getIsKktInstalled: 'getIsKktInstalled',
-    }),
+      getIsKktInstalled: 'getIsKktInstalled'
+    })
   },
 
   methods: {
     ...mapActions({
       updateStartProgram: 'updateStartProgram',
 
-      updateWetBonusMoney: 'updateWetBonusMoney',
+      updateWetBonusMoney: 'updateWetBonusMoney'
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
@@ -575,13 +568,13 @@ export default {
       setIsFirstTimer: 'setIsFirstTimer',
 
       setCompleteWash: 'setCompleteWash',
-      setChargeBonus: 'setChargeBonus',
+      setChargeBonus: 'setChargeBonus'
     }),
     ...mapGetters({
       getPrintReceiptOptions: 'getPrintReceiptOptions',
       getCompleteWash: 'getCompleteWash',
       getChargeBonus: 'getChargeBonus',
-      getProfile: 'getProfile',
+      getProfile: 'getProfile'
       // getIsReceiptPrint: 'getIsReceiptPrint'
     }),
     setProgram(program) {
@@ -621,7 +614,7 @@ export default {
         this.getPanelType,
         this.getPanelNumber,
         this.getActiveProgram,
-        this.getWetBalance,
+        this.getWetBalance
       ])
 
       this.timeoutPopup = setTimeout(() => {
@@ -686,8 +679,9 @@ export default {
       this.options.params.order = this.order
 
       this.options.params.programs[0].program_id = this.getActiveProgramNumber
-      this.options.params.programs[0].program_name =
-        this.actives[this.getActiveProgramNumber - 1]?.title
+      this.options.params.programs[0].program_name = this.actives[
+        this.getActiveProgramNumber - 1
+      ]?.title
 
       /* dev */
       this.options.params.programs[0].program_quantity = 0.42
@@ -715,7 +709,6 @@ export default {
     // СПИСАТЬ БОНУСЫ ИЗ ОБЛАКА
     // ----------------------------------
     async chargeBonusMoney() {
-
       const method = methods[13]
       const type = types[4]
 
@@ -754,6 +747,9 @@ export default {
     },
     setup() {
       this.initCurrency()
+      // sleep((this.delay = 2000)).then(() => {
+      //   this.initial()
+      // })
       this.initial()
     },
     initial() {
@@ -773,7 +769,7 @@ export default {
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
       })
 
       // button-receipt
@@ -791,7 +787,7 @@ export default {
 
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'center'
         })
       }
 
@@ -888,7 +884,7 @@ export default {
       this.keys = Object.fromEntries(
         Object.entries(this.keys).map(([key, value], index) => [
           key,
-          (index + 1) * 10,
+          (index + 1) * 10
         ])
       )
       // console.log('this.keys-->', this.keys)
@@ -922,7 +918,7 @@ export default {
       }
 
       return result
-    },
+    }
 
     /*     */
   }, // end methods
@@ -954,7 +950,7 @@ export default {
     // this.setIsReceiptRead(false)
     // this.setIsMoneyToBonus(false)
   },
-  created() {},
+  created() {}
 }
 </script>
 
