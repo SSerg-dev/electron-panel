@@ -747,10 +747,11 @@ export default {
     },
     setup() {
       this.initCurrency()
-      // sleep((this.delay = 2000)).then(() => {
-      //   this.initial()
-      // })
-      this.initial()
+      // console.log('$$ WashTable.vue -: 750')
+      sleep(500).then(() => {
+        this.initial()
+        // console.log('$$ WashTable.vue +: 753')
+      })
     },
     initial() {
       // classes instances

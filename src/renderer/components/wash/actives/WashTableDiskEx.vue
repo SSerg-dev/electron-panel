@@ -12,9 +12,9 @@
           class="button-content-style"
           :class="[
             { 'card-content black-text': !this.isDown.disk },
-            { 'card-content white-text': this.isDown.disk },
+            { 'card-content white-text': this.isDown.disk }
           ]"
-        > 
+        >
           {{ `${actives[this.activeNumber].title}` | localize }}
         </div>
       </div>
@@ -31,7 +31,7 @@
           class="button-content-style-x2"
           :class="[
             { 'card-content black-text': !this.isDown.disk_x2 },
-            { 'card-content white-text': this.isDown.disk_x2 },
+            { 'card-content white-text': this.isDown.disk_x2 }
           ]"
         >
           <div style="font-style: italic">
@@ -55,9 +55,10 @@ import {
   downStandardOptions,
   upX2Options,
   downX2Options,
-  buttonSizeOptions,
+  buttonSizeOptions
 } from '@/shapes/index.js'
 import { log } from '../../../../main/utils'
+import sleep from '@/utils/sleep'
 
 export default Vue.extend({
   data: () => ({
@@ -98,23 +99,23 @@ export default Vue.extend({
 
     isDown: {
       disk: false,
-      disk_x2: false,
-    },
+      disk_x2: false
+    }
   }),
   props: {
     /* dev */
     actives: {
       required: true,
-      type: Array,
-    },
+      type: Array
+    }
   },
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
       getPanelNumber: 'getPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getWetBalance: 'getWetBalance',
-    }),
+      getWetBalance: 'getWetBalance'
+    })
   },
   watch: {
     getWetBalance(flag) {
@@ -128,21 +129,21 @@ export default Vue.extend({
         flag !== this.actives[this.activeNumber_x2].name
       )
         this.clearDown()
-    },
+    }
   },
   methods: {
     ...mapGetters({
       getActiveProgramKit: 'getActiveProgramKit',
       getIsActiveProgramKit: 'getIsActiveProgramKit',
-      getPrograms: 'getPrograms',
+      getPrograms: 'getPrograms'
     }),
     ...mapActions({
-      updateStartProgram: 'updateStartProgram',
+      updateStartProgram: 'updateStartProgram'
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setActiveProgramKit: 'setActiveProgramKit',
-      setIsActiveProgramKit: 'setIsActiveProgramKit',
+      setIsActiveProgramKit: 'setIsActiveProgramKit'
     }),
 
     setProgram(program) {
@@ -155,15 +156,14 @@ export default Vue.extend({
         this.getPanelType,
         this.getPanelNumber,
         this.getActiveProgram,
-        this.getWetBalance,
+        this.getWetBalance
       ])
 
       this.setIsActiveProgramKit(true)
       this.setActiveProgramKit(this.activeProgramKit)
 
       if (parseInt(this.getWetBalance) > 0) {
-        this.timeoutPopup = setTimeout(() => {
-        }, 1000)
+        this.timeoutPopup = setTimeout(() => {}, 1000)
       } else this.$message(localizeFilter(`${messages.Not_enough_money}`))
     },
     setDown(program) {
@@ -216,7 +216,10 @@ export default Vue.extend({
       this.activeProgramKit = Object.fromEntries(result)
     },
     setup() {
-      this.initial()
+      // this.initial()
+      sleep(500).then(() => {
+        this.initial()
+      })
     },
     initial() {
       // classes instances
@@ -225,14 +228,14 @@ export default Vue.extend({
       this.buttonLeft = new Button({
         selector: '#button-left-disk',
 
-        width: this.buttonSizeOptions.small,// 25.5,
+        width: this.buttonSizeOptions.small, // 25.5,
         height: this.buttonSizeOptions.height,
         background: 'rgb(255, 255, 255)',
-        borderRadius: this.buttonSizeOptions.borderRadius,//4,
+        borderRadius: this.buttonSizeOptions.borderRadius, //4,
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'left',
+        justifyContent: 'left'
       })
       /* right button */
       this.buttonRight = new Button({
@@ -241,11 +244,11 @@ export default Vue.extend({
         width: this.buttonSizeOptions.extraSmall,
         height: this.buttonSizeOptions.height,
         background: 'rgb(255, 255, 255)',
-        borderRadius: this.buttonSizeOptions.borderRadius,//4,
+        borderRadius: this.buttonSizeOptions.borderRadius, //4,
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
       })
       // end classes
 
@@ -275,14 +278,14 @@ export default Vue.extend({
       switch (type) {
         case 'left':
           this._upStandardOptions.width = //'32.5em'
-            this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix
           this._downStandardOptions.width = //'32.5em'
-            this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.medium + this.buttonSizeOptions.suffix
           this.buttonRight.hide()
           break
         case 'right':
           this._upStandardOptions.width = //'25.5em'
-            this.buttonSizeOptions.small + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.small + this.buttonSizeOptions.suffix
           this._downStandardOptions.width = // '25.5em'
             this.buttonSizeOptions.small + this.buttonSizeOptions.suffix
           this.buttonRight.show()
@@ -290,17 +293,17 @@ export default Vue.extend({
           break
         case 'leftMosquito':
           this._upStandardOptions.width = //'67em'
-            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix
           this._downStandardOptions.width = //'67em'
-            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix
 
           this.buttonRight.hide()
           break
         case 'rightMosquito':
           this._upStandardOptions.width = //'59.5em'
-            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix
           this._downStandardOptions.width = //'59.5em'
-            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix
           this.buttonRight.show()
           this.flex()
           break
@@ -345,7 +348,7 @@ export default Vue.extend({
 
         this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
-    },
+    }
   }, // end methods
 
   beforeDestroy() {
@@ -365,7 +368,7 @@ export default Vue.extend({
     this.visibleMosquito_x2 = this.actives[this.activeMosquitoNumber_x2].display
 
     this.setup()
-  },
+  }
 })
 </script>
 
