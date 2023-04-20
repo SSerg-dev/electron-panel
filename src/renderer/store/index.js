@@ -501,7 +501,8 @@ export default new Vuex.Store({
     },
     // Прайс программ (список цен)
     // progPrice
-    getWetProgPrice(state, getters) {
+    getWetProgPrice(state) {
+      console.log('$$ index.js: 505', state.parameters.progPrice)
       return state.parameters.progPrice
     },
     getWetStopFreeCount(state) {

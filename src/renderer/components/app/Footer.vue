@@ -301,7 +301,7 @@ export default {
   width: 100%;
   position: fixed;
   left: 0;
-  bottom: 1em;
+  bottom: 0.5em;
   opacity: 1;
   /* #121212 */
   /* background: linear-gradient(180deg, #505cad 1.62%, #5b68bb 100%); */
@@ -337,7 +337,7 @@ export default {
 /* operator */
 .operator-position {
   position: fixed;
-  bottom: 3em;
+  bottom: 2em;
   /* left: 0; */
   right: 25.25em;
 }
@@ -365,7 +365,7 @@ export default {
 /* input */
 .input-position {
   position: fixed;
-  bottom: 3em;
+  bottom: 2em;
   left: 0.5em;
   /* right: 23em; */
 }
@@ -396,7 +396,7 @@ export default {
 /* exit */
 .exit-position {
   position: fixed;
-  bottom: 3em;
+  bottom: 2em;
   /* left: 0; */
   right: 0.5em;
 }

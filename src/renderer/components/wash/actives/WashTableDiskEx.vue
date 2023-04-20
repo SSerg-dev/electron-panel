@@ -216,10 +216,10 @@ export default Vue.extend({
       this.activeProgramKit = Object.fromEntries(result)
     },
     setup() {
-      // this.initial()
-      sleep(500).then(() => {
-        this.initial()
-      })
+      this.initial()
+      // sleep(0).then(() => {
+      //   this.initial()
+      // })
     },
     initial() {
       // classes instances

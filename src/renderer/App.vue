@@ -99,6 +99,8 @@ export default Vue.extend({
 
       ipcRenderer.on('OPCUA', (evt, payload) => {
         try {
+          console.log('$$ App.vue: 102', payload)
+
           const tag = JSON.parse(payload)
           const parameter = {
             id: Date.now(),
@@ -202,6 +204,9 @@ export default Vue.extend({
   },
   created() {
     this.setup()
+    // sleep(1000).then(() => {
+    //   this.setup()
+    // })
   },
   beforeDestroy() {
     clearInterval(this.intervalControllerWork)
