@@ -38,6 +38,8 @@ class Storage {
     ipcRenderer.on('async-certificate-reply', (event, bonusCert, bonusKey) => {
       this.certificate.cert = bonusCert || {}
       this.certificate.key = bonusKey || {}
+
+      options.isCertificate = false
     })
   }
 }

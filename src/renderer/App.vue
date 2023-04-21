@@ -42,9 +42,7 @@ export default Vue.extend({
     getPanelNumber(flag) {},
     getVacuumNumber(flag) {},
     getPanelType(flag) {},
-    getIsStandbyFreeEnable(flag) {
-      // console.log('$$ App.vue: 46', flag)
-    }
+    getIsStandbyFreeEnable(flag) {}
   },
   components: {
     EmptyLayout,
@@ -77,30 +75,10 @@ export default Vue.extend({
           break
       }
     },
-    /* dev */
-    // emitCardMoneyInitial(card = 0) {
-    //   EventBus.$emit('CardMoneyInitial', card)
-    // },
 
-    initial() {
-      // this.emitCardMoneyInitial()
-    },
-    setup() {
-      // Get global setings in main (electron) process
-
-      ipcRenderer.on('settings', (evt, data) => {
-        try {
-          data = JSON.parse(data)
-          this.setConfig(data)
-        } catch (err) {
-          console.warn('Error? while parse settings -', err)
-        }
-      })
-
+    payload() {
       ipcRenderer.on('OPCUA', (evt, payload) => {
         try {
-          console.log('$$ App.vue: 102', payload)
-
           const tag = JSON.parse(payload)
           const parameter = {
             id: Date.now(),
@@ -139,9 +117,33 @@ export default Vue.extend({
           console.warn('App.vue setup() error:', err)
         }
       })
+    },
+    setup() {
+      // --------------------------------
+      // Get global setings in main (electron) process
+      ipcRenderer.on('settings', (evt, data) => {
+        try {
+          data = JSON.parse(data)
+          this.setConfig(data)
+        } catch (err) {
+          console.warn('Error? while parse settings -', err)
+        }
+      })
+      // --------------------------------
+      sleep(0).then(() => {
+        this.payload()
+      })
+      const options = {
+        isPayload: true
+      }
+      ipcRenderer.send('async-payload-start', options)
+
+      ipcRenderer.on('async-payload-reply', (event, params) => {
+        console.log('$$ App.vue: 148', params)
+      })
+      // --------------------------------
 
       const self = this
-
       ipcRenderer.on('coin', (event, args) => {
         const type = this.getPanelType
         switch (type) {
@@ -177,8 +179,6 @@ export default Vue.extend({
       ipcRenderer.on('temperature', (event, args) => {
         this.setTemperature(args)
       })
-
-      this.initial()
     },
 
     ...mapMutations({
@@ -204,10 +204,8 @@ export default Vue.extend({
   },
   created() {
     this.setup()
-    // sleep(1000).then(() => {
-    //   this.setup()
-    // })
   },
+
   beforeDestroy() {
     clearInterval(this.intervalControllerWork)
   }
