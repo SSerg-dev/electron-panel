@@ -103,9 +103,7 @@ export default Vue.extend({
     setActiveProg() {
       
       this.activeProg = [...this.getActiveProgBit()].reverse().join('')
-      // 0010001010011000000000000011
-      // 0,35,30,26,35,37,44,10,35,31,38,39,31,36,10,48,35,10,25,45,30,0,26,60,15,50,50,25,0,0
-      console.log('$$ Cost.vue: 106', this.getWetProgPrice)
+      // console.log('$$ Cost.vue: 106', this.getWetProgPrice)
 
       if (this.getWetProgPrice !== undefined) {
         this.progPrice = this.getWetProgPrice.toString().split(',')

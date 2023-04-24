@@ -76,10 +76,14 @@ export default Vue.extend({
       }
     },
 
-    payload() {
+    payload(index) {
+      const options = { index }
+      ipcRenderer.send('async-relaunch-start', options)
+
       ipcRenderer.on('OPCUA', (evt, payload) => {
         try {
           const tag = JSON.parse(payload)
+
           const parameter = {
             id: Date.now(),
             title: tag.param,
@@ -129,17 +133,16 @@ export default Vue.extend({
           console.warn('Error? while parse settings -', err)
         }
       })
-      // --------------------------------
-      sleep(0).then(() => {
-        this.payload()
-      })
+
       const options = {
         isPayload: true
       }
       ipcRenderer.send('async-payload-start', options)
 
       ipcRenderer.on('async-payload-reply', (event, params) => {
-        console.log('$$ App.vue: 148', params)
+        if (params.isPayloadReply) {
+          this.payload(params.index)
+        }
       })
       // --------------------------------
 

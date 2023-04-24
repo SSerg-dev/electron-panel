@@ -88,18 +88,20 @@ const opcURL =
   'opc.tcp://' +
   String(isDevelopment ? '192.168.1.2' : setIPToLocalSubnet(2)) +
   ':4840'
+
 let OPCUAClient = new OPCUAService(opcURL)
-// OPCUAClient.on('change', (payload: any) => {
-//   isOPCUAConnected = true
-//   sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))
-// })
+
 ipcMain.on('async-payload-start', (event: any, options: any) => {
   if (options.isPayload) {
     OPCUAClient.on('change', (payload: any) => {
       isOPCUAConnected = true
       sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))
     })
-    event.sender.send('async-payload-reply', 'async-payload-reply-success')
+    const params = {
+      isPayloadReply: true,
+      index: mConfig.index
+    }
+    event.sender.send('async-payload-reply', params)
   }
 })
 /* ----------------------------------------------------------------------- */
@@ -145,14 +147,6 @@ const idle = async (config: any) => {
       })
       OPCUAClient.start(config.type, +options.index)
     })
-    // ----------------------------------
-    // ipcMain.on('async-payload-start', (event: any, options: any) => {
-    //   OPCUAClient.on('change', (payload: any) => {
-    //     isOPCUAConnected = true
-    //     sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))
-    //   })
-    //   OPCUAClient.start(config.type, +options.index)
-    // })
   }
   /* dev hidden */
 
