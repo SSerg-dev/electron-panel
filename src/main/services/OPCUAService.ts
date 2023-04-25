@@ -238,8 +238,6 @@ class OPCUAService extends EventEmitter {
       for (let index = 1; index < this.maxUsersNumber + 1; index++) {
         for (let tag in this.userNodes) {
           const node = this.userNodes[tag].replace('{0}', String(index))
-          // console.log('$$ tag', tag)
-          // console.log('$$ index', index)
           if (
             (type.indexOf('Vacuum') != -1 && node.indexOf('Post') != -1) ||
             (type.indexOf('wash') != -1 && node.indexOf('acuum') != -1)
@@ -251,11 +249,8 @@ class OPCUAService extends EventEmitter {
             attributeId: AttributeIds.Value
           }
           itemsToMonitor.push(item)
-          // console.log('$$ item', item)
         }
       }
-
-      /*     */
 
       this.monitoredItemGroup = ClientMonitoredItemGroup.create(
         this.subscription,

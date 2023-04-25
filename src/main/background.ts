@@ -88,12 +88,22 @@ const opcURL =
   'opc.tcp://' +
   String(isDevelopment ? '192.168.1.2' : setIPToLocalSubnet(2)) +
   ':4840'
-let OPCUAClient = new OPCUAService(opcURL)
-OPCUAClient.on('change', (payload: any) => {
-  isOPCUAConnected = true
-  sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))
-})
 
+let OPCUAClient = new OPCUAService(opcURL)
+
+ipcMain.on('async-payload-start', (event: any, options: any) => {
+  if (options.isPayload) {
+    OPCUAClient.on('change', (payload: any) => {
+      isOPCUAConnected = true
+      sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))
+    })
+    const params = {
+      isPayloadReply: true,
+      index: mConfig.index
+    }
+    event.sender.send('async-payload-reply', params)
+  }
+})
 /* ----------------------------------------------------------------------- */
 /* */
 const BillValidator = new BillValidatorController()
@@ -131,7 +141,6 @@ const idle = async (config: any) => {
 
     // crutch :((
     ipcMain.on('async-relaunch-start', (event: any, options: any) => {
-      // OPCUAClient = new OPCUAService(opcURL)
       OPCUAClient.on('change', (payload: any) => {
         isOPCUAConnected = true
         sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))

@@ -245,8 +245,8 @@ export default new Vuex.Store({
           'OPCUA',
           JSON.stringify({
             node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
-            // 1}].paidMoney`,
-            1}].prepaymentMoney`,
+              // 1}].paidMoney`,
+              1}].prepaymentMoney`,
             value: cash
           })
         )
@@ -320,8 +320,7 @@ export default new Vuex.Store({
           ipcRenderer.send(
             'OPCUA',
             JSON.stringify({
-              node: `::AsGlobalPV:PostN[${getters.getPanelNumber -
-                1}].prog`,
+              node: `::AsGlobalPV:PostN[${getters.getPanelNumber - 1}].prog`,
               value: getters.getActiveProgramNumber
             })
           )
@@ -349,14 +348,14 @@ export default new Vuex.Store({
 
     updateWetMoney({ getters }, cash) {
       console.log('!!!updateWetMoney-->', cash)
-      
+
       try {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
             node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
-            /*   1}].paidMoney`, */
-            1}].prepaymentMoney`,
+              /*   1}].paidMoney`, */
+              1}].prepaymentMoney`,
             value: cash
           })
         )
@@ -415,7 +414,7 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
-    
+
     updateWetZeroMoney({ getters }, zeroMoney) {
       try {
         ipcRenderer.send(
@@ -501,7 +500,8 @@ export default new Vuex.Store({
     },
     // Прайс программ (список цен)
     // progPrice
-    getWetProgPrice(state, getters) {
+    getWetProgPrice(state) {
+      // console.log('$$ index.js: 505', state.parameters.progPrice)
       return state.parameters.progPrice
     },
     getWetStopFreeCount(state) {
@@ -517,7 +517,7 @@ export default new Vuex.Store({
       return state.parameters.order
     },
     getWetActive(state) {
-      return state.parameters.active
+      return state.parameters.active || 'true'
     },
     // programName
     getWetProgramName(state) {
@@ -560,7 +560,7 @@ export default new Vuex.Store({
       return state.dryParameters.order
     },
     getDryActive(state) {
-      return state.dryParameters.active
+      return state.dryParameters.active || 'true'
     },
 
     getIsOddVacuumNumber(state) {
@@ -680,8 +680,6 @@ export default new Vuex.Store({
     },
     // set one parameter
     setWetParameters(state, parameter) {
-      // console.log('$$ --setWetParameters', parameter)
-
       state.isParamsChange = !state.isParamsChange
 
       const displayName = parameter.title.slice(
@@ -695,9 +693,13 @@ export default new Vuex.Store({
 
       switch (displayName) {
         case 'progPrice':
+          // console.log('$$ index.js: 697 progPrice', parameter.value)
+          // console.log('$$ index.js: 698 progPrice',typeof parameter.value)
           state.parameters.progPrice = parameter.value
           break
         case 'progShowMask':
+          // console.log('$$ index.js: 702 progShowMask', parameter.value)
+          // console.log('$$ index.js: 703 progShowMask',typeof parameter.value)
           state.parameters.progShowMask = parameter.value
           break
         case 'progStatusMask':
@@ -773,10 +775,10 @@ export default new Vuex.Store({
           state.orderData.serialNumber = parameter.value
           break
         case 'StandbyFreeEnable':
-          state.globalParameters.isStandFree = 
-          parameter.value === 'true' ? true : false
-        
-          // end common parameters
+          state.globalParameters.isStandFree =
+            parameter.value === 'true' ? true : false
+
+        // end common parameters
 
         default:
           break

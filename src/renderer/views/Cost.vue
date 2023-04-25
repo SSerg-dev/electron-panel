@@ -103,6 +103,7 @@ export default Vue.extend({
     setActiveProg() {
       
       this.activeProg = [...this.getActiveProgBit()].reverse().join('')
+      // console.log('$$ Cost.vue: 106', this.getWetProgPrice)
 
       if (this.getWetProgPrice !== undefined) {
         this.progPrice = this.getWetProgPrice.toString().split(',')
@@ -193,6 +194,7 @@ export default Vue.extend({
 
         this.actives = [...this.getPrograms()]
         this.costs = this.actives
+        // console.log('$$ Cost.vue: 196', JSON.stringify(this.actives))
         this.setActiveProg()
         this.costs = this.costs.sort((a, b) =>
           a.order > b.order ? 1 : b.order > a.order ? -1 : 0
