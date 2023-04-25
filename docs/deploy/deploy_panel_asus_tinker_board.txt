@@ -19,6 +19,7 @@ sudo apt install mc
 #sudo apt  install htop
 #sudo apt install curl
 sudo apt install nano
+sudo apt install xinput
 //Удаленное управление через клиента TightVNC:
 //sudo apt install sudo apt install xfce4 xfce4-goodies
 //Развернуть дисплей вертикально:
@@ -132,16 +133,19 @@ sudo nano ./node_modules/accounting/package.json
 и затем выполнить еще раз команду
 yarn
 
-8. Развернуть экран на 90 градусов.
+8. Развернуть дисплей и сенсор дисплея на 90 градусов.
 8.1.
 Находим название дисплея:
 xrandr --verbose | awk '/ connected/{print $1}'
 На выходе получаем название дисплея:
 <Display name>
 8.2
-Разворачиваем экран, подставив название дисплея.
-xrandr --output <Display name> --rotate left
-
+Разворачиваем дисплей, подставив его название, полученное в выводе предыдущей команды.
+xrandr --output <Display name> --rotate right
+8.3 Находим сенсор дисплея в списке устройств ввода:
+xinput list
+8.4. Поворачиваем сенсор дисплея на 90 градусов:
+xinput set-prop 8 "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
 
 9. Запустить проект:
 Через SSH:
