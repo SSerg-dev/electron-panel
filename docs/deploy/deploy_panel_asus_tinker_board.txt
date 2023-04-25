@@ -150,21 +150,35 @@ eGalax Inc. USB TouchController           id=8    [slave  pointer  (2)]
 8.4. Поворачиваем сенсор дисплея на 90 градусов, подставив вместо <id> id дисплея из предыдущей команды:
 xinput set-prop <id> "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
 
-9. Запустить проект:
+9. Для релизной (не отладочной) версии нужно скрыть курсор мыши. 
+Для этого устанавливаем спеиальную утилиту (в дальнейшем ее нужно поместить в срипт, 
+запускаемый при старте ОС):
+9.1 Устанавливваем зависимости для сборки утилиты
+sudo apt-get install make pkg-config gcc libc6-dev libx11-dev
+9.2 Собираем утилиту.
+cd ~/projects
+git clone https://github.com/aktau/hhpc.git
+cd hhpc
+make
+9.3 Запускаем утилиту
+./hhpc -i 0.01
+
+10. Запустить проект:
 Через SSH:
 DYSPLAY=:0 yarn electron:serve
 Прямо с микрокомпьютера:
 yarn electron:serve
 
 **************** Запуск тестового проекта Electron ********************
-10. 
+11.
+11.1 
 cd ~/projects/
 git clone https://github.com/Yukun-Guo/vite-vue3-electron-ts-template.git
-11. install packages
+11.2 install packages
 cd vite-vue3-electron-ts-template
 yarn
 
-12. run
+11.3 run
 Через SSH:
 DYSPLAY=:0 yarn app:dev
 Прямо с микрокомпьютера:
