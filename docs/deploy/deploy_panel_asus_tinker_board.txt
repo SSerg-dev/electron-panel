@@ -145,8 +145,10 @@ xrandr --verbose | awk '/ connected/{print $1}'
 xrandr --output <Display name> --rotate right
 8.3 Находим сенсор дисплея в списке устройств ввода:
 xinput list
-8.4. Поворачиваем сенсор дисплея на 90 градусов:
-xinput set-prop 8 "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
+output:
+eGalax Inc. USB TouchController           id=8    [slave  pointer  (2)]
+8.4. Поворачиваем сенсор дисплея на 90 градусов, подставив вместо <id> id дисплея из предыдущей команды:
+xinput set-prop <id> "Coordinate Transformation Matrix" 0 1 0 -1 0 1 0 0 1
 
 9. Запустить проект:
 Через SSH:
