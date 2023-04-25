@@ -409,7 +409,7 @@ img {
   /* top: -0.04em; 
   left: 0.35em; */
 
-  font-size: 2.5em;
+  font-size: 2.4cem;
 }
 
 .box {
