@@ -44,15 +44,15 @@ class CoinAcceptorController extends EventEmitter {
     if (portInfo) {
       for (let i = 0; i < portInfo.length; i++) {
         _path = portInfo[i].path
-
         this.device = new CCTalk.CoinAcceptor(_path, this.bills, conf.debug)
+        
         try {
           await this.device.connect()
           log(TAG, 'Connected at coin port', _path)
           port_num = i
           break
         } catch (err) {
-          // log(TAG, "Connected error", err)
+          log(TAG, "Connected error", err)
           await this.device.disconnect()
           delete this.device
           port_num = 10
@@ -61,8 +61,7 @@ class CoinAcceptorController extends EventEmitter {
     }
     this.port = port_num
     if (port_num === 10) {
-      /* dev */
-      //log(TAG, "No any device at ports /dev/ttyUSB[n] detected")
+      log(TAG, "No any device at ports /dev/ttyUSB[n] detected", this.port)
       await wait(500)
       this.connect()
     } else {
@@ -75,15 +74,11 @@ class CoinAcceptorController extends EventEmitter {
     this.bills = bills || []
 
     this.once('connect', async () => {
-      let info: any = this.device.getDeviceInfo //{}
-      //info.manufacturer = await this.device.getManufacturedId()
-      //info.product = await this.device.getProductCode()
+      let info: any = this.device.getDeviceInfo 
       log(TAG, 'Info:', JSON.stringify(info))
 
-      let table = this.device.getCoinTable //await this.device.getCoinInfo()
-      //await this.device.setCoinInfo(table, bills)
-      //table = await this.device.getCoinInfo()
-      log(TAG, 'Table of bills:', JSON.stringify(table))
+      let table = this.device.getCoinTable 
+      log(TAG, 'Table of coins:', JSON.stringify(table))
 
       this.poll(this.device)
     })

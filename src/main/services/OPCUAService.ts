@@ -279,7 +279,7 @@ class OPCUAService extends EventEmitter {
             //this.emit("change", { param: param, value: value })
             const obj = { param: nodeId, value: value }
             if (nodeId.indexOf('DateTime') < 0) {
-              log(TAG, 'new data:', JSON.stringify(obj))
+            // log(TAG, 'new data:', JSON.stringify(obj))
             }
             this.emit('change', obj)
           } catch (err) {

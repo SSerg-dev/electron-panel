@@ -24,7 +24,7 @@
     */
    constructor (device: any) {
      super(0x30, device)
-    //  console.log('!!++reset constructor')
+    //  console.log('$$ Reset.ts: 27 constructor 0x30')
    }
    
  }
