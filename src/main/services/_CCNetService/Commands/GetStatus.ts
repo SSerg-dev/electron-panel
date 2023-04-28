@@ -8,8 +8,8 @@
  * Library for working with "CashCode" Bill Validator devices from Node.js app.
  */
 
+// import Command from '../Command'
 import Command from '../Command'
-
 /**
  * Class GetStatus
  * 
@@ -34,7 +34,7 @@ class GetStatus extends Command {
 	 * 
 	 * @param {Buffer} data 
 	 */
-	response = (data: Buffer) => {
+	response: any = (data: Buffer) => {
 		/*  */
 		const hex2bin = (buf: any) => {
 			let d = []

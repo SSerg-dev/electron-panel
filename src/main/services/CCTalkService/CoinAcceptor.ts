@@ -9,12 +9,12 @@
  */
 
 import { EventEmitter } from 'events'
-import SerialPort from 'serialport'
-
 import { ADR_COIN_ACCEPTOR, ADR_SOURCE } from './Constants'
 import CCTalkParser from './CCTalkParser'
 import CMDS from './Commands'
 import { wait } from '../../utils'
+
+const { SerialPort } = require('serialport')
 
 /**
  * Class CoinAcceptor
@@ -91,7 +91,7 @@ class CoinAcceptor extends EventEmitter {
     // let SerialPort = serialport.SerialPort
     // this.serial = new SerialPort(this.port, this.portOptions, (err: any) => this.debug(err))
 
-    const { SerialPort } = require('serialport')
+    // const { SerialPort } = require('serialport')
     this.serial = new SerialPort(this.portOptions)
 
     this.serial.on('open', () => self.onSerialPortOpen())

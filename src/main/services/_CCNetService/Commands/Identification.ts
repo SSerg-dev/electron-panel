@@ -34,7 +34,7 @@ class Identification extends Command {
 	 * 
 	 * @param {Buffer} data 
 	 */
-	response = (data: Buffer) => {
+	response:any = (data: Buffer) => {
 		return {
 			model  : data.slice(0, 15).toString().trim(),
 			serial : data.slice(15, 27).toString().trim(),

@@ -12,8 +12,9 @@
 import { EventEmitter } from 'events'
 
 import { log, wait } from '../utils'
-// import { CCNet } from 'cashcode-bv'
-import CCNet from '../services/CCNetService'
+import { CCNet } from 'cashcode-bv'
+// import CCNet from '../services/CCNetService'
+
 import * as conf from '../config'
 
 const TAG = 'BILL VALIDATOR'
@@ -37,7 +38,6 @@ class BillValidatorController extends EventEmitter {
     this.currency = 0
     /* dev */
     this.bills = []
-    // this.bills = [ 50, 100, 200 ]
     this.state = States.DISCONNECTED
     this.port = 10
   }
@@ -53,13 +53,17 @@ class BillValidatorController extends EventEmitter {
         continue
       }
       /* dev */
-      // port = '/dev/ttyUSB1'
-      port = `/dev/ttyUSB${i}`
+      port = '/dev/ttyUSB0'
+      // port = `/dev/ttyUSB${i}`
 
-      console.log('$$ BillValidatorController.ts: 58', port, this.bills, conf.debug)
+      console.log(
+        '$$ BillValidatorController.ts: 60',
+        port,
+        this.bills,
+        conf.debug
+      )
       this.device = new CCNet.BillValidator(port, conf.debug)
-      console.log('$$ BillValidatorController.ts: 60', this.device)
-
+      console.log('$$ BillValidatorController.ts: 66')
 
       this.setListeners()
 
@@ -86,9 +90,9 @@ class BillValidatorController extends EventEmitter {
 
   public start = async (currency: number = 0, bills: number[] = []) => {
     this.currency = currency
-    /* dev */
-    // this.bills = bills
+    this.bills = bills
     try {
+      // console.log('$$ BillValidatorController.ts: 90', this.bills)
       await this.connect()
       log(TAG, 'Info:', this.device.info)
       log(TAG, 'Table of bills:', this.device.billTable)

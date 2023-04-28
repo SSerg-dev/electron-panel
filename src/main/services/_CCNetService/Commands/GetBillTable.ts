@@ -8,8 +8,8 @@
  * Library for working with "CashCode" Bill Validator devices from Node.js app.
  */
 
+// import Command from '../Command'
 import Command from '../Command'
-
 /**
  * Class GetBillTable
  * 
@@ -34,7 +34,7 @@ class GetBillTable extends Command {
 	 * 
 	 * @param {Buffer} data 
 	 */
-	response = (data: Buffer) => {
+	response: any = (data: Buffer) => {
 		let response: any[] = []
 		let	word: any
 		for( let i = 0; i < 24; i++ ) {

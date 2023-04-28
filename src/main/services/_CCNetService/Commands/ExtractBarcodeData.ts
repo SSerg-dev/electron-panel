@@ -8,8 +8,8 @@
  * Library for working with "CashCode" Bill Validator devices from Node.js app.
  */
 
+// import Command from '../Command'
 import Command from '../Command'
-
 
 /**
  * Class ExtractBarcodeData
@@ -37,7 +37,7 @@ class ExtractBarcodeData extends Command {
 	 * 
 	 * @param {Buffer} data 
 	 */
-	response = (data: Buffer) => data.toString()
+	response: any = (data: Buffer) => data.toString()
 
 }
 
