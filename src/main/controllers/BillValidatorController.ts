@@ -53,17 +53,16 @@ class BillValidatorController extends EventEmitter {
         continue
       }
       /* dev */
-      port = '/dev/ttyUSB0'
-      // port = `/dev/ttyUSB${i}`
+      // port = '/dev/ttyUSB0'
+      port = `/dev/ttyUSB${i}`
 
-      console.log(
-        '$$ BillValidatorController.ts: 60',
-        port,
-        this.bills,
-        conf.debug
-      )
+      // console.log(
+      //   '$$ BillValidatorController.ts: 60',
+      //   port,
+      //   this.bills,
+      //   conf.debug
+      // )
       this.device = new CCNet.BillValidator(port, conf.debug)
-      console.log('$$ BillValidatorController.ts: 66')
 
       this.setListeners()
 

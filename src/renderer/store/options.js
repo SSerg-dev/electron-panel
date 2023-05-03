@@ -195,6 +195,11 @@ export default {
       hour: 0,
       minute: 0,
       second: 0
+    },
+    controllerDate: {
+      year: 0,
+      month: 0,
+      day: 0
     }
   }, // end state
   // Options
@@ -315,8 +320,10 @@ export default {
     },
     getControllerTime(state) {
       return state.controllerTime
-    }
-
+    },
+    getControllerDate(state) {
+      return state.controllerDate
+    },
     /* getPanelMoneyOptions(state) {
       return state.options
     },
@@ -413,7 +420,10 @@ export default {
     },
     setControllerTime(state, time) {
       return (state.controllerTime = time)
-    }
+    },
+    setControllerDate(state, date) {
+      return (state.controllerDate = date)
+    },
 
     /* setLoginSettingPassword(state, password) {
       state.loginSettingPassword = password

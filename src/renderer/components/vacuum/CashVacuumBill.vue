@@ -82,6 +82,7 @@ import { Component, Box, Circle, Button } from '@/shapes/index.js'
 
 import { ipcRenderer } from 'electron'
 import { dateFilter, getRndInteger } from '@/utils/order.js'
+import { synchronize } from '@/utils/common.functions'
 
 export default {
   name: 'cash-vacuum-bill',
@@ -112,6 +113,8 @@ export default {
     queueType: '',
     localClient: 'local',
     localStorage: null,
+
+    date: new Date()
   }),
   mounted() {
     this.order = this.createOrder()
@@ -133,7 +136,10 @@ export default {
       getWetBalance: 'getWetBalance',
       getPayType: 'getPayType',
       getIsKktInstalled: 'getIsKktInstalled',
-      getCnw: 'getCnw'
+      getCnw: 'getCnw',
+      getControllerTime: 'getControllerTime',
+      getControllerDate: 'getControllerDate'
+
     }),
     IsDryBalance: {
       get: function () {
@@ -281,7 +287,15 @@ export default {
 
     createOrder() {
       const type = this.getPanelType
-      const date = dateFilter(new Date())
+
+      const options = {
+        date: this.getControllerDate,
+        time: this.getControllerTime
+      }
+      this.date = synchronize(options)
+
+      const _date = dateFilter(this.date)
+
       let result, index, prefix, suffix
       suffix = getRndInteger(10000, 99999)
 
@@ -290,14 +304,14 @@ export default {
           if (this.getWetOrder === '') {
             prefix = 'W'
             index = this.getPanelNumber
-            result = prefix + index + date
+            result = prefix + index + _date
           } else result = this.getWetOrder
           break
         case 'vacuum':
           if (this.getDryOrder === '') {
             prefix = 'V'
             index = this.getVacuumNumber
-            result = prefix + index + date
+            result = prefix + index + _date
           } else result = this.getDryOrder
           break
         default:

@@ -61,7 +61,7 @@ class CoinAcceptorController extends EventEmitter {
     }
     this.port = port_num
     if (port_num === 10) {
-      log(TAG, "No any device at ports /dev/ttyUSB[n] detected", this.port)
+      // log(TAG, "No any device at ports /dev/ttyUSB[n] detected", this.port)
       await wait(500)
       this.connect()
     } else {

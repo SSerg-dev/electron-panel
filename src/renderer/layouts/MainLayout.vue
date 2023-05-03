@@ -200,15 +200,15 @@ export default Vue.extend({
     this.localStorage = new Storage(this.localClient, this.urlLocal)
 
     /* dev hidden ping */
-    // this.intervalPing = setInterval(() => {
-    //   this.ping()
-    // }, (this.delay = 2000))
+    this.intervalPing = setInterval(() => {
+      this.ping()
+    }, (this.delay = 2000))
 
-    // this.intervalRestorePayment = setInterval(() => {
-    //   if (this.getIsPing) {
-    //     this.restorePayment()
-    //   }
-    // }, (this.delay = 4000))
+    this.intervalRestorePayment = setInterval(() => {
+      if (this.getIsPing) {
+        this.restorePayment()
+      }
+    }, (this.delay = 4000))
   },
   beforeDestroy() {
     clearInterval(this.intervalPing)

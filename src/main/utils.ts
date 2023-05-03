@@ -2,7 +2,7 @@ import { exec } from 'child_process'
 import { format } from 'date-fns'
 import { networkInterfaces } from 'os'
 
-const serialport = require("serialport")
+const serialport = require('serialport')
 
 export const getFileName = (filename: string) => {
   return filename!
@@ -85,8 +85,25 @@ export const getSerialDevicesInfo = async (toSearch: string) => {
     portInfo = portInfo.filter((port: any) => port.pnpId !== undefined)
     return portInfo.filter((port: any) => port.path.indexOf(toSearch) > -1)
   } catch (err) {
-    console.log('SerialPort list Error:', err) 
+    console.log('SerialPort list Error:', err)
     return []
   }
-} 
+}
+
+
+/* export const setControllerTime = async (dateTime: string) => {
+  const dateTimeString = dateTime
+  const timestamp = new Date(dateTimeString).getTime() / 1000
+
+  exec(`sudo date -u --date=@${timestamp}`, (error, stdout, stderr) => {
+    if (stderr) {
+      console.error(`Error setting system date and time: ${stderr}`)
+      return
+    }
+    const sDate = format(new Date(), 'dd.MM.yy HH:mm:ss')
+    console.log('System date and time set successfully.', stdout, sDate)
+    
+  })
+
+} */ 
 

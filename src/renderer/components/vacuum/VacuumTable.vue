@@ -215,6 +215,7 @@ import { Storage } from '@/storage/index.js'
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
 import { dateFilter, getRndInteger, log } from '@/utils/order.js'
+import { synchronize } from '@/utils/common.functions'
 
 export default {
   data: () => ({
@@ -240,6 +241,8 @@ export default {
     },
     buttonPrice: null,
     delay: 4000,
+
+    date: new Date()    
   }),
 
   components: {
@@ -273,6 +276,10 @@ export default {
       getDryOrder: 'getDryOrder',
 
       getIsBonusMoney: 'getIsBonusMoney',
+
+      getControllerTime: 'getControllerTime',
+      getControllerDate: 'getControllerDate'
+
     }),
   },
   watch: {
@@ -352,7 +359,14 @@ export default {
     },
     createOrder() {
       const type = this.getPanelType
-      const date = dateFilter(new Date())
+
+      const options = {
+        date: this.getControllerDate,
+        time: this.getControllerTime
+      }
+      this.date = synchronize(options)
+
+      const _date = dateFilter(this.date)
       let result, index, prefix, suffix
       suffix = getRndInteger(10000, 99999)
 
@@ -361,7 +375,7 @@ export default {
           if (this.getWetOrder === '') {
             prefix = 'W'
             index = this.getPanelNumber
-            result = prefix + index + date
+            result = prefix + index + _date
             // result = prefix + index + date + '_' + suffix.toString()
           } else result = this.getWetOrder
           break
@@ -369,7 +383,7 @@ export default {
           if (this.getDryOrder === '') {
             prefix = 'V'
             index = this.getVacuumNumber
-            result = prefix + index + date
+            result = prefix + index + _date
             // result = prefix + index + date + '_' + suffix.toString()
           } else result = this.getDryOrder
           break

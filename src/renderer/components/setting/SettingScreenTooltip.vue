@@ -10,7 +10,7 @@
         <div class="row" style="height: 1em">
           <!-- dev -->
           <div class="col s1">
-            <div class="switch" style="padding-top: 6px">
+            <div class="switch" style="padding-top: 6px; ">
               <label>
                 <input type="checkbox" v-model="isTooltipInstalled" />
                 <span class="lever"></span>

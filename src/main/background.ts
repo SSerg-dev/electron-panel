@@ -9,7 +9,8 @@ import {
   getFileName,
   log,
   getSerialDevicesInfo,
-  setIPToLocalSubnet
+  setIPToLocalSubnet,
+  // setControllerTime
 } from './utils'
 import OPCUAService from './services/OPCUAService'
 import GPIOService from './services/GPIOService'
@@ -415,3 +416,11 @@ function toUpperCase(arg0: string) {
 function writeConfig(data: any) {
   writeFileSync('./configs/settings-current.json', data)
 }
+
+// setControllerTime
+/* 
+setInterval(() => {
+  setControllerTime('2023-05-02T13:44:56.000Z')   
+}, 6000)
+ 
+*/

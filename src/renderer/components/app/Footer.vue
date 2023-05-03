@@ -1,10 +1,12 @@
 <template>
   <div v-if="getIsFooter">
     <div class="footer-panel white-text">
-      
       <!-- stop -->
-      <div v-if="this.$route.name === 'program' && getWetProgramName.length > 0" class="stop-position">
-      <!-- <div class="stop-position"> -->
+      <div
+        v-if="this.$route.name === 'program' && getWetProgramName.length > 0"
+        class="stop-position"
+      >
+        <!-- <div class="stop-position"> -->
         <div
           v-if="this.isDown.stop === false"
           class="button-up-style"
@@ -31,7 +33,7 @@
             @click="setProgram('operator')"
           >
             <div class="button-title">
-              {{`CONSULTANT` | localize }}
+              {{ `CONSULTANT` | localize }}
             </div>
           </div>
 
@@ -46,9 +48,11 @@
           </div>
         </div>
       </div>
-      
+
       <!-- input -->
-      <div>
+
+      
+        <div>
         <div class="input-position">
           <div
             v-if="this.isDown.input === false"
@@ -71,9 +75,12 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> 
+     
 
       <!-- exit -->
+
+      
       <div>
         <div class="exit-position">
           <div
@@ -97,9 +104,8 @@
             </div>
           </div>
         </div>
-      </div>
-      
-
+      </div> 
+     
     </div>
   </div>
 </template>
@@ -110,7 +116,6 @@ import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 import { Queue } from '@/queue/index.js'
 import { log } from '../../../main/utils'
-
 
 export default {
   data: () => ({
@@ -124,7 +129,7 @@ export default {
       home: false,
       input: false,
       exit: false
-    },
+    }
   }),
   computed: {
     ...mapGetters({
@@ -146,14 +151,13 @@ export default {
       getIsFirstTimer: 'getIsFirstTimer',
 
       getWetProgramName: 'getWetProgramName'
-
-    }),
+    })
   },
   watch: {
     getWetProgramName(flag) {
       // console.log('$$ flag.length', flag.length)
     },
-    
+
     /* dev */
 
     getWetStopFreeCount(flag) {
@@ -167,7 +171,7 @@ export default {
           this.setIsMoneyToBonus(true)
         }
       } catch (err) {}
-    },
+    }
 
     /* dev */
     /* getSecondsBonusTimer(flag) {
@@ -194,15 +198,14 @@ export default {
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setIsMoneyToBonus: 'setIsMoneyToBonus',
-      setMoneyToBonus: 'setMoneyToBonus',
+      setMoneyToBonus: 'setMoneyToBonus'
     }),
     ...mapGetters({}),
     ...mapActions({
       updateStartProgram: 'updateStartProgram',
-      updateDryStartProgram: 'updateDryStartProgram',
+      updateDryStartProgram: 'updateDryStartProgram'
     }),
-    setup() {
-    },
+    setup() {},
 
     goHome(program) {
       this.isDown.home = true
@@ -226,7 +229,7 @@ export default {
             this.getPanelType,
             this.getPanelNumber,
             this.getActiveProgram,
-            this.getWetBalance,
+            this.getWetBalance
           ])
           break
         case 'vacuum':
@@ -234,7 +237,7 @@ export default {
             this.getPanelType,
             this.getVacuumNumber,
             this.getActiveProgram,
-            this.getDryBalance,
+            this.getDryBalance
           ])
           break
 
@@ -269,7 +272,7 @@ export default {
           this.isDown.input = true
           this.timeoutDelay = setTimeout(() => {
             this.isDown.input = false
-          }, (this.delay = 400))  
+          }, (this.delay = 400))
           break
         case 'exit':
           this.isDown.exit = true
@@ -286,12 +289,12 @@ export default {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-    },
+    }
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutPopup)
-  },
+  }
 }
 </script>
 
@@ -318,16 +321,13 @@ export default {
   font-family: 'Plumb-Medium';
 } */
 
-
 /* common footer */
 .button-title {
   padding-top: 0.3em;
   padding-left: 0;
   font-size: 2.8em;
   /* font-family: 'arial'; */
-  text-shadow:
-    2px 2px 2px silver,
-    -2px 2px 2px silver;
+  text-shadow: 2px 2px 2px silver, -2px 2px 2px silver;
 
   display: flex;
   align-items: center;
@@ -346,7 +346,7 @@ export default {
   width: 24em;
   height: 6em;
   color: #000;
-  background: linear-gradient(45deg, #00e5ff,#bfe5f5, #18ffff);
+  background: linear-gradient(45deg, #00e5ff, #bfe5f5, #18ffff);
   border: 0.2em solid #fff;
   border-radius: 1em;
   box-shadow: #18ffff 5px 5px 10px;
@@ -357,7 +357,7 @@ export default {
   height: 6.2em;
   color: #18ffff;
   background: rgb(255, 255, 255);
-  border: 0.2em solid  #18ffff; 
+  border: 0.2em solid #18ffff;
   border-radius: 1em;
   box-shadow: #18ffff 5px 5px 10px;
 }
@@ -375,7 +375,7 @@ export default {
   height: 6em;
   color: #000;
 
-  background: linear-gradient(45deg, #0066ff,#bfe5f5, #0066ff);
+  background: linear-gradient(45deg, #0066ff, #bfe5f5, #0066ff);
   /* background: #18ffff ; */
 
   border: 0.2em solid #fff;
@@ -388,7 +388,7 @@ export default {
   height: 6.2em;
   color: #18ffff;
   background: rgb(255, 255, 255);
-  border: 0.2em solid  #18ffff; /* #00b9e3; */
+  border: 0.2em solid #18ffff; /* #00b9e3; */
   border-radius: 1em;
   box-shadow: #18ffff 5px 5px 10px;
 }
@@ -405,7 +405,7 @@ export default {
   width: 23.5em;
   height: 6em;
   color: #000;
-  background: linear-gradient(45deg, #0066ff,#bfe5f5, #0066ff);
+  background: linear-gradient(45deg, #0066ff, #bfe5f5, #0066ff);
   border: 0.2em solid #fff;
   border-radius: 1em;
   box-shadow: #18ffff 5px 5px 10px;
@@ -416,7 +416,7 @@ export default {
   height: 6.2em;
   color: #18ffff;
   background: rgb(255, 255, 255);
-  border: 0.2em solid  #18ffff; /* #00b9e3; */
+  border: 0.2em solid #18ffff; /* #00b9e3; */
   border-radius: 1em;
   box-shadow: #18ffff 5px 5px 10px;
 }
@@ -432,9 +432,7 @@ export default {
 .button-title-stop {
   padding-top: 0.02em;
   font-size: 4em;
-  text-shadow:
-    1px 1px 1px red,
-    -1px 1px 1px red;
+  text-shadow: 1px 1px 1px red, -1px 1px 1px red;
 
   display: flex;
   align-items: center;
@@ -447,7 +445,12 @@ export default {
   height: 6.8em;
   color: #fff;
 
-  background: linear-gradient(45deg, rgb(255, 3, 3), rgb(255, 154, 118), rgb(255, 3, 3));
+  background: linear-gradient(
+    45deg,
+    rgb(255, 3, 3),
+    rgb(255, 154, 118),
+    rgb(255, 3, 3)
+  );
   border: 0.4em solid rgb(255, 3, 3);
   border-radius: 4em;
   box-shadow: rgb(255, 3, 3) 0px 10px 20px;

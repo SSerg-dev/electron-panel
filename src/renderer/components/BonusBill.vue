@@ -423,6 +423,7 @@ import program from '../store/program'
 
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
+import { synchronize } from '@/utils/common.functions'
 
 const { ipcRenderer } = require('electron')
 
@@ -476,6 +477,8 @@ export default {
     messageIndex: -1,
     delay: 1000,
     timeoutDelay: null,
+
+    date: new Date()
   }),
   created() {},
   mounted() {
@@ -528,6 +531,10 @@ export default {
       getProfile: 'getProfile',
       getServiceBalance: 'getServiceBalance',
       getPayType: 'getPayType',
+
+      getControllerTime: 'getControllerTime',
+      getControllerDate: 'getControllerDate'
+
     }),
     IsWetBalance: {
       get: function () {
@@ -602,7 +609,15 @@ export default {
 
     createOrder() {
       const type = this.getPanelType
-      const date = dateFilter(new Date())
+
+      const options = {
+        date: this.getControllerDate,
+        time: this.getControllerTime
+      }
+      this.date = synchronize(options)
+
+      const _date = dateFilter(this.date)
+
       let result, index, prefix, suffix
       suffix = getRndInteger(10000, 99999)
 
@@ -611,7 +626,7 @@ export default {
           if (this.getWetOrder === '') {
             prefix = 'W'
             index = this.getPanelNumber
-            result = prefix + index + date
+            result = prefix + index + _date
             // result = prefix + index + date + '_' + suffix.toString()
           } else result = this.getWetOrder
           break
@@ -619,7 +634,7 @@ export default {
           if (this.getDryOrder === '') {
             prefix = 'V'
             index = this.getVacuumNumber
-            result = prefix + index + date
+            result = prefix + index + _date
             // result = prefix + index + date + '_' + suffix.toString()
           } else result = this.getDryOrder
           break

@@ -192,8 +192,7 @@
               >
                 <WashTableDryShineEx :actives="actives" />
               </tr>
-
-              <tr style="height: 30px">
+              <tr style="height: 30px; width: 800px;">
                 <td></td>
               </tr>
 
@@ -326,6 +325,7 @@ import WashTableAlarm from '@/components/wash/WashTableAlarm'
 import { dateFilter, getRndInteger, log } from '@/utils/order.js'
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
+import { synchronize } from '@/utils/common.functions'
 
 import { buttonSizeOptions } from '@/shapes/index.js'
 
@@ -389,22 +389,9 @@ export default {
     emoji: '',
     currency: '',
     symbol: '',
-    currencies: []
+    currencies: [],
 
-    /* dev */
-    /* 
-    buttonDryWidth: {
-      vacuum: null,
-      turboDryer: null,
-      air: null,
-      washer: null,
-    },
-    buttonSizeOptions: buttonSizeOptions,
-
-    // clone
-    _buttonSizeOptions: null */
-
-    /*     */
+    date: new Date()
   }),
   components: {
     Message,
@@ -545,7 +532,10 @@ export default {
       getDryOrder: 'getDryOrder',
 
       getIsBonusMoney: 'getIsBonusMoney',
-      getIsKktInstalled: 'getIsKktInstalled'
+      getIsKktInstalled: 'getIsKktInstalled',
+
+      getControllerTime: 'getControllerTime',
+      getControllerDate: 'getControllerDate'
     })
   },
 
@@ -892,7 +882,14 @@ export default {
 
     createOrder() {
       const type = this.getPanelType
-      const date = dateFilter(new Date())
+
+      const options = {
+        date: this.getControllerDate,
+        time: this.getControllerTime
+      }
+      this.date = synchronize(options)
+
+      const _date = dateFilter(this.date)
       let result, index, prefix, suffix
       suffix = getRndInteger(10000, 99999)
 
@@ -901,7 +898,7 @@ export default {
           if (this.getWetOrder === '') {
             prefix = 'W'
             index = this.getPanelNumber
-            result = prefix + index + date
+            result = prefix + index + _date
             // result = prefix + index + date + '_' + suffix.toString()
           } else result = this.getWetOrder
           break
@@ -909,7 +906,7 @@ export default {
           if (this.getDryOrder === '') {
             prefix = 'V'
             index = this.getVacuumNumber
-            result = prefix + index + date
+            result = prefix + index + _date
             // result = prefix + index + date + '_' + suffix.toString()
           } else result = this.getDryOrder
           break

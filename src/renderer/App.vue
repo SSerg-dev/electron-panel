@@ -35,6 +35,7 @@ export default Vue.extend({
       getVacuumNumber: 'getVacuumNumber',
       getPanelType: 'getPanelType',
       getControllerTime: 'getControllerTime',
+      getControllerDate: 'getControllerDate',
       getIsStandbyFreeEnable: 'getIsStandbyFreeEnable'
     })
   },
@@ -54,7 +55,8 @@ export default Vue.extend({
       setWetBalance: 'setWetBalance',
       setDryBalance: 'setDryBalance',
       setIsPingUrl: 'setIsPingUrl',
-      setControllerTime: 'setControllerTime'
+      setControllerTime: 'setControllerTime',
+      setControllerDate: 'setControllerDate'
     }),
     checkControllerWork() {
       this.intervalControllerWork = setInterval(() => {
@@ -90,6 +92,22 @@ export default Vue.extend({
             value: tag.value
           }
 
+          if (parameter.title === `::AsGlobalPV:DateTime.Date`) {
+            if (parameter.value) {
+              const date = parameter.value.split('-')
+
+              const options = {}
+              options.year = +date[0]
+              options.month = +date[1]
+              options.day = +date[2]
+
+              this.setControllerDate(options)
+
+              // console.log('$$ App.vue: 129 Date', options.day, options.month, options.year)
+              // console.log('$$ App.vue: 107 Date',  JSON.stringify(this.getControllerDate))
+            }
+          }
+
           if (parameter.title !== `::AsGlobalPV:DateTime.Time`) {
             const type = this.getPanelType
             switch (type) {
@@ -102,7 +120,7 @@ export default Vue.extend({
               default:
                 break
             }
-          } else {
+          } else if (parameter.title === `::AsGlobalPV:DateTime.Time`) {
             this.isControllerWork = true
             this.setIsPingUrl(true)
 
