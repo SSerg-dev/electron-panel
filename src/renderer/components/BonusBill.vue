@@ -484,8 +484,13 @@ export default {
   mounted() {
     this.getCashMoney()
 
+
     this.order = this.createOrder()
     this.setCompleteWashOrder(this.order)
+
+    /* dev */
+    this.setCommonOrder(this.order)
+    console.log('$$ BonusBill.vue: 493', JSON.stringify(this.getCommonOrder) )
 
     this.actives = this.getPrograms()
 
@@ -533,7 +538,9 @@ export default {
       getPayType: 'getPayType',
 
       getControllerTime: 'getControllerTime',
-      getControllerDate: 'getControllerDate'
+      getControllerDate: 'getControllerDate',
+
+      getCommonOrder: 'getCommonOrder'
 
     }),
     IsWetBalance: {
@@ -589,6 +596,9 @@ export default {
       setWetZeroMoney: 'setWetZeroMoney',
 
       setCompleteWashOrder: 'setCompleteWashOrder',
+      
+      setCommonOrder: 'setCommonOrder'
+
     }),
     ...mapActions({
       updateWetZeroMoney: 'updateWetZeroMoney',

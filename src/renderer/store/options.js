@@ -156,7 +156,7 @@ export default {
     receipt: {},
 
     // cash, card, bonus, service
-    payType: '',
+    payType: 'cash',
 
     // end methods options
 
@@ -200,7 +200,8 @@ export default {
       year: 0,
       month: 0,
       day: 0
-    }
+    },
+    commonOrder: {}
   }, // end state
   // Options
   //actions: {},
@@ -324,6 +325,10 @@ export default {
     getControllerDate(state) {
       return state.controllerDate
     },
+    getCommonOrder(state) {
+      return state.commonOrder
+    },
+
     /* getPanelMoneyOptions(state) {
       return state.options
     },
@@ -419,10 +424,13 @@ export default {
       state.readReceipt.params.id = id + 1
     },
     setControllerTime(state, time) {
-      return (state.controllerTime = time)
+      state.controllerTime = time
     },
     setControllerDate(state, date) {
-      return (state.controllerDate = date)
+      state.controllerDate = date
+    },
+    setCommonOrder(state, order) {
+      state.commonOrder = order
     },
 
     /* setLoginSettingPassword(state, password) {

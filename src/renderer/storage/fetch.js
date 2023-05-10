@@ -18,8 +18,9 @@ const methods = [
   'checkBonusQr' // выполняется при авторизации Qr code
 ]
 
+// methods without connect
 const suffix = 'Direct'
-
+ 
 const methodsDirect = [
   'storeMoneyDirect', // выполняется при окончании оплаты клиентом
   'collectDirect', // выполняется инкассации панели

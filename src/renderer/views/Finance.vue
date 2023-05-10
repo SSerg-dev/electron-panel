@@ -3,7 +3,7 @@
     <div class="locate">
 
     <div class="back">
-        <router-link to="/">
+        <router-link to="/setting">
           <div>
             <img src="@/assets/imgs/key/back.png" />
           </div>

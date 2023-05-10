@@ -92,6 +92,9 @@ export default Vue.extend({
             value: tag.value
           }
 
+          // if (parameter.title ==='::AsGlobalPV:Recipe.Kkm.EnableDevice')
+          //   console.log('$$ App.vue: 95 kkt', parameter.title, parameter.value)
+
           if (parameter.title === `::AsGlobalPV:DateTime.Date`) {
             if (parameter.value) {
               const date = parameter.value.split('-')
@@ -102,9 +105,6 @@ export default Vue.extend({
               options.day = +date[2]
 
               this.setControllerDate(options)
-
-              // console.log('$$ App.vue: 129 Date', options.day, options.month, options.year)
-              // console.log('$$ App.vue: 107 Date',  JSON.stringify(this.getControllerDate))
             }
           }
 

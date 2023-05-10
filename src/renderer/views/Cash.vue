@@ -115,8 +115,6 @@ export default Vue.extend({
   },
   mounted() {
     this.setRouter('/cash')
-    // this.setPayType('cash')
-
 
     this.gotoMainMenu(this.getSecondsGotoMainMenu)
   },

@@ -206,6 +206,20 @@ export default {
       }
     },
     /*     */
+    getIsReceipt() {
+      let result
+
+      if (this.getIsKktInstalled) {
+        if (this.getPayType !== 'cash') {
+          result = true
+        } else {
+          result = !this.getCnw
+        }
+      } else {
+        result = false
+      }
+      return result
+    },
 
     async payCashMoney() {
       const method = methods[0]
@@ -240,9 +254,11 @@ export default {
       this.options.params.order = this.order // ??
       this.options.params.detail.order = this.order
 
-      this.getCnw
+      /* this.getCnw 
         ? (this.options.params.detail.kkt_enabled = false)
         : (this.options.params.detail.kkt_enabled = this.getIsKktInstalled)
+      */
+      this.options.params.detail.kkt_enabled = this.getIsReceipt()
 
       const response = await this.storage.getClient(method, this.options, type)
 

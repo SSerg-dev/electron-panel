@@ -25,12 +25,15 @@ export default {
   // mutations
   mutations: {
 
+    // commit('setPayType', 'cash')
     setCoinBalance(state, balance) {
       state.coinBalance = state.coinBalance + balance
-      // console.log('state.coinBalance-->', state.coinBalance)
+      state.payType = 'cash'
+      // console.log('$$ paid.js: 32', state.payType)
     },
     setBanknoteBalance(state, balance) {
       state.banknoteBalance = state.banknoteBalance + balance
+      state.payType = 'cash'
       // console.log('state.banknoteBalance-->', state.banknoteBalance) 
     }
   }, // end mutations

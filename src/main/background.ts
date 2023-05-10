@@ -9,7 +9,7 @@ import {
   getFileName,
   log,
   getSerialDevicesInfo,
-  setIPToLocalSubnet,
+  setIPToLocalSubnet
   // setControllerTime
 } from './utils'
 import OPCUAService from './services/OPCUAService'
@@ -149,7 +149,7 @@ const idle = async (config: any) => {
       OPCUAClient.start(config.type, +options.index)
     })
   }
-  
+
   /* dev hidden */
   if (config.bill_validator) {
     if (
@@ -163,8 +163,7 @@ const idle = async (config: any) => {
       }
     }
   }
-  
-  
+
   if (config.coin_acceptor) {
     if (
       !mConfig ||
@@ -176,9 +175,7 @@ const idle = async (config: any) => {
         isCoinAcceptorConnected && CoinAcceptor.stop()
       }
     }
-  } 
- 
-
+  }
 
   if (config.bank_terminal) {
     const options = {
@@ -397,7 +394,7 @@ const createWindow = () => {
     )
     sendEventToView(mainWindow, 'settings', JSON.stringify(settings))
   })
-
+  /* dev hidden */
   mainWindow.webContents.openDevTools()
 
   mainWindow.webContents.on('did-finish-load', () => {

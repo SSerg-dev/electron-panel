@@ -9,10 +9,14 @@
         <span class="card-title"
           >{{ `Software_version` | localize }} {{ `: ${this.software}` }}</span
         >
-        <span class="card-title">{{`Temperature` | localize}} {{ `: ${getTemperature} C` }}</span>
+        <span class="card-title"
+          >{{ `Temperature` | localize }} {{ `: ${getTemperature} C` }}</span
+        >
 
         <!-- <span class="card-title">Влажность: {{ `${getHumidity} %` }}</span> -->
-        <span class="card-title">{{`Humidity` | localize }} {{ ` : ${getHumidity} %` }}</span>
+        <span class="card-title"
+          >{{ `Humidity` | localize }} {{ ` : ${getHumidity} %` }}</span
+        >
       </div>
     </div>
   </div>
@@ -26,21 +30,20 @@ export default Vue.extend({
   name: 'setting-overview-common',
   data: () => ({
     software: '2.0.0.1',
-    //temperature: null,
-    //humidity: null,
+    temperature: null,
+    humidity: null
   }),
   mounted() {
-    //this.temperature = this.getTemperature
-    //this.humidity = this.getHumidity
-    //console.log('this.humidity-->', this.humidity)
+    this.temperature = this.getTemperature
+    this.humidity = this.getHumidity
+    console.log('$$ setting-overview-common', this.temperature, this.humidity)
   },
   computed: {
     ...mapGetters({
       getsoftware: 'software',
       getTemperature: 'getTemperature',
-      getHumidity: 'getHumidity',
-    }),
-  },
+      getHumidity: 'getHumidity'
+    })
+  }
 })
 </script>
-

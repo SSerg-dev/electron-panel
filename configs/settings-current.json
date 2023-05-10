@@ -93,7 +93,7 @@
   "log_path": "/var/log",
   "type": "wash",
   "ui": {
-    "CNW": false,
+    "CNW": true,
     "isEnable": false,
     "isProgram": true,
     "isProgram2": false,
@@ -107,7 +107,7 @@
     "disk_color": 0,
     "disk_color_type": 0,
     "hide_cursor": true,
-    "main_window": 1,
+    "main_window": true,
     "popup_show": true,
     "popup_timeout": 3,
     "small_screen": false,

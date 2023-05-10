@@ -243,12 +243,25 @@
    -khtml-user-select: none;
    
  }
+ /* dev */
+ .switch label .lever:before, .switch label .lever:after {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  left: 0;
+  top: -3px;
+  transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease, transform .1s ease;
+}
+ /*     */
  .switch label .lever {
    content: "";
    display: inline-block;
    position: relative;
-   width: 36px;
-   height: 14px;
+   width: 48px;
+   height: 24px;
    background-color: rgba(181,181,170,1.38);
    border-radius: 15px;
    margin-right: 10px;

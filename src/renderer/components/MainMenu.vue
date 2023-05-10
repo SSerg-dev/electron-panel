@@ -25,6 +25,7 @@
         <!-- 3 -->
         <li class="collection-item cash" @click="payUp('cash')">
           <div class="card white waves-effect button-style">
+            <!-- <span>&#10003;</span> -->
             <div class="card-content black-text button-content-style">
               💰 {{ 'CASH' | localize }}
             </div>
@@ -42,7 +43,7 @@
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               💳 {{ 'BANK_CARD' | localize }} 
-              <!-- &nbsp <img src="@/assets/imgs/sbp/sbp.svg"  style="width: 5%"/> -->
+              <!-- &nbsp <img src="@/assets/imgs/sbp/sbp.svg"  style="width: 8%"/> -->
             </div>
           </div>
         </li>

@@ -10,6 +10,7 @@ export function synchronize(options) {
   // set controller time to panel
   const { hour, minute, second } = options.time
   result.setHours(+hour, +minute, +second)
+  // result.setHours(11, 1, 32)
 
   return result
 }
