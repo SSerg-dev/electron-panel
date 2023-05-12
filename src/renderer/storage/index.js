@@ -33,14 +33,25 @@ class Storage {
     const options = {
       isCertificate: true
     }
-    ipcRenderer.send('async-certificate-start', options)
+
+    ipcRenderer.invoke('async-certificate-start', options).then((data) => {
+      try {
+        data = JSON.parse(data)
+        this.certificate.cert = data.crt || {}
+        this.certificate.key = data.key || {}
+      } catch (err) {
+        console.warn('async-certificate-start: Error:', err)
+      }
+    })
+
+    /* ipcRenderer.send('async-certificate-start', options)
 
     ipcRenderer.on('async-certificate-reply', (event, bonusCert, bonusKey) => {
       this.certificate.cert = bonusCert || {}
       this.certificate.key = bonusKey || {}
 
       options.isCertificate = false
-    })
+    }) */
   }
 }
 

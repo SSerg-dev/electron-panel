@@ -78,7 +78,7 @@ export default Vue.extend({
       }
     },
 
-    payload(index) {
+    /* payload(index) {
       const options = { index }
       ipcRenderer.send('async-relaunch-start', options)
 
@@ -139,11 +139,77 @@ export default Vue.extend({
           console.warn('App.vue setup() error:', err)
         }
       })
-    },
+    }, */
     setup() {
       // --------------------------------
       // Get global setings in main (electron) process
-      ipcRenderer.on('settings', (evt, data) => {
+      ipcRenderer.invoke('settings').then((data) => {
+        try {
+          data = JSON.parse(data)
+          this.setConfig(data)
+        } catch (err) {
+          console.warn('Error? while parse settings -', err)
+        }
+      })
+
+      ipcRenderer.on('OPCUA', (evt, payload) => {
+        try {
+          const tag = JSON.parse(payload)
+
+          const parameter = {
+            id: Date.now(),
+            title: tag.param,
+            value: tag.value
+          }
+
+          if (parameter.title.includes('AsGlobalPV:DateTime.Date')) {
+            if (parameter.value) {
+              const date = parameter.value.split('-')
+
+              const options = {}
+              options.year = +date[0]
+              options.month = +date[1]
+              options.day = +date[2]
+
+              this.setControllerDate(options)
+
+              // console.log('$$ App.vue: 129 Date', options.day, options.month, options.year)
+              // console.log('$$ App.vue: 107 Date',  JSON.stringify(this.getControllerDate))
+            }
+          }
+
+          if (!parameter.title.includes('AsGlobalPV:DateTime.Time')) {
+            const type = this.getPanelType
+            switch (type) {
+              case 'wash':
+                this.setWetParameters(parameter)
+                break
+              case 'vacuum':
+                this.setDryParameters(parameter)
+                break
+              default:
+                break
+            }
+          } else if (parameter.title.includes('AsGlobalPV:DateTime.Time')) {
+            this.isControllerWork = true
+            this.setIsPingUrl(true)
+
+            if (parameter.value) {
+              const time = parameter.value.split(':')
+
+              const options = {}
+              options.hour = +time[0]
+              options.minute = +time[1]
+              options.second = +time[2]
+
+              this.setControllerTime(options)
+            }
+          }
+        } catch (err) {
+          console.warn('App.vue setup() error:', err)
+        }
+      })
+      /* ipcRenderer.on('settings', (evt, data) => {
         try {
           data = JSON.parse(data)
           this.setConfig(data)
@@ -161,7 +227,7 @@ export default Vue.extend({
         if (params.isPayloadReply) {
           this.payload(params.index)
         }
-      })
+      }) */
       // --------------------------------
 
       const self = this

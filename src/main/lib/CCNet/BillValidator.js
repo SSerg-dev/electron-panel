@@ -68,7 +68,7 @@ class BillValidator extends EventEmitter {
 
     /* dev */
     // this.serial = new SerialPort(this.port, this.portOptions, false);
-    this.serial = new SerialPort( this.portOptions);
+    this.serial = new SerialPort(this.portOptions);
 
     /* On serial open event. */
     this.serial.on('open', function () {
@@ -136,7 +136,7 @@ class BillValidator extends EventEmitter {
    * Get serial open state.
    */
   get isOpen () {
-    return this.serial.isOpen;
+    return this.serial.isOpen();
   }
   
   /* Logics methods -------------------------------------------------------- */
@@ -149,7 +149,7 @@ class BillValidator extends EventEmitter {
     let self = this;
 
     return new Promise(function (resolve, reject) {
-      if (self.serial.isOpen) {
+      if (self.serial.isOpen()) {
         resolve(true);
       } else {
         self.serial.open(function (error) {

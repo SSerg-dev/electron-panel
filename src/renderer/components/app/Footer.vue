@@ -6,7 +6,6 @@
         v-if="this.$route.name === 'program' && getWetProgramName.length > 0"
         class="stop-position"
       >
-        <!-- <div class="stop-position"> -->
         <div
           v-if="this.isDown.stop === false"
           class="button-up-style"
@@ -51,8 +50,7 @@
 
       <!-- input -->
 
-      
-        <div>
+      <!-- <div>
         <div class="input-position">
           <div
             v-if="this.isDown.input === false"
@@ -61,7 +59,7 @@
           >
             <div class="button-title">
               <div style="margin-top: -0.3em;">🚘 &nbsp;</div>
-              {{`INPUT` | localize }}
+              {{ `INPUT` | localize }}
             </div>
           </div>
 
@@ -71,17 +69,15 @@
           >
             <div class="button-title">
               <div style="margin-top: -0.3em;">🚘 &nbsp;</div>
-              {{`INPUT` | localize }}
+              {{ `INPUT` | localize }}
             </div>
           </div>
         </div>
-      </div> 
-     
+      </div> -->
 
       <!-- exit -->
 
-      
-      <div>
+      <!-- <div>
         <div class="exit-position">
           <div
             v-if="this.isDown.exit === false"
@@ -90,22 +86,19 @@
           >
             <div class="button-title">
               <div>🏁 &nbsp;</div>
-              {{`EXIT` | localize}}
+              {{ `EXIT` | localize }}
             </div>
           </div>
 
-          <div
-            v-if="this.isDown.exit === true"
-            class="button-exit-down-style"
-          >
+          <div v-if="this.isDown.exit === true" class="button-exit-down-style">
             <div class="button-title">
               <div>🏁 &nbsp;</div>
-              {{`EXIT` | localize}}
+              {{ `EXIT` | localize }}
             </div>
           </div>
         </div>
-      </div> 
-     
+      </div> -->
+
     </div>
   </div>
 </template>
@@ -306,27 +299,16 @@ export default {
   left: 0;
   bottom: 0.5em;
   opacity: 1;
-  /* #121212 */
-  /* background: linear-gradient(180deg, #505cad 1.62%, #5b68bb 100%); */
-  /* #262531  #353450*/
   background: linear-gradient(180deg, #323232, #131313 100%);
   box-shadow: 0px -15px 10px #393758;
 }
 
-/* .button-title-long {
-  color: white;
-  text-transform: uppercase;
-  font-size: 3em;
-  font-weight: bold;
-  font-family: 'Plumb-Medium';
-} */
 
 /* common footer */
 .button-title {
   padding-top: 0.3em;
   padding-left: 0;
   font-size: 2.8em;
-  /* font-family: 'arial'; */
   text-shadow: 2px 2px 2px silver, -2px 2px 2px silver;
 
   display: flex;
@@ -338,12 +320,11 @@ export default {
 .operator-position {
   position: fixed;
   bottom: 2em;
-  /* left: 0; */
-  right: 25.25em;
+  right: 16em; /* 25.25em; */
 }
 .button-operator-up-style {
   padding-left: 0em;
-  width: 24em;
+  width: 42em; /* 24em; */
   height: 6em;
   color: #000;
   background: linear-gradient(45deg, #00e5ff, #bfe5f5, #18ffff);
@@ -353,7 +334,7 @@ export default {
 }
 .button-operator-down-style {
   padding-left: 0em;
-  width: 24em;
+  width: 42em; /* 24em; */
   height: 6.2em;
   color: #18ffff;
   background: rgb(255, 255, 255);
@@ -367,7 +348,6 @@ export default {
   position: fixed;
   bottom: 2em;
   left: 0.5em;
-  /* right: 23em; */
 }
 .button-input-up-style {
   padding-left: 0em;
@@ -376,7 +356,6 @@ export default {
   color: #000;
 
   background: linear-gradient(45deg, #0066ff, #bfe5f5, #0066ff);
-  /* background: #18ffff ; */
 
   border: 0.2em solid #fff;
   border-radius: 1em;

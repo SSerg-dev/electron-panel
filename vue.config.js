@@ -1,5 +1,5 @@
 const path = require('path')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+//const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   devServer: {
@@ -10,22 +10,39 @@ module.exports = {
     devtool: 'source-map'
   },
   chainWebpack: config => {
-    config.resolve.alias.set('@', path.join(__dirname, './src/renderer'))
+    config.resolve.alias.set('@', path.join(__dirname, './src/renderer')),
+    config.plugins.delete('pwa')
   },
   pages: {
     index: {
       entry: './src/renderer/main.js'
     }
   },
-  pluginOptions: {
+  publicPath: process.env.NODE_ENV  ===  'production'  ?  './'  :  '/',
+  /* pluginOptions: {
     electronBuilder: {
       mainProcessFile: './src/main/background.ts',
       nodeIntegration: true,
       externals: ['serialport']
     }
-  },
+  }, */
+  pluginOptions: {
+    electronBuilder: {
+      mainProcessFile: './src/main/background.js',
+      chainWebpackRendererProcess(config) {
+        config.plugins.delete('workbox')
+        config.plugins.delete('pwa')
+      },
+      nodeIntegration: true,
+      externals: [
+        'serialport',
+        'node-opcua'
+      ]
+    }
+},
+
   /* dev */
-  configureWebpack: config => {
+  /* configureWebpack: config => {
     const existingForkTsChecker = config.plugins.filter(
       p => p instanceof ForkTsCheckerWebpackPlugin
     )[0]
@@ -38,6 +55,6 @@ module.exports = {
     forkTsCheckerOptions.memoryLimit = 8192
 
     config.plugins.push(new ForkTsCheckerWebpackPlugin(forkTsCheckerOptions))
-  }
+  } */
   /*     */
 }

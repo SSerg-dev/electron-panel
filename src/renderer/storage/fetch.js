@@ -53,9 +53,9 @@ const types = [
 class Fetch {
   constructor(certificate) {
     this.httpsAgent = new require('https').Agent({
-      rejectUnauthorized: false
-      // cert: certificate.cert,
-      // key: certificate.key
+      //rejectUnauthorized: false
+       cert: certificate.cert,
+       key: certificate.key
     })
     this.httpsAgentDirect = new require('https').Agent({
       cert: certificate.cert,
