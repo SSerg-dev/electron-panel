@@ -2,6 +2,7 @@
   <div v-if="getIsFooter">
     <div class="footer-panel white-text">
       <!-- stop -->
+      
       <div
         v-if="this.$route.name === 'program' && getWetProgramName.length > 0"
         class="stop-position"
@@ -116,6 +117,7 @@ export default {
     timeoutPopup: null,
     timeoutDelay: null,
     delay: 500,
+    isVisible: false,
     isDown: {
       stop: false,
       operator: false,
@@ -148,7 +150,7 @@ export default {
   },
   watch: {
     getWetProgramName(flag) {
-      // console.log('$$ flag.length', flag.length)
+      // console.log('$$ Footer.vue: 157', flag)
     },
 
     /* dev */

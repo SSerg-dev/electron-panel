@@ -142,7 +142,7 @@ export default Vue.extend({
     }, */
     setup() {
       // --------------------------------
-      // Get global setings in main (electron) process
+      // Get global setings in main (electron) process 
       ipcRenderer.invoke('settings').then((data) => {
         try {
           data = JSON.parse(data)

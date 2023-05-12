@@ -34,7 +34,7 @@ class Storage {
       isCertificate: true
     }
 
-    ipcRenderer.invoke('async-certificate-start', options).then((data) => {
+    /* ipcRenderer.invoke('async-certificate-start', options).then((data) => {
       try {
         data = JSON.parse(data)
         this.certificate.cert = data.crt || {}
@@ -42,16 +42,16 @@ class Storage {
       } catch (err) {
         console.warn('async-certificate-start: Error:', err)
       }
-    })
+    }) */
 
-    /* ipcRenderer.send('async-certificate-start', options)
+    ipcRenderer.send('async-certificate-start', options)
 
-    ipcRenderer.on('async-certificate-reply', (event, bonusCert, bonusKey) => {
-      this.certificate.cert = bonusCert || {}
-      this.certificate.key = bonusKey || {}
+    ipcRenderer.on('async-certificate-reply', (event, dataCert, dataKey) => {
+      this.certificate.cert = dataCert || {}
+      this.certificate.key = dataKey || {}
 
       options.isCertificate = false
-    }) */
+    })
   }
 }
 

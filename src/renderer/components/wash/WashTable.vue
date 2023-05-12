@@ -932,6 +932,7 @@ export default {
         this.setKeys()
         this.setup()
       }, (this.delay = 1000))
+      
     }
     // this.setup()
   },
