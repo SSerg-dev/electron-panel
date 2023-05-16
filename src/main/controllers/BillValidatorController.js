@@ -15,6 +15,7 @@ import { EventEmitter } from 'events'
 
 import { log } from '../utils'
 import CCNet from '../services/CCNetService'
+// import { CCNet } from 'cashcode-bv'
 import * as conf from '../config'
 
 const TAG = 'BILL_VALIDATOR'

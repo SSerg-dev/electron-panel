@@ -92,9 +92,6 @@ export default Vue.extend({
             value: tag.value
           }
 
-          // if (parameter.title ==='::AsGlobalPV:Recipe.Kkm.EnableDevice')
-          //   console.log('$$ App.vue: 95 kkt', parameter.title, parameter.value)
-
           if (parameter.title === `::AsGlobalPV:DateTime.Date`) {
             if (parameter.value) {
               const date = parameter.value.split('-')
@@ -143,6 +140,7 @@ export default Vue.extend({
     setup() {
       // --------------------------------
       // Get global setings in main (electron) process 
+
       ipcRenderer.invoke('settings').then((data) => {
         try {
           data = JSON.parse(data)
@@ -152,7 +150,8 @@ export default Vue.extend({
         }
       })
 
-      ipcRenderer.on('OPCUA', (evt, payload) => {
+
+      ipcRenderer.on('OPCUA', (evt, payload) => { 
         try {
           const tag = JSON.parse(payload)
 
@@ -173,8 +172,6 @@ export default Vue.extend({
 
               this.setControllerDate(options)
 
-              // console.log('$$ App.vue: 129 Date', options.day, options.month, options.year)
-              // console.log('$$ App.vue: 107 Date',  JSON.stringify(this.getControllerDate))
             }
           }
 
@@ -209,25 +206,26 @@ export default Vue.extend({
           console.warn('App.vue setup() error:', err)
         }
       })
-      /* ipcRenderer.on('settings', (evt, data) => {
-        try {
-          data = JSON.parse(data)
-          this.setConfig(data)
-        } catch (err) {
-          console.warn('Error? while parse settings -', err)
-        }
-      })
 
-      const options = {
-        isPayload: true
-      }
-      ipcRenderer.send('async-payload-start', options)
+      // ipcRenderer.on('settings', (evt, data) => {
+      //   try {
+      //     data = JSON.parse(data)
+      //     this.setConfig(data)
+      //   } catch (err) {
+      //     console.warn('Error? while parse settings -', err)
+      //   }
+      // })
 
-      ipcRenderer.on('async-payload-reply', (event, params) => {
-        if (params.isPayloadReply) {
-          this.payload(params.index)
-        }
-      }) */
+      // const options = {
+      //   isPayload: true
+      // }
+      // ipcRenderer.send('async-payload-start', options)
+
+      // ipcRenderer.on('async-payload-reply', (event, params) => {
+      //   if (params.isPayloadReply) {
+      //     this.payload(params.index)
+      //   }
+      // })
       // --------------------------------
 
       const self = this

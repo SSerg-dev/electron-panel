@@ -91,30 +91,29 @@ GPIO.on('humidity', (value) => {
 /* ----------------------------------------------------------------------- */
 
 const opcURL = 'opc.tcp://192.168.1.2:4840/'
+let OPCUAClient = new OPCUAService(opcURL)
 
 /* leodimark */
-const OPCUAClient = new OPCUAService(opcURL)
+
 OPCUAClient.on('change', (payload) => {
   isOPCUAConnected = true
   sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))
 })
 
 /* dev */
-// let OPCUAClient = new OPCUAService(opcURL)
-
-// ipcMain.on('async-payload-start', (event, options) => {
-//   if (options.isPayload) {
-//     OPCUAClient.on('change', (payload) => {
-//       isOPCUAConnected = true
-//       sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))
-//     })
-//     const params = {
-//       isPayloadReply: true,
-//       index: mConfig.index,
-//     }
-//     event.sender.send('async-payload-reply', params)
-//   }
-// })
+/* ipcMain.on('async-payload-start', (event, options) => {
+  if (options.isPayload) {
+    OPCUAClient.on('change', (payload) => {
+      isOPCUAConnected = true
+      sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))
+    })
+    const params = {
+      isPayloadReply: true,
+      index: mConfig.index,
+    }
+    event.sender.send('async-payload-reply', params)
+  }
+}) */
 /*     */
 
 /* ----------------------------------------------------------------------- */
@@ -150,7 +149,7 @@ const loadConfig = async () => {
       rawdata = readFileSync('./configs/settings-default.json', 'utf-8')
       log(TAG, 'SETTINGS FROM settings-default.json')
     }
-
+   
     const settings = JSON.parse(rawdata.toString())
     log(TAG, 'SETTINGS', JSON.stringify(settings))
 
@@ -252,8 +251,8 @@ const data = new DataService()
     settings = await loadConfig()
     startup(settings)
     data.start(settings)
-    CoinAcceptor.on('current-coin', coin => data.calcCoin(coin))
-    BillValidator.on('current-bill', bill => data.calcBill(bill))
+    CoinAcceptor.on('current-coin', (coin) => data.calcCoin(coin))
+    BillValidator.on('current-bill', (bill) => data.calcBill(bill))
   } catch (err) {
     log(TAG, "Application dont't started, cause setting file is wrong:", err)
     setTimeout(() => {
@@ -325,7 +324,7 @@ ipcMain.on('door2', (evt, data) => {
 
 /* */
 ipcMain.on('OPCUA', async (evt, data) => {
-  log(TAG, 'Trying to send data from renderer to B&R...')
+  log(TAG, 'Trying to send data from renderer to B&R...', JSON.stringify(data))
   try {
     data = JSON.parse(data)
     const status = await OPCUAClient.send(data.node, data.value)
@@ -336,7 +335,7 @@ ipcMain.on('OPCUA', async (evt, data) => {
 })
 
 /* */
-ipcMain.on('async-relaunch-app', (event, options) => {
+ipcMain.on('', (event, options) => {
   log(TAG, '"async-relaunch-app" from renderer', options)
   if (options.isRelaunch) {
     app.relaunch({ args: process.argv.slice(1).concat(['--relaunch']) })
@@ -348,14 +347,6 @@ ipcMain.handle('settings', async (event, options) => {
   log(TAG, '"settings" from renderer', options)
   return JSON.stringify(settings)
 })
-
-/* 
-  ipcMain.handle('async-certificate-start', async (event, options) => {
-  log(TAG, '"async-certificate-start" from renderer', options)
-  this.certificate.cert = data.crt || {}
-  this.certificate.key = data.key || {}
-}) 
-*/
 
 /* ----------------------------------------------------------------------- */
 /* Create Main Window */

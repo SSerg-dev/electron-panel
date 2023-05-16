@@ -268,9 +268,11 @@ class OPCUAService extends EventEmitter {
           const value = String(dataValue.value.value)
           const nodeId = String(monitoredItem.itemToMonitor.nodeId.value)
           const obj = { param: nodeId, value: value }
-          //if (nodeId.indexOf('DateTime') < 0) {
+            
+          if (obj.param.toString() !== `::AsGlobalPV:DateTime.Time`) {
             log(TAG, 'new data:', JSON.stringify(obj))
-          //}
+          }
+          
           this.emit('change', obj)
         } catch (err) {
           log(TAG, err)

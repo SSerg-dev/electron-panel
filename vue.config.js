@@ -1,5 +1,4 @@
 const path = require('path')
-//const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   devServer: {
@@ -19,13 +18,7 @@ module.exports = {
     }
   },
   publicPath: process.env.NODE_ENV  ===  'production'  ?  './'  :  '/',
-  /* pluginOptions: {
-    electronBuilder: {
-      mainProcessFile: './src/main/background.ts',
-      nodeIntegration: true,
-      externals: ['serialport']
-    }
-  }, */
+
   pluginOptions: {
     electronBuilder: {
       mainProcessFile: './src/main/background.js',
@@ -40,21 +33,4 @@ module.exports = {
       ]
     }
 },
-
-  /* dev */
-  /* configureWebpack: config => {
-    const existingForkTsChecker = config.plugins.filter(
-      p => p instanceof ForkTsCheckerWebpackPlugin
-    )[0]
-
-    config.plugins = config.plugins.filter(
-      p => !(p instanceof ForkTsCheckerWebpackPlugin)
-    )
-
-    const forkTsCheckerOptions = existingForkTsChecker.options
-    forkTsCheckerOptions.memoryLimit = 8192
-
-    config.plugins.push(new ForkTsCheckerWebpackPlugin(forkTsCheckerOptions))
-  } */
-  /*     */
 }

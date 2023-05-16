@@ -44,6 +44,7 @@ class Storage {
       }
     }) */
 
+    
     ipcRenderer.send('async-certificate-start', options)
 
     ipcRenderer.on('async-certificate-reply', (event, dataCert, dataKey) => {
@@ -51,7 +52,8 @@ class Storage {
       this.certificate.key = dataKey || {}
 
       options.isCertificate = false
-    })
+    }) 
+   
   }
 }
 
