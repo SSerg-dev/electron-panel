@@ -55,6 +55,7 @@ export default {
           JSON.stringify({
             node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
               1}].paidMoney`,
+              // 1}].prepaymentMoney`,
             value: getters.getCoinBalance + getters.getBanknoteBalance
           })
         )
@@ -75,6 +76,7 @@ export default {
           JSON.stringify({
             node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
               1}].paidMoney`,
+              // 1}].prepaymentMoney`,
             value: getters.getCoinBalance + getters.getBanknoteBalance
           })
         )
@@ -96,6 +98,7 @@ export default {
           JSON.stringify({
             node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
               1}].paidMoney`,
+              // 1}].prepaymentMoney`,
             value: getters.getCoinBalance + getters.getBanknoteBalance
           })
         )
@@ -116,6 +119,7 @@ export default {
           JSON.stringify({
             node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
               1}].paidMoney`,
+              // 1}].prepaymentMoney`,
             value: getters.getCoinBalance + getters.getBanknoteBalance
           })
         )

@@ -12,6 +12,7 @@ import countries from './countries'
 import languages from './languages'
 import alarms from './alarms'
 import sleep from '@/utils/sleep'
+import { compareVersion } from '@/utils/common.functions'
 
 import { ipcRenderer } from 'electron'
 import { result } from 'lodash'
@@ -156,7 +157,8 @@ export default new Vuex.Store({
     globalParameters: {
       fixedCurrency: '',
       isMenuUnlock: '',
-      isStandFree: ''
+      isStandFree: '',
+      swVersion: ''
     },
     kktParameters: {
       isKktInstalled: false
@@ -245,8 +247,8 @@ export default new Vuex.Store({
           'OPCUA',
           JSON.stringify({
             node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
-              // 1}].paidMoney`,
-              1}].prepaymentMoney`,
+              1}].paidMoney`,
+              // 1}].prepaymentMoney`,
             value: cash
           })
         )
@@ -294,6 +296,7 @@ export default new Vuex.Store({
           JSON.stringify({
             node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
               1}].paidMoneyCard`,
+              // 1}].prepaymentMoney`,
             value: card
           })
         )
@@ -354,8 +357,8 @@ export default new Vuex.Store({
           'OPCUA',
           JSON.stringify({
             node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
-              /*   1}].paidMoney`, */
-              1}].prepaymentMoney`,
+              1}].paidMoney`,
+              // 1}].prepaymentMoney`,
             value: cash
           })
         )
@@ -544,17 +547,6 @@ export default new Vuex.Store({
     getDryBusyPanel(state) {
       return state.dryParameters.busy
     },
-    getFixedCurrency(state) {
-      // ::AsGlobalPV:gFixedCurrency.digits
-      return state.globalParameters.fixedCurrency
-    },
-    getIsMenuUnlock(state) {
-      return state.globalParameters.isMenuUnlock
-    },
-    // StandbyFreeEnable
-    getIsStandbyFreeEnable(state) {
-      return state.globalParameters.isStandFree || false
-    },
 
     getDryOrder(state) {
       return state.dryParameters.order
@@ -568,6 +560,22 @@ export default new Vuex.Store({
     },
     // END DRY
 
+    // Global programs
+    getFixedCurrency(state) {
+      return state.globalParameters.fixedCurrency
+    },
+    getIsMenuUnlock(state) {
+      return state.globalParameters.isMenuUnlock
+    },
+    getIsStandbyFreeEnable(state) {
+      return state.globalParameters.isStandFree || false
+    },
+    getSwVersion(state) {
+      return state.globalParameters.swVersion
+    },
+    
+
+    
     info: s => s.info,
 
     getPaginate(state) {
@@ -777,6 +785,9 @@ export default new Vuex.Store({
         case 'StandbyFreeEnable':
           state.globalParameters.isStandFree =
             parameter.value === 'true' ? true : false
+        case 'swVersion':
+          state.globalParameters.swVersion = parameter.value
+          // console.log('$$ index.js: 789', state.globalParameters.swVersion)
 
         // end common parameters
 

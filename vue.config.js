@@ -3,21 +3,21 @@ const path = require('path')
 module.exports = {
   devServer: {
     host: '0.0.0.0',
-    port: 8080
+    port: 8080,
   },
   configureWebpack: {
-    devtool: 'source-map'
+    devtool: 'source-map',
   },
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config.resolve.alias.set('@', path.join(__dirname, './src/renderer')),
-    config.plugins.delete('pwa')
+      config.plugins.delete('pwa')
   },
   pages: {
     index: {
-      entry: './src/renderer/main.js'
-    }
+      entry: './src/renderer/main.js',
+    },
   },
-  publicPath: process.env.NODE_ENV  ===  'production'  ?  './'  :  '/',
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
 
   pluginOptions: {
     electronBuilder: {
@@ -27,10 +27,8 @@ module.exports = {
         config.plugins.delete('pwa')
       },
       nodeIntegration: true,
-      externals: [
-        'serialport',
-        'node-opcua'
-      ]
-    }
-},
+      externals: ['serialport', 'node-opcua'],
+    },
+    
+  },
 }

@@ -330,7 +330,7 @@ ipcMain.on('OPCUA', async (evt, data) => {
     const status = await OPCUAClient.send(data.node, data.value)
     log(TAG, 'Data sent:', `status=${status}, ${data.node} = ${data.value}`)
   } catch (err) {
-    log(TAG, 'Send data to R&B Error:', err)
+    log(TAG, 'Send data to R&B Error:', err) 
   }
 })
 
@@ -395,7 +395,7 @@ const createWindow = () => {
 
   if (isDev) {
     mainWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
   } else {
     createProtocol('app')
     mainWindow.loadURL('app://./index.html')

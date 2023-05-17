@@ -99,7 +99,7 @@ export default Vue.extend({
           const observer = bankTerminal.observerItem
           if (observer) stream$.subscribe(observer)
         }
-
+        console.log('$$ Card.vue: 102', options.type, this.isInitBankTerminal)
         switch (options.type) {
           case 'vendotek':
             !this.isInitBankTerminal
@@ -119,6 +119,7 @@ export default Vue.extend({
     },
 
     flowSequenceVendotek(item) {
+      console.log('$$ Card.vue: 122', this.card, BCNet.VENDOTEK_MONEY_SCALE)
       const amount = this.card * BCNet.VENDOTEK_MONEY_SCALE
       item.pay(amount)
       item.sendFINAL()

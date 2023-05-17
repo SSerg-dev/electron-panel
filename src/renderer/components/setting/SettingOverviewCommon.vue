@@ -29,20 +29,23 @@ import { mapGetters } from 'vuex'
 export default Vue.extend({
   name: 'setting-overview-common',
   data: () => ({
-    software: '2.0.0.1',
+    software: 'XX.XX.XX',
     temperature: null,
     humidity: null
   }),
   mounted() {
+    this.software = this.getSwVersion,
     this.temperature = this.getTemperature
     this.humidity = this.getHumidity
     console.log('$$ setting-overview-common', this.temperature, this.humidity)
   },
   computed: {
     ...mapGetters({
-      getsoftware: 'software',
+      // getsoftware: 'software',
       getTemperature: 'getTemperature',
-      getHumidity: 'getHumidity'
+      getHumidity: 'getHumidity',
+      getSwVersion: 'getSwVersion'
+
     })
   }
 })

@@ -18,9 +18,9 @@
           </h3>
         </div>
 
-        <div>
+        <!-- <div>
           <img src="@/assets/imgs/arrow/arrow.png" />
-        </div>
+        </div> -->
 
         <div v-if="loading">
           <loader
@@ -128,11 +128,10 @@ export default Vue.extend({
             }
             break
           case 'vendotek':
-            // console.log('$$ this.observer.state', this.observer.state)  
+            console.log('$$ this.observer.state', this.observer.state)
             if (
-              +this.observer.state > 0 
+              +this.observer.state > 0
               // && +this.observer.state === +this.card
-
             ) {
               this.cardMessageIndex = 3
               this.setStatusBillMessagesIndex(this.cardMessageIndex)
@@ -150,7 +149,6 @@ export default Vue.extend({
               }, 2000)
 
               if (this.$route.name !== 'home') this.$router.push('/')
-
             }
             break
 
@@ -160,7 +158,13 @@ export default Vue.extend({
       }, 1000)
     },
     resolve(type) {
-      if (type === 'vendotek') this.observer.state /= BCNet.VENDOTEK_MONEY_SCALE
+      if (
+        type === 'vendotek' &&
+        +this.observer.state >= BCNet.VENDOTEK_MONEY_SCALE
+      ) {
+        this.observer.state /= BCNet.VENDOTEK_MONEY_SCALE
+      }
+        
 
       this.cardMessageIndex = 3
       this.setStatusBillMessagesIndex(this.cardMessageIndex)
@@ -168,6 +172,7 @@ export default Vue.extend({
       const panelType = this.getPanelType
       switch (panelType) {
         case 'wash':
+          // console.log('$$ Status.vue: 175', this.observer.state)
           this.updateWetMoney(this.observer.state)
           break
         case 'vacuum':
@@ -179,15 +184,15 @@ export default Vue.extend({
       }
 
       // this.$message(`Операция терминала ${type} одобрена, сумма:  ${this.observer.state}`)
-     this.$message(
-      localizeFilter(`${messages.Terminal_operation}`) +
-      `  ` + 
-      `${type}` +
-      `  ` +
-      localizeFilter(`${messages.approved}`) +
-      `  ` +
-      `${this.observer.state}`
-     )
+      this.$message(
+        localizeFilter(`${messages.Terminal_operation}`) +
+          `  ` +
+          `${type}` +
+          `  ` +
+          localizeFilter(`${messages.approved}`) +
+          `  ` +
+          `${this.observer.state}`
+      )
 
       //seconds = 0
       this.setCardBonusState()
@@ -196,14 +201,14 @@ export default Vue.extend({
     reject(type) {
       // this.$message(`Операция терминала ${type} отклонена`)
       this.$message(
-      localizeFilter(`${messages.Terminal_operation}`) +
-      `  ` + 
-      `${type}` +
-      `  ` +
-      localizeFilter(`${messages.rejected}`) +
-      `  ` +
-      `${this.observer.state}`
-     )
+        localizeFilter(`${messages.Terminal_operation}`) +
+          `  ` +
+          `${type}` +
+          `  ` +
+          localizeFilter(`${messages.rejected}`) +
+          `  ` +
+          `${this.observer.state}`
+      )
 
       this.$router.push('/')
     },
