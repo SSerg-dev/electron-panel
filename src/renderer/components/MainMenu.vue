@@ -162,7 +162,8 @@ export default Vue.extend({
 
       setIsCardMoney: 'setIsCardMoney',
       setIsBonusMoney: 'setIsBonusMoney',
-      setPayType: 'setPayType'
+      setPayType: 'setPayType',
+      setPrevRouter: 'setPrevRouter',
     }),
 
     payUp(program) {
@@ -182,6 +183,7 @@ export default Vue.extend({
           this.$router.push('/card')
           break
         case 'cost':
+          this.setPrevRouter('/')
           this.$router.push('/cost')
           break
         case 'cash':

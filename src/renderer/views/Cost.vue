@@ -1,20 +1,32 @@
 <template>
   <div>
-      <div  class="back">
+    <!-- <div  class="back">
         <router-link to="/">
           <div>
             <img src="@/assets/imgs/key/back.png" />
           </div>
         </router-link>
+      </div> -->
+
+    <div class="back">
+      <div @click="setProgram('program')">
+        <div>
+          <img src="@/assets/imgs/key/back.png" />
+        </div>
       </div>
-    
+    </div>
+
     <div class="list">
       <div>
         <CostList :costs="items" />
       </div>
     </div>
-    
-    <div v-if="getPanelType !== 'vacuum'" class="paginate" style="padding-left: 8em;">
+
+    <div
+      v-if="getPanelType !== 'vacuum'"
+      class="paginate"
+      style="padding-left: 8em"
+    >
       <Paginate
         v-model="page"
         :page-count="pageCount"
@@ -24,7 +36,6 @@
         :container-class="'pagination'"
       />
     </div>
-
   </div>
 </template>
 
@@ -55,7 +66,7 @@ export default Vue.extend({
     dryBusyProg: [],
 
     intervalMainMenu: null,
-    date: null
+    date: null,
   }), // End Data
   computed: {
     ...mapGetters({
@@ -68,15 +79,26 @@ export default Vue.extend({
       getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
       getParamsChange: 'getParamsChange',
       getActiveProgNames: 'getActiveProgNames',
-      getPanelType: 'getPanelType'
-    })
+      getPanelType: 'getPanelType',
+      getPrevRouter: 'getPrevRouter',
+    }),
   },
   methods: {
     ...mapMutations({
-      setRouter: 'setRouter'
+      setRouter: 'setRouter',
     }),
     setDown() {
       this.isDown = !this.isDown
+    },
+    setProgram(program) {
+      program = this.getPrevRouter || '/'
+      if (program === '/program') {
+        this.$router.push('/program')
+      } else if (program === '/') {
+        this.$router.push('/')
+      } else {
+        this.$router.push('/')
+      }
     },
 
     getActiveProgBit() {
@@ -101,7 +123,6 @@ export default Vue.extend({
     },
 
     setActiveProg() {
-      
       this.activeProg = [...this.getActiveProgBit()].reverse().join('')
       // console.log('$$ Cost.vue: 106', this.getWetProgPrice)
 
@@ -146,7 +167,7 @@ export default Vue.extend({
     },
 
     selectActiveProg(name) {
-      return this.getActiveProgNames.find(p => p === name)
+      return this.getActiveProgNames.find((p) => p === name)
     },
 
     gotoMainMenu(seconds) {
@@ -162,7 +183,7 @@ export default Vue.extend({
     },
     setTurboItems(costs) {
       let prices = costs.filter(
-        c =>
+        (c) =>
           c.name === 'waterShampoo_turbo' ||
           c.name === 'warmWater_turbo' ||
           c.name === 'waxProtection_turbo' ||
@@ -176,14 +197,14 @@ export default Vue.extend({
 
     setTurboItem(price) {
       const name = price.name.slice(0, -6)
-      const index = this.costs.findIndex(c => c.name === name)
+      const index = this.costs.findIndex((c) => c.name === name)
       this.costs[index].priceTurbo = price.price
     },
     ...mapGetters({
       // getCosts: 'getCosts',
       getDryCosts: 'getDryCosts',
-      getPrograms: 'getPrograms'
-    })
+      getPrograms: 'getPrograms',
+    }),
   },
   mounted() {
     this.setRouter('/cost')
@@ -191,7 +212,6 @@ export default Vue.extend({
     const type = this.getPanelType
     switch (type) {
       case 'wash':
-
         this.actives = [...this.getPrograms()]
         this.costs = this.actives
         // console.log('$$ Cost.vue: 196', JSON.stringify(this.actives))
@@ -212,8 +232,8 @@ export default Vue.extend({
     }
 
     const displayCosts = this.costs
-      .filter(cost => cost.display === '1')
-      .filter(cost => cost.mode !== 'hide')
+      .filter((cost) => cost.display === '1')
+      .filter((cost) => cost.mode !== 'hide')
 
     /* common     */
     this.setupPagination(displayCosts)
@@ -225,8 +245,8 @@ export default Vue.extend({
   },
 
   components: {
-    CostList
-  }
+    CostList,
+  },
 })
 </script>
 
@@ -265,8 +285,6 @@ export default Vue.extend({
 h4 {
   color: white;
 }
-
-
 
 .paginate {
   font-size: 1em;

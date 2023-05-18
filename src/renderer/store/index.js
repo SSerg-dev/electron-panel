@@ -288,7 +288,7 @@ export default new Vuex.Store({
       }
     },
     // card
-    updateDryCardMoney({ getters }, card) {
+    /* updateDryCardMoney({ getters }, card) {
       console.log('Card update-->', card)
       try {
         ipcRenderer.send(
@@ -296,14 +296,13 @@ export default new Vuex.Store({
           JSON.stringify({
             node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
               1}].paidMoneyCard`,
-              // 1}].prepaymentMoney`,
             value: card
           })
         )
       } catch (e) {
         console.warn('Error:', e.message)
       }
-    },
+    }, */
 
     // end Платежи ----------------------
     // end Dry actions ==================
@@ -367,9 +366,6 @@ export default new Vuex.Store({
       }
     },
 
-    /* 
-    updateWetCardMoney
-    */
     // сервисные деньги
     updateWetServMoney({ getters }, service) {
       try {

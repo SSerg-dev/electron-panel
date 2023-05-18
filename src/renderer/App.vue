@@ -23,7 +23,7 @@ export default Vue.extend({
   data: () => ({
     intervalControllerWork: null,
     isControllerWork: false,
-    delay: 6000
+    delay: 6000,
   }),
   computed: {
     layout() {
@@ -36,18 +36,18 @@ export default Vue.extend({
       getPanelType: 'getPanelType',
       getControllerTime: 'getControllerTime',
       getControllerDate: 'getControllerDate',
-      getIsStandbyFreeEnable: 'getIsStandbyFreeEnable'
-    })
+      getIsStandbyFreeEnable: 'getIsStandbyFreeEnable',
+    }),
   },
   watch: {
     getPanelNumber(flag) {},
     getVacuumNumber(flag) {},
     getPanelType(flag) {},
-    getIsStandbyFreeEnable(flag) {}
+    getIsStandbyFreeEnable(flag) {},
   },
   components: {
     EmptyLayout,
-    MainLayout
+    MainLayout,
   },
   methods: {
     ...mapMutations({
@@ -56,7 +56,7 @@ export default Vue.extend({
       setDryBalance: 'setDryBalance',
       setIsPingUrl: 'setIsPingUrl',
       setControllerTime: 'setControllerTime',
-      setControllerDate: 'setControllerDate'
+      setControllerDate: 'setControllerDate',
     }),
     checkControllerWork() {
       this.intervalControllerWork = setInterval(() => {
@@ -78,7 +78,7 @@ export default Vue.extend({
       }
     },
 
-    /* payload(index) {
+    payload(index) {
       const options = { index }
       ipcRenderer.send('async-relaunch-start', options)
 
@@ -89,10 +89,11 @@ export default Vue.extend({
           const parameter = {
             id: Date.now(),
             title: tag.param,
-            value: tag.value
+            value: tag.value,
           }
 
-          if (parameter.title === `::AsGlobalPV:DateTime.Date`) {
+          // if (parameter.title === `::AsGlobalPV:DateTime.Date`) {
+          if (parameter.title.includes('AsGlobalPV:DateTime.Date')) {
             if (parameter.value) {
               const date = parameter.value.split('-')
 
@@ -105,7 +106,8 @@ export default Vue.extend({
             }
           }
 
-          if (parameter.title !== `::AsGlobalPV:DateTime.Time`) {
+          // if (parameter.title !== `::AsGlobalPV:DateTime.Time`) {
+          if (!parameter.title.includes('AsGlobalPV:DateTime.Time')) {
             const type = this.getPanelType
             switch (type) {
               case 'wash':
@@ -117,7 +119,8 @@ export default Vue.extend({
               default:
                 break
             }
-          } else if (parameter.title === `::AsGlobalPV:DateTime.Time`) {
+            // } else if (parameter.title === `::AsGlobalPV:DateTime.Time`) {
+          } else if (parameter.title.includes('AsGlobalPV:DateTime.Time')) {
             this.isControllerWork = true
             this.setIsPingUrl(true)
 
@@ -136,10 +139,10 @@ export default Vue.extend({
           console.warn('App.vue setup() error:', err)
         }
       })
-    }, */
+    },
     setup() {
       // --------------------------------
-      // Get global setings in main (electron) process 
+      // Get global setings in main (electron) process
 
       ipcRenderer.invoke('settings').then((data) => {
         try {
@@ -150,8 +153,7 @@ export default Vue.extend({
         }
       })
 
-
-      ipcRenderer.on('OPCUA', (evt, payload) => { 
+      /* ipcRenderer.on('OPCUA', (evt, payload) => { 
         try {
           const tag = JSON.parse(payload)
 
@@ -205,7 +207,7 @@ export default Vue.extend({
         } catch (err) {
           console.warn('App.vue setup() error:', err)
         }
-      })
+      }) */
 
       // ipcRenderer.on('settings', (evt, data) => {
       //   try {
@@ -216,16 +218,16 @@ export default Vue.extend({
       //   }
       // })
 
-      // const options = {
-      //   isPayload: true
-      // }
-      // ipcRenderer.send('async-payload-start', options)
+      const options = {
+        isPayload: true,
+      }
+      ipcRenderer.send('async-payload-start', options)
 
-      // ipcRenderer.on('async-payload-reply', (event, params) => {
-      //   if (params.isPayloadReply) {
-      //     this.payload(params.index)
-      //   }
-      // })
+      ipcRenderer.on('async-payload-reply', (event, params) => {
+        if (params.isPayloadReply) {
+          this.payload(params.index)
+        }
+      })
       // --------------------------------
 
       const self = this
@@ -244,6 +246,7 @@ export default Vue.extend({
       })
 
       ipcRenderer.on('banknote', (event, args) => {
+        console.log('$$ App.vue: 249', args)
         const type = this.getPanelType
         switch (type) {
           case 'wash':
@@ -270,7 +273,7 @@ export default Vue.extend({
       setWetParameters: 'setWetParameters',
       setHumidity: 'setHumidity',
       setTemperature: 'setTemperature',
-      setDryParameters: 'setDryParameters'
+      setDryParameters: 'setDryParameters',
     }),
     ...mapGetters({}),
     ...mapActions({
@@ -280,8 +283,8 @@ export default Vue.extend({
       updateDryBanknoteBalance: 'updateDryBanknoteBalance',
 
       updateCoinBalance: 'updateCoinBalance',
-      updateBanknoteBalance: 'updateBanknoteBalance'
-    })
+      updateBanknoteBalance: 'updateBanknoteBalance',
+    }),
   },
 
   mounted() {
@@ -293,7 +296,7 @@ export default Vue.extend({
 
   beforeDestroy() {
     clearInterval(this.intervalControllerWork)
-  }
+  },
 })
 </script>
 

@@ -9,6 +9,7 @@ import {
   getFileName,
   log,
   getSerialDevicesInfo,
+  wait
 } from './utils'
 
 import GPIOService from './services/GPIOService'
@@ -95,13 +96,13 @@ let OPCUAClient = new OPCUAService(opcURL)
 
 /* leodimark */
 
-OPCUAClient.on('change', (payload) => {
+/* OPCUAClient.on('change', (payload) => {
   isOPCUAConnected = true
   sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))
-})
+}) */
 
 /* dev */
-/* ipcMain.on('async-payload-start', (event, options) => {
+ipcMain.on('async-payload-start', (event, options) => {
   if (options.isPayload) {
     OPCUAClient.on('change', (payload) => {
       isOPCUAConnected = true
@@ -113,17 +114,17 @@ OPCUAClient.on('change', (payload) => {
     }
     event.sender.send('async-payload-reply', params)
   }
-}) */
+})
 /*     */
 
 /* ----------------------------------------------------------------------- */
 /* */
 const BillValidator = new BillValidatorController()
 BillValidator.on('connect', () => (isBillValidatorConnected = true))
-BillValidator.on('stacked', (bill) =>
-  sendEventToView(mainWindow, 'banknot', bill)
-)
-
+BillValidator.on('stacked', (bill) => {
+  // console.log('$$ background.js: 124', bill)
+  sendEventToView(mainWindow, 'banknote', bill)
+})
 /* ----------------------------------------------------------------------- */
 /* */
 const CoinAcceptor = new CoinAcceptorController()
@@ -149,7 +150,7 @@ const loadConfig = async () => {
       rawdata = readFileSync('./configs/settings-default.json', 'utf-8')
       log(TAG, 'SETTINGS FROM settings-default.json')
     }
-   
+
     const settings = JSON.parse(rawdata.toString())
     log(TAG, 'SETTINGS', JSON.stringify(settings))
 
@@ -330,7 +331,7 @@ ipcMain.on('OPCUA', async (evt, data) => {
     const status = await OPCUAClient.send(data.node, data.value)
     log(TAG, 'Data sent:', `status=${status}, ${data.node} = ${data.value}`)
   } catch (err) {
-    log(TAG, 'Send data to R&B Error:', err) 
+    log(TAG, 'Send data to R&B Error:', err)
   }
 })
 

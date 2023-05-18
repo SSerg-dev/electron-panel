@@ -15,7 +15,7 @@ import { EventEmitter } from 'events'
 
 import { log } from '../utils'
 import CCNet from '../services/CCNetService'
-// import { CCNet } from 'cashcode-bv'
+//  import { CCNet } from 'cashcode-bv'
 import * as conf from '../config'
 
 const TAG = 'BILL_VALIDATOR'
@@ -38,7 +38,7 @@ class BillValidatorController extends EventEmitter {
 
   /*  */
   async connect() {
-    log(TAG, 'Connecting...')
+    // log(TAG, 'Connecting...')
     let port
     for (let i = 0; i < 4; i++) {
       if (this.port !== 10 && this.port !== i) {
@@ -56,7 +56,7 @@ class BillValidatorController extends EventEmitter {
         break
       } catch (err) {
         this.state = States.DISCONNECTED
-        log(TAG, 'Connected error', err)
+        // log(TAG, 'Connected error', err)
       }
     }
     if (this.state !== States.CONNECTED) {
@@ -80,7 +80,7 @@ class BillValidatorController extends EventEmitter {
       log(TAG, 'Table of bills:', this.device.billTable)
       this.emit('connect')
     } catch (err) {
-      log(TAG, 'Fault while connecting', err)
+      // log(TAG, 'Fault while connecting', err)
       setTimeout(() => {
         this.start(this.currency, this.bills)
       }, 4000)
@@ -102,12 +102,6 @@ class BillValidatorController extends EventEmitter {
       await this.device.begin()
     }
   }
-
-  /* dev */
-  sendBill(bill) {
-    this.emit('current-bill', bill)
-  }
-
 
   setListeners() {
     let self = this
@@ -175,6 +169,10 @@ class BillValidatorController extends EventEmitter {
     /*  */
     this.device.on('returning', () => log(TAG, 'Returning...'))
     this.device.on('returned', (bill) => log(TAG, 'Returned:', bill))
+  }
+  /* dev */
+  sendBill(bill){
+    this.emit('current-bill', bill)
   }
 }
 

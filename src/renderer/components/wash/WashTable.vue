@@ -1,4 +1,5 @@
-с<template>
+с
+<template>
   <div>
     <div class="locate">
       <section>
@@ -15,7 +16,7 @@
             class="button-content-style"
             :class="[
               { 'card-content black-text': !this.isDown.price },
-              { 'card-content white-text': this.isDown.price }
+              { 'card-content white-text': this.isDown.price },
             ]"
           >
             <div class="emoji">
@@ -39,7 +40,7 @@
               class="button-content-style"
               :class="[
                 { 'card-content black-text': !this.isDown.receipt },
-                { 'card-content white-text': this.isDown.receipt }
+                { 'card-content white-text': this.isDown.receipt },
               ]"
             >
               <div>
@@ -192,7 +193,7 @@
               >
                 <WashTableDryShineEx :actives="actives" />
               </tr>
-              <tr style="height: 30px; width: 800px;">
+              <tr style="height: 30px; width: 800px">
                 <td></td>
               </tr>
 
@@ -361,7 +362,7 @@ export default {
       keyVacuum: 13,
       keyTurboDryer: 14,
       keyAir: 15,
-      keyWasher: 16
+      keyWasher: 16,
     },
 
     client: 'fetch',
@@ -380,7 +381,7 @@ export default {
       air: false,
       price: false,
       receipt: false,
-      bonus: false
+      bonus: false,
     },
     buttonPrice: null,
     buttonReceipt: null,
@@ -391,7 +392,7 @@ export default {
     symbol: '',
     currencies: [],
 
-    date: new Date()
+    date: new Date(),
   }),
   components: {
     Message,
@@ -412,17 +413,17 @@ export default {
     WashTableDegrease,
     WashTableDisinfection,
     WashTableBonus,
-    WashTableAlarm
+    WashTableAlarm,
   },
   props: {
     actives: {
       required: true,
-      type: Array
+      type: Array,
     },
     delay: {
       required: true,
-      type: Number
-    }
+      type: Number,
+    },
   },
 
   watch: {
@@ -496,7 +497,7 @@ export default {
     },
     getIsKktInstalled(flag) {
       // console.log('$$ WashTable.vue: 520', flag)
-    }
+    },
   },
   computed: {
     ...mapGetters({
@@ -535,15 +536,18 @@ export default {
       getIsKktInstalled: 'getIsKktInstalled',
 
       getControllerTime: 'getControllerTime',
-      getControllerDate: 'getControllerDate'
-    })
+      getControllerDate: 'getControllerDate',
+
+      getRouter: 'getRouter',
+      getPrevRouter: 'getPrevRouter',
+    }),
   },
 
   methods: {
     ...mapActions({
       updateStartProgram: 'updateStartProgram',
 
-      updateWetBonusMoney: 'updateWetBonusMoney'
+      updateWetBonusMoney: 'updateWetBonusMoney',
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
@@ -558,21 +562,26 @@ export default {
       setIsFirstTimer: 'setIsFirstTimer',
 
       setCompleteWash: 'setCompleteWash',
-      setChargeBonus: 'setChargeBonus'
+      setChargeBonus: 'setChargeBonus',
+
+      setRouter: 'setRouter',
+      setPrevRouter: 'setPrevRouter',
     }),
     ...mapGetters({
       getPrintReceiptOptions: 'getPrintReceiptOptions',
       getCompleteWash: 'getCompleteWash',
       getChargeBonus: 'getChargeBonus',
-      getProfile: 'getProfile'
+      getProfile: 'getProfile',
+
       // getIsReceiptPrint: 'getIsReceiptPrint'
     }),
     setProgram(program) {
-      // console.log('$$ program', program)
       if (program === 'price') {
         this.isDown.price = true
         this.buttonPrice.background = 'rgb(64, 196, 255)'
         this.setDown()
+        this.setPrevRouter('/program')
+
         this.$router.push('/cost')
         return
       }
@@ -604,7 +613,7 @@ export default {
         this.getPanelType,
         this.getPanelNumber,
         this.getActiveProgram,
-        this.getWetBalance
+        this.getWetBalance,
       ])
 
       this.timeoutPopup = setTimeout(() => {
@@ -669,9 +678,8 @@ export default {
       this.options.params.order = this.order
 
       this.options.params.programs[0].program_id = this.getActiveProgramNumber
-      this.options.params.programs[0].program_name = this.actives[
-        this.getActiveProgramNumber - 1
-      ]?.title
+      this.options.params.programs[0].program_name =
+        this.actives[this.getActiveProgramNumber - 1]?.title
 
       /* dev */
       this.options.params.programs[0].program_quantity = 0.42
@@ -759,7 +767,7 @@ export default {
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
 
       // button-receipt
@@ -777,7 +785,7 @@ export default {
 
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
         })
       }
 
@@ -874,7 +882,7 @@ export default {
       this.keys = Object.fromEntries(
         Object.entries(this.keys).map(([key, value], index) => [
           key,
-          (index + 1) * 10
+          (index + 1) * 10,
         ])
       )
       // console.log('this.keys-->', this.keys)
@@ -885,7 +893,7 @@ export default {
 
       const options = {
         date: this.getControllerDate,
-        time: this.getControllerTime
+        time: this.getControllerTime,
       }
       this.date = synchronize(options)
 
@@ -915,7 +923,7 @@ export default {
       }
 
       return result
-    }
+    },
 
     /*     */
   }, // end methods
@@ -932,7 +940,6 @@ export default {
         this.setKeys()
         this.setup()
       }, (this.delay = 1000))
-      
     }
     // this.setup()
   },
@@ -948,7 +955,7 @@ export default {
     // this.setIsReceiptRead(false)
     // this.setIsMoneyToBonus(false)
   },
-  created() {}
+  created() {},
 }
 </script>
 
