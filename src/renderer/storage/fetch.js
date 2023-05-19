@@ -221,6 +221,7 @@ class FetchClient {
     this.options = options
     this.type = type
     this.certificate = certificate
+    // console.log('$$ fetch.js: 224', this.certificate)
 
     this.fetch = new Fetch(certificate)
   }

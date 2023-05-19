@@ -13,10 +13,15 @@
       </li>
 
       <li v-if="this.IsWetBalance === false">
-        <div class="card grey pay-input">
+        <div class="card grey darken-1 pay-input">
           <div
             class="card-content white-text noselect"
-            style="font-size: 4em; padding-right: 1em; padding-top: 1em"
+            style="
+              font-size: 4em;
+              padding-right: 1em;
+              padding-top: 1em;
+              text-shadow: 1px 1px 1px #000, -2px 2px 2px #000;
+            "
           >
             {{ `MAKE_A_PAYMENT` | localize }}
           </div>
@@ -77,7 +82,7 @@ export default {
     cash_enabler: false,
     isDown: {
       payEnd: false,
-      payBonus: false
+      payBonus: false,
     },
 
     /* dev */
@@ -104,7 +109,7 @@ export default {
     localClient: 'local',
     localStorage: null,
 
-    date: new Date()
+    date: new Date(),
   }),
   mounted() {
     this.order = this.createOrder()
@@ -128,22 +133,22 @@ export default {
       getIsKktInstalled: 'getIsKktInstalled',
       getCnw: 'getCnw',
       getControllerTime: 'getControllerTime',
-      getControllerDate: 'getControllerDate'
+      getControllerDate: 'getControllerDate',
     }),
     IsWetBalance: {
-      get: function() {
+      get: function () {
         let flag
         this.getWetBalance > 0 ? (flag = true) : (flag = false)
         return flag
-      }
-    }
+      },
+    },
   },
 
   methods: {
     ...mapGetters({
       getCashEnabler: 'getCashEnabler',
       getStoreMoneyOptions: 'getStoreMoneyOptions',
-      getAppendBonus: 'getAppendBonus'
+      getAppendBonus: 'getAppendBonus',
     }),
     ...mapMutations({
       setCashEnabler: 'setCashEnabler',
@@ -151,7 +156,7 @@ export default {
       setIsAppendBonusMoney: 'setIsAppendBonusMoney',
 
       setIsMoneyToBonus: 'setIsMoneyToBonus',
-      setWetBalance: 'setWetBalance'
+      setWetBalance: 'setWetBalance',
     }),
     ...mapActions({}),
 
@@ -298,7 +303,7 @@ export default {
 
       const options = {
         date: this.getControllerDate,
-        time: this.getControllerTime
+        time: this.getControllerTime,
       }
       this.date = synchronize(options)
 
@@ -369,13 +374,13 @@ export default {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-    }
+    },
   }, // end methods
 
   created() {
     this.initCurrency()
   },
-  beforeDestroy() {}
+  beforeDestroy() {},
 }
 </script>
 

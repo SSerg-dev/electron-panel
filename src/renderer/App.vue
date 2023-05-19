@@ -15,6 +15,7 @@ import EmptyLayout from '@/layouts/EmptyLayout'
 import MainLayout from '@/layouts/MainLayout'
 import sleep from '@/utils/sleep'
 import EventBus from '@/bus/EventBus'
+import { compareVersions, compare } from 'compare-versions'
 
 import { ipcRenderer } from 'electron'
 
@@ -24,6 +25,7 @@ export default Vue.extend({
     intervalControllerWork: null,
     isControllerWork: false,
     delay: 6000,
+    sleepMs: 2000,
   }),
   computed: {
     layout() {
@@ -37,6 +39,8 @@ export default Vue.extend({
       getControllerTime: 'getControllerTime',
       getControllerDate: 'getControllerDate',
       getIsStandbyFreeEnable: 'getIsStandbyFreeEnable',
+      getSwVersion: 'getSwVersion',
+      getIsVersion: 'getIsVersion',
     }),
   },
   watch: {
@@ -57,6 +61,7 @@ export default Vue.extend({
       setIsPingUrl: 'setIsPingUrl',
       setControllerTime: 'setControllerTime',
       setControllerDate: 'setControllerDate',
+      setIsVersion: 'setIsVersion',
     }),
     checkControllerWork() {
       this.intervalControllerWork = setInterval(() => {
@@ -268,6 +273,19 @@ export default Vue.extend({
         this.setTemperature(args)
       })
     },
+    version() {
+      const swVersion =
+        this.getSwVersion || process.env.VUE_APP_ADVANCED_VERSION
+
+      const options = {
+        upper: compare(swVersion, process.env.VUE_APP_ADVANCED_VERSION, '>'),
+        lower: compare(swVersion, process.env.VUE_APP_ADVANCED_VERSION, '<'),
+        equal: compare(swVersion, process.env.VUE_APP_ADVANCED_VERSION, '='),
+      }
+      this.setIsVersion(options)
+      // console.log('$$ App.vue: 308', this.getSwVersion, JSON.stringify(this.getIsVersion))
+    },
+    // end methods
 
     ...mapMutations({
       setWetParameters: 'setWetParameters',
@@ -289,7 +307,12 @@ export default Vue.extend({
 
   mounted() {
     this.checkControllerWork()
+
+    sleep(this.sleepMs).then(() => {
+      this.version()
+    })
   },
+
   created() {
     this.setup()
   },

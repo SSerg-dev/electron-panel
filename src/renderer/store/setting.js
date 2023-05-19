@@ -385,8 +385,8 @@ export default {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
-              1}].paidMoney`,
+            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber - 1
+              }].paidMoney`,
             value: '0'
           })
         )

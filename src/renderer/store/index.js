@@ -12,7 +12,7 @@ import countries from './countries'
 import languages from './languages'
 import alarms from './alarms'
 import sleep from '@/utils/sleep'
-import { compareVersion } from '@/utils/common.functions'
+import { compareVersions, compare } from 'compare-versions'
 
 import { ipcRenderer } from 'electron'
 import { result } from 'lodash'
@@ -160,6 +160,12 @@ export default new Vuex.Store({
       isStandFree: '',
       swVersion: ''
     },
+    isVersion: {
+      upper: false,
+      lower: false,
+      equal: false,
+    },    
+
     kktParameters: {
       isKktInstalled: false
     },
@@ -246,9 +252,9 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
-              1}].paidMoney`,
-              // 1}].prepaymentMoney`,
+            node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber - 1
+              //}].paidMoney`,
+               }].prepaymentMoney`,
             value: cash
           })
         )
@@ -346,19 +352,18 @@ export default new Vuex.Store({
       }
     },
     // Платежи --------------------------
-    // (наличные или карта)
 
-    updateWetMoney({ getters }, cash) {
-      console.log('!!!updateWetMoney-->', cash)
+    updateWetMoney({ getters }, card) {
+      console.log('$$ index.js:358 updateWetMoney-->', card)
 
       try {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
-              1}].paidMoney`,
-              // 1}].prepaymentMoney`,
-            value: cash
+            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber - 1
+              // }].paidMoney`,
+               }].prepaymentMoney`,
+            value: card
           })
         )
       } catch (e) {
@@ -398,21 +403,22 @@ export default new Vuex.Store({
       }
     },
     // card
-    updateWetCardMoney({ getters }, card) {
-      console.log('Card update-->', card)
+
+    /* updateWetCardMoney({ getters }, card) {
+      console.log('$$ index.js:408 updateWetMoney-->', cash)
       try {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
-              1}].paidMoneyCard`,
+            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber - 1
+              }].paidMoneyCard`,
             value: card
           })
         )
       } catch (e) {
         console.warn('Error:', e.message)
       }
-    },
+    }, */
 
     updateWetZeroMoney({ getters }, zeroMoney) {
       try {
@@ -569,6 +575,9 @@ export default new Vuex.Store({
     getSwVersion(state) {
       return state.globalParameters.swVersion
     },
+    getIsVersion(state) {
+      return state.isVersion
+    }, 
     
 
     
@@ -783,9 +792,8 @@ export default new Vuex.Store({
             parameter.value === 'true' ? true : false
         case 'swVersion':
           state.globalParameters.swVersion = parameter.value
-          // console.log('$$ index.js: 789', state.globalParameters.swVersion)
-
-        // end common parameters
+        
+          // end common parameters
 
         default:
           break
@@ -887,7 +895,10 @@ export default new Vuex.Store({
     setIsFooter(state, isFooter) {
       state.isFooter = isFooter
     },
-
+    setIsVersion(state, isVersion) {
+      return state.isVersion = isVersion 
+    },
+    // ----------------------------------
     // Info
     setInfo(state, info) {
       state.info = info

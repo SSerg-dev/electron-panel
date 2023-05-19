@@ -9,7 +9,7 @@
       </div> -->
 
     <div class="back">
-      <div @click="setProgram('program')">
+      <div @click="setProgram()">
         <div>
           <img src="@/assets/imgs/key/back.png" />
         </div>
@@ -90,14 +90,19 @@ export default Vue.extend({
     setDown() {
       this.isDown = !this.isDown
     },
-    setProgram(program) {
-      program = this.getPrevRouter || '/'
-      if (program === '/program') {
-        this.$router.push('/program')
-      } else if (program === '/') {
-        this.$router.push('/')
-      } else {
-        this.$router.push('/')
+    setProgram() {
+      const route = this.getPrevRouter || '/'
+      switch (route) {
+        case '/program':
+          this.$router.push('/program')
+          break
+        case '/':
+          this.$router.push('/')
+          break
+
+        default:
+          this.$router.push('/')
+          break
       }
     },
 

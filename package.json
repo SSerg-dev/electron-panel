@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "homepage": "http://github.com/leodimark/panel",
+  "main": "background.js",
   "type": "commonjs",
   "scripts": {
     "start": "NODE_NO_WARNINGS=1 vue-cli-service  electron:serve ./src/renderer/main.js --enable-logging --openssl-legacy-provider serve",
@@ -10,7 +11,9 @@
     "rebuild": "./node_modules/.bin/electron-rebuild -f -a armv7l",
     "electron:serve": "vue-cli-service electron:serve",
     "electron:build": "vue-cli-service electron:build",
-    "electron:arm": "vue-cli-service electron:serve --linux --arm64"
+    "electron:armserve": "vue-cli-service electron:serve --linux --arm64",
+    "electron:armbuild": "vue-cli-service electron:build --linux --arm64",
+    "electron:armv7lbuild": "vue-cli-service electron:build --linux --armv7l"
   },
   "keywords": [],
   "author": {
@@ -31,6 +34,7 @@
     "bcrypt": "^5.1.0",
     "cashcode-bv": "^0.0.2",
     "chart.js": "2",
+    "compare-versions": "^6.0.0-rc.1",
     "console": "^0.7.2",
     "country-data-list": "^1.2.1",
     "date-fns": "^2.23.0",

@@ -183,3 +183,20 @@ yarn
 DYSPLAY=:0 yarn app:dev
 Прямо с микрокомпьютера:
 yarn app:dev
+
+****************Electron build на панели*******************************
+
+12. 
+Errors:
+12.1 На ARM64 ASUS 
+    ⨯ snapcraft is not installed, please: sudo snap install snapcraft --classic
+    sudo apt install snapd
+
+    sudo snap install snapcraft --classic
+    system does not fully support snapd: cannot mount squashfs image using "squashfs": mount:
+       /tmp/sanity-mountpoint-251702137: wrong fs type, bad option, bad superblock on /dev/loop0
+
+12.2 На AMD64 
+    "electron:armbuild": "vue-cli-service electron:build --linux --arm64",
+    Эти ошибки мы игнорируем, при этом билд получается electron-panel-1.0.0.AppImage
+    ⨯ snapcraft does not currently support building arm64 on amd64

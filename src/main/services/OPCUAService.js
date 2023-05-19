@@ -339,7 +339,7 @@ class OPCUAService extends EventEmitter {
       value: node,
       namespace: TAG_NS,
     }
-    console.log('$$ OPCUAService.js: 342', nodeId)
+    // console.log('$$ OPCUAService.js: 342', nodeId)
 
     try {
       log(TAG, 'Trying send data to server...')
