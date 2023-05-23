@@ -25,7 +25,7 @@ export default Vue.extend({
     intervalControllerWork: null,
     isControllerWork: false,
     delay: 6000,
-    sleepMs: 2000,
+    sleepMs: 6000,
   }),
   computed: {
     layout() {

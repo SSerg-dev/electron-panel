@@ -144,10 +144,12 @@ bankTerminal.on('enrolled', (terminal) =>
 
 const loadConfig = async () => {
   try {
-    let rawdata = readFileSync('./configs/settings-current.json', 'utf-8')
+    // let rawdata = readFileSync('./configs/settings-current.json', 'utf-8')
+    let rawdata = readFileSync('/alles/panel/configs/settings-current.json', 'utf-8')
 
     if (!rawdata.length) {
-      rawdata = readFileSync('./configs/settings-default.json', 'utf-8')
+      // rawdata = readFileSync('./configs/settings-default.json', 'utf-8')
+      rawdata = readFileSync('/alles/panel/configs/settings-default.json', 'utf-8')
       log(TAG, 'SETTINGS FROM settings-default.json')
     }
 
@@ -165,7 +167,8 @@ const loadConfig = async () => {
 /* */
 const saveConfig = async (data) => {
   try {
-    writeFileSync('./configs/settings-current.json', data)
+    // writeFileSync('./configs/settings-current.json', data)
+    writeFileSync('/alles/panel/configs/settings-current.json', data)
   } catch (err) {
     log(TAG, 'saveConfig():', err)
     return err
@@ -301,7 +304,7 @@ ipcMain.on('cash_enabler', (evt, data) => {
 
 /* */
 ipcMain.on('async-config-message', async (evt, data) => {
-  log(TAG, '"save new config data" from renderer', data)
+  // log(TAG, '"save new config data" from renderer', data)
   try {
     await saveConfig(data)
     const config = JSON.parse(data)

@@ -15,11 +15,13 @@
       <div class="card-content black-text">
         <div class="input-field" style="margin-top: -0.5em">
           <select class="page-title white-text" ref="select" v-model="current">
+
             <option v-for="(n, index) in items" :key="index" :value="n.id">
               <div class="dropdown-setting">
                 {{ `${n.title}` | localize }}
               </div>
             </option>
+
           </select>
         </div>
       </div>
@@ -35,7 +37,8 @@ import { mapGetters, mapMutations } from 'vuex'
 export default Vue.extend({
   name: 'setting-panel-item',
 
-  props: ['changeItemIds', 'degreasingProgram'],
+  // props: ['changeItemIds', 'degreasingProgram'],
+  props: ['changeProgramIds'],
 
   data: () => ({
     select: null,
@@ -45,11 +48,10 @@ export default Vue.extend({
     index: -1,
 
     items: [
-      // { id: 1, title: `DISK` },
-      // { id: 2, title: `MOSQUITO` },
-      // { id: 3, title: `SHAMPOO` },
-      // { id: 4, title: `GLASS_WASHING_LIQUID` },
       { id: 1, title: `GLASS_WASHING_LIQUID` },
+      // { id: 2, title: `DISK` },
+      // { id: 3, title: `MOSQUITO` },
+      // { id: 4, title: `SHAMPOO` }
     ],
   }),
   mounted() {

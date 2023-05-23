@@ -43,6 +43,7 @@
           }}</a>
         </li>
 
+
         <!-- <li @click="setProgram('alarms')" class="tab col s3">
           <a class="black-text" href="#swipe-5" style="font-size: 32px">{{
             `Alarms`
@@ -82,6 +83,7 @@
           <!-- table -->
           <table style="margin-left: 1em; margin-top: 2em">
             <tbody>
+              
               <!-- row 01 -->
               <tr style="margin-top: 8em">
                 <td style="border: none; width: 1040px; height: 80px">
@@ -90,6 +92,7 @@
                   </div>
                 </td>
               </tr>
+              
               <!-- row 02 -->
               <tr style="margin-top: 0.5em">
                 <td>
@@ -98,78 +101,8 @@
                   </div>
                 </td>
               </tr>
-              <!-- row 03 -->
-              <!-- <tr style="margin-top: 0.5em;"
-              :class="[
-                { 'first-opacity': isChangeItem },
-                { 'second-opacity': !isChangeItem },
-              ]"
-              >
-                <td style="border: none; width: 360px; height: 80px">
-                  <div
-                    class="card grey lighten-3"
-                    style="
-                      border: solid 3px #00b9e3;
-                      width: 380px;
-                      height: 80px;
-                      border-top-left-radius: 2em;
-                      border-bottom-left-radius: 2em;
-                      border-right-style: hidden;
-                    "
-                  >
-                    <div class="card-content black-text">
-                      <div class="switch">
-                        <label>
-                          <input type="checkbox" v-model="isChangeItem" />
 
-                          <span class="lever"></span>
-                        </label>
-                      </div>
-                      
-                      <div class="change-item-title">
-                        <span class="card-title">{{
-                          `Replace_item` | localize
-                        }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-
-                <td style="border: none; width: 360px">
-                  <div
-                    style="
-                      width: 450px;
-                      height: 0px;
-                      margin-left: -7.5em;
-                      margin-bottom: 6.5em;
-                      padding-rigth: 0em;
-                    "
-                  >
-                    <div>
-                      <SettingScreenChangeItem :changeItemIds="changeItemIds" />
-                    </div>
-                  </div>
-                </td>
-
-                <td style="border: none; width: 360px">
-                  <div
-                    style="
-                      width: 450px;
-                      height: 0px;
-                      margin-left: -8.8em;
-                      margin-bottom: 6.5em;
-                      padding-rigth: 0em;
-                    "
-                  >
-                    <div>
-                      <SettingScreenAssignItem :assignItemIds="assignItemIds" />
-                    </div>
-                  </div>
-                </td>
-              </tr> -->
-              <!-- end row 03 -->
-
-              <!-- row 04 -->
+              <!-- row 03 first degreasingProgram change program -->
               <tr
                 style="margin-top: 0.8em"
                 :class="[
@@ -205,6 +138,7 @@
                           `Replace_program` | localize
                         }}</span>
                       </div>
+                      
                     </div>
                   </div>
                 </td>
@@ -221,8 +155,8 @@
                   >
                     <div>
                       <SettingScreenChangeItem
-                        :changeItemIds="changeProgramIds"
-                        :degreasingProgram="degreasingProgram"
+                        :changeProgramIds="changeProgramIds[1]"
+                        
                       />
                     </div>
                   </div>
@@ -240,20 +174,21 @@
                   >
                     <div>
                       <SettingScreenAssignItem
-                        :assignItemIds="assignProgramIds"
+                        :assignItemIds="assignProgramIds[0]"
                         :degreasingProgram="degreasingProgram"
                       />
                     </div>
                   </div>
                 </td>
               </tr>
-              <!-- row 05 -->
 
-              <!-- <tr style="margin-top: 0.8em;"
-              :class="[
-                { 'first-opacity': isChangeProgramSecond },
-                { 'second-opacity': !isChangeProgramSecond },
-              ]"
+              <!-- row 04 second diskProgram changhe program -->
+              <tr
+                style="margin-top: 0.8em"
+                :class="[
+                  { 'first-opacity': isChangeProgramSecond },
+                  { 'second-opacity': !isChangeProgramSecond },
+                ]"
               >
                 <td style="border: none; width: 360px; height: 80px">
                   <div
@@ -283,6 +218,7 @@
                           `Replace_program` | localize
                         }}</span>
                       </div>
+                      
                     </div>
                   </div>
                 </td>
@@ -299,8 +235,7 @@
                   >
                     <div>
                       <SettingScreenChangeItem
-                        :changeItemIds="changeProgramIds"
-                        :degreasingProgram="degreasingProgram2"
+                        :changeProgramIds="changeProgramIds[2]"
                       />
                     </div>
                   </div>
@@ -319,13 +254,16 @@
                     <div>
                       <SettingScreenAssignItem
                         :assignItemIds="assignProgramIds"
+                        :diskProgram="diskProgram"
                       />
                     </div>
                   </div>
                 </td>
-              </tr> -->
+              </tr>
+              <!--         -->
 
-              <!-- row 06 -->
+
+              <!-- row 05 -->
               <tr style="margin-top: 0.5em">
                 <!-- td 01 -->
                 <td style="width: 1040px">
@@ -360,7 +298,7 @@
               </tr>
               <!-- end row -->
 
-              <!-- new row 02 -->
+              <!-- row 06 -->
               <tr style="margin-top: -0.5em">
                 <!-- td 01 -->
                 <td style="width: 1040px">
@@ -392,7 +330,8 @@
                 </td>
               </tr>
               <!-- end row -->
-              <!-- row 03 -->
+
+              <!-- row 07 -->
               <tr style="margin-top: -0.5em">
                 <td style="width: 1040px">
                   <div
@@ -950,17 +889,16 @@ import EventBus from '@/bus/EventBus'
 export default Vue.extend({
   name: 'setting',
   data: () => ({
-    /* dev */
 
     isPayScreenMain: false,
-    //isTooltipInstalled: false,
 
     isChangeItem: false,
     isChangeProgramFirst: false,
     isChangeProgramSecond: false,
 
     degreasingProgram: '',
-    degreasingProgram2: '', 
+    diskProgram: '',
+    
 
     isCnw: true,
     isCursor: true,
@@ -973,9 +911,8 @@ export default Vue.extend({
 
     isTerminalInstalled: false,
     isDirectCash: false,
-    /* dev */
+
     isAcceptorInstalled: false,
-    // isCoinInstalled: false,
     isCoinAcceptorInstalled: false,
 
     isDown: false,
@@ -1101,14 +1038,14 @@ export default Vue.extend({
       getCursor: 'getCursor',
       getPayScreenMain: 'getPayScreenMain',
       getCnw: 'getCnw',
-      /* dev */
+      
       getIsChangeProgramFirst: 'getIsChangeProgramFirst',
       getIsChangeProgramSecond: 'getIsChangeProgramSecond',
       getIsChangeItem: 'getIsChangeItem',
 
-      getChangeProgram: 'getChangeProgram',
-      getAssignProgramTo: 'getAssignProgramTo',
-      getChangeItem: 'getChangeItem',
+      // getChangeProgram: 'getChangeProgram',
+      // getAssignProgramTo: 'getAssignProgramTo',
+      // getChangeItem: 'getChangeItem',
     }),
   },
   computed: {
@@ -1255,6 +1192,8 @@ h2 {
   margin-left: 5em;
   margin-top: -3.2em;
 }
+
+
 .change-foam-title {
   margin-left: 1em;
   margin-top: 0em;
