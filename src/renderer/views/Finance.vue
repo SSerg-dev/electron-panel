@@ -172,7 +172,6 @@ export default Vue.extend({
         this.setAllBills(this.bills)
       })
     },
-    /* dev */
     getCollectMoney() {
       const options = 'ipcRenderer.send getCollectMoney'
       ipcRenderer.send('async-read-collect', options)
@@ -181,7 +180,6 @@ export default Vue.extend({
         this.financeCollect = JSON.parse(collect) || {}
         this.setFinanceCollect(this.financeCollect)
         
-        // console.log('$$ this.getFinanceCollect', this.getFinanceCollect)
       })
 
 

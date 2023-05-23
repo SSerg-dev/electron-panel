@@ -28,7 +28,7 @@ class BankTerminalController extends EventEmitter {
           '192.168.' +
           BCNet.VENDOTEK_IP_SUBNET.toString() +
           '.' +
-          (BCNet.VENDOTEK_IP_SUFFIX + number).toString() 
+          (BCNet.VENDOTEK_IP_SUFFIX + number - 5).toString() 
         BCNet.Vendotek.connect({
           ip: ip,
           port: BCNet.VENDOTEK_PORT
@@ -41,8 +41,6 @@ class BankTerminalController extends EventEmitter {
         break
       case 'pax':
         BCNet.Pax.connect({
-          //ip: ip,
-          // port: 42
         })
         this.terminal = BCNet.Pax.item
         // initial observer

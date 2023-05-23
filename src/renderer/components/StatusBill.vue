@@ -173,10 +173,10 @@ export default Vue.extend({
       switch (panelType) {
         case 'wash':
           // console.log('$$ Status.vue: 175', this.observer.state)
-          this.updateWetMoney(this.observer.state)
+          this.updateWetCardMoney(this.observer.state)
           break
         case 'vacuum':
-          this.updateDryMoney(this.observer.state)
+          this.updateDryCardMoney(this.observer.state)
           break
 
         default:
@@ -218,8 +218,8 @@ export default Vue.extend({
     },
     ...mapActions({
       fetchStatus: 'fetchStatus',
-      updateWetMoney: 'updateWetMoney',
-      updateDryMoney: 'updateDryMoney',
+      updateWetCardMoney: 'updateWetCardMoney',
+      updateDryCardMoney: 'updateDryCardMoney',
     }),
     ...mapMutations({
       setStatusBill: 'setStatusBill',

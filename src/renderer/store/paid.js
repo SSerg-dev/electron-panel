@@ -4,36 +4,29 @@ export default {
   state: {
     coinBalance: 0,
     banknoteBalance: 0,
-    //increment: 0
   }, // end state
 
   // getters
   getters: {
     getCoinBalance(state) {
       return state.coinBalance
-      //return state.parameters.panelMoney
     },
     getBanknoteBalance(state) {
       return state.banknoteBalance
     },
-
-    /* getCoinIncrement(state) {
-      return state.increment
-    } */
   }, // end getters
 
   // mutations
   mutations: {
-    // commit('setPayType', 'cash')
     setCoinBalance(state, balance) {
-      state.coinBalance = state.coinBalance + balance
+      // state.coinBalance = state.coinBalance + balance
+      state.coinBalance = balance
       state.payType = 'cash'
-      // console.log('$$ paid.js: 32', state.payType)
     },
     setBanknoteBalance(state, balance) {
-      state.banknoteBalance = state.banknoteBalance + balance
+      // state.banknoteBalance = state.banknoteBalance + balance
+      state.banknoteBalance = balance
       state.payType = 'cash'
-      // console.log('state.banknoteBalance-->', state.banknoteBalance)
     },
   }, // end mutations
 
@@ -41,9 +34,7 @@ export default {
   actions: {
     /* Wet */
     updateCoinBalance({ commit, getters, dispatch }, balance) {
-      // console.log('$$ paid.js:46 ', balance, getters.getIsVersion.upper)
-
-      getters.getIsVersion.upper || getters.getIsVersion.equal
+      console.log('$$ paid.js:44 ', balance)
 
       if (getters.getWetBusyPanel === 'false') {
         commit('setCoinBalance', -getters.getCoinBalance)
@@ -52,34 +43,6 @@ export default {
       commit('setCoinBalance', balance)
       try {
         // ------------------------------
-        // different versions
-        /* 
-        if (getters.getIsVersion.upper || getters.getIsVersion.equal) {
-
-          ipcRenderer.send(
-            'OPCUA',
-            JSON.stringify({
-              node: `::AsGlobalPV:PostBalance[${
-                getters.getPanelNumber - 1
-                // }].paidMoney`,
-              }].prepaymentMoney`,
-              value: getters.getCoinBalance + getters.getBanknoteBalance,
-            })
-          )
-        } else if (getters.getIsVersion.lower) {
-
-          ipcRenderer.send(
-            'OPCUA',
-            JSON.stringify({
-              node: `::AsGlobalPV:PostBalance[${
-                getters.getPanelNumber - 1
-              }].paidMoney`,
-              value: getters.getCoinBalance + getters.getBanknoteBalance,
-            })
-          )
-        }
-         */
-        // ------------------------------
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
@@ -87,9 +50,20 @@ export default {
               getters.getPanelNumber - 1
               // }].paidMoney`,
             }].prepaymentMoney`,
-            value: getters.getCoinBalance + getters.getBanknoteBalance,
+            // value: getters.getCoinBalance + getters.getBanknoteBalance,
+            value: getters.getCoinBalance,
           })
         )
+        // ------------------------------
+        /* ipcRenderer.send(
+          'OPCUA',
+          JSON.stringify({
+            node: `::AsGlobalPV:PostBalance[${
+              getters.getPanelNumber - 1
+            }].prepaymentMoneyCash`,
+            value: getters.getCoinBalance + getters.getBanknoteBalance,
+          })
+        ) */  
         // ------------------------------
       } catch (e) {
         console.warn('Error:', e.message)
@@ -110,7 +84,8 @@ export default {
               getters.getPanelNumber - 1
             // }].paidMoney`,
             }].prepaymentMoney`,
-            value: getters.getCoinBalance + getters.getBanknoteBalance,
+            // value: getters.getCoinBalance + getters.getBanknoteBalance,
+            value: getters.getBanknoteBalance,
           })
         )
       } catch (e) {
@@ -133,7 +108,7 @@ export default {
               getters.getVacuumNumber - 1
             // }].paidMoney`,
             }].prepaymentMoney`,
-            value: getters.getCoinBalance + getters.getBanknoteBalance,
+            value: getters.getCoinBalance,
           })
         )
       } catch (e) {
@@ -155,7 +130,7 @@ export default {
               getters.getVacuumNumber - 1
             // }].paidMoney`,
             }].prepaymentMoney`,
-            value: getters.getCoinBalance + getters.getBanknoteBalance,
+            value: getters.getBanknoteBalance,
           })
         )
       } catch (e) {

@@ -36,7 +36,12 @@
         <div class="card grey pay-input" style="">
           <div
             class="card-content white-text button-content-style noselect"
-            style="font-size: 4em; padding-right: 0em; padding-top: 1em"
+            style="
+            font-size: 4em; 
+            padding-right: 0em; 
+            padding-top: 1em;
+            text-shadow: 1px 1px 1px #000, -2px 2px 2px #000;
+            "
           >
             {{ `MAKE_A_PAYMENT` | localize }}
           </div>
@@ -114,7 +119,7 @@ export default {
     localClient: 'local',
     localStorage: null,
 
-    date: new Date()
+    date: new Date(),
   }),
   mounted() {
     this.order = this.createOrder()
@@ -138,8 +143,7 @@ export default {
       getIsKktInstalled: 'getIsKktInstalled',
       getCnw: 'getCnw',
       getControllerTime: 'getControllerTime',
-      getControllerDate: 'getControllerDate'
-
+      getControllerDate: 'getControllerDate',
     }),
     IsDryBalance: {
       get: function () {
@@ -290,7 +294,7 @@ export default {
 
       const options = {
         date: this.getControllerDate,
-        time: this.getControllerTime
+        time: this.getControllerTime,
       }
       this.date = synchronize(options)
 

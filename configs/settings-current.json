@@ -13,7 +13,7 @@
       200
     ],
     "installed": true,
-    "type": "DEFAULT"
+    "type": "CCNET"
   },
   "coin_acceptor": {
     "denominations": {},
@@ -33,8 +33,13 @@
   "__commentCountries": "add available countries",
   "countries": [
     "RU",
-    "KZ",
-    "DE"
+    "US",
+    "DE",
+    "FR",
+    "TR",
+    "FI",
+    "NO",
+    "SE"
   ],
   "country": "RU",
   "__commentCurrency": "add default currency",
@@ -101,7 +106,7 @@
     "degreasing_enable2": 0,
     "degreasing_program": 1,
     "degreasing_program2": 0,
-    "degreasing_program_to": 4,
+    "degreasing_program_to": 3,
     "degreasing_program_to2": 0,
     "direct_cash": true,
     "disk_color": 0,

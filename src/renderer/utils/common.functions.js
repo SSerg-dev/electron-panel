@@ -15,3 +15,25 @@ export function synchronize(options) {
   return result
 }
 
+export function debounce(fn, wait) {
+  let timeout
+  return function(...args) {
+    const later = () => {
+      clearTimeout(timeout)
+      fn.apply(this, args)
+    }
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+
+  } 
+}
+
+/* 
+this.onInput = debounce(this.onInput, 300)
+
+const stateListener = debounce((state) => {
+      storage(storageName(params), state)
+    }, 300)
+
+*/
+

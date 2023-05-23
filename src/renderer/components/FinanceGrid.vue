@@ -56,7 +56,7 @@ import { log } from 'util'
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 
-export default Vue.extend({
+export default Vue.extend({ 
   name: 'finance-grid',
 
   data: () => ({
@@ -70,7 +70,7 @@ export default Vue.extend({
 
     items: [],
 
-    delay: 0,
+    delay: 200,
     timeoutDelay: null,
     isChange: false,
   }), // end data

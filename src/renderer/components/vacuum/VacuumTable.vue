@@ -312,6 +312,7 @@ export default {
       setActiveProgram: 'setActiveProgram',
       setCompleteWash: 'setCompleteWash',
       setChargeBonus: 'setChargeBonus',
+      setPrevRouter: 'setPrevRouter',
     }),
     ...mapGetters({
       getCompleteWash: 'getCompleteWash',
@@ -465,6 +466,8 @@ export default {
           break
         case 'price':
           this.isDown.price = true
+          this.setPrevRouter('/program')
+
           this.$router.push('/cost')
           break
 

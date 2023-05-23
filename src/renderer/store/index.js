@@ -111,14 +111,6 @@ export default new Vuex.Store({
       'degrease',
       'disinfection' // ?
     ],
-    /* dryPrograms: [
-      'vacuum',
-      'air',
-      'washer',
-      'turboDryer',
-      'blacking',
-      'disinfection'
-    ], */
     dryPrograms: [
       'vacuum',
       'air',
@@ -243,11 +235,10 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
-    /* dev */
-    // Платежи --------------------------
-    // (наличные или карта)
-    updateDryMoney({ getters }, cash) {
-      console.log('!!!updateDryMoney-->', cash)
+    // Платежи картой -------------------
+    
+    updateDryCardMoney({ getters }, card) {
+      console.log('!!!updateDryMoney-->', card)
       try {
         ipcRenderer.send(
           'OPCUA',
@@ -255,7 +246,7 @@ export default new Vuex.Store({
             node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber - 1
               //}].paidMoney`,
                }].prepaymentMoney`,
-            value: cash
+            value: card
           })
         )
       } catch (e) {
@@ -293,22 +284,6 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
-    // card
-    /* updateDryCardMoney({ getters }, card) {
-      console.log('Card update-->', card)
-      try {
-        ipcRenderer.send(
-          'OPCUA',
-          JSON.stringify({
-            node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
-              1}].paidMoneyCard`,
-            value: card
-          })
-        )
-      } catch (e) {
-        console.warn('Error:', e.message)
-      }
-    }, */
 
     // end Платежи ----------------------
     // end Dry actions ==================
@@ -351,10 +326,20 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
-    // Платежи --------------------------
+    // Платежи картой -------------------
 
-    updateWetMoney({ getters }, card) {
+    updateWetCardMoney({ getters }, card) {
       console.log('$$ index.js:358 updateWetMoney-->', card)
+
+      // clear money
+      ipcRenderer.send(
+        'OPCUA',
+        JSON.stringify({
+          node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber - 1
+            }].paidMoney`,
+          value: '0'
+        })
+      )
 
       try {
         ipcRenderer.send(
@@ -402,23 +387,6 @@ export default new Vuex.Store({
         console.warn('Error:', e.message)
       }
     },
-    // card
-
-    /* updateWetCardMoney({ getters }, card) {
-      console.log('$$ index.js:408 updateWetMoney-->', cash)
-      try {
-        ipcRenderer.send(
-          'OPCUA',
-          JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber - 1
-              }].paidMoneyCard`,
-            value: card
-          })
-        )
-      } catch (e) {
-        console.warn('Error:', e.message)
-      }
-    }, */
 
     updateWetZeroMoney({ getters }, zeroMoney) {
       try {
@@ -528,13 +496,12 @@ export default new Vuex.Store({
     getWetProgramName(state) {
       return state.parameters.programName
     },
-    // DRY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // DRY ------------------------------
     // Список всех Dry программ
     getDryProgStatus(state) {
       return state.dryParameters.progStatusMask
     },
     getDryProgShow(state) {
-      // console.log('$$ state.dryParameters.progShowMask', state.dryParameters.progShowMask)
       return state.dryParameters.progShowMask
     },
     getDryProgPrice(state) {
@@ -936,7 +903,6 @@ export default new Vuex.Store({
     setSecondsBonusTimer(state, secondsBonusTimer) {
       state.secondsBonusTimer = secondsBonusTimer
     },
-    /* dev */
     setIsFirstTimer(state, isFirstTimer) {
       state.isFirstTimer = isFirstTimer
     },

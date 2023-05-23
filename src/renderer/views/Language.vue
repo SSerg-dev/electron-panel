@@ -5,18 +5,17 @@
         <p align="center">
           {{ 'LanguageTitle' | localize }}
         </p>
-        
       </h3>
     </div>
 
     <div class="back">
-        <router-link to="/">
-          <div>
-            <img src="@/assets/imgs/key/back.png" />
-          </div>
-        </router-link>
-      </div>
-      
+      <router-link to="/">
+        <div>
+          <img src="@/assets/imgs/key/back.png" />
+        </div>
+      </router-link>
+    </div>
+
     <section>
       <!-- <form @submit.prevent=""> -->
       <div class="row">
@@ -93,8 +92,6 @@
                 <img src="@/assets/imgs/language/lang_TUR.png" />
               </button>
             </td>
-          
-          
           </tr>
           <tr v-if="this.getPaginate === 2">
             <td>
@@ -102,13 +99,13 @@
                 <img src="@/assets/imgs/language/lang_BLR.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('svn-SVN')">
                 <img src="@/assets/imgs/language/lang_SVN.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('svk-SVK')">
                 <img src="@/assets/imgs/language/lang_SVK.png" />
@@ -121,19 +118,18 @@
                 <img src="@/assets/imgs/language/lang_SRB.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('nor-NOR')">
                 <img src="@/assets/imgs/language/lang_NOR.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('fin-FIN')">
                 <img src="@/assets/imgs/language/lang_FIN.png" />
               </button>
             </td>
-            
           </tr>
           <tr v-if="this.getPaginate === 2">
             <td>
@@ -141,33 +137,33 @@
                 <img src="@/assets/imgs/language/lang_BGR.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('grc-GRC')">
                 <img src="@/assets/imgs/language/lang_GRC.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('dnk-DNK')">
                 <img src="@/assets/imgs/language/lang_DNK.png" />
               </button>
             </td>
           </tr>
-          
+
           <tr v-if="this.getPaginate === 2">
             <td>
               <button class="btn-small" @click="setLocale('rou-ROU')">
                 <img src="@/assets/imgs/language/lang_ROU.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('swe-SWE')">
                 <img src="@/assets/imgs/language/lang_SWE.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('prt-PRT')">
                 <img src="@/assets/imgs/language/lang_PRT.png" />
@@ -175,25 +171,23 @@
             </td>
           </tr>
           <tr v-if="this.getPaginate === 3">
-            
             <td>
               <button class="btn-small" @click="setLocale('nld-NLD')">
                 <img src="@/assets/imgs/language/lang_NLD.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('mda-MDA')">
                 <img src="@/assets/imgs/language/lang_MDA.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('ita-ITA')">
                 <img src="@/assets/imgs/language/lang_ITA.png" />
               </button>
             </td>
-            
           </tr>
           <tr v-if="this.getPaginate === 3">
             <td>
@@ -201,19 +195,18 @@
                 <img src="@/assets/imgs/language/lang_HUN.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('irn-IRN')">
                 <img src="@/assets/imgs/language/lang_IRN.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('hrv-HRV')">
                 <img src="@/assets/imgs/language/lang_HRV.png" />
               </button>
             </td>
-            
           </tr>
           <tr v-if="this.getPaginate === 3">
             <td>
@@ -221,7 +214,7 @@
                 <img src="@/assets/imgs/language/lang_ARM.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('cze-CZE')">
                 <img src="@/assets/imgs/language/lang_CZE.png" />
@@ -250,47 +243,47 @@
               </button>
             </td>
           </tr>
-          
+
           <tr v-if="this.getPaginate === 4">
             <td>
               <button class="btn-small" @click="setLocale('spa-SPA')">
                 <img src="@/assets/imgs/language/lang_SPA.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('geo-GEO')">
                 <img src="@/assets/imgs/language/lang_GEO.png" />
               </button>
             </td>
-          
+
             <td>
               <button class="btn-small" @click="setLocale('chn-CHN')">
                 <img src="@/assets/imgs/language/lang_CHN.png" />
               </button>
             </td>
           </tr>
-            
+
           <tr v-if="this.getPaginate === 4">
             <td>
               <button class="btn-small" @click="setLocale('isr-ISR')">
                 <img src="@/assets/imgs/language/lang_ISR.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('arb-ARB')">
                 <img src="@/assets/imgs/language/lang_ARB.png" />
               </button>
             </td>
-            
+
             <td>
               <button class="btn-small" @click="setLocale('che-CHE')">
                 <img src="@/assets/imgs/language/lang_CHE.png" />
               </button>
             </td>
           </tr>
-          
+
           <tr v-if="this.getPaginate === 4">
             <td>
               <button class="btn-small" @click="setLocale('tat-TAT')">
@@ -303,7 +296,6 @@
                 <img src="@/assets/imgs/language/lang_KOR.png" />
               </button>
             </td>
-            
           </tr>
         </table>
 
@@ -340,6 +332,8 @@ export default Vue.extend({
     tableRows: [],
   }),
   mounted() {
+    // console.log('$$ Language.vue: 344', this.getSelectedCountries)
+
     this.setPaginate(1)
     this.tableRows = this.$refs.tableRows.rows
     this.setupPagination(this.tableRows)
@@ -349,6 +343,7 @@ export default Vue.extend({
       info: 'info',
       getPaginate: 'getPaginate',
       getRouter: 'getRouter',
+      getSelectedCountries: 'getSelectedCountries',
     }),
   },
 
@@ -408,6 +403,7 @@ td {
 }
 tr {
   display: block;
+  /* float: left; */
 }
 /* td,
 th {

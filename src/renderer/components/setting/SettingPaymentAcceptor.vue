@@ -51,7 +51,7 @@ export default Vue.extend({
     isAcceptorInstalled: false,
 
     acceptors: [
-      { id: 1, title: 'DEFAULT' },
+      { id: 1, title: 'CCNET' },
       { id: 2, title: 'ICT XBA' }
     ]
   }),
@@ -86,7 +86,7 @@ export default Vue.extend({
     //console.log('type-->', type)
     if (type) {
       let index
-      type === 'DEFAULT' 
+      type === 'CCNET' 
         ? index = 0 
         : index = 1
 
