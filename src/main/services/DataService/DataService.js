@@ -431,21 +431,21 @@ DataService.coinC5 = 5
 DataService.coinC10 = 10
 DataService.coinC25 = 25
 
-// DataService.coinPath = './data/coin-statistic.json'
-// DataService.billPath = './data/bill-statistic.json'
-// DataService.collectPath = './data/collect-statistic.json'
-// DataService.coinOncePath = './data/coin-once.json'
-// DataService.billOncePath = './data/bill-once.json'
-// DataService.connectCertPath = './certificates/connect/cert.pem'
-// DataService.connectKeyPath = './certificates/connect/key.pkcs8'
+DataService.coinPath = './data/coin-statistic.json'
+DataService.billPath = './data/bill-statistic.json'
+DataService.collectPath = './data/collect-statistic.json'
+DataService.coinOncePath = './data/coin-once.json'
+DataService.billOncePath = './data/bill-once.json'
+DataService.connectCertPath = './certificates/connect/cert.pem'
+DataService.connectKeyPath = './certificates/connect/key.pkcs8'
 
-DataService.coinPath = '/alles/panel/data/coin-statistic.json'
-DataService.billPath = '/alles/panel/data/bill-statistic.json'
-DataService.collectPath = '/alles/panel/data/collect-statistic.json'
-DataService.coinOncePath = '/alles/panel/data/coin-once.json'
-DataService.billOncePath = '/alles/panel/data/bill-once.json'
-DataService.connectCertPath = '/alles/panel/certificates/connect/cert.pem'
-DataService.connectKeyPath = '/alles/panel/certificates/connect/key.pkcs8'
+// DataService.coinPath = '/alles/panel/data/coin-statistic.json'
+// DataService.billPath = '/alles/panel/data/bill-statistic.json'
+// DataService.collectPath = '/alles/panel/data/collect-statistic.json'
+// DataService.coinOncePath = '/alles/panel/data/coin-once.json'
+// DataService.billOncePath = '/alles/panel/data/bill-once.json'
+// DataService.connectCertPath = '/alles/panel/certificates/connect/cert.pem'
+// DataService.connectKeyPath = '/alles/panel/certificates/connect/key.pkcs8'
 
 
 

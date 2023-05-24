@@ -86,13 +86,22 @@ export default {
       return state.config.ui.isEnable
     },
 
-
+    // first program
     getChangeProgram(state) {
       return state.config.ui.degreasing_program
     },
     getAssignProgramTo(state) {
       return state.config.ui.degreasing_program_to
     },
+
+    // second program
+    getChangeProgram2(state) {
+      return state.config.ui.degreasing_program2
+    }, 
+    getAssignProgramTo2(state) {
+      return state.config.ui.degreasing_program_to2
+    },
+
     getChangeItem(state) {
       return state.config.ui.degreasing_enable
     },
@@ -201,13 +210,24 @@ export default {
       state.config.ui.isEnable = isEnable
     },
 
-
+    // first program
     setChangeProgram(state, program) {
       state.config.ui.degreasing_program = program
     },
     setAssignProgramTo(state, program_to) {
       state.config.ui.degreasing_program_to = program_to
     },
+    
+    // second program
+    setChangeProgram2(state, program) {
+      state.config.ui.degreasing_program2 = program
+    }, 
+    setAssignProgramTo2(state, program_to) {
+      state.config.ui.degreasing_program_to2 = program_to
+    },
+
+
+
     setChangeItem(state, degreasing_enable) {
       state.config.ui.degreasing_enable = degreasing_enable
     },

@@ -155,7 +155,7 @@
                   >
                     <div>
                       <SettingScreenChangeItem
-                        :changeProgramIds="changeProgramIds[1]"
+                        :changeProgramId="changeProgramIds[0]"
                         
                       />
                     </div>
@@ -174,8 +174,7 @@
                   >
                     <div>
                       <SettingScreenAssignItem
-                        :assignItemIds="assignProgramIds[0]"
-                        :degreasingProgram="degreasingProgram"
+                      :changeProgramId="changeProgramIds[0]"
                       />
                     </div>
                   </div>
@@ -235,7 +234,7 @@
                   >
                     <div>
                       <SettingScreenChangeItem
-                        :changeProgramIds="changeProgramIds[2]"
+                        :changeProgramId="changeProgramIds[1]"
                       />
                     </div>
                   </div>
@@ -253,8 +252,7 @@
                   >
                     <div>
                       <SettingScreenAssignItem
-                        :assignItemIds="assignProgramIds"
-                        :diskProgram="diskProgram"
+                      :changeProgramId="changeProgramIds[1]"
                       />
                     </div>
                   </div>

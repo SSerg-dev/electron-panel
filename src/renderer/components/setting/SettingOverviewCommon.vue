@@ -37,7 +37,7 @@ export default Vue.extend({
     this.software = this.getSwVersion,
     this.temperature = this.getTemperature
     this.humidity = this.getHumidity
-    console.log('$$ setting-overview-common', this.temperature, this.humidity)
+    //  console.log('$$ setting-overview-common', this.temperature, this.humidity)
   },
   computed: {
     ...mapGetters({

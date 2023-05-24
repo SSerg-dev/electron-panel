@@ -34,7 +34,8 @@ import { mapGetters, mapMutations } from 'vuex'
 export default Vue.extend({
   name: 'setting-panel-item',
 
-  props: ['assignItemIds', 'degreasingProgram'],
+  // props: ['assignItemIds', 'degreasingProgram'],
+  props: ['changeProgramId'],
 
   data: () => ({
     select: null,
@@ -45,6 +46,7 @@ export default Vue.extend({
     items: [],
   }),
   mounted() {
+    // console.log('$$ SettingScreenAssignItem.vue: 49', this.changeProgramId)
     this.select = M.FormSelect.init(this.$refs.select, {
       constrainWidth: true,
     })
@@ -53,10 +55,13 @@ export default Vue.extend({
   methods: {
     ...mapGetters({
       getAssignProgramTo: 'getAssignProgramTo',
-      getAssignItems: 'getAssignItems'
+      getAssignProgramTo2: 'getAssignProgramTo2',
+
+      getAssignItems: 'getAssignItems',
     }),
     ...mapMutations({
       setAssignProgramTo: 'setAssignProgramTo',
+      setAssignProgramTo2: 'setAssignProgramTo2',
     }),
   },
   computed: {
@@ -66,36 +71,39 @@ export default Vue.extend({
     current(itemId) {
       const { id, title } = this.items.find((n) => n.id === itemId)
       this.select = title
-      this.setAssignProgramTo(id)
+
+      switch (this.changeProgramId) {
+        case 1:
+          this.setAssignProgramTo(id)
+          break
+        case 2:
+          this.setAssignProgramTo2(id)
+          break
+        default:
+          break
+      }
     },
   },
   created() {
     this.items = this.getAssignItems()
 
-    this.index = this.getAssignProgramTo() - 1
+    switch (this.changeProgramId) {
+      case 1:
+        this.index = this.getAssignProgramTo() - 1
+        break
+      case 2:
+        this.index = this.getAssignProgramTo2() - 1
+        break
+
+      default:
+        break
+    }
 
     if (this.items[this.index]) {
       const { id, title } = this.items[this.index]
       this.current = id
       this.select = title
     }
-
-    /* let selected = []
-
-    if (this.assignItemIds !== undefined) {
-      selected = this.assignItemIds.map(id => {
-        const result = this.items.filter(item => item.id === id)
-        return result[0]
-      })
-    }
-
-    this.items = selected
-
-    if (this.items[0]) {
-      const { id, title } = this.items[0]
-      this.current = id
-      this.select = title
-    } */
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {

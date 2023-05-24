@@ -4,7 +4,7 @@
       class="card grey lighten-3"
       style="
         height: 80px;
-        
+
         border: solid 3px #00b9e3;
         border-radius: 0em;
         margin-left: 7.5em;
@@ -14,15 +14,18 @@
     >
       <div class="card-content black-text">
         <div class="input-field" style="margin-top: -0.5em">
-          <select class="page-title white-text" ref="select" v-model="current">
 
+          <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(n, index) in items" :key="index" :value="n.id">
-              <div class="dropdown-setting">
-                {{ `${n.title}` | localize }}
+              <div
+                v-if="index === changeProgramId - 1"
+                class="dropdown-setting"
+              >
+                {{ `${items[changeProgramId - 1].title}` | localize }}
               </div>
             </option>
-
           </select>
+          
         </div>
       </div>
     </div>
@@ -38,7 +41,7 @@ export default Vue.extend({
   name: 'setting-panel-item',
 
   // props: ['changeItemIds', 'degreasingProgram'],
-  props: ['changeProgramIds'],
+  props: ['changeProgramId'],
 
   data: () => ({
     select: null,
@@ -49,12 +52,15 @@ export default Vue.extend({
 
     items: [
       { id: 1, title: `GLASS_WASHING_LIQUID` },
-      // { id: 2, title: `DISK` },
-      // { id: 3, title: `MOSQUITO` },
-      // { id: 4, title: `SHAMPOO` }
+      { id: 2, title: `DISK` },
+      { id: 3, title: `MOSQUITO` },
+      { id: 4, title: `SHAMPOO` },
     ],
+    selectedItems: [],
   }),
   mounted() {
+    this.selectedItems = [...this.items]
+    // console.log('$$ SettingScreenCangeItem.vue: 58', this.changeProgramId)
     this.select = M.FormSelect.init(this.$refs.select, {
       constrainWidth: true,
     })
@@ -63,25 +69,48 @@ export default Vue.extend({
   methods: {
     ...mapGetters({
       getChangeProgram: 'getChangeProgram',
+      getChangeProgram2: 'getChangeProgram2',
     }),
     ...mapMutations({
       setChangeProgram: 'setChangeProgram',
+      setChangeProgram2: 'setChangeProgram2',
     }),
   },
   computed: {
-    ...mapGetters({
-    }),
+    ...mapGetters({}),
   },
   watch: {
     current(itemId) {
       const { id, title } = this.items.find((n) => n.id === itemId)
       this.select = title
-      this.setChangeProgram(id)
+
+      // TODO change source program
+      /* 
+      switch (this.changeProgramId) {
+        case 1:
+          this.setChangeProgram(id)
+          break
+        case 2:
+          this.setChangeProgram2(id)
+          break
+        default:
+          break
+      } 
+      */
     },
   },
-  created() {
-    this.index = this.getChangeProgram() - 1
 
+  created() {
+    switch (this.changeProgramId) {
+      case 1:
+        this.index = this.getChangeProgram() - 1
+        break
+      case 2:
+        this.index = this.getChangeProgram2() - 1
+        break
+      default:
+        break
+    }
     if (this.items[this.index]) {
       const { id, title } = this.items[this.index]
       this.current = id

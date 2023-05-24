@@ -12,10 +12,17 @@
           class="button-content-style"
           :class="[
             { 'card-content black-text': !this.isDown.disk },
-            { 'card-content white-text': this.isDown.disk }
+            { 'card-content white-text': this.isDown.disk },
           ]"
         >
-          {{ `${actives[this.activeNumber].title}` | localize }}
+
+          <div v-if="this.getIsChangeProgramSecond()">
+            {{ `${this.items[this.index].title}` | localize }}
+          </div>
+          <div v-else>
+            {{ `${actives[this.activeNumber].title}` | localize }}
+          </div>
+        
         </div>
       </div>
     </td>
@@ -31,7 +38,7 @@
           class="button-content-style-x2"
           :class="[
             { 'card-content black-text': !this.isDown.disk_x2 },
-            { 'card-content white-text': this.isDown.disk_x2 }
+            { 'card-content white-text': this.isDown.disk_x2 },
           ]"
         >
           <div style="font-style: italic">
@@ -55,13 +62,17 @@ import {
   downStandardOptions,
   upX2Options,
   downX2Options,
-  buttonSizeOptions
+  buttonSizeOptions,
 } from '@/shapes/index.js'
 import { log } from '../../../../main/utils'
 import sleep from '@/utils/sleep'
 
 export default Vue.extend({
   data: () => ({
+    title: '',
+    index: -1,
+    items: [],
+
     // options
     upStandardOptions: upStandardOptions,
     downStandardOptions: downStandardOptions,
@@ -99,23 +110,23 @@ export default Vue.extend({
 
     isDown: {
       disk: false,
-      disk_x2: false
-    }
+      disk_x2: false,
+    },
   }),
   props: {
     /* dev */
     actives: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
   },
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
       getPanelNumber: 'getPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getWetBalance: 'getWetBalance'
-    })
+      getWetBalance: 'getWetBalance',
+    }),
   },
   watch: {
     getWetBalance(flag) {
@@ -129,21 +140,23 @@ export default Vue.extend({
         flag !== this.actives[this.activeNumber_x2].name
       )
         this.clearDown()
-    }
+    },
   },
   methods: {
     ...mapGetters({
-      getActiveProgramKit: 'getActiveProgramKit',
-      getIsActiveProgramKit: 'getIsActiveProgramKit',
-      getPrograms: 'getPrograms'
+      getPrograms: 'getPrograms',
+
+      getAssignProgramTo2: 'getAssignProgramTo2',
+      getIsChangeProgramSecond: 'getIsChangeProgramSecond',
+      getAssignItems: 'getAssignItems',
     }),
     ...mapActions({
-      updateStartProgram: 'updateStartProgram'
+      updateStartProgram: 'updateStartProgram',
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setActiveProgramKit: 'setActiveProgramKit',
-      setIsActiveProgramKit: 'setIsActiveProgramKit'
+      setIsActiveProgramKit: 'setIsActiveProgramKit',
     }),
 
     setProgram(program) {
@@ -156,7 +169,7 @@ export default Vue.extend({
         this.getPanelType,
         this.getPanelNumber,
         this.getActiveProgram,
-        this.getWetBalance
+        this.getWetBalance,
       ])
 
       this.setIsActiveProgramKit(true)
@@ -215,6 +228,13 @@ export default Vue.extend({
 
       this.activeProgramKit = Object.fromEntries(result)
     },
+    getIndex() {
+      if (this.getIsChangeProgramSecond()) {
+        this.index = this.getAssignProgramTo2() - 1
+        return true
+      }
+      return false
+    },
     setup() {
       this.initial()
       // sleep(0).then(() => {
@@ -235,7 +255,7 @@ export default Vue.extend({
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'left'
+        justifyContent: 'left',
       })
       /* right button */
       this.buttonRight = new Button({
@@ -248,7 +268,7 @@ export default Vue.extend({
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
       // end classes
 
@@ -348,7 +368,7 @@ export default Vue.extend({
 
         this.buttonLeft.background = 'rgb(255, 255, 255)'
       }
-    }
+    },
   }, // end methods
 
   beforeDestroy() {
@@ -356,6 +376,11 @@ export default Vue.extend({
     clearTimeout(this.timeoutSetUp)
   },
   created() {
+    this.items = this.getAssignItems()
+    this.getIndex()
+    
+    console.log('$$ WashTableDisk.vue: 375', this.items[this.index] )
+
     this.getKits()
   },
   mounted() {
@@ -368,7 +393,7 @@ export default Vue.extend({
     this.visibleMosquito_x2 = this.actives[this.activeMosquitoNumber_x2].display
 
     this.setup()
-  }
+  },
 })
 </script>
 

@@ -17,11 +17,12 @@
           ]"
         >
           <div v-if="this.getIsChangeProgramFirst()">
-            {{`${this.items[this.index].title}` | localize}}
+            {{ `${this.items[this.index].title}` | localize }}
           </div>
           <div v-else>
             {{ `${actives[this.activeWasherNumber].title}` | localize }}
           </div>
+          
         </div>
       </div>
     </td>
@@ -52,7 +53,6 @@ export default Vue.extend({
     extraLargeSizeMasks: ['1000', '1011', '1101', '1110'],
 
     title: '',
-
     index: -1,
     items: [],
 
@@ -111,16 +111,11 @@ export default Vue.extend({
       }
     },
     getActiveProgram(flag) {
-      if (
-        flag !== this.actives[this.activeWasherNumber].name
-      )
-        this.clearDown()
+      if (flag !== this.actives[this.activeWasherNumber].name) this.clearDown()
     },
   },
   methods: {
     ...mapGetters({
-      getActiveProgramKit: 'getActiveProgramKit',
-      getIsActiveProgramKit: 'getIsActiveProgramKit',
       getAssignProgramTo: 'getAssignProgramTo',
       getIsChangeProgramFirst: 'getIsChangeProgramFirst',
       getAssignItems: 'getAssignItems',
@@ -151,13 +146,12 @@ export default Vue.extend({
       this.setActiveProgramKit(this.activeProgramKit)
 
       if (parseInt(this.getWetBalance) > 0) {
-        this.timeoutPopup = setTimeout(() => {
-        }, 1000)
+        this.timeoutPopup = setTimeout(() => {}, 1000)
       } else this.$message(localizeFilter(`${messages.Not_enough_money}`))
     },
     setDown(program) {
       this.clearDown()
-      
+
       switch (program) {
         case 'washer':
           this.setButtonStyle(this._downDryOptions)
@@ -302,6 +296,7 @@ export default Vue.extend({
   mounted() {
     // native
     this.visibleWasher = this.actives[this.activeWasherNumber].display
+    // console.log('$$ WashTableWasher.vue: 306', JSON.stringify(this.actives) )
 
     // neighbors
     // Air
@@ -310,10 +305,6 @@ export default Vue.extend({
     this.visibleVacuum = this.actives[this.activeVacuumNumber].display
     // TurboDryer
     this.visibleTurboDryer = this.actives[this.activeTurboDryerNumber].display
-
-    // console.log('$$ getAssignProgramTo', this.getAssignProgramTo())
-    // console.log('$$ getIsChangeProgramFirst', this.getIsChangeProgramFirst())
-    // this.index = this.getAssignProgramTo() - 1
 
     this.setup()
   },
