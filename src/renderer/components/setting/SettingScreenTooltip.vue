@@ -1,16 +1,35 @@
 <template>
   <div>
     <!-- style="height: 150px; border: solid 3px #00b9e3; border-radius: 2rem" -->
+    <!-- <div
+      class="card grey lighten-1"
+      style="height: 168px; border: solid 3px #00b9e3; border-radius: 2em"
+    > -->
     <div
       class="card grey lighten-3"
       style="height: 168px; border: solid 3px #00b9e3; border-radius: 2em"
+      :class="[
+          { 'first-opacity': isTooltipInstalled },
+          { 'second-opacity': !isTooltipInstalled },
+        ]"
     >
-      <div class="card-content black-text">
+      <!-- <div
+        :class="[
+          { 'first-opacity': isTooltipInstalled },
+          { 'second-opacity': !isTooltipInstalled },
+        ]"
+        class="card-content black-text"
+      > -->
+      <div
+        class="card-content black-text"
+      >
         <!-- row 01 -->
-        <div class="row" style="height: 1em">
+        <div 
+        class="row" style="height: 1em;">
           <!-- dev -->
-          <div class="col s1">
-            <div class="switch" style="padding-top: 6px; ">
+          <div 
+          class="col s1">
+            <div class="switch" style="padding-top: 6px">
               <label>
                 <input type="checkbox" v-model="isTooltipInstalled" />
                 <span class="lever"></span>
@@ -28,7 +47,6 @@
 
         <!-- row 02 -->
         <div v-if="isTooltipInstalled" class="row">
-          <!-- {{`during` | localize}} -->
           <div class="col s6">
             <span
               class="card-title"
@@ -39,13 +57,7 @@
 
           <div class="col s1">
             <button
-              class="
-                btn
-                waves-effect waves-light
-                lighten-3
-                white-text
-                button-setting
-              "
+              class="btn waves-effect waves-light lighten-3 white-text button-setting"
               type="submit"
               @click="setNumber('-1')"
             >
@@ -54,20 +66,14 @@
           </div>
 
           <div class="col s3">
-            <div style="margin-left: 2.5em" class="display">
+            <div style="margin-left: 2.5em" class="display number">
               {{ display + ` сек.` }}
             </div>
           </div>
 
           <div class="col s1">
             <button
-              class="
-                btn
-                waves-effect waves-light
-                lighten-3
-                white-text
-                button-setting
-              "
+              class="btn waves-effect waves-light lighten-3 white-text button-setting"
               style="margin-left: 0em"
               type="submit"
               @click="setNumber('+1')"
@@ -118,7 +124,7 @@ import { mapGetters, mapMutations } from 'vuex'
 export default Vue.extend({
   name: 'setting-screen-tooltip',
   data: () => ({
-    isTooltipInstalled: false,
+    isTooltipInstalled: true,
     slider: null,
     current: 0,
 
@@ -147,15 +153,17 @@ export default Vue.extend({
     },
     ...mapMutations({
       setSecondsGotoPopupMenu: 'setSecondsGotoPopupMenu',
+      setTooltipInstalled: 'setTooltipInstalled',
     }),
     ...mapGetters({
-      getTooltipInstalled: 'getTooltipInstalled',
+      // getTooltipInstalled: 'getTooltipInstalled',
     }),
   },
 
   computed: {
     ...mapGetters({
       getSecondsGotoPopupMenu: 'getSecondsGotoPopupMenu',
+      getTooltipInstalled: 'getTooltipInstalled'
     }),
   },
   watch: {
@@ -168,15 +176,17 @@ export default Vue.extend({
       this.current = this.amount
 
       this.setSecondsGotoPopupMenu(this.amount)
-      //console.log('++this.getSecondsGotoPopupMenu-->', this.getSecondsGotoPopupMenu)
+    },
+
+    isTooltipInstalled(flag) {
+      this.setTooltipInstalled(flag)
     },
   },
   created() {
-    this.isTooltipInstalled = this.getTooltipInstalled()
+    this.isTooltipInstalled = this.getTooltipInstalled
 
     const secondsGotoPopupMenu = this.getSecondsGotoPopupMenu
     this.amount = secondsGotoPopupMenu
-    // console.log('this.amount-->', this.amount)
   },
 })
 </script>
@@ -185,6 +195,13 @@ export default Vue.extend({
 .display {
   font-size: 2em; /* 24px; */
   padding-left: 1.2em;
+}
+.number {
+  font-size: 2.2em;
+  padding-left: 1.2em;
+  padding-top: 0em;
+  color: rgb(218, 143, 31);
+  text-shadow: 2px 2px 2px #242204, -1px 1px 1px #5c5710;
 }
 .btn {
   font-size: 1em;
@@ -201,5 +218,14 @@ export default Vue.extend({
 }
 .material-icons {
   z-index: 1000;
+}
+.lever-setting {
+  color: rgb(218, 143, 31);
+}
+.first-opacity {
+  opacity: 1;
+}
+.second-opacity {
+  opacity: 0.6;
 }
 </style>

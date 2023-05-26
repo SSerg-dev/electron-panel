@@ -153,9 +153,13 @@ export default Vue.extend({
   padding-left: 0em;
   padding-top: 0.2em;
 }
+
 .number {
-  padding-left: 1.8em;
-  padding-top: 0.2em;
+  font-size: 2.2em;
+  padding-left: 1.2em;
+  padding-top: 0em;
+  color: rgb(218, 143, 31);
+  text-shadow: 2px 2px 2px #242204, -1px 1px 1px #5c5710;
 }
 
 td {

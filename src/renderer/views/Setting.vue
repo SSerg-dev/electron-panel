@@ -43,7 +43,6 @@
           }}</a>
         </li>
 
-
         <!-- <li @click="setProgram('alarms')" class="tab col s3">
           <a class="black-text" href="#swipe-5" style="font-size: 32px">{{
             `Alarms`
@@ -59,19 +58,14 @@
         style="box-shadow: 10px 10px 10px #00b9e3"
       >
         <!-- Обзор -->
-        <div style="width: 96%; margin-left: 1em;">
+        <div style="width: 96%; margin-left: 1em">
           <h2 class="white-text page-subtitle">{{ `Review` | localize }}</h2>
           <br />
           <div class="panel page-title white-text">
             <div><SettingOverviewService /></div>
-            <div
-            style="
-            position: fixed;
-            top: 21.5em;
-            left: 37.5em;
-            width: 98%;
-            "
-            ><SettingOverviewCommon /></div>
+            <div style="position: fixed; top: 21.5em; left: 37.5em; width: 98%">
+              <SettingOverviewCommon />
+            </div>
           </div>
         </div>
         <!-- <hr /> -->
@@ -83,7 +77,6 @@
           <!-- table -->
           <table style="margin-left: 1em; margin-top: 2em">
             <tbody>
-              
               <!-- row 01 -->
               <tr style="margin-top: 8em">
                 <td style="border: none; width: 1040px; height: 80px">
@@ -92,7 +85,7 @@
                   </div>
                 </td>
               </tr>
-              
+
               <!-- row 02 -->
               <tr style="margin-top: 0.5em">
                 <td>
@@ -138,7 +131,6 @@
                           `Replace_program` | localize
                         }}</span>
                       </div>
-                      
                     </div>
                   </div>
                 </td>
@@ -156,7 +148,6 @@
                     <div>
                       <SettingScreenChangeItem
                         :changeProgramId="changeProgramIds[0]"
-                        
                       />
                     </div>
                   </div>
@@ -174,7 +165,7 @@
                   >
                     <div>
                       <SettingScreenAssignItem
-                      :changeProgramId="changeProgramIds[0]"
+                        :changeProgramId="changeProgramIds[0]"
                       />
                     </div>
                   </div>
@@ -217,7 +208,6 @@
                           `Replace_program` | localize
                         }}</span>
                       </div>
-                      
                     </div>
                   </div>
                 </td>
@@ -252,14 +242,13 @@
                   >
                     <div>
                       <SettingScreenAssignItem
-                      :changeProgramId="changeProgramIds[1]"
+                        :changeProgramId="changeProgramIds[1]"
                       />
                     </div>
                   </div>
                 </td>
               </tr>
               <!--         -->
-
 
               <!-- row 05 -->
               <tr style="margin-top: 0.5em">
@@ -802,13 +791,7 @@
         <div class="col">
           <!-- <router-link to="/"> -->
           <button
-            class="
-              btn
-              waves-effect waves-light
-              lighten-3
-              white-text
-              button-setting
-            "
+            class="btn waves-effect waves-light lighten-3 white-text button-setting"
             type="submit"
             @click="okHandler"
           >
@@ -887,7 +870,6 @@ import EventBus from '@/bus/EventBus'
 export default Vue.extend({
   name: 'setting',
   data: () => ({
-
     isPayScreenMain: false,
 
     isChangeItem: false,
@@ -896,7 +878,6 @@ export default Vue.extend({
 
     degreasingProgram: '',
     diskProgram: '',
-    
 
     isCnw: true,
     isCursor: true,
@@ -917,8 +898,7 @@ export default Vue.extend({
     tabs: null,
 
     config: {},
-    prevConfig: {}
-
+    prevConfig: {},
   }),
   components: {
     SettingPanelType,
@@ -1036,7 +1016,7 @@ export default Vue.extend({
       getCursor: 'getCursor',
       getPayScreenMain: 'getPayScreenMain',
       getCnw: 'getCnw',
-      
+
       getIsChangeProgramFirst: 'getIsChangeProgramFirst',
       getIsChangeProgramSecond: 'getIsChangeProgramSecond',
       getIsChangeItem: 'getIsChangeItem',
@@ -1053,7 +1033,7 @@ export default Vue.extend({
       getCoinAcceptorInstalled: 'getCoinAcceptorInstalled',
       getUsersIsAccess: 'getUsersIsAccess',
       getRouter: 'getRouter',
-      getPrevRouter: 'getPrevRouter'
+      getPrevRouter: 'getPrevRouter',
     }),
   },
   watch: {
@@ -1191,7 +1171,6 @@ h2 {
   margin-top: -3.2em;
 }
 
-
 .change-foam-title {
   margin-left: 1em;
   margin-top: 0em;
@@ -1228,6 +1207,6 @@ td {
   opacity: 1;
 }
 .second-opacity {
-  opacity: 0.2;
+  opacity: 0.6;
 }
 </style>

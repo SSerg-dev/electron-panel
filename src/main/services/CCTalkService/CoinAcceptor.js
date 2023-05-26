@@ -73,8 +73,10 @@ class CoinAcceptor extends EventEmitter {
             parity: 'none',
             autoOpen: false
         }
+        
         /* Create comport driver.  */
         this.serial = new SerialPort(this.portOptions, (err) => this.debug(err))
+        // console.log('$$ CoinAcceptor.js: 79', JSON.stringify(this.serial))
         /* On serial open event. */
         this.serial.on('open', () => self.onSerialPortOpen())
         /* On serial error event. */

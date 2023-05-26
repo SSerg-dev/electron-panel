@@ -29,6 +29,5 @@ module.exports = {
       nodeIntegration: true,
       externals: ['serialport', 'node-opcua'],
     },
-    
   },
 }

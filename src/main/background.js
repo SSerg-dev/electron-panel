@@ -9,7 +9,7 @@ import {
   getFileName,
   log,
   getSerialDevicesInfo,
-  wait
+  wait,
 } from './utils'
 
 import GPIOService from './services/GPIOService'
@@ -122,7 +122,6 @@ ipcMain.on('async-payload-start', (event, options) => {
 const BillValidator = new BillValidatorController()
 BillValidator.on('connect', () => (isBillValidatorConnected = true))
 BillValidator.on('stacked', (bill) => {
-  // console.log('$$ background.js: 124', bill)
   sendEventToView(mainWindow, 'banknote', bill)
 })
 /* ----------------------------------------------------------------------- */
@@ -399,7 +398,7 @@ const createWindow = () => {
 
   if (isDev) {
     mainWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
   } else {
     createProtocol('app')
     mainWindow.loadURL('app://./index.html')

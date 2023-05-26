@@ -12,9 +12,9 @@
         border-right-style: hidden;
       "
     >
-      <div class="card-content black-text">
+      <div :key="this.keys.keyProgram" class="card-content black-text">
         <div class="input-field" style="margin-top: -0.5em">
-
+          
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(n, index) in items" :key="index" :value="n.id">
               <div
@@ -25,7 +25,7 @@
               </div>
             </option>
           </select>
-          
+
         </div>
       </div>
     </div>
@@ -36,19 +36,23 @@
 import { stringify } from 'querystring'
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
+import sleep from '@/utils/sleep'
 
 export default Vue.extend({
   name: 'setting-panel-item',
-
-  // props: ['changeItemIds', 'degreasingProgram'],
   props: ['changeProgramId'],
 
   data: () => ({
     select: null,
     current: null,
-    title: '',
+    titles: [],
+    sleepMs: 200,
 
     index: -1,
+
+    keys: {
+      keyProgram: 1,
+    },
 
     items: [
       { id: 1, title: `GLASS_WASHING_LIQUID` },
@@ -58,23 +62,54 @@ export default Vue.extend({
     ],
     selectedItems: [],
   }),
-  mounted() {
-    this.selectedItems = [...this.items]
-    // console.log('$$ SettingScreenCangeItem.vue: 58', this.changeProgramId)
-    this.select = M.FormSelect.init(this.$refs.select, {
-      constrainWidth: true,
-    })
-    M.updateTextFields()
-  },
+
   methods: {
     ...mapGetters({
       getChangeProgram: 'getChangeProgram',
       getChangeProgram2: 'getChangeProgram2',
     }),
+
     ...mapMutations({
       setChangeProgram: 'setChangeProgram',
       setChangeProgram2: 'setChangeProgram2',
     }),
+
+    setup() {
+      switch (this.changeProgramId) {
+        case 1:
+          this.index = this.getChangeProgram() - 1
+          this.current = this.changeProgramId
+          break
+        case 2:
+          this.index = this.getChangeProgram2() - 1
+          this.current = this.changeProgramId
+          break
+        default:
+          break
+      }
+
+      if (this.items[this.index]) {
+        const { id, title } = this.items[this.index]
+        // this.current = id
+        // this.titles[id - 1] = title
+      }
+      // console.log('$$ title:92', this.titles)
+    },
+
+    init() {
+      this.select = M.FormSelect.init(this.$refs.select, {
+        constrainWidth: true,
+      })
+      M.updateTextFields()
+    },
+    setKeys() {
+      this.keys = Object.fromEntries(
+        Object.entries(this.keys).map(([key, value], index) => [
+          key,
+          (index + 1) * 10,
+        ])
+      )
+    },
   },
   computed: {
     ...mapGetters({}),
@@ -101,21 +136,15 @@ export default Vue.extend({
   },
 
   created() {
-    switch (this.changeProgramId) {
-      case 1:
-        this.index = this.getChangeProgram() - 1
-        break
-      case 2:
-        this.index = this.getChangeProgram2() - 1
-        break
-      default:
-        break
-    }
-    if (this.items[this.index]) {
-      const { id, title } = this.items[this.index]
-      this.current = id
-      this.select = title
-    }
+    this.setup()
+  },
+  mounted() {
+    this.selectedItems = [...this.items]
+
+    sleep(this.sleepMs).then(() => {
+      this.init()
+    })
+    this.setKeys()
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {

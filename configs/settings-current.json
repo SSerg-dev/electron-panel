@@ -107,7 +107,7 @@
     "degreasing_program": 1,
     "degreasing_program2": 2,
     "degreasing_program_to": 4,
-    "degreasing_program_to2": 3,
+    "degreasing_program_to2": 1,
     "direct_cash": true,
     "disk_color": 0,
     "disk_color_type": 0,
@@ -119,7 +119,8 @@
     "splash_show": true,
     "splash_timeout": 30,
     "touch_threshold": 200,
-    "window_timeout": 30
+    "window_timeout": 30,
+    "isTooltipInstalled": false
   },
   "__commentAlarms": "add alarms",
   "alarms": {

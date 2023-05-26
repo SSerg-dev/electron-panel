@@ -19,7 +19,6 @@ export default {
     vacuum: 1,
     vacuumNumber: 1,
     payment: 1,
-    isTooltipInstalled: true,
     cardLimitMax: 0,
     prevRouter: ''
 
@@ -171,7 +170,7 @@ export default {
       return state.config.coin_acceptor.type
     },
     getTooltipInstalled(state) {
-      return state.isTooltipInstalled
+      return state.config.ui.isTooltipInstalled
     },
     getDirectCash(state) {
       return state.config.ui.direct_cash  
@@ -334,11 +333,9 @@ export default {
       state.config = config
       state.cardLimitMax = state.config.bank_terminal.max_sum
     },
-    
-    
-    /* setTooltipInstalled(state, isTooltipInstalled) {
-      state.isTooltipInstalled = isTooltipInstalled
-    }, */
+    setTooltipInstalled(state, isTooltipInstalled) {
+      state.config.ui.isTooltipInstalled = isTooltipInstalled
+    },
   }, // end mutations
 
   //actions

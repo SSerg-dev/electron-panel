@@ -33,10 +33,12 @@ class CoinAcceptorController extends EventEmitter {
     let _path
     let port_num = 10
     const portInfo = await getSerialDevicesInfo('USB')
+    // console.log('$$ CoinAcceptorController.js: 36', portInfo, portInfo.length)
 
     if (portInfo) {
       for (let i = 0; i < portInfo.length; i++) {
         _path = portInfo[i].path
+        // _path = '/dev/ttyUSB0'
 
         this.device = new CCTalk.CoinAcceptor(_path, this.bills, conf.debug)
         // log(TAG, 'try Connecting at coin port ...', _path)
@@ -67,6 +69,7 @@ class CoinAcceptorController extends EventEmitter {
     this.currency = currency || 0
     this.bills = bills || []
 
+    // console.log('$$ CoinAcceptorController.js: 70',TAG, currency, bills)
     this.once('connect', async () => {
       let info = this.device.getDeviceInfo
       log(TAG, 'Info:', JSON.stringify(info))
@@ -76,7 +79,7 @@ class CoinAcceptorController extends EventEmitter {
 
       this.poll(this.device)
     })
-
+    // console.log('$$ CoinAcceptorController.js: 81',)
     this.connect()
   }
 
@@ -86,6 +89,7 @@ class CoinAcceptorController extends EventEmitter {
   }
 
   enabler(state = false) {
+    // console.log('$$ CoinAcceptorController.js: 90', this.port, state)
     if (this.port !== 10) {
       this.device.setEnabler(state)
     }

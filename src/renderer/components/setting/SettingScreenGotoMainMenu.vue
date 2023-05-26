@@ -28,7 +28,7 @@
           </div>
 
           <div class="col s3">
-            <div style="margin-left: 1.5em" class="display">
+            <div style="margin-left: 1.5em" class="display number">
               {{ display + ` сек.` }}
             </div>
           </div>
@@ -134,6 +134,13 @@ export default Vue.extend({
 .display {
   font-size: 2em; /* 24px; */ 
   padding-left: 1.8em;
+}
+.number {
+  font-size: 2.2em;
+  padding-left: 1em;
+  padding-top: 0em;
+  color: rgb(218, 143, 31);
+  text-shadow: 2px 2px 2px #242204, -1px 1px 1px #5c5710;
 }
 .btn {
   font-size: 1em;

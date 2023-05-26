@@ -29,8 +29,8 @@
             </button>
           </div>
 
-          <div class="col s3" style="padding-top: 0.5em;">
-            <div style="margin-left: 0.85em" class="display">
+          <div class="col s3" style="">
+            <div class="display number">
               {{ display }}
             </div>
           </div>
@@ -138,6 +138,13 @@ export default Vue.extend({
 <style scoped>
 .display {
   font-size: 1.6em;
+}
+.number {
+  font-size: 2.2em;
+  margin-left: 0.6em;
+  padding-top: 0.2em;
+  color: rgb(218, 143, 31);
+  text-shadow: 2px 2px 2px #242204, -1px 1px 1px #5c5710;
 }
 /* .btn {
   font-size: 1em;
