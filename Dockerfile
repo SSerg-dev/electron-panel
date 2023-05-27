@@ -31,10 +31,6 @@ WORKDIR /app/
 
 COPY . ./
 
-RUN yarn || true
-
-RUN sed -i 's/\"dependencies\".*/\"dependencies\" : \{\},/' ./node_modules/accounting/package.json
-
 RUN yarn
 
 RUN yarn electron:build
