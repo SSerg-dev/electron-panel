@@ -58,6 +58,7 @@ build:
 
 deploy:
   <<: *docker_template
+stage: deploy
 dependencies:
   - build
 script:
