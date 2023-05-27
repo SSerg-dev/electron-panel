@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libopenjp2-tools \
     rpm \
     build-essential \
-    curl
+    curl \
     bison \
     python3 \
     nodejs \
