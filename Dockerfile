@@ -16,8 +16,6 @@ RUN apt-get update && \
     libxtst-dev \
     libxss1 \
     libnss3-dev \
-    gcc-multilib \
-    g++-multilib \
     curl \
     gperf \
     bison \
