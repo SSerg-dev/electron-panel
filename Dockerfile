@@ -1,4 +1,4 @@
-FROM  debian:buster AS builder
+FROM  ubuntu:20.04 AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -41,7 +41,7 @@ RUN yarn
 
 RUN yarn electron:build
 
-FROM debian:buster-slim
+FROM debian:stretch-slim
 
 WORKDIR /alles/
 
