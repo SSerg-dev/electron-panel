@@ -10,7 +10,7 @@ variables:
   image: docker:19.03.13-dind
   services:
     - name: docker:19.03.13-dind
-      command: ["--experimental"]
+    - command: ["--experimental"]
   variables:
     # Use TLS https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#tls-enabled
     DOCKER_HOST: tcp://docker:2375
@@ -44,6 +44,12 @@ variables:
     - echo $CONTAINER_RELEASE_IMAGE
     - docker pull $CONTAINER_RELEASE_IMAGE || true
     - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --cache-from $CONTAINER_RELEASE_IMAGE --platform linux/arm64 --push -f Dockerfile -t $CONTAINER_RELEASE_IMAGE .
+    - docker run -d --rm --name deploy $CONTAINER_RELEASE_IMAGE
+    - mkdir -p ./dist_electron
+    - docker cp deploy:/alles/dist_electron ./dist_electron 
+artifacts:
+  paths:
+    - dist_electron
 
 # End of templates, the real jobs start here
 # ---
@@ -52,12 +58,7 @@ build:
 
 deploy:
   <<: *docker_template
-before_script:
-  - docker run -d --rm --name deploy $CONTAINER_RELEASE_IMAGE
-  - mkdir -p ./dist_electron
-  - docker cp deploy:/alles/dist_electron ./dist_electron 
-artifacts:
-  paths:
-    -./dist_electron
+dependencies:
+  - build
 script:
   - ls -la ./dist_electron
