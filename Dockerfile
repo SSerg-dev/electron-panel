@@ -1,4 +1,4 @@
-FROM  ubuntu:20.04 AS builder
+FROM  debian:buster AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -6,6 +6,7 @@ RUN apt-get update && \
     apt-get install -y \
     build-essential \
     clang \
+    cmake \
     libdbus-1-dev \
     libgtk-3-dev \
     libnotify-dev \
@@ -16,7 +17,8 @@ RUN apt-get update && \
     libxss1 \
     libnss3-dev \
     gcc-multilib \
-    g++-multilib curl \
+    g++-multilib \
+    curl \
     gperf \
     bison \
     python3-dbusmock \
@@ -37,13 +39,18 @@ RUN sed -i 's/\"dependencies\".*/\"dependencies\" : \{\},/' ./node_modules/accou
 
 RUN yarn
 
-RUN npx electron-builder --dir --armv7l --linux deb
+RUN yarn electron:build
 
+FROM debian:buster-slim
 
-FROM debian:stretch-slim
+WORKDIR /alles/
 
-WORKDIR /root/
+COPY --from=builder /app/dist_electron ./dist_electron
 
-COPY --from=builder /app/dist/ ./
+COPY --from=builder /app/certificates ./certificates
 
-CMD ["bash"]
+COPY --from=builder /app/data ./data
+
+COPY --from=builder /app/configs ./configs
+
+CMD ["./bin/electron-panel-1.0.0-arm64.AppImage"]

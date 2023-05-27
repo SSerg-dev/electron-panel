@@ -11,8 +11,5 @@ Changelog.md
 docker-compose.yml
 *.txt
 *.log
-*.lock
-*-lock.*
 .prettierrc.js
-.env
 .editorconfig
