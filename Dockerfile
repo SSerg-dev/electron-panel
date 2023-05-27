@@ -4,6 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
     libopenjp2-tools \
+    gnupg \
     rpm \
     curl \
     build-essential \
