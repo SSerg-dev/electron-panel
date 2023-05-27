@@ -47,9 +47,9 @@ variables:
     - docker run -d --rm --name deploy $CONTAINER_RELEASE_IMAGE
     - mkdir -p ./dist_electron
     - docker cp deploy:/alles/dist_electron ./dist_electron 
-artifacts:
-  paths:
-    - dist_electron
+  artifacts:
+    paths:
+      - dist_electron
 
 # End of templates, the real jobs start here
 # ---
@@ -58,8 +58,8 @@ build:
 
 deploy:
   <<: *docker_template
-stage: deploy
-dependencies:
-  - build
-script:
-  - ls -la ./dist_electron
+  stage: deploy
+  dependencies:
+    - build
+  script:
+    - ls -la ./dist_electron
