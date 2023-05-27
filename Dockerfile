@@ -1,4 +1,4 @@
-FROM node:16 AS builder
+FROM ubuntu:20.04 AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
 
