@@ -25,13 +25,17 @@ WORKDIR /app/
 
 COPY . ./
 
-RUN yarn
-
-RUN npx electron-builder install-app-deps
+RUN yarn install --network-timeout 100000
 
 RUN yarn electron:build
 
-FROM debian:stretch-slim
+#
+FROM scratch AS export
+
+COPY --from=builder /app/dist_electron .
+
+#
+FROM debian:stretch-slim AS run
 
 WORKDIR /alles/
 
@@ -43,4 +47,6 @@ COPY --from=builder /app/data ./data
 
 COPY --from=builder /app/configs ./configs
 
-CMD ["./dist_electron/electron-panel-1.0.0-arm64.AppImage"]
+COPY --from=builder /app/dist_electron .
+
+CMD ["./dist_electron/electron-panel-1.0.0.AppImage"]
