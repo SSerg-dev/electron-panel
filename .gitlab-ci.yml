@@ -1,5 +1,5 @@
 stages:
-  -build
+  - build
   - deploy 
 
 variables:
@@ -56,3 +56,8 @@ before_script:
   - docker run -d --rm --name deploy $CONTAINER_RELEASE_IMAGE
   - mkdir -p ./dist_electron
   - docker cp deploy:/alles/dist_electron ./dist_electron 
+artifacts:
+  paths:
+    -./dist_electron
+script:
+  - ls -la ./dist_electron
