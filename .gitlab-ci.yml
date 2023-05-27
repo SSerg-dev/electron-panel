@@ -10,7 +10,7 @@ variables:
   image: docker:19.03.13-dind
   services:
     - name: docker:19.03.13-dind
-    - command: ["--experimental"]
+      command: ["--experimental"]
   variables:
     # Use TLS https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#tls-enabled
     DOCKER_HOST: tcp://docker:2375
