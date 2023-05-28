@@ -15,24 +15,24 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 
-RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+#RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null
 
-RUN echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list
+#RUN echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list
 
-RUN apt-get update && apt-get install --no-install-recommends -y nodejs yarn
+RUN apt-get update && apt-get install --no-install-recommends -y nodejs 
+#yarn
 
 WORKDIR /app/
 
 COPY . ./
 
-RUN yarn install --network-timeout 100000
+RUN npm install
 
-RUN yarn electron:build
+RUN npm run electron:build
 
-#
-FROM scratch AS export
+#RUN yarn install --network-timeout 100000
 
-COPY --from=builder /app/dist_electron .
+#RUN yarn electron:build
 
 #
 FROM debian:stretch-slim AS run
