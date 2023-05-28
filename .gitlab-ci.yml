@@ -8,7 +8,7 @@ variables:
 
 cache:
   paths:
-    - apt-cache-ubuntu/
+    - apt-cache/
 
 .template: &docker_template
   image: docker:19.03.13-dind
