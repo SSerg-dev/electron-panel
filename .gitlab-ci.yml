@@ -1,10 +1,14 @@
 stages:
   - build
-  - deploy 
+  - dockerize 
 
 variables:
   CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
+
+cache:
+  paths:
+    - apt-cache-ubuntu/
 
 .template: &docker_template
   image: docker:19.03.13-dind
@@ -21,7 +25,7 @@ variables:
 
 .template: &docker_buildx
   <<: *docker_template
-  stage: build
+  stage: dockerize
   before_script:
     - apk --no-cache add curl
   script:
@@ -44,24 +48,44 @@ variables:
     - echo $CONTAINER_RELEASE_IMAGE
     - docker pull $CONTAINER_RELEASE_IMAGE || true
     - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --cache-from $CONTAINER_RELEASE_IMAGE --network host --platform linux/arm64 --push -f Dockerfile -t $CONTAINER_RELEASE_IMAGE .
-    - docker run -d --rm --name export_container $CONTAINER_RELEASE_IMAGE
-    - mkdir -p dist_electron
-    - docker cp export_container:/alles/dist_electron ./dist_electron
-    - docker stop export_container
+# End of templates, the real jobs start here
+
+# ---
+build:
+  image: ubuntu:20.04
+  stage: build
+  before_script:
+    - export DEBIAN_FRONTEND=noninteractive
+    - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
+    - >
+      apt-get update && apt-get -o dir::cache::archives="$APT_CACHE_DIR"
+      install -y --no-install-recommends
+      libopenjp2-tools
+      ca-certificates
+      gnupg
+      rpm
+      curl
+      build-essential
+      curl
+      bison
+      python3
+    - curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+    - curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+    - echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list
+    - apt-get update && apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -y --no-install-recommends nodejs yarn
+    - yarn
+  script:
+    - yarn electron:build
     - ls -la ./dist_electron
   artifacts:
     paths:
       - dist_electron
+  only:
+    - main
 
-# End of templates, the real jobs start here
-# ---
-build:
+dockerize:
   <<: *docker_buildx
-
-deploy:
-  <<: *docker_template
-  stage: deploy
   dependencies:
     - build
-  script:
-    - ls -la ./dist_electron
+
+
