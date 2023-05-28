@@ -24,6 +24,14 @@ RUN echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends nodejs yarn
 
+RUN yarn config delete proxy
+
+RUN npm config rm https-proxy
+
+RUN npm config rm proxy
+
+RUN npm config set registry "https://registry.npmjs.org"
+
 RUN yarn
 
 RUN yarn electron:armbuild
