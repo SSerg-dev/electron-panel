@@ -1,14 +1,9 @@
 stages:
   - build
-  - dockerize 
 
 variables:
   CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
-
-cache:
-  paths:
-    - apt-cache/
 
 .template: &docker_template
   image: docker:19.03.13-dind
@@ -25,7 +20,7 @@ cache:
 
 .template: &docker_buildx
   <<: *docker_template
-  stage: dockerize
+  stage: build
   before_script:
     - apk --no-cache add curl
   script:
@@ -48,51 +43,14 @@ cache:
     - echo $CONTAINER_RELEASE_IMAGE
     - docker pull $CONTAINER_RELEASE_IMAGE || true
     - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --cache-from $CONTAINER_RELEASE_IMAGE --network host --platform linux/arm64 --push -f Dockerfile -t $CONTAINER_RELEASE_IMAGE .
+    - docker run -d --rm --name temp $CONTAINER_RELEASE_IMAGE
+    - docker cp temp:/alles/dist_electron .
+    - docker stop temp
+    - ls -la dist_electron
 # End of templates, the real jobs start here
 
 # ---
 build:
-  image: ubuntu:20.04
-  stage: build
-  before_script:
-    - export DEBIAN_FRONTEND=noninteractive
-    - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
-    - export PATH=/snap/bin:$PATH
-    - >
-      apt-get update && apt-get -o dir::cache::archives="$APT_CACHE_DIR"
-      install -y --no-install-recommends
-      libopenjp2-tools
-      ca-certificates
-      gnupg
-      rpm
-      curl
-      build-essential
-      curl
-      bison
-      python3
-      snapd
-      squashfuse
-      fuse
-    - systemctl enable --now snapd.socket
-    - ln -s /var/lib/snapd/snap /snap
-    - snap install snapcraft --classic 
-    - curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
-    - curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null
-    - echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list
-    - apt-get update && apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -y --no-install-recommends nodejs yarn
-    - yarn
-  script:
-    - yarn electron:armbuild
-    - ls -la ./dist_electron
-  artifacts:
-    paths:
-      - dist_electron
-  only:
-    - main
-
-dockerize:
   <<: *docker_buildx
-  dependencies:
-    - build
 
 

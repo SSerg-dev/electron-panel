@@ -1,10 +1,43 @@
+
+##
+FROM ubuntu:20.04 AS build
+
+WORKDIR /app
+
+COPY . .
+
+RUN export DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libopenjp2-tools \
+    ca-certificates \
+    gnupg \
+    rpm \
+    curl \
+    build-essential \
+    bison \
+    python3
+
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+
+RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+
+RUN echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+RUN apt-get update && apt-get install -y --no-install-recommends nodejs yarn
+
+RUN yarn
+
+RUN yarn electron:armbuild
+
+##
 FROM debian:stretch-slim
 
-WORKDIR /alles/
+WORKDIR /alles
 
-mkdir data configs certificates log
+mkdir -p dist_electron data configs certificates log
 
-COPY ./dist_electron ./dist_electron
+COPY --from=build ./dist_electron ./dist_electron
 
 COPY ./certificates ./certificates
 
@@ -12,4 +45,4 @@ COPY ./data ./data
 
 COPY ./configs ./configs
 
-CMD ["./dist_electron/electron-panel-1.0.0.AppImage"]
+CMD ["./dist_electron/electron-panel-1.0.0-arm64.AppImage"]
