@@ -35,7 +35,7 @@ FROM debian:stretch-slim
 
 WORKDIR /alles
 
-mkdir -p dist_electron data configs certificates log
+RUN mkdir -p dist_electron data configs certificates log
 
 COPY --from=build ./dist_electron ./dist_electron
 
