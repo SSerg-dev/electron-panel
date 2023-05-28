@@ -42,7 +42,7 @@ variables:
     - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx inspect --bootstrap
     - echo $CONTAINER_RELEASE_IMAGE
     - docker pull $CONTAINER_RELEASE_IMAGE || true
-    - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --cache-from $CONTAINER_RELEASE_IMAGE --network host --platform linux/arm64 --push -f Dockerfile -t $CONTAINER_RELEASE_IMAGE .
+    - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --cache-from $CONTAINER_RELEASE_IMAGE --platform linux/arm64 --push -f Dockerfile -t $CONTAINER_RELEASE_IMAGE .
     - docker run -d --rm --name temp $CONTAINER_RELEASE_IMAGE
     - docker cp temp:/alles/dist_electron .
     - docker stop temp
