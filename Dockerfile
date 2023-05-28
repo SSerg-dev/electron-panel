@@ -6,6 +6,16 @@ WORKDIR /app
 
 COPY . .
 
+RUN rm -rf node_modules yarn.lock package-lock.json
+
+RUN npm config rm http-proxy
+RUN npm config rm https-proxy
+
+RUN yarn config delete proxy
+RUN yarn config delete https-proxy
+
+RUN yarn cache clean
+
 #RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
 #    libopenjp2-tools \
 #    ca-certificates \
@@ -32,7 +42,7 @@ COPY . .
 
 #RUN npm config set registry "https://registry.npmjs.org"
 
-RUN yarn
+RUN yarn --network-timeout 300000
 
 RUN yarn electron:armbuild
 
