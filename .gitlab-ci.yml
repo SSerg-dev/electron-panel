@@ -57,6 +57,7 @@ build:
   before_script:
     - export DEBIAN_FRONTEND=noninteractive
     - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
+    - export PATH=/snap/bin:$PATH
     - >
       apt-get update && apt-get -o dir::cache::archives="$APT_CACHE_DIR"
       install -y --no-install-recommends
@@ -70,6 +71,10 @@ build:
       bison
       python3
       snapd
+      squashfuse
+      fuse
+    - systemctl enable --now snapd.socket
+    - ln -s /var/lib/snapd/snap /snap
     - snap install snapcraft --classic 
     - curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
     - curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null
