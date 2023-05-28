@@ -75,7 +75,7 @@ build:
     - apt-get update && apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -y --no-install-recommends nodejs yarn
     - yarn
   script:
-    - yarn electron:build
+    - yarn electron:armbuild
     - ls -la ./dist_electron
   artifacts:
     paths:
