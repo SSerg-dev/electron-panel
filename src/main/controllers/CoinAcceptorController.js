@@ -34,7 +34,7 @@ class CoinAcceptorController extends EventEmitter {
     let port_num = 10
     const portInfo = await getSerialDevicesInfo('USB')
     // console.log('$$ CoinAcceptorController.js: 36', portInfo, portInfo.length)
-
+    
     if (portInfo) {
       for (let i = 0; i < portInfo.length; i++) {
         _path = portInfo[i].path
@@ -42,6 +42,7 @@ class CoinAcceptorController extends EventEmitter {
 
         this.device = new CCTalk.CoinAcceptor(_path, this.bills, conf.debug)
         // log(TAG, 'try Connecting at coin port ...', _path)
+
         try {
           await this.device.connect()
           log(TAG, 'Connected at coin port', _path)

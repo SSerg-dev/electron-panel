@@ -3,25 +3,25 @@
     <div
       class="card grey lighten-3"
       style="
-      height: 150px; 
-      border: solid 3px #00B9E3; 
-      border-top-right-radius: 2rem;
-      border-bottom-right-radius: 2rem;
-      border-top-left-radius: 2rem;
-      border-bottom-left-radius: 2rem;
+        height: 150px;
+        border: solid 3px #00b9e3;
+        border-top-right-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+        border-top-left-radius: 2rem;
+        border-bottom-left-radius: 2rem;
       "
     >
-      <div class="card-content black-text">
-        <span class="card-title">{{`Language` | localize}} {{`:`}}</span>
+      <div class="card-content black-text scrollbar">
+        <span class="card-title">{{ `Language` | localize }} {{ `:` }}</span>
 
-        <div class="input-field">
+        <div class="input-field" id="scrollbar-style">
           <select
             multiple
             class="page-title white-text"
             ref="select"
             v-model="current"
           >
-            <option value="" disabled selected>Выбрать языки:</option>
+            <option value="" disabled selected></option>
             <option
               v-for="(l, index) in allLanguages"
               :key="index"
@@ -58,11 +58,11 @@ export default Vue.extend({
     currencies: [],
 
     languages: [],
-    allLanguages: []
+    allLanguages: [],
   }),
   mounted() {
     this.select = M.FormSelect.init(this.$refs.select, {
-      constrainWidth: true
+      constrainWidth: true,
     })
     M.updateTextFields()
   },
@@ -70,18 +70,18 @@ export default Vue.extend({
     ...mapGetters({
       getLanguageNatives: 'getLanguageNatives',
       getAllLanguageNatives: 'getAllLanguageNatives',
-      getLanguageIds: 'getLanguageIds'
+      getLanguageIds: 'getLanguageIds',
       // getSelectLanguageNatives: 'getSelectLanguageNatives'
     }),
     selected() {
       return store.state.countries.countries
-    }
+    },
   },
   methods: {
     ...mapMutations({
       setLanguageNatives: 'setLanguageNatives',
       setLanguageIds: 'setLanguageIds',
-      setSelectedCountries: 'setSelectedCountries'
+      setSelectedCountries: 'setSelectedCountries',
     }),
     ...mapGetters({}),
     /* dev */
@@ -92,13 +92,13 @@ export default Vue.extend({
     selectLanguages() {
       this.languages = this.getLanguageNatives
       this.allLanguages = this.getAllLanguageNatives
-      
-      for (let i = 0; i < this.allLanguages.length; i++) 
+
+      for (let i = 0; i < this.allLanguages.length; i++)
         this.allLanguages[i].selected = false
-      
+
       for (let i = 0; i < this.languages.length; i++) {
         const key = this.languages[i].key
-        const index = this.allLanguages.findIndex(l => l.key === key)
+        const index = this.allLanguages.findIndex((l) => l.key === key)
         this.allLanguages[index].selected = true
       }
 
@@ -112,19 +112,19 @@ export default Vue.extend({
 
     setup() {
       this.selectLanguages()
-    }
+    },
   },
   watch: {
     current(languageIds) {
       console.log('languageIds-->', languageIds)
 
-      const selected = languageIds.map(i => {
-        const result = this.allLanguages.find(l => l.id === i).key
+      const selected = languageIds.map((i) => {
+        const result = this.allLanguages.find((l) => l.id === i).key
         return result
       })
       this.setSelectedCountries(selected)
       this.emitSelect(selected, this.current)
-      
+
       /* dev */
       //this.selectLanguages()
 
@@ -143,12 +143,89 @@ export default Vue.extend({
     if (this.select && this.select.destroy) {
       this.select.destroy()
     }
-  }
+  },
 })
 </script>
 
 <style scoped>
-/* span {
-  color:darkcyan;
+/* .dropdown-content {
+    background-color: #757575;
+    margin: 0;
+    display: none;
+    min-width: 100px;
+    overflow-y: auto;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    transform-origin: 0 0;
 } */
+
+/* .scrollbar { */
+    /* height: 800px; */
+    
+    /* background-color: #ff0; */
+    /* float: left; */
+    /* margin-bottom: 25px; */
+    /* margin-left: 22px; */
+    /* margin-top: 40px; */
+    /* width: 800px; */
+    /* overflow-y: scroll; */
+/* } */
+
+#scrollbar-style ::-webkit-scrollbar-track {
+  width: 84px;
+  background-color: #dbebee;
+}
+
+#scrollbar-style ::-webkit-scrollbar-thumb {
+  background-color: #68cce2;
+  border: solid 2px #00b9e3;
+  border-radius: 1em;
+  box-shadow: 1px 1px 4px #00b9e3;
+}
+
+#scrollbar-style ::-webkit-scrollbar {
+  width: 84px;
+  background-color:  #000; /* #dbebee; */
+}
+
+/* #scrollbar-style ::-webkit-scrollbar-button {
+  width: 84px;
+  height: 64px;
+  color: #000;
+  background-color: #dbebee;
+  border: solid 2px #00b9e3;
+  border-radius: 0.5em;
+  
+} */
+/* Buttons */
+#scrollbar-style ::-webkit-scrollbar-button:single-button {
+  background-color: #bbb;
+  display: block;
+  border-style: solid;
+  height: 42px;
+  width: 84px;
+}
+/* Up */
+#scrollbar-style ::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0 42px 42px 42px;
+  border-color: transparent transparent #555 transparent;
+}
+
+#scrollbar-style
+  ::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+  border-color: transparent transparent #777 transparent;
+}
+/* Down */
+#scrollbar-style ::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-width: 42px 42px 0 42px;
+  border-color: #555 transparent transparent transparent;
+}
+
+#scrollbar-style
+  ::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+  border-color: #777 transparent transparent transparent;
+}
 </style>

@@ -1,14 +1,14 @@
 {
   "sumB10": 0,
-  "sumB50": 50,
+  "sumB50": 0,
   "sumB100": 0,
   "sumB200": 0,
   "sumB500": 0,
   "counterB10": 0,
-  "counterB50": 1,
+  "counterB50": 0,
   "counterB100": 0,
   "counterB200": 0,
   "counterB500": 0,
-  "amountBill": 50,
-  "counterBill": 1
+  "amountBill": 0,
+  "counterBill": 0
 }

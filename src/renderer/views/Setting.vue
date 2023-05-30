@@ -706,7 +706,7 @@
         <h2 class="white-text page-subtitle">Языки</h2>
         <br />
 
-        <table style="margin-left: 2em; margin-top: -1em">
+        <table style="margin-left: 2em; margin-top: -1em;">
           <tbody>
             <!-- row 01 -->
             <tr style="margin-top: 2em">
@@ -716,10 +716,11 @@
                 </div>
               </td>
             </tr>
-            Payment
+            
           </tbody>
         </table>
-        <div style="margin-top: 4em">
+        <div style="margin-top: 4em;">
+        <!-- <div style="margin-top: 92em;"> -->
           <hr />
         </div>
 

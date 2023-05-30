@@ -1,13 +1,6 @@
 <template>
   <div>
-    <!-- <div  class="back">
-        <router-link to="/">
-          <div>
-            <img src="@/assets/imgs/key/back.png" />
-          </div>
-        </router-link>
-      </div> -->
-
+  
     <div class="back">
       <div @click="setProgram()">
         <div>

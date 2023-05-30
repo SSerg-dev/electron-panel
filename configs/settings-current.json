@@ -33,13 +33,9 @@
   "__commentCountries": "add available countries",
   "countries": [
     "RU",
-    "US",
-    "DE",
-    "FR",
-    "TR",
-    "FI",
-    "NO",
-    "SE"
+    "KZ",
+    "EE",
+    "DE"
   ],
   "country": "RU",
   "__commentCurrency": "add default currency",
