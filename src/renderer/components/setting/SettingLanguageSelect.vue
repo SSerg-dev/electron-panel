@@ -163,15 +163,15 @@ export default Vue.extend({
 } */
 
 /* .scrollbar { */
-    /* height: 800px; */
-    
-    /* background-color: #ff0; */
-    /* float: left; */
-    /* margin-bottom: 25px; */
-    /* margin-left: 22px; */
-    /* margin-top: 40px; */
-    /* width: 800px; */
-    /* overflow-y: scroll; */
+/* height: 800px; */
+
+/* background-color: #ff0; */
+/* float: left; */
+/* margin-bottom: 25px; */
+/* margin-left: 22px; */
+/* margin-top: 40px; */
+/* width: 800px; */
+/* overflow-y: scroll; */
 /* } */
 
 #scrollbar-style ::-webkit-scrollbar-track {
@@ -188,7 +188,7 @@ export default Vue.extend({
 
 #scrollbar-style ::-webkit-scrollbar {
   width: 84px;
-  background-color:  #000; /* #dbebee; */
+  background-color: #000; /* #dbebee; */
 }
 
 /* #scrollbar-style ::-webkit-scrollbar-button {
