@@ -1,49 +1,64 @@
-FROM  ubuntu:20.04 AS builder
 
-ENV DEBIAN_FRONTEND=noninteractive
+##
+FROM node:16.19 AS build
 
-RUN apt-get update && \
-    apt-get install -y \
-    build-essential \
-    clang \
-    libdbus-1-dev \
-    libgtk-3-dev \
-    libnotify-dev \
-    libasound2-dev \
-    libcap-dev \
-    libcups2-dev \
-    libxtst-dev \
-    libxss1 \
-    libnss3-dev \
-    gcc-multilib \
-    g++-multilib curl \
-    gperf \
-    bison \
-    python3-dbusmock \
-    openjdk-8-jre
+WORKDIR /app
 
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
-RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null && \
-    echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt-get update && apt-get install -y nodejs yarn
+COPY . .
 
-WORKDIR /app/
+RUN rm -rf node_modules yarn.lock package-lock.json
 
-COPY . ./
+RUN npm config rm http-proxy
+RUN npm config rm https-proxy
 
-RUN yarn || true
+RUN yarn config delete proxy
+RUN yarn config delete https-proxy
 
-RUN sed -i 's/\"dependencies\".*/\"dependencies\" : \{\},/' ./node_modules/accounting/package.json
+RUN yarn cache clean
 
-RUN yarn
+#RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
+#    libopenjp2-tools \
+#    ca-certificates \
+#    gnupg \
+#    rpm \
+#    curl \
+#    build-essential \
+#    bison \
+#    python3
 
-RUN npx electron-builder --dir --armv7l --linux deb
+#RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 
+#RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null
 
+#RUN echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+#RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends nodejs yarn
+
+#RUN yarn config delete proxy
+
+#RUN npm config rm https-proxy
+
+#RUN npm config rm proxy
+
+#RUN npm config set registry "https://registry.npmjs.org"
+
+RUN yarn --network-timeout 300000
+
+RUN yarn electron:armbuild
+
+##
 FROM debian:stretch-slim
 
-WORKDIR /root/
+WORKDIR /alles
 
-COPY --from=builder /app/dist/ ./
+RUN mkdir -p dist_electron data configs certificates log
 
-CMD ["bash"]
+COPY --from=build ./dist_electron ./dist_electron
+
+COPY ./certificates ./certificates
+
+COPY ./data ./data
+
+COPY ./configs ./configs
+
+CMD ["./dist_electron/electron-panel-1.0.0-arm64.AppImage"]

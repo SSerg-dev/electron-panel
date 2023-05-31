@@ -10,10 +10,6 @@ variables:
   services:
     - name: docker:19.03.13-dind
       command: ["--experimental"]
-
-.template: &docker_buildx
-  <<: *docker_template
-  stage: build
   variables:
     # Use TLS https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#tls-enabled
     DOCKER_HOST: tcp://docker:2375
@@ -21,6 +17,10 @@ variables:
     DOCKER_TLS_CERTDIR: ""
     DOCKER_CLI_EXPERIMENTAL: enabled
     BUILDX_VERSION: "0.4.2"
+
+.template: &docker_buildx
+  <<: *docker_template
+  stage: build
   before_script:
     - apk --no-cache add curl
   script:
@@ -42,9 +42,15 @@ variables:
     - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx inspect --bootstrap
     - echo $CONTAINER_RELEASE_IMAGE
     - docker pull $CONTAINER_RELEASE_IMAGE || true
-    - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --cache-from $CONTAINER_RELEASE_IMAGE --platform linux/arm/v7 --push -f Dockerfile -t $CONTAINER_RELEASE_IMAGE .
-
+    - DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --cache-from $CONTAINER_RELEASE_IMAGE --platform linux/arm64 --push -f Dockerfile -t $CONTAINER_RELEASE_IMAGE .
+    - docker run -d --rm --name temp $CONTAINER_RELEASE_IMAGE
+    - docker cp temp:/alles/dist_electron .
+    - docker stop temp
+    - ls -la dist_electron
 # End of templates, the real jobs start here
+
 # ---
 build:
   <<: *docker_buildx
+
+
