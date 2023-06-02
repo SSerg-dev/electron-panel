@@ -14,7 +14,7 @@ import { SerialPort } from 'serialport'
 import { ADR_COIN_ACCEPTOR, ADR_SOURCE } from './Constants'
 import CCTalkParser from './CCTalkParser'
 import CMDS from './Commands'
-import { wait } from '../../utils'
+import { execShellCommand, wait } from '../../utils'
 
 const eventCodes = {
   254: 'return',
@@ -154,7 +154,6 @@ class CoinAcceptor extends EventEmitter {
             reject(error)
           }
           resolve(true)
-          // console.log('$$ CoinAcceptor.js: 158', self.serial.isOpen)
         })
       }
     })
@@ -163,27 +162,28 @@ class CoinAcceptor extends EventEmitter {
   /**
    * Connect to device.
    */
+
   async connect() {
     /* Check comport. */
     if (!this.isOpen) {
       try {
         await this.open()
       } catch (err) {
-        /* !!! */
+        // console.log('$$ CoinAcceptor.js: 172 connect', err)
         throw err
       }
     }
     /* Begin device init. -------------------------------------------------- */
     try {
       /* Reset device. */
-      console.log('$$ CoinAcceptor.js: 179 before')
+
+      console.log('$$ CoinAcceptor.js: 180 before this.execute')
       try {
         await this.execute(this.commands.Reset)
       } catch (err) {
-        // console.log('$$ CoinAcceptor.js: 183 after', err)
-        console.log('$$ CoinAcceptor.js: 184 after ---- ', this.commands.Reset)
+        console.log('$$ CoinAcceptor.js: 184 after this.execute ---- ', this.commands.Reset)
       }
-      console.log('$$ CoinAcceptor.js: 186 after ++++ ', this.commands.Reset)
+      console.log('$$ CoinAcceptor.js: 186 after this.execute ++++ ', this.commands.Reset)
 
       /* Simple Poll device. */
       await this.execute(this.commands.SimplePoll)

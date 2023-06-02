@@ -27,7 +27,7 @@
               :key="index"
               :value="l.id"
             >
-              <div class="dropdown-setting">
+              <div class="dropdown-setting" style="font-size: 1.6em;">
                 {{ l.emoji }}
                 {{ l.title }}
               </div>
@@ -148,58 +148,27 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-/* .dropdown-content {
-    background-color: #757575;
-    margin: 0;
-    display: none;
-    min-width: 100px;
-    overflow-y: auto;
-    opacity: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 9999;
-    transform-origin: 0 0;
-} */
-
-/* .scrollbar { */
-/* height: 800px; */
-
-/* background-color: #ff0; */
-/* float: left; */
-/* margin-bottom: 25px; */
-/* margin-left: 22px; */
-/* margin-top: 40px; */
-/* width: 800px; */
-/* overflow-y: scroll; */
-/* } */
 
 #scrollbar-style ::-webkit-scrollbar-track {
   width: 84px;
+
+  border: solid 2px #555;
+  border-radius: 0.1em;
   background-color: #dbebee;
 }
 
 #scrollbar-style ::-webkit-scrollbar-thumb {
-  background-color: #68cce2;
-  border: solid 2px #00b9e3;
-  border-radius: 1em;
-  box-shadow: 1px 1px 4px #00b9e3;
+  background-color: #555; /* #68cce2; */
+  border: solid 2px #888; /* #00b9e3; */
+  border-radius: 0.1em;
+  box-shadow: 4px 4px 4px #555;
 }
 
 #scrollbar-style ::-webkit-scrollbar {
   width: 84px;
-  background-color: #000; /* #dbebee; */
+  background-color: #bbb; /* #dbebee; */
 }
 
-/* #scrollbar-style ::-webkit-scrollbar-button {
-  width: 84px;
-  height: 64px;
-  color: #000;
-  background-color: #dbebee;
-  border: solid 2px #00b9e3;
-  border-radius: 0.5em;
-  
-} */
 /* Buttons */
 #scrollbar-style ::-webkit-scrollbar-button:single-button {
   background-color: #bbb;

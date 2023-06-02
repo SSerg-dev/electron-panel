@@ -70,10 +70,12 @@ console.log(' ')
 /* ----------------------------------------------------------------------- */
 /* */
 getSerialDevicesInfo('USB').then((ports) => {
-  //ports.forEach( (el: any) => execShellCommand(`kill -9 $(fuser ${el.path})`))
   if (ports.length) {
     log(TAG, 'Serial Devices:')
-    ports.forEach((el) => log(TAG, JSON.stringify(el)))
+    ports.forEach((el) => {
+      log(TAG, JSON.stringify(el.path))
+      // execShellCommand(`kill -9 $(fuser ${el.path})`)
+    })
   }
 })
 
@@ -177,6 +179,7 @@ const saveConfig = async (data) => {
 /* ----------------------------------------------------------------------- */
 /* */
 const startup = async (config) => {
+  
   if (
     !mConfig ||
     mConfig.type !== config.type ||
@@ -215,6 +218,7 @@ const startup = async (config) => {
       mConfig.coin_acceptor.installed !== config.coin_acceptor.installed
     ) {
       if (config.coin_acceptor.installed === true) {
+        
         CoinAcceptor.start(config.currency, config.coin_acceptor.enable_coins)
       } else {
         isCoinAcceptorConnected && CoinAcceptor.stop()

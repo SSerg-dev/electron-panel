@@ -27,7 +27,9 @@
           <div class="card white waves-effect button-style">
             <!-- <span>&#10003;</span> -->
             <div class="card-content black-text button-content-style">
-              💰 {{ 'CASH' | localize }}
+              <!--🪙-->
+              <div class="emoji">💰 &nbsp;</div>
+               {{ 'CASH' | localize }}
             </div>
           </div>
         </li>
@@ -42,7 +44,8 @@
         >
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
-              💳 {{ 'BANK_CARD' | localize }} 
+              <div class="emoji">💳 &nbsp;</div>
+               {{ 'BANK_CARD' | localize }}
               <!-- &nbsp <img src="@/assets/imgs/sbp/sbp.svg"  style="width: 8%"/> -->
             </div>
           </div>
@@ -52,7 +55,8 @@
         <li v-if="getIsPing" class="collection-item" @click="payUp('bonus')">
           <div class="card white waves-effect button-style-bonus">
             <div class="card-content black-text button-content-style">
-              🎁 {{ 'BONUSES' | localize }}
+              <div class="emoji">🎁 &nbsp;</div>
+              {{ `BONUSES` | localize }}
             </div>
           </div>
         </li>
@@ -81,7 +85,7 @@ export default Vue.extend({
     }, */
       buttonPrice: null,
 
-      emoji: ''
+      emoji: '',
     }
   },
   props: ['type'],
@@ -91,14 +95,15 @@ export default Vue.extend({
       getMoneyToBonus: 'getMoneyToBonus',
       getIsPing: 'getIsPing',
       getTerminalInstalled: 'getTerminalInstalled',
-      getIsStandbyFreeEnable: 'getIsStandbyFreeEnable'
-    })
+      getIsStandbyFreeEnable: 'getIsStandbyFreeEnable',
+    }),
   },
   watch: {
     getWetBalance(value) {
       // console.log('$$ MainMenu: 97', value, this.getMoneyToBonus, this.getIsStandbyFreeEnable)
       if (
-        (value > 0 && +this.getMoneyToBonus === 0) 
+        value > 0 &&
+        +this.getMoneyToBonus === 0
         // || (value > 0 && this.getMoneyToBonus === 0 && this.getIsStandbyFreeEnable)
       ) {
         /* dev */
@@ -106,7 +111,7 @@ export default Vue.extend({
         this.setIsMoneyToBonus(false)
         this.$router.push('/cash')
       }
-    }
+    },
   },
 
   mounted() {
@@ -146,7 +151,7 @@ export default Vue.extend({
       getCashEnabler: 'getCashEnabler',
       getIsPayCardMoney: 'getIsPayCardMoney',
       getDirectCash: 'getDirectCash',
-      getSecondsFirstTimer: 'getSecondsFirstTimer'
+      getSecondsFirstTimer: 'getSecondsFirstTimer',
     }),
     ...mapMutations({
       setCashEnabler: 'setCashEnabler',
@@ -224,8 +229,8 @@ export default Vue.extend({
         alignItems: 'center',
         justifyContent: 'center',
       }) */
-    }
-  } // end methods
+    },
+  }, // end methods
 })
 </script>
 
@@ -287,10 +292,7 @@ section {
   margin-left: 0em;
 }
 .emoji {
-  -webkit-filter: url(#color);
-  filter: url(#color);
-
-  padding-top: -0em;
+  text-shadow: 6px 6px 6px #3a3a37, -1px 1px 1px #5c5710;
 }
 .button-price-style {
   font-size: 6.5em;
@@ -302,4 +304,5 @@ section {
   align-items: center;
   justify-content: center;
 }
+
 </style>

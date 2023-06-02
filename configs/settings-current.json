@@ -32,11 +32,11 @@
   },
   "__commentCountries": "add available countries",
   "countries": [
+    "DE",
     "RU",
     "US",
     "KZ",
     "EE",
-    "DE",
     "TR"
   ],
   "country": "RU",
@@ -44,7 +44,7 @@
   "currency": "RUB",
   "index": 7,
   "languages": {
-    "default": "RU",
+    "default": "EE",
     "panel": [
       0,
       1,
@@ -91,7 +91,7 @@
       42,
       43
     ],
-    "syspanel": "RU"
+    "syspanel": "EE"
   },
   "log_path": "/var/log",
   "type": "wash",

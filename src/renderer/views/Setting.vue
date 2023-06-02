@@ -716,10 +716,18 @@
                 </div>
               </td>
             </tr>
+            <!-- row 02 -->
+            <tr style="margin-top: 4em">
+              <td style="width: 1040px">
+                <div>
+                  <SettingLanguageOrder />
+                </div>
+              </td>
+            </tr>
             
           </tbody>
         </table>
-        <div style="margin-top: 4em;">
+        <div style="margin-top: 80em;">
         <!-- <div style="margin-top: 92em;"> -->
           <hr />
         </div>
@@ -843,6 +851,7 @@ import SettingCoinAcceptor from '@/components/setting/SettingCoinAcceptor'
 import SettingPaymentBill from '@/components/setting/SettingPaymentBill'
 import SettingCoinBill from '@/components/setting/SettingCoinBill'
 import SettingLanguageSelect from '@/components/setting/SettingLanguageSelect'
+import SettingLanguageOrder from '@/components/setting/SettingLanguageOrder'
 
 import SettingPaymentTerminalType from '@/components/setting/SettingPaymentTerminalType'
 import SettingPaymentLimit from '@/components/setting/SettingPaymentLimit'
@@ -913,8 +922,9 @@ export default Vue.extend({
     SettingCoinAcceptor,
     SettingPaymentBill,
     SettingCoinBill,
-    /* dev */
+    
     SettingLanguageSelect,
+    SettingLanguageOrder,
 
     SettingPaymentTerminalType,
     SettingPaymentLimit,

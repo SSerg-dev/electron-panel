@@ -15,6 +15,7 @@ import { constants, statSync } from 'fs'
 import { log, wait, getSerialDevicesInfo } from '../utils'
 import CCTalk from '../services/CCTalkService'
 import * as conf from '../config'
+import { chmod } from 'fs'
 
 const TAG = 'COIN_ACCEPTOR'
 
@@ -33,15 +34,15 @@ class CoinAcceptorController extends EventEmitter {
     let _path
     let port_num = 10
     const portInfo = await getSerialDevicesInfo('USB')
-    // console.log('$$ CoinAcceptorController.js: 36', portInfo, portInfo.length)
     
     if (portInfo) {
       for (let i = 0; i < portInfo.length; i++) {
         _path = portInfo[i].path
-        // _path = '/dev/ttyUSB0'
-
         this.device = new CCTalk.CoinAcceptor(_path, this.bills, conf.debug)
-        // log(TAG, 'try Connecting at coin port ...', _path)
+        
+        /* dev */
+        // console.log('$$ CoinAcceptorController.js: 44', portInfo)
+        // this.permitAccess(_path)
 
         try {
           await this.device.connect()
@@ -70,7 +71,6 @@ class CoinAcceptorController extends EventEmitter {
     this.currency = currency || 0
     this.bills = bills || []
 
-    // console.log('$$ CoinAcceptorController.js: 70',TAG, currency, bills)
     this.once('connect', async () => {
       let info = this.device.getDeviceInfo
       log(TAG, 'Info:', JSON.stringify(info))
@@ -80,7 +80,6 @@ class CoinAcceptorController extends EventEmitter {
 
       this.poll(this.device)
     })
-    // console.log('$$ CoinAcceptorController.js: 81',)
     this.connect()
   }
 
@@ -112,8 +111,7 @@ class CoinAcceptorController extends EventEmitter {
     this.emit('current-coin', coin)
   }
   permitAccess(path) {
-    fs.chmod(path, constants.S_IRUSR | constants.S_IWUSR, () => {
-      console.log('$$ coin port mode', path, statSync(path).mode)
+    chmod(path, constants.S_IRUSR | constants.S_IWUSR, () => {
     })
   }
 }

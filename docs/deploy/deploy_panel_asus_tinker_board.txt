@@ -200,3 +200,10 @@ Errors:
     "electron:armbuild": "vue-cli-service electron:build --linux --arm64",
     Эти ошибки мы игнорируем, при этом билд получается electron-panel-1.0.0.AppImage
     ⨯ snapcraft does not currently support building arm64 on amd64
+ 
+ ****************LXPanel hidden****************************************
+13.
+13.1 in file /etc/xdg/lxsession/LXDE-pi/autostart
+     # comment @lxpanel --profile LXDE
+13.2 in file /home/pi/config/lxsession/LXDE-pi/autostart
+     # comment @lxpanel --profile LXDE      
