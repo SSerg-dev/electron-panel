@@ -166,7 +166,7 @@ td {
   width: 128px;
 }
 .button-setting {
-  border: solid 1px white;
+  border: solid 1px #757575;
   font-size: 1.5em;
   border-radius: 2.5em;
   background-color: #00b9e3;

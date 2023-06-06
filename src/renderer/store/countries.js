@@ -4,7 +4,7 @@ export default {
     countryKeys: [
       'RU', // +
       'PL', // +
-      'US', // +
+      'GB', // 'US', 
       'UA', // +
       'LT', // +
       'LV', // +
@@ -129,7 +129,7 @@ export default {
         emojiU: 'U+1F1F7 U+1F1FA',
       },
 
-      US: {
+      /* US: {
         name: 'United States',
         native: 'United States',
         phone: '1',
@@ -145,6 +145,24 @@ export default {
         languages: ['en', 'es-US', 'haw', 'fr'],
         emoji: '🇺🇸',
         emojiU: 'U+1F1FA U+1F1F8',
+      }, */
+
+      GB: {
+        "name": "United Kingdom",
+        "native": "United Kingdom",
+        "phone": "44",
+        "continent": "EU",
+        "capital": "London",
+        "currency": {
+          "alphabetic_code": "GBP",
+          "symbol": "£",
+          "numeric_code": "826",
+          "name": "Pound Sterling",
+          "minor_unit": "2"
+        },
+        "languages": ["en", "cy-GB", "gd"],
+        "emoji": "🇬🇧",
+        "emojiU": "U+1F1EC U+1F1E7"
       },
 
       KZ: {

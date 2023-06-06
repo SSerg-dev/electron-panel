@@ -32,66 +32,107 @@
   },
   "__commentCountries": "add available countries",
   "countries": [
-    "DE",
     "RU",
-    "US",
+    "GB",
     "KZ",
-    "EE",
-    "TR"
+    "UA",
+    "LV",
+    "LT",
+    "EE"
   ],
   "country": "RU",
   "__commentCurrency": "add default currency",
   "currency": "RUB",
   "index": 7,
   "languages": {
-    "default": "EE",
+    "default": "RU",
     "panel": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21,
-      22,
-      23,
-      24,
-      25,
-      26,
-      27,
-      28,
-      29,
-      30,
-      31,
-      32,
-      33,
-      34,
-      35,
-      36,
-      37,
-      38,
-      39,
-      40,
-      41,
-      42,
-      43
+      {
+        "id": 1,
+        "country": "RU",
+        "locale": "ru-RU",
+        "order": 2,
+        "isSelected": false
+      },
+      {
+        "id": 2,
+        "country": "GB",
+        "locale": "en-GB",
+        "order": 1,
+        "isSelected": false
+      },
+      {
+        "id": 3,
+        "country": "KZ",
+        "locale": "kz-KZ",
+        "order": 2,
+        "isSelected": false
+      },
+      {
+        "id": 4,
+        "country": "UA",
+        "locale": "ua-UA",
+        "order": 3,
+        "isSelected": false
+      },
+      {
+        "id": 5,
+        "country": "LV",
+        "locale": "lat-LAT",
+        "order": 4,
+        "isSelected": false
+      },
+      {
+        "id": 6,
+        "country": "LT",
+        "locale": "lit-LIT",
+        "order": 5,
+        "isSelected": false
+      },
+      {
+        "id": 7,
+        "country": "EE",
+        "locale": "est-EST",
+        "order": 6,
+        "isSelected": false
+      },
+      {
+        "id": 8,
+        "country": "PL",
+        "locale": "pol-POL",
+        "order": 0,
+        "isSelected": false
+      },
+      {
+        "id": 9,
+        "country": "DE",
+        "locale": "ger-GER",
+        "order": 0,
+        "isSelected": false
+      },
+      {
+        "id": 10,
+        "country": "FR",
+        "locale": "fra-FRA",
+        "order": 0,
+        "isSelected": false
+      },
+      {
+        "id": 11,
+        "country": "JP",
+        "locale": "jpn-JPN",
+        "order": 0,
+        "isSelected": false
+      },
+      {
+        "id": 12,
+        "country": "TR",
+        "locale": "tur-TUR",
+        "order": 0,
+        "isSelected": false
+      }
     ],
-    "syspanel": "EE"
+    "syspanel": "RU"
   },
   "log_path": "/var/log",
   "type": "wash",

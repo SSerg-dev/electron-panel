@@ -199,7 +199,7 @@ const startup = async (config) => {
     /*     */
   }
 
-  if (config.bill_validator) {
+  /* if (config.bill_validator) {
     if (
       !mConfig ||
       mConfig.bill_validator.installed !== config.bill_validator.installed
@@ -210,7 +210,7 @@ const startup = async (config) => {
         isBillValidatorConnected && BillValidator.stop()
       }
     }
-  }
+  } */
 
   if (config.coin_acceptor) {
     if (
