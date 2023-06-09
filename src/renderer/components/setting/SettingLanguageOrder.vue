@@ -12,8 +12,6 @@
       "
     >
       <div class="card-content black-text list">
-        <!-- <span class="card-title">{{ `Language` | localize }} {{ `:` }}</span> -->
-
         <div>
           <transition-group name="flip-list" tag="div">
             <option
@@ -30,7 +28,9 @@
               draggable="true"
               :key="item.id"
             >
-              <!-- {{ item.id }} -->
+              {{ item.order }}
+              &nbsp;
+
               {{ item.emoji }}
               {{ item.title }}
             </option>
@@ -45,6 +45,7 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 import EventBus from '@/bus/EventBus'
+import { title } from 'process'
 
 export default Vue.extend({
   name: 'setting-language-order',
@@ -58,8 +59,6 @@ export default Vue.extend({
     symbol: '',
     currencies: [],
 
-    languages: [],
-
     items: [],
     over: {},
     startLoc: 0,
@@ -68,14 +67,10 @@ export default Vue.extend({
 
     heightCard: 0,
 
-    // itemSelectedLanguage: {
-    //   id: 0,
-    //   country: '',
-    //   locale: '',
-    //   order: -1,
-    //   isSelected: true,
-    // },
-    itemsOrderLanguage: [],
+    languages: [],
+    orderLanguageItems: [],
+    selectedLanguages: [],
+    selectedItems: [],
 
     config: {},
   }),
@@ -117,62 +112,126 @@ export default Vue.extend({
       this.items.splice(prevPos, 0, item)
       this.over = {}
 
-      this.setOrder(item, pos)
+      this.setOrderItems(item, pos)
     },
 
     setup() {
-      this.initLanguage()
+      // data from countries.js
+      this.languages = this.initLanguage()
 
-      this.initSelectedLanguage()
-      // this.heightCard = 30;
+      // data from settings-current.json
+      this.selectedLanguages = this.getSelectedLanguages()
+
+      // add emoje and title to data
+      this.selectedItems = this.getSelectedItems()
+
+      // sort by order
+      this.items = this.sortByOrder(this.selectedItems)
     },
+
     submitHandler(options) {},
 
     initLanguage() {
-      const defaultLanguage = this.getDefaultLanguage().toUpperCase()
-      this.languages = this.getLanguageNatives()
-      this.items = this.languages
-
-      const index = this.languages.findIndex((l) => l.key === defaultLanguage)
-
-      const { id, title, key, emoji, currency, symbol } = this.languages[index]
-      this.current = id || 0
-      this.select = title
-      this.emoji = emoji
-      this.currency = currency
-      this.symbol = symbol
+      return this.getLanguageNatives()
     },
 
-    initSelectedLanguage() {
+    getSelectedLanguages() {
       this.config = this.getConfig()
-      this.itemsOrderLanguage = this.config.languages.panel
+      this.orderLanguageItems = this.config.languages.panel
+      const countries = this.config.countries
 
-      // console.log('$$ SettingLanguageOrder.vue: 146', JSON.stringify(this.itemsOrderLanguage))
+      let result = []
+
+      countries.forEach((country) => {
+        const language = this.orderLanguageItems.filter(
+          (l) => country === l.country
+        )
+        if (language) {
+          result.push(language[0])
+        }
+      })
+      return result
     },
 
-    setOrder(item, order) {
-      console.log('$$ SettingLanguageOrder.vue: 151', item.key, +order)
-      if (this.itemsOrderLanguage) {
-        const index = this.itemsOrderLanguage.findIndex(
-          (l) => l.country === item.key
+    getSelectedItems() {
+      const result = this.selectedLanguages.map((s, index) => {
+        Object.values(this.languages[index]).forEach((l) => {
+          const { emoji, title } = this.languages.find(
+            (l) => l.key === s.country
+          )
+          this.selectedLanguages[index].emoji = emoji
+          this.selectedLanguages[index].title = title
+        })
+
+        return this.selectedLanguages[index]
+      })
+      return result
+    },
+
+    sortByOrder(array) {
+      return array.sort(
+        (a, b) => (a.order > b.order ? 1 : b.order > a.order ? -1 : 0) // lower to upper
+        // (a, b) => (b.order > a.order ? 1 : a.order > b.order ? -1 : 0) // upper to lower
+      )
+    },
+
+    setOrderItems(item, order) {
+      let index
+      if (this.orderLanguageItems) {
+        index = this.orderLanguageItems.findIndex(
+          (l) => l.country === item.country
         )
 
-        // const prevIndex = this.itemsOrderLanguage.findIndex(
-        //   (o) => o.order === order
-        // )
+        // 01 arrayBefore
+        let arrayBefore
+        if (order !== 0) {
+          arrayBefore = this.items.slice(0, order - 1)
+        } else {
+          arrayBefore = []
+        }
+        // 02 arrayCurrent
+        const arrayCurrent = this.items[order - 1] || this.items[0]
 
-        this.itemsOrderLanguage[index].order = order
+        // 03 arrayAfter
+        let arrayAfter
+        if (order === 0) {
+          arrayAfter = this.items.slice(order + 1)
+        } else {
+          arrayAfter = this.items.slice(order)
+        }
 
-        this.config.languages.panel = this.itemsOrderLanguage
+        this.calcOrder(arrayBefore, arrayCurrent, arrayAfter)
 
+        this.config.languages.panel = this.orderLanguageItems
         this.setConfig(this.config)
+      }
+    },
 
-        const orderLang = this.getConfig().languages.panel[index]
-        console.log(
-          '$$ SettingLanguageOrder.vue: 161',
-          orderLang.country,
-          orderLang.order
-        )
+    calcOrder(arrayBefore, arrayCurrent, arrayAfter) {
+      let newOrder
+      newOrder = 100
+      this.setOrderItem(arrayCurrent, newOrder)
+
+      newOrder = 100
+      for (const item of arrayBefore.reverse()) {
+        newOrder--
+        this.setOrderItem(item, newOrder)
+      }
+      newOrder = 100
+      for (const item of arrayAfter) {
+        newOrder++
+        this.setOrderItem(item, newOrder)
+      }
+    },
+    setOrderItem(item, newOrder = 100) {
+      if (this.orderLanguageItems) {
+        this.orderLanguageItems.forEach((languageItem, index) => {
+          Object.values(languageItem).forEach((value) => {
+            if (value === item.country) {
+              this.orderLanguageItems[index].order = newOrder
+            }
+          })
+        })
       }
     },
 
@@ -227,16 +286,13 @@ export default Vue.extend({
   font-size: 2em;
   margin: 10px auto 10px 10px;
   margin-left: 0px;
-  /* background: #b3e5fc; */
   background: #edf5f8;
   color: black;
 
-  /* box-shadow: 6px 6px 6px #00b9e3, -1px 1px 1px #fff; */
   box-shadow: 6px 6px 6px #757575, -1px 1px 1px #fff;
-
   border: solid 1px;
   border-radius: 5px;
-  border-color: #757575; /* #00b9e3; */
+  border-color: #757575;
   display: inline-block;
 }
 

@@ -703,10 +703,10 @@
         <!-- Языки -->
         <!-- dev -->
 
-        <h2 class="white-text page-subtitle">Языки</h2>
+        <h2 class="white-text page-subtitle">{{ `Languages` | localize }}</h2>
         <br />
 
-        <table style="margin-left: 2em; margin-top: -1em;">
+        <table style="margin-left: 2em; margin-top: -1em">
           <tbody>
             <!-- row 01 -->
             <tr style="margin-top: 2em">
@@ -724,11 +724,10 @@
                 </div>
               </td>
             </tr>
-            
           </tbody>
         </table>
-        <div style="margin-top: 80em;">
-        <!-- <div style="margin-top: 92em;"> -->
+        <div style="margin-top: 80em">
+          <!-- <div style="margin-top: 92em;"> -->
           <hr />
         </div>
 
@@ -922,7 +921,7 @@ export default Vue.extend({
     SettingCoinAcceptor,
     SettingPaymentBill,
     SettingCoinBill,
-    
+
     SettingLanguageSelect,
     SettingLanguageOrder,
 

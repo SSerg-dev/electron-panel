@@ -4,7 +4,7 @@ export default {
     countryKeys: [
       'RU', // +
       'PL', // +
-      'GB', // 'US', 
+      'GB', // 'US',
       'UA', // +
       'LT', // +
       'LV', // +
@@ -148,21 +148,21 @@ export default {
       }, */
 
       GB: {
-        "name": "United Kingdom",
-        "native": "United Kingdom",
-        "phone": "44",
-        "continent": "EU",
-        "capital": "London",
-        "currency": {
-          "alphabetic_code": "GBP",
-          "symbol": "£",
-          "numeric_code": "826",
-          "name": "Pound Sterling",
-          "minor_unit": "2"
+        name: 'United Kingdom',
+        native: 'United Kingdom',
+        phone: '44',
+        continent: 'EU',
+        capital: 'London',
+        currency: {
+          alphabetic_code: 'GBP',
+          symbol: '£',
+          numeric_code: '826',
+          name: 'Pound Sterling',
+          minor_unit: '2',
         },
-        "languages": ["en", "cy-GB", "gd"],
-        "emoji": "🇬🇧",
-        "emojiU": "U+1F1EC U+1F1E7"
+        languages: ['en', 'cy-GB', 'gd'],
+        emoji: '🇬🇧',
+        emojiU: 'U+1F1EC U+1F1E7',
       },
 
       KZ: {
