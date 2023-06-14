@@ -75,7 +75,6 @@ class CoinAcceptor extends EventEmitter {
 
     /* Create comport driver.  */
     this.serial = new SerialPort(this.portOptions, (err) => this.debug(err))
-    // console.log('$$ CoinAcceptor.js: 79', JSON.stringify(this.serial))
     /* On serial open event. */
     this.serial.on('open', () => self.onSerialPortOpen())
     /* On serial error event. */
@@ -148,10 +147,14 @@ class CoinAcceptor extends EventEmitter {
     return new Promise((resolve, reject) => {
       if (self.serial.isOpen) {
         resolve(true)
+        
       } else {
         self.serial.open((error) => {
           if (error) {
             reject(error)
+            // if ( self.serial.path === '/dev/ttyUSB1') {
+            //   console.log('$$ CoinAcceptor.js: 156', JSON.stringify(self.serial.path))
+            // }
           }
           resolve(true)
         })
@@ -169,27 +172,22 @@ class CoinAcceptor extends EventEmitter {
       try {
         await this.open()
       } catch (err) {
-        // console.log('$$ CoinAcceptor.js: 172 connect', err)
         throw err
       }
     }
     /* Begin device init. -------------------------------------------------- */
     try {
       /* Reset device. */
-
-      console.log('$$ CoinAcceptor.js: 180 before this.execute')
       try {
         await this.execute(this.commands.Reset)
       } catch (err) {
-        console.log('$$ CoinAcceptor.js: 184 after this.execute ---- ', this.commands.Reset)
+        throw err
       }
-      console.log('$$ CoinAcceptor.js: 186 after this.execute ++++ ', this.commands.Reset)
 
       /* Simple Poll device. */
       await this.execute(this.commands.SimplePoll)
 
       // await this.end()
-
       this.deviceInfo.manufacturer = await this.getManufacturedId()
       this.deviceInfo.product = await this.getProductCode()
 
@@ -553,16 +551,7 @@ class CoinAcceptor extends EventEmitter {
       let timerHandler = () => {
         /* Update flag. */
         self.isSend = false
-        /* Send event. */
-        // if ( self.execute_counter > 0 ) {
-        //     self.execute_counter--
-        //     clearTimeout(timer)
-        //     self.send(request, timeout)
-        // } else {
-
-        // console.log('$$ CoinAcceptor.js: 560', request)
         reject(new Error('Request timeout.'))
-        // }
       }
       /* Receive packet handler. */
       let handler = async (response) => {
@@ -572,7 +561,6 @@ class CoinAcceptor extends EventEmitter {
         /* Unbind timeout handler. */
         clearTimeout(timer)
         /* */
-        //await wait(100)
         /* Check Header */
         if (
           recv_counter == 0 &&
@@ -590,23 +578,10 @@ class CoinAcceptor extends EventEmitter {
           /* Send event. */
           reject(new Error('cctalk: wrong data length.'))
         }
-        /* */
-        //if ( recv_counter > 0 && response[3] != 0 ) {
-        /* Update flag. */
-        //    self.isSend = false
-        /* Send event. */
-        //    reject(new Error('cctalk: request crc error.'))
-        //}
         /* Check response CRC. */
         if (response[ln - 1] != self.getCRCSimple(response.slice(0, ln - 1))) {
           /* Update flag. */
           self.isSend = false
-          /* Send event. */
-          // if ( self.execute_counter > 0 ) {
-          //     self.execute_counter--
-          //     clearTimeout(timer)
-          //     self.send(request, timeout)
-          // } else {
           reject(new Error('cctalk: response crc error.'))
           // }
         }

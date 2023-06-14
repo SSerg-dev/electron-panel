@@ -3,6 +3,7 @@ import './terminate'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import { app, screen, BrowserWindow, protocol, ipcMain } from 'electron'
 import { readFileSync, writeFileSync } from 'fs'
+import { fs, chmod, constants } from 'fs'
 
 import {
   execShellCommand,
@@ -10,6 +11,8 @@ import {
   log,
   getSerialDevicesInfo,
   wait,
+  delay,
+  permitAccess
 } from './utils'
 
 import GPIOService from './services/GPIOService'
@@ -74,6 +77,8 @@ getSerialDevicesInfo('USB').then((ports) => {
     log(TAG, 'Serial Devices:')
     ports.forEach((el) => {
       log(TAG, JSON.stringify(el.path))
+
+      // permitAccess(el.path)
       // execShellCommand(`kill -9 $(fuser ${el.path})`)
     })
   }
@@ -97,7 +102,6 @@ const opcURL = 'opc.tcp://192.168.1.2:4840/'
 let OPCUAClient = new OPCUAService(opcURL)
 
 /* leodimark */
-
 /* OPCUAClient.on('change', (payload) => {
   isOPCUAConnected = true
   sendEventToView(mainWindow, 'OPCUA', JSON.stringify(payload))
@@ -179,7 +183,6 @@ const saveConfig = async (data) => {
 /* ----------------------------------------------------------------------- */
 /* */
 const startup = async (config) => {
-  
   if (
     !mConfig ||
     mConfig.type !== config.type ||
@@ -196,10 +199,34 @@ const startup = async (config) => {
       })
       OPCUAClient.start(config.type, +options.index)
     })
-    /*     */
   }
 
-  /* if (config.bill_validator) {
+  /* ----------------------------------------------------------------------- */
+  /* */
+
+  // console.log('$$ background.js: 204 config.coin_acceptor')
+
+  if (config.coin_acceptor) {
+    if (
+      !mConfig ||
+      mConfig.coin_acceptor.installed !== config.coin_acceptor.installed
+    ) {
+      if (config.coin_acceptor.installed === true) {
+        CoinAcceptor.start(config.currency, config.coin_acceptor.enable_coins)
+      } else {
+        isCoinAcceptorConnected && CoinAcceptor.stop()
+      }
+    }
+  }
+
+  /* ----------------------------------------------------------------------- */
+  /* */
+   
+  delay(6000)
+
+  // console.log('$$ background.js: 224 bill_validator')
+
+  if (config.bill_validator) {
     if (
       !mConfig ||
       mConfig.bill_validator.installed !== config.bill_validator.installed
@@ -210,22 +237,10 @@ const startup = async (config) => {
         isBillValidatorConnected && BillValidator.stop()
       }
     }
-  } */
-
-  if (config.coin_acceptor) {
-    if (
-      !mConfig ||
-      mConfig.coin_acceptor.installed !== config.coin_acceptor.installed
-    ) {
-      if (config.coin_acceptor.installed === true) {
-        
-        CoinAcceptor.start(config.currency, config.coin_acceptor.enable_coins)
-      } else {
-        isCoinAcceptorConnected && CoinAcceptor.stop()
-      }
-    }
   }
 
+  /* ----------------------------------------------------------------------- */
+  /* */
   if (config.bank_terminal) {
     const options = {
       type: config.bank_terminal.hardware,
@@ -247,6 +262,9 @@ const startup = async (config) => {
 
   mConfig = config
 }
+/* ----------------------------------------------------------------------- */
+
+// initUSBDevices
 
 /* ----------------------------------------------------------------------- */
 

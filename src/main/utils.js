@@ -1,7 +1,7 @@
 import { exec } from 'child_process'
 import { format } from 'date-fns'
 import { networkInterfaces } from 'os'
-import { chmod } from 'fs'
+import { fs, chmod, constants } from 'fs'
 
 import { SerialPort } from 'serialport'
 
@@ -15,14 +15,14 @@ const colors = {
     white: '\x1B[0;37m',
     red: '\x1B[0;31m',
     yellow: '\x1B[0;33m',
-    green: '\x1B[0;32m'
+    green: '\x1B[0;32m',
   },
   bold: {
     white: '\x1B[1;37m',
     red: '\x1B[1;31m',
     yellow: '\x1B[1;33m',
-    green: '\x1B[1;32m'
-  }
+    green: '\x1B[1;32m',
+  },
 }
 
 export const log = (from = '', text = '', data = '') => {
@@ -69,8 +69,25 @@ export const getSerialDevicesInfo = async (toSearch) => {
     //const info = portInfo.filter((port) => port.pnpId !== undefined)
     portInfo = portInfo.filter((port) => port.path.includes(toSearch))
   } catch (err) {
-    console.log('SerialPort list Error:', err) 
+    console.log('SerialPort list Error:', err)
   }
   return portInfo
 }
 
+// sync delay
+export function delay(ms) {
+  const start = new Date().getTime()
+  while (new Date().getTime() - start < ms) {}
+}
+
+export function permitAccess(path) {
+  chmod(path, constants.S_IRUSR | constants.S_IWUSR, (err) => {
+    if (err) {
+      console.error('Error setting chmod permissions:', err)
+      return
+    }
+    console.log('Chmod permissions set successfully.')
+  })
+
+  return true
+}

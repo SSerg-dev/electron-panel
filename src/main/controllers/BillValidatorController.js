@@ -44,11 +44,12 @@ class BillValidatorController extends EventEmitter {
       if (this.port !== 10 && this.port !== i) {
         continue
       }
-      port = `/dev/ttyUSB${i}`
+      // port = `/dev/ttyUSB${i}`
+      port = '/dev/ttyUSB1'
+
       this.device = new CCNet.BillValidator(port, conf.debug)
       this.setListeners()
       try {
-        /* dev */
         await this.device.connect()
         this.port = i
         this.state = States.CONNECTED
@@ -61,7 +62,7 @@ class BillValidatorController extends EventEmitter {
     }
     if (this.state !== States.CONNECTED) {
       this.port = 10
-      throw new Error('No any device at /dev/ttyUSB[0-3] detected')
+      // throw new Error('No any device at /dev/ttyUSB[0-3] detected')
     } else {
       return true
     }

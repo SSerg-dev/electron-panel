@@ -10,12 +10,12 @@
 
 /*  */
 import { EventEmitter } from 'events'
-import { constants, statSync } from 'fs'
+import { statSync } from 'fs'
 
 import { log, wait, getSerialDevicesInfo } from '../utils'
 import CCTalk from '../services/CCTalkService'
 import * as conf from '../config'
-import { chmod } from 'fs'
+import { fs, chmod, constants  } from 'fs'
 
 const TAG = 'COIN_ACCEPTOR'
 
@@ -34,29 +34,27 @@ class CoinAcceptorController extends EventEmitter {
     let _path
     let port_num = 10
     const portInfo = await getSerialDevicesInfo('USB')
-    
+
     if (portInfo) {
       for (let i = 0; i < portInfo.length; i++) {
         _path = portInfo[i].path
-        this.device = new CCTalk.CoinAcceptor(_path, this.bills, conf.debug)
-        
-        /* dev */
-        // console.log('$$ CoinAcceptorController.js: 44', portInfo)
-        // this.permitAccess(_path)
+        // _path = '/dev/ttyUSB0'
 
+        this.device = new CCTalk.CoinAcceptor(_path, this.bills, conf.debug)
         try {
           await this.device.connect()
           log(TAG, 'Connected at coin port', _path)
           port_num = i
           break
         } catch (err) {
-          // log(TAG, 'Connected error', err)
+          log(TAG, 'Connected error', err)
           await this.device.disconnect()
           delete this.device
           port_num = 10
         }
       }
     }
+
     this.port = port_num
     if (port_num === 10) {
       // log(TAG, 'No any device at ports /dev/ttyUSB[this.port]  detected')
@@ -110,10 +108,10 @@ class CoinAcceptorController extends EventEmitter {
   sendCoin(coin) {
     this.emit('current-coin', coin)
   }
-  permitAccess(path) {
-    chmod(path, constants.S_IRUSR | constants.S_IWUSR, () => {
-    })
-  }
+  // permitAccess(path) {
+  //   chmod(path, constants.S_IRUSR | constants.S_IWUSR, () => {
+  //   })
+  // }
 }
 
 export default CoinAcceptorController

@@ -3,15 +3,15 @@
     <div
       class="card grey lighten-3"
       style="
-      height: 150px; 
-      border: solid 3px #00B9E3; 
-      border-top-right-radius: 2rem;
-      border-bottom-right-radius: 2rem;
-      border-left-style: hidden;
+        height: 150px;
+        border: solid 3px #00b9e3;
+        border-top-right-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+        border-left-style: hidden;
       "
     >
       <div class="card-content black-text">
-        <span class="card-title">{{`Currency` | localize}} {{`:`}}</span>
+        <span class="card-title">{{ `Currency` | localize }} {{ `:` }}</span>
         <div class="input-field">
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(c, index) in currencies" :key="index" :value="c.id">
@@ -44,11 +44,11 @@ export default Vue.extend({
     emoji: '',
     currency: '',
     symbol: '',
-    currencies: []
+    currencies: [],
   }),
   mounted() {
     this.select = M.FormSelect.init(this.$refs.select, {
-      constrainWidth: true
+      constrainWidth: true,
     })
     M.updateTextFields()
   },
@@ -60,10 +60,10 @@ export default Vue.extend({
   methods: {
     initCurrency() {
       this.currencies = this.getLanguageNatives().filter(
-        c => c.currency !== 'EUR'
+        (c) => c.currency !== 'EUR'
       )
       if (
-        this.getLanguageNatives().filter(c => c.currency === 'EUR').length > 0
+        this.getLanguageNatives().filter((c) => c.currency === 'EUR').length > 0
       )
         this.currencies.push({
           id: 999,
@@ -71,38 +71,41 @@ export default Vue.extend({
           key: 'EUR',
           emoji: '🇪🇺',
           currency: 'EUR',
-          symbol: '€'
+          symbol: '€',
         })
 
       const defaultCurrency = this.getDefaultCurrency()
       const index = this.currencies.findIndex(
-        c => c.currency === defaultCurrency
+        (c) => c.currency === defaultCurrency
       )
 
-      const { id, title, key, emoji, currency, symbol } = this.currencies[index]
+      if (index !== -1) {
+        const { id, title, key, emoji, currency, symbol } =
+          this.currencies[index]
 
-      this.current = id
-      this.select = title
-      this.emoji = emoji
-      this.currency = currency
-      this.symbol = symbol
+        this.current = id
+        this.select = title
+        this.emoji = emoji
+        this.currency = currency
+        this.symbol = symbol
+      }
     },
     ...mapGetters({
       getDefaultCurrency: 'getDefaultCurrency',
-      getLanguageNatives: 'getLanguageNatives'
+      getLanguageNatives: 'getLanguageNatives',
     }),
     ...mapMutations({
-      setDefaultCurrency: 'setDefaultCurrency'
-    })
+      setDefaultCurrency: 'setDefaultCurrency',
+    }),
   },
   watch: {
     current(currencyId) {
       const { id, title, key, emoji, currency, symbol } = this.currencies.find(
-        c => c.id === currencyId
+        (c) => c.id === currencyId
       )
       this.select = title
       this.setDefaultCurrency(currency)
-    }
+    },
   },
   created() {
     this.initCurrency()
@@ -111,6 +114,6 @@ export default Vue.extend({
     if (this.select && this.select.destroy) {
       this.select.destroy()
     }
-  }
+  },
 })
 </script>

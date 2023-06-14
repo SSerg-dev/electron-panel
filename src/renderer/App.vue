@@ -97,7 +97,6 @@ export default Vue.extend({
             value: tag.value,
           }
 
-          // if (parameter.title === `::AsGlobalPV:DateTime.Date`) {
           if (parameter.title.includes('AsGlobalPV:DateTime.Date')) {
             if (parameter.value) {
               const date = parameter.value.split('-')
@@ -111,7 +110,6 @@ export default Vue.extend({
             }
           }
 
-          // if (parameter.title !== `::AsGlobalPV:DateTime.Time`) {
           if (!parameter.title.includes('AsGlobalPV:DateTime.Time')) {
             const type = this.getPanelType
             switch (type) {
@@ -124,7 +122,6 @@ export default Vue.extend({
               default:
                 break
             }
-            // } else if (parameter.title === `::AsGlobalPV:DateTime.Time`) {
           } else if (parameter.title.includes('AsGlobalPV:DateTime.Time')) {
             this.isControllerWork = true
             this.setIsPingUrl(true)
@@ -158,61 +155,6 @@ export default Vue.extend({
         }
       })
 
-      /* ipcRenderer.on('OPCUA', (evt, payload) => { 
-        try {
-          const tag = JSON.parse(payload)
-
-          const parameter = {
-            id: Date.now(),
-            title: tag.param,
-            value: tag.value
-          }
-
-          if (parameter.title.includes('AsGlobalPV:DateTime.Date')) {
-            if (parameter.value) {
-              const date = parameter.value.split('-')
-
-              const options = {}
-              options.year = +date[0]
-              options.month = +date[1]
-              options.day = +date[2]
-
-              this.setControllerDate(options)
-
-            }
-          }
-
-          if (!parameter.title.includes('AsGlobalPV:DateTime.Time')) {
-            const type = this.getPanelType
-            switch (type) {
-              case 'wash':
-                this.setWetParameters(parameter)
-                break
-              case 'vacuum':
-                this.setDryParameters(parameter)
-                break
-              default:
-                break
-            }
-          } else if (parameter.title.includes('AsGlobalPV:DateTime.Time')) {
-            this.isControllerWork = true
-            this.setIsPingUrl(true)
-
-            if (parameter.value) {
-              const time = parameter.value.split(':')
-
-              const options = {}
-              options.hour = +time[0]
-              options.minute = +time[1]
-              options.second = +time[2]
-
-              this.setControllerTime(options)
-            }
-          }
-        } catch (err) {
-          console.warn('App.vue setup() error:', err)
-        }
-      }) */
 
       // ipcRenderer.on('settings', (evt, data) => {
       //   try {
@@ -226,6 +168,8 @@ export default Vue.extend({
       const options = {
         isPayload: true,
       }
+
+      
       ipcRenderer.send('async-payload-start', options)
 
       ipcRenderer.on('async-payload-reply', (event, params) => {
@@ -359,5 +303,10 @@ ArialBoldItalic
   src: local('Plumb-Medium'),
     /* url(./assets/fonts/arial/ArialBold.ttf) format('truetype'); */
       url(./assets/fonts/Roboto-Medium.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Emoji-Regular';
+  src: local('Emoji-Regular'),
+      url(./assets/fonts/NotoColorEmoji-Regular.ttf) format('truetype');
 }
 </style>

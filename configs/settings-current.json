@@ -35,7 +35,7 @@
     "RU",
     "GB",
     "KZ",
-    "UA",
+    "EE",
     "DE"
   ],
   "country": "RU",
@@ -49,7 +49,7 @@
         "id": 1,
         "country": "RU",
         "locale": "ru-RU",
-        "order": 101,
+        "order": 99,
         "isSelected": false,
         "emoji": "🇷🇺",
         "title": "Русский"
@@ -58,7 +58,7 @@
         "id": 2,
         "country": "GB",
         "locale": "en-GB",
-        "order": 102,
+        "order": 100,
         "isSelected": false,
         "emoji": "🇬🇧",
         "title": "English"
@@ -67,7 +67,7 @@
         "id": 3,
         "country": "KZ",
         "locale": "kz-KZ",
-        "order": 100,
+        "order": 101,
         "isSelected": false,
         "emoji": "🇰🇿",
         "title": "Қазақша"
@@ -76,7 +76,7 @@
         "id": 4,
         "country": "UA",
         "locale": "ua-UA",
-        "order": 104,
+        "order": 95,
         "isSelected": false,
         "emoji": "🇺🇦",
         "title": "Українська"
@@ -85,7 +85,7 @@
         "id": 5,
         "country": "LV",
         "locale": "lat-LAT",
-        "order": 4,
+        "order": 96,
         "isSelected": false,
         "emoji": "🇱🇻",
         "title": "Latviešu"
@@ -94,7 +94,7 @@
         "id": 6,
         "country": "LT",
         "locale": "lit-LIT",
-        "order": 5,
+        "order": 97,
         "isSelected": false,
         "emoji": "🇱🇹",
         "title": "Lietuvių"
@@ -103,7 +103,7 @@
         "id": 7,
         "country": "EE",
         "locale": "est-EST",
-        "order": 7,
+        "order": 103,
         "isSelected": false,
         "emoji": "🇪🇪",
         "title": "Eesti"
@@ -112,7 +112,7 @@
         "id": 8,
         "country": "PL",
         "locale": "pol-POL",
-        "order": 8,
+        "order": 99,
         "isSelected": false,
         "emoji": "🇵🇱",
         "title": "Polski"
@@ -121,7 +121,7 @@
         "id": 9,
         "country": "DE",
         "locale": "ger-GER",
-        "order": 103,
+        "order": 102,
         "isSelected": false,
         "emoji": "🇩🇪",
         "title": "Deutsch"
@@ -130,7 +130,7 @@
         "id": 10,
         "country": "FR",
         "locale": "fra-FRA",
-        "order": 0,
+        "order": 101,
         "isSelected": false,
         "emoji": "🇫🇷",
         "title": "Français"
@@ -139,7 +139,7 @@
         "id": 11,
         "country": "JP",
         "locale": "jpn-JPN",
-        "order": 2,
+        "order": 102,
         "isSelected": false,
         "emoji": "🇯🇵",
         "title": "日本語"
@@ -148,10 +148,298 @@
         "id": 12,
         "country": "TR",
         "locale": "tur-TUR",
-        "order": 12,
+        "order": 103,
         "isSelected": false,
         "emoji": "🇹🇷",
         "title": "Türkçe"
+      },
+      {
+        "id": 13,
+        "country": "BY",
+        "locale": "blr-BLR",
+        "order": 100,
+        "isSelected": false,
+        "emoji": "🇧🇾",
+        "title": "Беларуская"
+      },
+      {
+        "id": 14,
+        "country": "SI",
+        "locale": "svn-SVN",
+        "order": 101,
+        "isSelected": false,
+        "emoji": "🇸🇮",
+        "title": "Slovenščina"
+      },
+      {
+        "id": 15,
+        "country": "SK",
+        "locale": "svk-SVK",
+        "order": 102,
+        "isSelected": false,
+        "emoji": "🇸🇰",
+        "title": "Slovenčina"
+      },
+      {
+        "id": 16,
+        "country": "RS",
+        "locale": "srb-SRB",
+        "order": 103,
+        "isSelected": false,
+        "emoji": "🇷🇸",
+        "title": "Српски"
+      },
+      {
+        "id": 17,
+        "country": "NO",
+        "locale": "nor-NOR",
+        "order": 104,
+        "isSelected": false,
+        "emoji": "🇳🇴",
+        "title": "Norsk"
+      },
+      {
+        "id": 18,
+        "country": "FI",
+        "locale": "fin-FIN",
+        "order": 101,
+        "isSelected": false,
+        "emoji": "🇫🇮",
+        "title": "Suomi"
+      },
+      {
+        "id": 19,
+        "country": "BG",
+        "locale": "bgr-BGR",
+        "order": 102,
+        "isSelected": false,
+        "emoji": "🇧🇬",
+        "title": "Български"
+      },
+      {
+        "id": 20,
+        "country": "GR",
+        "locale": "grc-GRC",
+        "order": 103,
+        "isSelected": false,
+        "emoji": "🇬🇷",
+        "title": "Ελληνικά"
+      },
+      {
+        "id": 21,
+        "country": "DK",
+        "locale": "dnk-DNK",
+        "order": 104,
+        "isSelected": false,
+        "emoji": "🇩🇰",
+        "title": "Dansk"
+      },
+      {
+        "id": 22,
+        "country": "RO",
+        "locale": "rou-ROU",
+        "order": 105,
+        "isSelected": false,
+        "emoji": "🇷🇴",
+        "title": "Română"
+      },
+      {
+        "id": 23,
+        "country": "SE",
+        "locale": "swe-SWE",
+        "order": 106,
+        "isSelected": false,
+        "emoji": "🇸🇪",
+        "title": "Svenska"
+      },
+      {
+        "id": 24,
+        "country": "PT",
+        "locale": "prt-PRT",
+        "order": 107,
+        "isSelected": false,
+        "emoji": "🇵🇹",
+        "title": "Português"
+      },
+      {
+        "id": 25,
+        "country": "NL",
+        "locale": "nld-NLD",
+        "order": 101,
+        "isSelected": false,
+        "emoji": "🇳🇱",
+        "title": "Nederlands"
+      },
+      {
+        "id": 26,
+        "country": "MD",
+        "locale": "mda-MDA",
+        "order": 99,
+        "isSelected": false,
+        "emoji": "🇲🇩",
+        "title": "Moldova"
+      },
+      {
+        "id": 27,
+        "country": "IT",
+        "locale": "ita-ITA",
+        "order": 100,
+        "isSelected": false,
+        "emoji": "🇮🇹",
+        "title": "Italiano"
+      },
+      {
+        "id": 28,
+        "country": "HU",
+        "locale": "hun-HUN",
+        "order": 102,
+        "isSelected": false,
+        "emoji": "🇭🇺",
+        "title": "magyar"
+      },
+      {
+        "id": 29,
+        "country": "IR",
+        "locale": "irn-IRN",
+        "order": 103,
+        "isSelected": false,
+        "emoji": "🇮🇷",
+        "title": "فارسی"
+      },
+      {
+        "id": 30,
+        "country": "HR",
+        "locale": "hrv-HRV",
+        "order": 104,
+        "isSelected": false,
+        "emoji": "🇭🇷",
+        "title": "Hrvatski"
+      },
+      {
+        "id": 31,
+        "country": "AM",
+        "locale": "arm-ARM",
+        "order": 105,
+        "isSelected": false,
+        "emoji": "🇦🇲",
+        "title": "Հայերեն"
+      },
+      {
+        "id": 32,
+        "country": "CZ",
+        "locale": "cze-CZE",
+        "order": 106,
+        "isSelected": false,
+        "emoji": "🇨🇿",
+        "title": "Čeština"
+      },
+      {
+        "id": 33,
+        "country": "UZ",
+        "locale": "uzb-UZB",
+        "order": 107,
+        "isSelected": false,
+        "emoji": "🇺🇿",
+        "title": "Oʻzbekcha"
+      },
+      {
+        "id": 34,
+        "country": "TJ",
+        "locale": "tjk-TJK",
+        "order": 108,
+        "isSelected": false,
+        "emoji": "🇹🇯",
+        "title": "Тоҷикӣ"
+      },
+      {
+        "id": 35,
+        "country": "KG",
+        "locale": "kgz-KGZ",
+        "order": 109,
+        "isSelected": false,
+        "emoji": "🇰🇬",
+        "title": "Кыргызча"
+      },
+      {
+        "id": 36,
+        "country": "AZ",
+        "locale": "aze-AZE",
+        "order": 110,
+        "isSelected": false,
+        "emoji": "🇦🇿",
+        "title": "Azərbaycanca"
+      },
+      {
+        "id": 37,
+        "country": "ES",
+        "locale": "spa-SPA",
+        "order": 37,
+        "isSelected": false,
+        "emoji": "🇪🇸",
+        "title": "Español"
+      },
+      {
+        "id": 38,
+        "country": "GE",
+        "locale": "geo-GEO",
+        "order": 38,
+        "isSelected": false,
+        "emoji": "🇬🇪",
+        "title": "ქართული"
+      },
+      {
+        "id": 39,
+        "country": "CN",
+        "locale": "chn-CHN",
+        "order": 39,
+        "isSelected": false,
+        "emoji": "🇨🇳",
+        "title": "中文"
+      },
+      {
+        "id": 40,
+        "country": "IL",
+        "locale": "isr-ISR",
+        "order": 101,
+        "isSelected": false,
+        "emoji": "🇮🇱",
+        "title": "עברית"
+      },
+      {
+        "id": 41,
+        "country": "AE",
+        "locale": "arb-ARB",
+        "order": 41,
+        "isSelected": false,
+        "emoji": "🇦🇪",
+        "title": "العربية"
+      },
+      {
+        "id": 42,
+        "country": "TM",
+        "locale": "che-CHE",
+        "order": 42,
+        "isSelected": false,
+        "emoji": "🇹🇲",
+        "title": "Türkmençe"
+      },
+      {
+        "id": 43,
+        "country": "TT",
+        "locale": "tat-TAT",
+        "order": 43,
+        "isSelected": false,
+        "emoji": "🇨🇬",
+        "title": "Tатарча"
+      },
+      {
+        "id": 44,
+        "country": "KR",
+        "locale": "kor-KOR",
+        "order": 44,
+        "isSelected": false,
+        "emoji": "🇰🇷",
+        "title": "한국어"
       }
     ],
     "syspanel": "RU"
@@ -159,7 +447,7 @@
   "log_path": "/var/log",
   "type": "wash",
   "ui": {
-    "CNW": true,
+    "CNW": false,
     "isEnable": false,
     "isProgram": true,
     "isProgram2": false,

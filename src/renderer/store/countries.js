@@ -1,37 +1,35 @@
 export default {
   state: {
-    /* dev */
+
     countryKeys: [
-      'RU', // +
-      'PL', // +
-      'GB', // 'US',
-      'UA', // +
-      'LT', // +
-      'LV', // +
-      'EE', // +
-      'KZ', // +
-      'DE', // +
-      'FR', // +
-      'TR', // +
-      'JP', // +
-      'BY', // +
-      'BE', // + ??
-      'FI', // +
-      'SI', // +
-      'SK', // +
-      'RS', // +
-      'NO', // +
-      'BG', // +
-      'GR', // +
-      'DK', // +
-      'RO', // +
-      'SE', // +
-      'PT', // +
-
-      'NL', // +
-      'MD', //
-      'IT', //
-
+      'RU', 
+      'PL', 
+      'GB', 
+      'UA', 
+      'LT', 
+      'LV', 
+      'EE', 
+      'KZ', 
+      'DE', 
+      'FR', 
+      'TR', 
+      'JP', 
+      'BY', 
+      'BE', 
+      'FI', 
+      'SI', 
+      'SK', 
+      'RS', 
+      'NO', 
+      'BG', 
+      'GR', 
+      'DK', 
+      'RO', 
+      'SE', 
+      'PT', 
+      'NL', 
+      'MD', 
+      'IT', 
       'HU',
       'IR',
       'HR',
@@ -54,34 +52,6 @@ export default {
     //countries: ['RU', 'UA', 'BY', 'LT', 'LV', 'EE', ],
     selectCountries: [],
 
-    /* countries: [
-      'RU',
-      'UA',
-      'BY',
-      'LT',
-      'LV',
-      'EE',
-      'PL',
-      'US',
-      'KZ',
-      'DE',
-      'FR',
-      'TR',
-      'JP',
-      'BE',
-      'FI',
-      'SI',
-      'SK',
-      'RS',
-      'NO',
-      'BG',
-      'GR',
-      'DK',
-      'RO',
-      'SE',
-      'PT',
-      'NL'
-    ], */
     country: {},
     languageIds: [],
 
@@ -921,27 +891,6 @@ export default {
         emoji: '🇰🇷',
         emojiU: 'U+1F1F0 U+1F1F7',
       },
-      // --------------------------------
-
-      /* BE: {
-        name: 'Belgium',
-        native: 'België',
-        phone: '32',
-        continent: 'EU',
-        capital: 'Brussels',
-        currency: {
-          alphabetic_code: 'EUR',
-          symbol: '€',
-          numeric_code: '978',
-          name: 'Euro',
-          minor_unit: '2',
-        },
-        languages: ['nl', 'fr-BE', 'de-BE'],
-        emoji: '🇧🇪',
-        emojiU: 'U+1F1E7 U+1F1EA',
-      }, */
-
-      /* dev */
 
       /*     */
     } /* end allCountries */,

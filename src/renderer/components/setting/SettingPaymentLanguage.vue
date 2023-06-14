@@ -11,7 +11,7 @@
       "
     >
       <div class="card-content black-text">
-        <span class="card-title">{{`Language` | localize}} {{`:`}}</span>
+        <span class="card-title">{{ `Language` | localize }} {{ `:` }}</span>
         <div class="input-field">
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(l, index) in languages" :key="index" :value="l.id">
@@ -44,67 +44,46 @@ export default Vue.extend({
     symbol: '',
     currencies: [],
 
-    languages: []
+    languages: [] || 'RU',
   }),
   mounted() {
     /* dev */
     EventBus.$on('submitSelect', this.submitHandler)
 
     this.select = M.FormSelect.init(this.$refs.select, {
-      constrainWidth: true
+      constrainWidth: true,
     })
     M.updateTextFields()
   },
   methods: {
-    /* dev */
-    /* selectLanguages() {
-      this.languages = this.getLanguageNatives
-      this.allLanguages = this.getAllLanguageNatives
-
-      for (let i = 0; i < this.allLanguages.length; i++)
-        this.allLanguages[i].selected = false
-
-      for (let i = 0; i < this.languages.length; i++) {
-        const key = this.languages[i].key
-        const index = this.allLanguages.findIndex(l => l.key === key)
-        this.allLanguages[index].selected = true
-      }
-
-      for (let i = 0; i < this.allLanguages.length; i++) {
-        if (this.allLanguages[i].selected === true) {
-          this.current[i] = this.allLanguages[i].id
-          this.select = this.allLanguages[i].title
-        }
-      }
-    }, */
-    /*    */
-
     setup() {
       this.initLanguage()
     },
     submitHandler(options) {
-      // this.balance = balance
-      console.log('++options-->', JSON.stringify(options.selected))
+      console.log(
+        '$$ SettingPaymentLanguage.vue: 64',
+        JSON.stringify(options.selected)
+      )
       //this.initLanguage()
       //this.selectLanguages()
     },
     initLanguage() {
-      /* dev */
       const defaultLanguage = this.getDefaultLanguage().toUpperCase()
       //const defaultLanguage = this.getSysPanelLanguage().toUpperCase()
+
       this.languages = this.getLanguageNatives()
+      // console.log('$$ SettingPaymentLanguage.vue: 72', JSON.stringify(this.languages))
 
-      //console.log('this.getDefaultLanguage().toUpperCase()-->', this.getDefaultLanguage().toUpperCase())
-      //console.log('this.getSysPanelLanguage().toUpperCase()-->', this.getSysPanelLanguage().toUpperCase())
-
-      const index = this.languages.findIndex(l => l.key === defaultLanguage) 
-
-      const { id, title, key, emoji, currency, symbol } = this.languages[index]
-      this.current = id || 0
-      this.select = title
-      this.emoji = emoji
-      this.currency = currency
-      this.symbol = symbol
+      const index = this.languages.findIndex((l) => l.key === defaultLanguage)
+      if (index !== -1) {
+        const { id, title, key, emoji, currency, symbol } =
+          this.languages[index]
+        this.current = id || 0
+        this.select = title
+        this.emoji = emoji
+        this.currency = currency
+        this.symbol = symbol
+      }
     },
     ...mapGetters({
       getDefaultLanguage: 'getDefaultLanguage',
@@ -112,28 +91,27 @@ export default Vue.extend({
       getSelectedCountries: 'getSelectedCountries',
 
       getLanguageNatives: 'getLanguageNatives',
-      getAllLanguageNatives: 'getAllLanguageNatives'
+      getAllLanguageNatives: 'getAllLanguageNatives',
     }),
     /*  */
     ...mapMutations({
       setLanguageItem: 'setLanguageItem',
       setSysPanelLanguage: 'setSysPanelLanguage',
-      setDefaultLanguage: 'setDefaultLanguage'
-    })
+      setDefaultLanguage: 'setDefaultLanguage',
+    }),
   },
   watch: {
     current(languageId) {
       const { id, title, key, emoji, currency, symbol } = this.languages.find(
-        l => l.id === languageId
+        (l) => l.id === languageId
       )
       this.select = title
       /* uncomment */
       this.setSysPanelLanguage(key)
       this.setDefaultLanguage(key)
-      
-      
+
       //this.setLanguageItem(key)
-    }
+    },
   },
   created() {
     this.setup()
@@ -142,6 +120,6 @@ export default Vue.extend({
     if (this.select && this.select.destroy) {
       this.select.destroy()
     }
-  }
+  },
 })
 </script>

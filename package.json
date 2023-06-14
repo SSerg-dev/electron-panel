@@ -30,7 +30,6 @@
     "@types/node": "^20.1.0",
     "@types/serialport": "^8.0.2",
     "@vue/cli": "^5.0.8",
-    "@vue/cli-plugin-typescript": "^5.0.8",
     "axios": "^0.21.1",
     "bcrypt": "^5.1.0",
     "cashcode-bv": "^0.0.2",

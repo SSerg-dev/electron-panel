@@ -28,10 +28,11 @@
               draggable="true"
               :key="item.id"
             >
-              {{ item.order }}
-              &nbsp;
+              <!-- {{ item.order }}
+              &nbsp; -->
 
               {{ item.emoji }}
+              &nbsp;
               {{ item.title }}
             </option>
           </transition-group>
@@ -281,7 +282,7 @@ export default Vue.extend({
 
 .item {
   width: 34em;
-  height: 3.2em;
+  height: 2.6em;
   padding: 0.8em;
   font-size: 2em;
   margin: 10px auto 10px 10px;

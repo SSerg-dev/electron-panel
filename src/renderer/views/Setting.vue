@@ -706,7 +706,7 @@
         <h2 class="white-text page-subtitle">{{ `Languages` | localize }}</h2>
         <br />
 
-        <table style="margin-left: 2em; margin-top: -1em">
+        <table style="margin-left: 1em; margin-top: -1em">
           <tbody>
             <!-- row 01 -->
             <tr style="margin-top: 2em">

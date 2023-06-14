@@ -25,11 +25,11 @@
         <!-- 3 -->
         <li class="collection-item cash" @click="payUp('cash')">
           <div class="card white waves-effect button-style">
-            <!-- <span>&#10003;</span> -->
             <div class="card-content black-text button-content-style">
-              <!--🪙-->
+              
               <div class="emoji">💰 &nbsp;</div>
-               {{ 'CASH' | localize }}
+              {{ 'CASH' | localize }}
+           
             </div>
           </div>
         </li>
@@ -45,7 +45,7 @@
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               <div class="emoji">💳 &nbsp;</div>
-               {{ 'BANK_CARD' | localize }}
+              {{ 'BANK_CARD' | localize }}
               <!-- &nbsp <img src="@/assets/imgs/sbp/sbp.svg"  style="width: 8%"/> -->
             </div>
           </div>
@@ -214,25 +214,7 @@ export default Vue.extend({
       this.setCashEnabler(this.cash_enabler)
       ipcRenderer.send('cash_enabler', 'true')
     },
-    initial() {
-      // classes instances
-      /* button price */
-      /* this.buttonPrice = new Button({
-        selector: '#button-price',
-
-        width: 11,
-        height: 11,
-        background: 'rgb(255, 255, 255)',
-        border: '0.4em solid rgb(64, 196, 255)',
-        boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
-        borderRadius: 2,
-        fontSize: '1em',
-
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }) */
-    },
+    initial() {},
   }, // end methods
 })
 </script>
@@ -296,6 +278,7 @@ section {
 }
 .emoji {
   text-shadow: 6px 6px 6px #3a3a37, -1px 1px 1px #5c5710;
+  /* font-family: 'Emoji-Regular'; */
 }
 .button-price-style {
   font-size: 6.5em;
@@ -307,5 +290,4 @@ section {
   align-items: center;
   justify-content: center;
 }
-
 </style>

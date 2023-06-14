@@ -21,7 +21,8 @@ sudo apt install mc
 sudo apt install nano
 sudo apt install xinput
 # add emoji
-sudo apt-get install fonts-noto-color-emoji//Удаленное управление через клиента TightVNC:
+sudo apt-get install fonts-noto-color-emoji
+//Удаленное управление через клиента TightVNC:
 //sudo apt install sudo apt install xfce4 xfce4-goodies
 //Развернуть дисплей вертикально:
 //xrandr --output $(xrandr |grep eDP|cut -d" " -f1) --rotate left

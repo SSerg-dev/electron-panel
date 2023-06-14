@@ -4,11 +4,13 @@
     <div
       class="card grey lighten-3"
       style="
-      border: solid 3px #00B9E3; 
-      width: 1040px; height: 120px; 
-      margin-left: 0px;
-      margin-top: -3.5em; 
-      border-radius: 2rem;"
+        border: solid 3px #00b9e3;
+        width: 1040px;
+        height: 120px;
+        margin-left: 0px;
+        margin-top: -3.5em;
+        border-radius: 2rem;
+      "
     >
       <div class="card-content black-text">
         <!-- row -->
@@ -24,24 +26,24 @@
          -->
         <div class="row">
           <div class="col s2">
-            <span class="card-title">{{`Tokens` | localize }} {{`:`}}</span>
-            <div style="font-size: 1.35em; margin-left: 0em;">
+            <span class="card-title">{{ `Tokens` | localize }} {{ `:` }}</span>
+            <div style="font-size: 1.35em; margin-left: 0em">
               {{ this.emoji }}
               {{ this.currency }}
               <!-- {{ this.symbol }} -->
             </div>
           </div>
-          <div class="col s3" style="margin-left: -4em;">
+          <div class="col s3" style="margin-left: -4em">
             <div>
               <SettingPaymentTokenItem :token="firstToken" />
             </div>
           </div>
-          <div class="col s3" style="margin-left: 3em;">
+          <div class="col s3" style="margin-left: 3em">
             <div>
               <SettingPaymentTokenItem :token="secondToken" />
             </div>
           </div>
-          <div class="col s3" style="margin-left: 3em;">
+          <div class="col s3" style="margin-left: 3em">
             <div>
               <SettingPaymentTokenItem :token="thirdToken" />
             </div>
@@ -71,36 +73,35 @@ export default Vue.extend({
     emoji: '',
     currency: '',
     symbol: '',
-    currencies: []
+    currencies: [],
   }),
   computed: {
     ...mapGetters({
-      getInitCurrency: 'getInitCurrency'
-    })
+      getInitCurrency: 'getInitCurrency',
+    }),
   },
   methods: {
     initCurrency() {
-      
-      const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
-      if (id) {
-        this.current = id
-        this.select = title
+      if (this.getInitCurrency) {
+        const { id, title, key, emoji, currency, symbol } = this.getInitCurrency
+        if (typeof id === 'number') {
+          this.current = id || 0
+          this.select = title
 
-        this.emoji = emoji
-        this.currency = currency
-        this.symbol = symbol
+          this.emoji = emoji
+          this.currency = currency
+          this.symbol = symbol
+        }
       }
-
-      
-    }
+    },
   },
   created() {
     this.initCurrency()
   },
 
   components: {
-    SettingPaymentTokenItem
-  }
+    SettingPaymentTokenItem,
+  },
 })
 </script>
 
