@@ -292,21 +292,25 @@ ArialBlack
 ArialBoldItalic
 
 */
-@font-face {
+
+
+/* @font-face {
   font-family: 'Roboto-Regular';
   src: local('Roboto-Regular'),
     url(./assets/fonts/Plumb-Medium.ttf) format('truetype');
+} */
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url(./assets/fonts/Plumb-Medium.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'Plumb-Medium';
-  src: local('Plumb-Medium'),
-    /* url(./assets/fonts/arial/ArialBold.ttf) format('truetype'); */
-      url(./assets/fonts/Roboto-Medium.ttf) format('truetype');
+  src: url(./assets/fonts/Roboto-Medium.ttf) format('truetype');
 }
+
 @font-face {
   font-family: 'Emoji-Regular';
-  src: local('Emoji-Regular'),
-      url(./assets/fonts/NotoColorEmoji-Regular.ttf) format('truetype');
+  src: url(./assets/fonts/NotoColorEmoji-Regular.ttf) format('truetype');
 }
 </style>

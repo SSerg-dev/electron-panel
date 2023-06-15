@@ -222,7 +222,7 @@ const startup = async (config) => {
   /* ----------------------------------------------------------------------- */
   /* */
    
-  delay(6000)
+  delay(4000)
 
   // console.log('$$ background.js: 224 bill_validator')
 

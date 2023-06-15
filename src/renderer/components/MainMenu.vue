@@ -26,10 +26,10 @@
         <li class="collection-item cash" @click="payUp('cash')">
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
-              
-              <div class="emoji">💰 &nbsp;</div>
+              <div class="emoji">💰</div>
+              &nbsp;
+
               {{ 'CASH' | localize }}
-           
             </div>
           </div>
         </li>
@@ -44,7 +44,8 @@
         >
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
-              <div class="emoji">💳 &nbsp;</div>
+              <div class="emoji">💳</div>
+              &nbsp;
               {{ 'BANK_CARD' | localize }}
               <!-- &nbsp <img src="@/assets/imgs/sbp/sbp.svg"  style="width: 8%"/> -->
             </div>
@@ -55,7 +56,8 @@
         <li v-if="getIsPing" class="collection-item" @click="payUp('bonus')">
           <div class="card white waves-effect button-style-bonus">
             <div class="card-content black-text button-content-style">
-              <div class="emoji">🎁 &nbsp;</div>
+              <div class="emoji">🎁</div>
+              &nbsp;
               {{ `BONUSES` | localize }}
             </div>
           </div>
@@ -251,9 +253,9 @@ section {
   border-radius: 4em;
   box-shadow: 0px 10px 20px #00b9e3;
 }
-.button-style:hover {
+/* .button-style:hover {
   box-shadow: 0px 15px 30px #00b9e3;
-}
+} */
 .button-style-bonus {
   padding-left: 4em;
   width: 64em;
@@ -267,19 +269,23 @@ section {
 .button-content-style {
   font-size: 4em;
   padding-top: 1.1em;
+  padding-left: 0em;
+  /* text-shadow: 2px 2px 4px #3a3a37, -1px 1px 1px #f3f2e7; */
+
   display: flex;
   align-items: center;
   justify-content: left;
 }
+
 .price {
   /* position: absolute; */
   margin-top: 0em;
   margin-left: 0em;
 }
-.emoji {
+/* .emoji {
   text-shadow: 6px 6px 6px #3a3a37, -1px 1px 1px #5c5710;
-  /* font-family: 'Emoji-Regular'; */
-}
+  font-family: 'Emoji-Regular';
+} */
 .button-price-style {
   font-size: 6.5em;
   margin-left: 0em;

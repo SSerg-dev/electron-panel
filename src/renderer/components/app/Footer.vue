@@ -2,9 +2,14 @@
   <div v-if="getIsFooter">
     <div class="footer-panel white-text">
       <!-- stop -->
-      
+
+      <!-- v-if="this.$route.name === 'program' && getWetProgramName.length > 0" -->
       <div
-        v-if="this.$route.name === 'program' && getWetProgramName.length > 0"
+        v-if="
+          this.$route.name === 'program' &&
+          getWetProgramName.length > 0 &&
+          this.isVisible
+        "
         class="stop-position"
       >
         <div
@@ -99,7 +104,6 @@
           </div>
         </div>
       </div> -->
-
     </div>
   </div>
 </template>
@@ -123,8 +127,8 @@ export default {
       operator: false,
       home: false,
       input: false,
-      exit: false
-    }
+      exit: false,
+    },
   }),
   computed: {
     ...mapGetters({
@@ -145,8 +149,9 @@ export default {
       getSecondsBonusTimer: 'getSecondsBonusTimer',
       getIsFirstTimer: 'getIsFirstTimer',
 
-      getWetProgramName: 'getWetProgramName'
-    })
+      getWetProgramName: 'getWetProgramName',
+      getPrevRouter: 'getPrevRouter',
+    }),
   },
   watch: {
     getWetProgramName(flag) {
@@ -165,8 +170,8 @@ export default {
           this.setMoneyToBonus(this.getWetBalance)
           this.setIsMoneyToBonus(true)
         }
-      } catch (err) {}
-    }
+      } catch (err) {} 
+    },
 
     /* dev */
     /* getSecondsBonusTimer(flag) {
@@ -185,6 +190,10 @@ export default {
   mounted() {
     this.setup()
 
+    this.timeoutPopup = setTimeout(() => {
+      this.isVisible = true
+    }, (this.delay = 1000))
+
     // this.setIsMoneyToBonus(false)
     // this.setMoneyToBonus(0)
   },
@@ -193,12 +202,14 @@ export default {
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setIsMoneyToBonus: 'setIsMoneyToBonus',
-      setMoneyToBonus: 'setMoneyToBonus'
+      setMoneyToBonus: 'setMoneyToBonus',
+      setRouter: 'setRouter',
+      setPrevRouter: 'setPrevRouter',
     }),
     ...mapGetters({}),
     ...mapActions({
       updateStartProgram: 'updateStartProgram',
-      updateDryStartProgram: 'updateDryStartProgram'
+      updateDryStartProgram: 'updateDryStartProgram',
     }),
     setup() {},
 
@@ -224,7 +235,7 @@ export default {
             this.getPanelType,
             this.getPanelNumber,
             this.getActiveProgram,
-            this.getWetBalance
+            this.getWetBalance,
           ])
           break
         case 'vacuum':
@@ -232,7 +243,7 @@ export default {
             this.getPanelType,
             this.getVacuumNumber,
             this.getActiveProgram,
-            this.getDryBalance
+            this.getDryBalance,
           ])
           break
 
@@ -241,6 +252,8 @@ export default {
           break
       }
       if (program === 'operator') {
+        this.setPrevRouter(this.selectRouter())
+
         this.timeoutPopup = setTimeout(() => {
           try {
             this.$router.push('/popup')
@@ -248,6 +261,36 @@ export default {
         }, (this.delay = 400))
       }
     },
+    selectRouter() {
+      let route
+      switch (this.$route.name) {
+        case 'home':
+          route = '/'
+          break
+        case 'cost':
+          route = '/cost'
+          break
+        case 'cash':
+          route = '/cash'
+          break
+        case 'card':
+          route = '/card'
+          break
+        case 'bonus':
+          route = '/bonus'
+          break
+        case 'program':
+          route = '/program'
+          break
+
+        default:
+          route = '/'
+          break
+      }
+
+      return route
+    },
+
     setDown(program) {
       this.clearDown()
       switch (program) {
@@ -284,12 +327,12 @@ export default {
       this.isDown = Object.fromEntries(
         Object.entries(this.isDown).map(([key, value]) => [key, false])
       )
-    }
+    },
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutPopup)
-  }
+  },
 }
 </script>
 
@@ -304,7 +347,6 @@ export default {
   background: linear-gradient(180deg, #323232, #131313 100%);
   box-shadow: 0px -15px 10px #393758;
 }
-
 
 /* common footer */
 .button-title {

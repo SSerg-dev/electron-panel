@@ -322,7 +322,13 @@
   transform-origin: 0 0;
 }
 
-/* 05 invoice */
+/* 05 */
+.emoji {
+  text-shadow: 6px 6px 6px #3a3a37, -1px 1px 1px #5c5710;
+  font-family: 'Emoji-Regular';
+}
+
+/*  invoice */
 /* .desc[data-v-02c64a2c] {
   font-size: 1.5rem;
   letter-spacing: .3rem;

@@ -217,39 +217,6 @@
               </tr> -->
 
               <!-- dry group -->
-              <!-- vacuum air washer turboDryer -->
-
-              <!-- 
-              <tr
-                v-if="this.actives[16].display !== 'none'"
-                :key="this.keys.keyVacuum"
-              >
-                <WashTableVacuum :actives="actives" />
-              </tr>
-
-              <tr
-                v-if="this.actives[26].display !== 'none'"
-                :key="this.keys.keyTurboDryer"
-              >
-                <WashTableTurboDryer :actives="actives" />
-              </tr>
-
-              <tr
-                v-if="this.actives[17].display !== 'none'"
-                :key="this.keys.keyAir"
-              >
-                <WashTableAir :actives="actives" />
-              </tr>
-
-              <tr
-                v-if="this.actives[18].display !== 'none'"
-                :key="this.keys.keyWasher"
-              >
-                <WashTableWasher :actives="actives" />
-              </tr> 
-              -->
-
-              <!-- dev -->
               <div class="dry-items">
                 <tr
                   class="dry-item"

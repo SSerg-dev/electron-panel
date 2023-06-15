@@ -1,8 +1,13 @@
 <template>
   <div class="page-title">
     <ul style="margin-top: 18em">
+      <!-- && this.getPayType !== 'bonus' -->
       <li
-        v-if="this.IsWetBalance === true && this.getIsPing"
+        v-if="
+          this.IsWetBalance === true &&
+          this.getIsPing 
+          && this.getPayType !== 'bonus'
+        "
         @click="payUp('payBonus')"
       >
         <div class="card white waves-effect pay-end-bonus">
@@ -119,6 +124,10 @@ export default {
     this.urlLocal = process.env.VUE_APP_URL_LOCAL
     this.localStorage = new Storage(this.localClient, this.urlLocal)
   },
+  
+  beforeMount() {
+    // this.setPayType('cash')
+  },
   computed: {
     ...mapGetters({
       getPanelNumber: 'getPanelNumber',
@@ -157,6 +166,7 @@ export default {
 
       setIsMoneyToBonus: 'setIsMoneyToBonus',
       setWetBalance: 'setWetBalance',
+      setPayType: 'setPayType',
     }),
     ...mapActions({}),
 
@@ -173,6 +183,8 @@ export default {
 
       // payEnd
       if (program === 'payEnd') {
+
+        this.setPayType('cash')
         this.getCashMoney()
 
         sleep(this.delay).then(() => {
@@ -186,6 +198,8 @@ export default {
       }
       // payBonus
       else if (program === 'payBonus') {
+
+        this.setPayType('bonus')
         this.setIsAppendBonusMoney(true)
         this.setIsPayBonusMoney(false)
         this.$router.push('/bonus')

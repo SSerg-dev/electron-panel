@@ -56,30 +56,7 @@ export default Vue.extend({
     getActiveProgBit() {
       return (this.getWetProgStatus >>> 0).toString(2)
     },
-    /* 
-    setActiveProg() {
-      
-      let activeProgNames = []
-      this.activeProg = [...this.getActiveProgBit()]
-        .reverse()
-        .join('')
-        .slice(1)
 
-      for (let i = 0; i <= this.activeProg.length; i++) {
-        if (
-          this.activeProg.toString().slice(i, i + 1) === '0' ||
-          this.activeProg.toString().slice(i, i + 1) === 'none'
-        ) {
-          this.actives[i].display = 'none'
-        } else {
-          this.actives[i].display = 'block'
-          activeProgNames.push(this.actives[i].name)
-        }
-      }
-
-      return this.actives
-    }
-   */
   },
   created() {
     this.actives = this.getPrograms()

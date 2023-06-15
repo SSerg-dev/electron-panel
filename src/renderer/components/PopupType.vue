@@ -52,7 +52,8 @@ export default Vue.extend({
       getPanelType: 'getPanelType',
       getWetStopFreeCount: 'getWetStopFreeCount',
       getWetSpend: 'getWetSpend',
-      getSecondsBonusTimer: 'getSecondsBonusTimer'
+      getSecondsBonusTimer: 'getSecondsBonusTimer',
+      getPrevRouter: 'getPrevRouter',
     })
   },
   watch: {
@@ -114,14 +115,18 @@ export default Vue.extend({
       try {
         this.intervalPopupMenu = setInterval(() => {
           if (--seconds <= 0) {
-            this.$router.push('/')
+            // this.$router.push('/')
+            this.pushRouter()
             return
           }
         }, this.delay)
       } catch (err) {
         console.warn(err)
       }
-    }
+    },
+    pushRouter() {
+      this.$router.push(this.getPrevRouter)
+    },
   },
   mounted() {
     this.setup()
