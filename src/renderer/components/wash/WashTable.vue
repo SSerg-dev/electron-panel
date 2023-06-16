@@ -906,7 +906,7 @@ export default {
         // rerender after 1 sec.
         this.setKeys()
         this.setup()
-      }, (this.delay = 1000))
+      }, (this.delay))
     }
     // this.setup()
   },

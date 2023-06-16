@@ -25,7 +25,7 @@ export default Vue.extend({
     return {
       actives: [],
       activesVacuum: [],
-      delay: 1000,
+      delay: 500,
       seconds: 0,
       activeProg: [],
       showProg: [],

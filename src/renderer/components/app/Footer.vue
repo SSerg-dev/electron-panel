@@ -2,14 +2,11 @@
   <div v-if="getIsFooter">
     <div class="footer-panel white-text">
       <!-- stop -->
-
-      <!-- v-if="this.$route.name === 'program' && getWetProgramName.length > 0" -->
-      <div
-        v-if="
+      <div 
+      v-if="
           this.$route.name === 'program' &&
           getWetProgramName.length > 0 &&
-          this.isVisible
-        "
+          this.isVisible"
         class="stop-position"
       >
         <div
@@ -114,13 +111,14 @@ import { mapMutations, mapGetters, mapActions } from 'vuex'
 
 import { Queue } from '@/queue/index.js'
 import { log } from '../../../main/utils'
+import sleep from '@/utils/sleep'
 
 export default {
   data: () => ({
     active: '',
     timeoutPopup: null,
     timeoutDelay: null,
-    delay: 500,
+    delay: 1000,
     isVisible: false,
     isDown: {
       stop: false,
@@ -150,6 +148,7 @@ export default {
       getIsFirstTimer: 'getIsFirstTimer',
 
       getWetProgramName: 'getWetProgramName',
+      getRouter: 'getRouter',
       getPrevRouter: 'getPrevRouter',
     }),
   },
@@ -158,7 +157,16 @@ export default {
       // console.log('$$ Footer.vue: 157', flag)
     },
 
-    /* dev */
+    getRouter(flag) {
+      if (flag === '/program') {
+        sleep(500).then(() => {
+          this.isVisible = true
+        })
+      } else {
+        this.isVisible = false
+      }
+
+    },
 
     getWetStopFreeCount(flag) {
       try {
@@ -188,11 +196,11 @@ export default {
     } */
   },
   mounted() {
+    // this.isVisible = false
     this.setup()
-
     this.timeoutPopup = setTimeout(() => {
       this.isVisible = true
-    }, (this.delay = 1000))
+    }, this.delay)
 
     // this.setIsMoneyToBonus(false)
     // this.setMoneyToBonus(0)

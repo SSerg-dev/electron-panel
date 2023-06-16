@@ -379,7 +379,7 @@ export default Vue.extend({
     this.items = this.getAssignItems()
     this.getIndex()
     
-    console.log('$$ WashTableDisk.vue: 375', this.items[this.index] )
+    // console.log('$$ WashTableDisk.vue: 375', this.items[this.index] )
 
     this.getKits()
   },

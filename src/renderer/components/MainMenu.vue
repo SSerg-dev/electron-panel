@@ -25,7 +25,10 @@
         <!-- 3 -->
         <li class="collection-item cash" @click="payUp('cash')">
           <div class="card white waves-effect button-style">
-            <div class="card-content black-text button-content-style">
+            <div
+              class="card-content black-text button-content-style"
+              style="justify-content: left"
+            >
               <div class="emoji">💰</div>
               &nbsp;
 
@@ -43,7 +46,10 @@
           @click="payUp('card')"
         >
           <div class="card white waves-effect button-style">
-            <div class="card-content black-text button-content-style">
+            <div
+              class="card-content black-text button-content-style"
+              style="justify-content: left"
+            >
               <div class="emoji">💳</div>
               &nbsp;
               {{ 'BANK_CARD' | localize }}
@@ -55,7 +61,10 @@
         <!-- 5 ₿ -->
         <li v-if="getIsPing" class="collection-item" @click="payUp('bonus')">
           <div class="card white waves-effect button-style-bonus">
-            <div class="card-content black-text button-content-style">
+            <div
+              class="card-content black-text button-content-style"
+              style="justify-content: left"
+            >
               <div class="emoji">🎁</div>
               &nbsp;
               {{ `BONUSES` | localize }}
@@ -296,4 +305,9 @@ section {
   align-items: center;
   justify-content: center;
 }
+.align {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+} 
 </style>
