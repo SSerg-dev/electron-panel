@@ -27,12 +27,11 @@
           <div class="card white waves-effect button-style">
             <div
               class="card-content black-text button-content-style"
-              style="justify-content: left"
+              style="justify-content: left;"
             >
               <div class="emoji">💰</div>
               &nbsp;
-
-              {{ 'CASH' | localize }}
+              <div class="align-content">{{ 'CASH' | localize }}</div>
             </div>
           </div>
         </li>
@@ -48,12 +47,13 @@
           <div class="card white waves-effect button-style">
             <div
               class="card-content black-text button-content-style"
-              style="justify-content: left"
+              style="justify-content: left;"
             >
               <div class="emoji">💳</div>
               &nbsp;
-              {{ 'BANK_CARD' | localize }}
-              <!-- &nbsp <img src="@/assets/imgs/sbp/sbp.svg"  style="width: 8%"/> -->
+              <div class="align-content">{{ 'BANK_CARD' | localize }}</div>
+
+              <!-- <img src="@/assets/imgs/sbp/sbp.svg"  style="width: 8%"/> -->
             </div>
           </div>
         </li>
@@ -63,11 +63,11 @@
           <div class="card white waves-effect button-style-bonus">
             <div
               class="card-content black-text button-content-style"
-              style="justify-content: left"
+              style="justify-content: left;"
             >
               <div class="emoji">🎁</div>
               &nbsp;
-              {{ `BONUSES` | localize }}
+              <div class="align-content">{{ `BONUSES` | localize }}</div>
             </div>
           </div>
         </li>
@@ -297,6 +297,7 @@ section {
 } */
 .button-price-style {
   font-size: 6.5em;
+  font-family: 'Plumb-Medium';
   margin-left: 0em;
   padding-top: 0em;
   padding-right: 0em;
@@ -305,9 +306,9 @@ section {
   align-items: center;
   justify-content: center;
 }
-.align {
+.align-content {
   display: flex;
   align-items: center;
   justify-content: left;
-} 
+}
 </style>

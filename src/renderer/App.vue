@@ -299,18 +299,19 @@ ArialBoldItalic
   src: local('Roboto-Regular'),
     url(./assets/fonts/Plumb-Medium.ttf) format('truetype');
 } */
-@font-face {
-  font-family: 'Roboto-Regular';
-  src: url(./assets/fonts/Plumb-Medium.ttf) format('truetype');
-}
-
-@font-face {
-  font-family: 'Plumb-Medium';
-  src: url(./assets/fonts/Roboto-Medium.ttf) format('truetype');
-}
 
 @font-face {
   font-family: 'Emoji-Regular';
   src: url(./assets/fonts/NotoColorEmoji-Regular.ttf) format('truetype');
 }
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url(./assets/fonts/Plumb-Medium.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Plumb-Medium';
+  src: url(./assets/fonts/Roboto-Medium.ttf) format('truetype');
+}
+
+
 </style>

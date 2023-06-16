@@ -14,7 +14,7 @@
       <div class="col s3" align="center">
       {{ this.currency }}
       </div>
-      <div class="col s2" align="center">
+      <div class="col s2 emoji" align="center">
         {{ this.emoji }}
       </div>
 
