@@ -49,8 +49,8 @@
                 </div>
               </td>
               <td colspan="1" class="white-text currency">
-                <div align="center" style="font-size: 1em">
-                  <p>{{ this.emoji }}</p>
+                <div align="center" style="font-size: 1em;">
+                  <p class="emoji">{{ this.emoji }}</p>
                   {{ this.currency }}
                   <!-- {{ this.symbol }} -->
                 </div>

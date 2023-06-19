@@ -75,7 +75,7 @@ const upGreenOptions = {
   border: '0.4em solid rgb(118, 255, 3)',
   boxShadow: 'rgb(118, 255, 3) 0px 10px 20px',
   fontSize: '1em',
-  width: '51em'
+  width: '51em' // 51
 }
 const downGreenOptions = {
   type: 'left',
@@ -83,7 +83,7 @@ const downGreenOptions = {
   border: '0.4em solid rgb(118, 255, 3)',
   boxShadow: 'rgb(118, 255, 3) 0px 10px 20px',
   fontSize: '1em',
-  width: '51em'
+  width: '51em' // 51
 }
 const upRedOptions = {
   type: 'left',
@@ -144,7 +144,7 @@ const buttonSizeOptions = {
   extraSmall: 7,
   small: 25.5,
   medium: 32.5,
-  extraMedium: 52,
+  extraMedium: 51.5, // 52
   large: 59.5,
   extraLarge: 67,
 

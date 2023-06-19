@@ -28,8 +28,11 @@
           <div class="col s2">
             <span class="card-title">{{ `Tokens` | localize }} {{ `:` }}</span>
             <div style="font-size: 1.35em; margin-left: 0em">
-              {{ this.emoji }}
-              {{ this.currency }}
+              <div>
+                <div class="emoji-" style="float: left;">{{ this.emoji }}</div>
+                <div  style="float: left;"> &nbsp;{{ this.currency }}</div> 
+              </div> 
+              
               <!-- {{ this.symbol }} -->
             </div>
           </div>

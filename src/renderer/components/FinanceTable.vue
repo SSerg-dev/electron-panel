@@ -15,8 +15,10 @@
       <thead>
         <tr>
           <th>
-            {{ this.emoji }}
-            &nbsp {{  this.currency }}
+            <div style="display: flex; justify-content: center;">
+              <div style="float: left" class="emoji">{{ this.emoji }}</div>
+              <div style="float: left">&nbsp; {{ this.currency }}</div>
+            </div>
           </th>
           <th>{{ `` }}</th>
         </tr>

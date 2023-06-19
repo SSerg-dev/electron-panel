@@ -5,14 +5,14 @@
     <td>
       <div
         @click="setProgram('brushFoam')"
-        class="waves-effect "
+        class="waves-effect"
         id="button-left-brush"
       >
         <div
           class="button-content-style"
           :class="[
             { 'card-content black-text': !this.isDown.brushFoam },
-            { 'card-content white-text': this.isDown.brushFoam }
+            { 'card-content white-text': this.isDown.brushFoam },
           ]"
         >
           {{ `${actives[this.activeNumber].title}` | localize }}
@@ -31,10 +31,10 @@
           class="button-content-style-color"
           :class="[
             { 'card-content white-text': this.isDown.brushFoam_color },
-            { 'card-content white-text': !this.isDown.brushFoam_color }
+            { 'card-content white-text': !this.isDown.brushFoam_color },
           ]"
         >
-          <div style="font-style: italic;">
+          <div style="font-style: italic">
             {{ `${actives[this.activeNumber_color].name.slice(-5)}` }}
           </div>
         </div>
@@ -52,10 +52,10 @@
           class="button-content-style-x2"
           :class="[
             { 'card-content black-text': !this.isDown.brushFoam_x2 },
-            { 'card-content white-text': this.isDown.brushFoam_x2 }
+            { 'card-content white-text': this.isDown.brushFoam_x2 },
           ]"
         >
-          <div style="font-style: italic;">
+          <div style="font-style: italic">
             {{ `${actives[this.activeNumber_x2].name.slice(-2)}` }}
           </div>
         </div>
@@ -69,7 +69,6 @@ import Vue from 'vue'
 import { mapMutations, mapGetters, mapActions } from 'vuex'
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
-
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
 import {
@@ -131,22 +130,22 @@ export default Vue.extend({
     isDown: {
       brushFoam: false,
       brushFoam_x2: false,
-      brushFoam_color: false
-    }
+      brushFoam_color: false,
+    },
   }),
   props: {
     actives: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
   },
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
       getPanelNumber: 'getPanelNumber',
       getActiveProgram: 'getActiveProgram',
-      getWetBalance: 'getWetBalance'
-    })
+      getWetBalance: 'getWetBalance',
+    }),
   },
   watch: {
     getWetBalance(flag) {
@@ -161,20 +160,20 @@ export default Vue.extend({
         flag !== this.actives[this.activeNumber_x2].name
       )
         this.clearDown()
-    }
+    },
   },
   methods: {
     ...mapGetters({
       getActiveProgramKit: 'getActiveProgramKit',
-      getIsActiveProgramKit: 'getIsActiveProgramKit'
+      getIsActiveProgramKit: 'getIsActiveProgramKit',
     }),
     ...mapActions({
-      updateStartProgram: 'updateStartProgram'
+      updateStartProgram: 'updateStartProgram',
     }),
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setActiveProgramKit: 'setActiveProgramKit',
-      setIsActiveProgramKit: 'setIsActiveProgramKit'
+      setIsActiveProgramKit: 'setIsActiveProgramKit',
     }),
 
     setProgram(program) {
@@ -187,15 +186,14 @@ export default Vue.extend({
         this.getPanelType,
         this.getPanelNumber,
         this.getActiveProgram,
-        this.getWetBalance
+        this.getWetBalance,
       ])
 
       this.setIsActiveProgramKit(true)
       this.setActiveProgramKit(this.activeProgramKit)
 
       if (parseInt(this.getWetBalance) > 0) {
-        this.timeoutPopup = setTimeout(() => {
-        }, 1000)
+        this.timeoutPopup = setTimeout(() => {}, 1000)
       } else this.$message(localizeFilter(`${messages.Not_enough_money}`))
     },
     setDown(program) {
@@ -232,7 +230,6 @@ export default Vue.extend({
 
           this.setButtonStyle(this._upX2Options)
           this.isDown.brushFoam_x2 = false
-
 
           break
 
@@ -289,7 +286,7 @@ export default Vue.extend({
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'left'
+        justifyContent: 'left',
       })
 
       /* center button */
@@ -303,7 +300,7 @@ export default Vue.extend({
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
 
       /* right button */
@@ -317,7 +314,7 @@ export default Vue.extend({
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
 
       // end classes
@@ -366,7 +363,7 @@ export default Vue.extend({
           this._upGreenOptions.width = //'67em'
             this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix
           this._downGreenOptions.width = //'67em'
-            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix
           this.buttonLeft.show()
           this.flex()
           this.buttonCenter.hide()
@@ -375,9 +372,9 @@ export default Vue.extend({
 
         case 'right_color':
           this._upGreenOptions.width = //'59.5em'
-            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix
           this._downGreenOptions.width = //'59.5em'
-            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix
           this.buttonLeft.show()
           this.buttonCenter.show()
           this.flex()
@@ -386,9 +383,9 @@ export default Vue.extend({
 
         case 'right_x2':
           this._upGreenOptions.width = //'59.5em'
-            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix
           this._downGreenOptions.width = //'59.5em'
-            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.large + this.buttonSizeOptions.suffix
           this.buttonLeft.show()
           this.buttonRight.show()
           this.flex()
@@ -397,9 +394,9 @@ export default Vue.extend({
 
         case 'right_color_x2':
           this._upGreenOptions.width = //'52em'
-            this.buttonSizeOptions.extraMedium + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.extraMedium + this.buttonSizeOptions.suffix
           this._downGreenOptions.width = //'52em'
-            this.buttonSizeOptions.extraMedium + this.buttonSizeOptions.suffix 
+            this.buttonSizeOptions.extraMedium + this.buttonSizeOptions.suffix
           this.buttonLeft.show()
           this.buttonCenter.show()
           this.buttonRight.show()
@@ -452,7 +449,7 @@ export default Vue.extend({
         this.buttonRight.fontSize = options.fontSize
         this.buttonRight.width = options.width
       }
-    }
+    },
   }, // end methods
 
   beforeDestroy() {
@@ -468,7 +465,7 @@ export default Vue.extend({
     this.visible_color = this.actives[this.activeNumber_color].display
 
     this.setup()
-  }
+  },
 })
 </script>
 
@@ -478,7 +475,7 @@ tr,
 td {
   border: none;
   padding-top: 0.5em;
-  padding-right: 6px;
+  padding-right: 12px;
 }
 
 .button-content-style {

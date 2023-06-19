@@ -16,13 +16,14 @@
           <select class="page-title white-text" ref="select" v-model="current">
             <option v-for="(l, index) in languages" :key="index" :value="l.id">
               <div class="dropdown-setting">
-                {{ l.emoji }}
-                {{ l.title }}
+                <div style="float: left" class="emoji">{{ l.emoji }} </div>
+                <div style="float: left">&nbsp;{{ l.title }}</div>
               </div>
             </option>
           </select>
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -123,3 +124,10 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style scoped>
+.language-emoji {
+  /* text-shadow: 6px 6px 6px #3a3a37, -1px 1px 1px #5c5710; */
+  font-family: 'Emoji-Regular';
+}
+</style>

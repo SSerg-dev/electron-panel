@@ -159,7 +159,7 @@ export default {
 
     getRouter(flag) {
       if (flag === '/program') {
-        sleep(500).then(() => {
+        sleep(100).then(() => {
           this.isVisible = true
         })
       } else {

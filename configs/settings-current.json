@@ -49,7 +49,7 @@
         "id": 1,
         "country": "RU",
         "locale": "ru-RU",
-        "order": 99,
+        "order": 100,
         "isSelected": false,
         "emoji": "🇷🇺",
         "title": "Русский"
@@ -58,7 +58,7 @@
         "id": 2,
         "country": "GB",
         "locale": "en-GB",
-        "order": 100,
+        "order": 101,
         "isSelected": false,
         "emoji": "🇬🇧",
         "title": "English"
@@ -67,7 +67,7 @@
         "id": 3,
         "country": "KZ",
         "locale": "kz-KZ",
-        "order": 101,
+        "order": 102,
         "isSelected": false,
         "emoji": "🇰🇿",
         "title": "Қазақша"
@@ -103,7 +103,7 @@
         "id": 7,
         "country": "EE",
         "locale": "est-EST",
-        "order": 103,
+        "order": 104,
         "isSelected": false,
         "emoji": "🇪🇪",
         "title": "Eesti"
@@ -121,7 +121,7 @@
         "id": 9,
         "country": "DE",
         "locale": "ger-GER",
-        "order": 102,
+        "order": 103,
         "isSelected": false,
         "emoji": "🇩🇪",
         "title": "Deutsch"

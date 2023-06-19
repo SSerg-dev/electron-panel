@@ -18,9 +18,10 @@
               <!-- Countries country -->
               <!-- Languages language -->
               <div class="dropdown-setting">
-                {{ c.emoji }}
-                {{ c.currency }}
-                {{ c.symbol }}
+                
+                <div style="float: left;" class="emoji">{{ c.emoji }}</div> 
+                <div style="float: left;">&nbsp;{{ c.currency }}</div> 
+                <div style="float: left;">&nbsp;{{ c.symbol }}</div> 
               </div>
             </option>
           </select>

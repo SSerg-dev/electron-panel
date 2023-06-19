@@ -24,6 +24,7 @@ const router = new Router({
       name: 'home',
       meta: { layout: 'main' },
       component: () => import('../views/Home.vue')
+      // component: () => import('../views/Program.vue') 
     },
     {
       path: '/cash',

@@ -28,8 +28,10 @@
               :value="l.id"
             >
               <div class="dropdown-setting" style="font-size: 1.6em;">
-                {{ l.emoji }}
-                {{ l.title }}
+                <dev style="float: left" class="emoji">{{ l.emoji }}</dev>
+                <dev style="float: left">&nbsp;{{ l.title }}</dev>
+                
+                
               </div>
             </option>
           </select>

@@ -476,7 +476,7 @@ tr,
 td {
   border: none;
   padding-top: 0.5em;
-  padding-right: 6px;
+  padding-right: 12px;
 }
 
 .button-content-style {
