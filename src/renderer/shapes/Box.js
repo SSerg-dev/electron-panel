@@ -37,8 +37,9 @@ class Box extends Component {
     this.$el.style.display = options.display
     this.$el.style.alignItems = options.alignItems
     this.$el.style.justifyContent = options.justifyContent
-       
 
+    // margin
+    this.$el.style.margin = options.margin
 
   }
 

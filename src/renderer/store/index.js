@@ -38,7 +38,7 @@ export default new Vuex.Store({
       name: '',
       number: '',
       serialNumber: '',
-      upName: ''
+      upName: '',
     },
 
     info: { name: '', locale: 'ru-RU' } /* ru-RU en-GB */,
@@ -75,7 +75,7 @@ export default new Vuex.Store({
       id: 1,
       title: '',
       type: 'cash', // cash, status, program
-      value: -1
+      value: -1,
     },
     isParamsChange: false,
     isFooter: true,
@@ -109,7 +109,7 @@ export default new Vuex.Store({
       'mosquito_x2',
       'turboDryer',
       'degrease',
-      'disinfection' // ?
+      'disinfection', // ?
     ],
     dryPrograms: [
       'vacuum',
@@ -118,7 +118,7 @@ export default new Vuex.Store({
       'washer',
       'blacking',
       'turboDryer',
-      'disinfection'
+      'disinfection',
     ],
 
     parameters: {
@@ -133,7 +133,10 @@ export default new Vuex.Store({
       order: '',
       paidBonus: '',
       active: '',
-      programName: ''
+      programName: '',
+
+      isShowOperatorCall: true,
+      isShowPrice: true,
     },
 
     dryParameters: {
@@ -144,22 +147,26 @@ export default new Vuex.Store({
       panelMoney: '0',
       order: '',
       paidBonus: '',
-      active: ''
+      active: '',
+      programName: '',
+
+      isShowOperatorCall: true,
+      isShowPrice: true,
     },
     globalParameters: {
       fixedCurrency: '',
       isMenuUnlock: '',
       isStandFree: '',
-      swVersion: ''
+      swVersion: '',
     },
     isVersion: {
       upper: false,
       lower: false,
       equal: false,
-    },    
+    },
 
     kktParameters: {
-      isKktInstalled: false
+      isKktInstalled: false,
     },
     users: {
       name: '',
@@ -185,13 +192,13 @@ export default new Vuex.Store({
         /* panels */
         panelCollection: false, // 0
         panelPlusTen: false, // 7
-        panelOpen: false // 8
-      }
+        panelOpen: false, // 8
+      },
     },
     loginSettingPassword: '',
 
     isOddVacuumNumber: true,
-    isDebug: true
+    isDebug: true,
   },
   actions: {
     /* dev */
@@ -201,7 +208,7 @@ export default new Vuex.Store({
       console.log('++updateDryStartProgram-->', JSON.stringify(params))
 
       if (params[2] === 'operator') dispatch('updateDryCallOperator')
-      const number = state.dryPrograms.findIndex(p => p === params[2]) + 1
+      const number = state.dryPrograms.findIndex((p) => p === params[2]) + 1
 
       commit('setActiveProgramNumber', number)
 
@@ -211,9 +218,10 @@ export default new Vuex.Store({
           ipcRenderer.send(
             'OPCUA',
             JSON.stringify({
-              node: `::AsGlobalPV:VacuumPost[${getters.getVacuumNumber -
-                1}].program`,
-              value: getters.getActiveProgramNumber
+              node: `::AsGlobalPV:VacuumPost[${
+                getters.getVacuumNumber - 1
+              }].program`,
+              value: getters.getActiveProgramNumber,
             })
           )
         } catch (e) {
@@ -226,9 +234,10 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:Vacuum[${getters.getVacuumNumber -
-              1}].operatorCall`,
-            value: true
+            node: `::AsGlobalPV:Vacuum[${
+              getters.getVacuumNumber - 1
+            }].operatorCall`,
+            value: true,
           })
         )
       } catch (e) {
@@ -236,17 +245,18 @@ export default new Vuex.Store({
       }
     },
     // Платежи картой -------------------
-    
+
     updateDryCardMoney({ getters }, card) {
       console.log('!!!updateDryMoney-->', card)
       try {
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber - 1
+            node: `::AsGlobalPV:VacuumBalance[${
+              getters.getVacuumNumber - 1
               //}].paidMoney`,
-               }].prepaymentMoney`,
-            value: card
+            }].prepaymentMoney`,
+            value: card,
           })
         )
       } catch (e) {
@@ -259,9 +269,10 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
-              1}].paidService`,
-            value: service
+            node: `::AsGlobalPV:VacuumBalance[${
+              getters.getVacuumNumber - 1
+            }].paidService`,
+            value: service,
           })
         )
       } catch (e) {
@@ -275,9 +286,10 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:VacuumBalance[${getters.getVacuumNumber -
-              1}].paidBonus`,
-            value: bonus
+            node: `::AsGlobalPV:VacuumBalance[${
+              getters.getVacuumNumber - 1
+            }].paidBonus`,
+            value: bonus,
           })
         )
       } catch (e) {
@@ -293,7 +305,7 @@ export default new Vuex.Store({
       console.log('$$ index.js: 310', JSON.stringify(params))
 
       if (params[2] === 'operator') dispatch('updateCallOperator')
-      const number = state.programs.findIndex(p => p === params[2]) + 1
+      const number = state.programs.findIndex((p) => p === params[2]) + 1
 
       commit('setActiveProgramNumber', number)
 
@@ -304,7 +316,7 @@ export default new Vuex.Store({
             'OPCUA',
             JSON.stringify({
               node: `::AsGlobalPV:PostN[${getters.getPanelNumber - 1}].prog`,
-              value: getters.getActiveProgramNumber
+              value: getters.getActiveProgramNumber,
             })
           )
         } catch (e) {
@@ -317,9 +329,10 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostN[${getters.getPanelNumber -
-              1}].operatorCall`,
-            value: true
+            node: `::AsGlobalPV:PostN[${
+              getters.getPanelNumber - 1
+            }].operatorCall`,
+            value: true,
           })
         )
       } catch (e) {
@@ -335,9 +348,10 @@ export default new Vuex.Store({
       ipcRenderer.send(
         'OPCUA',
         JSON.stringify({
-          node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber - 1
-            }].paidMoney`,
-          value: '0'
+          node: `::AsGlobalPV:PostBalance[${
+            getters.getPanelNumber - 1
+          }].paidMoney`,
+          value: '0',
         })
       )
 
@@ -345,10 +359,11 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber - 1
+            node: `::AsGlobalPV:PostBalance[${
+              getters.getPanelNumber - 1
               // }].paidMoney`,
-               }].prepaymentMoney`,
-            value: card
+            }].prepaymentMoney`,
+            value: card,
           })
         )
       } catch (e) {
@@ -362,9 +377,10 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
-              1}].paidService`,
-            value: service
+            node: `::AsGlobalPV:PostBalance[${
+              getters.getPanelNumber - 1
+            }].paidService`,
+            value: service,
           })
         )
       } catch (e) {
@@ -377,10 +393,11 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostBalance[${getters.getPanelNumber -
-              1}].paidBonus`,
+            node: `::AsGlobalPV:PostBalance[${
+              getters.getPanelNumber - 1
+            }].paidBonus`,
             // 1}].prepaymentBonus`,
-            value: bonus
+            value: bonus,
           })
         )
       } catch (e) {
@@ -393,9 +410,10 @@ export default new Vuex.Store({
         ipcRenderer.send(
           'OPCUA',
           JSON.stringify({
-            node: `::AsGlobalPV:PostN[${getters.getPanelNumber -
-              1}].cmdZeroMoney`,
-            value: zeroMoney
+            node: `::AsGlobalPV:PostN[${
+              getters.getPanelNumber - 1
+            }].cmdZeroMoney`,
+            value: zeroMoney,
           })
         )
       } catch (e) {
@@ -436,7 +454,7 @@ export default new Vuex.Store({
       } catch (e) {
         console.warn('Error:', e.message)
       }
-    }
+    },
 
     /*     */
   },
@@ -492,10 +510,19 @@ export default new Vuex.Store({
     getWetActive(state) {
       return state.parameters.active || 'true'
     },
-    // programName
     getWetProgramName(state) {
       return state.parameters.programName
     },
+
+    getWetIsShowPrice(state) {
+      return state.parameters.isShowPrice
+    },
+    getWetIsShowOperatorCall(state) {
+      return state.parameters.isShowOperatorCall
+    },
+
+
+
     // DRY ------------------------------
     // Список всех Dry программ
     getDryProgStatus(state) {
@@ -544,11 +571,9 @@ export default new Vuex.Store({
     },
     getIsVersion(state) {
       return state.isVersion
-    }, 
-    
+    },
 
-    
-    info: s => s.info,
+    info: (s) => s.info,
 
     getPaginate(state) {
       return state.paginate
@@ -645,7 +670,7 @@ export default new Vuex.Store({
     },
     getSerialNumber(state) {
       return state.orderData.serialNumber
-    }
+    },
   },
 
   mutations: {
@@ -719,6 +744,16 @@ export default new Vuex.Store({
         case 'programName':
           state.parameters.programName = parameter.value
           break
+        case 'ShowOperatorCall':
+          state.parameters.isShowOperatorCall =
+            parameter.value === 'true' ? true : false
+          // console.log('$$ index.js: 733', state.parameters.isShowOperatorCall)
+          break
+        case 'ShowPrice':
+          state.parameters.isShowPrice =
+            parameter.value === 'true' ? true : false
+          // console.log('$$ index.js: 737',state.parameters.isShowPrice)
+          break
 
         // common parameters
         case 'Kkm.EnableDevice':
@@ -759,8 +794,8 @@ export default new Vuex.Store({
             parameter.value === 'true' ? true : false
         case 'swVersion':
           state.globalParameters.swVersion = parameter.value
-        
-          // end common parameters
+
+        // end common parameters
 
         default:
           break
@@ -808,6 +843,20 @@ export default new Vuex.Store({
           break
         case 'active':
           state.dryParameters.active = parameter.value
+          break
+
+        case 'programName':
+          state.dryParameters.programName = parameter.value
+          break
+        case 'ShowOperatorCall':
+          state.dryParameters.isShowOperatorCall =
+            parameter.value === 'true' ? true : false
+          // console.log('$$ index.js: 842', state.dryParameters.isShowOperatorCall)
+          break
+        case 'ShowPrice':
+          state.dryParameters.isShowPrice =
+            parameter.value === 'true' ? true : false
+          // console.log('$$ index.js: 846', state.dryParameters.isShowPrice)
           break
 
         // common parameters
@@ -863,7 +912,7 @@ export default new Vuex.Store({
       state.isFooter = isFooter
     },
     setIsVersion(state, isVersion) {
-      return state.isVersion = isVersion 
+      return (state.isVersion = isVersion)
     },
     // ----------------------------------
     // Info
@@ -932,7 +981,7 @@ export default new Vuex.Store({
     },
     setSecondsGotoPopupMenu(state, seconds) {
       state.secondsGotoPopupMenu = seconds
-    }
+    },
   } /* end mutations */,
 
   modules: {
@@ -946,6 +995,6 @@ export default new Vuex.Store({
     status,
     countries,
     languages,
-    alarms
-  }
+    alarms,
+  },
 })

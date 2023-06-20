@@ -61,6 +61,9 @@ class Button extends Box {
   get alignItems() {
     return this.$el.style.alignItems
   }
+  get margin() {
+    return this.$el.style.margin
+  }
 
 
   // setters
@@ -94,6 +97,11 @@ class Button extends Box {
  set justifyContent(newJustifyContent) {
    this.$el.style.justifyContent = newJustifyContent
  }
+
+ // margin
+ set margin(newMargin) {
+  this.$el.style.margin = newMargin
+}
 
 }
 

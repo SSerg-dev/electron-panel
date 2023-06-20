@@ -2,11 +2,12 @@
   <div v-if="getIsFooter">
     <div class="footer-panel white-text">
       <!-- stop -->
-      <div 
-      v-if="
+      <div
+        v-if="
           this.$route.name === 'program' &&
           getWetProgramName.length > 0 &&
-          this.isVisible"
+          this.isVisible
+        "
         class="stop-position"
       >
         <div
@@ -27,7 +28,7 @@
       </div>
 
       <!-- operator -->
-      <div>
+      <div v-if="getWetIsShowOperatorCall">
         <div class="operator-position">
           <div
             v-if="this.isDown.operator === false"
@@ -150,6 +151,7 @@ export default {
       getWetProgramName: 'getWetProgramName',
       getRouter: 'getRouter',
       getPrevRouter: 'getPrevRouter',
+      getWetIsShowOperatorCall: 'getWetIsShowOperatorCall',
     }),
   },
   watch: {
@@ -159,13 +161,12 @@ export default {
 
     getRouter(flag) {
       if (flag === '/program') {
-        sleep(100).then(() => {
+        sleep(200).then(() => {
           this.isVisible = true
         })
       } else {
         this.isVisible = false
       }
-
     },
 
     getWetStopFreeCount(flag) {
@@ -178,7 +179,7 @@ export default {
           this.setMoneyToBonus(this.getWetBalance)
           this.setIsMoneyToBonus(true)
         }
-      } catch (err) {} 
+      } catch (err) {}
     },
 
     /* dev */

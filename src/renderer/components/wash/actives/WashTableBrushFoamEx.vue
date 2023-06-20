@@ -358,7 +358,9 @@ export default Vue.extend({
     },
 
     restore(type) {
+      
       switch (type) {
+
         case 'left':
           this._upGreenOptions.width = //'67em'
             this.buttonSizeOptions.extraLarge + this.buttonSizeOptions.suffix
@@ -386,6 +388,9 @@ export default Vue.extend({
             this.buttonSizeOptions.large + this.buttonSizeOptions.suffix
           this._downGreenOptions.width = //'59.5em'
             this.buttonSizeOptions.large + this.buttonSizeOptions.suffix
+          // correct hide center td
+          this.buttonLeft.margin = '0 -1em 0 0'  
+          
           this.buttonLeft.show()
           this.buttonRight.show()
           this.flex()

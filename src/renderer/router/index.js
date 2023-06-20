@@ -5,13 +5,13 @@ import Cash from '../views/Cash.vue'
 import Card from '../views/Card.vue'
 import Bonus from '../views/Bonus.vue'
 import Cost from '../views/Cost.vue'
-import Language from '../views/Language.vue' //Language
-import Program from '../views/Program.vue' //Program
-import Setting from '../views/Setting.vue' //Setting
-import Popup from '../views/Popup.vue' //Popup
-import Status from '../views/Status.vue' //Status
-import Finance from '../views/Finance.vue' //Finance
-import Password from '../views/Password.vue' //Password
+import Language from '../views/Language.vue' 
+import Program from '../views/Program.vue' 
+import Setting from '../views/Setting.vue' 
+import Popup from '../views/Popup.vue' 
+import Status from '../views/Status.vue' 
+import Finance from '../views/Finance.vue' 
+import Password from '../views/Password.vue' 
 
 Vue.use(Router)
 
@@ -23,44 +23,50 @@ const router = new Router({
       path: '/',
       name: 'home',
       meta: { layout: 'main' },
-      component: () => import('../views/Home.vue')
-      // component: () => import('../views/Program.vue') 
+      // component: () => import('../views/Home.vue')
+      component: Home
     },
     {
       path: '/cash',
       name: 'cash',
       meta: { layout: 'main' },
-      component: () => import('../views/Cash.vue')
+      // component: () => import('../views/Cash.vue')
+      component: Cash
     },
     {
       path: '/card',
       name: 'card',
       meta: { layout: 'main' },
-      component: () => import('../views/Card.vue')
+      // component: () => import('../views/Card.vue')
+      component: Card
     },
     {
       path: '/bonus',
       name: 'bonus',
       meta: { layout: 'main' },
-      component: () => import('../views/Bonus.vue')
+      // component: () => import('../views/Bonus.vue')
+      component: Bonus
     },
     {
       path: '/cost',
       name: 'cost',
       meta: { layout: 'main' },
-      component: () => import('../views/Cost.vue')
+      // component: () => import('../views/Cost.vue')
+      component: Cost
     },
     {
       path: '/language',
       name: 'language',
       meta: { layout: 'main' },
-      component: () => import('../views/Language.vue')
+      // component: () => import('../views/Language.vue')
+      component: Language
     },
     {
       path: '/program',
       name: 'program',
       meta: { layout: 'main' },
-      component: () => import('../views/Program.vue')
+      // component: () => import('../views/Program.vue')
+      component: Program
     },
     {
       path: '/service',

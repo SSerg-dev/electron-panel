@@ -386,6 +386,9 @@ export default Vue.extend({
             this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
           this._downRedOptions.width = //'59.5em'
             this.buttonSizeOptions.large + this.buttonSizeOptions.suffix 
+          // correct hide center td
+          this.buttonLeft.margin = '0 -1em 0 0'  
+
           this.buttonLeft.show()
           this.buttonRight.show()
           this.flex()

@@ -3,7 +3,8 @@
     <section>
       <ul class="collection">
         <!-- 1 cost -->
-        <li class="collection-item cost" @click="payUp('cost')">
+        <li v-if="getWetIsShowPrice" 
+        class="collection-item cost" @click="payUp('cost')">
           <div
             class="card white waves-effect button-style"
             style="padding-left: 0em"
@@ -110,6 +111,7 @@ export default Vue.extend({
       getIsPing: 'getIsPing',
       getTerminalInstalled: 'getTerminalInstalled',
       getIsStandbyFreeEnable: 'getIsStandbyFreeEnable',
+      getWetIsShowPrice: 'getWetIsShowPrice'
     }),
   },
   watch: {
