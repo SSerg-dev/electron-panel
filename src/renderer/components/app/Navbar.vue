@@ -4,16 +4,17 @@
       <div
         v-if="
           this.$route.name !== 'cost' &&
-            this.$route.name !== 'cash' &&
-            this.$route.name !== 'language' &&
-            this.$route.name !== 'program' &&
-            this.$route.name !== 'setting'
+          this.$route.name !== 'cash' &&
+          this.$route.name !== 'language' &&
+          this.$route.name !== 'program' &&
+          this.$route.name !== 'setting'
         "
       ></div>
 
       <div class="alles">
         <button
           style="border: none; background-color: #121212"
+          type="submit"
           @click="setEnabler()"
         >
           <router-link to="/">
@@ -35,7 +36,7 @@
           </router-link>
         </div>
 
-        <div v-if="!getIsMenuUnlock" style="border: none; opacity: 0.7;">
+        <div v-if="!getIsMenuUnlock" style="border: none; opacity: 0.7">
           <router-link to="/">
             <img src="@/assets/imgs/svg/alles-unlock.svg" />
           </router-link>
@@ -74,6 +75,8 @@
 
       <div>
         <router-link to="/language" class="flag">
+          <!-- <router-link to="/localize" class="flag">   -->
+
           <div v-if="this.info.locale === 'ru-RU'">
             <img src="@/assets/imgs/flags/flag_RU.png" />
           </div>
@@ -256,10 +259,11 @@
     <div
       v-if="
         this.$route.name !== 'cost' &&
-          this.$route.name !== 'language' &&
-          this.$route.name !== 'setting' &&
-          this.$route.name !== 'password' &&
-          this.$route.name !== 'finance'
+        this.$route.name !== 'language' &&
+        this.$route.name !== 'setting' &&
+        this.$route.name !== 'password' &&
+        this.$route.name !== 'finance' &&
+        this.$route.name !== 'localize'
       "
     >
       <div class="background-top">
@@ -283,7 +287,7 @@ export default {
   data: () => ({
     date: new Date(),
     interval: null,
-    locale: ''
+    locale: '',
   }),
   computed: {
     ...mapGetters({
@@ -300,20 +304,20 @@ export default {
       getUserActiveName: 'getUserActiveName',
       getSerialNumber: 'getSerialNumber',
       getControllerTime: 'getControllerTime',
-      getControllerDate: 'getControllerDate'
-    })
+      getControllerDate: 'getControllerDate',
+    }),
   },
   watch: {
     getIsMenuUnlock(flag) {
       this.logging(flag)
-    }
+    },
   },
   methods: {
     ...mapMutations({
       setCashEnabler: 'setCashEnabler',
       setIsLoginSettingPassword: 'setIsLoginSettingPassword',
       setRouter: 'setRouter',
-      setInfo: 'setInfo'
+      setInfo: 'setInfo',
     }),
     setEnabler() {
       this.setCashEnabler(false)
@@ -325,7 +329,7 @@ export default {
     logging(flag) {
       const log = createLog({
         logName: 'electron-users-log',
-        maxLogSizeInBytes: 500 * 1024 // 500KB
+        maxLogSizeInBytes: 500 * 1024, // 500KB
       })
       flag
         ? log.info('Setting Menu unlocked user:', this.getUserActiveName)
@@ -335,10 +339,9 @@ export default {
 
   mounted() {
     this.interval = setInterval(() => {
-
       const options = {
         date: this.getControllerDate,
-        time: this.getControllerTime
+        time: this.getControllerTime,
       }
       this.date = synchronize(options)
     }, 1000)
@@ -346,7 +349,7 @@ export default {
 
   beforeDestroy() {
     clearInterval(this.interval)
-  }
+  },
 }
 </script>
 

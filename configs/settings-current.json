@@ -35,7 +35,6 @@
     "RU",
     "GB",
     "KZ",
-    "EE",
     "DE"
   ],
   "country": "RU",
@@ -49,10 +48,11 @@
         "id": 1,
         "country": "RU",
         "locale": "ru-RU",
-        "order": 100,
+        "order": 99,
         "isSelected": false,
         "emoji": "🇷🇺",
-        "title": "Русский"
+        "title": "Русский",
+        "flag": "@/assets/imgs/language/lang_RU.png"
       },
       {
         "id": 2,
@@ -61,22 +61,24 @@
         "order": 101,
         "isSelected": false,
         "emoji": "🇬🇧",
-        "title": "English"
+        "title": "English",
+        "flag": "@/assets/imgs/language/lang_EN.png"
       },
       {
         "id": 3,
         "country": "KZ",
         "locale": "kz-KZ",
-        "order": 102,
+        "order": 100,
         "isSelected": false,
         "emoji": "🇰🇿",
-        "title": "Қазақша"
+        "title": "Қазақша",
+        "flag": "@/assets/imgs/language/lang_KZ.png"
       },
       {
         "id": 4,
         "country": "UA",
         "locale": "ua-UA",
-        "order": 95,
+        "order": 101,
         "isSelected": false,
         "emoji": "🇺🇦",
         "title": "Українська"
@@ -85,7 +87,7 @@
         "id": 5,
         "country": "LV",
         "locale": "lat-LAT",
-        "order": 96,
+        "order": 102,
         "isSelected": false,
         "emoji": "🇱🇻",
         "title": "Latviešu"
@@ -94,7 +96,7 @@
         "id": 6,
         "country": "LT",
         "locale": "lit-LIT",
-        "order": 97,
+        "order": 103,
         "isSelected": false,
         "emoji": "🇱🇹",
         "title": "Lietuvių"
@@ -103,7 +105,7 @@
         "id": 7,
         "country": "EE",
         "locale": "est-EST",
-        "order": 104,
+        "order": 106,
         "isSelected": false,
         "emoji": "🇪🇪",
         "title": "Eesti"
@@ -112,7 +114,7 @@
         "id": 8,
         "country": "PL",
         "locale": "pol-POL",
-        "order": 99,
+        "order": 104,
         "isSelected": false,
         "emoji": "🇵🇱",
         "title": "Polski"
@@ -121,7 +123,7 @@
         "id": 9,
         "country": "DE",
         "locale": "ger-GER",
-        "order": 103,
+        "order": 102,
         "isSelected": false,
         "emoji": "🇩🇪",
         "title": "Deutsch"

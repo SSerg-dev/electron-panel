@@ -31,8 +31,9 @@
               <!-- {{ item.order }}
               &nbsp; -->
 
-            <dev style="float: left" class="emoji">{{ item.emoji }}</dev>  
-            <dev style="float: left">&nbsp;{{ item.title }}</dev>  
+            <div style="float: left" class="emoji">{{ item.emoji }}</div>  
+            <div style="float: left">&nbsp;{{ item.title }}</div>
+            <!-- <div style="float: left">&nbsp;{{ item.country }}</div>   -->
               
             </option>
           </transition-group>

@@ -22,16 +22,15 @@
             v-model="current"
           >
             <option value="" disabled selected></option>
+
             <option
               v-for="(l, index) in allLanguages"
               :key="index"
               :value="l.id"
             >
-              <div class="dropdown-setting" style="font-size: 1.6em;">
-                <dev style="float: left" class="emoji">{{ l.emoji }}</dev>
-                <dev style="float: left">&nbsp;{{ l.title }}</dev>
-                
-                
+              <div class="dropdown-setting" style="font-size: 1.6em">
+                <div style="float: left" class="emoji">{{ l.emoji }}</div>
+                <div style="float: left">&nbsp;{{ l.title }}</div>
               </div>
             </option>
           </select>
@@ -48,7 +47,7 @@ import store from '../../store'
 import EventBus from '@/bus/EventBus'
 
 export default Vue.extend({
-  name: 'setting-payment-bill',
+  name: 'setting-language-select',
   data: () => ({
     //select: null,
     current: [],
@@ -150,7 +149,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-
 #scrollbar-style ::-webkit-scrollbar-track {
   width: 84px;
 

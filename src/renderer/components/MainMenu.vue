@@ -3,15 +3,21 @@
     <section>
       <ul class="collection">
         <!-- 1 cost -->
-        <li v-if="getWetIsShowPrice" 
-        class="collection-item cost" @click="payUp('cost')">
+        <li
+          v-if="
+            (getWetIsShowPrice && getPanelType === 'wash') ||
+            (getDryIsShowPrice && getPanelType === 'vacuum')
+          "
+          class="collection-item cost"
+          @click="payUp('cost')"
+        >
           <div
             class="card white waves-effect button-style"
-            style="padding-left: 0em"
+            style="padding-left: 0em;  padding-top: 1.8em;"
           >
             <div
               class="card-content black-text button-content-style"
-              style="justify-content: center"
+              style="justify-content: center;"
             >
               {{ 'PROGRAMS_COST' | localize }}
             </div>
@@ -28,10 +34,11 @@
           <div class="card white waves-effect button-style">
             <div
               class="card-content black-text button-content-style"
-              style="justify-content: left;"
+              style="justify-content: left"
             >
-              <div class="emoji">💰</div>
-              &nbsp;
+              <!-- <div class="emoji">💰</div> -->
+                <img style="width: 8%; height: 8%;" src="@/assets/imgs/native/money.png" />
+              &nbsp;&nbsp;
               <div class="align-content">{{ 'CASH' | localize }}</div>
             </div>
           </div>
@@ -45,13 +52,17 @@
           class="collection-item"
           @click="payUp('card')"
         >
-          <div class="card white waves-effect button-style">
+          <div class="card white waves-effect button-style"
+          style="padding-top: 0.6em;"
+          >
             <div
               class="card-content black-text button-content-style"
-              style="justify-content: left;"
+              style="justify-content: left"
             >
-              <div class="emoji">💳</div>
-              &nbsp;
+              <!-- <div class="emoji">💳</div> -->
+              <img style="width: 8%; height: 8%;" src="@/assets/imgs/native/credit-card.png" />
+
+              &nbsp;&nbsp;
               <div class="align-content">{{ 'BANK_CARD' | localize }}</div>
 
               <!-- <img src="@/assets/imgs/sbp/sbp.svg"  style="width: 8%"/> -->
@@ -61,13 +72,15 @@
 
         <!-- 5 ₿ -->
         <li v-if="getIsPing" class="collection-item" @click="payUp('bonus')">
-          <div class="card white waves-effect button-style-bonus">
+          <div class="card white waves-effect button-style-bonus"
+          style="padding-top: 0.6em;">
             <div
               class="card-content black-text button-content-style"
-              style="justify-content: left;"
+              style="justify-content: left"
             >
-              <div class="emoji">🎁</div>
-              &nbsp;
+              <!-- <div class="emoji">🎁</div> -->
+              <img style="width: 8%; height: 8%;" src="@/assets/imgs/native/bitcoin.png"/>
+              &nbsp;&nbsp;
               <div class="align-content">{{ `BONUSES` | localize }}</div>
             </div>
           </div>
@@ -111,7 +124,9 @@ export default Vue.extend({
       getIsPing: 'getIsPing',
       getTerminalInstalled: 'getTerminalInstalled',
       getIsStandbyFreeEnable: 'getIsStandbyFreeEnable',
-      getWetIsShowPrice: 'getWetIsShowPrice'
+      getWetIsShowPrice: 'getWetIsShowPrice',
+      getDryIsShowPrice: 'getDryIsShowPrice',
+      getPanelType: 'getPanelType',
     }),
   },
   watch: {
@@ -257,6 +272,8 @@ section {
 }
 .button-style {
   padding-left: 4em;
+  padding-bottom: 0em;
+  
   width: 64em;
   height: 11em;
 
@@ -279,7 +296,7 @@ section {
 /* rgb(118, 255, 3); */
 .button-content-style {
   font-size: 4em;
-  padding-top: 1.1em;
+  padding-top: 0.6em;
   padding-left: 0em;
   /* text-shadow: 2px 2px 4px #3a3a37, -1px 1px 1px #f3f2e7; */
 
@@ -313,4 +330,6 @@ section {
   align-items: center;
   justify-content: left;
 }
+
+
 </style>

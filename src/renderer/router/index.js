@@ -12,6 +12,10 @@ import Popup from '../views/Popup.vue'
 import Status from '../views/Status.vue' 
 import Finance from '../views/Finance.vue' 
 import Password from '../views/Password.vue' 
+import Localize from '../views/Localize.vue'
+
+// import { shallowRef } from 'vue'
+// const current = shallowRef(Program)
 
 Vue.use(Router)
 
@@ -109,6 +113,12 @@ const router = new Router({
       name: 'invoice',
       meta: { layout: 'main' },
       component: () => import('../views/Invoice.vue')
+    },
+    {
+      path: '/localize',
+      name: 'localize',
+      meta: { layout: 'main' },
+      component: () => import('../views/Localize.vue')
     },
   ]
 })

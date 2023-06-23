@@ -28,7 +28,7 @@
       </div>
 
       <!-- operator -->
-      <div v-if="getWetIsShowOperatorCall">
+      <div v-if="getWetIsShowOperatorCall && getPanelType === 'wash'">
         <div class="operator-position">
           <div
             v-if="this.isDown.operator === false"
@@ -138,7 +138,7 @@ export default {
       getPanelNumber: 'getPanelNumber',
       getActiveProgram: 'getActiveProgram',
       getWetBalance: 'getWetBalance',
-      getPanelType: 'getPanelType',
+
       getIsFooter: 'getIsFooter',
       getWetStopFreeCount: 'getWetStopFreeCount',
       getIsMoneyToBonus: 'getIsMoneyToBonus',

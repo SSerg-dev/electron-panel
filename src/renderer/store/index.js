@@ -550,9 +550,15 @@ export default new Vuex.Store({
     getDryActive(state) {
       return state.dryParameters.active || 'true'
     },
-
     getIsOddVacuumNumber(state) {
       return state.isOddVacuumNumber
+    },
+
+    getDryIsShowPrice(state) {
+      return state.dryParameters.isShowPrice
+    },
+    getDryIsShowOperatorCall(state) {
+      return state.dryParameters.isShowOperatorCall
     },
     // END DRY
 
@@ -747,12 +753,10 @@ export default new Vuex.Store({
         case 'ShowOperatorCall':
           state.parameters.isShowOperatorCall =
             parameter.value === 'true' ? true : false
-          // console.log('$$ index.js: 733', state.parameters.isShowOperatorCall)
           break
         case 'ShowPrice':
           state.parameters.isShowPrice =
             parameter.value === 'true' ? true : false
-          // console.log('$$ index.js: 737',state.parameters.isShowPrice)
           break
 
         // common parameters
@@ -851,19 +855,16 @@ export default new Vuex.Store({
         case 'ShowOperatorCall':
           state.dryParameters.isShowOperatorCall =
             parameter.value === 'true' ? true : false
-          // console.log('$$ index.js: 842', state.dryParameters.isShowOperatorCall)
           break
         case 'ShowPrice':
           state.dryParameters.isShowPrice =
             parameter.value === 'true' ? true : false
-          // console.log('$$ index.js: 846', state.dryParameters.isShowPrice)
           break
 
         // common parameters
         case 'Kkm.EnableDevice':
           state.kktParameters.isKktInstalled = JSON.parse(parameter.value)
           break
-        /* dev */
         case 'name':
           if (!state.users.names.includes(parameter.value)) {
             state.users.names.push(parameter.value)

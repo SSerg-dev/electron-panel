@@ -25,7 +25,8 @@
       v-if="
         this.$route.name != 'language' &&
           this.$route.name != 'setting' &&
-          this.$route.name != 'cost'
+          this.$route.name != 'cost' &&
+          this.$route.name != 'localize'
       "
       class="footer"
     >

@@ -804,9 +804,7 @@
             @click="okHandler"
           >
             {{ `OK` | localize }}
-            <!-- <i class="material-icons right"></i> -->
           </button>
-          <!-- </router-link> -->
         </div>
         <div class="col">
           <button
@@ -815,7 +813,6 @@
             @click="cancelHandler"
           >
             {{ `Cancel` | localize }}
-            <!-- <i class="material-icons right"></i> -->
           </button>
         </div>
 
@@ -826,12 +823,10 @@
             @click="applyHandler"
           >
             {{ `Confirm` | localize }}
-            <!-- <i class="material-icons right"></i> -->
           </button>
         </div>
       </div>
     </form>
-    <!-- <a name="bottom"></a> -->
   </div>
 </template>
 
@@ -954,7 +949,6 @@ export default Vue.extend({
     this.tabs = M.Tabs.init(this.$refs.tabs, {})
   },
   methods: {
-    /* dev */
     ...mapActions({
       updateConfig: 'updateConfig',
     }),
@@ -963,7 +957,6 @@ export default Vue.extend({
       const current = JSON.stringify(options.current)
       //this.setLanguage(selected, current)
     },
-    /* dev */
     setProgram(program) {
       if (program === 'finance') {
         this.$router.push('/finance')

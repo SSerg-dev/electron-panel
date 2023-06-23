@@ -1,12 +1,23 @@
 <template>
   <div>
-  
     <div class="back">
-      <div @click="setProgram()">
-        <div>
-          <img src="@/assets/imgs/key/back.png" />
+      <!--  -->
+      <div v-if="this.getPrevRouter === '/program'">
+        <div @click="setProgram()" class="card white small-button-square waves-effect">
+          <div class="card-content- black-text small-button-title">
+            <img style="width: 65%" src="@/assets/imgs/native/undo.png" />
+          </div>
         </div>
       </div>
+      <!--  -->
+      <div v-else>
+        <div @click="setProgram()" class="card white small-button waves-effect">
+          <div class="card-content- black-text small-button-title">
+            <img style="width: 65%" src="@/assets/imgs/native/undo.png" />
+          </div>
+        </div>
+      </div>
+      <!--  -->
     </div>
 
     <div class="list">
@@ -251,8 +262,8 @@ export default Vue.extend({
 <style scoped>
 .back {
   position: fixed;
-  top: 11em;
-  left: 2.5em;
+  top: 10em;
+  left: 2em;
   z-index: 99;
 }
 
@@ -296,5 +307,27 @@ h4 {
 
   font-family: 'Plumb-Medium';
   font-weight: bold;
+}
+
+.small-button {
+  width: 125px;
+  height: 120px;
+  border: solid 6px #00b9e3;
+  border-radius: 2.5em;
+  box-shadow: 0px 6px 10px #00b9e3;
+}
+.small-button-square {
+  width: 8.5em;
+  height: 8.5em;
+  border: solid 4px #00b9e3;
+  border-radius: 1em;
+  box-shadow: 'rgb(64, 196, 255) 0px 10px 20px',
+}
+.small-button-title {
+  padding-top: 1em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

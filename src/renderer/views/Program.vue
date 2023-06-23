@@ -2,7 +2,12 @@
   <div class="post">
     <div>
       <div v-if="this.getPanelType === 'wash'">
-        <WashTable :actives="actives" :delay="delay" />
+
+        <!-- cache component -->
+        <keep-alive>
+          <WashTable :actives="actives" :delay="delay" />
+        </keep-alive>
+          
       </div>
 
       <div v-if="this.getPanelType === 'vacuum'">
@@ -17,6 +22,7 @@ import Vue from 'vue'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 import WashTable from '@/components/wash/WashTable'
 import VacuumTable from '@/components/vacuum/VacuumTable'
+
 import { forEach } from 'lodash'
 
 export default Vue.extend({
@@ -48,7 +54,6 @@ export default Vue.extend({
   },
   watch: {
     getParamsChange(flag) {
-
       const type = this.getPanelType
       switch (type) {
         case 'wash':
@@ -80,7 +85,6 @@ export default Vue.extend({
       return (this.getWetProgShow >>> 0).toString(2)
     },
     setActiveProg() {
-      
       /* dev */
       let activeProgNames = []
       this.showProg = [...this.getShowProgBit()].reverse().join('')
@@ -89,7 +93,6 @@ export default Vue.extend({
         this.showProg = this.showProg + '0'
       }
       // console.log('$$ this.showProg', this.showProg.length, this.showProg)
-      
 
       for (let i = 0; i < this.showProg.length; i++) {
         if (this.showProg.toString().slice(i, i + 1) === '0') {
@@ -99,7 +102,7 @@ export default Vue.extend({
           activeProgNames.push(this.actives[i].name)
         }
         // console.log(i, '  ', this.actives[i].name, ' -->', this.actives[i].display)
-      } 
+      }
 
       // crutch for :( degrease program
       // if (this.showProg.length === 27) {
@@ -217,7 +220,6 @@ export default Vue.extend({
   background-color: #121212;
   margin-top: 2.6em;
   margin-left: 1.5em;
-
 }
 
 .page-title {

@@ -1,17 +1,22 @@
 <template>
   <div class="locate">
-    <router-link to="/program">
-      <div class="back">
-        <img src="@/assets/imgs/key/back.png" />
-      </div>
-    </router-link>
-    <div class="message" style="background: none;">
+    <div class="back">
+      <router-link to="/program">
+        <div class="card white small-button waves-effect">
+          <div class="card-content- black-text small-button-title">
+            <img style="width: 65%" src="@/assets/imgs/native/undo.png" />
+          </div>
+        </div>
+      </router-link>
+    </div>
+
+    <div class="message" style="background: none">
       <div><Message /></div>
     </div>
 
     <form @submit.prevent="">
       <div class="form">
-        <table style="margin-left: 1em; margin-top: 0em;">
+        <table style="margin-left: 1em; margin-top: 0em">
           <tbody>
             <!-- turbo -->
 
@@ -29,7 +34,13 @@
               <!-- standard -->
               <!-- this.activeProgramKit.name  -->
 
-              <td style="padding-left: 4.8em; padding-top: 2em; padding-bottom: 1em;">
+              <td
+                style="
+                  padding-left: 4.8em;
+                  padding-top: 2em;
+                  padding-bottom: 1em;
+                "
+              >
                 <div
                   @click="setProgram('standard')"
                   class="waves-effect"
@@ -38,7 +49,7 @@
                   <div
                     :class="[
                       { 'button-black-title': !this.isDownButtonLeft.standard },
-                      { 'button-white-title': this.isDownButtonLeft.standard }
+                      { 'button-white-title': this.isDownButtonLeft.standard },
                     ]"
                   >
                     {{ `${this.buttonTitle[this.buttonStandardTitleIndex]}` }}
@@ -48,7 +59,13 @@
 
               <!-- turbo -->
 
-              <td style="padding-right: 2em; padding-top: 2em; padding-bottom: 1em;">
+              <td
+                style="
+                  padding-right: 2em;
+                  padding-top: 2em;
+                  padding-bottom: 1em;
+                "
+              >
                 <div
                   @click="setProgram('advanced')"
                   class="waves-effect"
@@ -57,9 +74,9 @@
                   <div
                     :class="[
                       {
-                        'button-black-title': !this.isDownButtonRight.advanced
+                        'button-black-title': !this.isDownButtonRight.advanced,
                       },
-                      { 'button-white-title': this.isDownButtonRight.advanced }
+                      { 'button-white-title': this.isDownButtonRight.advanced },
                     ]"
                   >
                     {{ `${this.buttonTitle[this.buttonTitleIndex]}` }}
@@ -109,14 +126,14 @@ export default {
       background: 'rgb(255, 255, 255)',
       border: '0.4em solid rgb(64, 196, 255)',
       boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
-      fontSize: '1em'
+      fontSize: '1em',
     },
     downStandardOptions: {
       type: 'left',
       background: 'rgb(64, 196, 255)',
       border: '0.4em solid rgb(64, 196, 255)',
       boxShadow: 'rgb(64, 196, 255) 0px 10px 20px',
-      fontSize: '1em'
+      fontSize: '1em',
     },
     /* X2Options */
     upX2Options: {
@@ -124,14 +141,14 @@ export default {
       background: 'rgb(255, 255, 255)',
       border: '0.4em solid rgb(191,0,229)',
       boxShadow: 'rgb(191,0,229) 0px 10px 20px',
-      fontSize: '1em'
+      fontSize: '1em',
     },
     downX2Options: {
       type: 'right',
       background: 'rgb(191,0,229)',
       border: '0.4em solid rgb(191,0,229)',
       boxShadow: 'rgb(191,0,229) 0px 10px 20px',
-      fontSize: '1em'
+      fontSize: '1em',
     },
     /* TurboOptions */
     upTurboOptions: {
@@ -139,14 +156,14 @@ export default {
       background: 'rgb(255, 255, 255)',
       border: '0.4em solid rgb(255,3,3)',
       boxShadow: 'rgb(255,3,3) 0px 10px 20px',
-      fontSize: '1em'
+      fontSize: '1em',
     },
     downTurboOptions: {
       type: 'right',
       background: 'rgb(255,3,3)',
       border: '0.4em solid rgb(255,3,3)',
       boxShadow: 'rgb(255,3,3) 0px 10px 20px',
-      fontSize: '1em'
+      fontSize: '1em',
     },
     /* ColorOptions */
     upStandardColorOptions: {
@@ -154,14 +171,14 @@ export default {
       background: 'rgb(255, 255, 255)',
       border: '0.4em solid rgb(215, 215, 215)',
       boxShadow: 'rgb(215, 215, 215) 0px 10px 20px',
-      fontSize: '1em'
+      fontSize: '1em',
     },
     downStandardColorOptions: {
       type: 'left',
       background: 'rgb(215, 215, 215)',
       border: '0.4em solid rgb(215, 215, 215)',
       boxShadow: 'rgb(215, 215, 215) 0px 10px 20px',
-      fontSize: '1em'
+      fontSize: '1em',
     },
 
     upColorOptions: {
@@ -169,14 +186,14 @@ export default {
       background: 'rgb(255, 255, 255)',
       border: '0.4em solid rgb(255,63,155)',
       boxShadow: 'rgb(255,63,155) 0px 10px 20px',
-      fontSize: '1em'
+      fontSize: '1em',
     },
     downColorOptions: {
       type: 'right',
       background: 'rgb(255,63,155)',
       border: '0.4em solid rgb(255,63,155)',
       boxShadow: 'rgb(255,63,155) 0px 10px 20px',
-      fontSize: '1em'
+      fontSize: '1em',
     },
 
     /* end Options */
@@ -197,11 +214,11 @@ export default {
 
     isDownButtonLeft: {
       // disk: false,
-      standard: false
+      standard: false,
     },
     isDownButtonRight: {
       // disk_x2: false
-      advanced: false
+      advanced: false,
     },
 
     messages: [
@@ -211,7 +228,7 @@ export default {
       `ПЫЛЕСОС`,
       `ВОЗДУХ`,
       `ОМЫВАТЕЛЬ`,
-      `ТУРБОСУШКА`
+      `ТУРБОСУШКА`,
     ],
     messageIndex: -1,
 
@@ -221,20 +238,20 @@ export default {
       `БЕЛАЯ`,
       `ЦВЕТНАЯ`,
       `СТАНДАРТ`,
-      `ДВОЙНАЯ`
+      `ДВОЙНАЯ`,
     ],
     buttonTitleIndex: -1,
     buttonStandardTitleIndex: -1,
 
     programName: '',
-    activeProgramKit: ''
+    activeProgramKit: '',
   }),
 
   props: {
     actives: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
   },
 
   computed: {
@@ -245,8 +262,8 @@ export default {
       getWetBalance: 'getWetBalance',
       /* dev */
       getParamsChange: 'getParamsChange',
-      getWetProgShow: 'getWetProgShow'
-    })
+      getWetProgShow: 'getWetProgShow',
+    }),
   },
 
   watch: {
@@ -268,20 +285,20 @@ export default {
 
     getWetProgShow(flag) {
       this.showAdvanced()
-    }
+    },
   },
 
   methods: {
     ...mapGetters({
       getActiveProgramKit: 'getActiveProgramKit',
       /* dev */
-      getPrograms: 'getPrograms'
+      getPrograms: 'getPrograms',
     }),
     ...mapActions({
-      updateStartProgram: 'updateStartProgram'
+      updateStartProgram: 'updateStartProgram',
     }),
     ...mapMutations({
-      setActiveProgram: 'setActiveProgram'
+      setActiveProgram: 'setActiveProgram',
     }),
 
     showAdvanced() {
@@ -397,7 +414,7 @@ export default {
         this.getPanelType,
         this.getPanelNumber,
         this.getActiveProgram,
-        this.getWetBalance
+        this.getWetBalance,
       ])
       if (this.$route.name !== 'popup') {
         this.timeoutPopup = setTimeout(() => {
@@ -497,7 +514,7 @@ export default {
       this.isDownButtonLeft = Object.fromEntries(
         Object.entries(this.isDownButtonLeft).map(([key, value]) => [
           key,
-          false
+          false,
         ])
       )
     },
@@ -505,7 +522,7 @@ export default {
       this.isDownButtonRight = Object.fromEntries(
         Object.entries(this.isDownButtonRight).map(([key, value]) => [
           key,
-          false
+          false,
         ])
       )
     },
@@ -525,7 +542,7 @@ export default {
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
 
       /* right button */
@@ -539,20 +556,20 @@ export default {
 
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       })
 
       // image classes
       this.greenImage = new Box({
-        selector: '#green-image'
+        selector: '#green-image',
       })
 
       this.blueImage = new Box({
-        selector: '#blue-image'
+        selector: '#blue-image',
       })
 
       this.redImage = new Box({
-        selector: '#red-image'
+        selector: '#red-image',
       })
       // end classes
 
@@ -637,7 +654,7 @@ export default {
 
         this.setProgram('standard')
       }
-    }
+    },
   }, // end methods
 
   created() {},
@@ -652,8 +669,8 @@ export default {
   },
 
   components: {
-    Message
-  }
+    Message,
+  },
 }
 </script>
 
@@ -674,16 +691,13 @@ export default {
 }
 
 .info-title {
-  
   height: 1.5em;
   font-size: 4.2em; /* 4.75em; */
   color: white;
-   
 }
 table,
 tr,
 td {
-  
   border: none;
   border-color: white;
 }
@@ -723,8 +737,21 @@ td {
   z-index: 1;
 }
 .active {
-  padding-left: 4.5rem; 
+  padding-left: 4.5rem;
   padding-bottom: 6rem;
 }
+.small-button {
+  width: 125px;
+  height: 120px;
+  border: solid 6px #00b9e3;
+  border-radius: 2.5em;
+  box-shadow: 0px 6px 10px #00b9e3;
+}
+.small-button-title {
+  padding-top: 1em;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>

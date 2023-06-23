@@ -3,8 +3,10 @@
     <div class="locate">
       <div class="back">
         <router-link to="/">
-          <div>
-            <img src="@/assets/imgs/key/back.png" />
+          <div class="card white small-button waves-effect">
+            <div class="card-content- black-text small-button-title">
+              <img style="width: 65%" src="@/assets/imgs/native/undo.png" />
+            </div>
           </div>
         </router-link>
       </div>
@@ -107,5 +109,19 @@ export default Vue.extend({
 }
 h3 {
   margin-left: 6em;
+}
+.small-button {
+  width: 125px;
+  height: 120px;
+  border: solid 6px #00b9e3;
+  border-radius: 2.5em;
+  box-shadow: 0px 6px 10px #00b9e3;
+}
+.small-button-title {
+  padding-top: 1em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

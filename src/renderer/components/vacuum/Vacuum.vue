@@ -20,10 +20,10 @@
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               <div style="color: #00b9e3">{{ `BOX` | localize }}</div>
-              <div>{{ `&nbsp` }}</div>
+              <div>{{ `&nbsp;` }}</div>
               <div style="color: #00b9e3">{{ `#` | localize }}</div>
               <div style="color: #00b9e3">{{ `1` }}</div>
-              <div>{{ `&nbsp &nbsp` }}</div>
+              <div>{{ `&nbsp; &nbsp;` }}</div>
 
               <div>{{ `PAYMENT` | localize }}</div>
             </div>
@@ -37,10 +37,10 @@
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               <div style="color: #00b9e3">{{ `BOX` | localize }}</div>
-              <div>{{ `&nbsp` }}</div>
+              <div>{{ `&nbsp;` }}</div>
               <div style="color: #00b9e3">{{ `#` | localize }}</div>
               <div style="color: #00b9e3">{{ `3` }}</div>
-              <div>{{ `&nbsp &nbsp` }}</div>
+              <div>{{ `&nbsp; &nbsp;` }}</div>
               <div>{{ `PAYMENT` | localize }}</div>
             </div>
           </div>
@@ -50,7 +50,11 @@
 
         <!-- 2 operator -->
 
-        <li class="collection-item cost" @click="payUp('operator')">
+        <li
+          v-if="getDryIsShowOperatorCall && getPanelType === 'vacuum'"
+          class="collection-item cost"
+          @click="payUp('operator')"
+        >
           <div
             class="waves-effect button-style"
             :class="[
@@ -80,9 +84,9 @@
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               <div>{{ `PAYMENT` | localize }}</div>
-              <div>{{ `&nbsp &nbsp` }}</div>
+              <div>{{ `&nbsp; &nbsp;` }}</div>
               <div style="color: #00b9e3">{{ `BOX` | localize }}</div>
-              <div>{{ `&nbsp` }}</div>
+              <div>{{ `&nbsp;` }}</div>
               <div style="color: #00b9e3">{{ `#` | localize }}</div>
               <div style="color: #00b9e3">{{ `2` }}</div>
             </div>
@@ -97,9 +101,9 @@
           <div class="card white waves-effect button-style">
             <div class="card-content black-text button-content-style">
               <div>{{ `PAYMENT` | localize }}</div>
-              <div>{{ `&nbsp &nbsp` }}</div>
+              <div>{{ `&nbsp; &nbsp;` }}</div>
               <div style="color: #00b9e3">{{ `BOX` | localize }}</div>
-              <div>{{ `&nbsp` }}</div>
+              <div>{{ `&nbsp;` }}</div>
               <div style="color: #00b9e3">{{ `#` | localize }}</div>
               <div style="color: #00b9e3">{{ `4` }}</div>
             </div>
@@ -149,15 +153,16 @@ export default Vue.extend({
       getVacuumNumber: 'getVacuumNumber',
       getDryActive: 'getDryActive',
 
-      getIsOddVacuumNumber: 'getIsOddVacuumNumber'
+      getIsOddVacuumNumber: 'getIsOddVacuumNumber',
+
+      getDryIsShowOperatorCall: 'getDryIsShowOperatorCall',
     }),
   },
   watch: {
-    getDryActive(flag) {
-    },
+    getDryActive(flag) {},
     getVacuumNumber(value) {
       // console.log('$$ value', value)
-    }
+    },
   },
   components: {
     MainMenu,
@@ -184,7 +189,7 @@ export default Vue.extend({
       setIsFooter: 'setIsFooter',
       setDryBalance: 'setDryBalance',
 
-      setIsOddVacuumNumber: 'setIsOddVacuumNumber'      
+      setIsOddVacuumNumber: 'setIsOddVacuumNumber',
     }),
     ...mapActions({
       updateDryStartProgram: 'updateDryStartProgram',

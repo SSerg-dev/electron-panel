@@ -102,12 +102,5 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-/* span {
-  color: red;
-} */
-
-/* .select-dropdown.dropdown-content li.selected {
-    background-color: #00B9E3;
-} */
 
 </style>

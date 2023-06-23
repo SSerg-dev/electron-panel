@@ -13,7 +13,7 @@ class PaxRequest
   get stx() {
     return this.stx
   }
-  get stx() {
+  get mesgsLen() {
     return this.mesgsLen
   }
   get mesgsData() {

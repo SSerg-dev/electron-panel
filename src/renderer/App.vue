@@ -155,7 +155,6 @@ export default Vue.extend({
         }
       })
 
-
       // ipcRenderer.on('settings', (evt, data) => {
       //   try {
       //     data = JSON.parse(data)
@@ -169,7 +168,6 @@ export default Vue.extend({
         isPayload: true,
       }
 
-      
       ipcRenderer.send('async-payload-start', options)
 
       ipcRenderer.on('async-payload-reply', (event, params) => {
@@ -293,7 +291,6 @@ ArialBoldItalic
 
 */
 
-
 /* @font-face {
   font-family: 'Roboto-Regular';
   src: local('Roboto-Regular'),
@@ -312,6 +309,4 @@ ArialBoldItalic
   font-family: 'Plumb-Medium';
   src: url(./assets/fonts/Roboto-Medium.ttf) format('truetype');
 }
-
-
 </style>

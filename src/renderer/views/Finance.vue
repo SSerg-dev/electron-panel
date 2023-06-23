@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="locate">
-
-    <div class="back">
+      <div class="back">
         <router-link to="/setting">
-          <div>
-            <img src="@/assets/imgs/key/back.png" />
+          <div class="card white small-button waves-effect">
+            <div class="card-content- black-text small-button-title">
+              <img style="width: 65%" src="@/assets/imgs/native/undo.png" />
+            </div>
           </div>
         </router-link>
       </div>
-
     </div>
 
     <section>
@@ -28,12 +28,7 @@
             <button
               v-if="JSON.parse(getUsersIsAccess.panelCollection)"
               style="font-weight: bold"
-              class="
-                waves-effect waves-light
-                lighten-3
-                white-text
-                button-setting
-              "
+              class="waves-effect waves-light lighten-3 white-text button-setting"
               type="submit"
               @click="doCollect"
             >
@@ -84,7 +79,7 @@ export default Vue.extend({
   name: 'finance',
   data: () => ({
     client: 'fetch',
-    url: '', 
+    url: '',
     storage: null,
     options: {},
     id: 0,
@@ -96,7 +91,7 @@ export default Vue.extend({
 
     coins: {},
     bills: {},
-    financeCollect: {}
+    financeCollect: {},
   }),
   computed: {
     ...mapGetters({
@@ -104,7 +99,7 @@ export default Vue.extend({
       getAllCoins: 'getAllCoins',
       getAllBills: 'getAllBills',
       getFinanceCollect: 'getFinanceCollect',
-      
+
       getPanelType: 'getPanelType',
       getUsersRole: 'getUsersRole',
       getUsersIsAccess: 'getUsersIsAccess',
@@ -115,7 +110,7 @@ export default Vue.extend({
     ...mapMutations({
       setAllCoins: 'setAllCoins',
       setAllBills: 'setAllBills',
-      setFinanceCollect: 'setFinanceCollect'
+      setFinanceCollect: 'setFinanceCollect',
     }),
     /*     */
     doChart() {
@@ -143,7 +138,6 @@ export default Vue.extend({
       }
     },
 
-
     async readCash() {
       // console.log('$$ Finance.vue readCash')
       const method = methods[2]
@@ -166,8 +160,6 @@ export default Vue.extend({
         this.coins = JSON.parse(coins) || {}
         this.bills = JSON.parse(bills) || {}
 
-
-
         this.setAllCoins(this.coins)
         this.setAllBills(this.bills)
       })
@@ -179,12 +171,8 @@ export default Vue.extend({
       ipcRenderer.on('async-collect-reply', (event, collect) => {
         this.financeCollect = JSON.parse(collect) || {}
         this.setFinanceCollect(this.financeCollect)
-        
       })
-
-
     },
-
 
     async collect() {
       const method = methods[1]
@@ -304,5 +292,19 @@ export default Vue.extend({
   box-shadow: 6px 6px 10px #00b9e3;
   height: 2em;
   width: 21em;
+}
+.small-button {
+  width: 125px;
+  height: 120px;
+  border: solid 6px #00b9e3;
+  border-radius: 2.5em;
+  box-shadow: 0px 6px 10px #00b9e3;
+}
+.small-button-title {
+  padding-top: 1em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

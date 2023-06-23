@@ -3,20 +3,22 @@
     <div class="locate">
       <div class="back">
         <router-link to="/">
-        <div>
-          <img src="@/assets/imgs/key/back.png" />
-        </div>
-      </router-link>
+          <div class="card white small-button waves-effect">
+            <div class="card-content- black-text small-button-title">
+              <img style="width: 65%" src="@/assets/imgs/native/undo.png" />
+            </div>
+          </div>
+        </router-link>
       </div>
-      
+
       <div align="justify" class="message">
         <div><Message /></div>
       </div>
 
-      <div style="width: 800px;" class="info-title">
+      <div style="width: 800px" class="info-title">
         <h3>
           <p align="center">
-            {{ `${this.messages[0]}` | localize}}
+            {{ `${this.messages[0]}` | localize }}
           </p>
           <!-- <p align="center">
             {{ `${this.messages[1]}` }}
@@ -53,10 +55,8 @@ export default Vue.extend({
   name: 'cash',
   data: () => ({
     intervalMainMenu: null,
-    messages: [
-      `Insert_banknotes_or_coins`
-    ],
-    messageIndex: -1
+    messages: [`Insert_banknotes_or_coins`],
+    messageIndex: -1,
   }),
 
   computed: {
@@ -67,51 +67,46 @@ export default Vue.extend({
       getPanelType: 'getPanelType',
       getDryBusyPanel: 'getDryBusyPanel',
 
-      getSecondsGotoMainMenu: 'getSecondsGotoMainMenu'
-    })
+      getSecondsGotoMainMenu: 'getSecondsGotoMainMenu',
+    }),
   },
   // dev
   watch: {},
   methods: {
-    ...mapActions({
-      
-    }),
+    ...mapActions({}),
     ...mapMutations({
       setRouter: 'setRouter',
-      setPayType: 'setPayType'
+      setPayType: 'setPayType',
     }),
 
     gotoMainMenu(seconds) {
       this.intervalMainMenu = setInterval(() => {
-        
-       const type = this.getPanelType
-       switch (type) {
-        case 'wash':
-           if (
-          --seconds < 0 &&
-          this.getWetBusyPanel === 'false' &&
-          this.$route.name !== 'home'
-        ) {
-          this.$router.push('/')
+        const type = this.getPanelType
+        switch (type) {
+          case 'wash':
+            if (
+              --seconds < 0 &&
+              this.getWetBusyPanel === 'false' &&
+              this.$route.name !== 'home'
+            ) {
+              this.$router.push('/')
+            }
+            break
+          case 'vacuum':
+            if (
+              --seconds < 0 &&
+              this.getDryBusyPanel === 'false' &&
+              this.$route.name !== 'home'
+            ) {
+              this.$router.push('/')
+            }
+            break
+          default:
+            console.warn('no panel type')
+            break
         }
-          break
-        case 'vacuum':
-           if (
-          --seconds < 0 &&
-          this.getDryBusyPanel === 'false' &&
-          this.$route.name !== 'home'
-        ) {
-          this.$router.push('/')
-        }
-          break
-        default:
-          console.warn('no panel type')
-          break
-      }
-       
-
       }, 1000)
-    }
+    },
   },
   mounted() {
     this.setRouter('/cash')
@@ -126,8 +121,8 @@ export default Vue.extend({
     CashBill,
     Message,
     CashShow,
-    CashVacuumBill
-  }
+    CashVacuumBill,
+  },
 })
 </script>
 
@@ -204,5 +199,19 @@ export default Vue.extend({
 }
 .cash-show {
   color: white;
+}
+.small-button {
+  width: 125px;
+  height: 120px;
+  border: solid 6px #00b9e3;
+  border-radius: 2.5em;
+  box-shadow: 0px 6px 10px #00b9e3;
+}
+.small-button-title {
+  padding-top: 1em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
