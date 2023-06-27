@@ -288,7 +288,7 @@ export default Vue.extend({
   width: 11.5em;
   font-size: 4em;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-weight: bold;
 }
 h4 {
@@ -305,7 +305,7 @@ h4 {
 
   background: #121212;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-weight: bold;
 }
 

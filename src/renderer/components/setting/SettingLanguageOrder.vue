@@ -282,9 +282,12 @@ export default Vue.extend({
 }
 
 .item {
+  font-family: 'RobotoMono-Medium';
+
   width: 34em;
   height: 2.6em;
-  padding: 0.8em;
+  padding-top: 0.5em;
+  padding-left: 1em;
   font-size: 2em;
   margin: 10px auto 10px 10px;
   margin-left: 0px;

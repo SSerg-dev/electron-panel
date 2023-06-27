@@ -269,44 +269,25 @@ export default Vue.extend({
 @import '~materialize-css/dist/css/materialize.min.css';
 @import 'assets/css/index.css';
 
-/* 
-Plumb-Medium
-Roboto-Regular
-Roboto-Medium
-ARIALUNI
-*/
-
-/* @font-face {
-  font-family: 'Plumb-Medium';
-  src: local('Plumb-Medium'),
-    url(./assets/fonts/Roboto-Regular.ttf) format('truetype');
-} */
-
-/* 
-ArialRegular
-ArialBold
-
-ArialBlack
-ArialBoldItalic
-
-*/
-
-/* @font-face {
-  font-family: 'Roboto-Regular';
-  src: local('Roboto-Regular'),
-    url(./assets/fonts/Plumb-Medium.ttf) format('truetype');
-} */
 
 @font-face {
   font-family: 'Emoji-Regular';
   src: url(./assets/fonts/NotoColorEmoji-Regular.ttf) format('truetype');
 }
-@font-face {
-  font-family: 'Roboto-Regular';
-  src: url(./assets/fonts/Plumb-Medium.ttf) format('truetype');
-}
-@font-face {
+/* @font-face {
   font-family: 'Plumb-Medium';
+  src: url(./assets/fonts/Plumb-Medium.ttf) format('truetype');
+} */
+
+@font-face {
+  font-family: 'Roboto-Medium';
   src: url(./assets/fonts/Roboto-Medium.ttf) format('truetype');
 }
+
+@font-face {
+  font-family: 'RobotoMono-Medium';
+  src: url(./assets/fonts/RobotoMono-Medium.ttf) format('truetype');
+}
+
+
 </style>

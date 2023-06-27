@@ -202,7 +202,7 @@ export default Vue.extend({
   color: white;
   font-size: 23em;
   font-weight: normal;
-  font-family: 'Roboto-Regular';
+  font-family: 'Roboto-Medium';
 
   display: flex;
   align-items: center;

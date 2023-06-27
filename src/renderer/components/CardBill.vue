@@ -803,7 +803,7 @@ export default {
   z-index: 1;
 
   font-weight: bold;
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
 }
 .bonus-row {
   margin-top: 0em;
@@ -911,9 +911,9 @@ td {
   margin-top: -12em;
   margin-left: 24em;
 }
-/* Plumb-Medium */
+/* Roboto-Medium */
 .description {
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-size: 20px;
   font-weight: bold;
 }
@@ -927,7 +927,7 @@ td {
   text-align: left;
   z-index: 1;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   text-transform: uppercase;
 }
 /* .tbody {
@@ -944,7 +944,7 @@ td {
   color: white;
   text-align: right;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-weight: bold;
   z-index: 1;
 }
@@ -964,7 +964,7 @@ td {
 
   color: #ffffff;
   text-align: center;
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
 }
 
 @-webkit-keyframes pulsate {

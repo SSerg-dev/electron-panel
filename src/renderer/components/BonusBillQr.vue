@@ -170,7 +170,7 @@ export default {
   top: 64em;
   left: 42em;
   color: white;
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   margin-bottom: 0em;
 }
 .qr-code {

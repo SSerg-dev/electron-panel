@@ -77,7 +77,7 @@ export default Vue.extend({
   color: white;
   text-align: right;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-weight: bold;
   z-index: 1;
 }
@@ -88,7 +88,7 @@ export default Vue.extend({
 }
 
 .description {
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-size: 3.5em;
   font-weight: bold;
 }

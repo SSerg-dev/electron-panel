@@ -90,7 +90,7 @@ export default Vue.extend({
   margin-top: -32em;
   margin-left: 19em;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-weight: normal;
   text-align: justify;
   z-index: 1;

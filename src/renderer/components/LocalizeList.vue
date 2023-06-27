@@ -2,58 +2,31 @@
   <div>
     <div>
       <div class="items">
+        <!-- <ul>
+          <li>
+            <button class="btn-small" @click="setLocale('ru-RU')">
+              <img :src="imagePath" />
+            </button>
+          </li>
+          <li>
+            <button class="btn-small" @click="setLocale('en-GB')">
+              <img src="@/assets/imgs/language/lang_EN.png" />
+            </button>
+          </li>
+          <li>
+            <button class="btn-small" @click="setLocale('kz-KZ')">
+              <img src="@/assets/imgs/language/lang_KZ.png" />
+            </button>
+          </li>
+        </ul> -->
+
         <ul>
-          <li>
-            <button class="btn-small" @click="setLocale('ru-RU')">
-              <!-- <img src= this.items[0].flag /> -->
-              <img id="flag" src="@/assets/imgs/language/lang_RU.png"/>
-            </button>
-          </li>
-          <li>
-            <button class="btn-small" @click="setLocale('en-GB')">
-              <img src="@/assets/imgs/language/lang_EN.png" />
-            </button>
-          </li>
-          <li>
-            <button class="btn-small" @click="setLocale('kz-KZ')">
-              <img src="@/assets/imgs/language/lang_KZ.png" />
-            </button>
-          </li>
-
-          <!-- <li>
-            <button class="btn-small" @click="setLocale('ru-RU')">
-              <img src="@/assets/imgs/language/lang_RU.png" />
-            </button>
-          </li>
-          <li>
-            <button class="btn-small" @click="setLocale('en-GB')">
-              <img src="@/assets/imgs/language/lang_EN.png" />
-            </button>
-          </li>
-          <li>
-            <button class="btn-small" @click="setLocale('kz-KZ')">
-              <img src="@/assets/imgs/language/lang_KZ.png" />
-            </button>
-          </li> -->
-
-          
-          <!-- <li>
-            <button class="btn-small" @click="setLocale('ru-RU')">
-              <img src="@/assets/imgs/language/lang_RU.png" />
-            </button>
-          </li>
-          <li>
-            <button class="btn-small" @click="setLocale('en-GB')">
-              <img src="@/assets/imgs/language/lang_EN.png" />
-            </button>
-          </li>
-          <li>
-            <button class="btn-small" @click="setLocale('kz-KZ')">
-              <img src="@/assets/imgs/language/lang_KZ.png" />
-            </button>
-          </li> -->
-
-
+          <LocalizeItem
+            v-for="(item, index) in items"
+            :item="item"
+            :index="index"
+            :key="index"
+          />
         </ul>
       </div>
     </div>
@@ -63,6 +36,7 @@
 <script>
 import Vue from 'vue'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
+import LocalizeItem from '@/components/LocalizeItem'
 
 export default Vue.extend({
   name: 'localize-list',
@@ -71,21 +45,17 @@ export default Vue.extend({
     locale: '',
 
     // ------------------------------------
-    flagPath: '@/assets/imgs/language/',
-    items: [],
+    imagePath: require('@/assets/imgs/language/lang_FIN.png'),
+    // imagePath: require(this.items[0].flag),
 
-    languages: [],
-    orderLanguageItems: [],
-    selectedLanguages: [],
-    selectedItems: [],
+    items: [],
   }),
   // ------------------------------------
   created() {
     this.setup()
   },
   mounted() {
-    document.onload = this.flag()
-    
+    this.changeImage()
   },
   computed: {
     ...mapGetters({
@@ -95,38 +65,30 @@ export default Vue.extend({
   },
 
   methods: {
-    ...mapGetters({
-      getLanguageNatives: 'getLanguageNatives',
-      getConfig: 'getConfig',
-    }),
-    ...mapMutations({
-      setInfo: 'setInfo',
-    }),
-    flag() {
-      // document.getElementById('flag').src = "@/assets/imgs/language/lang_RU.png" //this.items[0].flag
-      // document.getElementById('flag').src = "@/assets/imgs/language/lang_RU.png"
-      console.log('$$ LocalizeList.vue: 108', document.getElementById('flag').src)
+    ...mapGetters({}),
+    ...mapMutations({}),
+
+    changeImage() {
+      // this.imagePath = require(`@/assets/imgs/language/lang_KZ.png`)
+      // this.imagePath = require(this.items[0].flag)
+      // if (`@/assets/imgs/language/lang_KZ.png` === this.items[2].flag) {
+      //   console.log('$$ LocalizeList.vue: 108', true)
+      // }
+      // console.log('$$ LocalizeList.vue: 113', this.items[0].flag)
     },
 
-    setLocale(locale) {
-      this.locale = locale
-      this.setInfo({
-        name: this.name,
-        locale: this.locale,
-      })
-      this.pushRouter()
-    },
     pushRouter() {
       this.$router.push(this.getRouter)
     },
     // ----------------------------------
     setup() {
       this.items = this.localizes
-      // console.log('$$ LocalizeList.vue: 124', this.items[0].flag)
-      // document.getElementById('flag').src = "@/assets/imgs/language/lang_RU.png" //this.items[0].flag
-
+      // console.log('$$ LocalizeList.vue: 130', this.items[0].flag)
     },
     // ----------------------------------
+  },
+  components: {
+    LocalizeItem,
   },
 })
 </script>
@@ -145,7 +107,6 @@ export default Vue.extend({
 }
 
 .items {
-  /* border: solid white; */
   background: #121212;
   margin: 6em auto;
   margin-left: 4em;
@@ -163,4 +124,12 @@ export default Vue.extend({
   background-color: #121212;
   padding-bottom: 18em;
 }
+
+/* :root {
+  --image-path: url('../assets/imgs/language/lang_RU.png');
+} */
+
+/* img {
+  src: var(--image-path);
+} */
 </style>

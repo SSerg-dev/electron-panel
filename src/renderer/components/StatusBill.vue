@@ -295,7 +295,7 @@ export default Vue.extend({
   color: white;
   text-align: right;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
 
   font-weight: bold;
   z-index: 1;

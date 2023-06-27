@@ -138,7 +138,7 @@
  
  body {
   background: #121212;
-   font-family: 'Plumb-Medium';
+   font-family: 'Roboto-Medium';
    font-weight: bold;
    color: #121212;
  }
@@ -282,6 +282,8 @@
 }
 /* 02 dev */
 .select-wrapper input.select-dropdown {
+  /* dev index.css */
+  /* font-family: 'RobotoMono-Medium'; */
   position: relative;
   cursor: pointer;
   background-color: #b3e5fc;
@@ -300,7 +302,8 @@
   -ms-user-select: none;
   user-select: none;
   z-index: 1;
-} 
+}
+
 /* 03 toast */
 .toast {
   font-size: 2em;
@@ -325,7 +328,7 @@
 /* 05 */
 .emoji {
   text-shadow: 6px 6px 6px #3a3a37, -1px 1px 1px #5c5710;
-  /* font-family: 'Emoji-Regular'; */
+  font-family: 'Emoji-Regular';
 }
 
 /*  invoice */

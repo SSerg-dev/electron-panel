@@ -932,7 +932,7 @@ export default {
   margin-top: -10em;
   margin-left: 17em;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-weight: normal; /* bold; */
   text-align: justify;
   z-index: 0;
@@ -943,7 +943,7 @@ table {
   margin-top: 25.5em; /* 18em */
   margin-left: 2.5em;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-weight: bold;
   z-index: 1;
   text-align: left;

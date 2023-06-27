@@ -554,7 +554,7 @@ export default {
 
   color: #ffffff;
   text-align: center;
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
 }
 .location {
   position: relative;
@@ -574,7 +574,7 @@ export default {
   height: 125px;
   color: #ffffff;
   text-align: center;
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   text-transform: uppercase;
 }
 
@@ -616,7 +616,7 @@ td {
   text-align: left;
   z-index: 1;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   text-transform: uppercase;
 }
 /*  */

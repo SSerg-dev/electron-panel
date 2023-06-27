@@ -443,6 +443,6 @@ export default {
   text-align: center; /* left; */
   z-index: 1;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
 }
 </style>

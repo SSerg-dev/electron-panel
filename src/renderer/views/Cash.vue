@@ -144,7 +144,7 @@ export default Vue.extend({
   margin-top: -7em;
   margin-left: 19em;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-weight: normal;
   text-align: justify;
   z-index: 1;
@@ -166,7 +166,7 @@ export default Vue.extend({
   color: white;
   text-align: right;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-weight: bold;
   z-index: 1;
 }
@@ -191,9 +191,9 @@ export default Vue.extend({
   margin-left: -2.5em;
 }
 
-/* Plumb-Medium */
+/* Roboto-Medium */
 .description {
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-size: 20px;
   font-weight: bold;
 }

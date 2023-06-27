@@ -429,7 +429,7 @@ th {
   left: 20em;
   bottom: 16em;
   background: #121212;
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-weight: bold;
 }
 .small-button {

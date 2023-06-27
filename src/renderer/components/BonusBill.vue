@@ -1051,7 +1051,7 @@ export default {
   height: 8em; /* 125px; */
   color: #ffffff;
   text-align: left;
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   text-transform: uppercase;
 }
 .pay-up-title {
@@ -1090,7 +1090,7 @@ td {
   text-align: left;
   z-index: 1;
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   text-transform: uppercase;
 }
 /*  */

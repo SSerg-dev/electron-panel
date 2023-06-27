@@ -28,9 +28,12 @@
               :key="index"
               :value="l.id"
             >
-              <div class="dropdown-setting" style="font-size: 1.6em">
-                <div style="float: left" class="emoji">{{ l.emoji }}</div>
-                <div style="float: left">&nbsp;{{ l.title }}</div>
+              <div class="dropdown-setting-language-select">
+                <div style="float: left" class="emoji">
+                  &nbsp;&nbsp;{{ l.emoji }}
+                </div>
+
+                <div style="float: left">&nbsp;&nbsp;{{ l.title }}</div>
               </div>
             </option>
           </select>
@@ -197,4 +200,14 @@ export default Vue.extend({
   ::-webkit-scrollbar-button:vertical:single-button:increment:hover {
   border-color: #777 transparent transparent transparent;
 }
+
+/* &nbsp;&nbsp; */
+/* font-family: 'RobotoMono-Medium'; */
+.dropdown-setting-language-select {
+  font-size: 24px;
+  color: #000000;
+  font-family: 'RobotoMono-Medium';
+}
+
+/* -language-select */
 </style>

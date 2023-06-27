@@ -531,7 +531,7 @@ export default {
   margin-top: -10em;
   margin-left: 17em; /* 16em; */
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-weight: normal; /* bold; */
   text-align: justify;
   z-index: 1;
@@ -550,7 +550,7 @@ table {
   margin-top: 18em; /* 18em; 16.5em; */
   margin-left: 2.5em; /* 33em; */
 
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   font-weight: bold;
   z-index: 1;
 

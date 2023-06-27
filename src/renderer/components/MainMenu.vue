@@ -31,7 +31,9 @@
 
         <!-- 3 -->
         <li class="collection-item cash" @click="payUp('cash')">
-          <div class="card white waves-effect button-style">
+          <div class="card white waves-effect button-style"
+          style="padding-top: 0.6em;"
+          >
             <div
               class="card-content black-text button-content-style"
               style="justify-content: left"
@@ -316,7 +318,7 @@ section {
 } */
 .button-price-style {
   font-size: 6.5em;
-  font-family: 'Plumb-Medium';
+  font-family: 'Roboto-Medium';
   margin-left: 0em;
   padding-top: 0em;
   padding-right: 0em;
