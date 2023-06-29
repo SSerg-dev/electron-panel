@@ -25,6 +25,13 @@
             {{ `STOP` | localize }}
           </div>
         </div>
+
+        <!-- <div v-if="getWetStopFreeCount">
+          <div class="button-title-stop">
+            {{ getWetStopFreeCount }}
+          </div>
+        </div> -->
+
       </div>
 
       <!-- operator -->

@@ -1,5 +1,6 @@
 <template>
-  <div class="col s6">
+  <!-- <div class="col s6"> -->
+  <div>
     <div
       class="card grey lighten-3"
       style="
@@ -28,13 +29,14 @@
               draggable="true"
               :key="item.id"
             >
-              <!-- {{ item.order }}
-              &nbsp; -->
+              {{ item.order }}
+              &nbsp;
 
-            <div style="float: left" class="emoji">{{ item.emoji }}</div>  
-            <div style="float: left">&nbsp;{{ item.title }}</div>
-            <!-- <div style="float: left">&nbsp;{{ item.country }}</div>   -->
-              
+              <div style="float: left" class="emoji">{{ item.emoji }}</div>
+              <div style="float: left">&nbsp;{{ item.title }}</div>
+              <!-- <div style="float: left">&nbsp;{{ item.country }}</div>   -->
+              <!--  -->
+              <!--  -->
             </option>
           </transition-group>
         </div>

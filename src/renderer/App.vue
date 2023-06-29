@@ -274,10 +274,11 @@ export default Vue.extend({
   font-family: 'Emoji-Regular';
   src: url(./assets/fonts/NotoColorEmoji-Regular.ttf) format('truetype');
 }
-/* @font-face {
+
+@font-face {
   font-family: 'Plumb-Medium';
   src: url(./assets/fonts/Plumb-Medium.ttf) format('truetype');
-} */
+}
 
 @font-face {
   font-family: 'Roboto-Medium';

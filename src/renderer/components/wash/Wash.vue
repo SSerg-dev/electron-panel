@@ -1,7 +1,12 @@
 <template>
   <div v-if="isMainMenu">
-    <MainMenu :type="type" />
+    
+    <keep-alive>
+      <MainMenu :type="type" />
+    </keep-alive>
+    
   </div>
+
 </template>
 <script>
 /*   */

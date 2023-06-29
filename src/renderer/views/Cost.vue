@@ -40,6 +40,7 @@
         :container-class="'pagination'"
       />
     </div>
+
   </div>
 </template>
 
@@ -250,7 +251,6 @@ export default Vue.extend({
   },
   beforeDestroy() {
     clearInterval(this.intervalMainMenu)
-    // this.costs = this.getPrograms()
   },
 
   components: {
@@ -271,8 +271,6 @@ export default Vue.extend({
   position: fixed;
   top: 21em;
   left: 4em;
-  /* margin-bottom: 10em; */
-  /* margin-left: 4em; */
   width: 100%;
 
   color: white;

@@ -17,15 +17,16 @@
           "
         > -->
         <!-- instead show wet balance -->
-        
-          <div
+
+        <div
           v-if="
-            (
-               (+getWetBalance >= 0 && +this.getWetStopFreeCount === 0) 
-               || (+getWetBalance >= 0 && this.getIsStandbyFreeEnable && this.$route.name === 'cash')
-            ) 
-            && (this.$route.name === 'cash' || this.$route.name === 'program')
-          ">
+            ((+getWetBalance >= 0 && +this.getWetStopFreeCount === 0) ||
+              (+getWetBalance >= 0 &&
+                this.getIsStandbyFreeEnable &&
+                this.$route.name === 'cash')) &&
+            (this.$route.name === 'cash' || this.$route.name === 'program')
+          "
+        >
           <!-- end instead show wet balance  -->
 
           {{
@@ -75,8 +76,8 @@
         <div
           v-if="
             this.$route.name !== 'bonus' &&
-              this.$route.name !== 'cash' &&
-              this.getWetStopFreeCount > 0
+            this.$route.name !== 'cash' &&
+            this.getWetStopFreeCount > 0
           "
         >
           <ul>
@@ -127,20 +128,20 @@ export default Vue.extend({
       id: 0,
       title: '',
       type: '',
-      value: 0
+      value: 0,
     },
     digits: 0,
-    timerSeconds: 0
+    timerSeconds: 0,
   }),
 
   props: {
     messages: {
       type: Object,
-      required: false
-    }
+      required: false,
+    },
   },
   methods: {
-    ...mapActions({})
+    ...mapActions({}),
   },
   computed: {
     ...mapGetters({
@@ -156,12 +157,12 @@ export default Vue.extend({
       getIsMoneyToBonusNo: 'getIsMoneyToBonusNo',
       getIsMoneyToBonusYes: 'getIsMoneyToBonusYes',
       getMoneyToBonus: 'getMoneyToBonus',
-      getIsStandbyFreeEnable: 'getIsStandbyFreeEnable'
+      getIsStandbyFreeEnable: 'getIsStandbyFreeEnable',
     }),
     ...mapMutations({
       setWetBalance: 'setWetBalance',
-      setDryBalance: 'setDryBalance'
-    })
+      setDryBalance: 'setDryBalance',
+    }),
   },
   watch: {
     /* dev */
@@ -180,7 +181,7 @@ export default Vue.extend({
     },
     getSecondsBonusTimer(flag) {
       if (flag >= 0) this.timerSeconds = flag
-    }
+    },
   },
 
   mounted() {},
@@ -188,7 +189,7 @@ export default Vue.extend({
     if (parseInt(this.getFixedCurrency) > 0) {
       this.digits = this.getFixedCurrency
     }
-  }
+  },
 })
 </script>
 
@@ -202,8 +203,8 @@ export default Vue.extend({
   color: white;
   font-size: 23em;
   font-weight: normal;
-  font-family: 'Roboto-Medium';
-
+  /* font-family: 'Roboto-Medium'; */
+  font-family: 'Plumb-Medium';
   display: flex;
   align-items: center;
   justify-content: center;

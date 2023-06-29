@@ -74,8 +74,9 @@
       </div>
 
       <div>
-        <router-link to="/language" class="flag">
-        <!-- <router-link to="/localize" class="flag"> -->
+        <!-- <router-link to="/language" class="flag"> -->
+        <router-link to="/localize" class="flag">
+          
           <div v-if="this.info.locale === 'ru-RU'">
             <img src="@/assets/imgs/flags/flag_RU.png" />
           </div>

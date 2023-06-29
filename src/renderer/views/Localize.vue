@@ -2,7 +2,7 @@
   <div>
     <div class="page-title">
       <h3>
-        <p align="center">{{ 'LanguageTitle' | localize }} ++</p>
+        <p align="center">{{ 'LanguageTitle' | localize }}</p>
       </h3>
     </div>
 
@@ -17,26 +17,43 @@
     </div>
 
     <div class="list">
-      <div>
+      <div :key="page">
         <LocalizeList :localizes="items" />
       </div>
+    </div>
+
+    <div
+      v-if="getPanelType !== 'vacuum'"
+      class="paginate"
+      style="padding-left: 8em"
+    >
+      <Paginate
+        v-model="page"
+        :page-count="pageCount"
+        :click-handler="pageChangeHandler"
+        :prev-text="'<'"
+        :next-text="'>'"
+        :container-class="'pagination'"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import paginationMixin from '@/mixins/pagination.mixin'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 import LocalizeList from '@/components/LocalizeList'
 
 export default Vue.extend({
   name: 'localize',
+  mixins: [paginationMixin],
   data: () => ({
     locale: '',
 
     // ------------------------------------
-    items: [],
+    localizes: [],
 
     languages: [],
     orderLanguageItems: [],
@@ -46,13 +63,22 @@ export default Vue.extend({
   // ------------------------------------
   created() {
     this.setup()
+    this.setupPagination(this.localizes)
   },
   mounted() {},
   computed: {
     ...mapGetters({
-      // info: 'info',
       getRouter: 'getRouter',
+      getPanelType: 'getPanelType',
     }),
+  },
+  watch: {
+    items(value) {
+      // console.log('$$ Localize.vue: 80', JSON.stringify(value) )
+    },
+    page(value) {
+      // console.log('$$ Localize.vue: 83', value )
+    },
   },
 
   methods: {
@@ -60,18 +86,8 @@ export default Vue.extend({
       getLanguageNatives: 'getLanguageNatives',
       getConfig: 'getConfig',
     }),
-    ...mapMutations({
-      // setInfo: 'setInfo',
-    }),
+    ...mapMutations({}),
 
-    // setLocale(locale) {
-    //   this.locale = locale
-    //   this.setInfo({
-    //     name: this.name,
-    //     locale: this.locale,
-    //   })
-    //   this.pushRouter()
-    // },
     pushRouter() {
       this.$router.push(this.getRouter)
     },
@@ -87,7 +103,7 @@ export default Vue.extend({
       this.selectedItems = this.getSelectedItems()
 
       // sort by order
-      this.items = this.sortByOrder(this.selectedItems)
+      this.localizes = this.sortByOrder(this.selectedItems)
 
       // console.log('$$ Localize.vue: 113', JSON.stringify(this.items))
     },
@@ -155,32 +171,6 @@ export default Vue.extend({
   z-index: 99;
 }
 
-table {
-  position: absolute;
-}
-table,
-th,
-td {
-  /* border: solid; */
-  border: none;
-  margin-left: 3em;
-  margin-bottom: 0em;
-  margin-top: 5em;
-  height: 220px;
-  width: 220px;
-
-  border-color: #121212;
-}
-tr {
-  display: block;
-  /* float: left; */
-}
-
-.btn,
-.btn-large,
-.btn-small {
-  background-color: #121212;
-}
 .small-button {
   width: 125px;
   height: 120px;
@@ -194,5 +184,29 @@ tr {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.paginate {
+  font-size: 1em;
+  width: 100%;
+
+  position: absolute; /*  absolute; relative;*/
+  /* left: 16em; */
+  left: calc(1 * 18em);
+  bottom: 10em;
+
+  background: #121212;
+
+  font-family: 'Roboto-Medium';
+  font-weight: bold;
+}
+.list {
+  position: fixed;
+  top: 20em;
+  left: -1em;
+  width: 100%;
+  /* height: 60%; */
+
+  color: white;
 }
 </style>

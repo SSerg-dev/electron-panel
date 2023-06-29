@@ -15,6 +15,8 @@ export default {
     pageChangeHandler(page) {
       this.$router.push(`${this.$route.path}?page=${page}`)
       this.items = this.allItems[page - 1] || this.allItems[0]
+
+      // console.log('$$ pagination.mixin.js: 19', page, this.items)
       
       store.state.paginate = page
     },
