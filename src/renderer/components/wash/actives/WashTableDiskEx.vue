@@ -5,7 +5,7 @@
     <td>
       <div
         @click="setProgram('disk')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-left-disk"
       >
         <div
@@ -31,7 +31,7 @@
     <td>
       <div
         @click="setProgram('disk_x2')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-right"
       >
         <div

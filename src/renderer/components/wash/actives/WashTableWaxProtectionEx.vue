@@ -5,7 +5,7 @@
     <td>
       <div
         @click="setProgram('waxProtection')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-left-wax"
       >
         <div
@@ -24,7 +24,7 @@
     <td>
       <div
         @click="setProgram('waxProtection_turbo')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-right-wax"
       >
         <div

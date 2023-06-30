@@ -5,8 +5,8 @@
       <li
         v-if="
           this.IsWetBalance === true &&
-          this.getIsPing 
-          && this.getPayType !== 'bonus'
+          this.getIsPing &&
+          this.getPayType !== 'bonus'
         "
         @click="payUp('payBonus')"
       >
@@ -123,8 +123,14 @@ export default {
 
     this.urlLocal = process.env.VUE_APP_URL_LOCAL
     this.localStorage = new Storage(this.localClient, this.urlLocal)
+    
+    // this.getPayType !== 'bonus'
+    if (this.getPrevRouter === '/bonus' && this.getPayType === 'bonus') {
+
+      this.payUp('directBonus')
+    }
   },
-  
+
   beforeMount() {
     // this.setPayType('cash')
   },
@@ -143,6 +149,8 @@ export default {
       getCnw: 'getCnw',
       getControllerTime: 'getControllerTime',
       getControllerDate: 'getControllerDate',
+
+      getPrevRouter: 'getPrevRouter',
     }),
     IsWetBalance: {
       get: function () {
@@ -183,7 +191,6 @@ export default {
 
       // payEnd
       if (program === 'payEnd') {
-
         this.setPayType('cash')
         this.getCashMoney()
 
@@ -198,11 +205,22 @@ export default {
       }
       // payBonus
       else if (program === 'payBonus') {
-
         this.setPayType('bonus')
         this.setIsAppendBonusMoney(true)
         this.setIsPayBonusMoney(false)
         this.$router.push('/bonus')
+      }
+      // directBonus
+      else if (program === 'directBonus') {
+        this.setPayType('bonus')
+
+        sleep(this.delay).then(() => {
+          this.payCashMoney()
+        })
+
+        this.setIsAppendBonusMoney(false)
+        this.setIsPayBonusMoney(true)
+        if (this.$route.name !== 'program') this.$router.push('/program')
       }
     },
 

@@ -4,7 +4,7 @@
     <!-- ВОЗДУХ -->
 
     <td>
-      <div @click="setProgram('air')" class="waves-effect" id="button-air">
+      <div @click="setProgram('air')" class="waves-effect-" id="button-air">
         <div
           class="button-content-style"
           :class="[

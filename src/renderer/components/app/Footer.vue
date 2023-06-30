@@ -186,6 +186,13 @@ export default {
           this.setMoneyToBonus(this.getWetBalance)
           this.setIsMoneyToBonus(true)
         }
+
+        if (parseInt(flag) > 0) {
+          this.isDown.stop = true
+        } else {
+          this.isDown.stop = false
+        }
+
       } catch (err) {}
     },
 

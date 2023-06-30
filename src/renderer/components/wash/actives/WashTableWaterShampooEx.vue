@@ -5,7 +5,7 @@
     <td>
       <div
         @click="setProgram('waterShampoo')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-left-water"
       >
         <div
@@ -24,7 +24,7 @@
     <td>
       <div
         @click="setProgram('waterShampoo_turbo')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-right-water"
       >
         <div

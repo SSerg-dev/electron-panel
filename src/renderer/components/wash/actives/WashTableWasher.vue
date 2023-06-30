@@ -6,7 +6,7 @@
     <td>
       <div
         @click="setProgram('washer')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-washer"
       >
         <div

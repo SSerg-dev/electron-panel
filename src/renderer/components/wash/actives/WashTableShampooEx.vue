@@ -5,7 +5,7 @@
     <td>
       <div
         @click="setProgram('shampoo')"
-        class="waves-effect "
+        class="waves-effect- "
         id="button-left-shampoo"
       >
         <div
@@ -24,7 +24,7 @@
     <td>
       <div
         @click="setProgram('shampoo_x2')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-right-shampoo"
       >
         <div

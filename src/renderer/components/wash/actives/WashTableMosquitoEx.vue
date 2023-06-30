@@ -5,7 +5,7 @@
     <td>
       <div
         @click="setProgram('mosquito')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-left-mosquito"
       >
         <div
@@ -24,7 +24,7 @@
     <td>
       <div
         @click="setProgram('mosquito_x2')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-right-mosquito"
       >
         <div

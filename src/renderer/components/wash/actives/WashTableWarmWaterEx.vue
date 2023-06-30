@@ -24,7 +24,7 @@
     <td>
       <div
         @click="setProgram('warmWater_turbo')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-right-warm-water"
       >
         <div

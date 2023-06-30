@@ -5,7 +5,7 @@
     <td>
       <div
         @click="setProgram('disinfection')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-disinfection"
       >
         <div

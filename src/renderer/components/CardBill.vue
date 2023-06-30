@@ -45,7 +45,8 @@
             <tr>
               <td colspan="4" class="display">
                 <div style="font-size: 1em; color: yellow">
-                  {{ parseFloat(this.display).toFixed(this.digits) }}
+                  <!-- {{ parseFloat(this.display).toFixed(this.digits) }} -->
+                  {{ Math.floor(this.display).toFixed(this.digits) }}
                 </div>
               </td>
               <td colspan="1" class="white-text currency">
@@ -68,11 +69,11 @@
                     id="blink"
                     class="card-content limit-title"
                   >
-                    {{ `Min ${getPaymentLimitMin}` }}
+                    {{ `Min ${Math.floor(getPaymentLimitMin)}` }}
                   </div>
 
                   <div v-else class="card-content white-text limit-title">
-                    {{ `Min ${getPaymentLimitMin}` }}
+                    {{ `Min ${Math.floor(getPaymentLimitMin)}` }}
                   </div>
                 </div>
               </td>
@@ -117,13 +118,13 @@
                     class="card-content limit-title"
                   >
                     <div>
-                      {{ `Max ${parseFloat(getPaymentLimitMax)}` }}
+                      {{ `Max ${Math.floor(getPaymentLimitMax)}` }}
                     </div>
                   </div>
 
                   <div v-else class="card-content white-text limit-title">
                     <div>
-                      {{ `Max ${parseFloat(getPaymentLimitMax)}` }}
+                      {{ `Max ${Math.floor(getPaymentLimitMax)}` }}
                     </div>
                   </div>
                 </div>

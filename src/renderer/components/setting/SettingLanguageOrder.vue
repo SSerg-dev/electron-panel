@@ -9,7 +9,7 @@
         border-top-left-radius: 2em;
         border-bottom-left-radius: 2em;
         border-top-right-radius: 2em;
-        border-bottom-right-radius: 2em;
+        border-bottom-right-radius: 2em; 
       "
     >
       <div class="card-content black-text list">
@@ -29,12 +29,9 @@
               draggable="true"
               :key="item.id"
             >
-              {{ item.order }}
-              &nbsp;
-
+              <!-- {{ item.order }} -->
               <div style="float: left" class="emoji">{{ item.emoji }}</div>
               <div style="float: left">&nbsp;{{ item.title }}</div>
-              <!-- <div style="float: left">&nbsp;{{ item.country }}</div>   -->
               <!--  -->
               <!--  -->
             </option>

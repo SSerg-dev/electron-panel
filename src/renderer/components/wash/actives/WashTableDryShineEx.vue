@@ -5,7 +5,7 @@
     <td>
       <div
         @click="setProgram('dryShine')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-left-shine"
       >
         <div
@@ -24,7 +24,7 @@
     <td>
       <div
         @click="setProgram('dryShine_turbo')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-right-shine"
       >
         <div

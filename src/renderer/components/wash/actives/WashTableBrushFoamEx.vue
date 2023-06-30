@@ -5,7 +5,7 @@
     <td>
       <div
         @click="setProgram('brushFoam')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-left-brush"
       >
         <div
@@ -24,7 +24,7 @@
     <td>
       <div
         @click="setProgram('brushFoam_color')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-center-brush"
       >
         <div
@@ -45,7 +45,7 @@
     <td>
       <div
         @click="setProgram('brushFoam_x2')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-right-brush"
       >
         <div

@@ -5,7 +5,7 @@
 
     <td @click="setProgram('waterShampoo')">
       <div
-        class="waves-effect button-style"
+        class="waves-effect- button-style"
         :class="[
           { 'card white': !this.isDown.waterShampoo },
           { 'card light-blue accent-2': this.isDown.waterShampoo }

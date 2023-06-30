@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="locate">
-      <div class="back">
+
+      <div v-if="+getWetBalance === 0" class="back">
         <router-link to="/">
           <div class="card white small-button waves-effect">
             <div class="card-content- black-text small-button-title">
@@ -62,7 +63,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       getWetBusyPanel: 'getWetBusyPanel',
-      //getWetBalance: 'getWetBalance',
+      getWetBalance: 'getWetBalance',
       /* dev */
       getPanelType: 'getPanelType',
       getDryBusyPanel: 'getDryBusyPanel',

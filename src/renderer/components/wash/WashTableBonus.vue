@@ -225,7 +225,7 @@ export default {
       switch (program) {
 
         case 'yes':
-          console.log('++yes')
+          // console.log('++yes')
           /* dev */
           /* stop current program */
           this.updateWetZeroMoney(true)
@@ -244,7 +244,7 @@ export default {
           break
 
         case 'no':
-          console.log('++no')  
+          // console.log('++no')  
           
           this.setIsMoneyToBonus(false)
           // this.setMoneyToBonus(0)

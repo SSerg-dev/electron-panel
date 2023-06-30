@@ -6,7 +6,7 @@
     <td>
       <div
         @click="setProgram('vacuum')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-vacuum"
       >
         <div

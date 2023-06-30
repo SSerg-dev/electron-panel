@@ -5,7 +5,7 @@
     <td>
       <div
         @click="setProgram('foam')"
-        class="waves-effect "
+        class="waves-effect- "
         id="button-left-foam"
       >
         <div
@@ -24,7 +24,7 @@
     <td>
       <div
         @click="setProgram('foam_color')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-center-foam"
       >
         <div
@@ -45,7 +45,7 @@
     <td>
       <div
         @click="setProgram('foam_x2')"
-        class="waves-effect"
+        class="waves-effect-"
         id="button-right-foam"
       >
         <div
