@@ -9,27 +9,32 @@
         border-top-left-radius: 2em;
         border-bottom-left-radius: 2em;
         border-top-right-radius: 2em;
-        border-bottom-right-radius: 2em; 
+        border-bottom-right-radius: 2em;
       "
     >
-      <div class="card-content black-text list">
-        <div>
+      <div class="row card-content black-text list">
+        <!--  -->
+
+        <!--  -->
+        <div class="col s11 order">
           <transition-group name="flip-list" tag="div">
             <option
               @dragover="(e) => onDragOver(item, i, e)"
               @dragend="(e) => finishDrag(item, i, e)"
               @dragstart="(e) => startDrag(item, i, e)"
-              @click="(e) => onClick(item, i, e)"
+              @click="(e) => onClickOrder(item, i, e)"
               v-for="(item, i) in items"
-              class="item"
+              class="order-item"
               :class="{
                 over: item === over.item && item !== dragFrom,
                 [over.dir]: item === over.item && item !== dragFrom,
               }"
               draggable="true"
               :key="item.id"
+              :index="i"
             >
               <!-- {{ item.order }} -->
+              <!-- {{ selectIndex }} -->
               <div style="float: left" class="emoji">{{ item.emoji }}</div>
               <div style="float: left">&nbsp;{{ item.title }}</div>
               <!--  -->
@@ -37,6 +42,42 @@
             </option>
           </transition-group>
         </div>
+        <!--  -->
+        <div class="col s1 default">
+          <transition-group name="flip-list" tag="div">
+            <div
+              @click="(e) => onClickDefault(item)"
+              v-for="(item, index) in items"
+              class="default-item"
+              :key="item.id"
+              :index="index"
+              :locale="item.locale"
+            >
+              <div align="center">
+                <label>
+                  <div>
+                    <!-- <div v-if="selectIndex !== index">
+                      <input name="mark" type="radio" />
+                      <span></span>
+                    </div> -->
+
+                    <!-- <div v-if="selectIndex === index">
+                      <input name="mark" type="radio" checked />
+                      <span></span>
+                    </div> -->
+                  </div>
+
+                  <div>
+                    <input name="mark" type="radio" />
+                    <span></span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </transition-group>
+        </div>
+
+        <!--  -->
       </div>
     </div>
   </div>
@@ -54,6 +95,7 @@ export default Vue.extend({
     select: null,
     current: null,
     title: '',
+    selectIndex: -1,
 
     emoji: '',
     currency: '',
@@ -72,17 +114,11 @@ export default Vue.extend({
     orderLanguageItems: [],
     selectedLanguages: [],
     selectedItems: [],
+    locale: '',
 
     config: {},
   }),
-  mounted() {
-    EventBus.$on('submitSelect', this.submitHandler)
 
-    this.select = M.FormSelect.init(this.$refs.select, {
-      constrainWidth: true,
-    })
-    M.updateTextFields()
-  },
   methods: {
     ...mapMutations({
       setConfig: 'setConfig',
@@ -104,7 +140,7 @@ export default Vue.extend({
         this.over = { item, pos, dir }
       }, 50)
     },
-    onClick(item, pos, e) {
+    onClickOrder(item, pos, e) {
       let prevPos
 
       pos > 0 ? (prevPos = pos - 1) : (prevPos = 0)
@@ -114,6 +150,9 @@ export default Vue.extend({
       this.over = {}
 
       this.setOrderItems(item, pos)
+    },
+    onClickDefault(item) {
+      this.setDefaultLanguage(item.locale)
     },
 
     setup() {
@@ -253,43 +292,55 @@ export default Vue.extend({
     }),
   },
   watch: {
-    current(languageId) {
-      const { id, title, key, emoji, currency, symbol } = this.languages.find(
-        (l) => l.id === languageId
-      )
-      this.select = title
-
-      this.setSysPanelLanguage(key)
-      this.setDefaultLanguage(key)
+    selectIndex(value) {
+      // const element = document.getElementById('key')
+      console.log('$$ SettingLanguageOrder.vue: 300', value)
+      // this.current = value
     },
   },
   created() {
     this.setup()
   },
-  beforeDestroy() {
-    if (this.select && this.select.destroy) {
-      this.select.destroy()
-    }
+  mounted() {
+    EventBus.$on('submitSelect', this.submitHandler)
+
+    this.locale = this.getDefaultLanguage()
+    this.selectIndex = this.items.findIndex(
+      (item) => item.locale === this.locale
+    )
+
+    // ----------------------------------
   },
+  beforeDestroy() {},
 })
 </script>
 
 <style scoped>
+.order {
+  /* background: yellowgreen; */
+  width: 80%;
+}
+.default {
+  /* background: sandybrown; */
+  width: 20%;
+}
+
 .list > div {
   display: flex;
   flex-direction: column;
 }
 
-.item {
+.order-item {
   font-family: 'RobotoMono-Medium';
 
-  width: 34em;
+  /* width: 34em; */
+  width: 31em;
   height: 2.6em;
   padding-top: 0.5em;
   padding-left: 1em;
   font-size: 2em;
   margin: 10px auto 10px 10px;
-  margin-left: 0px;
+  margin-left: -0.2em;
   background: #edf5f8;
   color: black;
 
@@ -299,6 +350,32 @@ export default Vue.extend({
   border-color: #757575;
   display: inline-block;
 }
+
+.default-item {
+  font-family: 'RobotoMono-Medium';
+
+  /* width: 34em; */
+  width: 2.6em;
+  height: 2.6em;
+  padding-top: 0.5em;
+  /* padding-left: 0em; */
+  font-size: 2em;
+  margin: 10px auto 10px 10px;
+  margin-left: -0.2em;
+  background: #edf5f8;
+  /* background: blue; */
+  color: black;
+
+  box-shadow: 6px 6px 6px #757575, -1px 1px 1px #fff;
+  border: solid 1px;
+  border-radius: 5px;
+  border-color: #757575;
+  display: inline-block;
+}
+/* label {
+  -webkit-transform: scale(1.5); 
+  transform: scale(1.5);
+} */
 
 .flip-list-move {
   transition: transform 0.2s;
@@ -312,5 +389,25 @@ export default Vue.extend({
 }
 
 .up {
+}
+[type='radio'] + span:before,
+[type='radio'] + span:after {
+  border: solid 1px #00b9e3;
+  content: '';
+  position: absolute;
+  left: 0.5em;
+  top: 0.6em;
+  margin: 4px;
+  width: 16px;
+  height: 16px;
+  z-index: 0;
+  transition: 0.28s ease;
+
+  -webkit-transform: scale(2.5);
+  transform: scale(2.5);
+}
+[type='radio']:checked + span:after,
+[type='radio'].with-gap:checked + span:after {
+  background-color: #00b9e3;
 }
 </style>

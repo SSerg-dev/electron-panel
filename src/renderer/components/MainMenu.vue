@@ -104,6 +104,9 @@ import { ipcRenderer } from 'electron'
 export default Vue.extend({
   data() {
     return {
+      name: '',
+      locale: '',
+
       cash_enabler: false,
       isDirectCash: false,
       delay: 10000,
@@ -149,8 +152,11 @@ export default Vue.extend({
 
   mounted() {
     this.initial()
+    
+    this.locale = this.getDefaultLanguage()
+    this.setLocale()
+    if (this.getWetBalance > 0) this.$router.push('/program')
 
-    if (this.getWetBalance > 0) this.$router.push('/cash')
 
     // initial timers
     this.setIsFirstTimer(true)
@@ -181,6 +187,7 @@ export default Vue.extend({
 
   methods: {
     ...mapGetters({
+      getDefaultLanguage: 'getDefaultLanguage',
       getCashEnabler: 'getCashEnabler',
       getIsPayCardMoney: 'getIsPayCardMoney',
       getDirectCash: 'getDirectCash',
@@ -202,6 +209,7 @@ export default Vue.extend({
       setIsBonusMoney: 'setIsBonusMoney',
       setPayType: 'setPayType',
       setPrevRouter: 'setPrevRouter',
+      setInfo: 'setInfo',
     }),
 
     payUp(program) {
@@ -245,6 +253,13 @@ export default Vue.extend({
       ipcRenderer.send('cash_enabler', 'true')
     },
     initial() {},
+
+    setLocale() {
+      this.setInfo({
+        name: this.name,
+        locale: this.locale,
+      })
+    },
   }, // end methods
 })
 </script>

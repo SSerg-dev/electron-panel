@@ -16,6 +16,7 @@ export default Vue.extend({
   name: 'localize-item',
   props: ['item', 'index'],
   data: () => ({
+    name: '',
     locale: '',
     flag: '',
     flagPath: '',
