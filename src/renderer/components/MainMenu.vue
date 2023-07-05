@@ -13,11 +13,11 @@
         >
           <div
             class="card white waves-effect button-style"
-            style="padding-left: 0em;  padding-top: 1.8em;"
+            style="padding-left: 0em; padding-top: 1.8em"
           >
             <div
               class="card-content black-text button-content-style"
-              style="justify-content: center;"
+              style="justify-content: center"
             >
               {{ 'PROGRAMS_COST' | localize }}
             </div>
@@ -31,15 +31,19 @@
 
         <!-- 3 -->
         <li class="collection-item cash" @click="payUp('cash')">
-          <div class="card white waves-effect button-style"
-          style="padding-top: 0.6em;"
+          <div
+            class="card white waves-effect button-style"
+            style="padding-top: 0.6em"
           >
             <div
               class="card-content black-text button-content-style"
               style="justify-content: left"
             >
               <!-- <div class="emoji">💰</div> -->
-                <img style="width: 8%; height: 8%;" src="@/assets/imgs/native/money.png" />
+              <img
+                style="width: 8%; height: 8%"
+                src="@/assets/imgs/native/money.png"
+              />
               &nbsp;&nbsp;
               <div class="align-content">{{ 'CASH' | localize }}</div>
             </div>
@@ -54,15 +58,19 @@
           class="collection-item"
           @click="payUp('card')"
         >
-          <div class="card white waves-effect button-style"
-          style="padding-top: 0.6em;"
+          <div
+            class="card white waves-effect button-style"
+            style="padding-top: 0.6em"
           >
             <div
               class="card-content black-text button-content-style"
               style="justify-content: left"
             >
               <!-- <div class="emoji">💳</div> -->
-              <img style="width: 8%; height: 8%;" src="@/assets/imgs/native/credit-card.png" />
+              <img
+                style="width: 8%; height: 8%"
+                src="@/assets/imgs/native/credit-card.png"
+              />
 
               &nbsp;&nbsp;
               <div class="align-content">{{ 'BANK_CARD' | localize }}</div>
@@ -74,14 +82,19 @@
 
         <!-- 5 ₿ -->
         <li v-if="getIsPing" class="collection-item" @click="payUp('bonus')">
-          <div class="card white waves-effect button-style-bonus"
-          style="padding-top: 0.6em;">
+          <div
+            class="card white waves-effect button-style-bonus"
+            style="padding-top: 0.6em"
+          >
             <div
               class="card-content black-text button-content-style"
               style="justify-content: left"
             >
               <!-- <div class="emoji">🎁</div> -->
-              <img style="width: 8%; height: 8%;" src="@/assets/imgs/native/bitcoin.png"/>
+              <img
+                style="width: 8%; height: 8%"
+                src="@/assets/imgs/native/bitcoin.png"
+              />
               &nbsp;&nbsp;
               <div class="align-content">{{ `BONUSES` | localize }}</div>
             </div>
@@ -111,6 +124,7 @@ export default Vue.extend({
       isDirectCash: false,
       delay: 10000,
       timeoutDelay: null,
+      timeoutLocale: null,
 
       /* dev */
       /* isDown: {
@@ -152,11 +166,13 @@ export default Vue.extend({
 
   mounted() {
     this.initial()
-    
-    this.locale = this.getDefaultLanguage()
-    this.setLocale()
-    if (this.getWetBalance > 0) this.$router.push('/program')
 
+    this.timeoutLocale = setTimeout(() => {
+      this.locale = this.getDefaultLanguage()
+      this.setLocale()
+    }, this.delay * 6 * 3)
+
+    if (this.getWetBalance > 0) this.$router.push('/program')
 
     // initial timers
     this.setIsFirstTimer(true)
@@ -182,6 +198,7 @@ export default Vue.extend({
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
+    clearTimeout(this.timeoutLocale)
   },
   created() {},
 
@@ -290,7 +307,7 @@ section {
 .button-style {
   padding-left: 4em;
   padding-bottom: 0em;
-  
+
   width: 64em;
   height: 11em;
 
@@ -347,6 +364,4 @@ section {
   align-items: center;
   justify-content: left;
 }
-
-
 </style>

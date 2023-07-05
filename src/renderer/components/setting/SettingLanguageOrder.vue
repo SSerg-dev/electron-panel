@@ -14,6 +14,52 @@
     >
       <div class="row card-content black-text list">
         <!--  -->
+        <div class="col s1 default">
+          <transition-group name="flip-list" tag="div">
+            <div
+              @click="(e) => onClickDefault(item)"
+              v-for="(item, index) in items"
+              class="default-item"
+              :key="item.id"
+              :index="index"
+              :locale="item.locale"
+            >
+              <div align="center">
+                <label>
+                  <div>
+                    <!-- <div v-if="selectIndex !== index">
+                      <input name="locale" type="radio" />
+                      <span></span>
+                    </div> -->
+
+                    <!-- <div v-if="selectIndex === index">
+                      <input name="locale" type="radio" checked />
+                      <span></span>
+                    </div> -->
+                  </div>
+
+                  <div>
+                    <input
+                      type="radio"
+                      name="locale"
+                      value="index"
+                      id="index"
+                    />
+                    <span></span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!--  -->
+          </transition-group>
+
+          <!-- <p>Select your size:</p>
+          <p><button id="btn">Show Selected Value</button></p>
+          <p id="output">output</p> -->
+          
+          <!--  -->
+        </div>
 
         <!--  -->
         <div class="col s11 order">
@@ -43,39 +89,6 @@
           </transition-group>
         </div>
         <!--  -->
-        <div class="col s1 default">
-          <transition-group name="flip-list" tag="div">
-            <div
-              @click="(e) => onClickDefault(item)"
-              v-for="(item, index) in items"
-              class="default-item"
-              :key="item.id"
-              :index="index"
-              :locale="item.locale"
-            >
-              <div align="center">
-                <label>
-                  <div>
-                    <!-- <div v-if="selectIndex !== index">
-                      <input name="mark" type="radio" />
-                      <span></span>
-                    </div> -->
-
-                    <!-- <div v-if="selectIndex === index">
-                      <input name="mark" type="radio" checked />
-                      <span></span>
-                    </div> -->
-                  </div>
-
-                  <div>
-                    <input name="mark" type="radio" />
-                    <span></span>
-                  </div>
-                </label>
-              </div>
-            </div>
-          </transition-group>
-        </div>
 
         <!--  -->
       </div>
@@ -294,6 +307,8 @@ export default Vue.extend({
   watch: {
     selectIndex(value) {
       // const element = document.getElementById('key')
+      // const element = document.getElementsByClassName('default')
+
       console.log('$$ SettingLanguageOrder.vue: 300', value)
       // this.current = value
     },
@@ -309,6 +324,34 @@ export default Vue.extend({
       (item) => item.locale === this.locale
     )
 
+    // ----------------------------------
+    // const btn = document.querySelector('#btn')
+    // const radioButtons = document.querySelectorAll('input[name="locale"]')
+    // btn.addEventListener('click', () => {
+    //   let selectedSize
+    //   for (const radioButton of radioButtons) {
+    //     if (radioButton.checked) {
+    //       selectedSize = radioButton.value
+    //       break
+    //     }
+    //   }
+    //   output.innerText = selectedSize
+    //     ? `You selected ${selectedSize}`
+    //     : `You haven't selected any size`
+        
+    // })
+    // ----------------------------------
+    let selectedSize
+      for (const radioButton of radioButtons) {
+        if (radioButton.checked) {
+          selectedSize = radioButton.value
+          break
+        }
+      }
+      output.innerText = selectedSize
+        ? `You selected ${selectedSize}`
+        : `You haven't selected any size`
+      
     // ----------------------------------
   },
   beforeDestroy() {},
@@ -340,7 +383,7 @@ export default Vue.extend({
   padding-left: 1em;
   font-size: 2em;
   margin: 10px auto 10px 10px;
-  margin-left: -0.2em;
+  margin-left: 0.2em;
   background: #edf5f8;
   color: black;
 
