@@ -172,7 +172,7 @@ export default Vue.extend({
       this.setLocale()
     }, this.delay * 6 * 3)
 
-    if (this.getWetBalance > 0) this.$router.push('/program')
+    // if (this.getWetBalance > 0) this.$router.push('/program')
 
     // initial timers
     this.setIsFirstTimer(true)
@@ -200,7 +200,9 @@ export default Vue.extend({
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutLocale)
   },
-  created() {},
+  created() {
+    if (this.getWetBalance > 0) this.$router.push('/program')
+  },
 
   methods: {
     ...mapGetters({

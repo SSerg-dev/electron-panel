@@ -9,10 +9,12 @@
         <div class="popup">
           <p>
             <img v-if="isStop" src="@/assets/imgs/popup/popup-stop.png" />
-            <img v-if="isOperator" src="@/assets/imgs/popup/popup-operator.png" />
+            <img
+              v-if="isOperator"
+              src="@/assets/imgs/popup/popup-operator.png"
+            />
           </p>
         </div>
-
       </section>
     </div>
   </div>
@@ -31,20 +33,16 @@ export default Vue.extend({
     intervalPopupMenu: null,
     isStop: false,
     isOperator: false,
-    messages: [
-      `FREE_STOP`,
-      `CALL_SENT_WAIT`,
-      ''
-    ],
+    messages: [`FREE_STOP`, `CALL_SENT_WAIT`, ''],
     messageIndex: -1,
     delay: 1000,
-    seconds: 4
+    seconds: 4,
   }),
   props: {
     actives: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
   },
   computed: {
     ...mapGetters({
@@ -54,10 +52,9 @@ export default Vue.extend({
       getWetSpend: 'getWetSpend',
       getSecondsBonusTimer: 'getSecondsBonusTimer',
       getPrevRouter: 'getPrevRouter',
-    })
+    }),
   },
   watch: {
-    
     /* getWetStopFreeCount(flag) {
       try {
         if (parseInt(flag) > 0) {
@@ -70,7 +67,7 @@ export default Vue.extend({
       } catch (err) {}
     }, */
 
-    getSecondsBonusTimer (flag) {
+    getSecondsBonusTimer(flag) {
       try {
         if (parseInt(flag) > 0) {
           this.isStop = true
@@ -80,35 +77,34 @@ export default Vue.extend({
           if (this.$route.name !== 'home') this.$router.push('/')
         }
       } catch (err) {}
-    }
+    },
   },
   methods: {
     ...mapMutations({
       setActiveProgram: 'setActiveProgram',
       setActiveProgramKit: 'setActiveProgramKit',
-      setIsActiveProgramKit: 'setIsActiveProgramKit'
+      setIsActiveProgramKit: 'setIsActiveProgramKit',
     }),
     ...mapGetters({
       getActiveProgram: 'getActiveProgram',
       getActiveProgramKit: 'getActiveProgramKit',
-      getIsActiveProgramKit: 'getIsActiveProgramKit'
+      getIsActiveProgramKit: 'getIsActiveProgramKit',
     }),
     setup() {
       this.activeProgram = this.getActiveProgram()
-        // footer
-        if (this.activeProgram === 'stop') {
-          this.isStop = true
-          this.messageIndex = 0
-        }
-        if (this.activeProgram === 'operator') {
-          this.isOperator = true
-          this.messageIndex = 1
-        }
-        if (this.activeProgram === 'turbo') {
-          this.isTurbo = true
-          this.messageIndex = 2
-        }
-      
+      // footer
+      if (this.activeProgram === 'stop') {
+        this.isStop = true
+        this.messageIndex = 0
+      }
+      if (this.activeProgram === 'operator') {
+        this.isOperator = true
+        this.messageIndex = 1
+      }
+      if (this.activeProgram === 'turbo') {
+        this.isTurbo = true
+        this.messageIndex = 2
+      }
     },
 
     gotoProgramMenu(seconds) {
@@ -136,8 +132,8 @@ export default Vue.extend({
     clearInterval(this.intervalPopupMenu)
   },
   components: {
-    PopupTypeActive
-  }
+    PopupTypeActive,
+  },
 })
 </script>
 

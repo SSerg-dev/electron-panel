@@ -13,7 +13,7 @@
       200
     ],
     "installed": true,
-    "type": "DEFAULT"
+    "type": "CCNET"
   },
   "coin_acceptor": {
     "denominations": {},
@@ -35,105 +35,117 @@
     "RU",
     "GB",
     "KZ",
+    "LV",
+    "LT",
     "EE",
-    "DE"
+    "PL"
   ],
   "country": "RU",
   "__commentCurrency": "add default currency",
   "currency": "RUB",
   "index": 7,
   "languages": {
-    "default": "RU",
+    "default": "ru-RU",
     "panel": [
       {
         "id": 1,
         "country": "RU",
         "locale": "ru-RU",
-        "order": 98,
+        "order": 100,
         "isSelected": false,
         "emoji": "🇷🇺",
-        "title": "Русский"
+        "title": "Русский",
+        "flag": "@/assets/imgs/language/lang_RU.png"
       },
       {
         "id": 2,
         "country": "GB",
         "locale": "en-GB",
-        "order": 99,
+        "order": 101,
         "isSelected": false,
         "emoji": "🇬🇧",
-        "title": "English"
+        "title": "English",
+        "flag": "@/assets/imgs/language/lang_EN.png"
       },
       {
         "id": 3,
         "country": "KZ",
         "locale": "kz-KZ",
-        "order": 101,
+        "order": 102,
         "isSelected": false,
         "emoji": "🇰🇿",
-        "title": "Қазақша"
+        "title": "Қазақша",
+        "flag": "@/assets/imgs/language/lang_KZ.png"
       },
       {
         "id": 4,
         "country": "UA",
         "locale": "ua-UA",
-        "order": 95,
+        "order": 101,
         "isSelected": false,
         "emoji": "🇺🇦",
-        "title": "Українська"
+        "title": "Українська",
+        "flag": "@/assets/imgs/language/lang_UA.png"
       },
       {
         "id": 5,
         "country": "LV",
         "locale": "lat-LAT",
-        "order": 96,
+        "order": 109,
         "isSelected": false,
         "emoji": "🇱🇻",
-        "title": "Latviešu"
+        "title": "Latviešu",
+        "flag": "@/assets/imgs/language/lang_LAT.png"
       },
       {
         "id": 6,
         "country": "LT",
         "locale": "lit-LIT",
-        "order": 97,
+        "order": 107,
         "isSelected": false,
         "emoji": "🇱🇹",
-        "title": "Lietuvių"
+        "title": "Lietuvių",
+        "flag": "@/assets/imgs/language/lang_LIT.png"
       },
       {
         "id": 7,
         "country": "EE",
         "locale": "est-EST",
-        "order": 102,
+        "order": 108,
         "isSelected": false,
         "emoji": "🇪🇪",
-        "title": "Eesti"
+        "title": "Eesti",
+        "flag": "@/assets/imgs/language/lang_EST.png"
       },
       {
         "id": 8,
         "country": "PL",
         "locale": "pol-POL",
-        "order": 99,
+        "order": 106,
         "isSelected": false,
         "emoji": "🇵🇱",
-        "title": "Polski"
+        "title": "Polski",
+        "flag": "@/assets/imgs/language/lang_POL.png"
       },
       {
         "id": 9,
         "country": "DE",
         "locale": "ger-GER",
-        "order": 100,
+        "order": 103,
         "isSelected": false,
         "emoji": "🇩🇪",
-        "title": "Deutsch"
+        "title": "Deutsch",
+        "flag": "@/assets/imgs/language/lang_GER.png"
       },
       {
         "id": 10,
         "country": "FR",
         "locale": "fra-FRA",
-        "order": 101,
+        "order": 104,
         "isSelected": false,
         "emoji": "🇫🇷",
-        "title": "Français"
+        "title": "Français",
+        "flag": "@/assets/imgs/language/lang_FRA.png"
       },
       {
         "id": 11,
@@ -142,25 +154,28 @@
         "order": 102,
         "isSelected": false,
         "emoji": "🇯🇵",
-        "title": "日本語"
+        "title": "日本語",
+        "flag": "@/assets/imgs/language/lang_JPN.png"
       },
       {
         "id": 12,
         "country": "TR",
         "locale": "tur-TUR",
-        "order": 103,
+        "order": 105,
         "isSelected": false,
         "emoji": "🇹🇷",
-        "title": "Türkçe"
+        "title": "Türkçe",
+        "flag": "@/assets/imgs/language/lang_TUR.png"
       },
       {
         "id": 13,
         "country": "BY",
         "locale": "blr-BLR",
-        "order": 100,
+        "order": 101,
         "isSelected": false,
         "emoji": "🇧🇾",
-        "title": "Беларуская"
+        "title": "Беларуская",
+        "flag": "@/assets/imgs/language/lang_BLR.png"
       },
       {
         "id": 14,
@@ -169,7 +184,8 @@
         "order": 101,
         "isSelected": false,
         "emoji": "🇸🇮",
-        "title": "Slovenščina"
+        "title": "Slovenščina",
+        "flag": "@/assets/imgs/language/lang_SVN.png"
       },
       {
         "id": 15,
@@ -178,7 +194,8 @@
         "order": 102,
         "isSelected": false,
         "emoji": "🇸🇰",
-        "title": "Slovenčina"
+        "title": "Slovenčina",
+        "flag": "@/assets/imgs/language/lang_SVK.png"
       },
       {
         "id": 16,
@@ -187,25 +204,28 @@
         "order": 103,
         "isSelected": false,
         "emoji": "🇷🇸",
-        "title": "Српски"
+        "title": "Српски",
+        "flag": "@/assets/imgs/language/lang_SRB.png"
       },
       {
         "id": 17,
         "country": "NO",
         "locale": "nor-NOR",
-        "order": 104,
+        "order": 110,
         "isSelected": false,
         "emoji": "🇳🇴",
-        "title": "Norsk"
+        "title": "Norsk",
+        "flag": "@/assets/imgs/language/lang_NOR.png"
       },
       {
         "id": 18,
         "country": "FI",
         "locale": "fin-FIN",
-        "order": 101,
+        "order": 104,
         "isSelected": false,
         "emoji": "🇫🇮",
-        "title": "Suomi"
+        "title": "Suomi",
+        "flag": "@/assets/imgs/language/lang_FIN.png"
       },
       {
         "id": 19,
@@ -214,7 +234,8 @@
         "order": 102,
         "isSelected": false,
         "emoji": "🇧🇬",
-        "title": "Български"
+        "title": "Български",
+        "flag": "@/assets/imgs/language/lang_BGR.png"
       },
       {
         "id": 20,
@@ -223,7 +244,8 @@
         "order": 103,
         "isSelected": false,
         "emoji": "🇬🇷",
-        "title": "Ελληνικά"
+        "title": "Ελληνικά",
+        "flag": "@/assets/imgs/language/lang_GRC.png"
       },
       {
         "id": 21,
@@ -232,7 +254,8 @@
         "order": 104,
         "isSelected": false,
         "emoji": "🇩🇰",
-        "title": "Dansk"
+        "title": "Dansk",
+        "flag": "@/assets/imgs/language/lang_DNK.png"
       },
       {
         "id": 22,
@@ -241,7 +264,8 @@
         "order": 105,
         "isSelected": false,
         "emoji": "🇷🇴",
-        "title": "Română"
+        "title": "Română",
+        "flag": "@/assets/imgs/language/lang_ROU.png"
       },
       {
         "id": 23,
@@ -250,7 +274,8 @@
         "order": 106,
         "isSelected": false,
         "emoji": "🇸🇪",
-        "title": "Svenska"
+        "title": "Svenska",
+        "flag": "@/assets/imgs/language/lang_SWE.png"
       },
       {
         "id": 24,
@@ -259,7 +284,8 @@
         "order": 107,
         "isSelected": false,
         "emoji": "🇵🇹",
-        "title": "Português"
+        "title": "Português",
+        "flag": "@/assets/imgs/language/lang_PRT.png"
       },
       {
         "id": 25,
@@ -268,7 +294,8 @@
         "order": 101,
         "isSelected": false,
         "emoji": "🇳🇱",
-        "title": "Nederlands"
+        "title": "Nederlands",
+        "flag": "@/assets/imgs/language/lang_NLD.png"
       },
       {
         "id": 26,
@@ -277,7 +304,8 @@
         "order": 99,
         "isSelected": false,
         "emoji": "🇲🇩",
-        "title": "Moldova"
+        "title": "Moldova",
+        "flag": "@/assets/imgs/language/lang_MDA.png"
       },
       {
         "id": 27,
@@ -286,7 +314,8 @@
         "order": 100,
         "isSelected": false,
         "emoji": "🇮🇹",
-        "title": "Italiano"
+        "title": "Italiano",
+        "flag": "@/assets/imgs/language/lang_ITA.png"
       },
       {
         "id": 28,
@@ -295,7 +324,8 @@
         "order": 102,
         "isSelected": false,
         "emoji": "🇭🇺",
-        "title": "magyar"
+        "title": "magyar",
+        "flag": "@/assets/imgs/language/lang_HUN.png"
       },
       {
         "id": 29,
@@ -304,7 +334,8 @@
         "order": 103,
         "isSelected": false,
         "emoji": "🇮🇷",
-        "title": "فارسی"
+        "title": "فارسی",
+        "flag": "@/assets/imgs/language/lang_IRN.png"
       },
       {
         "id": 30,
@@ -313,7 +344,8 @@
         "order": 104,
         "isSelected": false,
         "emoji": "🇭🇷",
-        "title": "Hrvatski"
+        "title": "Hrvatski",
+        "flag": "@/assets/imgs/language/lang_HRV.png"
       },
       {
         "id": 31,
@@ -322,7 +354,8 @@
         "order": 105,
         "isSelected": false,
         "emoji": "🇦🇲",
-        "title": "Հայերեն"
+        "title": "Հայերեն",
+        "flag": "@/assets/imgs/language/lang_ARM.png"
       },
       {
         "id": 32,
@@ -331,7 +364,8 @@
         "order": 106,
         "isSelected": false,
         "emoji": "🇨🇿",
-        "title": "Čeština"
+        "title": "Čeština",
+        "flag": "@/assets/imgs/language/lang_CZE.png"
       },
       {
         "id": 33,
@@ -340,7 +374,8 @@
         "order": 107,
         "isSelected": false,
         "emoji": "🇺🇿",
-        "title": "Oʻzbekcha"
+        "title": "Oʻzbekcha",
+        "flag": "@/assets/imgs/language/lang_UZB.png"
       },
       {
         "id": 34,
@@ -349,7 +384,8 @@
         "order": 108,
         "isSelected": false,
         "emoji": "🇹🇯",
-        "title": "Тоҷикӣ"
+        "title": "Тоҷикӣ",
+        "flag": "@/assets/imgs/language/lang_TJK.png"
       },
       {
         "id": 35,
@@ -358,7 +394,8 @@
         "order": 109,
         "isSelected": false,
         "emoji": "🇰🇬",
-        "title": "Кыргызча"
+        "title": "Кыргызча",
+        "flag": "@/assets/imgs/language/lang_KGZ.png"
       },
       {
         "id": 36,
@@ -367,7 +404,8 @@
         "order": 110,
         "isSelected": false,
         "emoji": "🇦🇿",
-        "title": "Azərbaycanca"
+        "title": "Azərbaycanca",
+        "flag": "@/assets/imgs/language/lang_AZE.png"
       },
       {
         "id": 37,
@@ -376,7 +414,8 @@
         "order": 37,
         "isSelected": false,
         "emoji": "🇪🇸",
-        "title": "Español"
+        "title": "Español",
+        "flag": "@/assets/imgs/language/lang_SPA.png"
       },
       {
         "id": 38,
@@ -385,7 +424,8 @@
         "order": 38,
         "isSelected": false,
         "emoji": "🇬🇪",
-        "title": "ქართული"
+        "title": "ქართული",
+        "flag": "@/assets/imgs/language/lang_GEO.png"
       },
       {
         "id": 39,
@@ -394,7 +434,8 @@
         "order": 39,
         "isSelected": false,
         "emoji": "🇨🇳",
-        "title": "中文"
+        "title": "中文",
+        "flag": "@/assets/imgs/language/lang_CHN.png"
       },
       {
         "id": 40,
@@ -403,7 +444,8 @@
         "order": 101,
         "isSelected": false,
         "emoji": "🇮🇱",
-        "title": "עברית"
+        "title": "עברית",
+        "flag": "@/assets/imgs/language/lang_IZR.png"
       },
       {
         "id": 41,
@@ -412,7 +454,8 @@
         "order": 41,
         "isSelected": false,
         "emoji": "🇦🇪",
-        "title": "العربية"
+        "title": "العربية",
+        "flag": "@/assets/imgs/language/lang_ARB.png"
       },
       {
         "id": 42,
@@ -421,7 +464,8 @@
         "order": 42,
         "isSelected": false,
         "emoji": "🇹🇲",
-        "title": "Türkmençe"
+        "title": "Türkmençe",
+        "flag": "@/assets/imgs/language/lang_CHE.png"
       },
       {
         "id": 43,
@@ -430,7 +474,8 @@
         "order": 43,
         "isSelected": false,
         "emoji": "🇨🇬",
-        "title": "Tатарча"
+        "title": "Tатарча",
+        "flag": "@/assets/imgs/language/lang_TAT.png"
       },
       {
         "id": 44,
@@ -439,7 +484,8 @@
         "order": 44,
         "isSelected": false,
         "emoji": "🇰🇷",
-        "title": "한국어"
+        "title": "한국어",
+        "flag": "@/assets/imgs/language/lang_KOR.png"
       }
     ],
     "syspanel": "RU"

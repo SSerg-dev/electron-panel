@@ -36,6 +36,7 @@
         :container-class="'pagination'"
       />
     </div>
+    
   </div>
 </template>
 

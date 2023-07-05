@@ -4,12 +4,13 @@
     <div
       class="card grey lighten-3"
       style="
-        height: calc(0);
+        height: calc(76em);
         border: solid 3px #00b9e3;
         border-top-left-radius: 2em;
         border-bottom-left-radius: 2em;
         border-top-right-radius: 2em;
         border-bottom-right-radius: 2em;
+
       "
     >
       <div class="row card-content black-text list">
@@ -27,18 +28,6 @@
               <div align="center">
                 <label>
                   <div>
-                    <!-- <div v-if="selectIndex !== index">
-                      <input name="locale" type="radio" />
-                      <span></span>
-                    </div> -->
-
-                    <!-- <div v-if="selectIndex === index">
-                      <input name="locale" type="radio" checked />
-                      <span></span>
-                    </div> -->
-                  </div>
-
-                  <div>
                     <input
                       type="radio"
                       name="locale"
@@ -51,17 +40,11 @@
               </div>
             </div>
 
-            <!--  -->
           </transition-group>
 
-          <!-- <p>Select your size:</p>
-          <p><button id="btn">Show Selected Value</button></p>
-          <p id="output">output</p> -->
-          
-          <!--  -->
+
         </div>
 
-        <!--  -->
         <div class="col s11 order">
           <transition-group name="flip-list" tag="div">
             <option
@@ -80,30 +63,44 @@
               :index="i"
             >
               <!-- {{ item.order }} -->
-              <!-- {{ selectIndex }} -->
               <div style="float: left" class="emoji">{{ item.emoji }}</div>
               <div style="float: left">&nbsp;{{ item.title }}</div>
-              <!--  -->
-              <!--  -->
             </option>
           </transition-group>
         </div>
-        <!--  -->
-
-        <!--  -->
       </div>
     </div>
+    <!--  -->
+    <div
+      v-if="getPanelType !== 'vacuum'"
+      class="paginate"
+      style="padding-left: 8em"
+    >
+      <Paginate
+        v-model="page"
+        :page-count="pageCount"
+        :click-handler="pageChangeHandler"
+        :prev-text="'<'"
+        :next-text="'>'"
+        :container-class="'pagination'"
+      />
+    </div>    <!--  -->
+
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import paginationMixin from '@/mixins/pagination.mixin'
+
 import { mapGetters, mapMutations } from 'vuex'
 import EventBus from '@/bus/EventBus'
 import { title } from 'process'
 
+
 export default Vue.extend({
   name: 'setting-language-order',
+  mixins: [paginationMixin],
   data: () => ({
     select: null,
     current: null,
@@ -181,8 +178,6 @@ export default Vue.extend({
       // sort by order
       this.items = this.sortByOrder(this.selectedItems)
     },
-
-    submitHandler(options) {},
 
     initLanguage() {
       return this.getLanguageNatives()
@@ -304,55 +299,23 @@ export default Vue.extend({
       setDefaultLanguage: 'setDefaultLanguage',
     }),
   },
-  watch: {
-    selectIndex(value) {
-      // const element = document.getElementById('key')
-      // const element = document.getElementsByClassName('default')
 
-      console.log('$$ SettingLanguageOrder.vue: 300', value)
-      // this.current = value
-    },
-  },
   created() {
     this.setup()
+    this.setupPagination(this.items)
   },
   mounted() {
-    EventBus.$on('submitSelect', this.submitHandler)
-
     this.locale = this.getDefaultLanguage()
     this.selectIndex = this.items.findIndex(
       (item) => item.locale === this.locale
     )
-
-    // ----------------------------------
-    // const btn = document.querySelector('#btn')
-    // const radioButtons = document.querySelectorAll('input[name="locale"]')
-    // btn.addEventListener('click', () => {
-    //   let selectedSize
-    //   for (const radioButton of radioButtons) {
-    //     if (radioButton.checked) {
-    //       selectedSize = radioButton.value
-    //       break
-    //     }
-    //   }
-    //   output.innerText = selectedSize
-    //     ? `You selected ${selectedSize}`
-    //     : `You haven't selected any size`
-        
-    // })
-    // ----------------------------------
-    let selectedSize
-      for (const radioButton of radioButtons) {
-        if (radioButton.checked) {
-          selectedSize = radioButton.value
-          break
-        }
-      }
-      output.innerText = selectedSize
-        ? `You selected ${selectedSize}`
-        : `You haven't selected any size`
-      
-    // ----------------------------------
+    const radioButtons = document.querySelectorAll('input[name="locale"]')
+    radioButtons[this.selectIndex].checked = true
+  },
+  computed: {
+    ...mapGetters({
+      getPanelType: 'getPanelType',
+    }),
   },
   beforeDestroy() {},
 })
@@ -382,7 +345,7 @@ export default Vue.extend({
   padding-top: 0.5em;
   padding-left: 1em;
   font-size: 2em;
-  margin: 10px auto 10px 10px;
+  margin: 2px auto 10px 10px;
   margin-left: 0.2em;
   background: #edf5f8;
   color: black;
@@ -403,7 +366,7 @@ export default Vue.extend({
   padding-top: 0.5em;
   /* padding-left: 0em; */
   font-size: 2em;
-  margin: 10px auto 10px 10px;
+  margin: 2px auto 10px 10px;
   margin-left: -0.2em;
   background: #edf5f8;
   /* background: blue; */
@@ -452,5 +415,20 @@ export default Vue.extend({
 [type='radio']:checked + span:after,
 [type='radio'].with-gap:checked + span:after {
   background-color: #00b9e3;
+}
+
+/*  */
+.paginate {
+  font-size: 1em;
+  width: 100%;
+
+  position: absolute; /*  absolute; relative;*/
+  left: calc(1 * 18em);
+  bottom: 14em;
+
+  background: #121212;
+
+  font-family: 'Roboto-Medium';
+  font-weight: bold;
 }
 </style>
