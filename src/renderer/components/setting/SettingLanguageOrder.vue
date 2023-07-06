@@ -10,7 +10,6 @@
         border-bottom-left-radius: 2em;
         border-top-right-radius: 2em;
         border-bottom-right-radius: 2em;
-
       "
     >
       <div class="row card-content black-text list">
@@ -39,10 +38,7 @@
                 </label>
               </div>
             </div>
-
           </transition-group>
-
-
         </div>
 
         <div class="col s11 order">
@@ -84,8 +80,8 @@
         :next-text="'>'"
         :container-class="'pagination'"
       />
-    </div>    <!--  -->
-
+    </div>
+    <!--  -->
   </div>
 </template>
 
@@ -97,7 +93,6 @@ import { mapGetters, mapMutations } from 'vuex'
 import EventBus from '@/bus/EventBus'
 import { title } from 'process'
 
-
 export default Vue.extend({
   name: 'setting-language-order',
   mixins: [paginationMixin],
@@ -106,6 +101,8 @@ export default Vue.extend({
     current: null,
     title: '',
     selectIndex: -1,
+    prevSelectIndex: -1,
+    radioButtons: null,
 
     emoji: '',
     currency: '',
@@ -298,19 +295,34 @@ export default Vue.extend({
       setSysPanelLanguage: 'setSysPanelLanguage',
       setDefaultLanguage: 'setDefaultLanguage',
     }),
-  },
+    changeDefaultLocale() {
+      this.locale = this.getDefaultLanguage()
+      this.selectIndex = this.items.findIndex(
+        (item) => item.locale === this.locale
+      )
+      this.radioButtons = document.querySelectorAll('input[name="locale"]')
 
+      if (this.selectIndex > -1) {
+        this.radioButtons[this.selectIndex].checked = true
+      } 
+    },
+  }, // end methods
+
+  watch: {
+    page(value) {
+      if (value === 1) {
+        this.radioButtons[this.prevSelectIndex].checked = true
+        // console.log('$$ 315', value, this.radioButtons) 
+      }
+    },
+  },
   created() {
     this.setup()
     this.setupPagination(this.items)
   },
   mounted() {
-    this.locale = this.getDefaultLanguage()
-    this.selectIndex = this.items.findIndex(
-      (item) => item.locale === this.locale
-    )
-    const radioButtons = document.querySelectorAll('input[name="locale"]')
-    radioButtons[this.selectIndex].checked = true
+    this.changeDefaultLocale()
+    this.prevSelectIndex = this.selectIndex
   },
   computed: {
     ...mapGetters({

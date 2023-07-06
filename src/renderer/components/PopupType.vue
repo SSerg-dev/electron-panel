@@ -14,6 +14,9 @@
               src="@/assets/imgs/popup/popup-operator.png"
             />
           </p>
+          <p>
+            <PopupTypeActive />
+          </p>
         </div>
       </section>
     </div>
