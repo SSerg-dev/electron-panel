@@ -111,6 +111,7 @@
 import Vue from 'vue'
 import { mapGetters, mapMutations } from 'vuex'
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
+import EventBus from '@/bus/EventBus'
 
 import { ipcRenderer } from 'electron'
 
@@ -125,6 +126,7 @@ export default Vue.extend({
       delay: 10000,
       timeoutDelay: null,
       timeoutLocale: null,
+      timeoutToProgram: null,
 
       /* dev */
       /* isDown: {
@@ -172,7 +174,15 @@ export default Vue.extend({
       this.setLocale()
     }, this.delay * 6 * 3)
 
-    // if (this.getWetBalance > 0) this.$router.push('/program')
+    this.timeoutToProgram = setTimeout( () => {
+      if (this.getWetBalance > 0) this.$router.push('/program')
+    }, 2000)
+
+    // ----------------------------------
+    // 
+    EventBus.$on('submitShowActive', this.submitActiveHandler)
+
+    // ----------------------------------
 
     // initial timers
     this.setIsFirstTimer(true)
@@ -199,12 +209,18 @@ export default Vue.extend({
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutLocale)
+    clearTimeout(this.timeoutToProgram) 
   },
   created() {
-    if (this.getWetBalance > 0) this.$router.push('/program')
   },
 
   methods: {
+    submitActiveHandler(params) {
+      console.log('$$ PopupTypeAction.vue: 138', params)
+      this.$router.push('/popup')
+
+    },
+
     ...mapGetters({
       getDefaultLanguage: 'getDefaultLanguage',
       getCashEnabler: 'getCashEnabler',

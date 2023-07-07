@@ -12,7 +12,7 @@ import {
   getSerialDevicesInfo,
   wait,
   delay,
-  permitAccess
+  permitAccess,
 } from './utils'
 
 import GPIOService from './services/GPIOService'
@@ -221,7 +221,7 @@ const startup = async (config) => {
 
   /* ----------------------------------------------------------------------- */
   /* */
-   
+
   delay(4000)
 
   // console.log('$$ background.js: 224 bill_validator')

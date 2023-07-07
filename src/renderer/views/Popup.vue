@@ -7,9 +7,9 @@
           <PopupType :actives="actives" />
         </div>
 
-        <div v-if="getIsMoneyToBonus || getMoneyToBonus > 0">
+        <!-- <div v-if="getIsMoneyToBonus || getMoneyToBonus > 0">
           <PopupBonus :actives="actives" />
-        </div>
+        </div> -->
 
       </div>
     </section>

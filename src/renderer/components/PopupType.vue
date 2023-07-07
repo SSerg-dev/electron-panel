@@ -14,7 +14,7 @@
               src="@/assets/imgs/popup/popup-operator.png"
             />
           </p>
-          <p>
+            <p v-if="!isStop && !isOperator">
             <PopupTypeActive />
           </p>
         </div>

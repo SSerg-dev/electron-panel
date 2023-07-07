@@ -31,6 +31,7 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 import { Component, Box, Circle, Button } from '@/shapes/index.js'
 import Message from '@/components/app/Message'
+import EventBus from '@/bus/EventBus'
 
 export default {
   data: () => ({
@@ -43,13 +44,14 @@ export default {
 
     timeoutDelay: null,
     timeoutPopup: null,
+    timeoutToProgram: null,
   }),
 
   props: {
-    actives: {
-      required: true,
-      type: Array,
-    },
+    // actives: {
+    //   required: true,
+    //   type: Array,
+    // },
   },
 
   computed: {
@@ -107,6 +109,10 @@ export default {
           break
 
         default:
+          // this.blueImage.show()
+          // this.greenImage.hide()
+          // this.redImage.hide()
+          this.$router.push('/program')
           break
       }
     },
@@ -131,23 +137,29 @@ export default {
       this.redImage = new Box({
         selector: '#red-image',
       })
-      // end classes
+      
     },
+
+
   }, // end methods
 
   created() {
-    this.activeProgram = this.getActiveProgram
-    console.log('$$ 150', this.activeProgram)
+    this.activeProgram = this.getActiveProgram 
   },
   mounted() {
     this.setup()
-    // this.activeProgram = 'disk'
-    this.showActive((this.activeProgram = 'foam'))
+    this.showActive((this.activeProgram))
+    
+    this.timeoutToProgram = setTimeout( () => {
+      this.$router.push('/program')
+    }, 2000)
+
   },
 
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutPopup)
+    clearTimeout(this.timeoutToProgram)
   },
 
   components: {
@@ -160,16 +172,9 @@ export default {
 .form {
   width: 67em;
   height: 82em;
-  margin-left: 0em;
-  margin-top: 11em;
-  padding-left: 0em;
-  padding-top: 2em;
-  padding-bottom: 0em;
+  position: absolute;
+  right: 4em;
 
-  /* dev */
-  border: solid 3px #00b9e3;
-  border-radius: 2em;
-  box-shadow: 0px 0px 10px 10px #00b9e3;
 }
 
 .info-title {

@@ -17,6 +17,8 @@ import { compareVersions, compare } from 'compare-versions'
 import { ipcRenderer } from 'electron'
 import { result } from 'lodash'
 var sha1 = require('sha-1')
+import EventBus from '@/bus/EventBus'
+
 
 Vue.use(Vuex)
 
@@ -302,7 +304,9 @@ export default new Vuex.Store({
 
     // Wet actions ======================
     updateStartProgram({ commit, dispatch, getters, state }, params) {
-      console.log('$$ index.js: 310', JSON.stringify(params))
+      console.log('$$ index.js: 307', JSON.stringify(params))
+      
+      EventBus.$emit('submitShowActive', JSON.stringify(params))
 
       if (params[2] === 'operator') dispatch('updateCallOperator')
       const number = state.programs.findIndex((p) => p === params[2]) + 1
