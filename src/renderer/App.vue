@@ -245,7 +245,9 @@ export default Vue.extend({
       updateCoinBalance: 'updateCoinBalance',
       updateBanknoteBalance: 'updateBanknoteBalance',
     }),
-  },
+
+    
+  }, // end methods
 
   mounted() {
     this.checkControllerWork()
@@ -253,6 +255,8 @@ export default Vue.extend({
     sleep(this.sleepMs).then(() => {
       this.version()
     })
+
+
   },
 
   created() {
@@ -268,7 +272,6 @@ export default Vue.extend({
 <style>
 @import '~materialize-css/dist/css/materialize.min.css';
 @import 'assets/css/index.css';
-
 
 @font-face {
   font-family: 'Emoji-Regular';
@@ -289,6 +292,4 @@ export default Vue.extend({
   font-family: 'RobotoMono-Medium';
   src: url(./assets/fonts/RobotoMono-Medium.ttf) format('truetype');
 }
-
-
 </style>

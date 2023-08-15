@@ -2,12 +2,9 @@
   <div class="post">
     <div>
       <div v-if="this.getPanelType === 'wash'">
-
-        <!-- cache component -->
         <keep-alive>
           <WashTable :actives="actives" :delay="delay" />
         </keep-alive>
-          
       </div>
 
       <div v-if="this.getPanelType === 'vacuum'">

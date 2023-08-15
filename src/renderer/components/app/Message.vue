@@ -156,7 +156,6 @@ export default Vue.extend({
       getIsFirstTimer: 'getIsFirstTimer',
       getIsMoneyToBonusNo: 'getIsMoneyToBonusNo',
       getIsMoneyToBonusYes: 'getIsMoneyToBonusYes',
-      getMoneyToBonus: 'getMoneyToBonus',
       getIsStandbyFreeEnable: 'getIsStandbyFreeEnable',
     }),
     ...mapMutations({
@@ -171,13 +170,13 @@ export default Vue.extend({
       if (+flag <= 1 && !this.getIsMoneyToBonusYes) this.$router.push('/')
     },
     getDryBalance(flag) {
-      console.log('Message getDryBalance-->', this.getDryBalance)
+      console.log('$$ Message.vue: 173 getDryBalance', this.getDryBalance)
     },
     getFixedCurrency(flag) {
       this.digits = flag
     },
     getMoneyToBonus(flag) {
-      console.log('Message-->getMoneyToBonus-->', flag)
+      console.log('$$ Message.vue: 179 getMoneyToBonus', flag)
     },
     getSecondsBonusTimer(flag) {
       if (flag >= 0) this.timerSeconds = flag

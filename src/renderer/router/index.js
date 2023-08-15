@@ -27,50 +27,50 @@ const router = new Router({
       path: '/',
       name: 'home',
       meta: { layout: 'main' },
-      // component: () => import('../views/Home.vue')
-      component: Home
+      component: () => import('../views/Home.vue')
+      // component: Home
     },
     {
       path: '/cash',
       name: 'cash',
       meta: { layout: 'main' },
-      // component: () => import('../views/Cash.vue')
-      component: Cash
+      component: () => import('../views/Cash.vue')
+      // component: Cash
     },
     {
       path: '/card',
       name: 'card',
       meta: { layout: 'main' },
-      // component: () => import('../views/Card.vue')
-      component: Card
+      component: () => import('../views/Card.vue')
+      // component: Card
     },
     {
       path: '/bonus',
       name: 'bonus',
       meta: { layout: 'main' },
-      // component: () => import('../views/Bonus.vue')
-      component: Bonus
+      component: () => import('../views/Bonus.vue')
+      // component: Bonus
     },
     {
       path: '/cost',
       name: 'cost',
       meta: { layout: 'main' },
-      // component: () => import('../views/Cost.vue')
-      component: Cost
+      component: () => import('../views/Cost.vue')
+      // component: Cost
     },
     {
       path: '/language',
       name: 'language',
       meta: { layout: 'main' },
-      // component: () => import('../views/Language.vue')
-      component: Language
+      component: () => import('../views/Language.vue')
+      // component: Language
     },
     {
       path: '/program',
       name: 'program',
       meta: { layout: 'main' },
-      // component: () => import('../views/Program.vue')
-      component: Program
+      component: () => import('../views/Program.vue')
+      // component: Program
     },
     {
       path: '/service',

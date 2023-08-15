@@ -15,14 +15,12 @@
             { 'card-content white-text': this.isDown.disk },
           ]"
         >
-
           <div v-if="this.getIsChangeProgramSecond()">
             {{ `${this.items[this.index].title}` | localize }}
           </div>
           <div v-else>
             {{ `${actives[this.activeNumber].title}` | localize }}
           </div>
-        
         </div>
       </div>
     </td>
@@ -201,7 +199,9 @@ export default Vue.extend({
       this.timeoutSetUp = setTimeout(() => {
         try {
           if (this.getWetBalance === '0') this.clearDown()
-        } catch (err) {}
+        } catch (err) {
+          console.log('$$ WashTableDiskEx.vue: 205 err', err)
+        }
       }, 1000)
     },
     clearDown() {
@@ -378,7 +378,7 @@ export default Vue.extend({
   created() {
     this.items = this.getAssignItems()
     this.getIndex()
-    
+
     // console.log('$$ WashTableDisk.vue: 375', this.items[this.index] )
 
     this.getKits()

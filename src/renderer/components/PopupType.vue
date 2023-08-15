@@ -14,7 +14,7 @@
               src="@/assets/imgs/popup/popup-operator.png"
             />
           </p>
-            <p v-if="!isStop && !isOperator">
+          <p v-if="isShowActive">
             <PopupTypeActive />
           </p>
         </div>
@@ -36,6 +36,7 @@ export default Vue.extend({
     intervalPopupMenu: null,
     isStop: false,
     isOperator: false,
+    isShowActive: false,
     messages: [`FREE_STOP`, `CALL_SENT_WAIT`, ''],
     messageIndex: -1,
     delay: 1000,
@@ -96,7 +97,8 @@ export default Vue.extend({
     setup() {
       this.activeProgram = this.getActiveProgram()
       // footer
-      if (this.activeProgram === 'stop') {
+
+      /* if (this.activeProgram === 'stop') {
         this.isStop = true
         this.messageIndex = 0
       }
@@ -107,6 +109,28 @@ export default Vue.extend({
       if (this.activeProgram === 'turbo') {
         this.isTurbo = true
         this.messageIndex = 2
+      } */
+
+      switch (this.activeProgram) {
+        case 'stop':
+          this.isStop = true
+          this.messageIndex = 0
+          break
+
+        case 'operator':
+          this.isOperator = true
+          this.messageIndex = 1
+          break
+
+        case 'turbo':
+          this.isTurbo = true
+          this.messageIndex = 2
+          break
+
+        default:
+          this.isShowActive = true
+
+          break
       }
     },
 

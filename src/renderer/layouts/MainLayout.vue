@@ -24,9 +24,9 @@
     <div
       v-if="
         this.$route.name != 'language' &&
-          this.$route.name != 'setting' &&
-          this.$route.name != 'cost' &&
-          this.$route.name != 'localize'
+        this.$route.name != 'setting' &&
+        this.$route.name != 'cost' &&
+        this.$route.name != 'localize'
       "
       class="footer"
     >
@@ -71,7 +71,7 @@ export default Vue.extend({
 
     queueType: '',
     localClient: 'local',
-    localStorage: null
+    localStorage: null,
   }),
 
   computed: {
@@ -80,14 +80,14 @@ export default Vue.extend({
       //getWetBusyPanel: 'getWetBusyPanel',
       getPanelType: 'getPanelType',
       getIsPingUrl: 'getIsPingUrl',
-      getIsPing: 'getIsPing'
-    })
+      getIsPing: 'getIsPing',
+    }),
   },
 
   methods: {
     ...mapGetters({
       getPingOptions: 'getPingOptions',
-      getCompleteWash: 'getCompleteWash'
+      getCompleteWash: 'getCompleteWash',
     }),
 
     async restorePayment() {
@@ -163,7 +163,7 @@ export default Vue.extend({
       }
       if (+response.result === 0) {
         this.setIsPing(true)
-        // this.$message(`ping ${this.url} выполнен успешно`) 
+        // this.$message(`ping ${this.url} выполнен успешно`)
       }
     },
 
@@ -184,16 +184,17 @@ export default Vue.extend({
 
     ...mapMutations({
       setIsPing: 'setIsPing',
-      setIsPingUrl: 'setIsPingUrl'
-    })
-  },
+      setIsPingUrl: 'setIsPingUrl',
+    }),
+
+  }, // end methods
+
   created() {
     this.getIsPing = true
     this.getIsPingUrl = true
   },
 
   async mounted() {
-
     this.url = process.env.VUE_APP_URL_CONNECT
     this.storage = new Storage(this.client, this.url)
 
@@ -210,6 +211,7 @@ export default Vue.extend({
         this.restorePayment()
       }
     }, (this.delay = 4000))
+
   },
   beforeDestroy() {
     clearInterval(this.intervalPing)
@@ -218,13 +220,13 @@ export default Vue.extend({
   components: {
     Navbar,
     Footer,
-    Snowf
+    Snowf,
   },
   computed: {
     locale() {
       return this.$store.getters.info.locale
-    }
-  }
+    },
+  },
 })
 </script>
 

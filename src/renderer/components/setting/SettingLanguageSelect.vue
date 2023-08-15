@@ -14,7 +14,8 @@
       <div class="card-content black-text scrollbar">
         <span class="card-title">{{ `Language` | localize }} {{ `:` }}</span>
 
-        <div class="input-field" id="scrollbar-style">
+        <div class="input-field" id="scrollbar-style"
+        >
           <select
             multiple
             class="page-title white-text"

@@ -4,8 +4,8 @@
       <div
         v-if="
           this.getPanelType === 'wash' &&
-            getIsPingUrl &&
-            getWetActive === 'true'
+          getIsPingUrl &&
+          getWetActive === 'true'
         "
       >
         <Wash />
@@ -49,6 +49,7 @@ import { mapGetters, mapMutations } from 'vuex'
 import Wash from '@/components/wash/Wash'
 import Vacuum from '@/components/vacuum/Vacuum'
 import { update } from 'lodash'
+import EventBus from '@/bus/EventBus'
 
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
@@ -60,7 +61,7 @@ export default Vue.extend({
 
   components: {
     Wash,
-    Vacuum
+    Vacuum,
     // loader
   },
   watch: {
@@ -75,7 +76,7 @@ export default Vue.extend({
     getWetActive(value) {
       // string
       // console.log('$$ getWetActive',typeof value)
-    }
+    },
   },
 
   methods: {
@@ -84,7 +85,7 @@ export default Vue.extend({
       setIsPingUrl: 'setIsPingUrl',
 
       setIsCardMoney: 'setIsCardMoney',
-      setIsBonusMoney: 'setIsBonusMoney'
+      setIsBonusMoney: 'setIsBonusMoney',
     }),
     setup() {
       this.setIsCardMoney(false)
@@ -95,8 +96,8 @@ export default Vue.extend({
       //   getIsCardMoney: ${this.getIsCardMoney}
       //   getIsBonusMoney: ${this.getIsBonusMoney}`
       // )
-    }
-  },
+    },
+  }, // end methods
   computed: {
     ...mapGetters({
       getPanelType: 'getPanelType',
@@ -106,13 +107,13 @@ export default Vue.extend({
 
       /* dev */
       getIsCardMoney: 'getIsCardMoney',
-      getIsBonusMoney: 'getIsBonusMoney'
-    })
+      getIsBonusMoney: 'getIsBonusMoney',
+    }),
   },
   mounted() {
     this.setRouter('/')
     this.setup()
-  }
+  },
 })
 </script>
 

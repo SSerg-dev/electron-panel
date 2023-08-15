@@ -101,9 +101,11 @@
 
         <!-- to do Bonus -->
         <!-- <div v-if="!this.isVisibleWashTableAlarm && !this.isVisibleWashTableBonus" :key="getWetProgShow"> -->
+        
         <div v-if="!this.isVisibleWashTableAlarm" :key="getWetProgShow">
           <table border="0" width="100%" cellpadding="0" cellspacing="0">
             <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
+            
               <!-- 1 -->
               <!-- ДИСКИ -->
               <tr

@@ -178,14 +178,15 @@ export default {
 
     getWetStopFreeCount(flag) {
       try {
-        if (
-          parseInt(flag) > 0 &&
-          +this.getMoneyToBonus === 0 &&
-          this.getIsFirstTimer
-        ) {
-          this.setMoneyToBonus(this.getWetBalance)
-          this.setIsMoneyToBonus(true)
-        }
+        
+        // if (
+        //   parseInt(flag) > 0 &&
+        //   +this.getMoneyToBonus === 0 &&
+        //   this.getIsFirstTimer
+        // ) {
+        //   this.setMoneyToBonus(this.getWetBalance)
+        //   this.setIsMoneyToBonus(true)
+        // }
 
         if (parseInt(flag) > 0) {
           this.isDown.stop = true
@@ -211,7 +212,6 @@ export default {
     } */
   },
   mounted() {
-    // this.isVisible = false
     this.setup()
     this.timeoutPopup = setTimeout(() => {
       this.isVisible = true
@@ -234,17 +234,19 @@ export default {
       updateStartProgram: 'updateStartProgram',
       updateDryStartProgram: 'updateDryStartProgram',
     }),
-    setup() {},
-
-    goHome(program) {
-      this.isDown.home = true
-      this.timeoutDelay = setTimeout(() => {
-        this.isDown.home = false
-        try {
-          if (this.$route.name !== 'home') this.$router.push('/')
-        } catch (err) {}
-      }, this.delay)
+    setup() {
+      this.setPrevRouter('/')
     },
+
+    // goHome(program) {
+    //   this.isDown.home = true
+    //   this.timeoutDelay = setTimeout(() => {
+    //     this.isDown.home = false
+    //     try {
+    //       if (this.$route.name !== 'home') this.$router.push('/')
+    //     } catch (err) {}
+    //   }, this.delay)
+    // },
 
     setProgram(program) {
       this.active = program
@@ -275,8 +277,10 @@ export default {
           break
       }
       if (program === 'operator') {
+        
+        // console.log('$$ Footer.vue: 280 -->', program , this.selectRouter())
         this.setPrevRouter(this.selectRouter())
-
+        
         this.timeoutPopup = setTimeout(() => {
           try {
             this.$router.push('/popup')

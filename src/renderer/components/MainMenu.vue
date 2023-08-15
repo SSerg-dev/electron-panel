@@ -174,15 +174,7 @@ export default Vue.extend({
       this.setLocale()
     }, this.delay * 6 * 3)
 
-    this.timeoutToProgram = setTimeout( () => {
-      if (this.getWetBalance > 0) this.$router.push('/program')
-    }, 2000)
-
-    // ----------------------------------
-    // 
-    EventBus.$on('submitShowActive', this.submitActiveHandler)
-
-    // ----------------------------------
+    EventBus.$on('submitShowActive', this.submitActiveHandler) 
 
     // initial timers
     this.setIsFirstTimer(true)
@@ -205,22 +197,19 @@ export default Vue.extend({
         this.setEnabler()
       }, this.delay)
     }
+
+    this.timeoutToProgram = setTimeout(() => {
+      if (this.getWetBalance > 0) this.$router.push('/program')
+    }, 2000)
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
     clearTimeout(this.timeoutLocale)
-    clearTimeout(this.timeoutToProgram) 
+    clearTimeout(this.timeoutToProgram)
   },
-  created() {
-  },
+  created() {},
 
   methods: {
-    submitActiveHandler(params) {
-      console.log('$$ PopupTypeAction.vue: 138', params)
-      this.$router.push('/popup')
-
-    },
-
     ...mapGetters({
       getDefaultLanguage: 'getDefaultLanguage',
       getCashEnabler: 'getCashEnabler',
@@ -294,6 +283,10 @@ export default Vue.extend({
         name: this.name,
         locale: this.locale,
       })
+    },
+
+    submitActiveHandler(params) {
+      if (this.$route.name !== 'popup') this.$router.push('/popup')
     },
   }, // end methods
 })

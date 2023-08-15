@@ -1,6 +1,5 @@
 <template>
   <div v-if="isMainMenu">
-    
     <keep-alive>
       <MainMenu :type="type" />
     </keep-alive>

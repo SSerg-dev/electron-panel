@@ -19,7 +19,6 @@ import { result } from 'lodash'
 var sha1 = require('sha-1')
 import EventBus from '@/bus/EventBus'
 
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -304,9 +303,19 @@ export default new Vuex.Store({
 
     // Wet actions ======================
     updateStartProgram({ commit, dispatch, getters, state }, params) {
-      console.log('$$ index.js: 307', JSON.stringify(params))
-      
-      EventBus.$emit('submitShowActive', JSON.stringify(params))
+      console.log('$$ index.js: 306', JSON.stringify(params))
+
+      if (
+        params[2] !== 'stop' &&
+        params[2] !== 'operator' &&
+        +getters.getWetStopFreeCount === 0
+      ) {
+        // console.log('$$ index.js: 313', +getters.getWetStopFreeCount)
+
+        sleep(2000).then(() => {
+          EventBus.$emit('submitShowActive', JSON.stringify(params))
+        })
+      }
 
       if (params[2] === 'operator') dispatch('updateCallOperator')
       const number = state.programs.findIndex((p) => p === params[2]) + 1
@@ -524,8 +533,6 @@ export default new Vuex.Store({
     getWetIsShowOperatorCall(state) {
       return state.parameters.isShowOperatorCall
     },
-
-
 
     // DRY ------------------------------
     // Список всех Dry программ
