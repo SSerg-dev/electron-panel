@@ -39,7 +39,6 @@
               class="card-content black-text button-content-style"
               style="justify-content: left"
             >
-              <!-- <div class="emoji">💰</div> -->
               <img
                 style="width: 8%; height: 8%"
                 src="@/assets/imgs/native/money.png"
@@ -62,11 +61,26 @@
             class="card white waves-effect button-style"
             style="padding-top: 0.6em"
           >
+            <!--  -->
             <div
+              v-if="!getIsSbp"
               class="card-content black-text button-content-style"
               style="justify-content: left"
             >
-              <!-- <div class="emoji">💳</div> -->
+              <img
+                style="width: 8%; height: 8%"
+                src="@/assets/imgs/native/credit-card.png"
+              />
+
+              &nbsp;&nbsp;
+              <div class="align-content">{{ 'BANK_CARD' | localize }}</div>
+            </div>
+            <!--  -->
+            <div
+              v-if="getIsSbp"
+              class="card-content black-text button-content-style"
+              style="justify-content: left; padding-top: 0.46em"
+            >
               <img
                 style="width: 8%; height: 8%"
                 src="@/assets/imgs/native/credit-card.png"
@@ -75,8 +89,11 @@
               &nbsp;&nbsp;
               <div class="align-content">{{ 'BANK_CARD' | localize }}</div>
 
-              <!-- <img src="@/assets/imgs/sbp/sbp.svg"  style="width: 8%"/> -->
+              &nbsp;&nbsp;
+              <img src="@/assets/imgs/sbp/sbp.svg" style="width: 8%" />
             </div>
+
+            <!--  -->
           </div>
         </li>
 
@@ -123,6 +140,7 @@ export default Vue.extend({
 
       cash_enabler: false,
       isDirectCash: false,
+      // isSbp: false,
       delay: 10000,
       timeoutDelay: null,
       timeoutLocale: null,
@@ -148,6 +166,7 @@ export default Vue.extend({
       getWetIsShowPrice: 'getWetIsShowPrice',
       getDryIsShowPrice: 'getDryIsShowPrice',
       getPanelType: 'getPanelType',
+      getIsSbp: 'getIsSbp',
     }),
   },
   watch: {
@@ -174,7 +193,7 @@ export default Vue.extend({
       this.setLocale()
     }, this.delay * 6 * 3)
 
-    EventBus.$on('submitShowActive', this.submitActiveHandler) 
+    // EventBus.$on('submitShowActive', this.submitActiveHandler)
 
     // initial timers
     this.setIsFirstTimer(true)

@@ -86,7 +86,6 @@ export default {
           this.greenImage.hide()
           this.redImage.hide()
 
-          // this.$router.push('/program')
           break
 
         // green ------------------------
@@ -97,7 +96,6 @@ export default {
           this.greenImage.show()
           this.redImage.hide()
 
-          // this.$router.push('/program')
           break
 
         // red --------------------------
@@ -108,11 +106,14 @@ export default {
           this.greenImage.hide()
           this.redImage.show()
 
-          // this.$router.push('/program')
           break
 
         default:
-          // this.$router.push('/program')
+          this.blueImage.hide()
+          this.greenImage.hide()
+          this.redImage.hide()
+
+          if (this.$route.name !== 'program') this.$router.push('/program')
           break
       }
     },
@@ -138,16 +139,21 @@ export default {
     },
   }, // end methods
 
+  watch: {
+    getActiveProgram(flag) {
+      this.showActive(flag)
+    },
+  },
+
   created() {
     this.activeProgram = this.getActiveProgram
   },
   mounted() {
     this.setup()
-    this.showActive(this.activeProgram)
-
-    this.timeoutToProgram = setTimeout(() => {
-      this.$router.push('/program')
-    }, 2000)
+    
+    // this.timeoutToProgram = setTimeout(() => {
+      if (this.$route.name !== 'program') this.$router.push('/program')
+    // }, 2000)
   },
 
   beforeDestroy() {

@@ -157,6 +157,9 @@ export default {
     getTerminalInstalled(state) {
       return state.config.bank_terminal.installed
     },
+    getIsSbp(state) {
+      return state.config.ui.isSbp
+    },
     getAcceptorInstalled(state) {
       return state.config.bill_validator.installed
     },
@@ -282,14 +285,15 @@ export default {
     setTerminalInstalled(state, flag) {
       state.config.bank_terminal.installed = flag
     },
-    /*     */
+    setIsSbp(state, flag) {
+      state.config.ui.isSbp = flag
+    },
     setPaymentLimitMin(state, min) {
       if (typeof min !== undefined) state.config.bank_terminal.min_sum = min
     },
     setPaymentLimitMax(state, max) {
       if (typeof max !== undefined) state.config.bank_terminal.max_sum = max
     },
-    /* dev */
     setCoinTokens(state, payload) {
       state.config.coin_acceptor.tokens[payload.index - 1] = payload.value
     },

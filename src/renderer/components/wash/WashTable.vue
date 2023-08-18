@@ -1,7 +1,15 @@
 с
 <template>
   <div>
-    <div class="locate">
+    <dialog>
+      <div class="popup">
+        <p>
+          <PopupTypeActive />
+        </p>
+      </div>
+    </dialog>
+
+    <div style="opacity: 1" class="locate">
       <section>
         <div class="message">
           <div><Message /></div>
@@ -101,11 +109,10 @@
 
         <!-- to do Bonus -->
         <!-- <div v-if="!this.isVisibleWashTableAlarm && !this.isVisibleWashTableBonus" :key="getWetProgShow"> -->
-        
+
         <div v-if="!this.isVisibleWashTableAlarm" :key="getWetProgShow">
           <table border="0" width="100%" cellpadding="0" cellspacing="0">
             <tbody v-bind:style="{ opacity: isVisible ? 1 : 0 }">
-            
               <!-- 1 -->
               <!-- ДИСКИ -->
               <tr
@@ -291,16 +298,20 @@ import WashTableDegrease from '@/components/wash/actives/WashTableDegrease'
 import WashTableDisinfection from '@/components/wash/actives/WashTableDisinfection'
 import WashTableBonus from '@/components/wash/WashTableBonus'
 import WashTableAlarm from '@/components/wash/WashTableAlarm'
+import PopupTypeActive from '@/components/PopupTypeActive'
 
 import { dateFilter, getRndInteger, log } from '@/utils/order.js'
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
 import { synchronize } from '@/utils/common.functions'
+import EventBus from '@/bus/EventBus'
 
 import { buttonSizeOptions } from '@/shapes/index.js'
 
 export default {
   data: () => ({
+    dialog: null,
+
     popupDelay: 2000,
     intervalFirstTimer: null,
     intervalSecondTimer: null,
@@ -383,6 +394,7 @@ export default {
     WashTableDisinfection,
     WashTableBonus,
     WashTableAlarm,
+    PopupTypeActive,
   },
   props: {
     actives: {
@@ -718,6 +730,10 @@ export default {
       // sleep(0).then(() => {
       //   this.initial()
       // })
+      EventBus.$on('submitShowActive', this.submitActiveHandler)
+    },
+    submitActiveHandler(params) {
+      this.showActive()
     },
     initial() {
       // classes instances
@@ -894,6 +910,21 @@ export default {
       return result
     },
 
+    showActive() {
+      this.dialog = document.querySelector('dialog')
+
+      if (this.dialog) {
+        if (!this.dialog.open) {
+          this.dialog.showModal()
+        }
+        sleep(2000).then(() => {
+          if (this.dialog.open) {
+            this.dialog.close()
+          }
+        })
+      }
+    },
+
     /*     */
   }, // end methods
   mounted() {
@@ -908,9 +939,8 @@ export default {
         // rerender after 1 sec.
         this.setKeys()
         this.setup()
-      }, (this.delay))
+      }, this.delay)
     }
-    // this.setup()
   },
   beforeDestroy() {
     clearTimeout(this.timeoutDelay)
@@ -1031,5 +1061,23 @@ td {
 } */
 .dry-item {
   padding-right: 1em;
+}
+
+.popup {
+  position: absolute;
+  top: 20em;
+  left: 74em;
+  z-index: 1;
+}
+dialog {
+  background: #121212;
+  border: none;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden !important;
+}
+dialog::backdrop {
+  background: #121212;
+  border: none;
 }
 </style>

@@ -308,11 +308,16 @@ export default new Vuex.Store({
       if (
         params[2] !== 'stop' &&
         params[2] !== 'operator' &&
+        params[2] !== 'degrease' &&
+        params[2] !== 'vacuum' &&
+        params[2] !== 'turboDryer' &&
+        params[2] !== 'air' &&
+        params[2] !== 'washer' &&
         +getters.getWetStopFreeCount === 0
       ) {
         // console.log('$$ index.js: 313', +getters.getWetStopFreeCount)
 
-        sleep(2000).then(() => {
+        sleep(1000).then(() => {
           EventBus.$emit('submitShowActive', JSON.stringify(params))
         })
       }

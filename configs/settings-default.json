@@ -515,7 +515,8 @@
     "splash_timeout": 30,
     "touch_threshold": 200,
     "window_timeout": 30,
-    "isTooltipInstalled": false
+    "isTooltipInstalled": false,
+    "isSbp": false
   },
   "__commentAlarms": "add alarms",
   "alarms": {

@@ -4,8 +4,10 @@
       class="card grey lighten-3"
       style="height: 80px; border: solid 3px #00b9e3; border-radius: 2rem"
     >
-      <div class="card-content black-text section-card" >
-        <span class="card-title col s2" style="margin-left: -0.4em;">{{`Model` | localize}} {{`:`}}</span>
+      <div class="row card-content black-text section-card">
+        <span class="card-title" style="margin-left: 0.4em"
+          >{{ `Model` | localize }} {{ `:` }}</span
+        >
 
         <div class="input-field section-model">
           <select class="white-text" ref="select" v-model="current">
@@ -29,6 +31,28 @@
             </div>
           </button>
         </div>
+
+        <!-- <input type="checkbox" v-model="isTerminalInstalled" /> -->
+        <div v-if="this.current === 2" class="col s4">
+          <ul
+            class="btn black-text inline"
+            style="margin-left: 2em; margin-top: -0.2em"
+          >
+            <li class="switch">
+              <label>
+                <input type="checkbox" v-model="isSbp" />
+                <span class="lever"></span>
+              </label>
+            </li>
+
+            <li>
+              {{ `Оплата через СБП` }}
+            </li>
+          </ul>
+        </div>
+
+        <!--  -->
+
         <div v-if="this.current === 4" class="col s4">
           <button
             class="btn waves-effect waves-light white-text button-setting"
@@ -42,7 +66,6 @@
           </button>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -59,11 +82,12 @@ export default Vue.extend({
     select: null,
     current: null,
     title: '',
+    isSbp: false,
 
     types: [
-      /* { id: 1, title: 'ЯРУС К2100' }, */
+      // { id: 1, title: 'ЯРУС К2100' },
       { id: 2, title: 'VENDOTEK' },
-      /* { id: 3, title: 'INGENICO' }, */
+      // { id: 3, title: 'INGENICO' },
       { id: 4, title: 'PAX' },
     ],
   }),
@@ -76,9 +100,11 @@ export default Vue.extend({
   methods: {
     ...mapGetters({
       getDefaultTerminalType: 'getDefaultTerminalType',
+      getIsSbp: 'getIsSbp',
     }),
     ...mapMutations({
       setDefaultTerminalType: 'setDefaultTerminalType',
+      setIsSbp: 'setIsSbp',
     }),
     setService(service) {
       switch (service) {
@@ -102,6 +128,9 @@ export default Vue.extend({
       // console.log('++current-->', this.current, this.select)
       this.setDefaultTerminalType(this.select)
     },
+    isSbp(flag) {
+      this.setIsSbp(flag) 
+    },
   },
 
   created() {
@@ -111,6 +140,8 @@ export default Vue.extend({
     const { id, title } = this.types[index]
     this.current = id
     this.select = title
+
+    this.isSbp = this.getIsSbp()
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {
@@ -127,20 +158,41 @@ export default Vue.extend({
 .section-model {
   position: absolute;
   top: 0;
-  left: 11em;
-  width: 28.5em;
-  /* margin-top: -0.5em; */
-  /* margin-right: -1em; */
-  
+  left: 12em;
+  width: 28.4em;
 }
 .button-setting {
   position: absolute;
-  top: 1em;
-  left: 29.5em;
+  padding-top: 4px;
+  top: 1.2rem;
+  left: 40.5rem;
   border: solid 1px white;
-  font-size: 1.4em;
-  border-radius: 2em;
+  font-size: 1.6em;
+  border-radius: 0.5em;
   background-color: #00b9e3;
-  width: 380px;
+  width: 410px;
+  height: 46px;
+}
+
+.inline {
+  position: absolute;
+  padding-top: 4px;
+  top: 1.4rem;
+  left: 38.8rem;
+  border: solid 1px eee;
+  font-size: 1.6em;
+  font-weight: normal;
+  border-radius: 0em;
+  background-color: #eee;
+  width: 410px;
+  height: 42px;
+}
+.inline li {
+  display: inline;
+}
+
+.switch label .lever {
+  /* margin-right: 60px; */
+  margin-bottom: 12px;
 }
 </style>
