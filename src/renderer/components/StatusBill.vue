@@ -59,7 +59,7 @@ export default Vue.extend({
     timeoutResolveDelay: null,
     timeoutRejectDelay: null,
 
-    seconds: 45,
+    seconds: 90,
     cardMessageIndex: -1,
     card: 0,
     terminal: null,
@@ -77,14 +77,19 @@ export default Vue.extend({
       getStatusBill: 'getStatusBill',
       getStatusBillMessages: 'getStatusBillMessages',
       getPanelType: 'getPanelType',
+      getWetBalance: 'getWetBalance',
+      getDryBalance: 'getDryBalance',
     }),
   },
   watch: {
     getStatusBillMessages(flag) {},
     seconds(flag) {
-      if (flag === 0) {
+      if (flag === 0 && +getWetBalance === 0 && +getDryBalance === 0) {
         this.loading = false
         this.$router.push('/')
+      } else if (flag === 0 && (+getWetBalance > 0 || getDryBalance > 0)) {
+        this.loading = false
+        this.$router.push('/program')
       }
     },
   },
@@ -164,7 +169,6 @@ export default Vue.extend({
       ) {
         this.observer.state /= BCNet.VENDOTEK_MONEY_SCALE
       }
-        
 
       this.cardMessageIndex = 3
       this.setStatusBillMessagesIndex(this.cardMessageIndex)

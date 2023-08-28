@@ -125,7 +125,6 @@ export default Vue.extend({
     current(typeId) {
       const { id, title } = this.types.find((t) => t.id === typeId)
       this.select = title
-      // console.log('++current-->', this.current, this.select)
       this.setDefaultTerminalType(this.select)
     },
     isSbp(flag) {

@@ -360,7 +360,7 @@ export default new Vuex.Store({
     // Платежи картой -------------------
 
     updateWetCardMoney({ getters }, card) {
-      console.log('$$ index.js:358 updateWetMoney-->', card)
+      console.log('$$ index.js:358 updateWetMoney', card)
 
       // clear money
       ipcRenderer.send(

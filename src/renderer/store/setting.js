@@ -20,7 +20,9 @@ export default {
     vacuumNumber: 1,
     payment: 1,
     cardLimitMax: 0,
-    prevRouter: ''
+    prevRouter: '',
+    isAppendSbp: false
+
 
   }, // end state
 
@@ -45,6 +47,10 @@ export default {
     getDefaultLanguage(state) {
       return state.config.languages.default
     },
+    getDefaultCountry(state) {
+      return state.config.country
+    },
+
     getSysPanelLanguage(state) {
       return state.config.languages.syspanel
     },
@@ -160,6 +166,10 @@ export default {
     getIsSbp(state) {
       return state.config.ui.isSbp
     },
+    
+    getIsAppendSbp(state) {
+      return state.isAppendSbp
+    },
     getAcceptorInstalled(state) {
       return state.config.bill_validator.installed
     },
@@ -256,6 +266,9 @@ export default {
     setDefaultLanguage(state, language) {
       state.config.languages.default = language
     },
+    setDefaultCountry(state, country) {
+      state.config.country = country
+    },
     setSysPanelLanguage(state, language) {
       state.config.languages.syspanel = language
     },
@@ -287,6 +300,10 @@ export default {
     },
     setIsSbp(state, flag) {
       state.config.ui.isSbp = flag
+    },
+
+    setIsAppendSbp(state, flag) {
+      state.isAppendSbp = flag
     },
     setPaymentLimitMin(state, min) {
       if (typeof min !== undefined) state.config.bank_terminal.min_sum = min

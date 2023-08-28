@@ -61,21 +61,20 @@ export default Vue.extend({
       this.initLanguage()
     },
     submitHandler(options) {
-      console.log(
-        '$$ SettingPaymentLanguage.vue: 64',
-        JSON.stringify(options.selected)
-      )
-      //this.initLanguage()
-      //this.selectLanguages()
+      // console.log(
+      //   '$$ SettingPaymentLanguage.vue: 64',
+      //   JSON.stringify(options.selected)
+      // )
     },
     initLanguage() {
-      const defaultLanguage = this.getDefaultLanguage().toUpperCase()
-      //const defaultLanguage = this.getSysPanelLanguage().toUpperCase()
+      // const defaultLanguage = this.getDefaultLanguage().toUpperCase()
+      const defaultCountry = this.getDefaultCountry().toUpperCase()
+
 
       this.languages = this.getLanguageNatives()
-      // console.log('$$ SettingPaymentLanguage.vue: 72', JSON.stringify(this.languages))
+      // console.log('$$ SettingPaymentLanguage.vue: 73', defaultCountry, JSON.stringify(this.languages))
 
-      const index = this.languages.findIndex((l) => l.key === defaultLanguage)
+      const index = this.languages.findIndex((l) => l.key === defaultCountry)
       if (index !== -1) {
         const { id, title, key, emoji, currency, symbol } =
           this.languages[index]
@@ -88,6 +87,8 @@ export default Vue.extend({
     },
     ...mapGetters({
       getDefaultLanguage: 'getDefaultLanguage',
+      getDefaultCountry: 'getDefaultCountry',
+
       getSysPanelLanguage: 'getSysPanelLanguage',
       getSelectedCountries: 'getSelectedCountries',
 
@@ -99,6 +100,7 @@ export default Vue.extend({
       setLanguageItem: 'setLanguageItem',
       setSysPanelLanguage: 'setSysPanelLanguage',
       setDefaultLanguage: 'setDefaultLanguage',
+      setDefaultCountry: 'setDefaultCountry',
     }),
   },
   watch: {
@@ -107,11 +109,9 @@ export default Vue.extend({
         (l) => l.id === languageId
       )
       this.select = title
-      /* uncomment */
       this.setSysPanelLanguage(key)
-      this.setDefaultLanguage(key)
+      this.setDefaultCountry(key)
 
-      //this.setLanguageItem(key)
     },
   },
   created() {

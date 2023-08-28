@@ -76,7 +76,6 @@ export default Vue.extend({
       getLanguageNatives: 'getLanguageNatives',
       getAllLanguageNatives: 'getAllLanguageNatives',
       getLanguageIds: 'getLanguageIds',
-      // getSelectLanguageNatives: 'getSelectLanguageNatives'
     }),
     selected() {
       return store.state.countries.countries
@@ -89,7 +88,6 @@ export default Vue.extend({
       setSelectedCountries: 'setSelectedCountries',
     }),
     ...mapGetters({}),
-    /* dev */
     emitSelect(selected, current) {
       const options = { selected: selected, current: current }
       EventBus.$emit('submitSelect', options)
@@ -121,7 +119,6 @@ export default Vue.extend({
   },
   watch: {
     current(languageIds) {
-      console.log('languageIds-->', languageIds)
 
       const selected = languageIds.map((i) => {
         const result = this.allLanguages.find((l) => l.id === i).key
@@ -130,16 +127,8 @@ export default Vue.extend({
       this.setSelectedCountries(selected)
       this.emitSelect(selected, this.current)
 
-      /* dev */
-      //this.selectLanguages()
-
-      //this.select = selected
     },
 
-    /* selected(value) {
-      this.current = this.getLanguageIds
-      this.select = value
-    } */
   },
   created() {
     this.setup()

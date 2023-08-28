@@ -50,7 +50,7 @@
                 </div>
               </td>
               <td colspan="1" class="white-text currency">
-                <div align="center" style="font-size: 1em;">
+                <div align="center" style="font-size: 1em">
                   <p class="emoji">{{ this.emoji }}</p>
                   {{ this.currency }}
                   <!-- {{ this.symbol }} -->
@@ -301,8 +301,9 @@
                 </div>
               </td>
             </tr>
-            <!-- row 05 -->
-            <tr>
+
+            <!-- row 05 no pay Sbp  -->
+            <tr v-if="!getIsSbp">
               <td>
                 <div
                   @click="setNumber('400', (fixed = true))"
@@ -339,6 +340,43 @@
                 </div>
               </td>
             </tr>
+
+            <!-- row 05  yes pay Sbp  -->
+            <tr v-if="getIsSbp">
+              <td>
+                <div
+                  @click="setNumber('400', (fixed = true))"
+                  class="card white waves-effect medium-button"
+                >
+                  <div class="card-content black-text medium-button-title">
+                    400
+                  </div>
+                </div>
+              </td>
+              <td colspan="3">
+                <div
+                  @click="payUp('append')"
+                  class="card white waves-effect large-sbp-button"
+                >
+                  <div class="card-content black-text large-button-sbp-title">
+                    {{ `КАРТОЙ` }}
+                  </div>
+                </div>
+              </td>
+
+              <td colspan="3">
+                <div
+                  @click="payUp('appendSbp')"
+                  class="card white waves-effect large-sbp-right-button"
+                >
+                  <div class="card-content black-text large-button-sbp-title">
+                    <img src="@/assets/imgs/sbp/sbp.svg" style="width: 22%" />
+                    &nbsp;&nbsp;
+                    {{ `СБП` }}
+                  </div>
+                </div>
+              </td>
+            </tr>
           </tbody>
         </table>
       </form>
@@ -359,6 +397,7 @@ import { profile } from 'console'
 
 import messages from '@/utils/messages'
 import localizeFilter from '@/filters/localize.filter'
+import program from '../store/program'
 
 export default {
   data: () => ({
@@ -399,7 +438,7 @@ export default {
     maxY: 1620,
 
     client: 'fetch',
-    url: '', 
+    url: '',
     storage: null,
     options: {},
     payType: '',
@@ -439,6 +478,7 @@ export default {
 
       getProfile: 'getProfile',
       getCardLimitMax: 'getCardLimitMax',
+      getIsSbp: 'getIsSbp',
     }),
 
     isMinBlinking: {
@@ -630,6 +670,7 @@ export default {
       getLoginBonusPhone: 'getLoginBonusPhone',
       getIsPayCardMoney: 'getIsPayCardMoney',
       getCardMoney: 'getCardMoney',
+      getIsAppendSbp: 'getIsAppendSbp'
     }),
     ...mapMutations({
       setLoginBonusPhone: 'setLoginBonusPhone',
@@ -639,6 +680,7 @@ export default {
       setCardMoney: 'setCardMoney',
       setPaymentLimitMax: 'setPaymentLimitMax',
       setProfile: 'setProfile',
+      setIsAppendSbp: 'setIsAppendSbp'
     }),
     ...mapActions({
       updateWetBonusMoney: 'updateWetBonusMoney',
@@ -658,6 +700,14 @@ export default {
 
         // payCard
         if (this.getIsCardMoney && !this.getIsBonusMoney) {
+          // 'appendSbp'
+          if (program === 'appendSbp') {
+            this.setIsAppendSbp(true)
+            // console.log('$$ CardBill.vue: 706', this.getIsAppendSbp() )
+          } else {
+            this.setIsAppendSbp(false)
+          }
+          
           this.emitCardMoney(card)
           this.setCardMoney(card)
           // this.$message(`Банковской картой будет оплачено:  ${+card} ₽`)
@@ -906,6 +956,30 @@ td {
   justify-content: center;
   font-size: 4em;
   padding-top: 0.2em;
+}
+
+.large-sbp-button {
+  width: 318px;
+  height: 120px;
+  border: solid 6px rgb(118, 255, 3);
+  border-radius: 2.5em;
+  box-shadow: 0px 6px 10px rgb(118, 255, 3);
+}
+.large-sbp-right-button {
+  position: absolute;
+  bottom: 26em;
+  right: 6.3em;
+  width: 318px;
+  height: 120px;
+  border: solid 6px rgb(118, 255, 3);
+  border-radius: 2.5em;
+  box-shadow: 0px 6px 10px rgb(118, 255, 3);
+}
+.large-button-sbp-title {
+  display: flex;
+  justify-content: center;
+  font-size: 3em;
+  padding-top: 0.5em;
 }
 
 .pay-up {

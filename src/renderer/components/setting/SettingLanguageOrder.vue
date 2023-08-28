@@ -31,7 +31,7 @@
                       type="radio"
                       name="locale"
                       value="index"
-                      id="index"
+                      id="input"
                     />
                     <span></span>
                   </div>
@@ -304,16 +304,27 @@ export default Vue.extend({
 
       if (this.selectIndex > -1) {
         this.radioButtons[this.selectIndex].checked = true
-      } 
+      }
+    },
+    changeOnPagination(value) {
+      this.selectIndex = this.prevSelectIndex
+      this.radioButtons = document.querySelectorAll('input[name="locale"]')
+
+      if (this.selectIndex > -1) {
+        this.radioButtons[this.selectIndex].checked = true
+
+        console.log(
+          '$$ SettingLanguageOrder.vue: 317',
+          value,
+          this.radioButtons[this.selectIndex].checked
+        )
+      }
     },
   }, // end methods
 
   watch: {
     page(value) {
-      if (value === 1) {
-        this.radioButtons[this.prevSelectIndex].checked = true
-        // console.log('$$ 315', value, this.radioButtons) 
-      }
+      this.changeOnPagination(value)
     },
   },
   created() {
@@ -408,6 +419,7 @@ export default Vue.extend({
 
 .up {
 }
+
 [type='radio'] + span:before,
 [type='radio'] + span:after {
   border: solid 1px #00b9e3;
@@ -424,10 +436,19 @@ export default Vue.extend({
   -webkit-transform: scale(2.5);
   transform: scale(2.5);
 }
-[type='radio']:checked + span:after,
-[type='radio'].with-gap:checked + span:after {
+
+/* ---- */
+
+[type='radio']:checked + span[data-v-51e9a26a]:after,
+[type='radio'].with-gap:checked + span[data-v-51e9a26a]:after {
   background-color: #00b9e3;
 }
+
+/* [type='radio']:checked + span[data-v-51e9a26a]:after,
+[type='radio'].with-gap:checked + span[data-v-51e9a26a]:after {
+  background-color: #edf5f8;
+} */
+/* ---- */
 
 /*  */
 .paginate {

@@ -158,4 +158,5 @@ export default Vue.extend({
 .material-icons {
   z-index: 1000;
 }
+
 </style>

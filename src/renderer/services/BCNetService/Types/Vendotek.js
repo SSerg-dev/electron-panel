@@ -5,7 +5,7 @@ const Observer = require('./Observer.js')
 
 let Config = {
   ip: '',
-  port: 0
+  port: 0,
 }
 class Vendotek extends EventEmitter {
   static item = null
@@ -16,6 +16,7 @@ class Vendotek extends EventEmitter {
     this.config = Object.assign({}, Config, config)
     this.log = this.config.log || console.log
     this.opNumber = 0
+    this.isAppendSbp = false // isAppendSbp
 
     // singelton
     if (Vendotek.exists) {
@@ -44,10 +45,10 @@ class Vendotek extends EventEmitter {
     this.observers.push(observer)
   }
   unsubscribe(observer) {
-    this.observers = this.observers.filter(obs => obs !== observer)
+    this.observers = this.observers.filter((obs) => obs !== observer)
   }
   fire(action) {
-    this.observers.forEach(observer => {
+    this.observers.forEach((observer) => {
       observer.update(action)
     })
   }
@@ -73,7 +74,7 @@ class Vendotek extends EventEmitter {
       const data = this.socket.connect(
         this.config.port,
         this.config.ip,
-        err => {
+        (err) => {
           if (err) return reject(err)
           resolve(data)
         }
@@ -202,7 +203,7 @@ class Vendotek extends EventEmitter {
 
   async awaitEvent(event, timeout) {
     return new Promise((resolve, reject) => {
-      let check_response = data => {
+      let check_response = (data) => {
         clearTimeout(timeoutFunc)
         resolve(data)
       }
@@ -221,15 +222,16 @@ class Vendotek extends EventEmitter {
     let cmdBuffer = Buffer.concat([
       new Buffer([0x01]),
       new Buffer([cmd.length]),
-      new Buffer(cmd)
+      new Buffer(cmd),
     ])
+
     let numberBuffer = Buffer.concat([
       new Buffer([0x03]),
       new Buffer([this.opNumber.toString().length]),
-      new Buffer(this.opNumber.toString())
+      new Buffer(this.opNumber.toString()),
     ])
     let paramsBuffer = Buffer.concat(
-      Object.keys(params).map(key => {
+      Object.keys(params).map((key) => {
         let code
         switch (key) {
           case 'amount':
@@ -249,19 +251,40 @@ class Vendotek extends EventEmitter {
         return Buffer.concat([
           new Buffer([code]),
           new Buffer([params[key].toString().length]),
-          new Buffer(params[key].toString())
+          new Buffer(params[key].toString()),
         ])
       })
     )
 
     let discriminator = new Buffer([0x96, 0xfb])
 
-    let dataBuffer = Buffer.concat([
-      discriminator,
-      cmdBuffer,
-      numberBuffer,
-      paramsBuffer
-    ])
+    // sbp ------------------------------
+    let dataBuffer
+
+    if (this.isAppendSbp) {
+      const sbpData = '101'
+      let sbpBuffer = Buffer.concat([
+        new Buffer([0x19]),
+        new Buffer([sbpData.length]),
+        new Buffer(sbpData),
+      ])
+
+      dataBuffer = Buffer.concat([
+        discriminator,
+        cmdBuffer,
+        numberBuffer,
+        paramsBuffer,
+        sbpBuffer,
+      ])
+    } else {
+      dataBuffer = Buffer.concat([
+        discriminator,
+        cmdBuffer,
+        numberBuffer,
+        paramsBuffer,
+      ])
+    }
+    // ----------------------------------
 
     let lengthBuffer = Buffer.alloc(2)
     lengthBuffer.writeUInt16BE(dataBuffer.length)
@@ -328,12 +351,14 @@ class Vendotek extends EventEmitter {
     return this.sendIDLE()
   }
 
-  async pay(amount) {
+  async pay(amount, isAppendSbp) {
+    this.isAppendSbp = isAppendSbp
+    // console.log('$$ Vendotek.vue: 332', isAppendSbp)
     this.payProcess = true
     await this.sendIDLE()
     this.opNumber++
 
-    let params = await this.sendPRODUCT(amount).catch(e => ({}))
+    let params = await this.sendPRODUCT(amount).catch((e) => ({}))
     // this.responseBankInfo = params
 
     if (params.amount != amount) {

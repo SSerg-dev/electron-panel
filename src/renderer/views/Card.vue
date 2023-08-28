@@ -78,6 +78,8 @@ export default Vue.extend({
       getIsCardMoney: 'getIsCardMoney',
       getProfile: 'getProfile',
       getPayType: 'getPayType',
+      getIsSbp: 'getIsSbp',
+      getIsAppendSbp: 'getIsAppendSbp'
     }),
   },
 
@@ -100,7 +102,7 @@ export default Vue.extend({
           const observer = bankTerminal.observerItem
           if (observer) stream$.subscribe(observer)
         }
-        console.log('$$ Card.vue: 102', options.type, this.isInitBankTerminal)
+        // console.log('$$ Card.vue: 102', options.type, this.isInitBankTerminal)
         switch (options.type) {
           case 'vendotek':
             !this.isInitBankTerminal
@@ -120,9 +122,9 @@ export default Vue.extend({
     },
 
     flowSequenceVendotek(item) {
-      console.log('$$ Card.vue: 122', this.card, BCNet.VENDOTEK_MONEY_SCALE)
+      // console.log('$$ Card.vue: 122', this.card, BCNet.VENDOTEK_MONEY_SCALE)
       const amount = this.card * BCNet.VENDOTEK_MONEY_SCALE
-      item.pay(amount)
+      item.pay(amount, this.getIsAppendSbp)
       item.sendFINAL()
     },
 
@@ -146,10 +148,6 @@ export default Vue.extend({
         this.card = card
         this.isInitBankTerminal = false
         this.initBankTerminal()
-        // if (this.getPayType === 'card') {
-        //   console.log('$$ submitCardHandler', card)
-        //   this.initBankTerminal()
-        // }
       }
     },
 
@@ -199,14 +197,8 @@ export default Vue.extend({
     this.profile.firstname = firstname
     this.profile.lastname = lastname
 
-    /* dev */
-    // this.isInitBankTerminal = true
-    // console.log('$$ getPayType', this.getPayType)
-    // this.initBankTerminal()
   },
   beforeDestroy() {
-    // this.setIsCardMoney(false)
-    // this.isInitBankTerminal = false
     clearInterval(this.intervalMainMenu)
   },
   components: {

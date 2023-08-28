@@ -87,10 +87,17 @@
               />
 
               &nbsp;&nbsp;
-              <div class="align-content">{{ 'BANK_CARD' | localize }}</div>
-
+              <!-- <div class="align-content">{{ 'BANK_CARD' | localize }}</div> -->
+              <div class="align-content">
+                {{ `КАРТОЙ` }}
+                &nbsp;&nbsp;
+                {{ `|` }}
+                &nbsp;&nbsp;
+              </div>
               &nbsp;&nbsp;
               <img src="@/assets/imgs/sbp/sbp.svg" style="width: 8%" />
+              &nbsp;
+              {{ `СБП` }}
             </div>
 
             <!--  -->
@@ -140,7 +147,6 @@ export default Vue.extend({
 
       cash_enabler: false,
       isDirectCash: false,
-      // isSbp: false,
       delay: 10000,
       timeoutDelay: null,
       timeoutLocale: null,
@@ -190,10 +196,12 @@ export default Vue.extend({
 
     this.timeoutLocale = setTimeout(() => {
       this.locale = this.getDefaultLanguage()
+      console.log('$$ MainMenu.vue: 200', this.locale)
+
       this.setLocale()
     }, this.delay * 6 * 3)
+    // }, 1000)
 
-    // EventBus.$on('submitShowActive', this.submitActiveHandler)
 
     // initial timers
     this.setIsFirstTimer(true)
